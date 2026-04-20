@@ -11,8 +11,6 @@
   <meta property="og:description" content="Descubre cuánto cobras realmente. Calcula tu neto con todas las variables: IRPF, SS, hijos, comunidad autónoma y más.">
   <meta property="og:type" content="website">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894"
-     crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -65,6 +63,8 @@
     }
 
     .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
 
     .header-tag {
       font-size: 11px;
@@ -356,12 +356,20 @@
       margin: 1.5rem 0;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-1P9N4QY0JR");
+  </script>
 </head>
 <body>
 
 <header>
   <div class="logo">meta<span>phai</span></div>
-  <span class="header-tag">Herramientas gratis</span>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
 </header>
 
 <main>
@@ -632,7 +640,7 @@
 
 <footer>
   <p>© 2026 Metaphai · Estimación orientativa basada en la normativa IRPF 2026 · No constituye asesoramiento fiscal</p>
-  <p style="margin-top:6px"><a href="/privacidad.html" style="color:var(--hint)">Política de privacidad</a> · <a href="/cookies.html" style="color:var(--hint)">Cookies</a></p>
+  <p style="margin-top:6px"><a href="/privacidad.html" style="color:var(--hint)">Política de privacidad</a> · <a href="/privacidad.html" style="color:var(--hint)">Cookies</a></p>
 </footer>
 
 <script>
@@ -769,6 +777,32 @@ function calcular() {
 
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
 calcular();
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
 </script>
 </body>
 </html>
