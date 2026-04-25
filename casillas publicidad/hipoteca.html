@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Hipoteca 2026 | Cuota, Intereses y Amortización | Metaphai</title>
+  <meta name="description" content="Calcula la cuota mensual de tu hipoteca, el total de intereses y el cuadro de amortización completo. Compara hipoteca fija vs variable. Gratis y sin registro.">
+  <meta name="keywords" content="calculadora hipoteca 2026, cuota hipoteca, calcular hipoteca españa, hipoteca fija vs variable, cuadro amortizacion hipoteca, euribor hipoteca calculadora">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora de Hipoteca 2026 | Metaphai">
+  <meta property="og:description" content="Calcula la cuota mensual de tu hipoteca, total de intereses y cuadro de amortización. Compara fija vs variable.">
+  <meta property="og:url" content="https://metaphai.com/hipoteca.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --hip: #1a4a6b; --hip-light: #e8f2fb;
+      --danger: #8b2a2a; --warn: #7a4f1a; --warn-light: #fef6ec;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--hip); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--hip-light); color: var(--hip); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+    .tab { flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.15s; }
+    .tab.active { background: var(--hip); color: white; border-color: var(--hip); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--hip); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.blue { background: var(--hip-light); border: 1px solid #b8d0f0; }
+    .info-box.blue p { font-size: 13px; color: var(--hip); margin: 0; }
+    .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
+    .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .slider-wrap { margin-top: 6px; }
+    .slider-wrap input[type=range] { width: 100%; accent-color: var(--hip); }
+    .slider-val { font-size: 13px; color: var(--hip); font-weight: 500; text-align: right; margin-top: 2px; }
+    /* RESULTS */
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--hip); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 44px; font-weight: 600; color: white; letter-spacing: -0.04em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 20px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.neg .rv { color: var(--danger); }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.hip .rv { color: var(--hip); }
+    /* BARRA VISUAL */
+    .barra-wrap { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .barra-title { font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+    .barra { height: 32px; border-radius: 8px; overflow: hidden; display: flex; }
+    .barra-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; transition: width 0.4s; white-space: nowrap; overflow: hidden; }
+    .legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    /* AMORTIZACIÓN ANTICIPADA */
+    .amort-result { background: var(--accent-light); border: 1px solid #b8dece; border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 1rem; display: none; }
+    .amort-result h4 { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+    .amort-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .amort-item .al { font-size: 11px; color: var(--hint); }
+    .amort-item .av { font-size: 14px; font-weight: 500; font-family: 'DM Mono', monospace; color: var(--accent); }
+    /* CUADRO AMORTIZACIÓN */
+    .tabla-wrap { overflow-x: auto; margin-top: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: right; padding: 8px 10px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    th:first-child { text-align: left; }
+    td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; }
+    td:first-child { text-align: left; font-family: 'DM Sans', sans-serif; font-size: 13px; }
+    tr:hover td { background: var(--bg); }
+    .btn-ver-mas { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--muted); cursor: pointer; width: 100%; margin-top: 10px; transition: all 0.15s; }
+    .btn-ver-mas:hover { border-color: var(--hip); color: var(--hip); }
+    /* COMPARATIVA */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 1rem; }
+    @media (max-width: 540px) { .comp-grid { grid-template-columns: 1fr; } }
+    .comp-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+    .comp-card.winner { border-color: var(--accent); background: var(--accent-light); }
+    .comp-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+    .comp-card.winner h4 { color: var(--accent); }
+    .comp-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+    .comp-row .cl { color: var(--muted); }
+    .comp-row .cv { font-family: 'DM Mono', monospace; font-weight: 500; }
+    .winner-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--accent); color: white; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🏡 Hipoteca 2026</div>
+    <h1>Calculadora de <em>hipoteca</em><br>fija, variable y mixta</h1>
+    <p>Calcula la cuota mensual, el total de intereses y el cuadro de amortización completo. Compara tipos de hipoteca.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="cambiarTab('cuota')">📊 Cuota mensual</div>
+    <div class="tab" onclick="cambiarTab('amortizacion')">📋 Amortización anticipada</div>
+    <div class="tab" onclick="cambiarTab('comparativa')">⚖️ Fija vs Variable</div>
+  </div>
+
+  <!-- TAB CUOTA -->
+  <div class="tab-content active" id="tab-cuota">
+    <div class="card">
+      <div class="section-label">Datos de la hipoteca</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Precio del inmueble (€)</label>
+          <input type="number" id="precio_inmueble" value="250000" min="0" step="5000" oninput="actualizarAhorro()">
+        </div>
+        <div class="field">
+          <label>Ahorros / entrada (€)</label>
+          <input type="number" id="entrada" value="50000" min="0" step="5000" oninput="actualizarAhorro()">
+          <p class="tip" id="tip_entrada">Porcentaje de entrada: 20%</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Capital a financiar (€)</label>
+          <input type="number" id="capital" value="200000" min="0" step="5000" oninput="calcular()">
+        </div>
+        <div class="field">
+          <label>Plazo (años)</label>
+          <div class="slider-wrap">
+            <input type="range" id="plazo_range" min="5" max="40" value="30" oninput="document.getElementById('plazo').value=this.value;calcular()">
+            <div class="slider-val" id="plazo_label">30 años</div>
+          </div>
+          <input type="number" id="plazo" value="30" min="1" max="40" style="margin-top:6px" oninput="document.getElementById('plazo_range').value=this.value;document.getElementById('plazo_label').textContent=this.value+' años';calcular()">
+        </div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div class="field">
+          <label>Tipo de hipoteca</label>
+          <select id="tipo_hip" onchange="cambiarTipoHip()">
+            <option value="fija">Fija</option>
+            <option value="variable">Variable (Euríbor + diferencial)</option>
+            <option value="mixta">Mixta</option>
+          </select>
+        </div>
+        <div class="field" id="campo_tin">
+          <label>TIN anual (%)</label>
+          <input type="number" id="tin" value="3.5" min="0" max="15" step="0.01" oninput="calcular()">
+        </div>
+        <div class="field" id="campo_euribor" style="display:none">
+          <label>Euríbor actual (%)</label>
+          <input type="number" id="euribor" value="2.5" min="-1" max="10" step="0.01" oninput="calcular()">
+        </div>
+        <div class="field" id="campo_diferencial" style="display:none">
+          <label>Diferencial (%)</label>
+          <input type="number" id="diferencial" value="0.75" min="0" max="5" step="0.01" oninput="calcular()">
+        </div>
+      </div>
+      <div id="campo_mixta" style="display:none;margin-top:12px">
+        <div class="grid3">
+          <div class="field">
+            <label>Años a tipo fijo</label>
+            <input type="number" id="años_fijo" value="10" min="1" max="30" oninput="calcular()">
+          </div>
+          <div class="field">
+            <label>TIN período fijo (%)</label>
+            <input type="number" id="tin_fijo_mixta" value="2.5" min="0" max="10" step="0.01" oninput="calcular()">
+          </div>
+          <div class="field">
+            <label>TIN período variable (%)</label>
+            <input type="number" id="tin_variable_mixta" value="4.0" min="0" max="15" step="0.01" oninput="calcular()">
+          </div>
+        </div>
+      </div>
+      <div class="info-box warn" style="margin-top:12px">
+        <p>⚠️ Los bancos financian máximo el 80% del valor de tasación en vivienda habitual y el 70% en segunda residencia. Necesitas al menos un 20-30% de ahorros más los gastos de compra (notaría, registro, impuestos: ~10-12%).</p>
+      </div>
+    </div>
+
+    <div class="results" id="results-cuota">
+      <div class="results-header">
+        <div>
+          <div class="main-label">Cuota mensual estimada</div>
+          <div class="main-value" id="res_cuota">—</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Total a pagar</div>
+          <div class="sub-value" id="res_total">—</div>
+          <div class="sub-label" style="margin-top:8px">Total intereses</div>
+          <div class="sub-value" id="res_intereses">—</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item hip">
+          <div class="rl">Capital financiado</div>
+          <div class="rv" id="d_capital">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">Total intereses</div>
+          <div class="rv" id="d_intereses">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Coste total hipoteca</div>
+          <div class="rv" id="d_total">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">TIN aplicado</div>
+          <div class="rv" id="d_tin">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">TAE estimada</div>
+          <div class="rv" id="d_tae">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">% intereses sobre total</div>
+          <div class="rv" id="d_pct_int">—</div>
+        </div>
+      </div>
+      <div class="barra-wrap">
+        <div class="barra-title">Distribución del pago total</div>
+        <div class="barra">
+          <div class="barra-seg" id="seg_capital" style="background:var(--hip)"></div>
+          <div class="barra-seg" id="seg_intereses" style="background:#c0392b"></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--hip)"></div>Capital (<span id="leg_capital">—</span>)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div>Intereses (<span id="leg_intereses">—</span>)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUADRO AMORTIZACIÓN RESUMIDO -->
+    <div class="card" style="margin-top:1.5rem">
+      <div class="section-label">Cuadro de amortización anual</div>
+      <div class="tabla-wrap">
+        <table id="tabla-amort">
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>Cuota anual</th>
+              <th>Intereses</th>
+              <th>Capital amortizado</th>
+              <th>Capital pendiente</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body"></tbody>
+        </table>
+      </div>
+      <button class="btn-ver-mas" id="btn-ver-mas" onclick="toggleTabla()">Ver todos los años</button>
+    </div>
+  </div>
+
+  <!-- TAB AMORTIZACIÓN ANTICIPADA -->
+  <div class="tab-content" id="tab-amortizacion">
+    <div class="card">
+      <div class="section-label">Tu hipoteca actual</div>
+      <div class="grid3">
+        <div class="field">
+          <label>Capital pendiente (€)</label>
+          <input type="number" id="cap_pendiente" value="180000" min="0" step="5000" oninput="calcAmort()">
+        </div>
+        <div class="field">
+          <label>TIN actual (%)</label>
+          <input type="number" id="tin_actual" value="3.5" min="0" max="15" step="0.01" oninput="calcAmort()">
+        </div>
+        <div class="field">
+          <label>Años restantes</label>
+          <input type="number" id="años_restantes" value="25" min="1" max="40" oninput="calcAmort()">
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-label">Amortización anticipada</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Importe a amortizar (€)</label>
+          <input type="number" id="importe_amort" value="20000" min="0" step="1000" oninput="calcAmort()">
+        </div>
+        <div class="field">
+          <label>Prefiero...</label>
+          <select id="tipo_amort" onchange="calcAmort()">
+            <option value="plazo">Reducir el plazo (misma cuota)</option>
+            <option value="cuota">Reducir la cuota (mismo plazo)</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Comisión por amortización anticipada (%)</label>
+          <input type="number" id="comision_amort" value="0" min="0" max="2" step="0.1" oninput="calcAmort()">
+          <p class="tip">En hipotecas variables suele ser 0% o 0,15%. En fijas hasta 2%.</p>
+        </div>
+      </div>
+    </div>
+    <div class="amort-result" id="amort-result">
+      <h4>✅ Ahorro por amortización anticipada</h4>
+      <div class="amort-grid">
+        <div class="amort-item"><div class="al">Cuota actual</div><div class="av" id="a_cuota_actual">—</div></div>
+        <div class="amort-item"><div class="al" id="a_label_nuevo">Nueva cuota</div><div class="av" id="a_nuevo">—</div></div>
+        <div class="amort-item"><div class="al">Intereses sin amortizar</div><div class="av" id="a_int_sin">—</div></div>
+        <div class="amort-item"><div class="al">Intereses con amortización</div><div class="av" id="a_int_con">—</div></div>
+        <div class="amort-item"><div class="al">Comisión bancaria</div><div class="av" id="a_comision">—</div></div>
+        <div class="amort-item"><div class="al" style="font-weight:600">Ahorro neto total</div><div class="av" id="a_ahorro">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB COMPARATIVA -->
+  <div class="tab-content" id="tab-comparativa">
+    <div class="card">
+      <div class="section-label">Parámetros comunes</div>
+      <div class="grid3">
+        <div class="field">
+          <label>Capital (€)</label>
+          <input type="number" id="comp_capital" value="200000" min="0" step="5000" oninput="calcComp()">
+        </div>
+        <div class="field">
+          <label>Plazo (años)</label>
+          <input type="number" id="comp_plazo" value="30" min="1" max="40" oninput="calcComp()">
+        </div>
+        <div class="field">
+          <label>Escenario Euríbor futuro (%)</label>
+          <select id="escenario_euribor" onchange="calcComp()">
+            <option value="2.0">Euríbor bajista (2,0%)</option>
+            <option value="2.5" selected>Euríbor actual (2,5%)</option>
+            <option value="3.5">Euríbor moderado (3,5%)</option>
+            <option value="4.5">Euríbor alto (4,5%)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-label">Hipoteca fija</div>
+      <div class="field" style="max-width:280px">
+        <label>TIN fijo (%)</label>
+        <input type="number" id="comp_tin_fijo" value="3.2" min="0" max="10" step="0.01" oninput="calcComp()">
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-label">Hipoteca variable</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Diferencial sobre Euríbor (%)</label>
+          <input type="number" id="comp_diferencial" value="0.75" min="0" max="5" step="0.01" oninput="calcComp()">
+        </div>
+        <div class="field">
+          <label>TIN inicial (primeros 12 meses, %)</label>
+          <input type="number" id="comp_tin_inicial" value="1.99" min="0" max="10" step="0.01" oninput="calcComp()">
+        </div>
+      </div>
+    </div>
+    <div class="comp-grid" id="comp-resultado"></div>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo funciona una hipoteca en España?</h2>
+    <p>Una hipoteca es un préstamo a largo plazo garantizado con el inmueble que se compra. El banco financia generalmente hasta el 80% del valor de tasación de la vivienda habitual, y el comprador debe aportar el resto más los gastos de compra (notaría, registro, impuestos y gestoría), que suelen suponer entre el 10% y el 12% del precio.</p>
+
+    <h3>Hipoteca fija vs variable ¿cuál elegir?</h3>
+    <p>La hipoteca fija ofrece estabilidad: pagas siempre la misma cuota independientemente de cómo evolucione el Euríbor. La variable está referenciada al Euríbor más un diferencial, por lo que la cuota sube o baja cada vez que se revisa (normalmente cada 6 o 12 meses). La variable suele arrancar más barata pero conlleva más riesgo si el Euríbor sube.</p>
+
+    <h3>¿Qué es el Euríbor?</h3>
+    <p>El Euríbor (Euro Interbank Offered Rate) es el tipo de interés al que los bancos europeos se prestan dinero entre sí. Es el índice de referencia más usado en las hipotecas variables españolas. Ha oscilado entre valores negativos en 2021 y máximos del 4% en 2023, situándose en torno al 2,5% a principios de 2026.</p>
+
+    <h3>¿Cuánto debo tener ahorrado para una hipoteca?</h3>
+    <p>Como mínimo necesitas el 20% del precio de la vivienda (la entrada, ya que los bancos financian el 80%) más entre un 10% y un 12% adicional para cubrir los gastos de compra. En total, para una vivienda de 250.000 euros necesitarías disponer de unos 75.000-80.000 euros en ahorros.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto me puede prestar el banco? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Los bancos financian hasta el 80% del valor de tasación de la vivienda habitual (70% para segunda residencia). Además, tu cuota mensual no debería superar el 30-35% de tus ingresos netos mensuales. Si ganas 2.000 € netos al mes, lo recomendable es que la cuota no supere los 600-700 €.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué gastos tiene la hipoteca además de la cuota? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Desde 2019, el banco paga la mayoría de los gastos de constitución de la hipoteca (notaría, registro, gestoría, AJD). El cliente solo paga la tasación (300-600 €) y los gastos de compraventa del inmueble (notaría comprador, ITP o IVA+AJD, registro).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Conviene amortizar anticipadamente la hipoteca? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Depende de tu tipo de interés y de las alternativas de inversión. Si tu hipoteca tiene un tipo alto (por encima del 3-4%), amortizar anticipadamente suele ser una buena decisión ya que el ahorro en intereses está garantizado. Si el tipo es bajo, puede ser más rentable invertir ese dinero en fondos indexados u otras opciones.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay deducción fiscal por hipoteca en 2026? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">La deducción por hipoteca estatal desapareció en 2013 para viviendas compradas a partir de esa fecha. Solo mantienen la deducción las hipotecas anteriores a 2013, con un máximo del 15% sobre 9.040 € anuales. Algunas comunidades autónomas mantienen deducciones propias para ciertos colectivos (jóvenes, familias numerosas).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es la TAE de una hipoteca? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">La TAE (Tasa Anual Equivalente) incluye el TIN más todos los gastos asociados al préstamo (comisiones, seguros vinculados, etc.). Es el indicador más completo para comparar hipotecas, ya que el TIN solo refleja el tipo de interés puro. Una hipoteca puede tener un TIN bajo pero una TAE alta si incluye muchos productos vinculados.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Calculadora orientativa. Consulta con tu entidad financiera para condiciones exactas.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+function fmtN(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+let mostrarTodaTabla = false;
+let tablaDataGlobal = [];
+
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tabs = ['cuota','amortizacion','comparativa'];
+  document.querySelectorAll('.tab')[tabs.indexOf(tab)].classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function cambiarTipoHip() {
+  const tipo = document.getElementById('tipo_hip').value;
+  document.getElementById('campo_tin').style.display = tipo === 'fija' ? 'block' : 'none';
+  document.getElementById('campo_euribor').style.display = tipo === 'variable' ? 'block' : 'none';
+  document.getElementById('campo_diferencial').style.display = tipo === 'variable' ? 'block' : 'none';
+  document.getElementById('campo_mixta').style.display = tipo === 'mixta' ? 'block' : 'none';
+  calcular();
+}
+
+function actualizarAhorro() {
+  const precio = parseFloat(document.getElementById('precio_inmueble').value) || 0;
+  const entrada = parseFloat(document.getElementById('entrada').value) || 0;
+  const capital = Math.max(0, precio - entrada);
+  document.getElementById('capital').value = capital;
+  const pct = precio > 0 ? (entrada / precio * 100).toFixed(0) : 0;
+  document.getElementById('tip_entrada').textContent = `Porcentaje de entrada: ${pct}%`;
+  calcular();
+}
+
+function calcCuota(capital, tinAnual, meses) {
+  const r = tinAnual / 100 / 12;
+  if (r === 0) return capital / meses;
+  return capital * r * Math.pow(1+r, meses) / (Math.pow(1+r, meses) - 1);
+}
+
+function calcTablaAmort(capital, tinAnual, años) {
+  const r = tinAnual / 100 / 12;
+  const meses = años * 12;
+  const cuota = calcCuota(capital, tinAnual, meses);
+  let pendiente = capital;
+  const tabla = [];
+  for (let año = 1; año <= años; año++) {
+    let intAnual = 0, capAnual = 0;
+    for (let m = 0; m < 12; m++) {
+      if (pendiente <= 0) break;
+      const intMes = pendiente * r;
+      const capMes = Math.min(cuota - intMes, pendiente);
+      intAnual += intMes;
+      capAnual += capMes;
+      pendiente -= capMes;
+    }
+    tabla.push({ año, cuota: cuota * 12, intereses: intAnual, capital: capAnual, pendiente: Math.max(0, pendiente) });
+  }
+  return tabla;
+}
+
+function renderTabla(data, mostrarTodo) {
+  const tbody = document.getElementById('tabla-body');
+  const filas = mostrarTodo ? data : data.slice(0, 5);
+  tbody.innerHTML = filas.map(r => `
+    <tr>
+      <td>Año ${r.año}</td>
+      <td>${fmt(r.cuota)}</td>
+      <td>${fmt(r.intereses)}</td>
+      <td>${fmt(r.capital)}</td>
+      <td>${fmt(r.pendiente)}</td>
+    </tr>`).join('');
+  document.getElementById('btn-ver-mas').textContent = mostrarTodo ? 'Ver menos' : `Ver todos los años (${data.length})`;
+}
+
+function toggleTabla() {
+  mostrarTodaTabla = !mostrarTodaTabla;
+  renderTabla(tablaDataGlobal, mostrarTodaTabla);
+}
+
+function calcular() {
+  const capital = parseFloat(document.getElementById('capital').value) || 0;
+  const plazo = parseInt(document.getElementById('plazo').value) || 30;
+  const tipo = document.getElementById('tipo_hip').value;
+  document.getElementById('plazo_label').textContent = plazo + ' años';
+  document.getElementById('plazo_range').value = plazo;
+
+  let tin = 0;
+  if (tipo === 'fija') {
+    tin = parseFloat(document.getElementById('tin').value) || 0;
+  } else if (tipo === 'variable') {
+    const euribor = parseFloat(document.getElementById('euribor').value) || 0;
+    const dif = parseFloat(document.getElementById('diferencial').value) || 0;
+    tin = euribor + dif;
+    document.getElementById('tin').value = tin.toFixed(2);
+  } else {
+    tin = parseFloat(document.getElementById('tin_fijo_mixta').value) || 0;
+  }
+
+  const meses = plazo * 12;
+  const cuota = calcCuota(capital, tin, meses);
+  const totalPago = cuota * meses;
+  const totalIntereses = totalPago - capital;
+  const tae = tin > 0 ? (Math.pow(1 + tin/100/12, 12) - 1) * 100 : 0;
+  const pctInt = totalPago > 0 ? totalIntereses / totalPago * 100 : 0;
+
+  document.getElementById('res_cuota').textContent = fmt(cuota);
+  document.getElementById('res_total').textContent = fmt(totalPago);
+  document.getElementById('res_intereses').textContent = fmt(totalIntereses);
+  document.getElementById('d_capital').textContent = fmt(capital);
+  document.getElementById('d_intereses').textContent = fmt(totalIntereses);
+  document.getElementById('d_total').textContent = fmt(totalPago);
+  document.getElementById('d_tin').textContent = fmtN(tin) + '%';
+  document.getElementById('d_tae').textContent = fmtN(tae) + '%';
+  document.getElementById('d_pct_int').textContent = pctInt.toFixed(1) + '%';
+
+  const pCap = totalPago > 0 ? capital / totalPago * 100 : 50;
+  document.getElementById('seg_capital').style.width = pCap.toFixed(1) + '%';
+  document.getElementById('seg_capital').textContent = pCap > 8 ? Math.round(pCap) + '%' : '';
+  document.getElementById('seg_intereses').style.width = (100 - pCap).toFixed(1) + '%';
+  document.getElementById('seg_intereses').textContent = (100 - pCap) > 8 ? Math.round(100 - pCap) + '%' : '';
+  document.getElementById('leg_capital').textContent = Math.round(pCap) + '%';
+  document.getElementById('leg_intereses').textContent = Math.round(100 - pCap) + '%';
+
+  // Para hipoteca mixta usamos promedio ponderado
+  let tinTabla = tin;
+  if (tipo === 'mixta') {
+    const añosFijo = parseInt(document.getElementById('años_fijo').value) || 10;
+    const tinFijo = parseFloat(document.getElementById('tin_fijo_mixta').value) || 0;
+    const tinVar = parseFloat(document.getElementById('tin_variable_mixta').value) || 0;
+    tinTabla = (tinFijo * añosFijo + tinVar * (plazo - añosFijo)) / plazo;
+  }
+
+  tablaDataGlobal = calcTablaAmort(capital, tinTabla, plazo);
+  renderTabla(tablaDataGlobal, mostrarTodaTabla);
+}
+
+function calcAmort() {
+  const capPend = parseFloat(document.getElementById('cap_pendiente').value) || 0;
+  const tin = parseFloat(document.getElementById('tin_actual').value) || 0;
+  const años = parseInt(document.getElementById('años_restantes').value) || 25;
+  const importeAmort = parseFloat(document.getElementById('importe_amort').value) || 0;
+  const tipoAmort = document.getElementById('tipo_amort').value;
+  const comisionPct = parseFloat(document.getElementById('comision_amort').value) || 0;
+
+  if (capPend <= 0 || importeAmort <= 0) return;
+
+  const meses = años * 12;
+  const cuotaActual = calcCuota(capPend, tin, meses);
+  const totalSin = cuotaActual * meses;
+  const intSin = totalSin - capPend;
+  const comision = importeAmort * comisionPct / 100;
+  const nuevoCapital = Math.max(0, capPend - importeAmort);
+
+  let nuevo, totalCon, intCon;
+  if (tipoAmort === 'plazo') {
+    // Misma cuota, menor plazo
+    const r = tin / 100 / 12;
+    const nuevosMeses = r > 0 ? Math.log(cuotaActual / (cuotaActual - nuevoCapital * r)) / Math.log(1 + r) : nuevoCapital / cuotaActual;
+    const nuevosAños = nuevosMeses / 12;
+    totalCon = cuotaActual * nuevosMeses;
+    intCon = totalCon - nuevoCapital;
+    nuevo = nuevosAños.toFixed(1) + ' años restantes';
+    document.getElementById('a_label_nuevo').textContent = 'Nuevo plazo';
+  } else {
+    // Mismo plazo, menor cuota
+    const nuevaCuota = calcCuota(nuevoCapital, tin, meses);
+    totalCon = nuevaCuota * meses;
+    intCon = totalCon - nuevoCapital;
+    nuevo = fmt(nuevaCuota) + '/mes';
+    document.getElementById('a_label_nuevo').textContent = 'Nueva cuota';
+  }
+
+  const ahorroNeto = (intSin - intCon) - comision;
+
+  document.getElementById('amort-result').style.display = 'block';
+  document.getElementById('a_cuota_actual').textContent = fmt(cuotaActual);
+  document.getElementById('a_nuevo').textContent = nuevo;
+  document.getElementById('a_int_sin').textContent = fmt(intSin);
+  document.getElementById('a_int_con').textContent = fmt(intCon);
+  document.getElementById('a_comision').textContent = fmt(comision);
+  document.getElementById('a_ahorro').textContent = fmt(Math.max(0, ahorroNeto));
+}
+
+function calcComp() {
+  const capital = parseFloat(document.getElementById('comp_capital').value) || 0;
+  const plazo = parseInt(document.getElementById('comp_plazo').value) || 30;
+  const tinFijo = parseFloat(document.getElementById('comp_tin_fijo').value) || 0;
+  const diferencial = parseFloat(document.getElementById('comp_diferencial').value) || 0;
+  const tinInicial = parseFloat(document.getElementById('comp_tin_inicial').value) || 0;
+  const euriborFuturo = parseFloat(document.getElementById('escenario_euribor').value) || 2.5;
+  const tinVariable = euriborFuturo + diferencial;
+  const meses = plazo * 12;
+
+  const cuotaFija = calcCuota(capital, tinFijo, meses);
+  const totalFija = cuotaFija * meses;
+  const intFija = totalFija - capital;
+
+  // Variable: primer año a tin inicial, resto a euribor+diferencial
+  const cuotaVar1 = calcCuota(capital, tinInicial, meses);
+  let pendiente = capital;
+  const r1 = tinInicial / 100 / 12;
+  for (let m = 0; m < 12; m++) {
+    const int = pendiente * r1;
+    pendiente -= (cuotaVar1 - int);
+  }
+  const cuotaVar2 = calcCuota(Math.max(0, pendiente), tinVariable, meses - 12);
+  const totalVar = cuotaVar1 * 12 + cuotaVar2 * (meses - 12);
+  const intVar = totalVar - capital;
+
+  const fijaGana = totalFija <= totalVar;
+
+  document.getElementById('comp-resultado').innerHTML = `
+    <div class="comp-card ${fijaGana ? 'winner' : ''}">
+      <h4>🔒 Hipoteca fija ${fijaGana ? '<span class="winner-badge">✓ Más barata</span>' : ''}</h4>
+      <div class="comp-row"><span class="cl">TIN</span><span class="cv">${fmtN(tinFijo)}%</span></div>
+      <div class="comp-row"><span class="cl">Cuota mensual</span><span class="cv">${fmt(cuotaFija)}</span></div>
+      <div class="comp-row"><span class="cl">Total intereses</span><span class="cv">${fmt(intFija)}</span></div>
+      <div class="comp-row"><span class="cl">Total pagado</span><span class="cv">${fmt(totalFija)}</span></div>
+    </div>
+    <div class="comp-card ${!fijaGana ? 'winner' : ''}">
+      <h4>📈 Hipoteca variable ${!fijaGana ? '<span class="winner-badge">✓ Más barata</span>' : ''}</h4>
+      <div class="comp-row"><span class="cl">TIN inicial (1er año)</span><span class="cv">${fmtN(tinInicial)}%</span></div>
+      <div class="comp-row"><span class="cl">TIN variable (Euríbor ${euriborFuturo}% + ${fmtN(diferencial)}%)</span><span class="cv">${fmtN(tinVariable)}%</span></div>
+      <div class="comp-row"><span class="cl">Cuota 1er año</span><span class="cv">${fmt(cuotaVar1)}</span></div>
+      <div class="comp-row"><span class="cl">Cuota resto</span><span class="cv">${fmt(cuotaVar2)}</span></div>
+      <div class="comp-row"><span class="cl">Total intereses</span><span class="cv">${fmt(intVar)}</span></div>
+      <div class="comp-row"><span class="cl">Total pagado</span><span class="cv">${fmt(totalVar)}</span></div>
+    </div>`;
+}
+
+document.querySelectorAll('input[type=number], select').forEach(el => el.addEventListener('input', function() {
+  const tab = document.querySelector('.tab-content.active').id;
+  if (tab === 'tab-cuota') calcular();
+  else if (tab === 'tab-amortizacion') calcAmort();
+  else if (tab === 'tab-comparativa') calcComp();
+}));
+
+calcular();
+calcAmort();
+calcComp();
+</script>
+</body>
+</html>

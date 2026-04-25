@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador IRPF Declaración de la Renta 2025-2026 | Metaphai</title>
+  <meta name="description" content="Simula tu declaración de la Renta 2025 (ejercicio 2026). Calcula cuánto te devuelve Hacienda o cuánto debes pagar. Incluye todas las deducciones y rendimientos. Gratis y sin registro.">
+  <meta name="keywords" content="simulador renta 2025 2026, cuanto me devuelve hacienda, declaracion renta calculadora, irpf 2026 simulador, borrador renta, resultado declaracion renta">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Simulador IRPF Declaración de la Renta 2025-2026 | Metaphai">
+  <meta property="og:description" content="Simula tu declaración de la Renta y descubre si Hacienda te devuelve dinero o tienes que pagar. Incluye todas las deducciones.">
+  <meta property="og:url" content="https://metaphai.com/renta.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --renta: #8b1a1a; --renta-light: #fdf0f0;
+      --devolucion: #2d6a4f; --devolucion-light: #e8f4ee;
+      --warn: #7a4f1a; --warn-light: #fef6ec;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--renta); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--renta-light); color: var(--renta); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--renta); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.red { background: var(--renta-light); border: 1px solid #f0b8b8; }
+    .info-box.red p { font-size: 13px; color: var(--renta); margin: 0; }
+    .info-box.green { background: var(--accent-light); border: 1px solid #b8dece; }
+    .info-box.green p { font-size: 13px; color: var(--accent); margin: 0; }
+    .toggle-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .toggle-btn { font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; background: transparent; color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+    .toggle-btn.active { background: var(--renta-light); border-color: var(--renta); color: var(--renta); font-weight: 500; }
+    .extra-field { display: none; margin-top: 10px; padding: 12px; background: var(--bg); border-radius: var(--radius); }
+    /* RESULTS */
+    .resultado-box { border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; border: 2px solid var(--border); }
+    .resultado-header { padding: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .resultado-header.devolucion { background: var(--devolucion); }
+    .resultado-header.pagar { background: var(--renta); }
+    .resultado-header.cero { background: #555; }
+    .resultado-label { font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+    .resultado-importe { font-size: 44px; font-weight: 600; color: white; letter-spacing: -0.04em; font-family: 'DM Mono', monospace; }
+    .resultado-sub { text-align: right; }
+    .resultado-sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .resultado-sub-value { font-size: 20px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .liquidacion { background: var(--surface); }
+    .liq-row { display: flex; justify-content: space-between; padding: 10px 1.5rem; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .liq-row:last-child { border-bottom: none; font-weight: 600; font-size: 15px; }
+    .liq-row.subtotal { background: var(--bg); font-weight: 500; }
+    .liq-label { color: var(--muted); }
+    .liq-val { font-family: 'DM Mono', monospace; }
+    .liq-val.pos { color: var(--accent); }
+    .liq-val.neg { color: var(--renta); }
+    .liq-val.neutral { color: var(--text); }
+    .tramos-box { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); background: var(--surface); }
+    .tramos-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .tramo-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 10px; background: var(--bg); border-radius: var(--radius); margin-bottom: 5px; font-size: 13px; }
+    .tramo-row.activo { background: var(--renta-light); border: 1px solid #f0b8b8; }
+    .tramo-left { color: var(--muted); }
+    .tramo-right { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--renta); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">📑 Simulador Renta 2025</div>
+    <h1>¿Te devuelve o pagas en la<br><em>declaración de la Renta</em>?</h1>
+    <p>Simula tu declaración del IRPF 2025 y descubre el resultado antes de presentarla. Incluye todas las fuentes de ingresos y deducciones.</p>
+  </div>
+<!-- SITUACIÓN PERSONAL -->
+  <div class="card">
+    <div class="section-label">Situación personal</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Comunidad autónoma</label>
+        <select id="ccaa">
+          <option value="0">Andalucía</option><option value="1">Aragón</option>
+          <option value="2">Asturias</option><option value="3">Baleares</option>
+          <option value="4">Canarias</option><option value="5">Cantabria</option>
+          <option value="6">C.-La Mancha</option><option value="7">C. y León</option>
+          <option value="8">Cataluña</option><option value="9">Extremadura</option>
+          <option value="10">Galicia</option><option value="11" selected>Madrid</option>
+          <option value="12">Murcia</option><option value="13">Navarra</option>
+          <option value="14">País Vasco</option><option value="15">La Rioja</option>
+          <option value="16">C. Valenciana</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado civil</label>
+        <select id="estado">
+          <option value="soltero">Soltero/a</option>
+          <option value="casado">Casado/a (cónyuge sin ingresos)</option>
+          <option value="casado2">Casado/a (cónyuge con ingresos)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Hijos a cargo menores de 25 años</label>
+        <select id="hijos">
+          <option value="0">Sin hijos</option>
+          <option value="1">1 hijo</option>
+          <option value="2">2 hijos</option>
+          <option value="3">3 hijos</option>
+          <option value="4">4 o más hijos</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:12px">
+      <div class="field">
+        <label>Edad</label>
+        <select id="edad">
+          <option value="menor65">Menor de 65 años</option>
+          <option value="65_75">65 a 74 años</option>
+          <option value="mayor75">75 años o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Discapacidad</label>
+        <select id="discapacidad">
+          <option value="0">Sin discapacidad</option>
+          <option value="33">33%–64%</option>
+          <option value="65">65% o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Declaración</label>
+        <select id="modalidad">
+          <option value="individual">Individual</option>
+          <option value="conjunta">Conjunta (matrimonio)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- RENDIMIENTOS DEL TRABAJO -->
+  <div class="card">
+    <div class="section-label">Rendimientos del trabajo</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Salario bruto anual (€)</label>
+        <input type="number" id="salario_bruto" value="30000" min="0" step="500">
+      </div>
+      <div class="field">
+        <label>Retenciones IRPF practicadas en nómina (€)</label>
+        <input type="number" id="retenciones_nomina" value="3500" min="0" step="100">
+        <p class="tip">Suma de todas las retenciones del año</p>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Cotizaciones SS pagadas (€)</label>
+        <input type="number" id="cuota_ss" value="1905" min="0" step="50">
+        <p class="tip">~6,35% del salario bruto</p>
+      </div>
+      <div class="field">
+        <label>Número de pagadores</label>
+        <select id="num_pagadores">
+          <option value="1">1 pagador</option>
+          <option value="2">2 o más pagadores</option>
+        </select>
+      </div>
+    </div>
+    <div id="aviso_pagadores" class="info-box red" style="display:none;margin-top:12px">
+      <p>⚠️ Con 2 o más pagadores, si el segundo pagador supera 1.500 €, el límite para no declarar baja a 12.000 €. Es probable que tengas que declarar y posiblemente pagar.</p>
+    </div>
+  </div>
+
+  <!-- OTROS INGRESOS -->
+  <div class="card">
+    <div class="section-label">Otros ingresos (opcional)</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="btn_autonomo" onclick="toggleExtra('autonomo')">Actividad económica</button>
+      <button class="toggle-btn" id="btn_alquiler" onclick="toggleExtra('alquiler')">Alquiler</button>
+      <button class="toggle-btn" id="btn_inversiones" onclick="toggleExtra('inversiones')">Inversiones</button>
+      <button class="toggle-btn" id="btn_pension" onclick="toggleExtra('pension')">Pensión</button>
+      <button class="toggle-btn" id="btn_paro" onclick="toggleExtra('paro')">Prestación paro</button>
+    </div>
+
+    <div class="extra-field" id="extra_autonomo">
+      <div class="grid2">
+        <div class="field"><label>Rendimiento neto actividad económica (€)</label><input type="number" id="rend_autonomo" value="15000" min="0" step="500" oninput="calcular()"></div>
+        <div class="field"><label>Pagos fraccionados realizados (€)</label><input type="number" id="pagos_frac" value="1500" min="0" step="100" oninput="calcular()"></div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_alquiler">
+      <div class="grid2">
+        <div class="field"><label>Rendimiento neto alquiler tras gastos y reducción (€)</label><input type="number" id="rend_alquiler" value="4000" min="0" step="500" oninput="calcular()">
+        <p class="tip">Usa nuestra <a href="/alquiler.html">calculadora de alquiler</a> para obtener este valor</p></div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_inversiones">
+      <div class="grid2">
+        <div class="field"><label>Ganancias patrimoniales netas (acciones, fondos, cripto) (€)</label><input type="number" id="ganancias_pat" value="3000" min="0" step="100" oninput="calcular()"></div>
+        <div class="field"><label>Dividendos e intereses brutos (€)</label><input type="number" id="dividendos" value="500" min="0" step="100" oninput="calcular()"></div>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field"><label>Retenciones sobre inversiones (€)</label><input type="number" id="ret_inversiones" value="285" min="0" step="50" oninput="calcular()"></div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_pension">
+      <div class="grid2">
+        <div class="field"><label>Pensión pública anual (€)</label><input type="number" id="importe_pension" value="12000" min="0" step="500" oninput="calcular()"></div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_paro">
+      <div class="grid2">
+        <div class="field"><label>Prestación por desempleo recibida (€)</label><input type="number" id="importe_paro" value="8000" min="0" step="500" oninput="calcular()">
+        <p class="tip">El paro tributa como rendimiento del trabajo</p></div>
+        <div class="field"><label>Retenciones sobre el paro (€)</label><input type="number" id="ret_paro" value="0" min="0" step="100" oninput="calcular()"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEDUCCIONES -->
+  <div class="card">
+    <div class="section-label">Deducciones aplicables</div>
+    <div class="toggle-row">
+      <button class="toggle-btn" id="btn_plan_pensiones" onclick="toggleExtra('plan_pensiones')">Plan de pensiones</button>
+      <button class="toggle-btn" id="btn_donativos" onclick="toggleExtra('donativos')">Donativos</button>
+      <button class="toggle-btn" id="btn_maternidad" onclick="toggleExtra('maternidad')">Maternidad</button>
+      <button class="toggle-btn" id="btn_movilidad" onclick="toggleExtra('movilidad')">Movilidad geográfica</button>
+      <button class="toggle-btn" id="btn_deduccion_alquiler" onclick="toggleExtra('deduccion_alquiler')">Alquiler vivienda</button>
+      <button class="toggle-btn" id="btn_eficiencia" onclick="toggleExtra('eficiencia')">Eficiencia energética</button>
+    </div>
+
+    <div class="extra-field" id="extra_plan_pensiones">
+      <div class="field" style="max-width:280px">
+        <label>Aportación a plan de pensiones (€)</label>
+        <input type="number" id="aporte_pension_plan" value="1500" min="0" max="1500" step="100" oninput="calcular()">
+        <p class="tip">Máximo deducible: 1.500 € anuales</p>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_donativos">
+      <div class="field" style="max-width:280px">
+        <label>Donativos a ONGs reconocidas (€)</label>
+        <input type="number" id="donativos" value="300" min="0" step="50" oninput="calcular()">
+        <p class="tip">Deducción del 80% hasta 150 €, luego 35% (o 40% si llevas más de 3 años donando)</p>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_maternidad">
+      <div class="grid2">
+        <div class="field">
+          <label>Hijos menores de 3 años con derecho a deducción</label>
+          <select id="hijos_maternidad" oninput="calcular()">
+            <option value="0">Ninguno</option>
+            <option value="1">1 hijo</option>
+            <option value="2">2 hijos</option>
+            <option value="3">3 hijos o más</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>¿Gastos de guardería?</label>
+          <select id="guarderia" oninput="calcular()">
+            <option value="0">No</option>
+            <option value="1">Sí</option>
+          </select>
+        </div>
+      </div>
+      <div id="campo_guarderia" style="display:none;margin-top:10px">
+        <div class="field" style="max-width:280px">
+          <label>Gasto anual en guardería (€)</label>
+          <input type="number" id="gasto_guarderia" value="2400" min="0" step="100" oninput="calcular()">
+          <p class="tip">Deducción adicional de hasta 1.000 € por hijo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_movilidad">
+      <div class="info-box green">
+        <p>✅ La movilidad geográfica añade una reducción adicional de 2.000 € sobre los rendimientos del trabajo.</p>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_deduccion_alquiler">
+      <div class="grid2">
+        <div class="field">
+          <label>Deducción autonómica por alquiler (€)</label>
+          <input type="number" id="ded_alquiler_inq" value="300" min="0" step="50" oninput="calcular()">
+          <p class="tip">Usa nuestra <a href="/alquiler.html">calculadora de alquiler</a> para obtener este valor</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-field" id="extra_eficiencia">
+      <div class="grid2">
+        <div class="field">
+          <label>Deducción por mejora energética o placas solares (€)</label>
+          <input type="number" id="ded_eficiencia" value="1500" min="0" step="100" oninput="calcular()">
+          <p class="tip">Usa nuestra <a href="/placas-solares.html">calculadora de placas solares</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="resultado-box" id="resultado-box">
+    <div class="resultado-header devolucion" id="resultado-header">
+      <div>
+        <div class="resultado-label" id="resultado-label">Hacienda te devuelve</div>
+        <div class="resultado-importe" id="resultado-importe">—</div>
+      </div>
+      <div class="resultado-sub">
+        <div class="resultado-sub-label">Cuota líquida total</div>
+        <div class="resultado-sub-value" id="cuota-liquida">—</div>
+        <div class="resultado-sub-label" style="margin-top:8px">Tipo efectivo</div>
+        <div class="resultado-sub-value" id="tipo-efectivo">—</div>
+      </div>
+    </div>
+
+    <div class="liquidacion">
+      <div class="liq-row"><span class="liq-label">Rendimientos del trabajo</span><span class="liq-val neutral" id="liq_trabajo">—</span></div>
+      <div class="liq-row"><span class="liq-label">Otros rendimientos (autónomo, alquiler, pensión, paro)</span><span class="liq-val neutral" id="liq_otros">—</span></div>
+      <div class="liq-row"><span class="liq-label">Reducción rendimientos del trabajo</span><span class="liq-val neg" id="liq_red_trabajo">—</span></div>
+      <div class="liq-row"><span class="liq-label">Aportación plan de pensiones</span><span class="liq-val neg" id="liq_pension_plan">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base imponible general</span><span class="liq-val neutral" id="liq_base_gral">—</span></div>
+      <div class="liq-row"><span class="liq-label">Mínimo personal y familiar</span><span class="liq-val neg" id="liq_minimo">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base liquidable general</span><span class="liq-val neutral" id="liq_base_liq">—</span></div>
+      <div class="liq-row"><span class="liq-label">Cuota íntegra (escala general)</span><span class="liq-val neg" id="liq_cuota_integra">—</span></div>
+      <div class="liq-row"><span class="liq-label">Cuota base ahorro (inversiones)</span><span class="liq-val neg" id="liq_cuota_ahorro">—</span></div>
+      <div class="liq-row"><span class="liq-label">Deducción maternidad</span><span class="liq-val pos" id="liq_maternidad">—</span></div>
+      <div class="liq-row"><span class="liq-label">Deducción donativos</span><span class="liq-val pos" id="liq_donativos">—</span></div>
+      <div class="liq-row"><span class="liq-label">Deducción alquiler vivienda</span><span class="liq-val pos" id="liq_alquiler_ded">—</span></div>
+      <div class="liq-row"><span class="liq-label">Deducción eficiencia energética</span><span class="liq-val pos" id="liq_eficiencia_ded">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Cuota líquida total</span><span class="liq-val neutral" id="liq_cuota_liquida">—</span></div>
+      <div class="liq-row"><span class="liq-label">Retenciones nómina</span><span class="liq-val pos" id="liq_ret_nomina">—</span></div>
+      <div class="liq-row"><span class="liq-label">Retenciones inversiones y paro</span><span class="liq-val pos" id="liq_ret_otras">—</span></div>
+      <div class="liq-row"><span class="liq-label">Pagos fraccionados autónomos</span><span class="liq-val pos" id="liq_pagos_frac">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="font-size:15px;color:var(--text)">Resultado final</span><span class="liq-val neutral" id="liq_resultado" style="font-size:15px">—</span></div>
+    </div>
+
+    <div class="tramos-box">
+      <div class="tramos-title">Tramos escala general aplicados</div>
+      <div class="tramo-row" id="tr1"><span class="tramo-left">Hasta 12.450 € → ~19%</span><span class="tramo-right" id="tr1v">—</span></div>
+      <div class="tramo-row" id="tr2"><span class="tramo-left">12.450 – 20.200 € → ~24%</span><span class="tramo-right" id="tr2v">—</span></div>
+      <div class="tramo-row" id="tr3"><span class="tramo-left">20.200 – 35.200 € → ~30%</span><span class="tramo-right" id="tr3v">—</span></div>
+      <div class="tramo-row" id="tr4"><span class="tramo-left">35.200 – 60.000 € → ~37%</span><span class="tramo-right" id="tr4v">—</span></div>
+      <div class="tramo-row" id="tr5"><span class="tramo-left">60.000 – 300.000 € → ~45%</span><span class="tramo-right" id="tr5v">—</span></div>
+      <div class="tramo-row" id="tr6"><span class="tramo-left">Más de 300.000 € → ~47%</span><span class="tramo-right" id="tr6v">—</span></div>
+    </div>
+  </div>
+<div class="seo-content">
+    <h2>¿Cómo funciona la declaración de la Renta en España?</h2>
+    <p>La declaración de la Renta o IRPF es el impuesto anual sobre los ingresos de las personas físicas residentes en España. Se presenta entre abril y junio del año siguiente al ejercicio fiscal. Por ejemplo, la Renta 2025 se presenta en primavera de 2026.</p>
+
+    <h3>¿Cuándo estoy obligado a declarar?</h3>
+    <p>Debes declarar si tienes rendimientos del trabajo superiores a 22.000 euros anuales con un solo pagador, o superiores a 12.000 euros con dos o más pagadores. También si tienes rendimientos del capital o ganancias patrimoniales superiores a 1.600 euros, o rendimientos de actividades económicas superiores a 1.000 euros.</p>
+
+    <h3>¿Qué es el mínimo personal y familiar?</h3>
+    <p>El mínimo personal y familiar es una cantidad que reduce la base imponible y sobre la que no se paga impuesto. El mínimo personal general es de 5.550 euros. Se incrementa por edad (1.150 euros más a partir de 65 años), por descendientes (2.400 euros por el primer hijo, 2.700 por el segundo...) y por discapacidad.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Por qué me devuelve Hacienda dinero? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Cuando tu empresa calcula las retenciones en nómina, hace una estimación anual de lo que debes pagar. Si esa estimación es mayor que tu impuesto real (porque tienes deducciones, has trabajado menos meses, etc.), Hacienda te devuelve la diferencia.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuándo me ingresa Hacienda la devolución? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Hacienda tiene un plazo de 6 meses desde la finalización del plazo de presentación para efectuar la devolución. Si presentas en abril y el plazo termina en junio, tienen hasta finales de diciembre. En la práctica, la mayoría de devoluciones se reciben en pocas semanas si se presenta al inicio del plazo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Conviene presentar declaración conjunta o individual? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">La declaración conjunta puede ser ventajosa cuando uno de los cónyuges no tiene ingresos o tiene ingresos muy bajos, ya que aplica una reducción adicional de 3.400 euros. Si ambos cónyuges tienen ingresos similares, generalmente es mejor declarar de forma individual.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El simulador es el mismo que el de la AEAT? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Este es un simulador orientativo que te da una estimación del resultado. El simulador oficial de la AEAT (Agencia Tributaria) usa los datos fiscales reales que tiene de ti y es el que debes usar para confirmar o modificar tu borrador antes de presentar.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Simulación orientativa. No sustituye al borrador oficial de la AEAT.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const extrasState = {};
+
+function toggleExtra(key) {
+  extrasState[key] = !extrasState[key];
+  document.getElementById('btn_' + key).classList.toggle('active', extrasState[key]);
+  document.getElementById('extra_' + key).style.display = extrasState[key] ? 'block' : 'none';
+  if (key === 'maternidad') {
+    document.getElementById('guarderia').addEventListener('change', function(){
+      document.getElementById('campo_guarderia').style.display = this.value === '1' ? 'block' : 'none';
+      calcular();
+    });
+  }
+  calcular();
+}
+
+const TRAMOS_EST = [
+  {hasta:12450,tipo:0.095},{hasta:20200,tipo:0.12},{hasta:35200,tipo:0.15},
+  {hasta:60000,tipo:0.185},{hasta:300000,tipo:0.225},{hasta:Infinity,tipo:0.245}
+];
+const TIPOS_AUTON = [
+  [0.095,0.12,0.14,0.17,0.185,0.235],[0.10,0.13,0.15,0.17,0.19,0.21],
+  [0.10,0.12,0.14,0.18,0.195,0.21],[0.09,0.115,0.155,0.185,0.20,0.22],
+  [0.085,0.105,0.125,0.165,0.185,0.20],[0.09,0.115,0.14,0.175,0.185,0.215],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.09,0.12,0.14,0.17,0.185,0.215],
+  [0.105,0.12,0.14,0.175,0.21,0.235],[0.085,0.105,0.14,0.175,0.195,0.215],
+  [0.09,0.12,0.14,0.175,0.185,0.215],[0.09,0.11,0.13,0.17,0.185,0.21],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.08,0.11,0.14,0.17,0.20,0.22],
+  [0.07,0.10,0.12,0.16,0.18,0.19],[0.08,0.10,0.13,0.16,0.18,0.205],
+  [0.095,0.12,0.14,0.175,0.185,0.22]
+];
+const TRAMOS_AHORRO = [
+  {hasta:6000,tipo:0.19},{hasta:50000,tipo:0.21},{hasta:200000,tipo:0.23},
+  {hasta:300000,tipo:0.27},{hasta:Infinity,tipo:0.28}
+];
+
+function calcEscala(base, ccaa) {
+  let cuota=0, ant=0;
+  const detalle=[];
+  for (let i=0;i<TRAMOS_EST.length;i++) {
+    if (base<=ant){detalle.push(0);continue;}
+    const tramo=Math.min(base,TRAMOS_EST[i].hasta)-ant;
+    const tipo=TRAMOS_EST[i].tipo + TIPOS_AUTON[ccaa][Math.min(i,5)];
+    cuota+=tramo*tipo;
+    detalle.push(tramo*tipo);
+    ant=TRAMOS_EST[i].hasta;
+  }
+  return {cuota,detalle};
+}
+
+function calcAhorro(base) {
+  let cuota=0,ant=0;
+  for (const t of TRAMOS_AHORRO){
+    if(base<=ant)break;
+    cuota+=( Math.min(base,t.hasta)-ant)*t.tipo;
+    ant=t.hasta;
+  }
+  return cuota;
+}
+
+function calcMinimos(hijos,estado,edad,discap) {
+  let mp=5550;
+  if(edad==='65_75') mp+=1150;
+  if(edad==='mayor75') mp+=2550;
+  const mh=[0,2400,5100,9100,13600];
+  let mc=estado==='casado'?3400:0;
+  let md=discap==='33'?3000:discap==='65'?9000:0;
+  return mp+(mh[Math.min(hijos,4)]||0)+mc+md;
+}
+
+function calcReduccionTrabajo(bruto, movilidad) {
+  let r=0;
+  if(bruto<=13115) r=5565;
+  else if(bruto<=16825) r=Math.max(0,5565-1.5*(bruto-13115));
+  if(movilidad) r+=2000;
+  return r;
+}
+
+function calcDonativos(importe) {
+  if(importe<=0) return 0;
+  const tramo1=Math.min(importe,150)*0.80;
+  const tramo2=Math.max(0,importe-150)*0.35;
+  return tramo1+tramo2;
+}
+
+function calcular() {
+  const ccaa=parseInt(document.getElementById('ccaa').value);
+  const estado=document.getElementById('estado').value;
+  const hijos=parseInt(document.getElementById('hijos').value);
+  const edad=document.getElementById('edad').value;
+  const discap=document.getElementById('discapacidad').value;
+  const modalidad=document.getElementById('modalidad').value;
+  const salarioBruto=parseFloat(document.getElementById('salario_bruto').value)||0;
+  const retNomina=parseFloat(document.getElementById('retenciones_nomina').value)||0;
+  const cuotaSS=parseFloat(document.getElementById('cuota_ss').value)||0;
+  const numPag=document.getElementById('num_pagadores').value;
+  const movilidad=extrasState['movilidad']||false;
+
+  document.getElementById('aviso_pagadores').style.display = numPag==='2'?'block':'none';
+
+  // Reducción rendimientos trabajo
+  const rendTrabajoNeto=Math.max(0,salarioBruto-cuotaSS);
+  const reducTrabajo=calcReduccionTrabajo(rendTrabajoNeto,movilidad);
+  const rendTrabajoReducido=Math.max(0,rendTrabajoNeto-reducTrabajo);
+
+  // Otros rendimientos trabajo
+  let otrosRend=0;
+  if(extrasState['autonomo']) otrosRend+=(parseFloat(document.getElementById('rend_autonomo').value)||0);
+  if(extrasState['alquiler']) otrosRend+=(parseFloat(document.getElementById('rend_alquiler').value)||0);
+  if(extrasState['pension']) otrosRend+=(parseFloat(document.getElementById('importe_pension').value)||0);
+  if(extrasState['paro']) otrosRend+=(parseFloat(document.getElementById('importe_paro').value)||0);
+
+  // Plan de pensiones
+  const planPension=extrasState['plan_pensiones']?Math.min(parseFloat(document.getElementById('aporte_pension_plan').value)||0,1500):0;
+
+  // Declaración conjunta
+  const redConjunta=modalidad==='conjunta'?3400:0;
+
+  // Base imponible general
+  const baseImponibleGral=Math.max(0,rendTrabajoReducido+otrosRend-planPension-redConjunta);
+
+  // Mínimo personal y familiar
+  const minimo=calcMinimos(hijos,estado,edad,discap);
+
+  // Base liquidable
+  const baseLiquidable=Math.max(0,baseImponibleGral-minimo);
+
+  // Cuota íntegra escala general
+  const {cuota:cuotaIntegra,detalle}=calcEscala(baseLiquidable,ccaa);
+
+  // Base ahorro
+  const gananciasPat=extrasState['inversiones']?(parseFloat(document.getElementById('ganancias_pat').value)||0):0;
+  const dividendos=extrasState['inversiones']?(parseFloat(document.getElementById('dividendos').value)||0):0;
+  const baseAhorro=gananciasPat+dividendos;
+  const cuotaAhorro=calcAhorro(baseAhorro);
+
+  // Deducciones sobre cuota
+  let dedMaternidad=0;
+  if(extrasState['maternidad']) {
+    const hijosM=parseInt(document.getElementById('hijos_maternidad').value)||0;
+    dedMaternidad=hijosM*1200;
+    if(document.getElementById('guarderia').value==='1') {
+      const gastoGuar=parseFloat(document.getElementById('gasto_guarderia').value)||0;
+      dedMaternidad+=Math.min(hijosM*1000,gastoGuar);
+    }
+  }
+
+  let dedDonativos=0;
+  if(extrasState['donativos']) {
+    dedDonativos=calcDonativos(parseFloat(document.getElementById('donativos').value)||0);
+  }
+
+  const dedAlquiler=extrasState['deduccion_alquiler']?(parseFloat(document.getElementById('ded_alquiler_inq').value)||0):0;
+  const dedEficiencia=extrasState['eficiencia']?(parseFloat(document.getElementById('ded_eficiencia').value)||0):0;
+
+  const cuotaLiquida=Math.max(0,cuotaIntegra+cuotaAhorro-dedMaternidad-dedDonativos-dedAlquiler-dedEficiencia);
+
+  // Retenciones y pagos
+  const retOtrasFuentes=(extrasState['inversiones']?(parseFloat(document.getElementById('ret_inversiones').value)||0):0)+
+                        (extrasState['paro']?(parseFloat(document.getElementById('ret_paro').value)||0):0);
+  const pagosFrac=extrasState['autonomo']?(parseFloat(document.getElementById('pagos_frac').value)||0):0;
+  const totalRetenido=retNomina+retOtrasFuentes+pagosFrac;
+
+  const resultado=cuotaLiquida-totalRetenido;
+  const tipoEfectivo=salarioBruto>0?(cuotaLiquida/(salarioBruto+otrosRend)*100):0;
+
+  // Render resultado
+  const header=document.getElementById('resultado-header');
+  const label=document.getElementById('resultado-label');
+  const importe=document.getElementById('resultado-importe');
+  if(resultado<-0.01){
+    header.className='resultado-header devolucion';
+    label.textContent='Hacienda te devuelve';
+    importe.textContent=fmt(Math.abs(resultado));
+  } else if(resultado>0.01){
+    header.className='resultado-header pagar';
+    label.textContent='Debes pagar a Hacienda';
+    importe.textContent=fmt(resultado);
+  } else {
+    header.className='resultado-header cero';
+    label.textContent='Resultado de la declaración';
+    importe.textContent='0,00 €';
+  }
+
+  document.getElementById('cuota-liquida').textContent=fmt(cuotaLiquida);
+  document.getElementById('tipo-efectivo').textContent=tipoEfectivo.toFixed(1)+'%';
+
+  // Liquidación
+  document.getElementById('liq_trabajo').textContent=fmt(rendTrabajoNeto);
+  document.getElementById('liq_otros').textContent=fmt(otrosRend);
+  document.getElementById('liq_red_trabajo').textContent='-'+fmt(reducTrabajo);
+  document.getElementById('liq_pension_plan').textContent=planPension>0?'-'+fmt(planPension):'—';
+  document.getElementById('liq_base_gral').textContent=fmt(baseImponibleGral);
+  document.getElementById('liq_minimo').textContent='-'+fmt(minimo);
+  document.getElementById('liq_base_liq').textContent=fmt(baseLiquidable);
+  document.getElementById('liq_cuota_integra').textContent='-'+fmt(cuotaIntegra);
+  document.getElementById('liq_cuota_ahorro').textContent=cuotaAhorro>0?'-'+fmt(cuotaAhorro):'—';
+  document.getElementById('liq_maternidad').textContent=dedMaternidad>0?'+'+fmt(dedMaternidad):'—';
+  document.getElementById('liq_donativos').textContent=dedDonativos>0?'+'+fmt(dedDonativos):'—';
+  document.getElementById('liq_alquiler_ded').textContent=dedAlquiler>0?'+'+fmt(dedAlquiler):'—';
+  document.getElementById('liq_eficiencia_ded').textContent=dedEficiencia>0?'+'+fmt(dedEficiencia):'—';
+  document.getElementById('liq_cuota_liquida').textContent=fmt(cuotaLiquida);
+  document.getElementById('liq_ret_nomina').textContent='+'+fmt(retNomina);
+  document.getElementById('liq_ret_otras').textContent=retOtrasFuentes>0?'+'+fmt(retOtrasFuentes):'—';
+  document.getElementById('liq_pagos_frac').textContent=pagosFrac>0?'+'+fmt(pagosFrac):'—';
+  const resEl=document.getElementById('liq_resultado');
+  resEl.textContent=resultado<0?'Devolución: '+fmt(Math.abs(resultado)):resultado>0?'A pagar: '+fmt(resultado):'0,00 €';
+  resEl.className='liq-val '+(resultado<0?'pos':resultado>0?'neg':'neutral');
+
+  // Tramos
+  const tramosIds=[['tr1','tr1v'],['tr2','tr2v'],['tr3','tr3v'],['tr4','tr4v'],['tr5','tr5v'],['tr6','tr6v']];
+  tramosIds.forEach(([id,vid],i)=>{
+    const v=detalle[i]||0;
+    document.getElementById(vid).textContent=v>0?fmt(v):'—';
+    document.getElementById(id).className='tramo-row'+(v>0?' activo':'');
+  });
+}
+
+document.querySelectorAll('input:not([type=button]), select').forEach(el=>{
+  if(!el.closest('.extra-field')||el.closest('.extra-field').style.display!=='none'){
+    el.addEventListener('input',calcular);
+    el.addEventListener('change',calcular);
+  }
+});
+document.querySelectorAll('select').forEach(el=>el.addEventListener('change',calcular));
+calcular();
+</script>
+</body>
+</html>
