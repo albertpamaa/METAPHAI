@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora IRPF Autónomos 2026 | Cuota RETA y Retenciones | Metaphai</title>
+  <meta name="description" content="Calcula cuánto pagas de IRPF y Seguridad Social como autónomo en 2026. Incluye el nuevo sistema de cuotas por tramos de ingresos, retenciones trimestrales y gastos deducibles.">
+  <meta name="keywords" content="calculadora irpf autonomos 2026, cuota autonomos ingresos reales, cuanto paga autonomo seguridad social, retenciones autonomo trimestral, gastos deducibles autonomo, modelo 130 autonomo">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora IRPF Autónomos 2026 | Metaphai">
+  <meta property="og:description" content="Calcula tu cuota de autónomo, IRPF trimestral y neto real. Nuevo sistema de cotización por ingresos reales 2026.">
+  <meta property="og:url" content="https://metaphai.com/autonomos.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --aut: #8a3a1a; --aut-light: #fef0e8;
+      --warn: #7a4f1a; --warn-light: #fef6ec;
+      --danger: #8b2a2a;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--aut); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--aut-light); color: var(--aut); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--aut); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.orange { background: var(--aut-light); border: 1px solid #f0c8a0; }
+    .info-box.orange p { font-size: 13px; color: var(--aut); margin: 0; }
+    .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
+    .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .info-box.green { background: var(--accent-light); border: 1px solid #b8dece; }
+    .info-box.green p { font-size: 13px; color: var(--accent); margin: 0; }
+    .gastos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    @media (max-width: 540px) { .gastos-grid { grid-template-columns: 1fr; } }
+    .gasto-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .gasto-item label { font-size: 12px; color: var(--muted); }
+    .gasto-item input { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); width: 100%; }
+    /* RESULTS */
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--aut); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.neg .rv { color: var(--danger); }
+    .res-item.aut .rv { color: var(--aut); }
+    /* LIQUIDACIÓN */
+    .liq { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .liq-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .liq-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .liq-row:last-child { border-bottom: none; font-weight: 600; font-size: 14px; }
+    .liq-row.subtotal { background: var(--bg); padding: 7px 10px; border-radius: 6px; margin: 4px 0; font-weight: 500; }
+    .liq-label { color: var(--muted); }
+    .liq-val { font-family: 'DM Mono', monospace; }
+    .liq-val.pos { color: var(--accent); }
+    .liq-val.neg { color: var(--danger); }
+    /* TRAMOS RETA */
+    .tramos-reta { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .tramos-reta-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .reta-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--bg); border-radius: var(--radius); margin-bottom: 6px; font-size: 13px; }
+    .reta-row.activo { background: var(--aut-light); border: 1px solid #f0c8a0; }
+    .reta-left { color: var(--muted); }
+    .reta-right { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--aut); }
+    /* PAGOS TRIMESTRALES */
+    .trimestres { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 1rem; }
+    @media (max-width: 540px) { .trimestres { grid-template-columns: 1fr 1fr; } }
+    .trim-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; text-align: center; }
+    .trim-item .ti-label { font-size: 11px; color: var(--hint); margin-bottom: 4px; }
+    .trim-item .ti-periodo { font-size: 12px; font-weight: 500; margin-bottom: 6px; color: var(--muted); }
+    .trim-item .ti-irpf { font-size: 16px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--aut); }
+    .trim-item .ti-ss { font-size: 12px; color: var(--muted); margin-top: 3px; font-family: 'DM Mono', monospace; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .tramos-tabla { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .tramos-tabla th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .tramos-tabla td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🧾 Autónomos 2026</div>
+    <h1>Calculadora de IRPF y cuotas<br>para <em>autónomos</em></h1>
+    <p>Calcula tu cuota a la Seguridad Social, el IRPF trimestral y lo que te queda realmente en el bolsillo. Sistema de cotización por ingresos reales 2026.</p>
+  </div>
+
+  <!-- INGRESOS -->
+  <div class="card">
+    <div class="section-label">Ingresos y actividad</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Ingresos brutos anuales (€)</label>
+        <input type="number" id="ingresos" value="40000" min="0" step="1000" oninput="calcular()">
+        <p class="tip">Suma de todas tus facturas emitidas en el año</p>
+      </div>
+      <div class="field">
+        <label>Tipo de actividad</label>
+        <select id="tipo_actividad" onchange="calcular()">
+          <option value="profesional">Profesional (retención 15% / 7% nuevos)</option>
+          <option value="empresarial">Empresarial / Comercial (sin retención)</option>
+          <option value="agricola">Agrícola / Ganadera</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>¿Es tu primer año como autónomo?</label>
+        <select id="primer_año" onchange="calcular()">
+          <option value="no">No</option>
+          <option value="si">Sí (retención reducida 7% los 2 primeros años)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Régimen fiscal</label>
+        <select id="regimen" onchange="calcular()">
+          <option value="directa_simplificada">Estimación directa simplificada</option>
+          <option value="directa_normal">Estimación directa normal</option>
+          <option value="modulos">Estimación objetiva (módulos)</option>
+        </select>
+      </div>
+    </div>
+    <div class="info-box warn" id="aviso_modulos" style="display:none;margin-top:12px">
+      <p>⚠️ En módulos el rendimiento se calcula de forma objetiva según parámetros fijos, no sobre ingresos reales. Esta calculadora estima el resultado en estimación directa.</p>
+    </div>
+  </div>
+
+  <!-- GASTOS DEDUCIBLES -->
+  <div class="card">
+    <div class="section-label">Gastos deducibles</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Introduce solo los gastos relacionados con tu actividad económica. En estimación directa simplificada puedes deducir además un 5% de gastos de difícil justificación.</p>
+    <div class="gastos-grid">
+      <div class="gasto-item">
+        <label>Alquiler oficina / local (€/año)</label>
+        <input type="number" id="g_alquiler" value="0" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Suministros (luz, internet, teléfono) (€/año)</label>
+        <input type="number" id="g_suministros" value="1200" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Material y aprovisionamientos (€/año)</label>
+        <input type="number" id="g_material" value="500" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Transporte y desplazamientos (€/año)</label>
+        <input type="number" id="g_transporte" value="600" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Formación y suscripciones (€/año)</label>
+        <input type="number" id="g_formacion" value="400" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Gestoría / asesoría (€/año)</label>
+        <input type="number" id="g_gestoria" value="800" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Seguros (responsabilidad civil, etc.) (€/año)</label>
+        <input type="number" id="g_seguros" value="300" min="0" oninput="calcular()">
+      </div>
+      <div class="gasto-item">
+        <label>Otros gastos deducibles (€/año)</label>
+        <input type="number" id="g_otros" value="0" min="0" oninput="calcular()">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>¿Trabajas desde casa? (deducción parcial)</label>
+        <select id="home_office" onchange="calcular()">
+          <option value="0">No</option>
+          <option value="25">Sí — 25% del hogar dedicado a trabajo</option>
+          <option value="50">Sí — 50% del hogar dedicado a trabajo</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Gastos del hogar anuales (alquiler/hipoteca+suministros) (€)</label>
+        <input type="number" id="gastos_hogar" value="12000" min="0" step="500" oninput="calcular()">
+        <p class="tip">Solo si trabajas desde casa</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITUACIÓN PERSONAL -->
+  <div class="card">
+    <div class="section-label">Situación personal y SS</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Comunidad autónoma</label>
+        <select id="ccaa" onchange="calcular()">
+          <option value="0">Andalucía</option><option value="1">Aragón</option>
+          <option value="2">Asturias</option><option value="3">Baleares</option>
+          <option value="4">Canarias</option><option value="5">Cantabria</option>
+          <option value="6">C.-La Mancha</option><option value="7">C. y León</option>
+          <option value="8">Cataluña</option><option value="9">Extremadura</option>
+          <option value="10">Galicia</option><option value="11" selected>Madrid</option>
+          <option value="12">Murcia</option><option value="13">Navarra</option>
+          <option value="14">País Vasco</option><option value="15">La Rioja</option>
+          <option value="16">C. Valenciana</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado civil</label>
+        <select id="estado" onchange="calcular()">
+          <option value="soltero">Soltero/a</option>
+          <option value="casado">Casado/a (cónyuge sin ingresos)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Hijos a cargo</label>
+        <select id="hijos" onchange="calcular()">
+          <option value="0">Sin hijos</option>
+          <option value="1">1 hijo</option>
+          <option value="2">2 hijos</option>
+          <option value="3">3 hijos</option>
+        </select>
+      </div>
+    </div>
+    <div class="info-box orange" style="margin-top:12px">
+      <p>💡 La cuota RETA 2026 se calcula según tus ingresos netos reales (ingresos - gastos). El sistema tiene 15 tramos que van desde 200 €/mes (ingresos &lt;670 €/mes) hasta 590 €/mes (ingresos &gt;6.000 €/mes).</p>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Neto anual estimado</div>
+        <div class="main-value" id="res_neto">—</div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Neto mensual</div>
+        <div class="sub-value" id="res_neto_mensual">—</div>
+        <div class="sub-label" style="margin-top:8px">Tipo efectivo IRPF</div>
+        <div class="sub-value" id="res_tipo_ef">—</div>
+      </div>
+    </div>
+
+    <div class="results-grid">
+      <div class="res-item">
+        <div class="rl">Ingresos brutos</div>
+        <div class="rv" id="d_ingresos">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Total gastos deducibles</div>
+        <div class="rv" id="d_gastos">—</div>
+      </div>
+      <div class="res-item aut">
+        <div class="rl">Rendimiento neto</div>
+        <div class="rv" id="d_rend_neto">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Cuota RETA anual</div>
+        <div class="rv" id="d_reta">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">IRPF anual estimado</div>
+        <div class="rv" id="d_irpf">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Neto real anual</div>
+        <div class="rv" id="d_neto_real">—</div>
+      </div>
+    </div>
+
+    <div class="liq">
+      <div class="liq-title">Desglose completo</div>
+      <div class="liq-row"><span class="liq-label">Ingresos brutos</span><span class="liq-val" id="l_ingresos">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Gastos deducibles</span><span class="liq-val neg" id="l_gastos">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Provisión difícil justificación (5%)</span><span class="liq-val neg" id="l_dificil">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Rendimiento neto previo</span><span class="liq-val" id="l_rend_previo">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Cuota RETA (deducible en IRPF)</span><span class="liq-val neg" id="l_reta">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base imponible IRPF</span><span class="liq-val" id="l_base_irpf">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Mínimo personal y familiar</span><span class="liq-val neg" id="l_minimo">—</span></div>
+      <div class="liq-row"><span class="liq-label">− IRPF anual estimado</span><span class="liq-val neg" id="l_irpf">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Cuota RETA anual</span><span class="liq-val neg" id="l_reta2">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Neto real anual</span><span class="liq-val pos" id="l_neto">—</span></div>
+    </div>
+
+    <div class="tramos-reta">
+      <div class="tramos-reta-title">Tramo RETA aplicado según ingresos netos</div>
+      <div id="tramo-reta-activo" class="reta-row activo">
+        <span class="reta-left" id="reta_tramo_label">—</span>
+        <span class="reta-right" id="reta_tramo_cuota">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGOS TRIMESTRALES -->
+  <div class="card" style="margin-top:1.5rem">
+    <div class="section-label">Pagos trimestrales estimados (Modelo 130)</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Como autónomo en estimación directa debes hacer 4 pagos trimestrales del 20% sobre el beneficio trimestral acumulado.</p>
+    <div class="trimestres" id="trimestres-grid"></div>
+    <div class="info-box green" style="margin-top:1rem">
+      <p>✅ Si eres profesional y tus clientes te retienen en factura, tus pagos trimestrales se reducen por esas retenciones. En ese caso puede que no tengas que pagar nada en el modelo 130.</p>
+    </div>
+  </div>
+
+  <div class="seo-content">
+    <h2>¿Cuánto paga un autónomo en España en 2026?</h2>
+    <p>Un autónomo en España tiene dos pagos principales a la Administración: la cuota a la Seguridad Social (RETA) y el IRPF. Desde 2023 la cuota RETA ya no es fija sino que depende de tus ingresos reales, lo que cambia significativamente cuánto paga cada autónomo.</p>
+
+    <h3>Sistema de cotización por ingresos reales 2026</h3>
+    <p>El nuevo sistema tiene 15 tramos de cotización. Los ingresos netos (ingresos menos gastos) determinan en qué tramo estás y cuánto pagas cada mes a la Seguridad Social. Los autónomos con ingresos bajos pagan menos, y los de ingresos altos pagan más.</p>
+
+    <table class="tramos-tabla">
+      <thead><tr><th>Ingresos netos mensuales</th><th>Cuota mínima/mes</th><th>Cuota máxima/mes</th></tr></thead>
+      <tbody>
+        <tr><td>Hasta 670 €</td><td>200 €</td><td>200 €</td></tr>
+        <tr><td>670 € – 900 €</td><td>200 €</td><td>258 €</td></tr>
+        <tr><td>900 € – 1.166 €</td><td>258 €</td><td>293 €</td></tr>
+        <tr><td>1.166 € – 1.300 €</td><td>293 €</td><td>320 €</td></tr>
+        <tr><td>1.300 € – 1.500 €</td><td>320 €</td><td>348 €</td></tr>
+        <tr><td>1.500 € – 1.700 €</td><td>348 €</td><td>374 €</td></tr>
+        <tr><td>1.700 € – 1.850 €</td><td>374 €</td><td>396 €</td></tr>
+        <tr><td>1.850 € – 2.030 €</td><td>396 €</td><td>420 €</td></tr>
+        <tr><td>2.030 € – 2.330 €</td><td>420 €</td><td>462 €</td></tr>
+        <tr><td>2.330 € – 2.760 €</td><td>462 €</td><td>490 €</td></tr>
+        <tr><td>2.760 € – 3.190 €</td><td>490 €</td><td>530 €</td></tr>
+        <tr><td>3.190 € – 3.620 €</td><td>530 €</td><td>547 €</td></tr>
+        <tr><td>3.620 € – 4.050 €</td><td>547 €</td><td>570 €</td></tr>
+        <tr><td>4.050 € – 6.000 €</td><td>570 €</td><td>590 €</td></tr>
+        <tr><td>Más de 6.000 €</td><td>590 €</td><td>590 €</td></tr>
+      </tbody>
+    </table>
+
+    <h3>¿Qué gastos puede deducirse un autónomo?</h3>
+    <p>En estimación directa, puedes deducir todos los gastos necesarios para tu actividad: alquiler de local u oficina, suministros, material, transporte, formación, seguros, gestoría y la propia cuota de autónomos. Además, en estimación directa simplificada puedes aplicar una deducción adicional del 5% sobre el rendimiento neto en concepto de gastos de difícil justificación (con un máximo de 2.000 €).</p>
+
+    <h3>¿Cómo funciona el IRPF de los autónomos?</h3>
+    <p>Los autónomos tributan por el rendimiento neto de su actividad (ingresos menos gastos, incluyendo la cuota RETA). Este rendimiento se suma al resto de rentas y se aplican los tramos generales del IRPF. La cuota RETA es 100% deducible como gasto de la actividad.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La cuota de autónomos es deducible en el IRPF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, totalmente. La cuota RETA que pagas cada mes a la Seguridad Social es un gasto deducible al 100% en tu declaración del IRPF. Esto reduce tu base imponible y por tanto el impuesto que pagas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es el modelo 130? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">El modelo 130 es el pago fraccionado trimestral del IRPF para autónomos en estimación directa. Se presenta en enero, abril, julio y octubre. Se paga el 20% sobre el rendimiento neto acumulado del trimestre, restando los pagos anteriores y las retenciones soportadas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo deducirme el coche como autónomo? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Depende. Si el vehículo es de uso exclusivo profesional (lo cual es difícil de justificar salvo en ciertas actividades) puedes deducirlo al 100%. En la mayoría de casos, Hacienda solo acepta la deducción parcial o no la acepta para vehículos de turismo. Para transportistas, agentes comerciales o actividades donde el vehículo es herramienta de trabajo la deducción es más sencilla.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué retención debo poner en mis facturas? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Los autónomos que realizan actividades profesionales (abogados, diseñadores, consultores, etc.) aplican una retención del 15% en sus facturas a empresas y autónomos. En los dos primeros años de actividad la retención es del 7%. Los autónomos con actividad empresarial o comercial generalmente no aplican retención en sus facturas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo afecta el nuevo sistema de cuotas si mis ingresos varían? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Al inicio del año eliges el tramo de cotización según tus ingresos previstos. A final de año, la Seguridad Social regulariza: si ganaste más de lo previsto pagarás la diferencia, y si ganaste menos te devolverán el exceso. Por eso es importante elegir el tramo más ajustado posible a tus ingresos reales.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta con tu gestor para tu caso concreto.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+// Tramos RETA 2026 (cuota media de cada tramo)
+const TRAMOS_RETA = [
+  { hasta: 670,   cuota: 200,  label: 'Hasta 670 €/mes netos' },
+  { hasta: 900,   cuota: 229,  label: '670 – 900 €/mes netos' },
+  { hasta: 1166,  cuota: 275,  label: '900 – 1.166 €/mes netos' },
+  { hasta: 1300,  cuota: 306,  label: '1.166 – 1.300 €/mes netos' },
+  { hasta: 1500,  cuota: 334,  label: '1.300 – 1.500 €/mes netos' },
+  { hasta: 1700,  cuota: 361,  label: '1.500 – 1.700 €/mes netos' },
+  { hasta: 1850,  cuota: 385,  label: '1.700 – 1.850 €/mes netos' },
+  { hasta: 2030,  cuota: 408,  label: '1.850 – 2.030 €/mes netos' },
+  { hasta: 2330,  cuota: 441,  label: '2.030 – 2.330 €/mes netos' },
+  { hasta: 2760,  cuota: 476,  label: '2.330 – 2.760 €/mes netos' },
+  { hasta: 3190,  cuota: 510,  label: '2.760 – 3.190 €/mes netos' },
+  { hasta: 3620,  cuota: 538,  label: '3.190 – 3.620 €/mes netos' },
+  { hasta: 4050,  cuota: 558,  label: '3.620 – 4.050 €/mes netos' },
+  { hasta: 6000,  cuota: 580,  label: '4.050 – 6.000 €/mes netos' },
+  { hasta: Infinity, cuota: 590, label: 'Más de 6.000 €/mes netos' },
+];
+
+const TIPOS_AUTON = [
+  [0.095,0.12,0.14,0.17,0.185,0.235],[0.10,0.13,0.15,0.17,0.19,0.21],
+  [0.10,0.12,0.14,0.18,0.195,0.21],[0.09,0.115,0.155,0.185,0.20,0.22],
+  [0.085,0.105,0.125,0.165,0.185,0.20],[0.09,0.115,0.14,0.175,0.185,0.215],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.09,0.12,0.14,0.17,0.185,0.215],
+  [0.105,0.12,0.14,0.175,0.21,0.235],[0.085,0.105,0.14,0.175,0.195,0.215],
+  [0.09,0.12,0.14,0.175,0.185,0.215],[0.09,0.11,0.13,0.17,0.185,0.21],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.08,0.11,0.14,0.17,0.20,0.22],
+  [0.07,0.10,0.12,0.16,0.18,0.19],[0.08,0.10,0.13,0.16,0.18,0.205],
+  [0.095,0.12,0.14,0.175,0.185,0.22]
+];
+
+const TRAMOS_EST = [
+  {hasta:12450,tipo:0.095},{hasta:20200,tipo:0.12},{hasta:35200,tipo:0.15},
+  {hasta:60000,tipo:0.185},{hasta:300000,tipo:0.225},{hasta:Infinity,tipo:0.245}
+];
+
+function calcEscala(base, ccaa) {
+  let cuota = 0, ant = 0;
+  for (let i = 0; i < TRAMOS_EST.length; i++) {
+    if (base <= ant) break;
+    const tramo = Math.min(base, TRAMOS_EST[i].hasta) - ant;
+    cuota += tramo * (TRAMOS_EST[i].tipo + TIPOS_AUTON[ccaa][Math.min(i,5)]);
+    ant = TRAMOS_EST[i].hasta;
+  }
+  return cuota;
+}
+
+function calcMinimo(hijos, estado) {
+  let mp = 5550;
+  const mh = [0, 2400, 5100, 9100, 13600];
+  let mc = estado === 'casado' ? 3400 : 0;
+  return mp + (mh[Math.min(hijos,4)] || 0) + mc;
+}
+
+function getCuotaReta(ingresosNetosMensuales) {
+  for (const t of TRAMOS_RETA) {
+    if (ingresosNetosMensuales <= t.hasta) return t;
+  }
+  return TRAMOS_RETA[TRAMOS_RETA.length - 1];
+}
+
+function calcular() {
+  const ingresos = parseFloat(document.getElementById('ingresos').value) || 0;
+  const tipoAct = document.getElementById('tipo_actividad').value;
+  const primerAño = document.getElementById('primer_año').value;
+  const regimen = document.getElementById('regimen').value;
+  const ccaa = parseInt(document.getElementById('ccaa').value);
+  const estado = document.getElementById('estado').value;
+  const hijos = parseInt(document.getElementById('hijos').value);
+  const homeOffice = parseInt(document.getElementById('home_office').value);
+  const gastosHogar = parseFloat(document.getElementById('gastos_hogar').value) || 0;
+
+  document.getElementById('aviso_modulos').style.display = regimen === 'modulos' ? 'block' : 'none';
+
+  // Gastos deducibles
+  const gastosFijos = ['g_alquiler','g_suministros','g_material','g_transporte','g_formacion','g_gestoria','g_seguros','g_otros']
+    .reduce((sum, id) => sum + (parseFloat(document.getElementById(id).value) || 0), 0);
+
+  const gastosHogarDeducible = homeOffice > 0 ? gastosHogar * homeOffice / 100 * 0.3 : 0;
+  const totalGastos = gastosFijos + gastosHogarDeducible;
+
+  // Provisión difícil justificación (5%, máx 2000€) solo en simplificada
+  const rendPrevio = Math.max(0, ingresos - totalGastos);
+  const dificilJustificacion = regimen === 'directa_simplificada' ? Math.min(rendPrevio * 0.05, 2000) : 0;
+  const rendNeto = Math.max(0, rendPrevio - dificilJustificacion);
+
+  // Cuota RETA
+  const ingresosNetosMensuales = rendNeto / 12;
+  const tramReta = getCuotaReta(ingresosNetosMensuales);
+  const cuotaRetaMensual = tramReta.cuota;
+  const cuotaRetaAnual = cuotaRetaMensual * 12;
+
+  // Base imponible IRPF (rendimiento neto - cuota RETA, ya que es deducible)
+  const baseIRPF = Math.max(0, rendNeto - cuotaRetaAnual);
+  const minimo = calcMinimo(hijos, estado);
+  const baseLiquidable = Math.max(0, baseIRPF - minimo);
+  const irpf = calcEscala(baseLiquidable, ccaa);
+  const tipoEf = ingresos > 0 ? irpf / ingresos * 100 : 0;
+
+  const netoReal = ingresos - totalGastos - dificilJustificacion - cuotaRetaAnual - irpf;
+  const netoMensual = netoReal / 12;
+
+  // Retención en facturas
+  const retencionPct = tipoAct === 'profesional' ? (primerAño === 'si' ? 0.07 : 0.15) : 0;
+  const retencionAnual = ingresos * retencionPct;
+
+  // Pagos trimestrales modelo 130
+  const beneficioAnual = rendNeto - cuotaRetaAnual;
+  const pago130Base = Math.max(0, beneficioAnual * 0.20);
+  const pagoNeto130 = Math.max(0, pago130Base - retencionAnual);
+  const pagoTrimestral = pagoNeto130 / 4;
+
+  // Render
+  document.getElementById('res_neto').textContent = fmt(netoReal);
+  document.getElementById('res_neto_mensual').textContent = fmt(netoMensual);
+  document.getElementById('res_tipo_ef').textContent = tipoEf.toFixed(1) + '%';
+  document.getElementById('d_ingresos').textContent = fmt(ingresos);
+  document.getElementById('d_gastos').textContent = '-' + fmt(totalGastos + dificilJustificacion);
+  document.getElementById('d_rend_neto').textContent = fmt(rendNeto);
+  document.getElementById('d_reta').textContent = '-' + fmt(cuotaRetaAnual);
+  document.getElementById('d_irpf').textContent = '-' + fmt(irpf);
+  document.getElementById('d_neto_real').textContent = fmt(netoReal);
+
+  document.getElementById('l_ingresos').textContent = fmt(ingresos);
+  document.getElementById('l_gastos').textContent = '-' + fmt(totalGastos);
+  document.getElementById('l_dificil').textContent = dificilJustificacion > 0 ? '-' + fmt(dificilJustificacion) : '—';
+  document.getElementById('l_rend_previo').textContent = fmt(rendNeto);
+  document.getElementById('l_reta').textContent = '-' + fmt(cuotaRetaAnual);
+  document.getElementById('l_base_irpf').textContent = fmt(baseIRPF);
+  document.getElementById('l_minimo').textContent = '-' + fmt(minimo);
+  document.getElementById('l_irpf').textContent = '-' + fmt(irpf);
+  document.getElementById('l_reta2').textContent = '-' + fmt(cuotaRetaAnual);
+  document.getElementById('l_neto').textContent = fmt(netoReal);
+
+  document.getElementById('reta_tramo_label').textContent = tramReta.label;
+  document.getElementById('reta_tramo_cuota').textContent = fmt(cuotaRetaMensual) + '/mes · ' + fmt(cuotaRetaAnual) + '/año';
+
+  // Trimestres
+  const trimestres = [
+    { label: '1T', periodo: 'Ene–Mar', fecha: 'Pagar antes 20 abril' },
+    { label: '2T', periodo: 'Abr–Jun', fecha: 'Pagar antes 20 julio' },
+    { label: '3T', periodo: 'Jul–Sep', fecha: 'Pagar antes 20 octubre' },
+    { label: '4T', periodo: 'Oct–Dic', fecha: 'Pagar antes 30 enero' },
+  ];
+  document.getElementById('trimestres-grid').innerHTML = trimestres.map(t => `
+    <div class="trim-item">
+      <div class="ti-label">${t.label} — ${t.periodo}</div>
+      <div class="ti-periodo">${t.fecha}</div>
+      <div class="ti-irpf">${fmt(pagoTrimestral)}</div>
+      <div class="ti-ss">SS: ${fmt(cuotaRetaMensual * 3)}</div>
+    </div>`).join('');
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+</body>
+</html>

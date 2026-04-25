@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Jubilación y Pensión 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuándo te puedes jubilar y cuánto cobrarás de pensión en España 2026. Incluye jubilación anticipada, ordinaria y demorada. Gratis y sin registro.">
+  <meta name="keywords" content="calculadora jubilacion 2026, cuanto cobrare de pension, cuando me puedo jubilar, pension publica españa, jubilacion anticipada, años cotizados pension">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora de Jubilación y Pensión 2026 | Metaphai">
+  <meta property="og:description" content="Calcula cuándo te puedes jubilar y cuánto cobrarás de pensión pública en España.">
+  <meta property="og:url" content="https://metaphai.com/jubilacion.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --jub: #5a3a8a; --jub-light: #f0eaff;
+      --warn: #7a4f1a; --warn-light: #fef6ec;
+      --danger: #8b2a2a;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--jub); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--jub-light); color: var(--jub); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--jub); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.purple { background: var(--jub-light); border: 1px solid #c8b0f0; }
+    .info-box.purple p { font-size: 13px; color: var(--jub); margin: 0; }
+    .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
+    .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .info-box.green { background: var(--accent-light); border: 1px solid #b8dece; }
+    .info-box.green p { font-size: 13px; color: var(--accent); margin: 0; }
+    /* TIMELINE JUBILACIÓN */
+    .timeline-jub { margin-top: 1.5rem; }
+    .tl-item { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
+    .tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .tl-dot.activo { background: var(--jub); color: white; }
+    .tl-dot.posible { background: var(--warn-light); color: var(--warn); border: 1px solid #f0d0a0; }
+    .tl-dot.optimo { background: var(--accent); color: white; }
+    .tl-dot.inactivo { background: var(--bg); color: var(--hint); border: 1px solid var(--border); }
+    .tl-content .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .tl-content .tl-desc { font-size: 13px; color: var(--muted); }
+    .tl-content .tl-pension { font-size: 16px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--jub); margin-top: 4px; }
+    /* RESULTS */
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--jub); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.jub .rv { color: var(--jub); }
+    .res-item.warn .rv { color: var(--warn); }
+    /* COMPARATIVA ESCENARIOS */
+    .escenarios { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .esc-title { font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+    .esc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    @media (max-width: 540px) { .esc-grid { grid-template-columns: 1fr; } }
+    .esc-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
+    .esc-item.actual { border-color: var(--jub); background: var(--jub-light); }
+    .esc-item .ei-label { font-size: 11px; color: var(--hint); margin-bottom: 4px; }
+    .esc-item .ei-tipo { font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+    .esc-item.actual .ei-tipo { color: var(--jub); }
+    .esc-item .ei-pension { font-size: 18px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--text); }
+    .esc-item .ei-detalle { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    /* BARRA AÑOS */
+    .barra-años { margin-top: 1.5rem; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .barra-años-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .barra-seg-wrap { display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin-bottom: 8px; }
+    .barra-años-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; transition: width 0.4s; white-space: nowrap; overflow: hidden; }
+    .legend-años { display: flex; gap: 12px; flex-wrap: wrap; }
+    .legend-años-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted); }
+    .legend-años-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .tabla-edades { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .tabla-edades th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .tabla-edades td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🧓 Jubilación 2026</div>
+    <h1>¿Cuándo me jubilo<br>y cuánto cobraré de <em>pensión</em>?</h1>
+    <p>Calcula tu pensión pública estimada, cuándo puedes jubilarte y qué diferencia hay entre jubilarte antes o después.</p>
+  </div>
+
+  <!-- DATOS PERSONALES -->
+  <div class="card">
+    <div class="section-label">Tus datos</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Año de nacimiento</label>
+        <input type="number" id="año_nacimiento" value="1970" min="1940" max="2000" oninput="calcular()">
+      </div>
+      <div class="field">
+        <label>Años cotizados hasta hoy</label>
+        <input type="number" id="años_cotizados" value="25" min="0" max="50" oninput="calcular()">
+        <p class="tip">Consulta tu vida laboral en la Seguridad Social</p>
+      </div>
+      <div class="field">
+        <label>Colectivo</label>
+        <select id="colectivo" onchange="calcular()">
+          <option value="general">Régimen General (asalariado)</option>
+          <option value="autonomo">Autónomo (RETA)</option>
+          <option value="funcionario">Funcionario (MUFACE/ISFAS)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- BASE REGULADORA -->
+  <div class="card">
+    <div class="section-label">Base reguladora (últimos 25 años)</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Salario bruto mensual actual (€)</label>
+        <input type="number" id="salario_actual" value="2500" min="0" step="100" oninput="calcular()">
+        <p class="tip">La base reguladora se calcula con los últimos 25 años de cotización</p>
+      </div>
+      <div class="field">
+        <label>Salario bruto mensual hace 25 años (€)</label>
+        <input type="number" id="salario_antiguo" value="1200" min="0" step="100" oninput="calcular()">
+        <p class="tip">Si no recuerdas, deja el mismo que el actual como estimación</p>
+      </div>
+    </div>
+    <div class="info-box purple" style="margin-top:12px">
+      <p>💡 La base reguladora es la media mensual de tus bases de cotización de los últimos 25 años (300 meses), actualizadas según el IPC. Para una estimación rápida usamos la media de tus salarios actual y pasado.</p>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results" id="results-main">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Pensión estimada (jubilación ordinaria)</div>
+        <div class="main-value" id="res_pension">—</div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Edad de jubilación ordinaria</div>
+        <div class="sub-value" id="res_edad_jub">—</div>
+        <div class="sub-label" style="margin-top:8px">Años que te quedan</div>
+        <div class="sub-value" id="res_años_quedan">—</div>
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="res-item jub">
+        <div class="rl">Base reguladora estimada</div>
+        <div class="rv" id="d_base_reg">—</div>
+      </div>
+      <div class="res-item jub">
+        <div class="rl">Porcentaje aplicado</div>
+        <div class="rv" id="d_pct_aplicado">—</div>
+      </div>
+      <div class="res-item">
+        <div class="rl">Años cotizados al jubilarte</div>
+        <div class="rv" id="d_años_total">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Pensión anual estimada</div>
+        <div class="rv" id="d_pension_anual">—</div>
+      </div>
+      <div class="res-item">
+        <div class="rl">Pensión máxima 2026</div>
+        <div class="rv">3.267 €/mes</div>
+      </div>
+      <div class="res-item">
+        <div class="rl">Pensión mínima 2026</div>
+        <div class="rv">~785 €/mes</div>
+      </div>
+    </div>
+
+    <div class="escenarios">
+      <div class="esc-title">Comparativa según cuándo te jubiles</div>
+      <div class="esc-grid">
+        <div class="esc-item" id="esc_anticipada">
+          <div class="ei-label">Jubilación anticipada</div>
+          <div class="ei-tipo" id="esc_ant_tipo">—</div>
+          <div class="ei-pension" id="esc_ant_pension">—</div>
+          <div class="ei-detalle" id="esc_ant_detalle">—</div>
+        </div>
+        <div class="esc-item actual" id="esc_ordinaria">
+          <div class="ei-label">✓ Jubilación ordinaria</div>
+          <div class="ei-tipo" id="esc_ord_tipo">—</div>
+          <div class="ei-pension" id="esc_ord_pension">—</div>
+          <div class="ei-detalle" id="esc_ord_detalle">—</div>
+        </div>
+        <div class="esc-item" id="esc_demorada">
+          <div class="ei-label">Jubilación demorada</div>
+          <div class="ei-tipo" id="esc_dem_tipo">—</div>
+          <div class="ei-pension" id="esc_dem_pension">—</div>
+          <div class="ei-detalle" id="esc_dem_detalle">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BARRA VISUAL AÑOS -->
+  <div class="barra-años" id="barra-años">
+    <div class="barra-años-title">Distribución de tu vida laboral</div>
+    <div class="barra-seg-wrap">
+      <div class="barra-años-seg" id="bar_cotizados" style="background:var(--jub)"></div>
+      <div class="barra-años-seg" id="bar_restantes" style="background:#b8d0f0"></div>
+      <div class="barra-años-seg" id="bar_pension" style="background:#e8deff"></div>
+    </div>
+    <div class="legend-años">
+      <div class="legend-años-item"><div class="legend-años-dot" style="background:var(--jub)"></div>Años cotizados (<span id="leg_cotizados">—</span>)</div>
+      <div class="legend-años-item"><div class="legend-años-dot" style="background:#b8d0f0"></div>Hasta jubilación (<span id="leg_restantes">—</span>)</div>
+      <div class="legend-años-item"><div class="legend-años-dot" style="background:#e8deff"></div>Años de pensión estimados (<span id="leg_pension_años">—</span>)</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="card" style="margin-top:1.5rem">
+    <div class="section-label">Tu hoja de ruta hacia la jubilación</div>
+    <div class="timeline-jub" id="timeline-jub"></div>
+  </div>
+
+  <div class="seo-content">
+    <h2>¿Cómo se calcula la pensión de jubilación en España?</h2>
+    <p>La pensión pública de jubilación en España se calcula a partir de dos factores principales: la base reguladora (media de las bases de cotización de los últimos 25 años) y el porcentaje aplicado según los años cotizados.</p>
+
+    <h3>Años cotizados y porcentaje de pensión</h3>
+    <p>Con 15 años cotizados (el mínimo) percibes el 50% de la base reguladora. El porcentaje aumenta progresivamente hasta alcanzar el 100% con 36 años y 6 meses cotizados en 2026. Cada año adicional hasta ese mínimo sube el porcentaje aproximadamente 3 puntos.</p>
+
+    <h3>Edad de jubilación ordinaria en España 2026</h3>
+    <table class="tabla-edades">
+      <thead><tr><th>Años cotizados</th><th>Edad de jubilación ordinaria</th></tr></thead>
+      <tbody>
+        <tr><td>Menos de 38 años y 3 meses</td><td>66 años y 8 meses</td></tr>
+        <tr><td>38 años y 3 meses o más</td><td>65 años</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Jubilación anticipada</h3>
+    <p>Puedes jubilarte hasta 2 años antes de la edad ordinaria si cumples ciertos requisitos. La jubilación anticipada voluntaria penaliza la pensión entre un 1,5% y un 3,5% por cada trimestre anticipado según los años cotizados. La anticipada involuntaria (por causas ajenas al trabajador como ERE) tiene una penalización menor.</p>
+
+    <h3>Jubilación demorada</h3>
+    <p>Si decides trabajar más allá de la edad ordinaria, recibes un incentivo de entre el 4% y el 12% por año adicional trabajado (según los años cotizados). Esta puede ser una estrategia interesante si tienes buena salud y quieres maximizar tu pensión.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo consulto mis años cotizados? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Puedes consultar tu vida laboral gratuitamente en la Sede Electrónica de la Seguridad Social (sede.seg-social.gob.es) con tu DNI electrónico, certificado digital o Cl@ve. También puedes solicitarla por teléfono o presencialmente en cualquier oficina de la Seguridad Social.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La pensión tiene un máximo? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. La pensión máxima en 2026 es de aproximadamente 3.267 euros mensuales (en 14 pagas). Aunque tu base reguladora sea mayor, no puedes cobrar más que este límite. También existe una pensión mínima de aproximadamente 785 euros para quienes tienen pocos años cotizados.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los autónomos tienen la misma pensión? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Los autónomos que cotizaban por la base mínima durante años suelen tener pensiones más bajas porque su base de cotización era menor. Con el nuevo sistema de cotización por ingresos reales (desde 2023), los autónomos cotizan más si ganan más, lo que a largo plazo mejorará sus pensiones futuras.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La pensión tributa en el IRPF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. La pensión pública de jubilación tributa como rendimiento del trabajo en el IRPF, igual que un salario. La Seguridad Social aplica retenciones directamente sobre la pensión. Dependiendo del importe, puedes estar obligado a presentar declaración de la Renta.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si me jubilo y sigo trabajando? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Existe la jubilación activa o compatible, que permite cobrar el 50% de la pensión mientras se trabaja por cuenta propia o ajena. Si el autónomo tiene al menos un empleado, puede cobrar el 100%. Al dejar de trabajar definitivamente, se revisa la pensión al 100%.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta tu pensión exacta en la Seguridad Social (seg-social.gob.es).</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const AÑO_ACTUAL = 2026;
+const PENSION_MAX = 3267;
+const PENSION_MIN = 785;
+
+// Edad ordinaria según años cotizados al jubilarse
+function edadOrdinaria(añosCotizadosAlJubilar) {
+  return añosCotizadosAlJubilar >= 38.25 ? 65 : 66 + 8/12;
+}
+
+// Porcentaje pensión según años cotizados (escala 2026)
+function porcentajePension(años) {
+  if (años < 15) return 0;
+  if (años >= 36.5) return 1.0;
+  // 50% con 15 años, +3% por año hasta el 25, +2% por año del 26 al 36.5
+  let pct = 0.50;
+  const extra = años - 15;
+  const tramo1 = Math.min(extra, 10);
+  const tramo2 = Math.max(0, extra - 10);
+  pct += tramo1 * 0.03 + tramo2 * 0.02;
+  return Math.min(pct, 1.0);
+}
+
+function calcBaseReg(salActual, salAntiguo) {
+  return (salActual + salAntiguo) / 2;
+}
+
+function calcular() {
+  const añoNac = parseInt(document.getElementById('año_nacimiento').value) || 1970;
+  const añosCotizados = parseFloat(document.getElementById('años_cotizados').value) || 0;
+  const salActual = parseFloat(document.getElementById('salario_actual').value) || 0;
+  const salAntiguo = parseFloat(document.getElementById('salario_antiguo').value) || 0;
+
+  const edadActual = AÑO_ACTUAL - añoNac;
+  const baseReg = calcBaseReg(salActual, salAntiguo);
+
+  // Edad ordinaria estimada (con años cotizados al jubilarse)
+  const añosHastaJub65 = Math.max(0, 65 - edadActual);
+  const añosCotizadosA65 = añosCotizados + añosHastaJub65;
+  const edadOrd = añosCotizadosA65 >= 38.25 ? 65 : 66 + 8/12;
+  const añosHastaOrd = Math.max(0, edadOrd - edadActual);
+  const añosCotizadosOrd = Math.min(50, añosCotizados + añosHastaOrd);
+
+  // Pensión ordinaria
+  const pctOrd = porcentajePension(añosCotizadosOrd);
+  const pensionBrutaOrd = baseReg * pctOrd;
+  const pensionOrd = Math.min(Math.max(pensionBrutaOrd, añosCotizadosOrd >= 15 ? PENSION_MIN : 0), PENSION_MAX);
+
+  // Jubilación anticipada (2 años antes)
+  const edadAnt = edadOrd - 2;
+  const añosHastaAnt = Math.max(0, edadAnt - edadActual);
+  const añosCotizadosAnt = Math.min(50, añosCotizados + añosHastaAnt);
+  const pctAnt = porcentajePension(añosCotizadosAnt);
+  // Penalización anticipada voluntaria: ~1.56% por trimestre (8 trimestres = 2 años)
+  const penalizacionAnt = 0.0156 * 8;
+  const pensionBrutaAnt = baseReg * pctAnt * (1 - penalizacionAnt);
+  const pensionAnt = Math.min(Math.max(pensionBrutaAnt, 0), PENSION_MAX);
+
+  // Jubilación demorada (2 años después)
+  const edadDem = edadOrd + 2;
+  const añosCotizadosDem = Math.min(50, añosCotizadosOrd + 2);
+  const pctDem = porcentajePension(añosCotizadosDem);
+  // Incentivo demorada: 4% por año adicional (con >25 años cotizados)
+  const incentivoDem = añosCotizadosOrd >= 25 ? 0.04 * 2 : 0.02 * 2;
+  const pensionBrutaDem = baseReg * pctDem * (1 + incentivoDem);
+  const pensionDem = Math.min(pensionBrutaDem, PENSION_MAX);
+
+  // Render principal
+  document.getElementById('res_pension').textContent = fmt(pensionOrd);
+  document.getElementById('res_edad_jub').textContent = edadOrd === 65 ? '65 años' : '66 años y 8 meses';
+  document.getElementById('res_años_quedan').textContent = añosHastaOrd.toFixed(1) + ' años';
+  document.getElementById('d_base_reg').textContent = fmt(baseReg);
+  document.getElementById('d_pct_aplicado').textContent = (pctOrd * 100).toFixed(1) + '%';
+  document.getElementById('d_años_total').textContent = añosCotizadosOrd.toFixed(1) + ' años';
+  document.getElementById('d_pension_anual').textContent = fmt(pensionOrd * 14);
+
+  // Escenarios
+  document.getElementById('esc_ant_tipo').textContent = `A los ${edadAnt.toFixed(1)} años`;
+  document.getElementById('esc_ant_pension').textContent = fmt(pensionAnt);
+  document.getElementById('esc_ant_detalle').textContent = `Penalización ~${(penalizacionAnt*100).toFixed(1)}% · ${añosCotizadosAnt.toFixed(0)} años cotizados`;
+
+  document.getElementById('esc_ord_tipo').textContent = `A los ${edadOrd === 65 ? '65' : '66 y 8m'} años`;
+  document.getElementById('esc_ord_pension').textContent = fmt(pensionOrd);
+  document.getElementById('esc_ord_detalle').textContent = `${(pctOrd*100).toFixed(1)}% base reguladora · ${añosCotizadosOrd.toFixed(0)} años cotizados`;
+
+  document.getElementById('esc_dem_tipo').textContent = `A los ${edadDem.toFixed(1)} años`;
+  document.getElementById('esc_dem_pension').textContent = fmt(pensionDem);
+  document.getElementById('esc_dem_detalle').textContent = `Incentivo +${(incentivoDem*100).toFixed(0)}% · ${añosCotizadosDem.toFixed(0)} años cotizados`;
+
+  // Barra visual
+  const esperanzaVida = 83;
+  const añosPension = Math.max(0, esperanzaVida - edadOrd);
+  const totalVidaLaboral = añosCotizados + añosHastaOrd + añosPension;
+  const pCot = añosCotizados / totalVidaLaboral * 100;
+  const pRes = añosHastaOrd / totalVidaLaboral * 100;
+  const pPen = añosPension / totalVidaLaboral * 100;
+  document.getElementById('bar_cotizados').style.width = pCot.toFixed(1) + '%';
+  document.getElementById('bar_cotizados').textContent = pCot > 8 ? Math.round(añosCotizados) + 'a' : '';
+  document.getElementById('bar_restantes').style.width = pRes.toFixed(1) + '%';
+  document.getElementById('bar_restantes').textContent = pRes > 8 ? Math.round(añosHastaOrd) + 'a' : '';
+  document.getElementById('bar_pension').style.width = pPen.toFixed(1) + '%';
+  document.getElementById('bar_pension').textContent = pPen > 8 ? Math.round(añosPension) + 'a' : '';
+  document.getElementById('leg_cotizados').textContent = añosCotizados.toFixed(0) + ' años';
+  document.getElementById('leg_restantes').textContent = añosHastaOrd.toFixed(1) + ' años';
+  document.getElementById('leg_pension_años').textContent = añosPension.toFixed(0) + ' años';
+
+  // Timeline
+  const hitos = [];
+  hitos.push({ año: AÑO_ACTUAL, edad: edadActual, titulo: 'Hoy', desc: `${añosCotizados} años cotizados · Salario bruto ${fmt(salActual)}/mes`, tipo: 'activo' });
+  if (añosHastaAnt > 0 && edadAnt >= edadActual) {
+    hitos.push({ año: AÑO_ACTUAL + Math.round(añosHastaAnt), edad: edadAnt, titulo: 'Jubilación anticipada (posible)', desc: `Penalización del ${(penalizacionAnt*100).toFixed(1)}%`, pension: fmt(pensionAnt) + '/mes', tipo: 'posible' });
+  }
+  hitos.push({ año: AÑO_ACTUAL + Math.round(añosHastaOrd), edad: edadOrd, titulo: 'Jubilación ordinaria', desc: `${añosCotizadosOrd.toFixed(0)} años cotizados · ${(pctOrd*100).toFixed(1)}% base reguladora`, pension: fmt(pensionOrd) + '/mes', tipo: 'optimo' });
+  hitos.push({ año: AÑO_ACTUAL + Math.round(añosHastaOrd) + 2, edad: edadDem, titulo: 'Jubilación demorada (+2 años)', desc: `Incentivo del ${(incentivoDem*100).toFixed(0)}%`, pension: fmt(pensionDem) + '/mes', tipo: 'inactivo' });
+
+  document.getElementById('timeline-jub').innerHTML = hitos.map(h => `
+    <div class="tl-item">
+      <div class="tl-dot ${h.tipo}">${Math.round(h.edad)}</div>
+      <div class="tl-content">
+        <div class="tl-title">${h.titulo} <span style="font-size:12px;color:var(--hint);font-weight:400">(${h.año})</span></div>
+        <div class="tl-desc">${h.desc}</div>
+        ${h.pension ? `<div class="tl-pension">${h.pension}</div>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+</body>
+</html>
