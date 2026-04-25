@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IVA 2026 | Añadir y Quitar IVA | Metaphai</title>
+  <meta name="description" content="Calcula el IVA al instante. Añade o quita el IVA a cualquier precio. IVA general 21%, reducido 10% y superreducido 4%. Gratis y sin registro.">
+  <meta name="keywords" content="calculadora iva 2026, añadir iva precio, quitar iva precio, calcular iva 21%, iva reducido 10%, iva superreducido 4%, base imponible iva">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora de IVA 2026 | Metaphai">
+  <meta property="og:description" content="Añade o quita el IVA a cualquier precio al instante. IVA 21%, 10% y 4%.">
+  <meta property="og:url" content="https://metaphai.com/iva.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#f7f6f2;--surface:#fff;--border:#e2e0d8;--text:#1a1916;--muted:#6b6960;--hint:#9e9c94;--accent:#2d6a4f;--accent-light:#e8f4ee;--iva:#1a5a3a;--iva-light:#e4f5ed;--radius:10px;--radius-lg:16px;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:10;}
+    .logo{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.02em;text-decoration:none;}.logo span{color:var(--accent);}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;}.nav-back:hover{color:var(--accent);}
+    main{max-width:680px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+    .hero{text-align:center;padding:2rem 0;}
+    .hero h1{font-size:clamp(24px,3.5vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.2;margin-bottom:.75rem;}
+    .hero h1 em{font-style:normal;color:var(--iva);}
+    .hero p{font-size:15px;color:var(--muted);max-width:460px;margin:0 auto;}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--iva-light);color:var(--iva);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:1rem;}
+    /* TIPO SELECTOR */
+    .tipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
+    .tipo-btn{padding:14px;border:1.5px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);cursor:pointer;text-align:center;transition:all .15s;}
+    .tipo-btn:hover{border-color:var(--iva);}
+    .tipo-btn.active{border-color:var(--iva);background:var(--iva-light);}
+    .tipo-btn .tb-pct{font-size:24px;font-weight:700;color:var(--iva);font-family:'DM Mono',monospace;}
+    .tipo-btn .tb-label{font-size:12px;color:var(--muted);margin-top:2px;}
+    .tipo-btn .tb-ejemplos{font-size:11px;color:var(--hint);margin-top:4px;}
+    /* CALCULADORA */
+    .calc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem;}
+    .tabs-calc{display:flex;gap:8px;margin-bottom:1.5rem;}
+    .tab-calc{flex:1;padding:10px;text-align:center;font-size:14px;font-weight:500;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;background:var(--bg);color:var(--muted);transition:all .15s;}
+    .tab-calc.active{background:var(--iva);color:white;border-color:var(--iva);}
+    .big-input-wrap{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+    .big-input{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--radius-lg);background:var(--bg);color:var(--text);width:100%;text-align:right;}
+    .big-input:focus{outline:none;border-color:var(--iva);background:var(--surface);}
+    .currency{font-size:20px;color:var(--hint);font-weight:500;}
+    .resultado-principal{background:var(--iva);border-radius:var(--radius-lg);padding:1.5rem;text-align:center;margin-bottom:1rem;}
+    .rp-label{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:4px;}
+    .rp-value{font-size:48px;font-weight:600;color:white;font-family:'DM Mono',monospace;letter-spacing:-.04em;}
+    .rp-sub{font-size:14px;color:rgba(255,255,255,.7);margin-top:6px;}
+    .desglose{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+    .des-item{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center;}
+    .des-item .di-label{font-size:11px;color:var(--hint);margin-bottom:4px;}
+    .des-item .di-val{font-size:16px;font-weight:600;font-family:'DM Mono',monospace;color:var(--text);}
+    .des-item.highlight{border-color:var(--iva);background:var(--iva-light);}
+    .des-item.highlight .di-val{color:var(--iva);}
+    /* TABLA IVA */
+    .tabla-iva{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0;}
+    .tabla-iva th{text-align:left;padding:8px 12px;background:var(--bg);font-weight:500;color:var(--muted);border-bottom:1px solid var(--border);}
+    .tabla-iva td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--muted);}
+    .seo-content{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+    .seo-content h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;}
+    .seo-content h3{font-size:15px;font-weight:600;margin:1.5rem 0 .5rem;}
+    .seo-content p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+    .faq-q{padding:12px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+    .faq-q:hover{background:var(--bg);}
+    .faq-a{display:none;padding:0 16px 12px;font-size:14px;color:var(--muted);background:var(--surface);line-height:1.7;}
+    .faq-item.open .faq-a{display:block;}
+    .faq-arrow{transition:transform .2s;font-size:12px;}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);border-top:1px solid var(--border);margin-top:3rem;}
+    footer a{color:var(--hint);}
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🧾 IVA 2026</div>
+    <h1>Calculadora de <em>IVA</em></h1>
+    <p>Añade o quita el IVA a cualquier precio al instante. IVA general, reducido y superreducido.</p>
+  </div>
+
+  <!-- SELECTOR TIPO IVA -->
+  <div class="tipo-grid">
+    <div class="tipo-btn active" id="btn21" onclick="setTipo(21)">
+      <div class="tb-pct">21%</div>
+      <div class="tb-label">IVA General</div>
+      <div class="tb-ejemplos">Ropa, electrónica, servicios...</div>
+    </div>
+    <div class="tipo-btn" id="btn10" onclick="setTipo(10)">
+      <div class="tb-pct">10%</div>
+      <div class="tb-label">IVA Reducido</div>
+      <div class="tb-ejemplos">Alimentos, transporte, hostelería...</div>
+    </div>
+    <div class="tipo-btn" id="btn4" onclick="setTipo(4)">
+      <div class="tb-pct">4%</div>
+      <div class="tb-label">IVA Superreducido</div>
+      <div class="tb-ejemplos">Pan, leche, medicamentos, libros...</div>
+    </div>
+  </div>
+
+  <!-- CALCULADORA -->
+  <div class="calc-card">
+    <div class="tabs-calc">
+      <div class="tab-calc active" id="tab_añadir" onclick="setMode('añadir')">➕ Añadir IVA (precio sin IVA)</div>
+      <div class="tab-calc" id="tab_quitar" onclick="setMode('quitar')">➖ Quitar IVA (precio con IVA)</div>
+    </div>
+    <div id="label_input" style="font-size:13px;color:var(--muted);margin-bottom:8px;">Introduce el precio sin IVA (base imponible)</div>
+    <div class="big-input-wrap">
+      <input class="big-input" type="number" id="precio" value="100" min="0" step="0.01" oninput="calcular()">
+      <span class="currency">€</span>
+    </div>
+    <div class="resultado-principal">
+      <div class="rp-label" id="rp_label">Precio con IVA (21%)</div>
+      <div class="rp-value" id="rp_value">121,00 €</div>
+      <div class="rp-sub" id="rp_sub">IVA incluido: 21,00 €</div>
+    </div>
+    <div class="desglose">
+      <div class="des-item">
+        <div class="di-label">Base imponible</div>
+        <div class="di-val" id="d_base">—</div>
+      </div>
+      <div class="des-item highlight">
+        <div class="di-label" id="d_iva_label">IVA (21%)</div>
+        <div class="di-val" id="d_iva">—</div>
+      </div>
+      <div class="des-item">
+        <div class="di-label">Total con IVA</div>
+        <div class="di-val" id="d_total">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA COMPARATIVA -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-top:1rem;">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--hint);margin-bottom:1rem;">Comparativa de tipos</div>
+    <table class="tabla-iva">
+      <thead><tr><th>Tipo IVA</th><th>Base</th><th>IVA</th><th>Total</th></tr></thead>
+      <tbody id="tabla-comp"></tbody>
+    </table>
+  </div>
+
+  <div class="seo-content">
+    <h2>Tipos de IVA en España 2026</h2>
+    <p>En España existen tres tipos de IVA que se aplican según el bien o servicio. El tipo general del 21% se aplica a la mayoría de productos y servicios. El tipo reducido del 10% se aplica a alimentos en general, transporte de viajeros, hostelería y restauración, y algunos servicios culturales. El tipo superreducido del 4% se aplica a alimentos básicos (pan, leche, huevos, frutas, verduras), medicamentos, libros, periódicos y viviendas de protección oficial.</p>
+
+    <h3>¿Qué productos tienen IVA 0%?</h3>
+    <p>Desde 2022, algunos productos alimentarios básicos han tenido temporalmente IVA 0% como medida ante la inflación. En 2026 estos tipos especiales pueden seguir vigentes o haber vuelto a su tipo normal. Consulta la normativa vigente para productos específicos.</p>
+
+    <h3>¿Cómo se calcula el IVA?</h3>
+    <p>Para añadir IVA: precio con IVA = base imponible × (1 + tipo IVA / 100). Para quitar IVA: base imponible = precio con IVA / (1 + tipo IVA / 100).</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Las facturas entre empresas llevan siempre IVA? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, salvo algunas excepciones como las operaciones exentas (seguros, educación, sanidad, alquileres de vivienda) o las exportaciones fuera de la UE. Las empresas y autónomos repercuten el IVA en sus facturas y luego lo ingresan trimestralmente a Hacienda a través del modelo 303.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los autónomos siempre tienen que cobrar IVA? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Depende de la actividad. La mayoría de autónomos repercuten IVA en sus facturas. Sin embargo, algunas actividades están exentas de IVA, como los servicios médicos, de enseñanza reglada o financieros. Los autónomos en recargo de equivalencia tampoco gestionan el IVA directamente.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuándo se paga el IVA a Hacienda? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Las empresas y autónomos presentan el modelo 303 cada trimestre (en enero, abril, julio y octubre). Se declara el IVA cobrado a los clientes (repercutido) menos el IVA pagado a los proveedores (soportado). Si el resultado es positivo, se ingresa a Hacienda. Si es negativo, se puede pedir devolución o compensar en el siguiente trimestre.</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+</footer>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+let tipoIVA=21, modo='añadir';
+function setTipo(t){
+  tipoIVA=t;
+  ['21','10','4'].forEach(x=>document.getElementById('btn'+x).classList.remove('active'));
+  document.getElementById('btn'+t).classList.add('active');
+  calcular();
+}
+function setMode(m){
+  modo=m;
+  document.getElementById('tab_añadir').classList.toggle('active',m==='añadir');
+  document.getElementById('tab_quitar').classList.toggle('active',m==='quitar');
+  document.getElementById('label_input').textContent=m==='añadir'?'Introduce el precio sin IVA (base imponible)':'Introduce el precio con IVA incluido';
+  calcular();
+}
+function calcular(){
+  const precio=parseFloat(document.getElementById('precio').value)||0;
+  let base,iva,total;
+  if(modo==='añadir'){base=precio;iva=base*tipoIVA/100;total=base+iva;}
+  else{total=precio;base=total/(1+tipoIVA/100);iva=total-base;}
+  document.getElementById('rp_label').textContent=modo==='añadir'?`Precio con IVA (${tipoIVA}%)`:`Base imponible (sin IVA ${tipoIVA}%)`;
+  document.getElementById('rp_value').textContent=modo==='añadir'?fmt(total):fmt(base);
+  document.getElementById('rp_sub').textContent=`IVA ${tipoIVA}%: ${fmt(iva)}`;
+  document.getElementById('d_base').textContent=fmt(base);
+  document.getElementById('d_iva_label').textContent=`IVA (${tipoIVA}%)`;
+  document.getElementById('d_iva').textContent=fmt(iva);
+  document.getElementById('d_total').textContent=fmt(total);
+  // Tabla comparativa
+  const tipos=[21,10,4];
+  document.getElementById('tabla-comp').innerHTML=tipos.map(t=>{
+    let b2,i2,tot2;
+    if(modo==='añadir'){b2=precio;i2=b2*t/100;tot2=b2+i2;}
+    else{tot2=precio;b2=tot2/(1+t/100);i2=tot2-b2;}
+    const activo=t===tipoIVA;
+    return `<tr style="${activo?'background:var(--iva-light);font-weight:500':''}">
+      <td>${t}%</td><td>${fmt(b2)}</td><td>${fmt(i2)}</td><td>${fmt(tot2)}</td></tr>`;
+  }).join('');
+}
+calcular();
+</script>
+</body>
+</html>

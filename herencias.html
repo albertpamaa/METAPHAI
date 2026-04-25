@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Impuesto de Sucesiones Herencias 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto pagas de impuesto de sucesiones por una herencia en España 2026. Varía mucho por comunidad autónoma. Incluye reducciones y bonificaciones. Gratis.">
+  <meta name="keywords" content="calculadora herencias 2026, impuesto sucesiones españa, cuanto se paga herencia, impuesto herencias comunidad autonoma, reduccion herencia hijos, bonificacion sucesiones">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Impuesto de Sucesiones (Herencias) 2026 | Metaphai">
+  <meta property="og:description" content="Calcula el impuesto de sucesiones de tu herencia. Las diferencias entre comunidades autónomas son enormes.">
+  <meta property="og:url" content="https://metaphai.com/herencias.html">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#f7f6f2;--surface:#fff;--border:#e2e0d8;--text:#1a1916;--muted:#6b6960;--hint:#9e9c94;--accent:#2d6a4f;--accent-light:#e8f4ee;--her:#4a1a6b;--her-light:#f0eaff;--warn:#7a4f1a;--warn-light:#fef6ec;--radius:10px;--radius-lg:16px;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:10;}
+    .logo{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.02em;text-decoration:none;}.logo span{color:var(--accent);}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;}.nav-back:hover{color:var(--accent);}
+    main{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+    .hero{text-align:center;padding:2rem 0;}
+    .hero h1{font-size:clamp(22px,3.5vw,34px);font-weight:600;letter-spacing:-.03em;line-height:1.2;margin-bottom:.75rem;}
+    .hero h1 em{font-style:normal;color:var(--her);}
+    .hero p{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto;}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--her-light);color:var(--her);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:1rem;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem;}
+    .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--hint);margin-bottom:1rem;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    @media(max-width:540px){.grid2,.grid3{grid-template-columns:1fr;}}
+    .field{display:flex;flex-direction:column;gap:5px;}
+    .field label{font-size:12px;color:var(--muted);font-weight:500;}
+    .field input,.field select{font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);width:100%;}
+    .field input:focus,.field select:focus{outline:none;border-color:var(--her);background:var(--surface);}
+    .tip{font-size:12px;color:var(--hint);margin-top:4px;}
+    .info-box{border-radius:var(--radius);padding:12px 14px;margin-top:12px;}
+    .info-box.purple{background:var(--her-light);border:1px solid #c8b0f0;}.info-box.purple p{font-size:13px;color:var(--her);margin:0;}
+    .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
+    .info-box.green{background:var(--accent-light);border:1px solid #b8dece;}.info-box.green p{font-size:13px;color:var(--accent);margin:0;}
+    .results{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:1.5rem;}
+    .results-header{background:var(--her);padding:1.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;}
+    .results-header .main-label{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:4px;}
+    .results-header .main-value{font-size:36px;font-weight:600;color:white;letter-spacing:-.03em;font-family:'DM Mono',monospace;}
+    .results-header .sub-block{text-align:right;}
+    .results-header .sub-label{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:2px;}
+    .results-header .sub-value{font-size:18px;font-weight:500;color:white;font-family:'DM Mono',monospace;}
+    .results-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+    @media(max-width:540px){.results-grid{grid-template-columns:1fr 1fr;}}
+    .res-item{padding:1rem 1.25rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .res-item:nth-child(3n){border-right:none;}
+    .res-item .rl{font-size:11px;color:var(--hint);margin-bottom:3px;}
+    .res-item .rv{font-size:15px;font-weight:500;font-family:'DM Mono',monospace;}
+    .res-item.pos .rv{color:var(--accent);}
+    .res-item.her .rv{color:var(--her);}
+    .res-item.neg .rv{color:#8b2a2a;}
+    .liq{padding:1.25rem;border-top:1px solid var(--border);}
+    .liq-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500;}
+    .liq-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+    .liq-row:last-child{border-bottom:none;font-weight:600;font-size:14px;}
+    .liq-row.subtotal{background:var(--bg);padding:7px 10px;border-radius:6px;margin:4px 0;font-weight:500;}
+    .liq-label{color:var(--muted);}
+    .liq-val{font-family:'DM Mono',monospace;}
+    .liq-val.neg{color:#8b2a2a;}
+    .liq-val.pos{color:var(--accent);}
+    /* COMPARATIVA CCAA */
+    .comp-ccaa{padding:1.25rem;border-top:1px solid var(--border);}
+    .comp-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500;}
+    .comp-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:var(--radius);margin-bottom:5px;font-size:13px;background:var(--bg);}
+    .comp-row.actual{background:var(--her-light);border:1px solid #c8b0f0;}
+    .comp-row.mejor{background:var(--accent-light);border:1px solid #b8dece;}
+    .comp-ccaa-label{color:var(--muted);}
+    .comp-ccaa-val{font-family:'DM Mono',monospace;font-weight:500;}
+    .seo-content{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+    .seo-content h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;}
+    .seo-content h3{font-size:15px;font-weight:600;margin:1.5rem 0 .5rem;}
+    .seo-content p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+    .faq-q{padding:12px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+    .faq-q:hover{background:var(--bg);}
+    .faq-a{display:none;padding:0 16px 12px;font-size:14px;color:var(--muted);background:var(--surface);line-height:1.7;}
+    .faq-item.open .faq-a{display:block;}
+    .faq-arrow{transition:transform .2s;font-size:12px;}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);border-top:1px solid var(--border);margin-top:3rem;}
+    footer a{color:var(--hint);}
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">📜 Herencias 2026</div>
+    <h1>Calculadora de impuesto<br>sobre <em>herencias</em></h1>
+    <p>Calcula cuánto pagas de impuesto de sucesiones. Las diferencias entre comunidades autónomas son enormes — desde casi 0€ hasta el 34% de la herencia.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-label">La herencia</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Valor total de la herencia (€)</label>
+        <input type="number" id="valor_herencia" value="200000" min="0" step="5000" oninput="calcular()">
+        <p class="tip">Suma de bienes inmuebles, dinero, vehículos, etc. menos deudas</p>
+      </div>
+      <div class="field">
+        <label>Tu parte de la herencia (€)</label>
+        <input type="number" id="tu_parte" value="100000" min="0" step="5000" oninput="calcular()">
+        <p class="tip">Si heredas al 50% con un hermano, es la mitad del total</p>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>¿Incluye vivienda habitual del fallecido?</label>
+        <select id="vivienda_habitual" onchange="calcular()">
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Valor de la vivienda habitual (€)</label>
+        <input type="number" id="valor_vivienda" value="0" min="0" step="5000" oninput="calcular()">
+        <p class="tip">Solo si incluye la vivienda habitual del fallecido</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Tu relación con el fallecido</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Parentesco</label>
+        <select id="parentesco" onchange="calcular()">
+          <option value="grupo1">Grupo I — Hijos menores de 21 años</option>
+          <option value="grupo2" selected>Grupo II — Hijos mayores 21, cónyuge, padres</option>
+          <option value="grupo3">Grupo III — Hermanos, tíos, sobrinos, cuñados</option>
+          <option value="grupo4">Grupo IV — Primos, extraños</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tu edad</label>
+        <input type="number" id="edad_heredero" value="45" min="0" max="100" oninput="calcular()">
+      </div>
+    </div>
+    <div class="field" style="margin-top:12px">
+      <label>Comunidad autónoma del fallecido (determina qué impuesto aplica)</label>
+      <select id="ccaa_her" onchange="calcular()">
+        <option value="andalucia">Andalucía (bonificación 99% grupos I y II)</option>
+        <option value="aragon">Aragón</option>
+        <option value="asturias">Asturias</option>
+        <option value="baleares">Baleares</option>
+        <option value="canarias">Canarias (bonificación 99,9% grupos I y II)</option>
+        <option value="cantabria">Cantabria (bonificación 100% grupos I y II)</option>
+        <option value="castilla_mancha">Castilla-La Mancha</option>
+        <option value="castilla_leon">Castilla y León (bonificación 99% grupos I y II)</option>
+        <option value="cataluña">Cataluña</option>
+        <option value="extremadura">Extremadura</option>
+        <option value="galicia">Galicia (bonificación 99% grupos I y II)</option>
+        <option value="madrid" selected>Madrid (bonificación 99% grupos I y II)</option>
+        <option value="murcia">Murcia (bonificación 99% grupos I y II)</option>
+        <option value="navarra">Navarra (régimen foral, tipos bajos)</option>
+        <option value="pais_vasco">País Vasco (régimen foral, muy bonificado)</option>
+        <option value="rioja">La Rioja (bonificación 99% grupos I y II)</option>
+        <option value="valencia">C. Valenciana</option>
+      </select>
+    </div>
+    <div class="field" style="margin-top:12px">
+      <label>Patrimonio preexistente del heredero (€)</label>
+      <select id="patrimonio" onchange="calcular()">
+        <option value="0">Menos de 402.678 €</option>
+        <option value="1">402.678 € – 2.007.380 €</option>
+        <option value="2">2.007.380 € – 4.020.770 €</option>
+        <option value="3">Más de 4.020.770 €</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Impuesto de sucesiones estimado</div>
+        <div class="main-value" id="res_impuesto">—</div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Lo que recibes neto</div>
+        <div class="sub-value" id="res_neto">—</div>
+        <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
+        <div class="sub-value" id="res_tipo">—</div>
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="res-item her">
+        <div class="rl">Tu parte bruta</div>
+        <div class="rv" id="d_parte">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Reducción estatal</div>
+        <div class="rv" id="d_reduccion">—</div>
+      </div>
+      <div class="res-item her">
+        <div class="rl">Base liquidable</div>
+        <div class="rv" id="d_base_liq">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Cuota íntegra</div>
+        <div class="rv" id="d_cuota">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Bonificación autonómica</div>
+        <div class="rv" id="d_bonificacion">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Impuesto final</div>
+        <div class="rv" id="d_impuesto_final">—</div>
+      </div>
+    </div>
+    <div class="liq">
+      <div class="liq-title">Liquidación paso a paso</div>
+      <div class="liq-row"><span class="liq-label">Tu parte de la herencia</span><span class="liq-val" id="l_parte">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Reducción por parentesco</span><span class="liq-val neg" id="l_reduccion_par">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Reducción por vivienda habitual</span><span class="liq-val neg" id="l_reduccion_viv">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base imponible</span><span class="liq-val" id="l_base_imp">—</span></div>
+      <div class="liq-row"><span class="liq-label">Cuota íntegra (escala estatal)</span><span class="liq-val neg" id="l_cuota_integra">—</span></div>
+      <div class="liq-row"><span class="liq-label">× Coeficiente multiplicador</span><span class="liq-val" id="l_coeficiente">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Cuota tributaria</span><span class="liq-val" id="l_cuota_trib">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Bonificación autonómica</span><span class="liq-val pos" id="l_bonificacion">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Impuesto a pagar</span><span class="liq-val neg" id="l_impuesto">—</span></div>
+    </div>
+    <div class="comp-ccaa">
+      <div class="comp-title">📊 Comparativa — mismo caso en otras comunidades</div>
+      <div id="comp-ccaa-list"></div>
+    </div>
+  </div>
+
+  <div class="seo-content">
+    <h2>¿Cuánto se paga de herencia en España?</h2>
+    <p>El impuesto de sucesiones en España varía enormemente según la comunidad autónoma. Mientras que en Madrid, Andalucía, Canarias, Galicia o Murcia los hijos y cónyuges pagan prácticamente 0 gracias a bonificaciones del 99-100%, en comunidades como Asturias, Aragón o Valencia el impuesto puede ser muy elevado para herencias de cierto tamaño.</p>
+
+    <h3>¿Quién determina el impuesto?</h3>
+    <p>El impuesto de sucesiones es un tributo cedido a las comunidades autónomas, que pueden modificar las reducciones, los tipos y las bonificaciones. El Estado fija una escala mínima, pero las comunidades pueden mejorarla significativamente (o no). Por eso la diferencia entre heredar en Madrid y heredar en Asturias puede ser de decenas de miles de euros.</p>
+
+    <h3>Grupos de parentesco</h3>
+    <p>El Grupo I son los hijos y descendientes menores de 21 años, con la mayor reducción. El Grupo II engloba hijos mayores de 21, cónyuge, ascendientes (padres, abuelos) y adoptados. El Grupo III incluye hermanos, tíos, sobrinos y cuñados, con reducciones menores. El Grupo IV son los primos y personas sin parentesco, con las reducciones más bajas y los tipos más altos.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuándo hay que pagar el impuesto de sucesiones? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">El plazo general es de 6 meses desde el fallecimiento. Se puede solicitar una prórroga de otros 6 meses antes de que venza el plazo inicial. Si no se paga en plazo, se generan intereses de demora y posibles recargos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puede heredarse una vivienda sin pagar impuestos? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">En muchas comunidades autónomas sí, especialmente si eres hijo o cónyuge. La vivienda habitual tiene además una reducción estatal del 95% (hasta 122.606 €) cuando el heredero es cónyuge, hijo o pariente que hubiera convivido con el fallecido. En comunidades con bonificación del 99%, el impuesto resultante puede ser prácticamente cero.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si no tengo dinero para pagar el impuesto? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Existen varias opciones: solicitar aplazamiento o fraccionamiento del pago, pagar en especie cediendo bienes de la herencia, o solicitar que el pago se aplace hasta la venta de los bienes heredados. También puedes renunciar a la herencia si las deudas superan los bienes o si el impuesto es inasumible.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los bienes en el extranjero también tributan? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Si el fallecido era residente fiscal en España, todos sus bienes mundiales tributan en España por el impuesto de sucesiones. Si residía en el extranjero, solo tributan los bienes situados en España. Existen convenios para evitar la doble imposición con algunos países.</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta con un gestor o abogado para tu caso concreto.</p>
+</footer>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+function fmtPct(n){return n.toFixed(1)+'%';}
+
+// Reducciones estatales por parentesco (mínimas garantizadas)
+const REDUCCIONES = {
+  grupo1: (edad) => edad < 21 ? 47858 + 3990*(21-edad) : 47858,
+  grupo2: () => 15956,
+  grupo3: () => 7993,
+  grupo4: () => 0
+};
+
+// Escala estatal sucesiones
+const ESCALA_SUC = [
+  {hasta:7993,tipo:0.0765},{hasta:15980,tipo:0.085},{hasta:23968,tipo:0.0935},
+  {hasta:31955,tipo:0.102},{hasta:39943,tipo:0.1105},{hasta:47930,tipo:0.119},
+  {hasta:55918,tipo:0.1275},{hasta:63905,tipo:0.136},{hasta:71893,tipo:0.1445},
+  {hasta:79880,tipo:0.153},{hasta:119770,tipo:0.1615},{hasta:159660,tipo:0.17},
+  {hasta:239550,tipo:0.1785},{hasta:399250,tipo:0.187},{hasta:798500,tipo:0.1955},
+  {hasta:Infinity,tipo:0.204}
+];
+
+function calcEscala(base){
+  let cuota=0,ant=0;
+  for(const t of ESCALA_SUC){
+    if(base<=ant) break;
+    cuota+=(Math.min(base,t.hasta)-ant)*t.tipo;
+    ant=t.hasta;
+  }
+  return cuota;
+}
+
+// Coeficiente multiplicador según parentesco y patrimonio preexistente
+const COEFICIENTES = {
+  grupo1: [1.0,1.05,1.10,1.20],
+  grupo2: [1.0,1.05,1.10,1.20],
+  grupo3: [1.5882,1.6676,1.7471,1.9059],
+  grupo4: [2.0,2.1,2.2,2.4]
+};
+
+// Bonificaciones autonómicas para grupos I y II (simplificado)
+const BONIFICACIONES = {
+  andalucia: {g12:0.99, g3:0, g4:0, nombre:'Andalucía'},
+  aragon: {g12:0.65, g3:0, g4:0, nombre:'Aragón'},
+  asturias: {g12:0, g3:0, g4:0, nombre:'Asturias'},
+  baleares: {g12:0.50, g3:0, g4:0, nombre:'Baleares'},
+  canarias: {g12:0.999, g3:0, g4:0, nombre:'Canarias'},
+  cantabria: {g12:1.0, g3:0, g4:0, nombre:'Cantabria'},
+  castilla_mancha: {g12:0.85, g3:0, g4:0, nombre:'C.-La Mancha'},
+  castilla_leon: {g12:0.99, g3:0, g4:0, nombre:'C. y León'},
+  cataluña: {g12:0, g3:0, g4:0, nombre:'Cataluña'},
+  extremadura: {g12:0, g3:0, g4:0, nombre:'Extremadura'},
+  galicia: {g12:0.99, g3:0, g4:0, nombre:'Galicia'},
+  madrid: {g12:0.99, g3:0, g4:0, nombre:'Madrid'},
+  murcia: {g12:0.99, g3:0, g4:0, nombre:'Murcia'},
+  navarra: {g12:0.84, g3:0, g4:0, nombre:'Navarra'},
+  pais_vasco: {g12:0.95, g3:0, g4:0, nombre:'País Vasco'},
+  rioja: {g12:0.99, g3:0, g4:0, nombre:'La Rioja'},
+  valencia: {g12:0.25, g3:0, g4:0, nombre:'C. Valenciana'},
+};
+
+function calcImpuesto(parte, parentesco, edad, ccaa, patrimonio, viviendaHabitual, valorVivienda){
+  const ccaaData = BONIFICACIONES[ccaa] || BONIFICACIONES.madrid;
+  const isG12 = parentesco === 'grupo1' || parentesco === 'grupo2';
+  const isG3 = parentesco === 'grupo3';
+  const bonPct = isG12 ? ccaaData.g12 : isG3 ? ccaaData.g3 : ccaaData.g4;
+
+  // Reducción por parentesco
+  const redFn = REDUCCIONES[parentesco];
+  const reduccionPar = Math.min(parte, redFn(edad));
+
+  // Reducción vivienda habitual (95% hasta 122.606€, solo grupos I, II y hermanos)
+  let reduccionViv = 0;
+  if(viviendaHabitual && (isG12 || parentesco==='grupo3')){
+    const partePropVivienda = Math.min(parte, valorVivienda);
+    reduccionViv = Math.min(partePropVivienda * 0.95, 122606);
+  }
+
+  const baseImponible = Math.max(0, parte - reduccionPar - reduccionViv);
+  const cuotaIntegra = calcEscala(baseImponible);
+  const coef = COEFICIENTES[parentesco][parseInt(patrimonio)];
+  const cuotaTributaria = cuotaIntegra * coef;
+  const bonificacion = cuotaTributaria * bonPct;
+  const impuesto = Math.max(0, cuotaTributaria - bonificacion);
+  const tipoEf = parte > 0 ? impuesto/parte*100 : 0;
+
+  return {impuesto, reduccionPar, reduccionViv, baseImponible, cuotaIntegra, coef, cuotaTributaria, bonificacion, tipoEf, bonPct};
+}
+
+function calcular(){
+  const parte = parseFloat(document.getElementById('tu_parte').value)||0;
+  const parentesco = document.getElementById('parentesco').value;
+  const edad = parseInt(document.getElementById('edad_heredero').value)||45;
+  const ccaa = document.getElementById('ccaa_her').value;
+  const patrimonio = document.getElementById('patrimonio').value;
+  const viviendaHabitual = document.getElementById('vivienda_habitual').value==='1';
+  const valorVivienda = parseFloat(document.getElementById('valor_vivienda').value)||0;
+
+  const r = calcImpuesto(parte, parentesco, edad, ccaa, patrimonio, viviendaHabitual, valorVivienda);
+
+  document.getElementById('res_impuesto').textContent=fmt(r.impuesto);
+  document.getElementById('res_neto').textContent=fmt(parte-r.impuesto);
+  document.getElementById('res_tipo').textContent=fmtPct(r.tipoEf);
+  document.getElementById('d_parte').textContent=fmt(parte);
+  document.getElementById('d_reduccion').textContent=fmt(r.reduccionPar+r.reduccionViv);
+  document.getElementById('d_base_liq').textContent=fmt(r.baseImponible);
+  document.getElementById('d_cuota').textContent=fmt(r.cuotaIntegra);
+  document.getElementById('d_bonificacion').textContent=fmtPct(r.bonPct*100)+' → '+fmt(r.bonificacion);
+  document.getElementById('d_impuesto_final').textContent=fmt(r.impuesto);
+  document.getElementById('l_parte').textContent=fmt(parte);
+  document.getElementById('l_reduccion_par').textContent='-'+fmt(r.reduccionPar);
+  document.getElementById('l_reduccion_viv').textContent=r.reduccionViv>0?'-'+fmt(r.reduccionViv):'—';
+  document.getElementById('l_base_imp').textContent=fmt(r.baseImponible);
+  document.getElementById('l_cuota_integra').textContent=fmt(r.cuotaIntegra);
+  document.getElementById('l_coeficiente').textContent='×'+r.coef.toFixed(4);
+  document.getElementById('l_cuota_trib').textContent=fmt(r.cuotaTributaria);
+  document.getElementById('l_bonificacion').textContent=r.bonificacion>0?'-'+fmt(r.bonificacion):'—';
+  document.getElementById('l_impuesto').textContent=fmt(r.impuesto);
+
+  // Comparativa comunidades
+  const ccaas = Object.keys(BONIFICACIONES);
+  const resultados = ccaas.map(c=>{
+    const ri=calcImpuesto(parte,parentesco,edad,c,patrimonio,viviendaHabitual,valorVivienda);
+    return {ccaa:c,nombre:BONIFICACIONES[c].nombre,impuesto:ri.impuesto};
+  }).sort((a,b)=>a.impuesto-b.impuesto);
+
+  document.getElementById('comp-ccaa-list').innerHTML=resultados.map(res=>{
+    const esActual=res.ccaa===ccaa;
+    const esMejor=res.impuesto===resultados[0].impuesto&&!esActual;
+    return `<div class="comp-row ${esActual?'actual':esMejor?'mejor':''}">
+      <span class="comp-ccaa-label">${res.nombre}${esActual?' ← aquí estás':''}</span>
+      <span class="comp-ccaa-val" style="color:${res.impuesto===0?'var(--accent)':'var(--her)'}">${fmt(res.impuesto)}</span>
+    </div>`;
+  }).join('');
+}
+
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+calcular();
+</script>
+</body>
+</html>
