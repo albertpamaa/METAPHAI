@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Deducción Alquiler Vivienda 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto te puedes deducir por el alquiler de tu vivienda habitual en 2026. Deducciones estatales y autonómicas para inquilinos y propietarios. Gratis y sin registro.">
+  <meta name="keywords" content="deduccion alquiler vivienda 2026, deduccion irpf alquiler inquilino, deduccion alquiler comunidad autonoma, gastos deducibles alquiler propietario, cuanto me deduzco por el alquiler">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Deducción Alquiler Vivienda 2026 | Metaphai">
+  <meta property="og:description" content="Calcula tu deducción por alquiler de vivienda habitual. Deducciones estatales y autonómicas para inquilinos y propietarios.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-deduccion-alquiler/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --alq: #6b3fa0; --alq-light: #f3eeff;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--alq); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--alq-light); color: var(--alq); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+    .tab { flex: 1; padding: 10px; text-align: center; font-size: 14px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.15s; }
+    .tab.active { background: var(--alq); color: white; border-color: var(--alq); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--alq); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { background: var(--alq-light); border: 1px solid #d0b8f0; border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box p { font-size: 13px; color: var(--alq); margin: 0; }
+    .aviso { background: #fef6ec; border: 1px solid #f0d0a0; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: #7a4f1a; margin-top: 12px; display: none; }
+    .aviso.show { display: block; }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--alq); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.alq .rv { color: var(--alq); }
+    .res-item.neg .rv { color: #8b2a2a; }
+    .gastos-list { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .gastos-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .gasto-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .gasto-row:last-child { border-bottom: none; font-weight: 600; }
+    .gasto-label { color: var(--muted); }
+    .gasto-val { font-family: 'DM Mono', monospace; color: var(--text); }
+    .gasto-val.neg { color: #8b2a2a; }
+    .gasto-val.pos { color: var(--accent); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .ccaa-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .ccaa-table th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .ccaa-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🏠 Alquiler 2026</div>
+    <h1>Calculadora de deducciones<br>por <em>alquiler de vivienda</em></h1>
+    <p>Tanto si eres inquilino como propietario, calcula cuánto puedes ahorrar en el IRPF por el alquiler de tu vivienda.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="cambiarTab('inquilino')">🙋 Soy inquilino</div>
+    <div class="tab" onclick="cambiarTab('propietario')">🏠 Soy propietario</div>
+  </div>
+
+  <!-- INQUILINO -->
+  <div class="tab-content active" id="tab-inquilino">
+    <div class="card">
+      <div class="section-label">Datos del alquiler</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Alquiler mensual (€)</label>
+          <input type="number" id="alquiler_mensual" value="900" min="0" step="50">
+        </div>
+        <div class="field">
+          <label>Meses alquilado en 2026</label>
+          <input type="number" id="meses_alquiler" value="12" min="1" max="12">
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Comunidad autónoma</label>
+          <select id="ccaa_inquilino">
+            <option value="ninguna">Sin deducción autonómica</option>
+            <option value="andalucia">Andalucía</option>
+            <option value="aragon">Aragón</option>
+            <option value="asturias">Asturias</option>
+            <option value="baleares">Baleares</option>
+            <option value="canarias">Canarias</option>
+            <option value="cantabria">Cantabria</option>
+            <option value="castilla_mancha">Castilla-La Mancha</option>
+            <option value="castilla_leon">Castilla y León</option>
+            <option value="cataluña">Cataluña</option>
+            <option value="extremadura">Extremadura</option>
+            <option value="galicia">Galicia</option>
+            <option value="madrid">Madrid</option>
+            <option value="murcia">Murcia</option>
+            <option value="rioja">La Rioja</option>
+            <option value="valencia">C. Valenciana</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Base imponible general (€)</label>
+          <input type="number" id="base_imponible_inq" value="25000" min="0" step="500">
+          <p class="tip">Aproximadamente tu salario bruto menos SS</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Edad</label>
+          <select id="edad_inquilino">
+            <option value="menor35">Menor de 35 años</option>
+            <option value="35_65">Entre 35 y 64 años</option>
+            <option value="mayor65">65 años o más</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>¿Contrato anterior al 1 de enero de 2015?</label>
+          <select id="contrato_antiguo">
+            <option value="no">No (contrato nuevo)</option>
+            <option value="si">Sí (contrato anterior a 2015)</option>
+          </select>
+        </div>
+      </div>
+      <div id="aviso_contrato_antiguo" class="aviso">
+        ℹ️ Los contratos anteriores a 2015 pueden mantener la deducción estatal del 10,05% si se firmaron antes de esa fecha. Esta deducción estatal ya no existe para contratos nuevos.
+      </div>
+    </div>
+
+    <div class="results" id="results-inquilino">
+      <div class="results-header">
+        <div>
+          <div class="main-label">Deducción total estimada</div>
+          <div class="main-value" id="inq_deduccion_total">—</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Ahorro mensual</div>
+          <div class="sub-value" id="inq_ahorro_mensual">—</div>
+          <div class="sub-label" style="margin-top:8px">Alquiler anual pagado</div>
+          <div class="sub-value" id="inq_alquiler_anual">—</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item alq">
+          <div class="rl">Deducción estatal</div>
+          <div class="rv" id="inq_estatal">—</div>
+        </div>
+        <div class="res-item alq">
+          <div class="rl">Deducción autonómica</div>
+          <div class="rv" id="inq_autonomica">—</div>
+        </div>
+        <div class="res-item pos">
+          <div class="rl">% del alquiler deducido</div>
+          <div class="rv" id="inq_pct">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Alquiler anual pagado</div>
+          <div class="rv" id="inq_total_pagado">—</div>
+        </div>
+        <div class="res-item pos">
+          <div class="rl">Coste real tras deducción</div>
+          <div class="rv" id="inq_coste_real">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Alquiler mensual efectivo</div>
+          <div class="rv" id="inq_mensual_efectivo">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPIETARIO -->
+  <div class="tab-content" id="tab-propietario">
+    <div class="card">
+      <div class="section-label">Ingresos del alquiler</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Renta mensual cobrada (€)</label>
+          <input type="number" id="renta_mensual" value="900" min="0" step="50">
+        </div>
+        <div class="field">
+          <label>Meses alquilado en 2026</label>
+          <input type="number" id="meses_prop" value="12" min="1" max="12">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Gastos deducibles</div>
+      <div class="grid2">
+        <div class="field">
+          <label>IBI anual (€)</label>
+          <input type="number" id="ibi" value="400" min="0" step="50">
+        </div>
+        <div class="field">
+          <label>Comunidad de propietarios anual (€)</label>
+          <input type="number" id="comunidad" value="600" min="0" step="50">
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Seguros (hogar, impagos...) anual (€)</label>
+          <input type="number" id="seguros" value="200" min="0" step="50">
+        </div>
+        <div class="field">
+          <label>Gastos de reparaciones y mantenimiento (€)</label>
+          <input type="number" id="reparaciones" value="300" min="0" step="50">
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Intereses hipoteca (si la hay) anual (€)</label>
+          <input type="number" id="hipoteca_intereses" value="0" min="0" step="100">
+        </div>
+        <div class="field">
+          <label>Honorarios gestor/agencia (€)</label>
+          <input type="number" id="honorarios" value="0" min="0" step="50">
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Valor de compra del inmueble (€)</label>
+          <input type="number" id="valor_inmueble" value="150000" min="0" step="5000">
+          <p class="tip">Para calcular la amortización (3% anual sobre el mayor de coste o valor catastral)</p>
+        </div>
+        <div class="field">
+          <label>Tipo de inquilino</label>
+          <select id="tipo_inquilino">
+            <option value="normal">General</option>
+            <option value="joven">Joven (18-35 años) — reducción 90%</option>
+            <option value="zona_tensionada">Zona de mercado tensionado — reducción 90%</option>
+          </select>
+        </div>
+      </div>
+      <div class="info-box" style="margin-top:12px">
+        <p>💡 La reducción general del rendimiento neto es del <strong>60%</strong>. Si el inquilino tiene entre 18-35 años o la vivienda está en zona tensionada, la reducción sube al <strong>90%</strong>.</p>
+      </div>
+    </div>
+
+    <div class="results" id="results-propietario">
+      <div class="results-header">
+        <div>
+          <div class="main-label">Rendimiento neto a declarar</div>
+          <div class="main-value" id="prop_rendimiento_neto">—</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Reducción aplicada</div>
+          <div class="sub-value" id="prop_reduccion_pct">—</div>
+          <div class="sub-label" style="margin-top:8px">Ahorro fiscal estimado</div>
+          <div class="sub-value" id="prop_ahorro_fiscal">—</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item">
+          <div class="rl">Ingresos brutos anuales</div>
+          <div class="rv" id="prop_ingresos">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">Total gastos deducibles</div>
+          <div class="rv" id="prop_gastos">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">Amortización inmueble</div>
+          <div class="rv" id="prop_amortizacion">—</div>
+        </div>
+        <div class="res-item alq">
+          <div class="rl">Rendimiento neto previo</div>
+          <div class="rv" id="prop_rend_previo">—</div>
+        </div>
+        <div class="res-item pos">
+          <div class="rl">Reducción IRPF</div>
+          <div class="rv" id="prop_reduccion">—</div>
+        </div>
+        <div class="res-item alq">
+          <div class="rl">Rendimiento neto reducido</div>
+          <div class="rv" id="prop_rend_reducido">—</div>
+        </div>
+      </div>
+      <div class="gastos-list">
+        <div class="gastos-title">Desglose de gastos deducibles</div>
+        <div class="gasto-row"><span class="gasto-label">IBI</span><span class="gasto-val neg" id="g_ibi">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Comunidad</span><span class="gasto-val neg" id="g_comunidad">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Seguros</span><span class="gasto-val neg" id="g_seguros">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Reparaciones</span><span class="gasto-val neg" id="g_reparaciones">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Intereses hipoteca</span><span class="gasto-val neg" id="g_hipoteca">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Honorarios</span><span class="gasto-val neg" id="g_honorarios">—</span></div>
+        <div class="gasto-row"><span class="gasto-label">Amortización (3%)</span><span class="gasto-val neg" id="g_amortizacion">—</span></div>
+        <div class="gasto-row"><span class="gasto-label" style="font-weight:600">Total gastos</span><span class="gasto-val neg" id="g_total">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>Deducciones por alquiler en España 2026</h2>
+    <p>El alquiler de vivienda tiene un tratamiento fiscal específico en el IRPF tanto para los inquilinos como para los propietarios. Conocer las deducciones disponibles puede suponer un ahorro significativo en la declaración de la Renta.</p>
+
+    <h3>Para inquilinos: deducción estatal y autonómica</h3>
+    <p>La deducción estatal por alquiler de vivienda habitual desapareció en 2015 para contratos nuevos, pero muchas comunidades autónomas mantienen deducciones propias. El importe y los requisitos varían significativamente según la comunidad. Algunas, como Cataluña o Canarias, ofrecen deducciones de hasta el 10-15% del alquiler anual.</p>
+
+    <h3>Deducciones autonómicas por comunidad</h3>
+    <table class="ccaa-table">
+      <thead><tr><th>Comunidad</th><th>Deducción</th><th>Límite anual</th><th>Requisito base imponible</th></tr></thead>
+      <tbody>
+        <tr><td>Cataluña</td><td>10% (menores 33 años: 15%)</td><td>300 € (600 €)</td><td>hasta 20.000 €</td></tr>
+        <tr><td>Madrid</td><td>30% (menores 35 años)</td><td>1.000 €</td><td>hasta 25.620 €</td></tr>
+        <tr><td>Canarias</td><td>20%</td><td>500 €</td><td>hasta 22.000 €</td></tr>
+        <tr><td>Andalucía</td><td>15%</td><td>500 €</td><td>hasta 19.000 €</td></tr>
+        <tr><td>Galicia</td><td>10% (menores 35 años: 15%)</td><td>300 € (600 €)</td><td>hasta 22.000 €</td></tr>
+        <tr><td>Aragón</td><td>10%</td><td>300 €</td><td>hasta 15.000 €</td></tr>
+        <tr><td>C. Valenciana</td><td>15% (menores 35 años)</td><td>550 €</td><td>hasta 25.000 €</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Para propietarios: gastos deducibles y reducción del 60%</h3>
+    <p>Los propietarios que alquilan una vivienda tributan por el rendimiento neto del capital inmobiliario. Pueden deducirse todos los gastos necesarios para el alquiler y aplicar una reducción del 60% sobre el rendimiento neto resultante. Si el inquilino tiene entre 18 y 35 años o la vivienda está en una zona de mercado tensionado, la reducción sube al 90%.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Existe deducción estatal por alquiler en 2026? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No existe deducción estatal por alquiler de vivienda habitual para contratos firmados desde el 1 de enero de 2015. Solo los contratos anteriores a esa fecha pueden mantener la deducción estatal del 10,05% con ciertos límites. Las deducciones actuales son exclusivamente autonómicas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué documentación necesito para la deducción? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Necesitas el contrato de alquiler, los justificantes de pago (recibos bancarios o transferencias), el NIF del arrendador y en algunos casos el certificado de empadronamiento. Guarda todos los recibos porque Hacienda puede solicitarlos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El propietario puede deducirse el 100% de los gastos? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, todos los gastos necesarios para el alquiler son deducibles al 100%: IBI, comunidad, seguros, reparaciones, intereses de hipoteca, honorarios de agencia, y la amortización del inmueble (3% anual sobre el mayor entre el coste de adquisición y el valor catastral).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es la reducción del 60% para propietarios? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Es un beneficio fiscal que reduce el rendimiento neto del alquiler en un 60% antes de aplicar el IRPF. Es decir, si ganas 10.000 € netos de alquiler, solo tributas por 4.000 €. Si el inquilino tiene 18-35 años o la vivienda está en zona tensionada, la reducción sube al 90%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay que declarar el alquiler aunque se pierda dinero? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, siempre hay que declarar los ingresos del alquiler. Si los gastos superan los ingresos, el resultado es un rendimiento negativo que podrás compensar con otros rendimientos del capital inmobiliario de los 4 años siguientes.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa basada en la normativa IRPF 2026. Consulta con un asesor fiscal para tu caso concreto.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector('.tab:' + (tab === 'inquilino' ? 'first-child' : 'last-child')).classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+// Deducciones autonómicas inquilinos
+const DEDUCCIONES_AUTON = {
+  ninguna:        { pct: 0,    limite: 0,    limite_joven: 0,    pct_joven: 0,    limite_bi: Infinity },
+  andalucia:      { pct: 0.15, limite: 500,  limite_joven: 500,  pct_joven: 0.15, limite_bi: 19000 },
+  aragon:         { pct: 0.10, limite: 300,  limite_joven: 300,  pct_joven: 0.10, limite_bi: 15000 },
+  asturias:       { pct: 0.10, limite: 455,  limite_joven: 606,  pct_joven: 0.15, limite_bi: 25000 },
+  baleares:       { pct: 0.15, limite: 530,  limite_joven: 660,  pct_joven: 0.20, limite_bi: 30000 },
+  canarias:       { pct: 0.20, limite: 500,  limite_joven: 700,  pct_joven: 0.25, limite_bi: 22000 },
+  cantabria:      { pct: 0.10, limite: 300,  limite_joven: 300,  pct_joven: 0.10, limite_bi: 22000 },
+  castilla_mancha:{ pct: 0.15, limite: 450,  limite_joven: 450,  pct_joven: 0.15, limite_bi: 12000 },
+  castilla_leon:  { pct: 0.15, limite: 459,  limite_joven: 612,  pct_joven: 0.20, limite_bi: 18900 },
+  cataluña:       { pct: 0.10, limite: 300,  limite_joven: 600,  pct_joven: 0.15, limite_bi: 20000 },
+  extremadura:    { pct: 0.10, limite: 300,  limite_joven: 500,  pct_joven: 0.15, limite_bi: 19000 },
+  galicia:        { pct: 0.10, limite: 300,  limite_joven: 600,  pct_joven: 0.15, limite_bi: 22000 },
+  madrid:         { pct: 0.30, limite: 1000, limite_joven: 1000, pct_joven: 0.30, limite_bi: 25620 },
+  murcia:         { pct: 0.10, limite: 300,  limite_joven: 400,  pct_joven: 0.15, limite_bi: 24000 },
+  rioja:          { pct: 0.10, limite: 300,  limite_joven: 400,  pct_joven: 0.15, limite_bi: 18000 },
+  valencia:       { pct: 0.15, limite: 550,  limite_joven: 700,  pct_joven: 0.20, limite_bi: 25000 },
+};
+
+function calcularInquilino() {
+  const mensual = parseFloat(document.getElementById('alquiler_mensual').value) || 0;
+  const meses = parseInt(document.getElementById('meses_alquiler').value) || 12;
+  const ccaa = document.getElementById('ccaa_inquilino').value;
+  const baseImponible = parseFloat(document.getElementById('base_imponible_inq').value) || 0;
+  const edad = document.getElementById('edad_inquilino').value;
+  const contratoAntiguo = document.getElementById('contrato_antiguo').value;
+
+  document.getElementById('aviso_contrato_antiguo').classList.toggle('show', contratoAntiguo === 'si');
+
+  const alquilerAnual = mensual * meses;
+  const esJoven = edad === 'menor35';
+
+  // Deducción estatal (solo contratos anteriores a 2015)
+  let deduccionEstatal = 0;
+  if (contratoAntiguo === 'si') {
+    deduccionEstatal = Math.min(alquilerAnual * 0.1005, baseImponible <= 17707.20 ? 9040 : Math.max(0, 9040 - 1.4126 * (baseImponible - 17707.20)));
+    deduccionEstatal = Math.max(0, deduccionEstatal);
+  }
+
+  // Deducción autonómica
+  let deduccionAuton = 0;
+  const da = DEDUCCIONES_AUTON[ccaa];
+  if (da && baseImponible <= da.limite_bi) {
+    const pct = esJoven ? da.pct_joven : da.pct;
+    const limite = esJoven ? da.limite_joven : da.limite;
+    deduccionAuton = Math.min(alquilerAnual * pct, limite);
+  }
+
+  const deduccionTotal = deduccionEstatal + deduccionAuton;
+  const costeReal = alquilerAnual - deduccionTotal;
+  const pct = alquilerAnual > 0 ? deduccionTotal / alquilerAnual * 100 : 0;
+  const mensualEfectivo = meses > 0 ? costeReal / meses : 0;
+
+  document.getElementById('inq_deduccion_total').textContent = fmt(deduccionTotal);
+  document.getElementById('inq_ahorro_mensual').textContent = fmt(deduccionTotal / 12);
+  document.getElementById('inq_alquiler_anual').textContent = fmt(alquilerAnual);
+  document.getElementById('inq_estatal').textContent = fmt(deduccionEstatal);
+  document.getElementById('inq_autonomica').textContent = fmt(deduccionAuton);
+  document.getElementById('inq_pct').textContent = pct.toFixed(1) + '%';
+  document.getElementById('inq_total_pagado').textContent = fmt(alquilerAnual);
+  document.getElementById('inq_coste_real').textContent = fmt(costeReal);
+  document.getElementById('inq_mensual_efectivo').textContent = fmt(mensualEfectivo);
+}
+
+function calcularPropietario() {
+  const rentaMensual = parseFloat(document.getElementById('renta_mensual').value) || 0;
+  const meses = parseInt(document.getElementById('meses_prop').value) || 12;
+  const ibi = parseFloat(document.getElementById('ibi').value) || 0;
+  const comunidad = parseFloat(document.getElementById('comunidad').value) || 0;
+  const seguros = parseFloat(document.getElementById('seguros').value) || 0;
+  const reparaciones = parseFloat(document.getElementById('reparaciones').value) || 0;
+  const hipotecaIntereses = parseFloat(document.getElementById('hipoteca_intereses').value) || 0;
+  const honorarios = parseFloat(document.getElementById('honorarios').value) || 0;
+  const valorInmueble = parseFloat(document.getElementById('valor_inmueble').value) || 0;
+  const tipoInquilino = document.getElementById('tipo_inquilino').value;
+
+  const ingresosAnuales = rentaMensual * meses;
+  const amortizacion = valorInmueble * 0.03;
+  const totalGastos = ibi + comunidad + seguros + reparaciones + hipotecaIntereses + honorarios + amortizacion;
+  const rendimientoPrevio = Math.max(0, ingresosAnuales - totalGastos);
+  const pctReduccion = (tipoInquilino === 'joven' || tipoInquilino === 'zona_tensionada') ? 0.90 : 0.60;
+  const reduccion = rendimientoPrevio * pctReduccion;
+  const rendimientoReducido = rendimientoPrevio - reduccion;
+  // Ahorro fiscal estimado (tipo medio ~25%)
+  const ahorroFiscal = reduccion * 0.25;
+
+  document.getElementById('prop_rendimiento_neto').textContent = fmt(rendimientoReducido);
+  document.getElementById('prop_reduccion_pct').textContent = (pctReduccion * 100).toFixed(0) + '%';
+  document.getElementById('prop_ahorro_fiscal').textContent = fmt(ahorroFiscal);
+  document.getElementById('prop_ingresos').textContent = fmt(ingresosAnuales);
+  document.getElementById('prop_gastos').textContent = '-' + fmt(totalGastos - amortizacion);
+  document.getElementById('prop_amortizacion').textContent = '-' + fmt(amortizacion);
+  document.getElementById('prop_rend_previo').textContent = fmt(rendimientoPrevio);
+  document.getElementById('prop_reduccion').textContent = '-' + fmt(reduccion);
+  document.getElementById('prop_rend_reducido').textContent = fmt(rendimientoReducido);
+  document.getElementById('g_ibi').textContent = '-' + fmt(ibi);
+  document.getElementById('g_comunidad').textContent = '-' + fmt(comunidad);
+  document.getElementById('g_seguros').textContent = '-' + fmt(seguros);
+  document.getElementById('g_reparaciones').textContent = '-' + fmt(reparaciones);
+  document.getElementById('g_hipoteca').textContent = '-' + fmt(hipotecaIntereses);
+  document.getElementById('g_honorarios').textContent = '-' + fmt(honorarios);
+  document.getElementById('g_amortizacion').textContent = '-' + fmt(amortizacion);
+  document.getElementById('g_total').textContent = '-' + fmt(totalGastos);
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', function(){
+  calcularInquilino();
+  calcularPropietario();
+}));
+
+calcularInquilino();
+calcularPropietario();
+</script>
+</body>
+</html>

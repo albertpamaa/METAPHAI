@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Prestación por Desempleo (Paro) España 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto cobrarías de paro en España 2026. Introduce tus meses cotizados y salario para saber tu prestación por desempleo, duración y importe mensual.">
+  <meta name="keywords" content="calculadora paro españa 2026, calcular prestacion desempleo, cuanto cobro de paro, prestacion por desempleo, SEPE calculadora">
+  <meta name="robots" content="index, follow">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --danger: #8b2a2a; --warn: #7a4f1a;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 480px; margin: 0 auto; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .alert { background: #fef6ec; border: 1px solid #f0d0a0; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: var(--warn); margin-top: 1rem; display: none; }
+    .alert.show { display: block; }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--accent); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 20px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .tramos-box { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .tramos-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .tramo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+    .tramo-label { color: var(--muted); min-width: 120px; }
+    .tramo-bar-wrap { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+    .tramo-bar { height: 100%; border-radius: 4px; transition: width 0.4s; }
+    .tramo-value { font-family: 'DM Mono', monospace; font-size: 13px; min-width: 80px; text-align: right; }
+    .no-derecho { background: #fdf0f0; border: 1px solid #f0c0c0; border-radius: var(--radius-lg); padding: 2rem; text-align: center; margin-top: 1.5rem; display: none; }
+    .no-derecho h3 { font-size: 17px; font-weight: 600; color: var(--danger); margin-bottom: 0.5rem; }
+    .no-derecho p { font-size: 14px; color: var(--muted); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .tabla-meses { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .tabla-meses th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .tabla-meses td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-1P9N4QY0JR");
+  </script>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <h1>Calculadora de <em>paro</em><br>España 2026</h1>
+    <p>Calcula cuánto cobrarías de prestación por desempleo, durante cuánto tiempo y si tienes derecho a cobrar.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="card">
+    <div class="section-label">Cotización y salario</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Meses cotizados en los últimos 6 años</label>
+        <input type="number" id="meses_cotizados" value="24" min="0" max="72" step="1">
+        <p class="tip">Mínimo 12 meses para tener derecho</p>
+      </div>
+      <div class="field">
+        <label>Base reguladora mensual (€)</label>
+        <input type="number" id="base_reguladora" value="1800" min="0" step="50">
+        <p class="tip">Media de tus bases de cotización de los últimos 180 días</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Situación personal</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Hijos a cargo</label>
+        <select id="hijos">
+          <option value="0">Sin hijos</option>
+          <option value="1">1 hijo</option>
+          <option value="2" >2 hijos o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Edad</label>
+        <select id="edad">
+          <option value="menor45">Menor de 45 años</option>
+          <option value="mayor45">45 años o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Motivo de la baja</label>
+        <select id="motivo">
+          <option value="despido">Despido / ERE / ERTE</option>
+          <option value="fin_contrato">Fin de contrato temporal</option>
+          <option value="voluntaria">Baja voluntaria</option>
+        </select>
+      </div>
+    </div>
+    <div id="alerta_voluntaria" class="alert">
+      La baja voluntaria no da derecho a prestación contributiva por desempleo en España.
+    </div>
+  </div>
+
+  <div id="bloque_resultados">
+    <div class="results">
+      <div class="results-header">
+        <div>
+          <div class="main-label">Prestación mensual estimada</div>
+          <div class="main-value" id="res_mensual">—</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Duración</div>
+          <div class="sub-value" id="res_duracion">—</div>
+          <div class="sub-label" style="margin-top:8px">Total estimado</div>
+          <div class="sub-value" id="res_total">—</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item">
+          <div class="rl">Base reguladora</div>
+          <div class="rv" id="d_base">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Primeros 6 meses (70%)</div>
+          <div class="rv" id="d_tramo1">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Resto del período (50%)</div>
+          <div class="rv" id="d_tramo2">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Tope mínimo</div>
+          <div class="rv" id="d_minimo">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Tope máximo</div>
+          <div class="rv" id="d_maximo">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Meses cotizados válidos</div>
+          <div class="rv" id="d_meses">—</div>
+        </div>
+      </div>
+      <div class="tramos-box">
+        <div class="tramos-title">Distribución del período de prestación</div>
+        <div class="tramo-row">
+          <div class="tramo-label">Primeros 6 meses</div>
+          <div class="tramo-bar-wrap"><div class="tramo-bar" id="bar1" style="background: var(--accent)"></div></div>
+          <div class="tramo-value" id="tv1">—</div>
+        </div>
+        <div class="tramo-row">
+          <div class="tramo-label">Meses restantes</div>
+          <div class="tramo-bar-wrap"><div class="tramo-bar" id="bar2" style="background: #7a9e8a"></div></div>
+          <div class="tramo-value" id="tv2">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bloque_sin_derecho" class="no-derecho">
+    <h3>Sin derecho a prestación</h3>
+    <p id="sin_derecho_msg">No has cotizado el mínimo de 12 meses necesario para acceder a la prestación contributiva por desempleo.</p>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo se calcula la prestación por desempleo en España?</h2>
+    <p>La prestación por desempleo o "paro" es una prestación económica del SEPE (Servicio Público de Empleo Estatal) a la que tienes derecho si has perdido tu trabajo involuntariamente y has cotizado al menos 12 meses en los últimos 6 años.</p>
+
+    <h3>Requisitos para cobrar el paro</h3>
+    <p>Debes estar en situación legal de desempleo (despido, fin de contrato, ERE...), haber cotizado al menos 360 días (12 meses) en los últimos 6 años, estar inscrito como demandante de empleo y no haber superado la edad de jubilación ordinaria.</p>
+
+    <h3>¿Cuánto tiempo cobro de paro?</h3>
+    <table class="tabla-meses">
+      <thead><tr><th>Meses cotizados</th><th>Duración prestación</th></tr></thead>
+      <tbody>
+        <tr><td>De 12 a 17 meses</td><td>4 meses</td></tr>
+        <tr><td>De 18 a 23 meses</td><td>6 meses</td></tr>
+        <tr><td>De 24 a 29 meses</td><td>8 meses</td></tr>
+        <tr><td>De 30 a 35 meses</td><td>10 meses</td></tr>
+        <tr><td>De 36 a 41 meses</td><td>12 meses</td></tr>
+        <tr><td>De 42 a 47 meses</td><td>14 meses</td></tr>
+        <tr><td>48 meses o más</td><td>24 meses (máximo)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>¿Cuánto dinero cobro cada mes?</h3>
+    <p>Los primeros 180 días (6 meses) cobras el 70% de tu base reguladora. A partir del día 181 cobras el 50%. La base reguladora es la media de tus bases de cotización de los últimos 180 días trabajados.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La baja voluntaria da derecho al paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. La baja voluntaria no da derecho a la prestación contributiva por desempleo. Solo se puede acceder si el cese es involuntario (despido, fin de contrato, ERE, etc.) o por causas objetivas reconocidas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es la base reguladora? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Es la media de tus bases de cotización por contingencias profesionales de los últimos 180 días trabajados. Aparece en tus nóminas o puedes consultarla en tu vida laboral en la Seguridad Social.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay un mínimo y un máximo de paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. El importe mínimo en 2026 es aproximadamente 570 € sin hijos, 680 € con un hijo y 815 € con dos o más hijos. El máximo es de unos 1.575 € sin hijos, 1.800 € con un hijo y 2.025 € con dos o más hijos. Estas cifras se actualizan con el IPREM.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tengo para solicitar el paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Tienes 15 días hábiles desde la fecha del cese para solicitar la prestación sin perder días. Si lo solicitas fuera de ese plazo, perderás los días de retraso.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El paro cotiza para la jubilación? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Durante la prestación contributiva, el SEPE cotiza por ti a la Seguridad Social por contingencias comunes, lo que computa para tu futura jubilación.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa basada en la normativa SEPE 2026. Consulta siempre con el SEPE para datos exactos.</p>
+</footer>
+
+<script>
+function fmt(n) { return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+
+// Tabla meses cotizados -> meses prestación
+const tablaDuracion = [
+  [12, 4], [18, 6], [24, 8], [30, 10], [36, 12], [42, 14], [48, 24]
+];
+
+// Topes 2026 (aproximados basados en IPREM)
+const MINIMOS = { 0: 570, 1: 680, 2: 815 };
+const MAXIMOS = { 0: 1575, 1: 1800, 2: 2025 };
+
+function getDuracion(meses) {
+  let duracion = 0;
+  for (let i = tablaDuracion.length - 1; i >= 0; i--) {
+    if (meses >= tablaDuracion[i][0]) { duracion = tablaDuracion[i][1]; break; }
+  }
+  return duracion;
+}
+
+function calcular() {
+  const meses = parseInt(document.getElementById('meses_cotizados').value) || 0;
+  const base = parseFloat(document.getElementById('base_reguladora').value) || 0;
+  const hijos = parseInt(document.getElementById('hijos').value);
+  const motivo = document.getElementById('motivo').value;
+
+  document.getElementById('alerta_voluntaria').classList.toggle('show', motivo === 'voluntaria');
+
+  if (motivo === 'voluntaria' || meses < 12) {
+    document.getElementById('bloque_resultados').style.display = 'none';
+    document.getElementById('bloque_sin_derecho').style.display = 'block';
+    document.getElementById('sin_derecho_msg').textContent = motivo === 'voluntaria'
+      ? 'La baja voluntaria no da derecho a la prestación contributiva por desempleo en España.'
+      : 'No has cotizado el mínimo de 12 meses necesario para acceder a la prestación contributiva.';
+    return;
+  }
+
+  document.getElementById('bloque_resultados').style.display = 'block';
+  document.getElementById('bloque_sin_derecho').style.display = 'none';
+
+  const duracionMeses = getDuracion(meses);
+  const tramo1Meses = Math.min(6, duracionMeses);
+  const tramo2Meses = Math.max(0, duracionMeses - 6);
+
+  const bruto70 = base * 0.70;
+  const bruto50 = base * 0.50;
+  const min = MINIMOS[Math.min(hijos, 2)];
+  const max = MAXIMOS[Math.min(hijos, 2)];
+
+  const prestacion70 = Math.min(Math.max(bruto70, min), max);
+  const prestacion50 = Math.min(Math.max(bruto50, min), max);
+
+  const totalEstimado = prestacion70 * tramo1Meses + prestacion50 * tramo2Meses;
+  const mensualMedio = duracionMeses > 0 ? totalEstimado / duracionMeses : 0;
+
+  document.getElementById('res_mensual').textContent = fmt(prestacion70);
+  document.getElementById('res_duracion').textContent = duracionMeses + ' meses';
+  document.getElementById('res_total').textContent = fmt(totalEstimado);
+  document.getElementById('d_base').textContent = fmt(base);
+  document.getElementById('d_tramo1').textContent = fmt(prestacion70) + '/mes';
+  document.getElementById('d_tramo2').textContent = tramo2Meses > 0 ? fmt(prestacion50) + '/mes' : 'No aplica';
+  document.getElementById('d_minimo').textContent = fmt(min);
+  document.getElementById('d_maximo').textContent = fmt(max);
+  document.getElementById('d_meses').textContent = meses + ' meses';
+
+  const pct1 = duracionMeses > 0 ? tramo1Meses / duracionMeses * 100 : 0;
+  const pct2 = duracionMeses > 0 ? tramo2Meses / duracionMeses * 100 : 0;
+  document.getElementById('bar1').style.width = pct1 + '%';
+  document.getElementById('bar2').style.width = pct2 + '%';
+  document.getElementById('tv1').textContent = tramo1Meses + ' meses';
+  document.getElementById('tv2').textContent = tramo2Meses + ' meses';
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora IRPF Inversiones: Acciones, Fondos y Criptomonedas 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto pagas a Hacienda por tus ganancias en bolsa, fondos de inversión, criptomonedas y dividendos en 2026. Incluye compensación de pérdidas. Gratis y sin registro.">
+  <meta name="keywords" content="irpf acciones 2026, tributar ganancias bolsa, irpf criptomonedas, hacienda fondos inversion, declarar dividendos irpf, compensar perdidas bolsa, plusvalias acciones irpf">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora IRPF Inversiones 2026 | Metaphai">
+  <meta property="og:description" content="Calcula el IRPF de tus ganancias en bolsa, fondos, criptomonedas y dividendos. Incluye compensación de pérdidas y regla de los dos meses.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-irpf-inversiones/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --inv: #1a4a7a; --inv-light: #e8f0fb;
+      --danger: #8b2a2a; --danger-light: #fdf0f0;
+      --warn: #7a4f1a; --warn-light: #fef6ec;
+      --crypto: #7a4fa0; --crypto-light: #f3eeff;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--inv); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--inv-light); color: var(--inv); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .tabs { display: flex; gap: 6px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .tab { flex: 1; min-width: 120px; padding: 10px 8px; text-align: center; font-size: 13px; font-weight: 500; border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; background: var(--surface); color: var(--muted); transition: all 0.15s; }
+    .tab.active { background: var(--inv); color: white; border-color: var(--inv); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--inv); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.blue { background: var(--inv-light); border: 1px solid #b8cff0; }
+    .info-box.blue p { font-size: 13px; color: var(--inv); margin: 0; }
+    .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
+    .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .info-box.crypto { background: var(--crypto-light); border: 1px solid #d0b8f0; }
+    .info-box.crypto p { font-size: 13px; color: var(--crypto); margin: 0; }
+    .op-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+    @media (max-width: 600px) { .op-row { grid-template-columns: 1fr 1fr; } }
+    .btn-add { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 16px; border: 1px dashed var(--border); border-radius: var(--radius); background: transparent; color: var(--muted); cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.15s; }
+    .btn-add:hover { border-color: var(--inv); color: var(--inv); }
+    .btn-del { font-family: 'DM Sans', sans-serif; width: 32px; height: 36px; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--hint); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .btn-del:hover { border-color: var(--danger); color: var(--danger); }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--inv); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.neg .rv { color: var(--danger); }
+    .res-item.inv .rv { color: var(--inv); }
+    .resumen-compensacion { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .comp-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .comp-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .comp-row:last-child { border-bottom: none; font-weight: 600; font-size: 14px; }
+    .comp-label { color: var(--muted); }
+    .comp-val { font-family: 'DM Mono', monospace; }
+    .comp-val.pos { color: var(--accent); }
+    .comp-val.neg { color: var(--danger); }
+    .tramos-box { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .tramos-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .tramo-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--bg); border-radius: var(--radius); margin-bottom: 6px; font-size: 13px; }
+    .tramo-row.activo { background: var(--inv-light); border: 1px solid #b8cff0; }
+    .tramo-left { color: var(--muted); }
+    .tramo-right { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--inv); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .tramos-tabla { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .tramos-tabla th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .tramos-tabla td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">📈 IRPF Inversiones 2026</div>
+    <h1>Calculadora de impuestos<br>sobre <em>inversiones</em></h1>
+    <p>Calcula el IRPF de tus ganancias en acciones, fondos, criptomonedas y dividendos. Incluye compensación de pérdidas.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="cambiarTab('acciones')">📊 Acciones / ETFs</div>
+    <div class="tab" onclick="cambiarTab('fondos')">💼 Fondos</div>
+    <div class="tab" onclick="cambiarTab('crypto')">₿ Cripto</div>
+    <div class="tab" onclick="cambiarTab('dividendos')">💰 Dividendos</div>
+    <div class="tab" onclick="cambiarTab('resumen')">📋 Resumen global</div>
+  </div>
+
+  <!-- ACCIONES -->
+  <div class="tab-content active" id="tab-acciones">
+    <div class="card">
+      <div class="section-label">Operaciones con acciones y ETFs</div>
+      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
+        <span>Valor</span><span>Precio compra (€)</span><span>Precio venta (€)</span><span>Nº acciones</span><span></span>
+      </div>
+      <div id="acciones-lista"></div>
+      <button class="btn-add" onclick="añadirOp('acciones')">+ Añadir operación</button>
+      <div class="info-box warn" style="margin-top:12px">
+        <p>⚠️ <strong>Regla de los 2 meses:</strong> Si vendes con pérdidas y recompras el mismo valor en los 2 meses anteriores o posteriores, no puedes computar la pérdida fiscalmente hasta que vendas de nuevo.</p>
+      </div>
+    </div>
+    <div id="res-acciones"></div>
+  </div>
+
+  <!-- FONDOS -->
+  <div class="tab-content" id="tab-fondos">
+    <div class="card">
+      <div class="section-label">Reembolsos de fondos de inversión</div>
+      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
+        <span>Fondo</span><span>Valor liquidativo compra (€)</span><span>Valor liquidativo venta (€)</span><span>Nº participaciones</span><span></span>
+      </div>
+      <div id="fondos-lista"></div>
+      <button class="btn-add" onclick="añadirOp('fondos')">+ Añadir reembolso</button>
+      <div class="info-box blue" style="margin-top:12px">
+        <p>💡 Los traspasos entre fondos de inversión (no ETFs) no tributan hasta el reembolso final. Solo pagas IRPF cuando sacas el dinero definitivamente.</p>
+      </div>
+    </div>
+    <div id="res-fondos"></div>
+  </div>
+
+  <!-- CRYPTO -->
+  <div class="tab-content" id="tab-crypto">
+    <div class="card">
+      <div class="section-label">Operaciones con criptomonedas</div>
+      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
+        <span>Criptomoneda</span><span>Precio compra (€)</span><span>Precio venta (€)</span><span>Cantidad</span><span></span>
+      </div>
+      <div id="crypto-lista"></div>
+      <button class="btn-add" onclick="añadirOp('crypto')">+ Añadir operación</button>
+      <div class="info-box crypto" style="margin-top:12px">
+        <p>🔗 <strong>Importante:</strong> El intercambio de una cripto por otra (ej. BTC por ETH) también tributa como venta. El precio de compra se calcula por FIFO (primeras compradas, primeras vendidas). Desde 2024 hay obligación de informar saldos en exchanges extranjeros (Modelo 721).</p>
+      </div>
+    </div>
+    <div id="res-crypto"></div>
+  </div>
+
+  <!-- DIVIDENDOS -->
+  <div class="tab-content" id="tab-dividendos">
+    <div class="card">
+      <div class="section-label">Dividendos e intereses recibidos</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Dividendos brutos recibidos (€)</label>
+          <input type="number" id="div_bruto" value="1500" min="0" step="100" oninput="calcularDividendos()">
+          <p class="tip">Antes de retención</p>
+        </div>
+        <div class="field">
+          <label>Retención ya aplicada por el bróker (€)</label>
+          <input type="number" id="div_retencion" value="285" min="0" step="10" oninput="calcularDividendos()">
+          <p class="tip">Normalmente el 19% ya retenido</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Intereses de cuentas y depósitos (€)</label>
+          <input type="number" id="int_bruto" value="200" min="0" step="50" oninput="calcularDividendos()">
+        </div>
+        <div class="field">
+          <label>Retención sobre intereses (€)</label>
+          <input type="number" id="int_retencion" value="38" min="0" step="10" oninput="calcularDividendos()">
+        </div>
+      </div>
+      <div class="info-box blue" style="margin-top:12px">
+        <p>💡 Los dividendos y los intereses tributan como rendimientos del capital mobiliario en la base del ahorro, con los mismos tramos que las ganancias patrimoniales (19%-28%).</p>
+      </div>
+    </div>
+    <div id="res-dividendos"></div>
+  </div>
+
+  <!-- RESUMEN GLOBAL -->
+  <div class="tab-content" id="tab-resumen">
+    <div class="card">
+      <div class="section-label">Resumen global de todas tus inversiones</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem">Introduce los totales de cada categoría o usa las pestañas anteriores para calcularlos automáticamente.</p>
+      <div class="grid2">
+        <div class="field">
+          <label>Ganancias patrimoniales (acciones, fondos, cripto) (€)</label>
+          <input type="number" id="res_ganancias_pat" value="0" min="0" step="100" oninput="calcularResumen()">
+        </div>
+        <div class="field">
+          <label>Pérdidas patrimoniales (€)</label>
+          <input type="number" id="res_perdidas_pat" value="0" min="0" step="100" oninput="calcularResumen()">
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field">
+          <label>Rendimientos capital mobiliario (dividendos, intereses) (€)</label>
+          <input type="number" id="res_rcm" value="0" min="0" step="100" oninput="calcularResumen()">
+        </div>
+        <div class="field">
+          <label>Retenciones ya practicadas (€)</label>
+          <input type="number" id="res_retenciones" value="0" min="0" step="100" oninput="calcularResumen()">
+        </div>
+      </div>
+    </div>
+    <div id="res-global"></div>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo tributan las inversiones en España en 2026?</h2>
+    <p>Las ganancias de inversiones en España tributan en la base imponible del ahorro del IRPF. Hay dos categorías principales: las ganancias y pérdidas patrimoniales (acciones, ETFs, fondos, criptomonedas) y los rendimientos del capital mobiliario (dividendos, intereses).</p>
+
+    <h3>Tramos del ahorro 2026</h3>
+    <table class="tramos-tabla">
+      <thead><tr><th>Base del ahorro</th><th>Tipo</th></tr></thead>
+      <tbody>
+        <tr><td>Hasta 6.000 €</td><td>19%</td></tr>
+        <tr><td>De 6.000 € a 50.000 €</td><td>21%</td></tr>
+        <tr><td>De 50.000 € a 200.000 €</td><td>23%</td></tr>
+        <tr><td>De 200.000 € a 300.000 €</td><td>27%</td></tr>
+        <tr><td>Más de 300.000 €</td><td>28%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Compensación de pérdidas</h3>
+    <p>Las pérdidas patrimoniales (acciones, fondos, cripto) pueden compensar ganancias patrimoniales del mismo año. Si el saldo es negativo, puedes compensarlo con hasta un 25% de los rendimientos del capital mobiliario positivos (dividendos, intereses). El remanente negativo se puede arrastrar 4 años.</p>
+
+    <h3>Criptomonedas: particularidades fiscales</h3>
+    <p>Las criptomonedas tributan como ganancias patrimoniales. El precio de compra se calcula por el método FIFO. El intercambio entre criptomonedas (BTC por ETH, por ejemplo) tributa como si fuera una venta. Desde 2024 existe el Modelo 721 para informar de saldos en exchanges extranjeros superiores a 50.000 euros.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuándo tengo que pagar IRPF por mis acciones? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Solo cuando vendas. Mientras mantengas las acciones en cartera no hay ningún impuesto que pagar, aunque hayan subido mucho de valor. El impuesto se genera en el momento de la venta.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es la regla de los dos meses? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Si vendes acciones con pérdidas y en los 2 meses anteriores o posteriores compras el mismo valor (o uno similar), Hacienda no te permite computar esa pérdida fiscalmente. La pérdida queda diferida hasta que vendas definitivamente esa posición. Para ETFs y fondos extranjeros el plazo es de 6 meses.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los traspasos entre fondos tributan? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Los traspasos entre fondos de inversión españoles o europeos están exentos de tributación. Solo pagas IRPF cuando haces un reembolso definitivo sacando el dinero del fondo. Esto no aplica a los ETFs, que sí tributan en cada operación de compraventa.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo compensar pérdidas de bolsa con ganancias de cripto? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Ambas son ganancias patrimoniales en la base del ahorro y se pueden compensar entre sí. Si tienes pérdidas en acciones y ganancias en cripto, o viceversa, el resultado fiscal es la suma de ambas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los dividendos extranjeros tienen retención en origen? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Los dividendos de empresas extranjeras pueden tener retención en el país de origen además de la española. España tiene convenios de doble imposición con muchos países que permiten deducir la retención extranjera en el IRPF, normalmente hasta un límite del 15%.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta con un asesor fiscal para tu caso concreto.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const ops = { acciones: [{nombre:'Apple Inc.',compra:120,venta:180,cantidad:10}], fondos: [{nombre:'Fondo Indexado SP500',compra:100,venta:140,cantidad:50}], crypto: [{nombre:'Bitcoin',compra:20000,venta:45000,cantidad:0.1}] };
+
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tabs = ['acciones','fondos','crypto','dividendos','resumen'];
+  document.querySelectorAll('.tab')[tabs.indexOf(tab)].classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+function renderOps(tipo) {
+  const lista = document.getElementById(tipo + '-lista');
+  lista.innerHTML = '';
+  ops[tipo].forEach((op, i) => {
+    const row = document.createElement('div');
+    row.className = 'op-row';
+    row.innerHTML = `
+      <div class="field"><input type="text" value="${op.nombre}" placeholder="Nombre" onchange="ops['${tipo}'][${i}].nombre=this.value"></div>
+      <div class="field"><input type="number" value="${op.compra}" min="0" step="0.01" placeholder="Compra €" oninput="ops['${tipo}'][${i}].compra=parseFloat(this.value)||0;calcularTipo('${tipo}')"></div>
+      <div class="field"><input type="number" value="${op.venta}" min="0" step="0.01" placeholder="Venta €" oninput="ops['${tipo}'][${i}].venta=parseFloat(this.value)||0;calcularTipo('${tipo}')"></div>
+      <div class="field"><input type="number" value="${op.cantidad}" min="0" step="0.0001" placeholder="Cantidad" oninput="ops['${tipo}'][${i}].cantidad=parseFloat(this.value)||0;calcularTipo('${tipo}')"></div>
+      <button class="btn-del" onclick="eliminarOp('${tipo}',${i})">×</button>
+    `;
+    lista.appendChild(row);
+  });
+}
+
+function añadirOp(tipo) {
+  const nombres = {acciones:'Nueva acción',fondos:'Nuevo fondo',crypto:'Nueva cripto'};
+  ops[tipo].push({nombre:nombres[tipo],compra:0,venta:0,cantidad:1});
+  renderOps(tipo);
+}
+
+function eliminarOp(tipo, i) {
+  ops[tipo].splice(i,1);
+  renderOps(tipo);
+  calcularTipo(tipo);
+}
+
+function calcIRPF(base) {
+  const tramos = [{hasta:6000,tipo:0.19},{hasta:50000,tipo:0.21},{hasta:200000,tipo:0.23},{hasta:300000,tipo:0.27},{hasta:Infinity,tipo:0.28}];
+  let cuota=0, ant=0, marginal=0;
+  const detalle=[];
+  for (const t of tramos) {
+    if (base<=ant){detalle.push(0);continue;}
+    const tramo=Math.min(base,t.hasta)-ant;
+    cuota+=tramo*t.tipo;
+    marginal=t.tipo*100;
+    detalle.push(tramo*t.tipo);
+    ant=t.hasta;
+  }
+  return {cuota,marginal,detalle};
+}
+
+function renderResultado(contenedor, ganancias, perdidas, etiqueta) {
+  const neta = ganancias - perdidas;
+  const {cuota, marginal, detalle} = calcIRPF(Math.max(0,neta));
+  const tipoEf = neta > 0 ? cuota/neta*100 : 0;
+  const netoFinal = neta - cuota;
+
+  contenedor.innerHTML = `
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header">
+        <div>
+          <div class="main-label">IRPF estimado — ${etiqueta}</div>
+          <div class="main-value">${neta > 0 ? fmt(cuota) : '0,00 €'}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Ganancia / pérdida neta</div>
+          <div class="sub-value">${fmt(neta)}</div>
+          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
+          <div class="sub-value">${tipoEf.toFixed(1)}%</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item pos"><div class="rl">Ganancias brutas</div><div class="rv">${fmt(ganancias)}</div></div>
+        <div class="res-item neg"><div class="rl">Pérdidas</div><div class="rv">${perdidas > 0 ? '-'+fmt(perdidas) : '0,00 €'}</div></div>
+        <div class="res-item inv"><div class="rl">Resultado neto</div><div class="rv">${fmt(neta)}</div></div>
+        <div class="res-item neg"><div class="rl">IRPF a pagar</div><div class="rv">${fmt(Math.max(0,cuota))}</div></div>
+        <div class="res-item"><div class="rl">Tramo marginal</div><div class="rv">${neta>0?marginal.toFixed(0)+'%':'—'}</div></div>
+        <div class="res-item pos"><div class="rl">Ganancia neta final</div><div class="rv">${fmt(Math.max(0,netoFinal))}</div></div>
+      </div>
+      <div class="tramos-box">
+        <div class="tramos-title">Desglose por tramos</div>
+        ${['Hasta 6.000 € → 19%','6.000–50.000 € → 21%','50.000–200.000 € → 23%','200.000–300.000 € → 27%','Más de 300.000 € → 28%'].map((label,i)=>`
+          <div class="tramo-row ${detalle[i]>0?'activo':''}">
+            <span class="tramo-left">${label}</span>
+            <span class="tramo-right">${detalle[i]>0?fmt(detalle[i]):'—'}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function calcularTipo(tipo) {
+  let ganancias=0, perdidas=0;
+  ops[tipo].forEach(op => {
+    const resultado = (op.venta - op.compra) * op.cantidad;
+    if (resultado > 0) ganancias += resultado;
+    else perdidas += Math.abs(resultado);
+  });
+  renderResultado(document.getElementById('res-'+tipo), ganancias, perdidas, tipo.charAt(0).toUpperCase()+tipo.slice(1));
+}
+
+function calcularDividendos() {
+  const divBruto = parseFloat(document.getElementById('div_bruto').value)||0;
+  const divRetencion = parseFloat(document.getElementById('div_retencion').value)||0;
+  const intBruto = parseFloat(document.getElementById('int_bruto').value)||0;
+  const intRetencion = parseFloat(document.getElementById('int_retencion').value)||0;
+  const totalBruto = divBruto + intBruto;
+  const totalRetencion = divRetencion + intRetencion;
+  const {cuota, marginal} = calcIRPF(totalBruto);
+  const pendiente = Math.max(0, cuota - totalRetencion);
+  const aFavor = Math.max(0, totalRetencion - cuota);
+
+  document.getElementById('res-dividendos').innerHTML = `
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header">
+        <div>
+          <div class="main-label">IRPF pendiente por dividendos e intereses</div>
+          <div class="main-value">${pendiente > 0 ? fmt(pendiente) : aFavor > 0 ? '-'+fmt(aFavor) : '0,00 €'}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Total rendimientos brutos</div>
+          <div class="sub-value">${fmt(totalBruto)}</div>
+          <div class="sub-label" style="margin-top:8px">${aFavor>0?'A devolver':'A pagar'}</div>
+          <div class="sub-value">${aFavor>0?fmt(aFavor):fmt(pendiente)}</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item"><div class="rl">Dividendos brutos</div><div class="rv">${fmt(divBruto)}</div></div>
+        <div class="res-item"><div class="rl">Intereses brutos</div><div class="rv">${fmt(intBruto)}</div></div>
+        <div class="res-item inv"><div class="rl">Total bruto</div><div class="rv">${fmt(totalBruto)}</div></div>
+        <div class="res-item neg"><div class="rl">IRPF calculado</div><div class="rv">${fmt(cuota)}</div></div>
+        <div class="res-item pos"><div class="rl">Retenciones ya pagadas</div><div class="rv">${fmt(totalRetencion)}</div></div>
+        <div class="res-item ${aFavor>0?'pos':'neg'}"><div class="rl">${aFavor>0?'A devolver Hacienda':'A pagar Hacienda'}</div><div class="rv">${aFavor>0?fmt(aFavor):fmt(pendiente)}</div></div>
+      </div>
+    </div>`;
+}
+
+function calcularResumen() {
+  const ganancias = parseFloat(document.getElementById('res_ganancias_pat').value)||0;
+  const perdidas = parseFloat(document.getElementById('res_perdidas_pat').value)||0;
+  const rcm = parseFloat(document.getElementById('res_rcm').value)||0;
+  const retenciones = parseFloat(document.getElementById('res_retenciones').value)||0;
+
+  const netaPat = ganancias - perdidas;
+  // Compensación: pérdidas pueden compensar hasta 25% de RCM positivos
+  let baseAhorro = 0;
+  if (netaPat >= 0) {
+    baseAhorro = netaPat + rcm;
+  } else {
+    const compRCM = Math.min(Math.abs(netaPat), rcm * 0.25);
+    baseAhorro = Math.max(0, rcm - compRCM);
+  }
+  const {cuota, marginal, detalle} = calcIRPF(baseAhorro);
+  const pendiente = Math.max(0, cuota - retenciones);
+  const aFavor = Math.max(0, retenciones - cuota);
+
+  document.getElementById('res-global').innerHTML = `
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header">
+        <div>
+          <div class="main-label">IRPF total inversiones</div>
+          <div class="main-value">${fmt(cuota)}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Base del ahorro total</div>
+          <div class="sub-value">${fmt(baseAhorro)}</div>
+          <div class="sub-label" style="margin-top:8px">${aFavor>0?'A devolver':'Pendiente de pago'}</div>
+          <div class="sub-value">${aFavor>0?fmt(aFavor):fmt(pendiente)}</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item pos"><div class="rl">Ganancias patrimoniales</div><div class="rv">${fmt(ganancias)}</div></div>
+        <div class="res-item neg"><div class="rl">Pérdidas patrimoniales</div><div class="rv">${perdidas>0?'-'+fmt(perdidas):'0,00 €'}</div></div>
+        <div class="res-item inv"><div class="rl">Rend. capital mobiliario</div><div class="rv">${fmt(rcm)}</div></div>
+        <div class="res-item inv"><div class="rl">Base del ahorro</div><div class="rv">${fmt(baseAhorro)}</div></div>
+        <div class="res-item neg"><div class="rl">IRPF total calculado</div><div class="rv">${fmt(cuota)}</div></div>
+        <div class="res-item pos"><div class="rl">Retenciones ya pagadas</div><div class="rv">${fmt(retenciones)}</div></div>
+      </div>
+      <div class="resumen-compensacion">
+        <div class="comp-title">Liquidación final</div>
+        <div class="comp-row"><span class="comp-label">IRPF total calculado</span><span class="comp-val neg">-${fmt(cuota)}</span></div>
+        <div class="comp-row"><span class="comp-label">Retenciones ya practicadas</span><span class="comp-val pos">+${fmt(retenciones)}</span></div>
+        <div class="comp-row"><span class="comp-label">${aFavor>0?'Hacienda te devuelve':'Debes ingresar a Hacienda'}</span><span class="comp-val ${aFavor>0?'pos':'neg'}">${aFavor>0?fmt(aFavor):fmt(pendiente)}</span></div>
+      </div>
+    </div>`;
+}
+
+// Init
+['acciones','fondos','crypto'].forEach(t => { renderOps(t); calcularTipo(t); });
+calcularDividendos();
+calcularResumen();
+</script>
+</body>
+</html>

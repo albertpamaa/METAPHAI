@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora IRPF Apuestas Deportivas y Juego Online 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto debes pagar a Hacienda por tus ganancias en apuestas deportivas, casino online o póker en 2026. Incluye compensación de pérdidas. Gratis y sin registro.">
+  <meta name="keywords" content="irpf apuestas deportivas 2026, hacienda apuestas online, declarar ganancias apuestas, tributar apuestas bet365 codere, ganancias juego online irpf, compensar perdidas apuestas">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora IRPF Apuestas y Juego Online 2026 | Metaphai">
+  <meta property="og:description" content="Calcula cuánto debes pagar a Hacienda por tus ganancias en apuestas deportivas, casino o póker. Incluye compensación de pérdidas.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-irpf-apuestas-online/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --ap: #1a3f6b; --ap-light: #e8f0fb;
+      --danger: #8b2a2a; --danger-light: #fdf0f0;
+      --warn: #7a4f1a; --warn-light: #fef6ec;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--ap); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--ap-light); color: var(--ap); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--ap); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .info-box { border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box.blue { background: var(--ap-light); border: 1px solid #b8cff0; }
+    .info-box.blue p { font-size: 13px; color: var(--ap); margin: 0; }
+    .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
+    .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .apuesta-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+    @media (max-width: 540px) { .apuesta-row { grid-template-columns: 1fr 1fr; } }
+    .btn-add { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 16px; border: 1px dashed var(--border); border-radius: var(--radius); background: transparent; color: var(--muted); cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.15s; }
+    .btn-add:hover { border-color: var(--ap); color: var(--ap); }
+    .btn-del { font-family: 'DM Sans', sans-serif; width: 32px; height: 36px; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--hint); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .btn-del:hover { border-color: var(--danger); color: var(--danger); }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header.positivo { background: var(--danger); }
+    .results-header.neutro { background: var(--ap); }
+    .results-header.negativo { background: var(--accent); }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.neg .rv { color: var(--danger); }
+    .res-item.ap .rv { color: var(--ap); }
+    .tramos-box { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .tramos-title { font-size: 12px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
+    .tramo-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--bg); border-radius: var(--radius); margin-bottom: 6px; font-size: 13px; }
+    .tramo-row.activo { background: var(--ap-light); border: 1px solid #b8cff0; }
+    .tramo-left { color: var(--muted); }
+    .tramo-right { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--ap); }
+    .sin-obligacion { background: var(--accent-light); border: 1px solid #b8dece; border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 1.5rem; display: none; }
+    .sin-obligacion h3 { font-size: 17px; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
+    .sin-obligacion p { font-size: 14px; color: var(--muted); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .tramos-tabla { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1rem 0; }
+    .tramos-tabla th { text-align: left; padding: 8px 12px; background: var(--bg); font-weight: 500; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .tramos-tabla td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🎲 IRPF Apuestas 2026</div>
+    <h1>¿Cuánto le debes a Hacienda<br>por tus <em>apuestas</em>?</h1>
+    <p>Calcula el IRPF de tus ganancias en apuestas deportivas, casino online o póker. Incluye compensación de pérdidas.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="card">
+    <div class="section-label">Modo de introducción de datos</div>
+    <div class="grid2">
+      <div class="field">
+        <label>¿Cómo quieres introducir los datos?</label>
+        <select id="modo" onchange="cambiarModo()">
+          <option value="simple">Resumen anual (total ganancias y pérdidas)</option>
+          <option value="detallado">Apuesta a apuesta (desglose detallado)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tipo de juego</label>
+        <select id="tipo_juego">
+          <option value="deportivas">Apuestas deportivas</option>
+          <option value="casino">Casino online (slots, ruleta, blackjack...)</option>
+          <option value="poker">Póker online</option>
+          <option value="mixto">Mixto (varios tipos)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODO SIMPLE -->
+  <div id="bloque_simple">
+    <div class="card">
+      <div class="section-label">Resumen anual de apuestas</div>
+      <div class="grid2">
+        <div class="field">
+          <label>Total ganancias del año (€)</label>
+          <input type="number" id="ganancias_total" value="5000" min="0" step="100">
+          <p class="tip">Suma de todos los premios cobrados</p>
+        </div>
+        <div class="field">
+          <label>Total pérdidas del año (€)</label>
+          <input type="number" id="perdidas_total" value="3000" min="0" step="100">
+          <p class="tip">Suma de todas las apuestas perdidas</p>
+        </div>
+      </div>
+      <div class="info-box blue" style="margin-top:12px">
+        <p>💡 Las pérdidas solo pueden compensar ganancias del mismo tipo de juego dentro del mismo año fiscal. No pueden compensar otros rendimientos como el salario.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODO DETALLADO -->
+  <div id="bloque_detallado" style="display:none">
+    <div class="card">
+      <div class="section-label">Apuestas del año</div>
+      <div style="font-size:12px;color:var(--hint);margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;">
+        <span>Descripción</span><span>Apostado (€)</span><span>Cobrado (€)</span><span></span>
+      </div>
+      <div id="apuestas-lista"></div>
+      <button class="btn-add" onclick="añadirApuesta()">+ Añadir apuesta</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Tu situación fiscal</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Base imponible del ahorro (otras ganancias patrimoniales, €)</label>
+        <input type="number" id="otras_ganancias" value="0" min="0" step="100">
+        <p class="tip">Ganancias de acciones, fondos, etc. en el mismo año</p>
+      </div>
+      <div class="field">
+        <label>Otras pérdidas patrimoniales del año (€)</label>
+        <input type="number" id="otras_perdidas" value="0" min="0" step="100">
+        <p class="tip">Pérdidas de acciones u otras inversiones</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="bloque_resultados">
+    <div class="results" id="results-main">
+      <div class="results-header positivo" id="results-header">
+        <div>
+          <div class="main-label">IRPF a pagar por apuestas</div>
+          <div class="main-value" id="res_irpf">—</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">Ganancia neta</div>
+          <div class="sub-value" id="res_ganancia_neta">—</div>
+          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
+          <div class="sub-value" id="res_tipo_efectivo">—</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item pos">
+          <div class="rl">Total ganancias</div>
+          <div class="rv" id="d_ganancias">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">Total pérdidas</div>
+          <div class="rv" id="d_perdidas">—</div>
+        </div>
+        <div class="res-item ap">
+          <div class="rl">Ganancia neta computable</div>
+          <div class="rv" id="d_neta">—</div>
+        </div>
+        <div class="res-item neg">
+          <div class="rl">IRPF estimado</div>
+          <div class="rv" id="d_irpf_detalle">—</div>
+        </div>
+        <div class="res-item">
+          <div class="rl">Tramo marginal</div>
+          <div class="rv" id="d_tramo">—</div>
+        </div>
+        <div class="res-item pos">
+          <div class="rl">Lo que te quedas</div>
+          <div class="rv" id="d_neto_final">—</div>
+        </div>
+      </div>
+      <div class="tramos-box">
+        <div class="tramos-title">Tramos del ahorro aplicados a tu ganancia neta</div>
+        <div class="tramo-row" id="t1"><span class="tramo-left">Hasta 6.000 € → 19%</span><span class="tramo-right" id="t1v">—</span></div>
+        <div class="tramo-row" id="t2"><span class="tramo-left">6.000 € – 50.000 € → 21%</span><span class="tramo-right" id="t2v">—</span></div>
+        <div class="tramo-row" id="t3"><span class="tramo-left">50.000 € – 200.000 € → 23%</span><span class="tramo-right" id="t3v">—</span></div>
+        <div class="tramo-row" id="t4"><span class="tramo-left">200.000 € – 300.000 € → 27%</span><span class="tramo-right" id="t4v">—</span></div>
+        <div class="tramo-row" id="t5"><span class="tramo-left">Más de 300.000 € → 28%</span><span class="tramo-right" id="t5v">—</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bloque_sin_obligacion" class="sin-obligacion">
+    <h3>✅ Sin obligación de declarar por apuestas</h3>
+    <p id="msg_sin_obligacion">Tu ganancia neta es negativa o cero. No tienes que pagar IRPF por apuestas este año, aunque podrías compensar estas pérdidas con otras ganancias patrimoniales.</p>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo tributan las apuestas deportivas en España?</h2>
+    <p>Las ganancias obtenidas en apuestas deportivas, casinos online, póker u otros juegos de azar tributan en el IRPF como ganancias patrimoniales en la base del ahorro. Esto significa que no se suman a tu salario sino que tienen sus propios tramos impositivos.</p>
+
+    <h3>Tramos del ahorro para ganancias de apuestas 2026</h3>
+    <table class="tramos-tabla">
+      <thead><tr><th>Ganancia neta</th><th>Tipo</th><th>IRPF sobre ese tramo</th></tr></thead>
+      <tbody>
+        <tr><td>Hasta 6.000 €</td><td>19%</td><td>Hasta 1.140 €</td></tr>
+        <tr><td>De 6.000 € a 50.000 €</td><td>21%</td><td>Hasta 9.240 €</td></tr>
+        <tr><td>De 50.000 € a 200.000 €</td><td>23%</td><td>Hasta 34.500 €</td></tr>
+        <tr><td>De 200.000 € a 300.000 €</td><td>27%</td><td>Hasta 27.000 €</td></tr>
+        <tr><td>Más de 300.000 €</td><td>28%</td><td>Sin límite</td></tr>
+      </tbody>
+    </table>
+
+    <h3>¿Puedo compensar las pérdidas?</h3>
+    <p>Sí. Las pérdidas en apuestas y juego pueden compensar las ganancias del mismo año. Solo tributa la ganancia neta (ganancias menos pérdidas). Sin embargo, las pérdidas no pueden compensar otros rendimientos como el salario o los dividendos, y tampoco se pueden trasladar a ejercicios futuros si el resultado final es negativo.</p>
+
+    <h3>¿Hacienda lo sabe aunque no declare?</h3>
+    <p>Las casas de apuestas con licencia española (Bet365, Codere, Sportium, Betfair, etc.) están obligadas a comunicar a Hacienda los premios superiores a 300 euros obtenidos por cada usuario. Hacienda cruza esta información con tu declaración. No declarar puede suponer sanciones de entre el 50% y el 150% de la cuota no declarada.</p>
+
+    <h3>¿Cuándo estoy obligado a declarar?</h3>
+    <p>Estás obligado a incluir las ganancias de apuestas en tu declaración si tu ganancia neta supera los 1.000 euros anuales, o si junto con tus otros rendimientos superan los límites generales de obligación de declarar. En caso de duda, es mejor declarar.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Las apuestas en casas extranjeras también hay que declararlas? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Da igual si la casa de apuestas tiene licencia española o extranjera. Como residente fiscal en España, debes declarar todas tus ganancias mundiales en el IRPF. La diferencia es que con casas extranjeras Hacienda no recibe información automática, pero eso no te exime de la obligación de declarar.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Los bonos de bienvenida de las casas de apuestas tributan? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Depende. Los bonos en efectivo que puedes retirar directamente se consideran ganancia patrimonial y tributan. Los bonos en forma de apuestas gratuitas (freebets) no tributan en el momento de recibirlos, sino si generan ganancias al apostar con ellos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El póker online tributa igual que las apuestas deportivas? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, el póker online tributa exactamente igual: como ganancia patrimonial en la base del ahorro. Se calcula la ganancia neta (premios menos compras de fichas o buy-ins) y se aplican los mismos tramos del 19% al 28%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si tengo pérdidas en apuestas y ganancias en bolsa? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Puedes compensar las pérdidas de apuestas con las ganancias de bolsa y viceversa, ya que ambas son ganancias patrimoniales en la base del ahorro. Si el saldo global es negativo, puedes compensarlo con rendimientos del capital mobiliario (dividendos, intereses) hasta un límite del 25%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo sé cuánto he ganado y perdido exactamente? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Las casas de apuestas con licencia española están obligadas a facilitarte un historial de movimientos. Puedes solicitarlo desde tu perfil o área de cliente. Guarda siempre capturas de pantalla y extractos por si Hacienda los requiere.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta con un asesor fiscal para tu caso concreto.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+let apuestas = [{ desc: 'Apuesta 1', apostado: 100, cobrado: 250 }];
+
+function cambiarModo() {
+  const modo = document.getElementById('modo').value;
+  document.getElementById('bloque_simple').style.display = modo === 'simple' ? 'block' : 'none';
+  document.getElementById('bloque_detallado').style.display = modo === 'detallado' ? 'block' : 'none';
+  calcular();
+}
+
+function renderApuestas() {
+  const lista = document.getElementById('apuestas-lista');
+  lista.innerHTML = '';
+  apuestas.forEach((a, i) => {
+    const row = document.createElement('div');
+    row.className = 'apuesta-row';
+    row.innerHTML = `
+      <div class="field"><input type="text" value="${a.desc}" placeholder="Descripción" onchange="apuestas[${i}].desc=this.value"></div>
+      <div class="field"><input type="number" value="${a.apostado}" min="0" step="1" placeholder="Apostado €" oninput="apuestas[${i}].apostado=parseFloat(this.value)||0;calcular()"></div>
+      <div class="field"><input type="number" value="${a.cobrado}" min="0" step="1" placeholder="Cobrado €" oninput="apuestas[${i}].cobrado=parseFloat(this.value)||0;calcular()"></div>
+      <button class="btn-del" onclick="eliminarApuesta(${i})">×</button>
+    `;
+    lista.appendChild(row);
+  });
+}
+
+function añadirApuesta() {
+  apuestas.push({ desc: 'Apuesta ' + (apuestas.length + 1), apostado: 0, cobrado: 0 });
+  renderApuestas();
+}
+
+function eliminarApuesta(i) {
+  apuestas.splice(i, 1);
+  renderApuestas();
+  calcular();
+}
+
+function calcIRPF(base) {
+  const tramos = [
+    { hasta: 6000,   tipo: 0.19 },
+    { hasta: 50000,  tipo: 0.21 },
+    { hasta: 200000, tipo: 0.23 },
+    { hasta: 300000, tipo: 0.27 },
+    { hasta: Infinity, tipo: 0.28 }
+  ];
+  let cuota = 0, ant = 0, marginal = 0;
+  const detalle = [];
+  for (const t of tramos) {
+    if (base <= ant) { detalle.push(0); continue; }
+    const tramo = Math.min(base, t.hasta) - ant;
+    const c = tramo * t.tipo;
+    cuota += c;
+    marginal = t.tipo * 100;
+    detalle.push(c);
+    ant = t.hasta;
+  }
+  return { cuota, marginal, detalle };
+}
+
+function calcular() {
+  const modo = document.getElementById('modo').value;
+  let ganancias = 0, perdidas = 0;
+
+  if (modo === 'simple') {
+    ganancias = parseFloat(document.getElementById('ganancias_total').value) || 0;
+    perdidas = parseFloat(document.getElementById('perdidas_total').value) || 0;
+  } else {
+    apuestas.forEach(a => {
+      if (a.cobrado > a.apostado) ganancias += (a.cobrado - a.apostado);
+      else perdidas += (a.apostado - a.cobrado);
+    });
+  }
+
+  const otrasGanancias = parseFloat(document.getElementById('otras_ganancias').value) || 0;
+  const otrasPerdidas = parseFloat(document.getElementById('otras_perdidas').value) || 0;
+
+  const gananciaNeta = Math.max(0, ganancias - perdidas);
+  const baseTotal = Math.max(0, gananciaNeta + otrasGanancias - otrasPerdidas);
+  const { cuota, marginal, detalle } = calcIRPF(baseTotal);
+  const irpfApuestas = baseTotal > 0 ? cuota * (gananciaNeta / baseTotal) : 0;
+  const tipoEfectivo = gananciaNeta > 0 ? (irpfApuestas / gananciaNeta * 100) : 0;
+  const netoFinal = gananciaNeta - irpfApuestas;
+
+  const sinObligacion = gananciaNeta <= 0;
+  document.getElementById('bloque_resultados').style.display = sinObligacion ? 'none' : 'block';
+  document.getElementById('bloque_sin_obligacion').style.display = sinObligacion ? 'block' : 'none';
+
+  if (!sinObligacion) {
+    const header = document.getElementById('results-header');
+    header.className = 'results-header ' + (gananciaNeta > 0 ? 'positivo' : 'neutro');
+
+    document.getElementById('res_irpf').textContent = fmt(irpfApuestas);
+    document.getElementById('res_ganancia_neta').textContent = fmt(gananciaNeta);
+    document.getElementById('res_tipo_efectivo').textContent = tipoEfectivo.toFixed(1) + '%';
+    document.getElementById('d_ganancias').textContent = fmt(ganancias);
+    document.getElementById('d_perdidas').textContent = '-' + fmt(perdidas);
+    document.getElementById('d_neta').textContent = fmt(gananciaNeta);
+    document.getElementById('d_irpf_detalle').textContent = '-' + fmt(irpfApuestas);
+    document.getElementById('d_tramo').textContent = marginal.toFixed(0) + '%';
+    document.getElementById('d_neto_final').textContent = fmt(netoFinal);
+
+    const ids = ['t1v','t2v','t3v','t4v','t5v'];
+    const tramosIds = ['t1','t2','t3','t4','t5'];
+    detalle.forEach((v, i) => {
+      document.getElementById(ids[i]).textContent = v > 0 ? fmt(v) : '—';
+      document.getElementById(tramosIds[i]).className = 'tramo-row' + (v > 0 ? ' activo' : '');
+    });
+  }
+}
+
+renderApuestas();
+calcular();
+document.querySelectorAll('input, select').forEach(el => {
+  if (!el.closest('#apuestas-lista')) el.addEventListener('input', calcular);
+});
+</script>
+</body>
+</html>

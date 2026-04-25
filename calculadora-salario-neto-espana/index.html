@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Salario Neto España 2026 | Metaphai</title>
+  <meta name="description" content="Calcula tu salario neto en España 2026 gratis. Incluye IRPF por comunidad autónoma, Seguridad Social, hijos, discapacidad, plan de pensiones y más variables.">
+  <meta name="keywords" content="calculadora salario neto españa 2026, calcular sueldo neto, irpf salario, seguridad social trabajador, salario bruto neto">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Salario Neto España 2026">
+  <meta property="og:description" content="Descubre cuánto cobras realmente. Calcula tu neto con todas las variables: IRPF, SS, hijos, comunidad autónoma y más.">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --surface: #ffffff;
+      --surface2: #f0efe9;
+      --border: #e2e0d8;
+      --text: #1a1916;
+      --muted: #6b6960;
+      --hint: #9e9c94;
+      --accent: #2d6a4f;
+      --accent-light: #e8f4ee;
+      --danger: #8b2a2a;
+      --danger-light: #fdf0f0;
+      --warn: #7a4f1a;
+      --warn-light: #fef6ec;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+
+    .header-tag {
+      font-size: 11px;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2.5rem 0 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--hint);
+      margin-bottom: 1rem;
+    }
+
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+    @media (max-width: 540px) {
+      .grid2, .grid3 { grid-template-columns: 1fr; }
+    }
+
+    .field { display: flex; flex-direction: column; gap: 5px; }
+
+    .field label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .field input, .field select {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+
+    .field input:focus, .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+
+    .toggles {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toggle-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .toggle-btn.active { background: var(--accent-light); border-color: var(--accent); color: var(--accent); font-weight: 500; }
+
+    .extra-field {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius);
+    }
+
+    .tip {
+      font-size: 12px;
+      color: var(--hint);
+      margin-top: 4px;
+    }
+
+    /* RESULTS */
+    .results {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+
+    .results-header {
+      background: var(--accent);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .results-header .main-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 4px;
+    }
+
+    .results-header .main-value {
+      font-size: 36px;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.03em;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .results-header .paga-wrap { text-align: right; }
+    .results-header .paga-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+    .results-header .paga-value { font-size: 22px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 540px) {
+      .results-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .res-item {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .res-item:last-child { border-right: none; }
+
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.neg .rv { color: var(--danger); }
+    .res-item.warn .rv { color: var(--warn); }
+
+    /* BAR */
+    .bar-section { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .bar-title { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .bar { height: 32px; border-radius: 8px; overflow: hidden; display: flex; background: var(--bg); }
+    .bar-seg {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      transition: width 0.4s ease;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+    /* SEO CONTENT */
+    .seo-content {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .seo-content h2 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    .seo-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--text);
+    }
+
+    .seo-content p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface);
+    }
+
+    .faq-q:hover { background: var(--bg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 16px 12px;
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: var(--hint);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    /* ADSENSE PLACEHOLDER */
+    .ad-slot {
+      background: var(--surface2);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--hint);
+      margin: 1.5rem 0;
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-1P9N4QY0JR");
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="logo">meta<span>phai</span></div>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+
+<main>
+
+  <div class="hero">
+    <h1>Calculadora salario neto<br><em>España 2026</em></h1>
+    <p>Descubre cuánto cobras realmente tras IRPF y Seguridad Social. Gratis, sin registro, actualizada.</p>
+  </div>
+
+  <!-- AD SLOT TOP -->
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <!-- SALARIO -->
+  <div class="card">
+    <div class="section-label">Salario</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Salario bruto anual (€)</label>
+        <input type="number" id="bruto" value="30000" min="0" step="500">
+      </div>
+      <div class="field">
+        <label>Número de pagas</label>
+        <select id="pagas">
+          <option value="12">12 pagas</option>
+          <option value="14" selected>14 pagas</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITUACIÓN PERSONAL -->
+  <div class="card">
+    <div class="section-label">Situación personal</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Comunidad autónoma</label>
+        <select id="ccaa">
+          <option value="0">Andalucía</option>
+          <option value="1">Aragón</option>
+          <option value="2">Asturias</option>
+          <option value="3">Baleares</option>
+          <option value="4">Canarias</option>
+          <option value="5">Cantabria</option>
+          <option value="6">C.-La Mancha</option>
+          <option value="7">C. y León</option>
+          <option value="8">Cataluña</option>
+          <option value="9">Extremadura</option>
+          <option value="10">Galicia</option>
+          <option value="11" selected>Madrid</option>
+          <option value="12">Murcia</option>
+          <option value="13">Navarra</option>
+          <option value="14">País Vasco</option>
+          <option value="15">La Rioja</option>
+          <option value="16">C. Valenciana</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado civil</label>
+        <select id="estado">
+          <option value="soltero">Soltero/a</option>
+          <option value="casado">Casado/a (cónyuge sin ingresos)</option>
+          <option value="casado2">Casado/a (cónyuge con ingresos)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Hijos a cargo</label>
+        <select id="hijos">
+          <option value="0">Sin hijos</option>
+          <option value="1">1 hijo</option>
+          <option value="2">2 hijos</option>
+          <option value="3">3 hijos</option>
+          <option value="4">4 hijos o más</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Edad</label>
+        <select id="edad">
+          <option value="menor65">Menor de 65 años</option>
+          <option value="65_75">Entre 65 y 74 años</option>
+          <option value="mayor75">75 años o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Discapacidad reconocida</label>
+        <select id="discapacidad">
+          <option value="0">Sin discapacidad</option>
+          <option value="33">33% – 64%</option>
+          <option value="65">65% o más</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGURIDAD SOCIAL -->
+  <div class="card">
+    <div class="section-label">Cotizaciones Seguridad Social (trabajador)</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Contingencias comunes (%)</label>
+        <input type="number" id="ss_cc" value="4.70" step="0.01" min="0" max="10">
+      </div>
+      <div class="field">
+        <label>Desempleo (%)</label>
+        <input type="number" id="ss_desempleo" value="1.55" step="0.01" min="0" max="5">
+      </div>
+      <div class="field">
+        <label>Formación profesional (%)</label>
+        <input type="number" id="ss_fp" value="0.10" step="0.01" min="0" max="2">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Tipo de contrato</label>
+        <select id="contrato">
+          <option value="indefinido">Indefinido / por obra</option>
+          <option value="temporal">Temporal (desempleo 3,5%)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ERTE / reducción de jornada</label>
+        <select id="erte">
+          <option value="0">No aplica</option>
+          <option value="25">25% de reducción</option>
+          <option value="50">50% de reducción</option>
+          <option value="75">75% de reducción</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTRAS -->
+  <div class="card">
+    <div class="section-label">Situaciones adicionales</div>
+    <div class="toggles">
+      <button class="toggle-btn" id="btn_autonomo" onclick="toggleExtra('autonomo')">Autónomo (RETA)</button>
+      <button class="toggle-btn" id="btn_segunda" onclick="toggleExtra('segunda')">Segunda actividad</button>
+      <button class="toggle-btn" id="btn_movilidad" onclick="toggleExtra('movilidad')">Movilidad geográfica</button>
+      <button class="toggle-btn" id="btn_pension" onclick="toggleExtra('pension')">Plan de pensiones</button>
+    </div>
+
+    <div class="extra-field" id="extra_pension">
+      <div class="field" style="max-width:260px">
+        <label>Aportación anual al plan de pensiones (€)</label>
+        <input type="number" id="pension_aporte" value="1500" min="0" max="10000" step="100">
+      </div>
+      <p class="tip">Límite deducible: 1.500 € anuales o 30% de los rendimientos netos del trabajo.</p>
+    </div>
+
+    <div class="extra-field" id="extra_segunda">
+      <div class="field" style="max-width:260px">
+        <label>Ingresos segunda actividad — bruto anual (€)</label>
+        <input type="number" id="segunda_bruto" value="5000" min="0" step="500">
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Salario neto anual estimado</div>
+        <div class="main-value" id="res_neto_anual">—</div>
+      </div>
+      <div class="paga-wrap">
+        <div class="paga-label" id="paga-label">Por paga (14 pagas)</div>
+        <div class="paga-value" id="res_paga">—</div>
+      </div>
+    </div>
+
+    <div class="results-grid">
+      <div class="res-item">
+        <div class="rl">Bruto anual</div>
+        <div class="rv" id="d_bruto">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">IRPF retenido</div>
+        <div class="rv" id="d_irpf">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">Seguridad Social</div>
+        <div class="rv" id="d_ss">—</div>
+      </div>
+      <div class="res-item warn">
+        <div class="rl">Tipo efectivo IRPF</div>
+        <div class="rv" id="d_tipo_ef">—</div>
+      </div>
+      <div class="res-item warn">
+        <div class="rl">Tipo marginal IRPF</div>
+        <div class="rv" id="d_marginal">—</div>
+      </div>
+      <div class="res-item">
+        <div class="rl">Base imponible</div>
+        <div class="rv" id="d_base">—</div>
+      </div>
+    </div>
+
+    <div class="bar-section">
+      <div class="bar-title">Distribución del bruto</div>
+      <div class="bar">
+        <div class="bar-seg" id="seg_neto" style="background:#2d6a4f"></div>
+        <div class="bar-seg" id="seg_irpf" style="background:#8b2a2a"></div>
+        <div class="bar-seg" id="seg_ss" style="background:#7a4f1a"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#2d6a4f"></div>Neto (<span id="leg_neto">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8b2a2a"></div>IRPF (<span id="leg_irpf">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7a4f1a"></div>SS (<span id="leg_ss">—</span>)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD SLOT MIDDLE -->
+  <div class="ad-slot" style="margin-top:2rem">Publicidad — Google AdSense aquí</div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-content">
+    <h2>¿Cómo se calcula el salario neto en España?</h2>
+    <p>El salario neto es el dinero que recibes en tu cuenta bancaria tras aplicar dos descuentos principales sobre tu salario bruto: la retención del IRPF (Impuesto sobre la Renta de las Personas Físicas) y las cotizaciones a la Seguridad Social.</p>
+    <p>La fórmula básica es: <strong>Salario neto = Bruto – Cotización SS trabajador – Retención IRPF</strong></p>
+
+    <h3>¿Qué es la retención del IRPF?</h3>
+    <p>El IRPF es un impuesto progresivo: cuanto más ganas, mayor porcentaje pagas. En España se comparte entre el Estado y tu comunidad autónoma, por eso los tipos varían según dónde vivas. Los tramos estatales van del 19% al 47% sobre la base liquidable, que se calcula restando el mínimo personal y familiar a tu base imponible.</p>
+
+    <h3>¿Qué cotiza el trabajador a la Seguridad Social?</h3>
+    <p>Como empleado por cuenta ajena pagas un 6,35% de tu salario bruto a la Seguridad Social: 4,70% por contingencias comunes, 1,55% por desempleo (3,5% en contratos temporales) y 0,10% por formación profesional.</p>
+
+    <h3>¿Influye la comunidad autónoma en mi neto?</h3>
+    <p>Sí. La parte autonómica del IRPF varía entre regiones. Madrid aplica tipos más bajos que Cataluña o Asturias, por ejemplo. La diferencia puede suponer varios cientos de euros al año con el mismo salario bruto.</p>
+
+    <h3>¿Qué deducciones puedo aplicar?</h3>
+    <p>Las principales reducciones son el mínimo personal (5.550 €), el mínimo por descendientes (hijos), la reducción por rendimientos del trabajo (varía según el nivel salarial), y las aportaciones a planes de pensiones (hasta 1.500 € anuales deducibles desde 2023).</p>
+
+    <!-- FAQ -->
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿La calculadora es válida para 2026? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Los tramos y tipos utilizados corresponden a la normativa del IRPF vigente en 2026, incluyendo los tipos autonómicos de las 17 comunidades autónomas.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Por qué el resultado puede diferir de mi nómina? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Esta calculadora ofrece una estimación orientativa. Tu empresa calcula la retención exacta según tu situación al inicio del año, pudiendo ajustarla a lo largo del ejercicio. Situaciones como cambios de empleo a mitad de año, rentas del capital o deducciones autonómicas específicas pueden generar diferencias.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Cómo afectan los hijos al salario neto? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Los hijos reducen la base imponible del IRPF mediante el mínimo por descendientes: 2.400 € por el primero, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes. A mayor mínimo, menor impuesto y mayor neto.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Qué diferencia hay entre 12 y 14 pagas? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Con 14 pagas, dos de ellas son las pagas extra (normalmente en verano y Navidad). El salario neto anual total es el mismo; solo cambia cómo se distribuye. Con 12 pagas las extras están prorrateadas mensualmente.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Puedo usarla si soy autónomo? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Parcialmente. Activa el botón "Autónomo (RETA)" para añadir la cuota mensual aproximada. Sin embargo, los autónomos tributan de forma distinta (estimación directa o módulos) y tienen deducciones específicas no contempladas en esta calculadora.</div>
+    </div>
+  </div>
+
+  <!-- AD SLOT BOTTOM -->
+  <div class="ad-slot" style="margin-top:2rem">Publicidad — Google AdSense aquí</div>
+
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · Estimación orientativa basada en la normativa IRPF 2026 · No constituye asesoramiento fiscal</p>
+  <p style="margin-top:6px"><a href="/privacidad.html" style="color:var(--hint)">Política de privacidad</a> · <a href="/privacidad.html" style="color:var(--hint)">Cookies</a></p>
+</footer>
+
+<script>
+const extras = { autonomo: false, segunda: false, movilidad: false, pension: false };
+
+function toggleExtra(key) {
+  extras[key] = !extras[key];
+  document.getElementById('btn_' + key).classList.toggle('active', extras[key]);
+  if (key === 'pension') document.getElementById('extra_pension').style.display = extras[key] ? 'block' : 'none';
+  if (key === 'segunda') document.getElementById('extra_segunda').style.display = extras[key] ? 'block' : 'none';
+  calcular();
+}
+
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+const TRAMOS = [
+  { hasta: 12450 }, { hasta: 20200 }, { hasta: 35200 },
+  { hasta: 60000 }, { hasta: 300000 }, { hasta: 1000000 }, { hasta: Infinity }
+];
+
+const TIPOS_ESTATAL = [0.095, 0.12, 0.15, 0.185, 0.225, 0.245, 0.27];
+
+
+const TIPOS_AUTON = [
+  [0.095,0.12,0.14,0.17,0.185,0.235],
+  [0.10,0.13,0.15,0.17,0.19,0.21],
+  [0.10,0.12,0.14,0.18,0.195,0.21],
+  [0.09,0.115,0.155,0.185,0.20,0.22],
+  [0.085,0.105,0.125,0.165,0.185,0.20],
+  [0.09,0.115,0.14,0.175,0.185,0.215],
+  [0.095,0.12,0.14,0.175,0.185,0.215],
+  [0.09,0.12,0.14,0.17,0.185,0.215],
+  [0.105,0.12,0.14,0.175,0.21,0.235],
+  [0.085,0.105,0.14,0.175,0.195,0.215],
+  [0.09,0.12,0.14,0.175,0.185,0.215],
+  [0.09,0.11,0.13,0.17,0.185,0.21],
+  [0.095,0.12,0.14,0.175,0.185,0.215],
+  [0.08,0.11,0.14,0.17,0.20,0.22],
+  [0.07,0.10,0.12,0.16,0.18,0.19],
+  [0.08,0.10,0.13,0.16,0.18,0.205],
+  [0.095,0.12,0.14,0.175,0.185,0.22]
+];
+
+function calcIRPF(base, ccaa) {
+  let cuota = 0, ant = 0, marginal = 0;
+  for (let i = 0; i < TRAMOS.length; i++) {
+    if (base <= ant) break;
+    const tramo = Math.min(base, TRAMOS[i].hasta) - ant;
+    const tipo = TIPOS_ESTATAL[i] + TIPOS_AUTON[ccaa][Math.min(i, 5)];
+    cuota += tramo * tipo;
+    marginal = tipo * 100;
+    ant = TRAMOS[i].hasta;
+  }
+  return { cuota, marginal };
+}
+
+function minimos(bruto, hijos, estado, edad, discap, movilidad) {
+  let mp = 5550;
+  if (edad === '65_75') mp += 1150;
+  if (edad === 'mayor75') mp += 2550;
+  const mhijos = [0, 2400, 5100, 9100, 13600];
+  let mc = estado === 'casado' ? 3400 : 0;
+  let md = discap === '33' ? 3000 : discap === '65' ? 9000 : 0;
+  let rend = 0;
+  if (bruto <= 13115) rend = 5565;
+  else if (bruto <= 16825) rend = Math.max(0, 5565 - 1.5 * (bruto - 13115));
+  if (movilidad) rend += 2000;
+  return mp + (mhijos[Math.min(hijos,4)] || 0) + mc + md + rend;
+}
+
+function fmt(n) {
+  return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+function calcular() {
+  let bruto = parseFloat(document.getElementById('bruto').value) || 0;
+  const pagas = parseInt(document.getElementById('pagas').value);
+  const ccaa = parseInt(document.getElementById('ccaa').value);
+  const estado = document.getElementById('estado').value;
+  const hijos = parseInt(document.getElementById('hijos').value);
+  const edad = document.getElementById('edad').value;
+  const discap = document.getElementById('discapacidad').value;
+  const contrato = document.getElementById('contrato').value;
+  const erte = parseInt(document.getElementById('erte').value);
+
+  const ss_cc = parseFloat(document.getElementById('ss_cc').value) || 4.7;
+  const ss_des = contrato === 'temporal' ? 3.5 : (parseFloat(document.getElementById('ss_desempleo').value) || 1.55);
+  if (contrato === 'temporal') document.getElementById('ss_desempleo').value = '3.50';
+  const ss_fp = parseFloat(document.getElementById('ss_fp').value) || 0.10;
+
+  if (erte > 0) bruto = bruto * (1 - erte / 100);
+
+  const bruto2 = extras.segunda ? (parseFloat(document.getElementById('segunda_bruto').value) || 0) : 0;
+  const brutoTotal = bruto + bruto2;
+  const totalSS = (ss_cc + ss_des + ss_fp) / 100;
+  const cuotaSS = bruto * totalSS;
+  const pension = extras.pension ? Math.min(parseFloat(document.getElementById('pension_aporte').value) || 0, 1500, brutoTotal * 0.3) : 0;
+  const autonomo = extras.autonomo ? 294 * 12 : 0;
+
+  const baseImponible = Math.max(0, brutoTotal - cuotaSS - pension);
+  const min = minimos(brutoTotal, hijos, estado, edad, discap, extras.movilidad);
+  const baseIRPF = Math.max(0, baseImponible - min);
+  const { cuota: irpf, marginal } = calcIRPF(baseIRPF, ccaa);
+  const tipoEf = brutoTotal > 0 ? irpf / brutoTotal * 100 : 0;
+  const neto = bruto - irpf - cuotaSS - autonomo;
+
+  document.getElementById('res_neto_anual').textContent = fmt(neto);
+  document.getElementById('res_paga').textContent = fmt(neto / pagas);
+  document.getElementById('paga-label').textContent = `Por paga (${pagas} pagas)`;
+  document.getElementById('d_bruto').textContent = fmt(bruto);
+  document.getElementById('d_irpf').textContent = '-' + fmt(irpf);
+  document.getElementById('d_ss').textContent = '-' + fmt(cuotaSS);
+  document.getElementById('d_tipo_ef').textContent = tipoEf.toFixed(1) + '%';
+  document.getElementById('d_marginal').textContent = marginal.toFixed(0) + '%';
+  document.getElementById('d_base').textContent = fmt(baseImponible);
+
+  const pN = brutoTotal > 0 ? Math.max(0, neto / bruto * 100) : 0;
+  const pI = brutoTotal > 0 ? irpf / bruto * 100 : 0;
+  const pS = brutoTotal > 0 ? cuotaSS / bruto * 100 : 0;
+
+  document.getElementById('seg_neto').style.width = pN.toFixed(1) + '%';
+  document.getElementById('seg_irpf').style.width = pI.toFixed(1) + '%';
+  document.getElementById('seg_ss').style.width = pS.toFixed(1) + '%';
+  document.getElementById('seg_neto').textContent = pN > 8 ? Math.round(pN) + '%' : '';
+  document.getElementById('seg_irpf').textContent = pI > 6 ? Math.round(pI) + '%' : '';
+  document.getElementById('seg_ss').textContent = pS > 6 ? Math.round(pS) + '%' : '';
+
+  document.getElementById('leg_neto').textContent = Math.round(pN) + '%';
+  document.getElementById('leg_irpf').textContent = Math.round(pI) + '%';
+  document.getElementById('leg_ss').textContent = Math.round(pS) + '%';
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+</body>
+</html>

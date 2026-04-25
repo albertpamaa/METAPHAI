@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Precio por Hora Freelance 2026 | ¿Cuánto Cobrar? | Metaphai</title>
+  <meta name="description" content="Calcula cuánto debes cobrar por hora como freelance o autónomo en España 2026. Incluye gastos, impuestos, vacaciones y el sueldo que quieres tener. Gratis y sin registro.">
+  <meta name="keywords" content="calculadora precio hora freelance, cuanto cobrar hora freelance, tarifa hora autonomo spain, precio hora diseñador programador, cuanto cobrar como freelance españa 2026">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Precio por Hora Freelance 2026 | Metaphai">
+  <meta property="og:description" content="Descubre cuánto debes cobrar por hora como freelance para cubrir gastos, impuestos y tener el sueldo que mereces.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-precio-hora-freelance/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#f7f6f2;--surface:#fff;--border:#e2e0d8;--text:#1a1916;--muted:#6b6960;--hint:#9e9c94;
+      --accent:#2d6a4f;--accent-light:#e8f4ee;
+      --fr:#1a4a7a;--fr-light:#e8f0fb;
+      --warn:#7a4f1a;--warn-light:#fef6ec;
+      --radius:10px;--radius-lg:16px;
+    }
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:10;}
+    .logo{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.02em;text-decoration:none;}.logo span{color:var(--accent);}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;}.nav-back:hover{color:var(--accent);}
+    main{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+    .hero{text-align:center;padding:2rem 0 2rem;}
+    .hero h1{font-size:clamp(22px,3.5vw,34px);font-weight:600;letter-spacing:-.03em;line-height:1.2;margin-bottom:.75rem;}
+    .hero h1 em{font-style:normal;color:var(--fr);}
+    .hero p{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto;}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--fr-light);color:var(--fr);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:1rem;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem;}
+    .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--hint);margin-bottom:1rem;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    @media(max-width:540px){.grid2,.grid3{grid-template-columns:1fr;}}
+    .field{display:flex;flex-direction:column;gap:5px;}
+    .field label{font-size:12px;color:var(--muted);font-weight:500;}
+    .field input,.field select{font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);width:100%;transition:border-color .15s;}
+    .field input:focus,.field select:focus{outline:none;border-color:var(--fr);background:var(--surface);}
+    .tip{font-size:12px;color:var(--hint);margin-top:4px;}
+    .info-box{border-radius:var(--radius);padding:12px 14px;margin-top:12px;}
+    .info-box.blue{background:var(--fr-light);border:1px solid #b8cff0;}.info-box.blue p{font-size:13px;color:var(--fr);margin:0;}
+    .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
+    .info-box.green{background:var(--accent-light);border:1px solid #b8dece;}.info-box.green p{font-size:13px;color:var(--accent);margin:0;}
+    /* RESULTADO PRINCIPAL */
+    .resultado-hero{background:var(--fr);border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-top:1.5rem;}
+    .rh-label{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:8px;}
+    .rh-precio{font-size:56px;font-weight:700;color:white;font-family:'DM Mono',monospace;letter-spacing:-.04em;line-height:1;}
+    .rh-sub{font-size:15px;color:rgba(255,255,255,.7);margin-top:8px;}
+    .rh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1.5rem;}
+    .rh-item{background:rgba(255,255,255,.12);border-radius:var(--radius);padding:12px;text-align:center;}
+    .rh-item .ri-label{font-size:11px;color:rgba(255,255,255,.65);margin-bottom:4px;}
+    .rh-item .ri-val{font-size:16px;font-weight:600;color:white;font-family:'DM Mono',monospace;}
+    /* DESGLOSE */
+    .desglose{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:1rem;}
+    .des-section{padding:1.25rem;border-bottom:1px solid var(--border);}
+    .des-section:last-child{border-bottom:none;}
+    .des-title{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+    .des-row{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid var(--border);}
+    .des-row:last-child{border-bottom:none;font-weight:600;}
+    .des-label{color:var(--muted);}
+    .des-val{font-family:'DM Mono',monospace;color:var(--text);}
+    .des-val.highlight{color:var(--fr);font-weight:700;}
+    /* ESCENARIOS */
+    .escenarios{margin-top:1rem;}
+    .esc-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500;}
+    .esc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    @media(max-width:540px){.esc-grid{grid-template-columns:1fr;}}
+    .esc-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
+    .esc-item.actual{border-color:var(--fr);background:var(--fr-light);}
+    .esc-item .ei-label{font-size:11px;color:var(--hint);margin-bottom:4px;}
+    .esc-item .ei-tipo{font-size:13px;font-weight:500;margin-bottom:6px;}
+    .esc-item.actual .ei-tipo{color:var(--fr);}
+    .esc-item .ei-precio{font-size:22px;font-weight:700;font-family:'DM Mono',monospace;color:var(--text);}
+    .esc-item .ei-detalle{font-size:11px;color:var(--muted);margin-top:4px;}
+    /* BARRA DISTRIBUCIÓN */
+    .barra-wrap{padding:1.25rem;border-top:1px solid var(--border);}
+    .barra-title{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:500;}
+    .barra{height:32px;border-radius:8px;overflow:hidden;display:flex;}
+    .barra-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:white;transition:width .4s;white-space:nowrap;overflow:hidden;}
+    .legend{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap;}
+    .legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+    .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+    .seo-content{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+    .seo-content h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;}
+    .seo-content h3{font-size:15px;font-weight:600;margin:1.5rem 0 .5rem;}
+    .seo-content p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+    .faq-q{padding:12px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+    .faq-q:hover{background:var(--bg);}
+    .faq-a{display:none;padding:0 16px 12px;font-size:14px;color:var(--muted);background:var(--surface);line-height:1.7;}
+    .faq-item.open .faq-a{display:block;}
+    .faq-arrow{transition:transform .2s;font-size:12px;}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);border-top:1px solid var(--border);margin-top:3rem;}
+    footer a{color:var(--hint);}
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">💻 Freelance 2026</div>
+    <h1>¿Cuánto debes cobrar<br>por hora como <em>freelance</em>?</h1>
+    <p>Calcula tu tarifa mínima por hora teniendo en cuenta gastos, impuestos, vacaciones y el sueldo que quieres llevar a casa.</p>
+  </div>
+
+  <!-- SUELDO OBJETIVO -->
+  <div class="card">
+    <div class="section-label">¿Cuánto quieres ganar?</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Sueldo neto mensual deseado (€)</label>
+        <input type="number" id="sueldo_deseado" value="2500" min="0" step="100" oninput="calcular()">
+        <p class="tip">Lo que quieres ingresar en tu cuenta cada mes</p>
+      </div>
+      <div class="field">
+        <label>Semanas de vacaciones al año</label>
+        <input type="number" id="semanas_vacaciones" value="4" min="0" max="20" oninput="calcular()">
+        <p class="tip">El mínimo legal es 4 semanas (30 días naturales)</p>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Horas facturables por semana</label>
+        <input type="number" id="horas_facturables" value="30" min="1" max="60" oninput="calcular()">
+        <p class="tip">No todas las horas trabajadas son facturables (reuniones, admin, formación...)</p>
+      </div>
+      <div class="field">
+        <label>% de tiempo no facturable (gestión, admin, ventas...)</label>
+        <input type="number" id="pct_no_facturable" value="20" min="0" max="70" oninput="calcular()">
+        <p class="tip">Un freelance típico dedica un 20-30% a tareas no facturables</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GASTOS -->
+  <div class="card">
+    <div class="section-label">Gastos mensuales de tu actividad</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Cuota de autónomo RETA (€/mes)</label>
+        <input type="number" id="cuota_reta" value="350" min="0" step="10" oninput="calcular()">
+        <p class="tip">Varía según tus ingresos. Usa nuestra <a href="/calculadora-irpf-autonomos/">calculadora de autónomos</a>.</p>
+      </div>
+      <div class="field">
+        <label>Gestoría / asesoría (€/mes)</label>
+        <input type="number" id="gestoria" value="80" min="0" step="10" oninput="calcular()">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Software, herramientas y suscripciones (€/mes)</label>
+        <input type="number" id="software" value="100" min="0" step="10" oninput="calcular()">
+      </div>
+      <div class="field">
+        <label>Formación y libros (€/mes)</label>
+        <input type="number" id="formacion" value="50" min="0" step="10" oninput="calcular()">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Seguros (responsabilidad civil, etc.) (€/mes)</label>
+        <input type="number" id="seguros" value="30" min="0" step="5" oninput="calcular()">
+      </div>
+      <div class="field">
+        <label>Otros gastos del negocio (€/mes)</label>
+        <input type="number" id="otros_gastos" value="100" min="0" step="10" oninput="calcular()">
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPUESTOS -->
+  <div class="card">
+    <div class="section-label">Impuestos estimados</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Tipo estimado de IRPF (%)</label>
+        <input type="number" id="tipo_irpf" value="20" min="0" max="47" step="1" oninput="calcular()">
+        <p class="tip">Mira el resultado en nuestra <a href="/calculadora-irpf-autonomos/">calculadora de autónomos</a></p>
+      </div>
+      <div class="field">
+        <label>Colchón imprevistos y morosidad (%)</label>
+        <input type="number" id="pct_imprevistos" value="10" min="0" max="30" step="1" oninput="calcular()">
+        <p class="tip">Clientes que pagan tarde, meses flojos, imprevistos... un 10% es prudente.</p>
+      </div>
+    </div>
+    <div class="info-box blue" style="margin-top:12px">
+      <p>💡 Como freelance en estimación directa pagas el 20% del beneficio trimestralmente (modelo 130) más el ajuste anual en la Renta. Reserva siempre ese % de cada factura.</p>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="resultado-hero">
+    <div class="rh-label">Tu tarifa mínima por hora</div>
+    <div class="rh-precio" id="rh_precio">—</div>
+    <div class="rh-sub" id="rh_sub">— €/hora antes de IVA</div>
+    <div class="rh-grid">
+      <div class="rh-item">
+        <div class="ri-label">Tarifa diaria (8h)</div>
+        <div class="ri-val" id="rh_dia">—</div>
+      </div>
+      <div class="rh-item">
+        <div class="ri-label">Tarifa semanal</div>
+        <div class="ri-val" id="rh_semana">—</div>
+      </div>
+      <div class="rh-item">
+        <div class="ri-label">Tarifa mensual</div>
+        <div class="ri-val" id="rh_mes">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESGLOSE -->
+  <div class="desglose">
+    <div class="des-section">
+      <div class="des-title">Tiempo disponible para facturar</div>
+      <div class="des-row"><span class="des-label">Semanas trabajadas al año</span><span class="des-val" id="d_semanas_trabajo">—</span></div>
+      <div class="des-row"><span class="des-label">Horas brutas facturables/año</span><span class="des-val" id="d_horas_brutas">—</span></div>
+      <div class="des-row"><span class="des-label">− Tiempo no facturable (admin, ventas...)</span><span class="des-val" id="d_no_facturable">—</span></div>
+      <div class="des-row"><span class="des-label">Horas facturables reales/año</span><span class="des-val highlight" id="d_horas_reales">—</span></div>
+    </div>
+    <div class="des-section">
+      <div class="des-title">Lo que necesitas facturar</div>
+      <div class="des-row"><span class="des-label">Sueldo neto deseado anual</span><span class="des-val" id="d_sueldo_anual">—</span></div>
+      <div class="des-row"><span class="des-label">+ Gastos del negocio anuales</span><span class="des-val" id="d_gastos_anuales">—</span></div>
+      <div class="des-row"><span class="des-label">+ IRPF estimado</span><span class="des-val" id="d_irpf_estimado">—</span></div>
+      <div class="des-row"><span class="des-label">+ Colchón imprevistos</span><span class="des-val" id="d_imprevistos">—</span></div>
+      <div class="des-row"><span class="des-label">Facturación mínima necesaria/año</span><span class="des-val highlight" id="d_facturacion_minima">—</span></div>
+    </div>
+    <div class="barra-wrap">
+      <div class="barra-title">Distribución de cada euro facturado</div>
+      <div class="barra">
+        <div class="barra-seg" id="seg_sueldo" style="background:var(--fr)"></div>
+        <div class="barra-seg" id="seg_gastos" style="background:#8a3a1a"></div>
+        <div class="barra-seg" id="seg_irpf" style="background:#8b2a2a"></div>
+        <div class="barra-seg" id="seg_imp" style="background:#c07a00"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--fr)"></div>Sueldo neto (<span id="leg_sueldo">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8a3a1a"></div>Gastos (<span id="leg_gastos">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8b2a2a"></div>IRPF (<span id="leg_irpf">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c07a00"></div>Imprevistos (<span id="leg_imp">—</span>)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESCENARIOS -->
+  <div class="escenarios" style="margin-top:1rem">
+    <div class="card">
+      <div class="section-label">¿Y si cambias tus horas facturables?</div>
+      <div class="esc-grid" id="esc-grid"></div>
+      <div class="info-box warn" style="margin-top:1rem">
+        <p>⚠️ Trabajar más horas no siempre es la solución. Aumentar tu tarifa o reducir el tiempo no facturable puede ser más efectivo para mejorar tu rentabilidad.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="seo-content">
+    <h2>¿Cuánto debe cobrar un freelance por hora en España?</h2>
+    <p>Uno de los errores más comunes de los freelances es calcular su tarifa dividiendo simplemente el sueldo que quieren entre las horas que trabajan. Esto ignora impuestos, gastos, vacaciones y el tiempo no facturable, lo que lleva a cobrar muy por debajo de lo necesario.</p>
+
+    <h3>El error del "empleado freelance"</h3>
+    <p>Un empleado con 2.500 € netos al mes le cuesta a la empresa aproximadamente 3.500-4.000 € incluyendo cotizaciones. Como freelance, además de ese coste base, tienes gastos propios (gestoría, software, seguros) y debes gestionar tus propios impuestos. Por eso tu tarifa debe ser significativamente mayor que el equivalente en salario de empleado.</p>
+
+    <h3>El tiempo no facturable: el gran olvidado</h3>
+    <p>No todas las horas que trabajas son horas que puedes cobrar. Las reuniones de captación de clientes, la gestión administrativa, la formación, el marketing y las propuestas que no se convierten en proyectos consumen entre el 20% y el 40% de tu tiempo. Si trabajas 40 horas semanales, puede que solo puedas facturar 25-30.</p>
+
+    <h3>Tarifas orientativas por sector en España 2026</h3>
+    <p>Los diseñadores gráficos y UX suelen cobrar entre 35 y 80 €/hora. Los desarrolladores web y de software entre 50 y 120 €/hora. Los consultores de marketing digital entre 40 y 90 €/hora. Los redactores y copywriters entre 30 y 70 €/hora. Estas tarifas varían mucho según la experiencia, el tipo de cliente y la especialización.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Debo añadir IVA a mi tarifa por hora? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, si realizas actividades sujetas a IVA debes añadir el IVA correspondiente (normalmente 21%) a tu tarifa. La tarifa que calculas en esta herramienta es el precio sin IVA (base imponible). El IVA lo cobras a tu cliente y lo ingresas trimestralmente a Hacienda — no es un ingreso tuyo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cómo negocio mi tarifa con un cliente? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Conocer tu tarifa mínima te da poder de negociación. Puedes presentar un precio superior al mínimo para tener margen de negociación, y saber exactamente hasta dónde puedes bajar sin perder dinero. También puedes ofrecer descuentos por volumen (proyectos largos) o por pago anticipado, siempre partiendo de una base que te resulte rentable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Es mejor cobrar por hora o por proyecto? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Depende. Cobrar por hora es más seguro cuando el alcance es incierto. Cobrar por proyecto puede ser más rentable si eres eficiente, ya que si terminas antes ganas más por hora efectiva. Lo ideal es usar la tarifa horaria como base para calcular presupuestos por proyecto, estimando el tiempo necesario y añadiendo un margen de seguridad del 20-30%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuándo debo subir mi tarifa? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Señales de que debes subir tu tarifa: tienes más demanda de la que puedes asumir, llevas más de un año sin subir precios (la inflación erosiona tu poder adquisitivo), has adquirido más experiencia y especialización, o tus clientes nunca negocian el precio (señal de que estás barato). Subidas graduales del 10-20% son más fáciles de aceptar que grandes saltos.</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Tu tarifa real depende de tu mercado, experiencia y tipo de cliente.</p>
+</footer>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmtE(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+function fmtH(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/h';}
+
+function calcularTarifa(sueldoDeseadoAnual, gastosAnuales, tipoIrpf, pctImprevistos, horasFacturables) {
+  const base = sueldoDeseadoAnual + gastosAnuales;
+  const conIrpf = base / (1 - tipoIrpf / 100);
+  const conImprevistos = conIrpf / (1 - pctImprevistos / 100);
+  return conImprevistos / horasFacturables;
+}
+
+function calcular() {
+  const sueldoMensual = parseFloat(document.getElementById('sueldo_deseado').value) || 0;
+  const semanasVac = parseFloat(document.getElementById('semanas_vacaciones').value) || 4;
+  const horasFact = parseFloat(document.getElementById('horas_facturables').value) || 30;
+  const pctNoFact = parseFloat(document.getElementById('pct_no_facturable').value) || 20;
+  const cuotaReta = parseFloat(document.getElementById('cuota_reta').value) || 0;
+  const gestoria = parseFloat(document.getElementById('gestoria').value) || 0;
+  const software = parseFloat(document.getElementById('software').value) || 0;
+  const formacion = parseFloat(document.getElementById('formacion').value) || 0;
+  const seguros = parseFloat(document.getElementById('seguros').value) || 0;
+  const otrosGastos = parseFloat(document.getElementById('otros_gastos').value) || 0;
+  const tipoIrpf = parseFloat(document.getElementById('tipo_irpf').value) || 20;
+  const pctImprevistos = parseFloat(document.getElementById('pct_imprevistos').value) || 10;
+
+  const semanasAnio = 52 - semanasVac;
+  const horasBrutas = horasFact * semanasAnio;
+  const horasNoFact = horasBrutas * pctNoFact / 100;
+  const horasReales = horasBrutas - horasNoFact;
+
+  const sueldoAnual = sueldoMensual * 12;
+  const gastosMes = cuotaReta + gestoria + software + formacion + seguros + otrosGastos;
+  const gastosAnuales = gastosMes * 12;
+
+  // Facturación necesaria: sueldo + gastos + irpf + imprevistos
+  const base = sueldoAnual + gastosAnuales;
+  const conIrpf = base / (1 - tipoIrpf / 100);
+  const facturacionNecesaria = conIrpf / (1 - pctImprevistos / 100);
+  const irpfEstimado = conIrpf * tipoIrpf / 100;
+  const imprevistos = facturacionNecesaria - conIrpf;
+
+  const tarifaHora = horasReales > 0 ? facturacionNecesaria / horasReales : 0;
+  const tarifaDia = tarifaHora * 8;
+  const tarifaSemana = tarifaHora * horasFact;
+  const tarifaMes = facturacionNecesaria / 12;
+
+  // Render principal
+  document.getElementById('rh_precio').textContent = fmtH(tarifaHora).replace(' €/h','');
+  document.getElementById('rh_sub').textContent = fmtH(tarifaHora) + ' antes de IVA';
+  document.getElementById('rh_dia').textContent = fmtE(tarifaDia);
+  document.getElementById('rh_semana').textContent = fmtE(tarifaSemana);
+  document.getElementById('rh_mes').textContent = fmtE(tarifaMes);
+
+  // Desglose tiempo
+  document.getElementById('d_semanas_trabajo').textContent = semanasAnio + ' semanas';
+  document.getElementById('d_horas_brutas').textContent = horasBrutas.toFixed(0) + ' horas';
+  document.getElementById('d_no_facturable').textContent = horasNoFact.toFixed(0) + ' horas (' + pctNoFact + '%)';
+  document.getElementById('d_horas_reales').textContent = horasReales.toFixed(0) + ' horas';
+
+  // Desglose dinero
+  document.getElementById('d_sueldo_anual').textContent = fmtE(sueldoAnual);
+  document.getElementById('d_gastos_anuales').textContent = fmtE(gastosAnuales);
+  document.getElementById('d_irpf_estimado').textContent = fmtE(irpfEstimado);
+  document.getElementById('d_imprevistos').textContent = fmtE(imprevistos);
+  document.getElementById('d_facturacion_minima').textContent = fmtE(facturacionNecesaria);
+
+  // Barra
+  const pS = facturacionNecesaria > 0 ? sueldoAnual / facturacionNecesaria * 100 : 0;
+  const pG = facturacionNecesaria > 0 ? gastosAnuales / facturacionNecesaria * 100 : 0;
+  const pI = facturacionNecesaria > 0 ? irpfEstimado / facturacionNecesaria * 100 : 0;
+  const pIm = facturacionNecesaria > 0 ? imprevistos / facturacionNecesaria * 100 : 0;
+  document.getElementById('seg_sueldo').style.width = pS.toFixed(1) + '%';
+  document.getElementById('seg_sueldo').textContent = pS > 8 ? Math.round(pS) + '%' : '';
+  document.getElementById('seg_gastos').style.width = pG.toFixed(1) + '%';
+  document.getElementById('seg_gastos').textContent = pG > 6 ? Math.round(pG) + '%' : '';
+  document.getElementById('seg_irpf').style.width = pI.toFixed(1) + '%';
+  document.getElementById('seg_irpf').textContent = pI > 6 ? Math.round(pI) + '%' : '';
+  document.getElementById('seg_imp').style.width = pIm.toFixed(1) + '%';
+  document.getElementById('seg_imp').textContent = pIm > 6 ? Math.round(pIm) + '%' : '';
+  document.getElementById('leg_sueldo').textContent = Math.round(pS) + '%';
+  document.getElementById('leg_gastos').textContent = Math.round(pG) + '%';
+  document.getElementById('leg_irpf').textContent = Math.round(pI) + '%';
+  document.getElementById('leg_imp').textContent = Math.round(pIm) + '%';
+
+  // Escenarios horas facturables
+  const escenarios = [
+    { label: 'Poco trabajo', horas: Math.max(10, horasFact - 10), tipo: '' },
+    { label: 'Tu escenario actual', horas: horasFact, tipo: 'actual' },
+    { label: 'Máxima carga', horas: Math.min(50, horasFact + 10), tipo: '' },
+  ];
+  document.getElementById('esc-grid').innerHTML = escenarios.map(e => {
+    const hR = (e.horas * semanasAnio) * (1 - pctNoFact / 100);
+    const t = hR > 0 ? facturacionNecesaria / hR : 0;
+    return `<div class="esc-item ${e.tipo}">
+      <div class="ei-label">${e.label}</div>
+      <div class="ei-tipo">${e.horas}h facturables/semana</div>
+      <div class="ei-precio">${t.toFixed(0)} €/h</div>
+      <div class="ei-detalle">${hR.toFixed(0)} h reales/año</div>
+    </div>`;
+  }).join('');
+}
+
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+</body>
+</html>

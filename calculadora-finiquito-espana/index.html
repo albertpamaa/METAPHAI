@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Finiquito España 2026 | Metaphai</title>
+  <meta name="description" content="Calcula tu finiquito gratis. Incluye vacaciones no disfrutadas, parte proporcional de pagas extra, salario pendiente y indemnización por despido. España 2026.">
+  <meta name="keywords" content="calculadora finiquito españa 2026, calcular finiquito, finiquito vacaciones, finiquito despido, cuanto me corresponde finiquito">
+  <meta name="robots" content="index, follow">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --danger: #8b2a2a; --warn: #7a4f1a;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 480px; margin: 0 auto; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--accent); padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(2n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .indemnizacion-box { padding: 1.25rem; border-top: 1px solid var(--border); background: var(--bg); }
+    .indemnizacion-title { font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+    .indemnizacion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    @media (max-width: 540px) { .indemnizacion-grid { grid-template-columns: 1fr; } }
+    .indem-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
+    .indem-item .il { font-size: 11px; color: var(--hint); margin-bottom: 2px; }
+    .indem-item .iv { font-size: 14px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-1P9N4QY0JR");
+  </script>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <h1>Calculadora de <em>finiquito</em><br>España 2026</h1>
+    <p>Calcula lo que te corresponde al finalizar tu contrato. Gratis, sin registro, actualizada.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="card">
+    <div class="section-label">Datos del contrato</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Salario bruto anual (€)</label>
+        <input type="number" id="salario" value="25000" min="0" step="500">
+      </div>
+      <div class="field">
+        <label>Número de pagas</label>
+        <select id="pagas">
+          <option value="12">12 pagas</option>
+          <option value="14" selected>14 pagas</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Fecha de inicio del contrato</label>
+        <input type="date" id="fecha_inicio" value="2022-01-01">
+      </div>
+      <div class="field">
+        <label>Fecha de fin del contrato</label>
+        <input type="date" id="fecha_fin">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Vacaciones</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Días de vacaciones al año</label>
+        <input type="number" id="vacaciones_año" value="22" min="22" max="40">
+        <p class="tip">Mínimo legal: 22 días laborables</p>
+      </div>
+      <div class="field">
+        <label>Días de vacaciones ya disfrutados este año</label>
+        <input type="number" id="vacaciones_disfrutadas" value="0" min="0" max="40">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Motivo de la baja</div>
+    <div class="field">
+      <label>Tipo de finalización</label>
+      <select id="motivo">
+        <option value="voluntaria">Baja voluntaria del trabajador</option>
+        <option value="mutuo">Mutuo acuerdo</option>
+        <option value="fin_contrato">Fin de contrato temporal</option>
+        <option value="despido_proc">Despido procedente</option>
+        <option value="despido_improc">Despido improcedente</option>
+        <option value="erte_extincion">Extinción por causas objetivas (ERTE)</option>
+      </select>
+    </div>
+    <p class="tip" id="motivo_tip" style="margin-top:8px"></p>
+  </div>
+
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Total finiquito estimado</div>
+        <div class="main-value" id="res_total">—</div>
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="res-item pos">
+        <div class="rl">Salario días pendientes</div>
+        <div class="rv" id="d_salario_pend">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Vacaciones no disfrutadas</div>
+        <div class="rv" id="d_vacaciones">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Parte proporcional paga extra</div>
+        <div class="rv" id="d_pagas">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Indemnización por despido</div>
+        <div class="rv" id="d_indem">—</div>
+      </div>
+    </div>
+    <div class="indemnizacion-box" id="indem_detalle" style="display:none">
+      <div class="indemnizacion-title">Desglose indemnización</div>
+      <div class="indemnizacion-grid">
+        <div class="indem-item">
+          <div class="il">Años trabajados</div>
+          <div class="iv" id="i_años">—</div>
+        </div>
+        <div class="indem-item">
+          <div class="il">Días/año aplicados</div>
+          <div class="iv" id="i_dias_año">—</div>
+        </div>
+        <div class="indem-item">
+          <div class="il">Salario/día</div>
+          <div class="iv" id="i_salario_dia">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo se calcula el finiquito en España?</h2>
+    <p>El finiquito es la liquidación económica que recibe el trabajador al finalizar su relación laboral. Se compone de varias partes independientes del motivo de la baja.</p>
+
+    <h3>Partes del finiquito</h3>
+    <p>El finiquito incluye siempre el salario de los días trabajados en el último mes no cobrado, la parte proporcional de las pagas extraordinarias devengadas y no cobradas, y las vacaciones que no hayas disfrutado en el año en curso.</p>
+
+    <h3>¿Cuándo hay indemnización?</h3>
+    <p>Solo en ciertos tipos de finalización. En una baja voluntaria no hay indemnización. En un despido improcedente corresponden 33 días de salario por año trabajado (con un máximo de 24 mensualidades). En un despido por causas objetivas son 20 días por año trabajado.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tiene la empresa para pagar el finiquito? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No existe un plazo legal fijo, pero la práctica habitual es el último día de trabajo o los días siguientes. Si la empresa demora el pago puede generar intereses de mora.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El finiquito lleva IRPF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">El salario pendiente y las vacaciones sí tributan como rendimientos del trabajo. La indemnización por despido improcedente está exenta de IRPF hasta el límite legal (33 días/año con tope de 24 mensualidades).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo negarme a firmar el finiquito? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Puedes firmarlo añadiendo "no conforme" si crees que el importe es incorrecto. Esto no implica renuncia a reclamar la diferencia. Si no firmas, la empresa puede consignar el importe ante el juzgado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si me voy antes de acabar el preaviso? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Si no respetas el preaviso pactado en convenio o contrato, la empresa puede descontarte del finiquito los días de preaviso incumplidos.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px; color: var(--hint)">Estimación orientativa. No constituye asesoramiento laboral.</p>
+</footer>
+
+<script>
+function fmt(n) { return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+
+const motivoTips = {
+  voluntaria: 'Sin indemnización. Solo salario pendiente, vacaciones y pagas proporcionales.',
+  mutuo: 'La indemnización se pacta libremente entre las partes.',
+  fin_contrato: '12 días de salario por año trabajado.',
+  despido_proc: 'Sin indemnización. Causas disciplinarias reconocidas.',
+  despido_improc: '33 días por año trabajado, máximo 24 mensualidades.',
+  erte_extincion: '20 días por año trabajado, máximo 12 mensualidades.'
+};
+
+const diasIndem = { voluntaria: 0, mutuo: 0, fin_contrato: 12, despido_proc: 0, despido_improc: 33, erte_extincion: 20 };
+const topeMeses = { fin_contrato: 6, despido_improc: 24, erte_extincion: 12 };
+
+document.getElementById('fecha_fin').value = new Date().toISOString().split('T')[0];
+document.getElementById('motivo').addEventListener('change', () => {
+  document.getElementById('motivo_tip').textContent = motivoTips[document.getElementById('motivo').value];
+  calcular();
+});
+document.getElementById('motivo_tip').textContent = motivoTips['voluntaria'];
+
+function calcular() {
+  const salario = parseFloat(document.getElementById('salario').value) || 0;
+  const pagas = parseInt(document.getElementById('pagas').value);
+  const fechaInicio = new Date(document.getElementById('fecha_inicio').value);
+  const fechaFin = new Date(document.getElementById('fecha_fin').value);
+  const vacAño = parseInt(document.getElementById('vacaciones_año').value) || 22;
+  const vacDisfrutadas = parseInt(document.getElementById('vacaciones_disfrutadas').value) || 0;
+  const motivo = document.getElementById('motivo').value;
+
+  if (!fechaInicio || !fechaFin || fechaFin < fechaInicio) return;
+
+  const salarioDia = salario / 365;
+  const salarioMensual = salario / 12;
+
+  // Días trabajados en el mes actual sin cobrar
+  const diaInicio = fechaFin.getDate();
+  const diasPendientes = diaInicio;
+  const salarioPendiente = salarioMensual / 30 * diasPendientes;
+
+  // Vacaciones no disfrutadas
+  const inicioAño = new Date(fechaFin.getFullYear(), 0, 1);
+  const diasAño = 365;
+  const diasTrabajadosAño = Math.min((fechaFin - inicioAño) / (1000 * 60 * 60 * 24), diasAño);
+  const vacacionesGeneradas = Math.floor(vacAño * diasTrabajadosAño / diasAño);
+  const vacacionesPendientes = Math.max(0, vacacionesGeneradas - vacDisfrutadas);
+  const importeVacaciones = salarioDia * vacacionesPendientes * (365 / 220);
+
+  // Pagas extra proporcionales
+  const mesActual = fechaFin.getMonth();
+  let mesesPagaVerano = mesActual < 6 ? mesActual : 6;
+  let mesesPagaNavidad = mesActual >= 6 ? mesActual - 6 : 0;
+  const pagaExtra = pagas === 14 ? salario / 14 : salario / 12;
+  const importePagas = pagaExtra * (mesesPagaVerano + mesesPagaNavidad) / 6;
+
+  // Indemnización
+  const msTotal = fechaFin - fechaInicio;
+  const añosTrabajados = msTotal / (1000 * 60 * 60 * 24 * 365);
+  const diasPorAño = diasIndem[motivo] || 0;
+  const tope = topeMeses[motivo] || 0;
+  let indemnizacion = 0;
+  if (diasPorAño > 0) {
+    indemnizacion = Math.min(salarioDia * diasPorAño * añosTrabajados, tope > 0 ? salarioMensual * tope : Infinity);
+  }
+
+  const total = salarioPendiente + importeVacaciones + importePagas + indemnizacion;
+
+  document.getElementById('res_total').textContent = fmt(total);
+  document.getElementById('d_salario_pend').textContent = fmt(salarioPendiente);
+  document.getElementById('d_vacaciones').textContent = fmt(importeVacaciones) + ` (${vacacionesPendientes} días)`;
+  document.getElementById('d_pagas').textContent = fmt(importePagas);
+  document.getElementById('d_indem').textContent = diasPorAño > 0 ? fmt(indemnizacion) : 'No aplica';
+
+  if (diasPorAño > 0 && indemnizacion > 0) {
+    document.getElementById('indem_detalle').style.display = 'block';
+    document.getElementById('i_años').textContent = añosTrabajados.toFixed(2) + ' años';
+    document.getElementById('i_dias_año').textContent = diasPorAño + ' días';
+    document.getElementById('i_salario_dia').textContent = fmt(salarioDia);
+  } else {
+    document.getElementById('indem_detalle').style.display = 'none';
+  }
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+</script>
+</body>
+</html>

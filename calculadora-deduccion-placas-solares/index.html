@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Deducción Placas Solares IRPF 2026 | Metaphai</title>
+  <meta name="description" content="Calcula cuánto te devuelve Hacienda por instalar placas solares en 2026. Deducción del 30% en el IRPF por obras de mejora energética. Gratis y sin registro.">
+  <meta name="keywords" content="deduccion placas solares irpf 2026, cuanto devuelve hacienda placas solares, deduccion fiscal energia solar, mejora eficiencia energetica irpf">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Deducción Placas Solares IRPF 2026 | Metaphai">
+  <meta property="og:description" content="Calcula cuánto te devuelve Hacienda por instalar placas solares. Deducción del 30% en el IRPF por mejora energética.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-deduccion-placas-solares/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --solar: #c07a00; --solar-light: #fef6ec;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .hero { text-align: center; padding: 2rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero h1 em { font-style: normal; color: var(--solar); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--solar-light); color: var(--solar); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+    .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .tip.highlight { color: var(--solar); background: var(--solar-light); padding: 6px 10px; border-radius: 6px; }
+    .info-box { background: var(--accent-light); border: 1px solid #b8dece; border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
+    .info-box p { font-size: 13px; color: var(--accent); margin: 0; }
+    .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
+    .results-header { background: var(--solar); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
+    .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+    .results-header .main-value { font-size: 36px; font-weight: 600; color: white; letter-spacing: -0.03em; font-family: 'DM Mono', monospace; }
+    .results-header .sub-block { text-align: right; }
+    .results-header .sub-label { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
+    .results-header .sub-value { font-size: 18px; font-weight: 500; color: white; font-family: 'DM Mono', monospace; }
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 540px) { .results-grid { grid-template-columns: 1fr 1fr; } }
+    .res-item { padding: 1rem 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .res-item:nth-child(3n) { border-right: none; }
+    .res-item .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .res-item .rv { font-size: 15px; font-weight: 500; font-family: 'DM Mono', monospace; }
+    .res-item.pos .rv { color: var(--accent); }
+    .res-item.solar .rv { color: var(--solar); }
+    .aviso { margin: 1rem; background: var(--solar-light); border: 1px solid #f0d0a0; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: var(--solar); display: none; }
+    .aviso.show { display: block; }
+    .timeline { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .timeline-title { font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+    .timeline-row { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+    .timeline-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--solar); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+    .timeline-dot.dim { background: var(--bg); color: var(--hint); border: 1px solid var(--border); }
+    .timeline-content .tc-label { font-size: 13px; font-weight: 500; }
+    .timeline-content .tc-val { font-size: 13px; color: var(--muted); }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .seo-content p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
+    .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+    @media (max-width: 540px) { .req-grid { grid-template-columns: 1fr; } }
+    .req-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
+    .req-item .ri-icon { font-size: 18px; margin-bottom: 4px; }
+    .req-item .ri-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+    .req-item .ri-desc { font-size: 12px; color: var(--muted); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">☀️ Deducción fiscal 2026</div>
+    <h1>¿Cuánto te devuelve Hacienda<br>por tus <em>placas solares</em>?</h1>
+    <p>Calcula tu deducción en el IRPF por instalar paneles solares o mejorar la eficiencia energética de tu vivienda.</p>
+  </div>
+
+  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+
+  <div class="card">
+    <div class="section-label">Datos de la instalación</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Coste total de la instalación (€)</label>
+        <input type="number" id="coste" value="8000" min="0" step="500">
+        <p class="tip">Incluye materiales, mano de obra e IVA</p>
+      </div>
+      <div class="field">
+        <label>Tipo de deducción aplicable</label>
+        <select id="tipo_deduccion">
+          <option value="30">30% — Mejora eficiencia energética (calefacción/refrigeración)</option>
+          <option value="40">40% — Reducción ≥30% consumo energía primaria</option>
+          <option value="60">60% — Edificio de consumo energético casi nulo</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Año de la instalación</label>
+        <select id="año_instalacion">
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026" selected>2026</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tipo de vivienda</label>
+        <select id="tipo_vivienda">
+          <option value="habitual">Vivienda habitual</option>
+          <option value="arrendada">Vivienda arrendada</option>
+          <option value="otra">Otra vivienda propia</option>
+        </select>
+      </div>
+    </div>
+    <div id="aviso_vivienda" class="aviso">
+      ⚠️ La deducción solo aplica a la vivienda habitual o arrendada. Las segundas residencias no dan derecho a esta deducción.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Tu situación fiscal</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Cuota íntegra estatal (€)</label>
+        <input type="number" id="cuota_integra" value="3500" min="0" step="100">
+        <p class="tip">Casilla 546 de tu declaración de la Renta</p>
+      </div>
+      <div class="field">
+        <label>¿Tienes base de deducción pendiente de años anteriores?</label>
+        <select id="pendiente_anterior">
+          <option value="0">No</option>
+          <option value="1">Sí</option>
+        </select>
+      </div>
+    </div>
+    <div id="campo_pendiente" style="display:none;margin-top:12px">
+      <div class="field" style="max-width:260px">
+        <label>Importe pendiente de años anteriores (€)</label>
+        <input type="number" id="importe_pendiente" value="1000" min="0" step="100">
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:12px">
+      <p>💡 Si no sabes tu cuota íntegra, usa nuestra <a href="/calculadora-salario-neto-espana/" style="color:var(--accent);font-weight:500;">calculadora de salario</a> para estimarla a partir de tu sueldo bruto.</p>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Deducción total en el IRPF</div>
+        <div class="main-value" id="res_deduccion">—</div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Coste real instalación</div>
+        <div class="sub-value" id="res_coste_real">—</div>
+        <div class="sub-label" style="margin-top:8px">Ahorro sobre inversión</div>
+        <div class="sub-value" id="res_pct_ahorro">—</div>
+      </div>
+    </div>
+
+    <div id="aviso_limite" class="aviso">
+      ⚠️ Tu deducción supera el límite anual permitido. El exceso se traslada a los 4 años siguientes.
+    </div>
+
+    <div class="results-grid">
+      <div class="res-item solar">
+        <div class="rl">Base de deducción</div>
+        <div class="rv" id="d_base">—</div>
+      </div>
+      <div class="res-item solar">
+        <div class="rl">Porcentaje deducción</div>
+        <div class="rv" id="d_pct">—</div>
+      </div>
+      <div class="res-item solar">
+        <div class="rl">Límite base anual</div>
+        <div class="rv" id="d_limite_base">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Deducción este año</div>
+        <div class="rv" id="d_este_año">—</div>
+      </div>
+      <div class="res-item">
+        <div class="rl">Pendiente años siguientes</div>
+        <div class="rv" id="d_pendiente">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Coste neto instalación</div>
+        <div class="rv" id="d_coste_neto">—</div>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline_section" style="display:none">
+      <div class="timeline-title">Distribución de la deducción por años</div>
+      <div id="timeline_rows"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" style="margin-top:1.5rem">Publicidad — Google AdSense aquí</div>
+
+  <div class="seo-content">
+    <h2>¿Cómo funciona la deducción por placas solares en España?</h2>
+    <p>Desde 2021, el Gobierno español ofrece deducciones en el IRPF para incentivar la mejora de la eficiencia energética en viviendas. La instalación de paneles solares fotovoltaicos para autoconsumo puede acogerse a estas deducciones dependiendo del impacto energético que produzcan.</p>
+
+    <h3>Los tres tipos de deducción</h3>
+    <p>Hay tres niveles de deducción según el grado de mejora energética conseguido. La deducción del 30% aplica cuando se reduce al menos un 7% la demanda de calefacción y refrigeración, con una base máxima de 5.000 € anuales. La deducción del 40% se aplica cuando se reduce al menos un 30% el consumo de energía primaria no renovable, con base máxima de 7.500 €. La deducción del 60% es para edificios de consumo de energía casi nulo, con base máxima de 5.000 € anuales por vivienda.</p>
+
+    <h3>Requisitos para aplicar la deducción</h3>
+    <div class="req-grid">
+      <div class="req-item">
+        <div class="ri-icon">🏠</div>
+        <div class="ri-title">Vivienda habitual o arrendada</div>
+        <div class="ri-desc">La deducción aplica solo a vivienda habitual o en alquiler, no a segundas residencias</div>
+      </div>
+      <div class="req-item">
+        <div class="ri-icon">📋</div>
+        <div class="ri-title">Certificado energético</div>
+        <div class="ri-desc">Necesitas certificado de eficiencia energética antes y después de la instalación</div>
+      </div>
+      <div class="req-item">
+        <div class="ri-icon">🧾</div>
+        <div class="ri-title">Pago por medios bancarios</div>
+        <div class="ri-desc">El pago debe realizarse mediante transferencia, tarjeta u otro medio no en efectivo</div>
+      </div>
+      <div class="req-item">
+        <div class="ri-icon">📅</div>
+        <div class="ri-title">Plazo vigente</div>
+        <div class="ri-desc">Las deducciones aplican para obras realizadas hasta el 31 de diciembre de 2026</div>
+      </div>
+    </div>
+
+    <h3>¿Se puede combinar con subvenciones?</h3>
+    <p>Sí, pero la base de la deducción se reduce con las subvenciones recibidas. Si recibes una subvención del programa MOVES u otro plan autonómico, debes restar ese importe del coste total para calcular la base de deducción correctamente.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Las placas solares dan derecho a deducción directamente? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No automáticamente. Depende de si la instalación mejora la eficiencia energética de la vivienda en los porcentajes requeridos. Necesitas un certificado energético que acredite la mejora antes y después de la instalación.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si la deducción supera mi cuota íntegra? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">El exceso no se pierde. Puedes aplicarlo en los 4 ejercicios fiscales siguientes hasta agotarlo, siempre respetando los límites anuales.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Incluye el IVA en la base de deducción? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí, el IVA forma parte de las cantidades satisfechas y por tanto se incluye en la base de la deducción.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Puedo aplicarla si soy propietario y alquilo la vivienda? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. La deducción también aplica si eres propietario de una vivienda arrendada y realizas obras de mejora energética, siempre que la vivienda esté alquilada o en expectativa de alquiler.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Es compatible con las ayudas del Plan de Recuperación? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Es compatible pero las subvenciones recibidas reducen la base de deducción. Por ejemplo, si la instalación cuesta 8.000 € y recibes 2.000 € de subvención, la base de deducción será de 6.000 €.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Consulta con un asesor fiscal para tu caso concreto.</p>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const LIMITES_BASE = { 30: 5000, 40: 7500, 60: 5000 };
+
+document.getElementById('pendiente_anterior').addEventListener('change', function(){
+  document.getElementById('campo_pendiente').style.display = this.value === '1' ? 'block' : 'none';
+  calcular();
+});
+
+document.getElementById('tipo_vivienda').addEventListener('change', function(){
+  const aviso = document.getElementById('aviso_vivienda');
+  aviso.classList.toggle('show', this.value === 'otra');
+  calcular();
+});
+
+function calcular(){
+  const coste = parseFloat(document.getElementById('coste').value) || 0;
+  const pct = parseInt(document.getElementById('tipo_deduccion').value);
+  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const pendienteAnterior = document.getElementById('pendiente_anterior').value === '1'
+    ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const añoInstalacion = parseInt(document.getElementById('año_instalacion').value);
+  const tipoVivienda = document.getElementById('tipo_vivienda').value;
+
+  const limiteBase = LIMITES_BASE[pct];
+  const baseDeduccion = Math.min(coste, limiteBase);
+  const deduccionBruta = baseDeduccion * pct / 100;
+  const totalDeduccion = deduccionBruta + pendienteAnterior;
+
+  // Límite: no puede superar cuota íntegra
+  const deduccionEsteAño = Math.min(totalDeduccion, cuotaIntegra);
+  const pendienteSiguientes = Math.max(0, totalDeduccion - deduccionEsteAño);
+  const costeNeto = coste - deduccionEsteAño;
+  const pctAhorro = coste > 0 ? (deduccionEsteAño / coste * 100) : 0;
+
+  document.getElementById('res_deduccion').textContent = fmt(deduccionEsteAño);
+  document.getElementById('res_coste_real').textContent = fmt(costeNeto);
+  document.getElementById('res_pct_ahorro').textContent = pctAhorro.toFixed(1) + '%';
+  document.getElementById('d_base').textContent = fmt(baseDeduccion);
+  document.getElementById('d_pct').textContent = pct + '%';
+  document.getElementById('d_limite_base').textContent = fmt(limiteBase);
+  document.getElementById('d_este_año').textContent = fmt(deduccionEsteAño);
+  document.getElementById('d_pendiente').textContent = pendienteSiguientes > 0 ? fmt(pendienteSiguientes) : 'Ninguno';
+  document.getElementById('d_coste_neto').textContent = fmt(costeNeto);
+
+  const avisoLimite = document.getElementById('aviso_limite');
+  avisoLimite.classList.toggle('show', pendienteSiguientes > 0);
+
+  // Timeline si hay pendiente
+  const timelineSection = document.getElementById('timeline_section');
+  if (pendienteSiguientes > 0) {
+    timelineSection.style.display = 'block';
+    let html = '';
+    let restante = pendienteSiguientes;
+    html += `<div class="timeline-row"><div class="timeline-dot">${añoInstalacion}</div><div class="timeline-content"><div class="tc-label">Deducción aplicada</div><div class="tc-val">${fmt(deduccionEsteAño)}</div></div></div>`;
+    for (let i = 1; i <= 4 && restante > 0; i++) {
+      const aplicado = Math.min(restante, cuotaIntegra);
+      html += `<div class="timeline-row"><div class="timeline-dot ${aplicado < restante ? '' : 'dim'}">${añoInstalacion + i}</div><div class="timeline-content"><div class="tc-label">Deducción pendiente año ${i}</div><div class="tc-val">${fmt(aplicado)}</div></div></div>`;
+      restante -= aplicado;
+    }
+    document.getElementById('timeline_rows').innerHTML = html;
+  } else {
+    timelineSection.style.display = 'none';
+  }
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
+</script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Indemnización Accidente Tráfico Baremo 2026 | Metaphai</title>
+  <meta name="description" content="Calcula la indemnización por accidente de tráfico según el baremo 2026. Incluye lesiones temporales, secuelas, daños morales y perjuicio personal. Gratis y sin registro.">
+  <meta name="keywords" content="calculadora indemnizacion accidente trafico 2026, baremo trafico 2026, cuanto me corresponde accidente, indemnizacion lesiones trafico, secuelas accidente coche">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Calculadora Indemnización Accidente de Tráfico Baremo 2026 | Metaphai">
+  <meta property="og:description" content="Calcula tu indemnización por accidente de tráfico según el baremo oficial 2026. Incluye lesiones, secuelas y daños morales.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-indemnizacion-accidente-trafico/">
+  <meta property="og:type" content="website">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--bg:#f7f6f2;--surface:#fff;--border:#e2e0d8;--text:#1a1916;--muted:#6b6960;--hint:#9e9c94;--accent:#2d6a4f;--accent-light:#e8f4ee;--acc:#7a1a1a;--acc-light:#fdf0f0;--warn:#7a4f1a;--warn-light:#fef6ec;--radius:10px;--radius-lg:16px;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:10;}
+    .logo{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.02em;text-decoration:none;}.logo span{color:var(--accent);}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;}.nav-back:hover{color:var(--accent);}
+    main{max-width:760px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+    .hero{text-align:center;padding:2rem 0;}
+    .hero h1{font-size:clamp(20px,3.5vw,32px);font-weight:600;letter-spacing:-.03em;line-height:1.2;margin-bottom:.75rem;}
+    .hero h1 em{font-style:normal;color:var(--acc);}
+    .hero p{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto;}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:var(--acc-light);color:var(--acc);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:1rem;}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem;}
+    .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--hint);margin-bottom:1rem;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    @media(max-width:540px){.grid2,.grid3{grid-template-columns:1fr;}}
+    .field{display:flex;flex-direction:column;gap:5px;}
+    .field label{font-size:12px;color:var(--muted);font-weight:500;}
+    .field input,.field select{font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);width:100%;}
+    .field input:focus,.field select:focus{outline:none;border-color:var(--acc);background:var(--surface);}
+    .tip{font-size:12px;color:var(--hint);margin-top:4px;}
+    .info-box{border-radius:var(--radius);padding:12px 14px;margin-top:12px;}
+    .info-box.red{background:var(--acc-light);border:1px solid #f0b0b0;}.info-box.red p{font-size:13px;color:var(--acc);margin:0;}
+    .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
+    .results{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:1.5rem;}
+    .results-header{background:var(--acc);padding:1.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;}
+    .results-header .main-label{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:4px;}
+    .results-header .main-value{font-size:36px;font-weight:600;color:white;letter-spacing:-.03em;font-family:'DM Mono',monospace;}
+    .results-header .sub-block{text-align:right;}
+    .results-header .sub-label{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:2px;}
+    .results-header .sub-value{font-size:18px;font-weight:500;color:white;font-family:'DM Mono',monospace;}
+    .results-grid{display:grid;grid-template-columns:repeat(2,1fr);}
+    .res-item{padding:1rem 1.25rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .res-item:nth-child(2n){border-right:none;}
+    .res-item .rl{font-size:11px;color:var(--hint);margin-bottom:3px;}
+    .res-item .rv{font-size:15px;font-weight:500;font-family:'DM Mono',monospace;}
+    .res-item.pos .rv{color:var(--acc);}
+    .desglose-liq{padding:1.25rem;border-top:1px solid var(--border);}
+    .liq-title{font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:500;}
+    .liq-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+    .liq-row:last-child{border-bottom:none;font-weight:600;font-size:14px;}
+    .liq-label{color:var(--muted);}
+    .liq-val{font-family:'DM Mono',monospace;color:var(--text);}
+    .seo-content{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+    .seo-content h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;}
+    .seo-content h3{font-size:15px;font-weight:600;margin:1.5rem 0 .5rem;}
+    .seo-content p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:.75rem;}
+    .faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+    .faq-q{padding:12px 16px;font-size:14px;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface);}
+    .faq-q:hover{background:var(--bg);}
+    .faq-a{display:none;padding:0 16px 12px;font-size:14px;color:var(--muted);background:var(--surface);line-height:1.7;}
+    .faq-item.open .faq-a{display:block;}
+    .faq-arrow{transition:transform .2s;font-size:12px;}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    footer{text-align:center;padding:2rem;font-size:12px;color:var(--hint);border-top:1px solid var(--border);margin-top:3rem;}
+    footer a{color:var(--hint);}
+  </style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="badge">🚗 Baremo Tráfico 2026</div>
+    <h1>Calculadora de indemnización<br>por <em>accidente de tráfico</em></h1>
+    <p>Estima la indemnización que te corresponde según el baremo oficial 2026. Incluye lesiones temporales, secuelas y perjuicio personal.</p>
+  </div>
+
+  <div class="info-box warn" style="margin-bottom:1.5rem">
+    <p>⚠️ Esta calculadora ofrece una estimación orientativa. La indemnización final la determina el juzgado o la aseguradora según el caso concreto. Consulta siempre con un abogado especialista en tráfico.</p>
+  </div>
+
+  <!-- DATOS PERSONALES -->
+  <div class="card">
+    <div class="section-label">Datos personales del perjudicado</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Edad en el momento del accidente</label>
+        <input type="number" id="edad" value="35" min="0" max="100" oninput="calcular()">
+      </div>
+      <div class="field">
+        <label>Situación laboral</label>
+        <select id="situacion" onchange="calcular()">
+          <option value="trabajando">Trabajando (asalariado)</option>
+          <option value="autonomo">Autónomo</option>
+          <option value="desempleado">Desempleado</option>
+          <option value="jubilado">Jubilado / Pensionista</option>
+          <option value="estudiante">Estudiante / Menor</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Salario neto mensual (€)</label>
+        <input type="number" id="salario_neto" value="1800" min="0" step="100" oninput="calcular()">
+        <p class="tip">Solo si trabajas. Para calcular lucro cesante.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESIONES TEMPORALES -->
+  <div class="card">
+    <div class="section-label">Lesiones temporales (período de curación)</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Días de hospitalización</label>
+        <input type="number" id="dias_hospital" value="0" min="0" oninput="calcular()">
+        <p class="tip">~97 €/día (baremo 2026)</p>
+      </div>
+      <div class="field">
+        <label>Días de baja moderada (en casa, sin movilidad)</label>
+        <input type="number" id="dias_baja_moderada" value="30" min="0" oninput="calcular()">
+        <p class="tip">~58 €/día</p>
+      </div>
+      <div class="field">
+        <label>Días de baja básica (limitación leve)</label>
+        <input type="number" id="dias_baja_basica" value="60" min="0" oninput="calcular()">
+        <p class="tip">~31 €/día</p>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>¿Intervención quirúrgica?</label>
+        <select id="cirugia" onchange="calcular()">
+          <option value="0">No</option>
+          <option value="1500">Sí, menor (artroscopia, etc.)</option>
+          <option value="4000">Sí, mayor (columna, rodilla...)</option>
+          <option value="8000">Sí, muy grave (cráneo, órganos...)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Gastos médicos acreditados (€)</label>
+        <input type="number" id="gastos_medicos" value="500" min="0" step="100" oninput="calcular()">
+        <p class="tip">Fisioterapia, psicólogo, fármacos...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECUELAS -->
+  <div class="card">
+    <div class="section-label">Secuelas permanentes (si las hay)</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Puntos de secuela (baremo médico)</label>
+        <input type="number" id="puntos_secuela" value="0" min="0" max="100" oninput="calcular()">
+        <p class="tip">El médico forense asigna puntos según el baremo. 0 si no hay secuelas.</p>
+      </div>
+      <div class="field">
+        <label>Tipo de secuela principal</label>
+        <select id="tipo_secuela" onchange="calcular()">
+          <option value="funcional">Funcional (movilidad reducida)</option>
+          <option value="estetica">Estética (cicatrices, deformidades)</option>
+          <option value="neurologica">Neurológica / Psicológica</option>
+          <option value="ninguna">Sin secuelas</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>¿Perjuicio estético independiente? (puntos)</label>
+        <input type="number" id="puntos_esteticos" value="0" min="0" max="50" oninput="calcular()">
+        <p class="tip">Se valora separadamente. 0 si no aplica.</p>
+      </div>
+      <div class="field">
+        <label>¿Incapacidad laboral derivada?</label>
+        <select id="incapacidad" onchange="calcular()">
+          <option value="ninguna">Sin incapacidad laboral</option>
+          <option value="parcial">Incapacidad permanente parcial</option>
+          <option value="total">Incapacidad permanente total</option>
+          <option value="absoluta">Incapacidad permanente absoluta</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- LUCRO CESANTE -->
+  <div class="card">
+    <div class="section-label">Lucro cesante (ingresos no percibidos)</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Días sin poder trabajar por el accidente</label>
+        <input type="number" id="dias_sin_trabajo" value="90" min="0" oninput="calcular()">
+      </div>
+      <div class="field">
+        <label>¿Prestación de IT recibida? (€/mes)</label>
+        <input type="number" id="prestacion_it" value="0" min="0" step="100" oninput="calcular()">
+        <p class="tip">Se descuenta del lucro cesante</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results">
+    <div class="results-header">
+      <div>
+        <div class="main-label">Indemnización total estimada</div>
+        <div class="main-value" id="res_total">—</div>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Lesiones temporales</div>
+        <div class="sub-value" id="res_lesiones">—</div>
+        <div class="sub-label" style="margin-top:8px">Secuelas</div>
+        <div class="sub-value" id="res_secuelas">—</div>
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="res-item pos">
+        <div class="rl">Perjuicio personal básico (lesiones)</div>
+        <div class="rv" id="d_lesiones">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Perjuicio personal básico (secuelas)</div>
+        <div class="rv" id="d_secuelas_base">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Daño estético</div>
+        <div class="rv" id="d_estetico">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Lucro cesante</div>
+        <div class="rv" id="d_lucro">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Gastos médicos</div>
+        <div class="rv" id="d_medicos">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Cirugía / intervenciones</div>
+        <div class="rv" id="d_cirugia">—</div>
+      </div>
+    </div>
+    <div class="desglose-liq">
+      <div class="liq-title">Desglose completo</div>
+      <div class="liq-row"><span class="liq-label">Días hospitalización (×97 €)</span><span class="liq-val" id="l_hospital">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días baja moderada (×58 €)</span><span class="liq-val" id="l_moderada">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días baja básica (×31 €)</span><span class="liq-val" id="l_basica">—</span></div>
+      <div class="liq-row"><span class="liq-label">Gastos médicos acreditados</span><span class="liq-val" id="l_medicos">—</span></div>
+      <div class="liq-row"><span class="liq-label">Cirugía</span><span class="liq-val" id="l_cirugia">—</span></div>
+      <div class="liq-row"><span class="liq-label">Secuelas (puntos × valor)</span><span class="liq-val" id="l_secuelas">—</span></div>
+      <div class="liq-row"><span class="liq-label">Perjuicio estético</span><span class="liq-val" id="l_estetico">—</span></div>
+      <div class="liq-row"><span class="liq-label">Lucro cesante</span><span class="liq-val" id="l_lucro">—</span></div>
+      <div class="liq-row"><span class="liq-label">Incremento por incapacidad laboral</span><span class="liq-val" id="l_incapacidad">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="color:var(--text)">Total estimado</span><span class="liq-val" id="l_total">—</span></div>
+    </div>
+  </div>
+
+  <div class="seo-content">
+    <h2>¿Cómo funciona el baremo de tráfico en España?</h2>
+    <p>El baremo de accidentes de tráfico en España está regulado por la Ley 35/2015 y establece un sistema de valoración de daños corporales con tablas objetivas. El objetivo es homogeneizar las indemnizaciones y dar seguridad jurídica tanto a las víctimas como a las aseguradoras.</p>
+
+    <h3>Componentes de la indemnización</h3>
+    <p>El baremo distingue entre el perjuicio personal básico (que se divide en lesiones temporales y secuelas permanentes), el daño estético, el perjuicio moral, la pérdida de calidad de vida y el lucro cesante (ingresos dejados de percibir). Cada componente tiene su propia tabla de valoración.</p>
+
+    <h3>¿Qué son los puntos de secuela?</h3>
+    <p>El médico forense o el médico designado por la aseguradora valora las secuelas permanentes asignando puntos según el baremo médico. Cada punto tiene un valor económico que depende de la edad de la víctima: a menor edad, mayor valor del punto porque se presume más tiempo de sufrimiento.</p>
+
+    <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La aseguradora del culpable me tiene que pagar? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Sí. Si eres víctima de un accidente causado por otro conductor, su seguro obligatorio de responsabilidad civil cubre los daños corporales y materiales que sufras. Si el culpable no tiene seguro, puedes reclamar al Consorcio de Compensación de Seguros.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tengo para reclamar? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">El plazo de prescripción para reclamar daños por accidente de tráfico es de 1 año desde la fecha del accidente o desde que se tuvo conocimiento de los daños. Es muy importante no dejar pasar este plazo. Si se inicia un procedimiento penal, el plazo se suspende.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Conviene aceptar la oferta de la aseguradora? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Generalmente no, al menos no sin consultar a un abogado especialista. Las aseguradoras suelen ofrecer importes inferiores a los que correspondería según el baremo. Un abogado puede negociar una cantidad mayor, y su honorario suele estar cubierto por el seguro de defensa jurídica o se pacta como porcentaje de la indemnización obtenida.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La indemnización tributa en el IRPF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Las indemnizaciones por daños personales derivadas de accidentes de tráfico están exentas de IRPF, siempre que se obtengan por vía judicial o mediante acuerdo con la aseguradora dentro de los límites del baremo. El lucro cesante sí puede tributar en algunos casos.</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>© 2026 Metaphai · <a href="/">Todas las calculadoras</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p style="margin-top:6px">Estimación orientativa basada en el baremo 2026. Consulta siempre con un abogado especialista.</p>
+</footer>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
+    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
+    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
+  </div>
+</div>
+<script>
+function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
+function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
+window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+// Valor del punto de secuela según edad (baremo 2026 aproximado)
+function valorPunto(edad, puntos){
+  if(puntos===0) return 0;
+  // Valor base por punto según edad
+  let vp;
+  if(edad<=30) vp=1400;
+  else if(edad<=40) vp=1200;
+  else if(edad<=50) vp=1000;
+  else if(edad<=60) vp=800;
+  else if(edad<=70) vp=600;
+  else vp=450;
+  // Factor corrector según número de puntos
+  let total=0;
+  for(let i=1;i<=puntos;i++){
+    // Los primeros puntos valen más
+    const factor=i<=10?1.0:i<=20?0.9:i<=40?0.8:0.7;
+    total+=vp*factor;
+  }
+  return total;
+}
+function calcular(){
+  const edad=parseInt(document.getElementById('edad').value)||35;
+  const salarioNeto=parseFloat(document.getElementById('salario_neto').value)||0;
+  const diasHospital=parseInt(document.getElementById('dias_hospital').value)||0;
+  const diasModerada=parseInt(document.getElementById('dias_baja_moderada').value)||0;
+  const diasBasica=parseInt(document.getElementById('dias_baja_basica').value)||0;
+  const cirugia=parseInt(document.getElementById('cirugia').value)||0;
+  const gastosMedicos=parseFloat(document.getElementById('gastos_medicos').value)||0;
+  const puntosSecuela=parseInt(document.getElementById('puntos_secuela').value)||0;
+  const puntosEsteticos=parseInt(document.getElementById('puntos_esteticos').value)||0;
+  const incapacidad=document.getElementById('incapacidad').value;
+  const diasSinTrabajo=parseInt(document.getElementById('dias_sin_trabajo').value)||0;
+  const prestacionIT=parseFloat(document.getElementById('prestacion_it').value)||0;
+
+  // Lesiones temporales (baremo 2026 aprox)
+  const indHospital=diasHospital*97;
+  const indModerada=diasModerada*58;
+  const indBasica=diasBasica*31;
+  const totalLesiones=indHospital+indModerada+indBasica+gastosMedicos+cirugia;
+
+  // Secuelas
+  const indSecuelas=valorPunto(edad,puntosSecuela);
+  const indEstetico=valorPunto(edad,puntosEsteticos)*0.7;
+
+  // Incapacidad laboral
+  let incapacidadExtra=0;
+  if(incapacidad==='parcial') incapacidadExtra=indSecuelas*0.25;
+  else if(incapacidad==='total') incapacidadExtra=indSecuelas*0.75;
+  else if(incapacidad==='absoluta') incapacidadExtra=indSecuelas*1.5;
+
+  // Lucro cesante
+  const salarioDia=salarioNeto/30;
+  const prestacionDia=prestacionIT/30;
+  const lucro=Math.max(0,(salarioDia-prestacionDia)*diasSinTrabajo);
+
+  const total=totalLesiones+indSecuelas+indEstetico+incapacidadExtra+lucro;
+
+  document.getElementById('res_total').textContent=fmt(total);
+  document.getElementById('res_lesiones').textContent=fmt(totalLesiones);
+  document.getElementById('res_secuelas').textContent=fmt(indSecuelas+indEstetico);
+  document.getElementById('d_lesiones').textContent=fmt(indHospital+indModerada+indBasica);
+  document.getElementById('d_secuelas_base').textContent=fmt(indSecuelas);
+  document.getElementById('d_estetico').textContent=fmt(indEstetico);
+  document.getElementById('d_lucro').textContent=fmt(lucro);
+  document.getElementById('d_medicos').textContent=fmt(gastosMedicos);
+  document.getElementById('d_cirugia').textContent=fmt(cirugia);
+  document.getElementById('l_hospital').textContent=diasHospital>0?fmt(indHospital):'—';
+  document.getElementById('l_moderada').textContent=diasModerada>0?fmt(indModerada):'—';
+  document.getElementById('l_basica').textContent=diasBasica>0?fmt(indBasica):'—';
+  document.getElementById('l_medicos').textContent=gastosMedicos>0?fmt(gastosMedicos):'—';
+  document.getElementById('l_cirugia').textContent=cirugia>0?fmt(cirugia):'—';
+  document.getElementById('l_secuelas').textContent=puntosSecuela>0?fmt(indSecuelas)+` (${puntosSecuela} pts)`:'—';
+  document.getElementById('l_estetico').textContent=puntosEsteticos>0?fmt(indEstetico):'—';
+  document.getElementById('l_lucro').textContent=lucro>0?fmt(lucro):'—';
+  document.getElementById('l_incapacidad').textContent=incapacidadExtra>0?fmt(incapacidadExtra):'—';
+  document.getElementById('l_total').textContent=fmt(total);
+}
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+calcular();
+</script>
+</body>
+</html>
