@@ -36,13 +36,7 @@
     .hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
     .hero h1 em { font-style: normal; color: var(--accent); }
     .hero p { font-size: 15px; color: var(--muted); max-width: 460px; margin: 0 auto; }
-    .search-wrap { margin: 0 auto 2rem; max-width: 480px; position: relative; }
-    .search-input { width: 100%; padding: 12px 16px 12px 44px; font-size: 15px; font-family: 'DM Sans', sans-serif; border: 1.5px solid var(--border); border-radius: 30px; background: var(--surface); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
-    .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,106,79,0.12); }
-    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--hint); font-size: 16px; pointer-events: none; }
-    .search-empty { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 15px; }
-    .search-empty span { font-size: 32px; display: block; margin-bottom: 0.75rem; }
-    .card.hidden { display: none; }
+    .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--hint); margin: 1.5rem 0; }
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem 1.5rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 12px; transition: border-color 0.15s, transform 0.15s; }
@@ -76,17 +70,7 @@
     <h1>Calculadoras financieras<br><em>para España 2026</em></h1>
     <p>Herramientas gratuitas y actualizadas para entender tu dinero. Sin registro, sin letra pequeña.</p>
   </div>
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input class="search-input" type="search" id="buscador" placeholder="Busca una calculadora... (ej: IVA, hipoteca, autónomo)" oninput="filtrar()" autocomplete="off">
-  </div>
-
-  <div class="search-empty" id="search-empty">
-    <span>🔎</span>
-    No hemos encontrado ninguna calculadora para "<span id="search-term"></span>"
-  </div>
-
-<div class="grid" id="grid-calculadoras">
+<div class="grid">
     <a href="/salario.html" class="card">
       <div class="card-icon">💼</div>
       <div class="card-title">Salario neto</div>
@@ -216,21 +200,6 @@
   function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
   function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
   window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
-
-  function filtrar() {
-    const q = document.getElementById('buscador').value.toLowerCase().trim();
-    const cards = document.querySelectorAll('#grid-calculadoras .card');
-    let visibles = 0;
-    cards.forEach(card => {
-      const texto = card.textContent.toLowerCase();
-      const coincide = q === '' || texto.includes(q);
-      card.classList.toggle('hidden', !coincide);
-      if (coincide) visibles++;
-    });
-    const empty = document.getElementById('search-empty');
-    empty.style.display = q !== '' && visibles === 0 ? 'block' : 'none';
-    document.getElementById('search-term').textContent = q;
-  }
 </script>
 </body>
 <!-- v2 -->
