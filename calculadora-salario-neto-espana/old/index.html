@@ -342,19 +342,7 @@
       margin-top: 3rem;
     }
 
-    /* ADSENSE PLACEHOLDER */
-    .ad-slot {
-      background: var(--surface2);
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: var(--hint);
-      margin: 1.5rem 0;
-    }
+
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
@@ -380,7 +368,7 @@
   </div>
 
   <!-- AD SLOT TOP -->
-  <div class="ad-slot">Publicidad — Google AdSense aquí</div>
+  
 
   <!-- SALARIO -->
   <div class="card">
@@ -467,7 +455,22 @@
 
   <!-- SEGURIDAD SOCIAL -->
   <div class="card">
-    <div class="grid2">
+    <div class="section-label">Cotizaciones Seguridad Social (trabajador)</div>
+    <div class="grid3">
+      <div class="field">
+        <label>Contingencias comunes (%)</label>
+        <input type="number" id="ss_cc" value="4.70" step="0.01" min="0" max="10">
+      </div>
+      <div class="field">
+        <label>Desempleo (%)</label>
+        <input type="number" id="ss_desempleo" value="1.55" step="0.01" min="0" max="5">
+      </div>
+      <div class="field">
+        <label>Formación profesional (%)</label>
+        <input type="number" id="ss_fp" value="0.10" step="0.01" min="0" max="2">
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
       <div class="field">
         <label>Tipo de contrato</label>
         <select id="contrato">
@@ -483,31 +486,6 @@
           <option value="50">50% de reducción</option>
           <option value="75">75% de reducción</option>
         </select>
-      </div>
-    </div>
-
-    <!-- AVANZADO -->
-    <div style="margin-top:14px">
-      <button onclick="toggleAvanzado()" id="btn-avanzado" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;">
-        <span id="avanzado-icon">⚙️</span> Opciones avanzadas — Seguridad Social
-        <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span>
-      </button>
-      <div id="avanzado-panel" style="display:none;margin-top:12px;padding:14px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border)">
-        <p style="font-size:12px;color:var(--hint);margin-bottom:12px;">Los valores predeterminados corresponden a las cotizaciones estándar para un trabajador por cuenta ajena en España 2026. Solo modifícalos si tu situación es especial.</p>
-        <div class="grid3">
-          <div class="field">
-            <label>Contingencias comunes (%)</label>
-            <input type="number" id="ss_cc" value="4.70" step="0.01" min="0" max="10">
-          </div>
-          <div class="field">
-            <label>Desempleo (%)</label>
-            <input type="number" id="ss_desempleo" value="1.55" step="0.01" min="0" max="5">
-          </div>
-          <div class="field">
-            <label>Formación profesional (%)</label>
-            <input type="number" id="ss_fp" value="0.10" step="0.01" min="0" max="2">
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -594,7 +572,7 @@
   </div>
 
   <!-- AD SLOT MIDDLE -->
-  <div class="ad-slot" style="margin-top:2rem">Publicidad — Google AdSense aquí</div>
+  
 
   <!-- SEO CONTENT -->
   <div class="seo-content">
@@ -644,7 +622,7 @@
   </div>
 
   <!-- AD SLOT BOTTOM -->
-  <div class="ad-slot" style="margin-top:2rem">Publicidad — Google AdSense aquí</div>
+  
 
 </main>
 
@@ -786,15 +764,6 @@ function calcular() {
 }
 
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
-
-function toggleAvanzado() {
-  const panel = document.getElementById('avanzado-panel');
-  const arrow = document.getElementById('avanzado-arrow');
-  const open = panel.style.display === 'none';
-  panel.style.display = open ? 'block' : 'none';
-  arrow.style.transform = open ? 'rotate(180deg)' : '';
-}
-
 calcular();
 </script>
 <!-- Banner cookies -->
