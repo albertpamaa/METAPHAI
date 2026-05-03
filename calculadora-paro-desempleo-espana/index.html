@@ -243,7 +243,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay un mínimo y un máximo de paro? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí. El importe mínimo en 2026 es aproximadamente 570 € sin hijos, 680 € con un hijo y 815 € con dos o más hijos. El máximo es de unos 1.575 € sin hijos, 1.800 € con un hijo y 2.025 € con dos o más hijos. Estas cifras se actualizan con el IPREM.</div>
+      <div class="faq-a">Sí. El importe mínimo en 2026 es 560 € sin hijos y 749 € con uno o más hijos. El máximo es de 1.225 € sin hijos, 1.400 € con un hijo y 1.575 € con dos o más hijos. Estas cifras se calculan en función del IPREM (600 €/mes en 2026) y se actualizan cada año.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tengo para solicitar el paro? <span class="faq-arrow">▼</span></div>
@@ -270,8 +270,8 @@ const tablaDuracion = [
 ];
 
 // Topes 2026 (aproximados basados en IPREM)
-const MINIMOS = { 0: 570, 1: 680, 2: 815 };
-const MAXIMOS = { 0: 1575, 1: 1800, 2: 2025 };
+const MINIMOS = { 0: 560, 1: 749, 2: 749 };
+const MAXIMOS = { 0: 1225, 1: 1400, 2: 1575 };
 
 function getDuracion(meses) {
   let duracion = 0;
