@@ -291,31 +291,104 @@
   <p style="margin-top:6px">Estimación orientativa. Consulta con un asesor fiscal para tu caso concreto.</p>
 </footer>
 
-
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
   </div>
 </div>
+
 <script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
+function loadAnalytics() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
   document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-1P9N4QY0JR');
+  var a = document.createElement('script');
+  a.async = true;
+  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
+  a.crossOrigin = 'anonymous';
+  document.head.appendChild(a);
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const LIMITES_BASE = { 30: 5000, 40: 7500, 60: 5000 };
+
+document.getElementById('pendiente_anterior').addEventListener('change', function(){
+  document.getElementById('campo_pendiente').style.display = this.value === '1' ? 'block' : 'none';
+  calcular();
+});
+
+document.getElementById('tipo_vivienda').addEventListener('change', function(){
+  const aviso = document.getElementById('aviso_vivienda');
+  aviso.classList.toggle('show', this.value === 'otra');
+  calcular();
+});
+
+function calcular(){
+  const coste = parseFloat(document.getElementById('coste').value) || 0;
+  const pct = parseInt(document.getElementById('tipo_deduccion').value);
+  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const pendienteAnterior = document.getElementById('pendiente_anterior').value === '1'
+    ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const añoInstalacion = parseInt(document.getElementById('año_instalacion').value);
+  const tipoVivienda = document.getElementById('tipo_vivienda').value;
+
+  const limiteBase = LIMITES_BASE[pct];
+  const baseDeduccion = Math.min(coste, limiteBase);
+  const deduccionBruta = baseDeduccion * pct / 100;
+  const totalDeduccion = deduccionBruta + pendienteAnterior;
+
+  // Límite: no puede superar cuota íntegra
+  const deduccionEsteAño = Math.min(totalDeduccion, cuotaIntegra);
+  const pendienteSiguientes = Math.max(0, totalDeduccion - deduccionEsteAño);
+  const costeNeto = coste - deduccionEsteAño;
+  const pctAhorro = coste > 0 ? (deduccionEsteAño / coste * 100) : 0;
+
+  document.getElementById('res_deduccion').textContent = fmt(deduccionEsteAño);
+  document.getElementById('res_coste_real').textContent = fmt(costeNeto);
+  document.getElementById('res_pct_ahorro').textContent = pctAhorro.toFixed(1) + '%';
+  document.getElementById('d_base').textContent = fmt(baseDeduccion);
+  document.getElementById('d_pct').textContent = pct + '%';
+  document.getElementById('d_limite_base').textContent = fmt(limiteBase);
+  document.getElementById('d_este_año').textContent = fmt(deduccionEsteAño);
+  document.getElementById('d_pendiente').textContent = pendienteSiguientes > 0 ? fmt(pendienteSiguientes) : 'Ninguno';
+  document.getElementById('d_coste_neto').textContent = fmt(costeNeto);
+
+  const avisoLimite = document.getElementById('aviso_limite');
+  avisoLimite.classList.toggle('show', pendienteSiguientes > 0);
+
+  // Timeline si hay pendiente
+  const timelineSection = document.getElementById('timeline_section');
+  if (pendienteSiguientes > 0) {
+    timelineSection.style.display = 'block';
+    let html = '';
+    let restante = pendienteSiguientes;
+    html += `<div class="timeline-row"><div class="timeline-dot">${añoInstalacion}</div><div class="timeline-content"><div class="tc-label">Deducción aplicada</div><div class="tc-val">${fmt(deduccionEsteAño)}</div></div></div>`;
+    for (let i = 1; i <= 4 && restante > 0; i++) {
+      const aplicado = Math.min(restante, cuotaIntegra);
+      html += `<div class="timeline-row"><div class="timeline-dot ${aplicado < restante ? '' : 'dim'}">${añoInstalacion + i}</div><div class="timeline-content"><div class="tc-label">Deducción pendiente año ${i}</div><div class="tc-val">${fmt(aplicado)}</div></div></div>`;
+      restante -= aplicado;
+    }
+    document.getElementById('timeline_rows').innerHTML = html;
+  } else {
+    timelineSection.style.display = 'none';
+  }
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
 </script>
 </body>
 </html>

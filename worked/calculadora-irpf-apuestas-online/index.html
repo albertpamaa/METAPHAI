@@ -303,31 +303,152 @@
   <p style="margin-top:6px">Estimación orientativa. Consulta con un asesor fiscal para tu caso concreto.</p>
 </footer>
 
-
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
   </div>
 </div>
+
 <script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
+function loadAnalytics() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
   document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-1P9N4QY0JR');
+  var a = document.createElement('script');
+  a.async = true;
+  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
+  a.crossOrigin = 'anonymous';
+  document.head.appendChild(a);
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+let apuestas = [{ desc: 'Apuesta 1', apostado: 100, cobrado: 250 }];
+
+function cambiarModo() {
+  const modo = document.getElementById('modo').value;
+  document.getElementById('bloque_simple').style.display = modo === 'simple' ? 'block' : 'none';
+  document.getElementById('bloque_detallado').style.display = modo === 'detallado' ? 'block' : 'none';
+  calcular();
+}
+
+function renderApuestas() {
+  const lista = document.getElementById('apuestas-lista');
+  lista.innerHTML = '';
+  apuestas.forEach((a, i) => {
+    const row = document.createElement('div');
+    row.className = 'apuesta-row';
+    row.innerHTML = `
+      <div class="field"><input type="text" value="${a.desc}" placeholder="Descripción" onchange="apuestas[${i}].desc=this.value"></div>
+      <div class="field"><input type="number" value="${a.apostado}" min="0" step="1" placeholder="Apostado €" oninput="apuestas[${i}].apostado=parseFloat(this.value)||0;calcular()"></div>
+      <div class="field"><input type="number" value="${a.cobrado}" min="0" step="1" placeholder="Cobrado €" oninput="apuestas[${i}].cobrado=parseFloat(this.value)||0;calcular()"></div>
+      <button class="btn-del" onclick="eliminarApuesta(${i})">×</button>
+    `;
+    lista.appendChild(row);
+  });
+}
+
+function añadirApuesta() {
+  apuestas.push({ desc: 'Apuesta ' + (apuestas.length + 1), apostado: 0, cobrado: 0 });
+  renderApuestas();
+}
+
+function eliminarApuesta(i) {
+  apuestas.splice(i, 1);
+  renderApuestas();
+  calcular();
+}
+
+function calcIRPF(base) {
+  const tramos = [
+    { hasta: 6000,   tipo: 0.19 },
+    { hasta: 50000,  tipo: 0.21 },
+    { hasta: 200000, tipo: 0.23 },
+    { hasta: 300000, tipo: 0.27 },
+    { hasta: Infinity, tipo: 0.28 }
+  ];
+  let cuota = 0, ant = 0, marginal = 0;
+  const detalle = [];
+  for (const t of tramos) {
+    if (base <= ant) { detalle.push(0); continue; }
+    const tramo = Math.min(base, t.hasta) - ant;
+    const c = tramo * t.tipo;
+    cuota += c;
+    marginal = t.tipo * 100;
+    detalle.push(c);
+    ant = t.hasta;
+  }
+  return { cuota, marginal, detalle };
+}
+
+function calcular() {
+  const modo = document.getElementById('modo').value;
+  let ganancias = 0, perdidas = 0;
+
+  if (modo === 'simple') {
+    ganancias = parseFloat(document.getElementById('ganancias_total').value) || 0;
+    perdidas = parseFloat(document.getElementById('perdidas_total').value) || 0;
+  } else {
+    apuestas.forEach(a => {
+      if (a.cobrado > a.apostado) ganancias += (a.cobrado - a.apostado);
+      else perdidas += (a.apostado - a.cobrado);
+    });
+  }
+
+  const otrasGanancias = parseFloat(document.getElementById('otras_ganancias').value) || 0;
+  const otrasPerdidas = parseFloat(document.getElementById('otras_perdidas').value) || 0;
+
+  const gananciaNeta = Math.max(0, ganancias - perdidas);
+  const baseTotal = Math.max(0, gananciaNeta + otrasGanancias - otrasPerdidas);
+  const { cuota, marginal, detalle } = calcIRPF(baseTotal);
+  const irpfApuestas = baseTotal > 0 ? cuota * (gananciaNeta / baseTotal) : 0;
+  const tipoEfectivo = gananciaNeta > 0 ? (irpfApuestas / gananciaNeta * 100) : 0;
+  const netoFinal = gananciaNeta - irpfApuestas;
+
+  const sinObligacion = gananciaNeta <= 0;
+  document.getElementById('bloque_resultados').style.display = sinObligacion ? 'none' : 'block';
+  document.getElementById('bloque_sin_obligacion').style.display = sinObligacion ? 'block' : 'none';
+
+  if (!sinObligacion) {
+    const header = document.getElementById('results-header');
+    header.className = 'results-header ' + (gananciaNeta > 0 ? 'positivo' : 'neutro');
+
+    document.getElementById('res_irpf').textContent = fmt(irpfApuestas);
+    document.getElementById('res_ganancia_neta').textContent = fmt(gananciaNeta);
+    document.getElementById('res_tipo_efectivo').textContent = tipoEfectivo.toFixed(1) + '%';
+    document.getElementById('d_ganancias').textContent = fmt(ganancias);
+    document.getElementById('d_perdidas').textContent = '-' + fmt(perdidas);
+    document.getElementById('d_neta').textContent = fmt(gananciaNeta);
+    document.getElementById('d_irpf_detalle').textContent = '-' + fmt(irpfApuestas);
+    document.getElementById('d_tramo').textContent = marginal.toFixed(0) + '%';
+    document.getElementById('d_neto_final').textContent = fmt(netoFinal);
+
+    const ids = ['t1v','t2v','t3v','t4v','t5v'];
+    const tramosIds = ['t1','t2','t3','t4','t5'];
+    detalle.forEach((v, i) => {
+      document.getElementById(ids[i]).textContent = v > 0 ? fmt(v) : '—';
+      document.getElementById(tramosIds[i]).className = 'tramo-row' + (v > 0 ? ' activo' : '');
+    });
+  }
+}
+
+renderApuestas();
+calcular();
+document.querySelectorAll('input, select').forEach(el => {
+  if (!el.closest('#apuestas-lista')) el.addEventListener('input', calcular);
+});
 </script>
 </body>
 </html>

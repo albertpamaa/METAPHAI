@@ -313,31 +313,90 @@
   <p style="margin-top:6px">Estimación orientativa. Las ayudas MOVES están sujetas a disponibilidad presupuestaria. Consulta con un asesor fiscal.</p>
 </footer>
 
-
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
   </div>
 </div>
+
 <script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
+function loadAnalytics() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
   document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-1P9N4QY0JR');
+  var a = document.createElement('script');
+  a.async = true;
+  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
+  a.crossOrigin = 'anonymous';
+  document.head.appendChild(a);
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+// MOVES III importes por tipo y achatarramiento
+const MOVES = {
+  turismo_bev:  { si: 7000, no: 4500 },
+  turismo_phev: { si: 4500, no: 2500 },
+  moto:         { si: 1100, no: 750  },
+  furgoneta:    { si: 7000, no: 5000 }
+};
+
+function calcular(){
+  const precio = parseFloat(document.getElementById('precio').value) || 0;
+  const tipo = document.getElementById('tipo_vehiculo').value;
+  const achatarra = document.getElementById('achatarramiento').value;
+  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const kmAnuales = parseFloat(document.getElementById('km_anuales').value) || 0;
+  const precioGasolina = parseFloat(document.getElementById('precio_gasolina').value) || 1.65;
+  const precioElec = parseFloat(document.getElementById('precio_electricidad').value) || 0.18;
+
+  // Deducción IRPF 15% con base máxima 20.000€
+  const baseIRPF = Math.min(precio, 20000);
+  const deduccionBruta = baseIRPF * 0.15;
+  const deduccionIRPF = Math.min(deduccionBruta, cuotaIntegra);
+
+  // MOVES III
+  const moves = MOVES[tipo] ? MOVES[tipo][achatarra] : 0;
+
+  // Ahorro combustible
+  // Gasolina: ~7L/100km, Eléctrico: ~18kWh/100km
+  const costeGasolina = kmAnuales / 100 * 7 * precioGasolina;
+  const costeElectrico = kmAnuales / 100 * 18 * precioElec;
+  const ahorroCombustibleAnual = Math.max(0, costeGasolina - costeElectrico);
+  const ahorroCombustible5 = ahorroCombustibleAnual * 5;
+
+  const ahorroTotal = deduccionIRPF + moves;
+  const costeReal = precio - ahorroTotal;
+  const pctAhorro = precio > 0 ? (ahorroTotal / precio * 100) : 0;
+
+  document.getElementById('res_ahorro_total').textContent = fmt(ahorroTotal);
+  document.getElementById('res_coste_real').textContent = fmt(costeReal);
+  document.getElementById('res_pct_ahorro').textContent = pctAhorro.toFixed(1) + '%';
+  document.getElementById('d_deduccion_irpf').textContent = fmt(deduccionIRPF);
+  document.getElementById('d_moves').textContent = fmt(moves);
+  document.getElementById('d_ahorro_combustible').textContent = fmt(ahorroCombustibleAnual);
+  document.getElementById('d_base_irpf').textContent = fmt(baseIRPF);
+  document.getElementById('d_ahorro_5años').textContent = fmt(ahorroCombustible5);
+  document.getElementById('r_precio').textContent = fmt(precio);
+  document.getElementById('r_irpf').textContent = fmt(deduccionIRPF);
+  document.getElementById('r_moves').textContent = fmt(moves);
+  document.getElementById('r_coste_real').textContent = fmt(costeReal);
+}
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+calcular();
 </script>
 </body>
 </html>

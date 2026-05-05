@@ -425,31 +425,263 @@
   <p style="margin-top:6px">Simulación orientativa. No sustituye al borrador oficial de la AEAT.</p>
 </footer>
 
-
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más info</a></p>
+  <div style="display:flex;gap:8px;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
   </div>
 </div>
+
 <script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
+function loadAnalytics() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
   document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-1P9N4QY0JR');
+  var a = document.createElement('script');
+  a.async = true;
+  a.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
+  a.crossOrigin = 'anonymous';
+  document.head.appendChild(a);
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+
+const extrasState = {};
+
+function toggleExtra(key) {
+  extrasState[key] = !extrasState[key];
+  document.getElementById('btn_' + key).classList.toggle('active', extrasState[key]);
+  document.getElementById('extra_' + key).style.display = extrasState[key] ? 'block' : 'none';
+  if (key === 'maternidad') {
+    document.getElementById('guarderia').addEventListener('change', function(){
+      document.getElementById('campo_guarderia').style.display = this.value === '1' ? 'block' : 'none';
+      calcular();
+    });
+  }
+  calcular();
+}
+
+const TRAMOS_EST = [
+  {hasta:12450,tipo:0.095},{hasta:20200,tipo:0.12},{hasta:35200,tipo:0.15},
+  {hasta:60000,tipo:0.185},{hasta:300000,tipo:0.225},{hasta:Infinity,tipo:0.245}
+];
+const TIPOS_AUTON = [
+  [0.095,0.12,0.14,0.17,0.185,0.235],[0.10,0.13,0.15,0.17,0.19,0.21],
+  [0.10,0.12,0.14,0.18,0.195,0.21],[0.09,0.115,0.155,0.185,0.20,0.22],
+  [0.085,0.105,0.125,0.165,0.185,0.20],[0.09,0.115,0.14,0.175,0.185,0.215],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.09,0.12,0.14,0.17,0.185,0.215],
+  [0.105,0.12,0.14,0.175,0.21,0.235],[0.085,0.105,0.14,0.175,0.195,0.215],
+  [0.09,0.12,0.14,0.175,0.185,0.215],[0.09,0.11,0.13,0.17,0.185,0.21],
+  [0.095,0.12,0.14,0.175,0.185,0.215],[0.08,0.11,0.14,0.17,0.20,0.22],
+  [0.07,0.10,0.12,0.16,0.18,0.19],[0.08,0.10,0.13,0.16,0.18,0.205],
+  [0.095,0.12,0.14,0.175,0.185,0.22]
+];
+const TRAMOS_AHORRO = [
+  {hasta:6000,tipo:0.19},{hasta:50000,tipo:0.21},{hasta:200000,tipo:0.23},
+  {hasta:300000,tipo:0.27},{hasta:Infinity,tipo:0.28}
+];
+
+function calcEscala(base, ccaa) {
+  let cuota=0, ant=0;
+  const detalle=[];
+  for (let i=0;i<TRAMOS_EST.length;i++) {
+    if (base<=ant){detalle.push(0);continue;}
+    const tramo=Math.min(base,TRAMOS_EST[i].hasta)-ant;
+    const tipo=TRAMOS_EST[i].tipo + TIPOS_AUTON[ccaa][Math.min(i,5)];
+    cuota+=tramo*tipo;
+    detalle.push(tramo*tipo);
+    ant=TRAMOS_EST[i].hasta;
+  }
+  return {cuota,detalle};
+}
+
+function calcAhorro(base) {
+  let cuota=0,ant=0;
+  for (const t of TRAMOS_AHORRO){
+    if(base<=ant)break;
+    cuota+=( Math.min(base,t.hasta)-ant)*t.tipo;
+    ant=t.hasta;
+  }
+  return cuota;
+}
+
+function calcMinimos(hijos,estado,edad,discap) {
+  let mp=5550;
+  if(edad==='65_75') mp+=1150;
+  if(edad==='mayor75') mp+=2550;
+  const mh=[0,2400,5100,9100,13600];
+  let mc=estado==='casado'?3400:0;
+  let md=discap==='33'?3000:discap==='65'?9000:0;
+  return mp+(mh[Math.min(hijos,4)]||0)+mc+md;
+}
+
+function calcReduccionTrabajo(bruto, movilidad) {
+  let r=0;
+  if(bruto<=13115) r=5565;
+  else if(bruto<=16825) r=Math.max(0,5565-1.5*(bruto-13115));
+  if(movilidad) r+=2000;
+  return r;
+}
+
+function calcDonativos(importe) {
+  if(importe<=0) return 0;
+  const tramo1=Math.min(importe,150)*0.80;
+  const tramo2=Math.max(0,importe-150)*0.35;
+  return tramo1+tramo2;
+}
+
+function calcular() {
+  const ccaa=parseInt(document.getElementById('ccaa').value);
+  const estado=document.getElementById('estado').value;
+  const hijos=parseInt(document.getElementById('hijos').value);
+  const edad=document.getElementById('edad').value;
+  const discap=document.getElementById('discapacidad').value;
+  const modalidad=document.getElementById('modalidad').value;
+  const salarioBruto=parseFloat(document.getElementById('salario_bruto').value)||0;
+  const retNomina=parseFloat(document.getElementById('retenciones_nomina').value)||0;
+  const cuotaSS=parseFloat(document.getElementById('cuota_ss').value)||0;
+  const numPag=document.getElementById('num_pagadores').value;
+  const movilidad=extrasState['movilidad']||false;
+
+  document.getElementById('aviso_pagadores').style.display = numPag==='2'?'block':'none';
+
+  // Reducción rendimientos trabajo
+  const rendTrabajoNeto=Math.max(0,salarioBruto-cuotaSS);
+  const reducTrabajo=calcReduccionTrabajo(rendTrabajoNeto,movilidad);
+  const rendTrabajoReducido=Math.max(0,rendTrabajoNeto-reducTrabajo);
+
+  // Otros rendimientos trabajo
+  let otrosRend=0;
+  if(extrasState['autonomo']) otrosRend+=(parseFloat(document.getElementById('rend_autonomo').value)||0);
+  if(extrasState['alquiler']) otrosRend+=(parseFloat(document.getElementById('rend_alquiler').value)||0);
+  if(extrasState['pension']) otrosRend+=(parseFloat(document.getElementById('importe_pension').value)||0);
+  if(extrasState['paro']) otrosRend+=(parseFloat(document.getElementById('importe_paro').value)||0);
+
+  // Plan de pensiones
+  const planPension=extrasState['plan_pensiones']?Math.min(parseFloat(document.getElementById('aporte_pension_plan').value)||0,1500):0;
+
+  // Declaración conjunta
+  const redConjunta=modalidad==='conjunta'?3400:0;
+
+  // Base imponible general
+  const baseImponibleGral=Math.max(0,rendTrabajoReducido+otrosRend-planPension-redConjunta);
+
+  // Mínimo personal y familiar
+  const minimo=calcMinimos(hijos,estado,edad,discap);
+
+  // Base liquidable
+  const baseLiquidable=Math.max(0,baseImponibleGral-minimo);
+
+  // Cuota íntegra escala general
+  const {cuota:cuotaIntegra,detalle}=calcEscala(baseLiquidable,ccaa);
+
+  // Base ahorro
+  const gananciasPat=extrasState['inversiones']?(parseFloat(document.getElementById('ganancias_pat').value)||0):0;
+  const dividendos=extrasState['inversiones']?(parseFloat(document.getElementById('dividendos').value)||0):0;
+  const baseAhorro=gananciasPat+dividendos;
+  const cuotaAhorro=calcAhorro(baseAhorro);
+
+  // Deducciones sobre cuota
+  let dedMaternidad=0;
+  if(extrasState['maternidad']) {
+    const hijosM=parseInt(document.getElementById('hijos_maternidad').value)||0;
+    dedMaternidad=hijosM*1200;
+    if(document.getElementById('guarderia').value==='1') {
+      const gastoGuar=parseFloat(document.getElementById('gasto_guarderia').value)||0;
+      dedMaternidad+=Math.min(hijosM*1000,gastoGuar);
+    }
+  }
+
+  let dedDonativos=0;
+  if(extrasState['donativos']) {
+    dedDonativos=calcDonativos(parseFloat(document.getElementById('donativos').value)||0);
+  }
+
+  const dedAlquiler=extrasState['deduccion_alquiler']?(parseFloat(document.getElementById('ded_alquiler_inq').value)||0):0;
+  const dedEficiencia=extrasState['eficiencia']?(parseFloat(document.getElementById('ded_eficiencia').value)||0):0;
+
+  const cuotaLiquida=Math.max(0,cuotaIntegra+cuotaAhorro-dedMaternidad-dedDonativos-dedAlquiler-dedEficiencia);
+
+  // Retenciones y pagos
+  const retOtrasFuentes=(extrasState['inversiones']?(parseFloat(document.getElementById('ret_inversiones').value)||0):0)+
+                        (extrasState['paro']?(parseFloat(document.getElementById('ret_paro').value)||0):0);
+  const pagosFrac=extrasState['autonomo']?(parseFloat(document.getElementById('pagos_frac').value)||0):0;
+  const totalRetenido=retNomina+retOtrasFuentes+pagosFrac;
+
+  const resultado=cuotaLiquida-totalRetenido;
+  const tipoEfectivo=salarioBruto>0?(cuotaLiquida/(salarioBruto+otrosRend)*100):0;
+
+  // Render resultado
+  const header=document.getElementById('resultado-header');
+  const label=document.getElementById('resultado-label');
+  const importe=document.getElementById('resultado-importe');
+  if(resultado<-0.01){
+    header.className='resultado-header devolucion';
+    label.textContent='Hacienda te devuelve';
+    importe.textContent=fmt(Math.abs(resultado));
+  } else if(resultado>0.01){
+    header.className='resultado-header pagar';
+    label.textContent='Debes pagar a Hacienda';
+    importe.textContent=fmt(resultado);
+  } else {
+    header.className='resultado-header cero';
+    label.textContent='Resultado de la declaración';
+    importe.textContent='0,00 €';
+  }
+
+  document.getElementById('cuota-liquida').textContent=fmt(cuotaLiquida);
+  document.getElementById('tipo-efectivo').textContent=tipoEfectivo.toFixed(1)+'%';
+
+  // Liquidación
+  document.getElementById('liq_trabajo').textContent=fmt(rendTrabajoNeto);
+  document.getElementById('liq_otros').textContent=fmt(otrosRend);
+  document.getElementById('liq_red_trabajo').textContent='-'+fmt(reducTrabajo);
+  document.getElementById('liq_pension_plan').textContent=planPension>0?'-'+fmt(planPension):'—';
+  document.getElementById('liq_base_gral').textContent=fmt(baseImponibleGral);
+  document.getElementById('liq_minimo').textContent='-'+fmt(minimo);
+  document.getElementById('liq_base_liq').textContent=fmt(baseLiquidable);
+  document.getElementById('liq_cuota_integra').textContent='-'+fmt(cuotaIntegra);
+  document.getElementById('liq_cuota_ahorro').textContent=cuotaAhorro>0?'-'+fmt(cuotaAhorro):'—';
+  document.getElementById('liq_maternidad').textContent=dedMaternidad>0?'+'+fmt(dedMaternidad):'—';
+  document.getElementById('liq_donativos').textContent=dedDonativos>0?'+'+fmt(dedDonativos):'—';
+  document.getElementById('liq_alquiler_ded').textContent=dedAlquiler>0?'+'+fmt(dedAlquiler):'—';
+  document.getElementById('liq_eficiencia_ded').textContent=dedEficiencia>0?'+'+fmt(dedEficiencia):'—';
+  document.getElementById('liq_cuota_liquida').textContent=fmt(cuotaLiquida);
+  document.getElementById('liq_ret_nomina').textContent='+'+fmt(retNomina);
+  document.getElementById('liq_ret_otras').textContent=retOtrasFuentes>0?'+'+fmt(retOtrasFuentes):'—';
+  document.getElementById('liq_pagos_frac').textContent=pagosFrac>0?'+'+fmt(pagosFrac):'—';
+  const resEl=document.getElementById('liq_resultado');
+  resEl.textContent=resultado<0?'Devolución: '+fmt(Math.abs(resultado)):resultado>0?'A pagar: '+fmt(resultado):'0,00 €';
+  resEl.className='liq-val '+(resultado<0?'pos':resultado>0?'neg':'neutral');
+
+  // Tramos
+  const tramosIds=[['tr1','tr1v'],['tr2','tr2v'],['tr3','tr3v'],['tr4','tr4v'],['tr5','tr5v'],['tr6','tr6v']];
+  tramosIds.forEach(([id,vid],i)=>{
+    const v=detalle[i]||0;
+    document.getElementById(vid).textContent=v>0?fmt(v):'—';
+    document.getElementById(id).className='tramo-row'+(v>0?' activo':'');
+  });
+}
+
+document.querySelectorAll('input:not([type=button]), select').forEach(el=>{
+  if(!el.closest('.extra-field')||el.closest('.extra-field').style.display!=='none'){
+    el.addEventListener('input',calcular);
+    el.addEventListener('change',calcular);
+  }
+});
+document.querySelectorAll('select').forEach(el=>el.addEventListener('change',calcular));
+calcular();
 </script>
 </body>
 </html>
