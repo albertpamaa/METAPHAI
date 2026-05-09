@@ -410,16 +410,16 @@ function calcularOps(tipo){
   const res=document.getElementById('res-'+tipo);
   res.innerHTML=`
     <div class="results" style="margin-top:1rem">
-      <div class="results-header" style="background:${neta>=0?'var(--accent-light)':'#fef2f2'}">
+      <div class="results-header" style="background:${neta>=0?'var(--accent-light)':'#fef2f2'};color:${neta>=0?'var(--accent)':'#b91c1c'}">
         <div>
-          <div class="main-label">Ganancia neta</div>
-          <div class="main-value" style="color:${color}">${fmtN(neta)}</div>
+          <div style="font-size:13px;margin-bottom:4px">Ganancia neta</div>
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;color:${color}">${fmtN(neta)}</div>
         </div>
         <div class="sub-block">
-          <div class="sub-label">IRPF estimado</div>
-          <div class="sub-value">${fmtN(irpf)}</div>
-          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
-          <div class="sub-value">${pct(tipoEf)}</div>
+          <div style="font-size:12px;opacity:.8;margin-bottom:2px">IRPF estimado</div>
+          <div style="font-size:18px;font-weight:500;font-family:'DM Mono',monospace">${fmtN(irpf)}</div>
+          <div style="font-size:12px;opacity:.8;margin-top:6px;margin-bottom:2px">Tipo efectivo</div>
+          <div style="font-size:18px;font-weight:500;font-family:'DM Mono',monospace">${pct(tipoEf)}</div>
         </div>
       </div>
       <div class="results-grid">
@@ -452,16 +452,16 @@ function calcularDividendos(){
 
   document.getElementById('res-dividendos').innerHTML=`
     <div class="results" style="margin-top:1rem">
-      <div class="results-header" style="background:var(--accent-light)">
+      <div class="results-header" style="background:var(--accent-light);color:var(--accent)">
         <div>
-          <div class="main-label">IRPF sobre RCM</div>
-          <div class="main-value">${fmtN(irpf)}</div>
+          <div style="font-size:13px;margin-bottom:4px">IRPF sobre RCM</div>
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;color:var(--accent)">${fmtN(irpf)}</div>
         </div>
         <div class="sub-block">
-          <div class="sub-label">${aPagar>0?'A pagar':'A devolver'}</div>
-          <div class="sub-value" style="color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
-          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
-          <div class="sub-value">${pct(tipoEf)}</div>
+          <div style="font-size:12px;opacity:.8;margin-bottom:2px">${aPagar>0?'A pagar':'A devolver'}</div>
+          <div style="font-size:18px;font-weight:500;font-family:'DM Mono',monospace;color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
+          <div style="font-size:12px;opacity:.8;margin-top:6px;margin-bottom:2px">Tipo efectivo</div>
+          <div style="font-size:18px;font-weight:500;font-family:'DM Mono',monospace">${pct(tipoEf)}</div>
         </div>
       </div>
       <div class="results-grid">
@@ -520,14 +520,14 @@ function calcularResumen(){
 
   document.getElementById('res-global').innerHTML=`
     <div class="results" style="margin-top:1rem">
-      <div class="results-header" style="background:${aPagar>0?'#fef2f2':'var(--accent-light)'}">
+      <div class="results-header" style="background:${aPagar>0?'#fef2f2':'var(--accent-light)'};color:${aPagar>0?'#b91c1c':'var(--accent)'}">
         <div>
-          <div class="main-label">IRPF total inversiones</div>
-          <div class="main-value">${fmtN(totalIRPF)}</div>
+          <div style="font-size:13px;margin-bottom:4px">IRPF total inversiones</div>
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace">${fmtN(totalIRPF)}</div>
         </div>
         <div class="sub-block">
-          <div class="sub-label">${aPagar>0?'A ingresar a Hacienda':'A devolver Hacienda'}</div>
-          <div class="sub-value" style="color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
+          <div style="font-size:12px;opacity:.8;margin-bottom:2px">${aPagar>0?'A ingresar a Hacienda':'A devolver Hacienda'}</div>
+          <div style="font-size:18px;font-weight:500;font-family:'DM Mono',monospace;color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
         </div>
       </div>
       <div class="results-grid">
