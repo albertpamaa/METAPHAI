@@ -339,7 +339,126 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcular();
+});
+
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+function fmtM(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €/mes';}
+
+function calcular(){
+  const añoNac=parseInt(document.getElementById('año_nacimiento').value)||1970;
+  const añosCotizados=parseFloat(document.getElementById('años_cotizados').value)||0;
+  const colectivo=document.getElementById('colectivo').value;
+  const salarioActual=parseFloat(document.getElementById('salario_actual').value)||0;
+  const salarioAntiguo=parseFloat(document.getElementById('salario_antiguo').value)||0;
+
+  const añoActual=2026;
+  const edadActual=añoActual-añoNac;
+
+  // Edad de jubilación ordinaria 2026
+  const edadJubOrdinaria=añosCotizados>=38.25?65:66+(8/12);
+  const añosHastaJub=Math.max(0,edadJubOrdinaria-edadActual);
+  const añoJub=añoActual+Math.ceil(añosHastaJub);
+  const añosCotizadosJub=añosCotizados+añosHastaJub;
+
+  // Base reguladora: media mensual últimos 25 años (simplificada)
+  const baseReg=(salarioActual+salarioAntiguo)/2;
+
+  // Porcentaje según años cotizados al jubilarse
+  // Mínimo 15 años = 50%, cada año adicional +3% hasta año 25, luego +2% hasta 100%
+  function getPct(años){
+    if(años<15) return 0;
+    let p=50;
+    const extra=Math.min(años-15,10);
+    p+=extra*3;
+    const extra2=Math.min(Math.max(0,años-25),11.5);
+    p+=extra2*2;
+    return Math.min(p,100);
+  }
+
+  const pctOrdinaria=getPct(añosCotizadosJub);
+  const pensionOrdinaria=baseReg*(pctOrdinaria/100);
+
+  // Pensión máxima 2026 ~3.175€/mes, mínima ~700€/mes
+  const PENSION_MAX=3175;
+  const PENSION_MIN=700;
+  const pensionOrdinariaFinal=Math.min(Math.max(pensionOrdinaria,añosCotizadosJub>=15?PENSION_MIN:0),PENSION_MAX);
+
+  // Jubilación anticipada (2 años antes, penalización ~3.5% por trimestre con <38 años cotizados)
+  const edadAnticipada=edadJubOrdinaria-2;
+  const trimestresAnt=8; // 2 años × 4 trimestres
+  const penalizacionAnt=años=>años>=38.25?0.015:0.035; // por trimestre
+  const pctAntPen=Math.max(0,pctOrdinaria-(trimestresAnt*penalizacionAnt(añosCotizadosJub)*100));
+  const pensionAnticipada=Math.min(Math.max(baseReg*(pctAntPen/100),PENSION_MIN),PENSION_MAX);
+
+  // Jubilación demorada (2 años después, +4% por año adicional si <37 cotizados, +12% si más)
+  const edadDemorada=edadJubOrdinaria+2;
+  const bonificacion=añosCotizadosJub>=37?0.12:0.04; // por año
+  const pensionDemorada=Math.min(pensionOrdinariaFinal*(1+bonificacion*2),PENSION_MAX);
+
+  // Años esperanza de vida desde jubilación (~85 años promedio)
+  const añosPension=Math.max(0,85-edadJubOrdinaria);
+
+  // Mostrar resultados
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
+  set('res_pension',fmtM(pensionOrdinariaFinal));
+  set('res_edad_jub',`Jubilación ordinaria a los ${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1).replace('.',',')} años`);
+  set('res_años_quedan',`Te quedan ~${Math.ceil(añosHastaJub)} años para jubilarte`);
+  set('d_base_reg',fmtM(baseReg));
+  set('d_pct_aplicado',pctOrdinaria.toFixed(1)+'%');
+  set('d_años_total',añosCotizadosJub.toFixed(1)+' años');
+  set('d_pension_anual',fmt(pensionOrdinariaFinal*14)); // 14 pagas
+
+  // Escenarios
+  set('esc_ant_pension',fmtM(pensionAnticipada));
+  set('esc_ant_detalle',`A los ${edadAnticipada%1===0?edadAnticipada:edadAnticipada.toFixed(1).replace('.',',')} años · −${(pctOrdinaria-pctAntPen).toFixed(1)}% penalización`);
+  set('esc_ord_pension',fmtM(pensionOrdinariaFinal));
+  set('esc_ord_detalle',`A los ${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1).replace('.',',')} años · ${pctOrdinaria.toFixed(0)}% base reguladora`);
+  set('esc_dem_pension',fmtM(pensionDemorada));
+  set('esc_dem_detalle',`A los ${edadDemorada%1===0?edadDemorada:edadDemorada.toFixed(1).replace('.',',')} años · +${(bonificacion*2*100).toFixed(0)}% bonificación`);
+
+  // Barra de años
+  const totalBarra=Math.max(50,añosCotizados+añosHastaJub+añosPension);
+  const pctCot=(añosCotizados/totalBarra)*100;
+  const pctRest=(añosHastaJub/totalBarra)*100;
+  const pctPen=(añosPension/totalBarra)*100;
+  const setW=(id,p)=>{const el=document.getElementById(id);if(el)el.style.width=p+'%';};
+  setW('bar_cotizados',pctCot);
+  setW('bar_restantes',pctRest);
+  setW('bar_pension',pctPen);
+  set('leg_cotizados',añosCotizados+' años');
+  set('leg_restantes',Math.ceil(añosHastaJub)+' años');
+  set('leg_pension_años',añosPension+' años est.');
+
+  // Timeline
+  const tl=document.getElementById('timeline-jub');
+  if(tl){
+    const eventos=[
+      {año:añoActual, label:'Hoy', detalle:`${edadActual} años · ${añosCotizados} años cotizados`, color:'var(--jub)'},
+      {año:añoActual+Math.ceil(Math.max(0,edadAnticipada-edadActual)), label:'Jubilación anticipada', detalle:`${edadAnticipada%1===0?edadAnticipada:edadAnticipada.toFixed(1)} años · ${fmtM(pensionAnticipada)}`, color:'#f59e0b'},
+      {año:añoJub, label:'Jubilación ordinaria', detalle:`${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1)} años · ${fmtM(pensionOrdinariaFinal)}`, color:'var(--jub)'},
+      {año:añoActual+Math.ceil(Math.max(0,edadDemorada-edadActual)), label:'Jubilación demorada', detalle:`${edadDemorada%1===0?edadDemorada:edadDemorada.toFixed(1)} años · ${fmtM(pensionDemorada)}`, color:'#7c3aed'},
+    ].filter(e=>e.año>=añoActual).sort((a,b)=>a.año-b.año);
+
+    tl.innerHTML=eventos.map(e=>`
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem">
+        <div style="width:40px;text-align:center;flex-shrink:0">
+          <div style="width:12px;height:12px;border-radius:50%;background:${e.color};margin:4px auto"></div>
+          <div style="font-size:10px;color:var(--hint)">${e.año}</div>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--text)">${e.label}</div>
+          <div style="font-size:12px;color:var(--muted)">${e.detalle}</div>
+        </div>
+      </div>`).join('');
+  }
+}
 </script>
 </body>
 </html>

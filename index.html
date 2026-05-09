@@ -42,11 +42,11 @@
     .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--hint); font-size: 16px; pointer-events: none; }
     .search-empty { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 15px; }
     .search-empty span { font-size: 32px; display: block; margin-bottom: 0.75rem; }
-    .card.hidden { display: none; }
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem 1.5rem; text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 12px; transition: border-color 0.15s, transform 0.15s; }
     .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card.hidden { display: none !important; }
     .card-icon { font-size: 28px; }
     .card-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
     .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }

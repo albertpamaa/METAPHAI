@@ -429,7 +429,165 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcular();
+});
+
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+function fmtM(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €/mes';}
+
+// Tramos RETA 2026 por ingresos netos mensuales
+const RETA_TRAMOS=[
+  {max:670,  cuota:200,  label:'Hasta 670 €/mes'},
+  {max:900,  cuota:200,  label:'670 – 900 €/mes'},
+  {max:1166, cuota:258,  label:'900 – 1.166 €/mes'},
+  {max:1300, cuota:293,  label:'1.166 – 1.300 €/mes'},
+  {max:1500, cuota:320,  label:'1.300 – 1.500 €/mes'},
+  {max:1700, cuota:348,  label:'1.500 – 1.700 €/mes'},
+  {max:1850, cuota:374,  label:'1.700 – 1.850 €/mes'},
+  {max:2030, cuota:396,  label:'1.850 – 2.030 €/mes'},
+  {max:2330, cuota:420,  label:'2.030 – 2.330 €/mes'},
+  {max:2760, cuota:462,  label:'2.330 – 2.760 €/mes'},
+  {max:3190, cuota:490,  label:'2.760 – 3.190 €/mes'},
+  {max:3620, cuota:530,  label:'3.190 – 3.620 €/mes'},
+  {max:4050, cuota:547,  label:'3.620 – 4.050 €/mes'},
+  {max:6000, cuota:570,  label:'4.050 – 6.000 €/mes'},
+  {max:Infinity,cuota:590,label:'Más de 6.000 €/mes'},
+];
+
+function getRETATramo(ingNetoMensual){
+  for(const t of RETA_TRAMOS) if(ingNetoMensual<=t.max) return t;
+  return RETA_TRAMOS[RETA_TRAMOS.length-1];
+}
+
+// IRPF escala general
+function calcIRPF(base){
+  if(base<=0) return 0;
+  const t=[{h:12450,r:.095},{h:20200,r:.12},{h:35200,r:.15},{h:60000,r:.185},{h:300000,r:.225},{h:Infinity,r:.245}];
+  let rem=base,prev=0,tot=0;
+  for(const s of t){const en=Math.min(Math.max(0,rem),s.h-prev);tot+=en*s.r;rem-=en;prev=s.h;if(rem<=0)break;}
+  return tot;
+}
+
+function toggleExtra(id){
+  const el=document.getElementById('extra_'+id);
+  const btn=document.getElementById('btn_'+id);
+  if(!el||!btn) return;
+  const vis=el.style.display==='block';
+  el.style.display=vis?'none':'block';
+  btn.classList.toggle('active',!vis);
+  calcular();
+}
+
+function calcular(){
+  const ingresos=parseFloat(document.getElementById('ingresos').value)||0;
+  const primerAño=document.getElementById('primer_año').value;
+  const regimen=document.getElementById('regimen').value;
+  const homeOffice=document.getElementById('home_office').value;
+  const gastoHogar=parseFloat(document.getElementById('gastos_hogar').value)||0;
+  const estado=document.getElementById('estado').value;
+  const hijos=parseInt(document.getElementById('hijos').value)||0;
+
+  // Gastos deducibles
+  const gastos={
+    alquiler: parseFloat(document.getElementById('g_alquiler').value)||0,
+    suministros: parseFloat(document.getElementById('g_suministros').value)||0,
+    material: parseFloat(document.getElementById('g_material').value)||0,
+    transporte: parseFloat(document.getElementById('g_transporte').value)||0,
+    formacion: parseFloat(document.getElementById('g_formacion').value)||0,
+    gestoria: parseFloat(document.getElementById('g_gestoria').value)||0,
+    seguros: parseFloat(document.getElementById('g_seguros').value)||0,
+    otros: parseFloat(document.getElementById('g_otros').value)||0,
+  };
+
+  // Home office: 30% de los gastos del hogar
+  const gastoHomeOffice = homeOffice==='si' ? gastoHogar*0.30 : 0;
+  const totalGastos=Object.values(gastos).reduce((a,b)=>a+b,0)+gastoHomeOffice;
+
+  // Provisión difícil justificación (solo estimación directa simplificada, 5%, máx 2.000€)
+  const rendPrevio=Math.max(0,ingresos-totalGastos);
+  const provDificil=regimen==='simplificada'?Math.min(rendPrevio*0.05,2000):0;
+  const rendNeto=Math.max(0,rendPrevio-provDificil);
+
+  // RETA según ingresos netos mensuales
+  let cuotaRetaMensual=200;
+  let retaLabel='';
+  if(primerAño==='si'){
+    cuotaRetaMensual=primerAño==='si'?80:200; // tarifa plana primer año
+    retaLabel='Tarifa plana primer año: 80 €/mes';
+    cuotaRetaMensual=80;
+    retaLabel='Tarifa plana primer año';
+  } else {
+    const ingNetoMensual=rendNeto/12;
+    const tramo=getRETATramo(ingNetoMensual);
+    cuotaRetaMensual=tramo.cuota;
+    retaLabel=tramo.label;
+  }
+  const retaAnual=cuotaRetaMensual*12;
+
+  // Base IRPF (rendimiento neto - cuota RETA, ya que RETA es deducible)
+  const baseIRPF=Math.max(0,rendNeto-retaAnual);
+
+  // Mínimo personal y familiar
+  let minimoPersonal=5550;
+  const minimoHijos_tabla=[0,2400,2700,4000,4500];
+  let minimoHijos=0;
+  for(let i=0;i<Math.min(hijos,4);i++) minimoHijos+=(minimoHijos_tabla[i+1]||4500);
+  const minimo=minimoPersonal+minimoHijos;
+  let redConjunta=0;
+  if(estado==='casado') redConjunta=3400;
+
+  const baseLiq=Math.max(0,baseIRPF-redConjunta);
+  const irpfBruto=Math.max(0,calcIRPF(baseLiq)-calcIRPF(minimo));
+  const netoReal=ingresos-totalGastos-provDificil-retaAnual-irpfBruto;
+
+  // Pagos trimestrales modelo 130 (20% beneficio acumulado)
+  const benTrimestral=rendNeto/4;
+  const pagoTrimestral=Math.max(0,benTrimestral*0.20);
+
+  // Mostrar resultados principales
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
+  set('res_neto',fmt(netoReal));
+  set('res_neto_mensual',fmtM(netoReal/12));
+  set('d_ingresos',fmt(ingresos));
+  set('d_gastos',fmt(totalGastos+provDificil));
+  set('d_rend_neto',fmt(rendNeto));
+  set('d_reta',fmtM(cuotaRetaMensual));
+  set('d_irpf',fmt(irpfBruto));
+  set('d_neto_real',fmt(netoReal));
+
+  // Liquidación detallada
+  set('l_ingresos',fmt(ingresos));
+  set('l_gastos',fmt(totalGastos));
+  set('l_dificil',fmt(provDificil));
+  set('l_rend_previo',fmt(rendPrevio));
+  set('l_reta',fmt(retaAnual));
+  set('l_base_irpf',fmt(baseIRPF));
+  set('l_minimo',fmt(minimo));
+  set('l_irpf',fmt(irpfBruto));
+  set('l_reta2',fmt(retaAnual));
+  set('l_neto',fmt(netoReal));
+
+  // Tramo RETA
+  set('reta_tramo_label',retaLabel);
+  set('reta_tramo_cuota',fmtM(cuotaRetaMensual));
+
+  // Trimestres
+  const grid=document.getElementById('trimestres-grid');
+  if(grid){
+    grid.innerHTML=['1er','2º','3er','4º'].map((t,i)=>`
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">${t} trimestre</div>
+        <div style="font-size:20px;font-weight:700;color:var(--aut)">${fmt(pagoTrimestral)}</div>
+        <div style="font-size:11px;color:var(--hint);margin-top:4px">Modelo 130</div>
+      </div>`).join('');
+  }
+}
 </script>
 </body>
 </html>
