@@ -323,7 +323,223 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  añadirOp('acciones');
+  añadirOp('fondos');
+  añadirOp('crypto');
+  calcularDividendos();
+  calcularResumen();
+});
+
+// --- Helpers ---
+function fmt(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
+function fmtN(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €'; }
+function pct(n){ return n.toFixed(1)+'%'; }
+
+// Tramos IRPF ganancias patrimoniales y RCM 2026
+function calcIRPF(base){
+  if(base<=0) return 0;
+  const tramos=[{h:6000,t:.19},{h:50000,t:.21},{h:200000,t:.23},{h:300000,t:.27},{h:Infinity,t:.28}];
+  let r=base, prev=0, total=0;
+  for(const t of tramos){
+    const en=Math.min(Math.max(0,r),t.h-prev);
+    total+=en*t.t; r-=en; prev=t.h;
+    if(r<=0) break;
+  }
+  return total;
+}
+
+// --- Tab switching ---
+function cambiarTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+// --- Operaciones (acciones, fondos, crypto) ---
+let opIds = {acciones:0, fondos:0, crypto:0};
+
+function añadirOp(tipo){
+  opIds[tipo]++;
+  const id = tipo+'-'+opIds[tipo];
+  const labels = {
+    acciones: ['Valor/ticker','Precio compra (€)','Precio venta (€)','Nº acciones'],
+    fondos:   ['Nombre fondo','VL compra (€)','VL venta (€)','Nº participaciones'],
+    crypto:   ['Moneda','Precio compra (€)','Precio venta (€)','Cantidad'],
+  };
+  const lb = labels[tipo];
+  const div = document.createElement('div');
+  div.id = id;
+  div.style.cssText='display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px;';
+  div.innerHTML=`
+    <div class="field"><label>${lb[0]}</label><input type="text" class="op-nombre" placeholder="Ej: Iberdrola" oninput="calcularOps('${tipo}')"></div>
+    <div class="field"><label>${lb[1]}</label><input type="number" class="op-compra" value="10" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
+    <div class="field"><label>${lb[2]}</label><input type="number" class="op-venta" value="15" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
+    <div class="field"><label>${lb[3]}</label><input type="number" class="op-num" value="100" min="0" step="1" oninput="calcularOps('${tipo}')"></div>
+    <button onclick="document.getElementById('${id}').remove();calcularOps('${tipo}')" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:16px;margin-bottom:1px;">✕</button>
+  `;
+  document.getElementById(tipo+'-lista').appendChild(div);
+  calcularOps(tipo);
+}
+
+function calcularOps(tipo){
+  const rows = document.getElementById(tipo+'-lista').querySelectorAll('[id^="'+tipo+'-"]');
+  let totalGanancia=0, totalPerdida=0, totalInvertido=0;
+  let html='';
+
+  rows.forEach(row=>{
+    const compra=parseFloat(row.querySelector('.op-compra').value)||0;
+    const venta=parseFloat(row.querySelector('.op-venta').value)||0;
+    const num=parseFloat(row.querySelector('.op-num').value)||0;
+    const nombre=row.querySelector('.op-nombre').value||'—';
+    const ganancia=(venta-compra)*num;
+    totalInvertido+=compra*num;
+    if(ganancia>=0) totalGanancia+=ganancia;
+    else totalPerdida+=Math.abs(ganancia);
+  });
+
+  const neta=totalGanancia-totalPerdida;
+  const irpf=calcIRPF(Math.max(0,neta));
+  const tipoEf=neta>0?(irpf/neta)*100:0;
+  const color=neta>=0?'var(--accent)':'#b91c1c';
+
+  const res=document.getElementById('res-'+tipo);
+  res.innerHTML=`
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header" style="background:${neta>=0?'var(--accent-light)':'#fef2f2'}">
+        <div>
+          <div class="main-label">Ganancia neta</div>
+          <div class="main-value" style="color:${color}">${fmtN(neta)}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">IRPF estimado</div>
+          <div class="sub-value">${fmtN(irpf)}</div>
+          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
+          <div class="sub-value">${pct(tipoEf)}</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item inv"><div class="rl">Total ganancias</div><div class="rv">${fmtN(totalGanancia)}</div></div>
+        <div class="res-item ${totalPerdida>0?'neg':''}"><div class="rl">Total pérdidas</div><div class="rv">${fmtN(totalPerdida)}</div></div>
+        <div class="res-item"><div class="rl">Ganancia neta</div><div class="rv" style="color:${color}">${fmtN(neta)}</div></div>
+        <div class="res-item"><div class="rl">IRPF a pagar</div><div class="rv">${fmtN(irpf)}</div></div>
+        <div class="res-item inv"><div class="rl">Total invertido</div><div class="rv">${fmtN(totalInvertido)}</div></div>
+        <div class="res-item pos"><div class="rl">Neto tras impuestos</div><div class="rv">${fmtN(neta-irpf)}</div></div>
+      </div>
+      ${neta<0?'<div class="info-box" style="margin-top:1rem"><p>💡 Tienes pérdidas de '+fmtN(Math.abs(neta))+'. Puedes compensarlas con otras ganancias patrimoniales de este año o de los próximos 4 años.</p></div>':''}
+    </div>`;
+
+  actualizarResumen();
+}
+
+// --- Dividendos ---
+function calcularDividendos(){
+  const divBruto=parseFloat(document.getElementById('div_bruto').value)||0;
+  const divRetencion=parseFloat(document.getElementById('div_retencion').value)||0;
+  const intBruto=parseFloat(document.getElementById('int_bruto').value)||0;
+  const intRetencion=parseFloat(document.getElementById('int_retencion').value)||0;
+
+  const totalRCM=divBruto+intBruto;
+  const totalRetencion=divRetencion+intRetencion;
+  const irpf=calcIRPF(totalRCM);
+  const aPagar=Math.max(0,irpf-totalRetencion);
+  const aDevolver=Math.max(0,totalRetencion-irpf);
+  const tipoEf=totalRCM>0?(irpf/totalRCM)*100:0;
+
+  document.getElementById('res-dividendos').innerHTML=`
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header" style="background:var(--accent-light)">
+        <div>
+          <div class="main-label">IRPF sobre RCM</div>
+          <div class="main-value">${fmtN(irpf)}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">${aPagar>0?'A pagar':'A devolver'}</div>
+          <div class="sub-value" style="color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
+          <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
+          <div class="sub-value">${pct(tipoEf)}</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item inv"><div class="rl">Dividendos brutos</div><div class="rv">${fmtN(divBruto)}</div></div>
+        <div class="res-item inv"><div class="rl">Intereses brutos</div><div class="rv">${fmtN(intBruto)}</div></div>
+        <div class="res-item"><div class="rl">Total RCM</div><div class="rv">${fmtN(totalRCM)}</div></div>
+        <div class="res-item"><div class="rl">Retenciones pagadas</div><div class="rv">${fmtN(totalRetencion)}</div></div>
+        <div class="res-item"><div class="rl">IRPF total</div><div class="rv">${fmtN(irpf)}</div></div>
+        <div class="res-item ${aPagar>0?'neg':'pos'}"><div class="rl">${aPagar>0?'Diferencia a pagar':'A devolver Hacienda'}</div><div class="rv">${fmtN(aPagar>0?aPagar:aDevolver)}</div></div>
+      </div>
+    </div>`;
+
+  actualizarResumen();
+}
+
+// --- Resumen global ---
+function actualizarResumen(){
+  // Recoger ganancias de cada pestaña
+  let ganPat=0, perdPat=0, rcm=0, retenciones=0;
+
+  ['acciones','fondos','crypto'].forEach(tipo=>{
+    const rows=document.getElementById(tipo+'-lista').querySelectorAll('[id^="'+tipo+'-"]');
+    rows.forEach(row=>{
+      const compra=parseFloat(row.querySelector('.op-compra').value)||0;
+      const venta=parseFloat(row.querySelector('.op-venta').value)||0;
+      const num=parseFloat(row.querySelector('.op-num').value)||0;
+      const g=(venta-compra)*num;
+      if(g>=0) ganPat+=g; else perdPat+=Math.abs(g);
+    });
+  });
+
+  rcm=(parseFloat(document.getElementById('div_bruto').value)||0)+(parseFloat(document.getElementById('int_bruto').value)||0);
+  retenciones=(parseFloat(document.getElementById('div_retencion').value)||0)+(parseFloat(document.getElementById('int_retencion').value)||0);
+
+  // Actualizar inputs del resumen
+  document.getElementById('res_ganancias_pat').value=ganPat.toFixed(0);
+  document.getElementById('res_perdidas_pat').value=perdPat.toFixed(0);
+  document.getElementById('res_rcm').value=rcm.toFixed(0);
+  document.getElementById('res_retenciones').value=retenciones.toFixed(0);
+  calcularResumen();
+}
+
+function calcularResumen(){
+  const ganPat=parseFloat(document.getElementById('res_ganancias_pat').value)||0;
+  const perdPat=parseFloat(document.getElementById('res_perdidas_pat').value)||0;
+  const rcm=parseFloat(document.getElementById('res_rcm').value)||0;
+  const retenciones=parseFloat(document.getElementById('res_retenciones').value)||0;
+
+  const netaPat=ganPat-perdPat;
+  const irpfPat=calcIRPF(Math.max(0,netaPat));
+  const irpfRCM=calcIRPF(rcm);
+  const totalIRPF=irpfPat+irpfRCM;
+  const aPagar=Math.max(0,totalIRPF-retenciones);
+  const aDevolver=Math.max(0,retenciones-totalIRPF);
+  const color=netaPat>=0?'var(--accent)':'#b91c1c';
+
+  document.getElementById('res-global').innerHTML=`
+    <div class="results" style="margin-top:1rem">
+      <div class="results-header" style="background:${aPagar>0?'#fef2f2':'var(--accent-light)'}">
+        <div>
+          <div class="main-label">IRPF total inversiones</div>
+          <div class="main-value">${fmtN(totalIRPF)}</div>
+        </div>
+        <div class="sub-block">
+          <div class="sub-label">${aPagar>0?'A ingresar a Hacienda':'A devolver Hacienda'}</div>
+          <div class="sub-value" style="color:${aPagar>0?'#b91c1c':'var(--accent)'}">${fmtN(aPagar>0?aPagar:aDevolver)}</div>
+        </div>
+      </div>
+      <div class="results-grid">
+        <div class="res-item inv"><div class="rl">Ganancias patrimoniales</div><div class="rv">${fmtN(ganPat)}</div></div>
+        <div class="res-item ${perdPat>0?'neg':''}"><div class="rl">Pérdidas patrimoniales</div><div class="rv">${fmtN(perdPat)}</div></div>
+        <div class="res-item" style="color:${color}"><div class="rl">Neta patrimonial</div><div class="rv">${fmtN(netaPat)}</div></div>
+        <div class="res-item inv"><div class="rl">Rendimientos capital mob.</div><div class="rv">${fmtN(rcm)}</div></div>
+        <div class="res-item"><div class="rl">Retenciones ya pagadas</div><div class="rv">${fmtN(retenciones)}</div></div>
+        <div class="res-item ${aPagar>0?'neg':'pos'}"><div class="rl">${aPagar>0?'A ingresar':'A devolver'}</div><div class="rv">${fmtN(aPagar>0?aPagar:aDevolver)}</div></div>
+      </div>
+    </div>`;
+}
 </script>
 </body>
 </html>
