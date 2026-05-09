@@ -327,7 +327,135 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcular();
+});
+
+document.querySelectorAll('#ganancias_total,#perdidas_total,#otras_ganancias,#otras_perdidas').forEach(el => el.addEventListener('input', calcular));
+
+function cambiarModo() {
+  const modo = document.getElementById('modo').value;
+  document.getElementById('bloque_simple').style.display = modo === 'simple' ? 'block' : 'none';
+  document.getElementById('bloque_detallado').style.display = modo === 'detallado' ? 'block' : 'none';
+  calcular();
+}
+
+let apuestaId = 0;
+function añadirApuesta() {
+  apuestaId++;
+  const div = document.createElement('div');
+  div.className = 'apuesta-row';
+  div.id = 'ap-' + apuestaId;
+  div.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px;';
+  div.innerHTML = `
+    <div class="field"><label>Tipo</label><select class="ap-tipo" onchange="calcular()">
+      <option>Apuestas deportivas</option><option>Casino</option><option>Póker</option><option>Lotería/Quiniela</option><option>Otro</option>
+    </select></div>
+    <div class="field"><label>Ganancias (€)</label><input type="number" class="ap-gan" value="0" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Pérdidas (€)</label><input type="number" class="ap-per" value="0" min="0" oninput="calcular()"></div>
+    <button onclick="document.getElementById('ap-${apuestaId}').remove();calcular()" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:16px;margin-bottom:1px;">✕</button>
+  `;
+  document.getElementById('apuestas-lista').appendChild(div);
+  calcular();
+}
+
+function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
+function pct(n) { return n.toFixed(1) + '%'; }
+
+// Tramos IRPF 2026 ganancias patrimoniales
+function calcularIRPF(base) {
+  if (base <= 0) return { total: 0, tramos: [0,0,0,0,0] };
+  const tramos = [
+    { hasta: 6000,   tipo: 0.19 },
+    { hasta: 50000,  tipo: 0.21 },
+    { hasta: 200000, tipo: 0.23 },
+    { hasta: 300000, tipo: 0.27 },
+    { hasta: Infinity, tipo: 0.28 },
+  ];
+  let restante = base;
+  let prev = 0;
+  let total = 0;
+  const detalle = [];
+  for (const t of tramos) {
+    const en_tramo = Math.min(Math.max(0, restante), t.hasta - prev);
+    const imp = en_tramo * t.tipo;
+    detalle.push(imp);
+    total += imp;
+    restante -= en_tramo;
+    prev = t.hasta;
+    if (restante <= 0) break;
+  }
+  while (detalle.length < 5) detalle.push(0);
+  return { total, tramos: detalle };
+}
+
+function calcular() {
+  const modo = document.getElementById('modo').value;
+  let ganancias = 0, perdidas = 0;
+
+  if (modo === 'simple') {
+    ganancias = parseFloat(document.getElementById('ganancias_total').value) || 0;
+    perdidas = parseFloat(document.getElementById('perdidas_total').value) || 0;
+  } else {
+    document.querySelectorAll('.ap-gan').forEach(el => ganancias += parseFloat(el.value) || 0);
+    document.querySelectorAll('.ap-per').forEach(el => perdidas += parseFloat(el.value) || 0);
+    ganancias += parseFloat(document.getElementById('otras_ganancias').value) || 0;
+    perdidas += parseFloat(document.getElementById('otras_perdidas').value) || 0;
+  }
+
+  const neta = ganancias - perdidas;
+
+  // Si ganancia neta <= 0, no hay IRPF
+  if (neta <= 0) {
+    document.getElementById('bloque_resultados').style.display = 'none';
+    document.getElementById('bloque_sin_obligacion').style.display = 'block';
+    document.getElementById('msg_sin_obligacion').textContent = neta < 0
+      ? `Tienes pérdidas netas de ${fmt(Math.abs(neta))}. No pagas IRPF y puedes compensar estas pérdidas con otras ganancias patrimoniales en los próximos 4 años.`
+      : 'Tu ganancia neta es cero. No tienes que pagar IRPF por apuestas este año.';
+    return;
+  }
+
+  document.getElementById('bloque_resultados').style.display = 'block';
+  document.getElementById('bloque_sin_obligacion').style.display = 'none';
+
+  const { total: irpf, tramos } = calcularIRPF(neta);
+  const tipoEfectivo = neta > 0 ? (irpf / neta) * 100 : 0;
+  const netoFinal = neta - irpf;
+
+  // Tramo más alto
+  let tramoAlto = '19%';
+  if (neta > 300000) tramoAlto = '28%';
+  else if (neta > 200000) tramoAlto = '27%';
+  else if (neta > 50000) tramoAlto = '23%';
+  else if (neta > 6000) tramoAlto = '21%';
+
+  // Resultados
+  const header = document.getElementById('results-header');
+  header.className = 'results-header ' + (irpf > 0 ? 'negativo' : 'positivo');
+
+  document.getElementById('res_irpf').textContent = fmt(irpf);
+  document.getElementById('res_ganancia_neta').textContent = fmt(neta) + ' ganancia neta';
+  document.getElementById('res_tipo_efectivo').textContent = pct(tipoEfectivo) + ' tipo efectivo';
+
+  document.getElementById('d_ganancias').textContent = fmt(ganancias);
+  document.getElementById('d_perdidas').textContent = fmt(perdidas);
+  document.getElementById('d_neta').textContent = fmt(neta);
+  document.getElementById('d_irpf_detalle').textContent = fmt(irpf);
+  document.getElementById('d_tramo').textContent = 'Hasta ' + tramoAlto;
+  document.getElementById('d_neto_final').textContent = fmt(netoFinal);
+
+  // Tramos detalle
+  const ids = ['t1v','t2v','t3v','t4v','t5v'];
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tramos[i] > 0 ? fmt(tramos[i]) : '—';
+    const row = document.getElementById('t' + (i+1));
+    if (row) row.style.opacity = tramos[i] > 0 ? '1' : '0.4';
+  });
+}
 </script>
 </body>
 </html>

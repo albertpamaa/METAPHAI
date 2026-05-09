@@ -422,7 +422,143 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcularInquilino();
+  calcularPropietario();
+});
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', function() {
+  calcularInquilino();
+  calcularPropietario();
+}));
+
+function cambiarTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
+function pct(n) { return n.toFixed(1) + '%'; }
+
+// Deducciones autonómicas inquilino (% sobre alquiler, máx €)
+const CCAA_INQ = {
+  ninguna:        { pct: 0,    max: 0,    condicion: 'ninguna' },
+  andalucia:      { pct: 15,   max: 500,  condicion: 'menor35' },
+  aragon:         { pct: 10,   max: 300,  condicion: 'ninguna' },
+  asturias:       { pct: 10,   max: 455,  condicion: 'ninguna' },
+  baleares:       { pct: 15,   max: 530,  condicion: 'ninguna' },
+  canarias:       { pct: 20,   max: 600,  condicion: 'ninguna' },
+  cantabria:      { pct: 10,   max: 300,  condicion: 'ninguna' },
+  castilla_mancha:{ pct: 15,   max: 450,  condicion: 'ninguna' },
+  castilla_leon:  { pct: 10,   max: 459,  condicion: 'ninguna' },
+  cataluña:       { pct: 10,   max: 300,  condicion: 'ninguna' },
+  extremadura:    { pct: 10,   max: 300,  condicion: 'ninguna' },
+  galicia:        { pct: 10,   max: 300,  condicion: 'ninguna' },
+  madrid:         { pct: 30,   max: 1000, condicion: 'menor35' },
+  murcia:         { pct: 10,   max: 300,  condicion: 'ninguna' },
+  rioja:          { pct: 10,   max: 300,  condicion: 'ninguna' },
+  valencia:       { pct: 15,   max: 550,  condicion: 'ninguna' },
+};
+
+function calcularInquilino() {
+  const alquilerMensual = parseFloat(document.getElementById('alquiler_mensual').value) || 0;
+  const meses = parseFloat(document.getElementById('meses_alquiler').value) || 12;
+  const ccaa = document.getElementById('ccaa_inquilino').value;
+  const baseImponible = parseFloat(document.getElementById('base_imponible_inq').value) || 0;
+  const edad = document.getElementById('edad_inquilino').value;
+  const contratoAntiguo = document.getElementById('contrato_antiguo').value;
+
+  document.getElementById('aviso_contrato_antiguo').style.display = contratoAntiguo === 'si' ? 'block' : 'none';
+
+  const alquilerAnual = alquilerMensual * meses;
+
+  // Deducción estatal (solo contratos anteriores a 2015 con base < 24.107,20€)
+  let deduccionEstatal = 0;
+  if (contratoAntiguo === 'si' && baseImponible < 24107.20) {
+    if (baseImponible <= 17707.20) {
+      deduccionEstatal = Math.min(alquilerAnual * 0.10805, 9040 * 0.10805);
+    } else {
+      const factor = 1 - ((baseImponible - 17707.20) / (24107.20 - 17707.20));
+      deduccionEstatal = Math.min(alquilerAnual * 0.10805, 9040 * 0.10805) * factor;
+    }
+  }
+
+  // Deducción autonómica
+  const ccaaData = CCAA_INQ[ccaa] || CCAA_INQ.ninguna;
+  let deduccionAutonomica = 0;
+  const aplica = ccaaData.condicion === 'ninguna' || (ccaaData.condicion === 'menor35' && edad === 'menor35');
+  if (aplica && ccaaData.pct > 0) {
+    deduccionAutonomica = Math.min(alquilerAnual * (ccaaData.pct / 100), ccaaData.max);
+  }
+
+  const deduccionTotal = deduccionEstatal + deduccionAutonomica;
+  const totalPagado = alquilerAnual;
+  const costeReal = totalPagado - deduccionTotal;
+  const mensualEfectivo = meses > 0 ? costeReal / meses : 0;
+  const pctDed = totalPagado > 0 ? (deduccionTotal / totalPagado) * 100 : 0;
+
+  document.getElementById('inq_deduccion_total').textContent = fmt(deduccionTotal);
+  document.getElementById('inq_ahorro_mensual').textContent = fmt(meses > 0 ? deduccionTotal / meses : 0) + '/mes';
+  document.getElementById('inq_alquiler_anual').textContent = fmt(alquilerAnual) + '/año';
+  document.getElementById('inq_estatal').textContent = fmt(deduccionEstatal);
+  document.getElementById('inq_autonomica').textContent = fmt(deduccionAutonomica);
+  document.getElementById('inq_pct').textContent = pct(pctDed);
+  document.getElementById('inq_total_pagado').textContent = fmt(totalPagado);
+  document.getElementById('inq_coste_real').textContent = fmt(costeReal);
+  document.getElementById('inq_mensual_efectivo').textContent = fmt(mensualEfectivo) + '/mes';
+}
+
+function calcularPropietario() {
+  const rentaMensual = parseFloat(document.getElementById('renta_mensual').value) || 0;
+  const mesesProp = parseFloat(document.getElementById('meses_prop').value) || 12;
+  const ibi = parseFloat(document.getElementById('ibi').value) || 0;
+  const comunidad = parseFloat(document.getElementById('comunidad').value) || 0;
+  const seguros = parseFloat(document.getElementById('seguros').value) || 0;
+  const reparaciones = parseFloat(document.getElementById('reparaciones').value) || 0;
+  const hipotecaIntereses = parseFloat(document.getElementById('hipoteca_intereses').value) || 0;
+  const honorarios = parseFloat(document.getElementById('honorarios').value) || 0;
+  const valorInmueble = parseFloat(document.getElementById('valor_inmueble').value) || 0;
+  const tipoInquilino = document.getElementById('tipo_inquilino').value;
+
+  const ingresos = rentaMensual * mesesProp;
+  const amortizacion = valorInmueble * 0.03; // 3% valor catastral construcción
+  const totalGastos = ibi + comunidad + seguros + reparaciones + hipotecaIntereses + honorarios + amortizacion;
+  const rendimientoPrevio = ingresos - totalGastos;
+
+  // Reducción según tipo de inquilino (Ley Vivienda 2023)
+  const reducciones = { normal: 50, joven: 90, zona_tensionada: 90 };
+  const reduccionPct = reducciones[tipoInquilino] || 50;
+  const reduccion = Math.max(0, rendimientoPrevio * (reduccionPct / 100));
+  const rendimientoReducido = Math.max(0, rendimientoPrevio - reduccion);
+
+  // Estimación ahorro fiscal (tipo marginal ~24%)
+  const ahorroFiscal = reduccion * 0.24;
+
+  document.getElementById('prop_rendimiento_neto').textContent = fmt(rendimientoReducido);
+  document.getElementById('prop_reduccion_pct').textContent = `Reducción ${reduccionPct}% aplicada`;
+  document.getElementById('prop_ahorro_fiscal').textContent = fmt(ahorroFiscal) + ' ahorro est.';
+  document.getElementById('prop_ingresos').textContent = fmt(ingresos);
+  document.getElementById('prop_gastos').textContent = fmt(totalGastos);
+  document.getElementById('prop_amortizacion').textContent = fmt(amortizacion);
+  document.getElementById('prop_rend_previo').textContent = fmt(rendimientoPrevio);
+  document.getElementById('prop_reduccion').textContent = fmt(reduccion);
+  document.getElementById('prop_rend_reducido').textContent = fmt(rendimientoReducido);
+
+  // Desglose gastos
+  document.getElementById('g_ibi').textContent = fmt(ibi);
+  document.getElementById('g_comunidad').textContent = fmt(comunidad);
+  document.getElementById('g_seguros').textContent = fmt(seguros);
+  document.getElementById('g_reparaciones').textContent = fmt(reparaciones);
+  document.getElementById('g_hipoteca').textContent = fmt(hipotecaIntereses);
+  document.getElementById('g_honorarios').textContent = fmt(honorarios);
+  document.getElementById('g_amortizacion').textContent = fmt(amortizacion);
+  document.getElementById('g_total').textContent = fmt(totalGastos);
+}
 </script>
 </body>
 </html>
