@@ -462,7 +462,200 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcular(); calcAmort(); calcComp();
+});
+
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+function fmtN(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+function pct(n){return n.toFixed(2)+'%';}
+
+function actualizarAhorro(){
+  const precio=parseFloat(document.getElementById('precio_inmueble').value)||0;
+  const entrada=parseFloat(document.getElementById('entrada').value)||0;
+  const capital=precio-entrada;
+  if(capital>0) document.getElementById('capital').value=capital;
+  calcular();
+}
+
+function cambiarTipoHip(){
+  const tipo=document.getElementById('tipo_hip').value;
+  document.getElementById('campo_tin').style.display=tipo==='fija'?'block':'none';
+  document.getElementById('campo_euribor').style.display=tipo==='variable'?'block':'none';
+  document.getElementById('campo_diferencial').style.display=tipo==='variable'?'block':'none';
+  document.getElementById('campo_mixta').style.display=tipo==='mixta'?'block':'none';
+  calcular();
+}
+
+// Cuota mensual francesa
+function cuotaMensual(capital, tinAnual, meses){
+  if(tinAnual===0) return capital/meses;
+  const r=tinAnual/12/100;
+  return capital*r*Math.pow(1+r,meses)/(Math.pow(1+r,meses)-1);
+}
+
+// TAE aproximada
+function calcTAE(capital, cuota, meses){
+  let lo=0, hi=100;
+  for(let i=0;i<50;i++){
+    const mid=(lo+hi)/2;
+    const r=mid/12/100;
+    const pv=r===0?cuota*meses:cuota*(1-Math.pow(1+r,-meses))/r;
+    if(pv>capital) lo=mid; else hi=mid;
+  }
+  return (lo+hi)/2;
+}
+
+let tablaCompleta=false;
+function toggleTabla(){
+  tablaCompleta=!tablaCompleta;
+  document.getElementById('btn-ver-mas').textContent=tablaCompleta?'Ver menos':'Ver todos los años';
+  calcular();
+}
+
+function calcular(){
+  const capital=parseFloat(document.getElementById('capital').value)||0;
+  const plazo=parseInt(document.getElementById('plazo').value)||30;
+  const tipo=document.getElementById('tipo_hip').value;
+  const meses=plazo*12;
+
+  let tin=0;
+  if(tipo==='fija') tin=parseFloat(document.getElementById('tin').value)||0;
+  else if(tipo==='variable') tin=(parseFloat(document.getElementById('euribor').value)||0)+(parseFloat(document.getElementById('diferencial').value)||0);
+  else tin=parseFloat(document.getElementById('tin_fijo_mixta').value)||0;
+
+  if(capital<=0||plazo<=0) return;
+
+  const cuota=cuotaMensual(capital,tin,meses);
+  const totalPagado=cuota*meses;
+  const totalIntereses=totalPagado-capital;
+  const tae=calcTAE(capital,cuota,meses);
+  const pctIntereses=capital>0?(totalIntereses/totalPagado)*100:0;
+
+  document.getElementById('res_cuota').textContent=fmt(cuota)+'/mes';
+  document.getElementById('res_total').textContent='Total: '+fmtN(totalPagado);
+  document.getElementById('res_intereses').textContent='Intereses: '+fmtN(totalIntereses);
+  document.getElementById('d_capital').textContent=fmtN(capital);
+  document.getElementById('d_intereses').textContent=fmtN(totalIntereses);
+  document.getElementById('d_total').textContent=fmtN(totalPagado);
+  document.getElementById('d_tin').textContent=pct(tin);
+  document.getElementById('d_tae').textContent=pct(tae);
+  document.getElementById('d_pct_int').textContent=pct(pctIntereses);
+
+  // Barra capital/intereses
+  const pctCap=capital>0?(capital/totalPagado)*100:0;
+  document.getElementById('seg_capital').style.width=pctCap+'%';
+  document.getElementById('seg_intereses').style.width=(100-pctCap)+'%';
+  document.getElementById('leg_capital').textContent=pct(pctCap);
+  document.getElementById('leg_intereses').textContent=pct(100-pctCap);
+
+  // Tabla amortización anual
+  let saldo=capital, html='<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:1rem"><tr style="background:var(--bg)"><th style="padding:8px;text-align:left;border-bottom:1px solid var(--border)">Año</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Cuota anual</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Capital</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Intereses</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Saldo</th></tr>';
+  const r=tin/12/100;
+  const añosMostrar=tablaCompleta?plazo:Math.min(5,plazo);
+  for(let y=1;y<=añosMostrar;y++){
+    let capAnual=0,intAnual=0;
+    for(let m=0;m<12;m++){
+      const intMes=saldo*r;
+      const capMes=cuota-intMes;
+      intAnual+=intMes; capAnual+=capMes; saldo-=capMes;
+    }
+    html+=`<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px;color:var(--muted)">Año ${y}</td><td style="padding:8px;text-align:right">${fmtN(cuota*12)}</td><td style="padding:8px;text-align:right;color:var(--accent)">${fmtN(capAnual)}</td><td style="padding:8px;text-align:right;color:#b91c1c">${fmtN(intAnual)}</td><td style="padding:8px;text-align:right">${fmtN(Math.max(0,saldo))}</td></tr>`;
+  }
+  html+='</table>';
+  const tabla=document.getElementById('tabla-amortizacion');
+  if(tabla) tabla.innerHTML=html;
+}
+
+function calcAmort(){
+  const capPend=parseFloat(document.getElementById('cap_pendiente').value)||0;
+  const tinActual=parseFloat(document.getElementById('tin_actual').value)||0;
+  const añosRest=parseInt(document.getElementById('años_restantes').value)||0;
+  const importeAmort=parseFloat(document.getElementById('importe_amort').value)||0;
+  const tipoAmort=document.querySelector('input[name="tipo_amort"]:checked')?.value||'plazo';
+  const comisionPct=parseFloat(document.getElementById('comision_amort').value)||0;
+
+  if(capPend<=0||añosRest<=0) return;
+
+  const mesesRest=añosRest*12;
+  const cuotaActual=cuotaMensual(capPend,tinActual,mesesRest);
+  const intSin=cuotaActual*mesesRest-capPend;
+  const capNuevo=capPend-importeAmort;
+  const comision=importeAmort*(comisionPct/100);
+
+  let cuotaNueva=cuotaActual, intCon=intSin, ahorroNeto=0;
+  if(capNuevo>0&&importeAmort>0){
+    if(tipoAmort==='plazo'){
+      cuotaNueva=cuotaActual; // misma cuota
+      // calcular nuevos meses
+      const r=tinActual/12/100;
+      let m=0;
+      if(r>0) m=Math.log(cuotaNueva/(cuotaNueva-capNuevo*r))/Math.log(1+r);
+      else m=capNuevo/cuotaNueva;
+      intCon=cuotaNueva*m-capNuevo;
+    } else {
+      cuotaNueva=cuotaMensual(capNuevo,tinActual,mesesRest);
+      intCon=cuotaNueva*mesesRest-capNuevo;
+    }
+    ahorroNeto=Math.max(0,intSin-intCon)-comision;
+  }
+
+  document.getElementById('a_cuota_actual').textContent=fmt(cuotaActual)+'/mes';
+  document.getElementById('a_nuevo').textContent=tipoAmort==='plazo'?'Reducción plazo':fmt(cuotaNueva)+'/mes';
+  document.getElementById('a_label_nuevo').textContent=tipoAmort==='plazo'?'Efecto en plazo':'Nueva cuota';
+  document.getElementById('a_int_sin').textContent=fmtN(intSin);
+  document.getElementById('a_int_con').textContent=fmtN(intCon);
+  document.getElementById('a_comision').textContent=fmtN(comision);
+  document.getElementById('a_ahorro').textContent=fmtN(ahorroNeto);
+}
+
+function calcComp(){
+  const capital=parseFloat(document.getElementById('comp_capital').value)||0;
+  const plazo=parseInt(document.getElementById('comp_plazo').value)||30;
+  const escenario=document.getElementById('escenario_euribor').value;
+  const tinFijo=parseFloat(document.getElementById('comp_tin_fijo').value)||0;
+  const diferencial=parseFloat(document.getElementById('comp_diferencial').value)||0;
+  const tinInicial=parseFloat(document.getElementById('comp_tin_inicial').value)||0;
+
+  const euribors={bajo:1.5,medio:2.5,alto:4.0};
+  const euribor=euribors[escenario]||2.5;
+  const tinVar=euribor+diferencial;
+  const meses=plazo*12;
+
+  const cuotaFija=cuotaMensual(capital,tinFijo,meses);
+  const cuotaVar=cuotaMensual(capital,tinVar,meses);
+  const cuotaIni=cuotaMensual(capital,tinInicial,meses);
+
+  const totalFija=cuotaFija*meses;
+  const totalVar=cuotaVar*meses;
+  const totalIni=cuotaIni*meses;
+
+  document.getElementById('comp-resultado').innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1rem">
+      <div style="background:var(--surface);border:2px solid var(--hip);border-radius:12px;padding:1rem;text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Fija ${pct(tinFijo)}</div>
+        <div style="font-size:22px;font-weight:700;color:var(--hip)">${fmt(cuotaFija)}<span style="font-size:12px">/mes</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Total: ${fmtN(totalFija)}</div>
+        <div style="font-size:12px;color:var(--muted)">Intereses: ${fmtN(totalFija-capital)}</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Variable ${pct(tinVar)} (Eur.${pct(euribor)}+${pct(diferencial)})</div>
+        <div style="font-size:22px;font-weight:700">${fmt(cuotaVar)}<span style="font-size:12px">/mes</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Total: ${fmtN(totalVar)}</div>
+        <div style="font-size:12px;color:var(--muted)">Intereses: ${fmtN(totalVar-capital)}</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Mixta (ini. ${pct(tinInicial)} → var.)</div>
+        <div style="font-size:22px;font-weight:700">${fmt(cuotaIni)}<span style="font-size:12px">/mes ini.</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">Inicio: ${fmtN(totalIni)}</div>
+        <div style="font-size:12px;color:var(--hint)">Cambia según Euríbor</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--hint);margin-top:8px;text-align:center">Escenario Euríbor: ${escenario==='bajo'?'bajo (1.5%)':escenario==='medio'?'medio (2.5%)':'alto (4.0%)'}</div>`;
+}
 </script>
 </body>
 </html>

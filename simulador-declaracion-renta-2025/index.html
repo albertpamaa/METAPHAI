@@ -449,7 +449,187 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){
+  var c=localStorage.getItem("cookies");
+  if(!c)document.getElementById("cookie-banner").style.display="flex";
+  else if(c==="aceptado")loadAnalytics();
+  calcular();
+});
+
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
+
+function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+function fmtS(n){return (n>=0?'+':'')+n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+
+function toggleExtra(id){
+  const el=document.getElementById('extra_'+id);
+  const btn=document.getElementById('btn_'+id);
+  const vis=el.style.display==='block';
+  el.style.display=vis?'none':'block';
+  btn.classList.toggle('active',!vis);
+  calcular();
+}
+
+// Tramos escala general IRPF estatal 2026
+function cuotaEscalaGeneral(base){
+  if(base<=0) return 0;
+  const tramos=[{h:12450,t:.095},{h:20200,t:.12},{h:35200,t:.15},{h:60000,t:.185},{h:300000,t:.225},{h:Infinity,t:.245}];
+  let r=base,prev=0,total=0;
+  for(const t of tramos){const en=Math.min(Math.max(0,r),t.h-prev);total+=en*t.t;r-=en;prev=t.h;if(r<=0)break;}
+  return total;
+}
+
+// Tramos ahorro
+function cuotaAhorro(base){
+  if(base<=0) return 0;
+  const tramos=[{h:6000,t:.19},{h:50000,t:.21},{h:200000,t:.23},{h:300000,t:.27},{h:Infinity,t:.28}];
+  let r=base,prev=0,total=0;
+  for(const t of tramos){const en=Math.min(Math.max(0,r),t.h-prev);total+=en*t.t;r-=en;prev=t.h;if(r<=0)break;}
+  return total;
+}
+
+function calcular(){
+  // Datos personales
+  const estado=document.getElementById('estado').value;
+  const hijos=parseInt(document.getElementById('hijos').value)||0;
+  const edad=document.getElementById('edad').value;
+  const discapacidad=document.getElementById('discapacidad').value;
+  const modalidad=document.getElementById('modalidad').value;
+
+  // Rendimientos trabajo
+  const salarioBruto=parseFloat(document.getElementById('salario_bruto').value)||0;
+  const retNomina=parseFloat(document.getElementById('retenciones_nomina').value)||0;
+  const cuotaSS=parseFloat(document.getElementById('cuota_ss').value)||0;
+  const numPagadores=document.getElementById('num_pagadores').value;
+
+  // Extras ingresos
+  const rendAutonomo=parseFloat(document.getElementById('rend_autonomo')?.value)||0;
+  const pagosFrac=parseFloat(document.getElementById('pagos_frac')?.value)||0;
+  const rendAlquiler=parseFloat(document.getElementById('rend_alquiler')?.value)||0;
+  const gananciasPat=parseFloat(document.getElementById('ganancias_pat')?.value)||0;
+  const dividendos=parseFloat(document.getElementById('dividendos')?.value)||0;
+  const retInversiones=parseFloat(document.getElementById('ret_inversiones')?.value)||0;
+  const importePension=parseFloat(document.getElementById('importe_pension')?.value)||0;
+  const importeParo=parseFloat(document.getElementById('importe_paro')?.value)||0;
+  const retParo=parseFloat(document.getElementById('ret_paro')?.value)||0;
+
+  // Deducciones extras
+  const aportePension=parseFloat(document.getElementById('aporte_pension_plan')?.value)||0;
+  const donativos=parseFloat(document.getElementById('donativos')?.value)||0;
+  const hijosMat=parseInt(document.getElementById('hijos_maternidad')?.value)||0;
+  const guarderia=document.getElementById('guarderia')?.value||'no';
+  const gastoGuarderia=parseFloat(document.getElementById('gasto_guarderia')?.value)||0;
+  const dedAlquilerInq=parseFloat(document.getElementById('ded_alquiler_inq')?.value)||0;
+  const dedEficiencia=parseFloat(document.getElementById('ded_eficiencia')?.value)||0;
+
+  // --- CÁLCULO ---
+
+  // Rendimiento neto del trabajo
+  const rendTrabajo=salarioBruto-cuotaSS+importeParo;
+  const rendPension=importePension;
+  const rendOtros=rendAutonomo+rendAlquiler+rendPension;
+  const baseAhorro=gananciasPat+dividendos;
+
+  // Reducción por rendimientos del trabajo (escala 2026)
+  let redTrabajo=0;
+  if(rendTrabajo<=14852) redTrabajo=7302;
+  else if(rendTrabajo<=17673.52) redTrabajo=7302-1.75*(rendTrabajo-14852);
+  else redTrabajo=2364;
+
+  // Reducción por discapacidad trabajador
+  let redDiscapacidad=0;
+  if(discapacidad==='33') redDiscapacidad=3500;
+  else if(discapacidad==='65') redDiscapacidad=7750;
+
+  // Aportación plan de pensiones (límite 1.500€ o 30% rendimientos)
+  const limPension=Math.min(1500,rendTrabajo*0.30);
+  const redPension=Math.min(aportePension,limPension);
+
+  // Base imponible general
+  const baseImponibleGral=Math.max(0,rendTrabajo+rendOtros-redTrabajo-redDiscapacidad-redPension);
+
+  // Mínimo personal y familiar
+  let minimoPersonal=5550;
+  if(edad==='65_75') minimoPersonal+=1150;
+  if(edad==='mayor75') minimoPersonal+=1400+1150;
+  if(discapacidad==='33') minimoPersonal+=3000;
+  if(discapacidad==='65') minimoPersonal+=9000;
+
+  // Mínimo por descendientes
+  const minimoHijos_tabla=[0,2400,2700,4000,4500];
+  let minimoHijos=0;
+  for(let i=0;i<Math.min(hijos,4);i++) minimoHijos+=(minimoHijos_tabla[i+1]||4500);
+
+  // Reducción conjunta
+  let redConjunta=0;
+  if(modalidad==='conjunta'){
+    if(estado==='casado') redConjunta=3400;
+    else redConjunta=2150;
+  }
+
+  const minimoTotal=minimoPersonal+minimoHijos;
+  const baseLiquidableGral=Math.max(0,baseImponibleGral-redConjunta);
+
+  // Cuota íntegra
+  const cuotaIntegra=Math.max(0,cuotaEscalaGeneral(baseLiquidableGral)-cuotaEscalaGeneral(minimoTotal));
+  const cuotaAhorroBase=cuotaAhorro(baseAhorro);
+
+  // Deducciones de la cuota
+  // Maternidad: 1.200€/hijo + guardería hasta 1.000€
+  const dedMaternidad=hijosMat>0?(hijosMat*1200+(guarderia==='si'?Math.min(gastoGuarderia,1000*hijosMat):0)):0;
+  // Donativos: 80% primeros 250€, 40% resto (simplificado)
+  const dedDonativos=donativos<=250?donativos*0.80:(250*0.80+(donativos-250)*0.40);
+  // Alquiler vivienda habitual (contratos pre-2015)
+  const dedAlquiler=dedAlquilerInq;
+  // Eficiencia energética
+  const dedEfic=dedEficiencia;
+
+  const totalDeducciones=dedMaternidad+dedDonativos+dedAlquiler+dedEfic;
+  const cuotaLiquida=Math.max(0,cuotaIntegra+cuotaAhorroBase-totalDeducciones);
+
+  // Retenciones
+  const totalRetenciones=retNomina+retInversiones+retParo+pagosFrac;
+
+  // Resultado
+  const resultado=cuotaLiquida-totalRetenciones;
+  const devolucion=resultado<0;
+
+  // --- MOSTRAR ---
+  const header=document.getElementById('resultado-header');
+  header.className='resultado-header '+(devolucion?'devolucion':'pagar');
+  document.getElementById('resultado-label').textContent=devolucion?'Hacienda te devuelve':'Debes pagar a Hacienda';
+  document.getElementById('resultado-importe').textContent=fmt(Math.abs(resultado));
+  document.getElementById('cuota-liquida').textContent='Cuota líquida: '+fmt(cuotaLiquida);
+
+  // Liquidación detallada
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=fmt(val);};
+  set('liq_trabajo',rendTrabajo);
+  set('liq_otros',rendOtros);
+  set('liq_red_trabajo',redTrabajo+redDiscapacidad);
+  set('liq_pension_plan',redPension);
+  set('liq_base_gral',baseImponibleGral);
+  set('liq_minimo',minimoTotal);
+  set('liq_base_liq',baseLiquidableGral);
+  set('liq_cuota_integra',cuotaIntegra);
+  set('liq_cuota_ahorro',cuotaAhorroBase);
+  set('liq_maternidad',dedMaternidad);
+  set('liq_donativos',dedDonativos);
+  set('liq_alquiler_ded',dedAlquiler);
+  set('liq_eficiencia_ded',dedEfic);
+  set('liq_cuota_liquida',cuotaLiquida);
+  set('liq_ret_nomina',retNomina);
+  set('liq_ret_otras',retInversiones+retParo);
+  set('liq_pagos_frac',pagosFrac);
+
+  const resEl=document.getElementById('liq_resultado');
+  if(resEl){
+    resEl.textContent=(devolucion?'−':'+') + fmt(Math.abs(resultado));
+    resEl.style.color=devolucion?'var(--accent)':'#b91c1c';
+  }
+
+  // Mostrar caja resultado
+  document.getElementById('resultado-box').style.display='block';
+}
 </script>
 </body>
 </html>
