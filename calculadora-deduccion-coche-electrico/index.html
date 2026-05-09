@@ -337,7 +337,78 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics(); calcular();});
+
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+
+function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
+function pct(n) { return n.toFixed(1) + '%'; }
+
+function calcular() {
+  const precio = parseFloat(document.getElementById('precio').value) || 0;
+  const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
+  const achatarramiento = document.getElementById('achatarramiento').value;
+  const ccaa = document.getElementById('ccaa').value;
+  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const kmAnuales = parseFloat(document.getElementById('km_anuales').value) || 0;
+  const precioGasolina = parseFloat(document.getElementById('precio_gasolina').value) || 1.65;
+  const precioElectricidad = parseFloat(document.getElementById('precio_electricidad').value) || 0.18;
+
+  // --- IRPF deducción 15%, base máx 20.000 € ---
+  // Solo aplica a BEV y PHEV
+  let baseIRPF = 0;
+  let deduccionIRPF = 0;
+  if (tipoVehiculo === 'turismo_bev' || tipoVehiculo === 'turismo_phev') {
+    baseIRPF = Math.min(precio, 20000);
+    deduccionIRPF = Math.min(baseIRPF * 0.15, cuotaIntegra);
+  }
+
+  // Deducción autonómica adicional (Madrid: 15% adicional, máx 1.500 €)
+  let deduccionCCAA = 0;
+  if (ccaa === 'madrid' && (tipoVehiculo === 'turismo_bev' || tipoVehiculo === 'turismo_phev')) {
+    deduccionCCAA = Math.min(precio * 0.15, 1500);
+  }
+
+  // --- MOVES III ayudas ---
+  const moves = {
+    turismo_bev:  { si: 7000, no: 4500 },
+    turismo_phev: { si: 4500, no: 2500 },
+    moto:         { si: 1100, no: 750  },
+    furgoneta:    { si: 7000, no: 4500 },
+  };
+  const ayudaMOVES = moves[tipoVehiculo]?.[achatarramiento] || 0;
+
+  // --- Ahorro combustible ---
+  // Gasolina: ~6.5 L/100km; Eléctrico: ~16 kWh/100km
+  const consumoGasolina = 6.5;
+  const consumoElectrico = 16;
+  const costeGasolina = (kmAnuales / 100) * consumoGasolina * precioGasolina;
+  const costeElectrico = (kmAnuales / 100) * consumoElectrico * precioElectricidad;
+  const ahorroCombustibleAnual = Math.max(0, costeGasolina - costeElectrico);
+  const ahorroCombustible5 = ahorroCombustibleAnual * 5;
+
+  // --- Totales ---
+  const ahorroTotal = deduccionIRPF + deduccionCCAA + ayudaMOVES;
+  const costeReal = precio - ahorroTotal;
+  const pctAhorro = precio > 0 ? (ahorroTotal / precio) * 100 : 0;
+
+  // --- Mostrar resultados ---
+  document.getElementById('res_ahorro_total').textContent = fmt(ahorroTotal);
+  document.getElementById('res_coste_real').textContent = fmt(costeReal);
+  document.getElementById('res_pct_ahorro').textContent = pct(pctAhorro);
+
+  document.getElementById('d_deduccion_irpf').textContent = fmt(deduccionIRPF);
+  document.getElementById('d_moves').textContent = fmt(ayudaMOVES);
+  document.getElementById('d_ahorro_combustible').textContent = fmt(ahorroCombustibleAnual) + '/año';
+  document.getElementById('d_base_irpf').textContent = fmt(baseIRPF);
+  document.getElementById('d_ahorro_5años').textContent = fmt(ahorroCombustible5);
+
+  // Resumen
+  document.getElementById('r_precio').textContent = fmt(precio);
+  document.getElementById('r_irpf').textContent = fmt(deduccionIRPF);
+  document.getElementById('r_moves').textContent = fmt(ayudaMOVES);
+  document.getElementById('r_coste_real').textContent = fmt(costeReal);
+}
 </script>
 </body>
 </html>

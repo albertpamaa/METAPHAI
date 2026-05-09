@@ -315,7 +315,102 @@ function loadAnalytics(){
 }
 function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
+window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics(); calcular();});
+
+// Show/hide pending field
+document.getElementById('pendiente_anterior').addEventListener('change', function() {
+  document.getElementById('campo_pendiente').style.display = this.value === '1' ? 'block' : 'none';
+  calcular();
+});
+
+// Show aviso vivienda
+document.getElementById('tipo_vivienda').addEventListener('change', function() {
+  document.getElementById('aviso_vivienda').style.display = this.value === 'otra' ? 'block' : 'none';
+  calcular();
+});
+
+// Auto-calc on any input change
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
+
+function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
+function pct(n) { return n.toFixed(1) + '%'; }
+
+function calcular() {
+  const coste = parseFloat(document.getElementById('coste').value) || 0;
+  const tipoPct = parseInt(document.getElementById('tipo_deduccion').value);
+  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const pendienteAnterior = parseInt(document.getElementById('pendiente_anterior').value);
+  const importePendiente = pendienteAnterior === 1 ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const tipoVivienda = document.getElementById('tipo_vivienda').value;
+  const añoInstalacion = parseInt(document.getElementById('año_instalacion').value);
+
+  // Límites base según tipo de deducción
+  const limitesBase = { 30: 5000, 40: 7500, 60: 5000 };
+  const limiteBase = limitesBase[tipoPct];
+
+  // Si vivienda no aplica, mostramos aviso y no calculamos
+  if (tipoVivienda === 'otra') {
+    document.getElementById('res_deduccion').textContent = 'No aplica';
+    document.getElementById('res_coste_real').textContent = '—';
+    document.getElementById('res_pct_ahorro').textContent = '—';
+    ['d_base','d_pct','d_limite_base','d_este_año','d_pendiente','d_coste_neto'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
+    return;
+  }
+
+  // Base de deducción: mínimo entre coste real y límite
+  const baseDeduccion = Math.min(coste, limiteBase);
+  // Incluir pendiente de años anteriores
+  const baseTotal = baseDeduccion + importePendiente;
+
+  // Deducción bruta
+  const deduccionBruta = baseTotal * (tipoPct / 100);
+
+  // Límite: no puede superar cuota íntegra estatal
+  const limiteAnual = cuotaIntegra;
+  const deduccionEsteAño = Math.min(deduccionBruta, limiteAnual);
+  const pendienteSiguientes = Math.max(0, deduccionBruta - deduccionEsteAño);
+
+  // Coste neto
+  const costeNeto = coste - deduccionEsteAño;
+  const pctAhorro = coste > 0 ? (deduccionEsteAño / coste) * 100 : 0;
+
+  // Mostrar aviso límite
+  document.getElementById('aviso_limite').style.display = pendienteSiguientes > 0 ? 'block' : 'none';
+
+  // Resultados principales
+  document.getElementById('res_deduccion').textContent = fmt(deduccionEsteAño);
+  document.getElementById('res_coste_real').textContent = fmt(costeNeto);
+  document.getElementById('res_pct_ahorro').textContent = pct(pctAhorro);
+
+  // Desglose
+  document.getElementById('d_base').textContent = fmt(baseDeduccion);
+  document.getElementById('d_pct').textContent = tipoPct + '%';
+  document.getElementById('d_limite_base').textContent = fmt(limiteBase);
+  document.getElementById('d_este_año').textContent = fmt(deduccionEsteAño);
+  document.getElementById('d_pendiente').textContent = fmt(pendienteSiguientes);
+  document.getElementById('d_coste_neto').textContent = fmt(costeNeto);
+
+  // Timeline si hay pendiente
+  const timelineSection = document.getElementById('timeline_section');
+  if (pendienteSiguientes > 0) {
+    timelineSection.style.display = 'block';
+    let pendiente = pendienteSiguientes;
+    let html = '';
+    for (let i = 1; i <= 4 && pendiente > 0; i++) {
+      const aplicado = Math.min(pendiente, limiteAnual);
+      pendiente -= aplicado;
+      html += `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;">
+        <span style="color:var(--muted)">Año ${añoInstalacion + i}</span>
+        <span style="font-weight:600;color:var(--solar)">${fmt(aplicado)}</span>
+      </div>`;
+    }
+    document.getElementById('timeline_rows').innerHTML = html;
+  } else {
+    timelineSection.style.display = 'none';
+  }
+}
 </script>
 </body>
 </html>

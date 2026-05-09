@@ -197,7 +197,7 @@
 </main>
 <footer>
   
-  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Cookies</a></p>
+  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a></p>
 
 </footer>
 
@@ -210,24 +210,7 @@
   </div>
 </div>
 <script>
-function filtrar() {
-  const q = document.getElementById('buscador').value.toLowerCase().trim();
-  const cards = document.querySelectorAll('#grid-calculadoras .card');
-  let visible = 0;
-  cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    if (!q || text.includes(q)) {
-      card.classList.remove('hidden');
-      visible++;
-    } else {
-      card.classList.add('hidden');
-    }
-  });
-  const empty = document.getElementById('search-empty');
-  document.getElementById('search-term').textContent = q;
-  empty.style.display = (q && visible === 0) ? 'block' : 'none';
-}
-
+function loadAnalytics(){
   if(document.getElementById('ga-script'))return;
   var s=document.createElement('script');s.id='ga-script';s.async=true;
   s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
