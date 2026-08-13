@@ -34,17 +34,6 @@
     .cookie-table td { padding: 10px 14px; color: var(--muted); border-bottom: 1px solid var(--border); vertical-align: top; }
     .cookie-table tr:last-child td { border-bottom: none; }
     code { font-family: monospace; font-size: 13px; background: var(--accent-light); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
-    .consent-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; }
-    .consent-status { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; margin-bottom: 1.25rem; }
-    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .dot-accepted { background: #16a34a; }
-    .dot-rejected { background: #b91c1c; }
-    .dot-pending  { background: #d97706; }
-    .consent-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-accept { padding: 10px 22px; background: var(--accent); color: white; border: none; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s; }
-    .btn-accept:hover { opacity: .85; }
-    .btn-reject { padding: 10px 22px; background: transparent; color: var(--muted); border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 14px; cursor: pointer; transition: all .15s; }
-    .btn-reject:hover { border-color: var(--muted); color: var(--text); }
     footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
     footer a { color: var(--hint); }
   </style>
@@ -56,36 +45,23 @@
 <main>
   <a href="/" class="back">← Volver a las calculadoras</a>
   <h1>Política de Cookies</h1>
-  <p class="fecha">Última actualización: mayo de 2026</p>
+  <p class="fecha">Última actualización: agosto de 2026</p>
 
   <h2>¿Qué son las cookies?</h2>
-  <p>Las cookies son pequeños archivos de texto que los sitios web almacenan en tu navegador. Metaphai utiliza cookies de terceros <strong>únicamente si aceptas</strong> mediante el banner que aparece en tu primera visita.</p>
+  <p>Las cookies son pequeños archivos de texto que los sitios web pueden almacenar en tu navegador. En los territorios donde corresponde, el consentimiento para los servicios de Google se gestiona mediante la plataforma de gestión del consentimiento (CMP) de Google.</p>
 
   <h2>Cookies que utilizamos</h2>
-  <p>Si das tu consentimiento, se instalan las siguientes cookies:</p>
+  <p>Según las opciones elegidas en la CMP de Google y la configuración aplicable, estos servicios pueden utilizar, entre otras, las siguientes cookies:</p>
   <table class="cookie-table">
     <tr><th>Cookie</th><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr>
     <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Distingue navegadores para medir el uso del sitio y elaborar estadísticas</td><td>2 años</td></tr>
     <tr><td><code>_ga_*</code></td><td>Google Analytics</td><td>Mantiene el estado de la sesión de Analytics</td><td>2 años</td></tr>
     <tr><td>Cookies AdSense</td><td>Google AdSense</td><td>Muestra publicidad relevante según el perfil de navegación</td><td>Hasta 13 meses</td></tr>
   </table>
-  <p>Si rechazas antes de que se carguen estos servicios, Metaphai no carga Google Analytics ni Google AdSense ni instala sus cookies desde este sitio.</p>
+  <p>La CMP de Google ofrece, cuando resulta aplicable, las opciones de consentir, no consentir y gestionar las finalidades. Google Consent Mode comunica esas elecciones a Google Analytics y Google AdSense; Metaphai no establece manualmente el consentimiento como concedido.</p>
 
-  <h2>Almacenamiento local (no cookies)</h2>
-  <p>Guardamos en el <code>localStorage</code> de tu navegador tu preferencia de consentimiento (<code>"aceptado"</code> o <code>"rechazado"</code>). Este dato no abandona tu dispositivo y no es accesible por nosotros.</p>
-
-  <h2>Tu consentimiento</h2>
-  <p>Puedes cambiar tu decisión en cualquier momento aquí:</p>
-  <div class="consent-card">
-    <div class="consent-status">
-      <span class="status-dot dot-pending" id="status-dot"></span>
-      <span id="status-label">Cargando...</span>
-    </div>
-    <div class="consent-btns">
-      <button class="btn-accept" onclick="setConsent('aceptado')">✓ Aceptar cookies</button>
-      <button class="btn-reject" onclick="setConsent('rechazado')">✗ Rechazar cookies</button>
-    </div>
-  </div>
+  <h2>Gestión del consentimiento</h2>
+  <p>Puedes revisar o modificar tus elecciones mediante las opciones de privacidad que proporciona el mensaje de consentimiento de Google cuando esté disponible. La conservación de la elección y el tratamiento posterior dependen de la CMP, de la configuración de Google y de la normativa aplicable.</p>
 
   <h2>Gestión desde el navegador</h2>
   <p>También puedes eliminar o bloquear cookies directamente:
@@ -101,39 +77,5 @@
 <footer>
   <p>© 2026 Metaphai · <a href="/">Calculadoras</a> · <a href="/privacidad.html">Privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
 </footer>
-<!-- Banner cookies -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/cookies.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
-    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
-    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
-  </div>
-</div>
-<script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
-  document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
-}
-function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();updateStatus();}
-function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";updateStatus();}
-function setConsent(val){localStorage.setItem("cookies",val);document.getElementById("cookie-banner").style.display="none";if(val==="aceptado")loadAnalytics();updateStatus();}
-function updateStatus(){
-  var c=localStorage.getItem("cookies");
-  var dot=document.getElementById("status-dot");
-  var label=document.getElementById("status-label");
-  if(c==="aceptado"){dot.className="status-dot dot-accepted";label.textContent="✓ Cookies aceptadas";}
-  else if(c==="rechazado"){dot.className="status-dot dot-rejected";label.textContent="✗ Cookies rechazadas";}
-  else{dot.className="status-dot dot-pending";label.textContent="Sin decisión — el banner aparecerá en tu próxima visita";}
-}
-window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();updateStatus();});
-</script>
 </body>
 </html>

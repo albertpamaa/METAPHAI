@@ -10,6 +10,15 @@
   <link rel="canonical" href="https://metaphai.com/calculadora-irpf-apuestas-online/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
+  <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
   <meta property="og:title" content="Calculadora fiscal Apuestas y Juego Online 2025 | Metaphai">
   <meta property="og:description" content="Calcula la ganancia neta del juego que se integra en la base general del IRPF 2025, sin aplicar incorrectamente la escala del ahorro.">
   <meta property="og:url" content="https://metaphai.com/calculadora-irpf-apuestas-online/">
@@ -330,33 +339,8 @@
 </footer>
 
 
-<!-- Banner cookies -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/cookies.html" style="color:#5dcaa5;">Más información</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0;">
-    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
-    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
-  </div>
-</div>
 <script>
-function loadAnalytics(){
-  if(document.getElementById('ga-script'))return;
-  var s=document.createElement('script');s.id='ga-script';s.async=true;
-  s.src='https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR';
-  document.head.appendChild(s);
-  window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-  gtag('js',new Date());gtag('config','G-1P9N4QY0JR');
-  var a=document.createElement('script');a.async=true;
-  a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894';
-  a.crossOrigin='anonymous';document.head.appendChild(a);
-}
-function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";loadAnalytics();}
-function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){
-  var c=localStorage.getItem("cookies");
-  if(!c)document.getElementById("cookie-banner").style.display="flex";
-  else if(c==="aceptado")loadAnalytics();
   calcular();
 });
 

@@ -56,7 +56,7 @@
 <main>
   <a href="/" class="back">← Volver a la calculadora</a>
   <h1>Política de Privacidad y Cookies</h1>
-  <p class="fecha">Última actualización: mayo de 2026</p>
+  <p class="fecha">Última actualización: agosto de 2026</p>
 
   <h2>1. Responsable del sitio web (Aviso Legal)</h2>
   <p>El responsable del tratamiento de datos de este sitio web es <strong>Albert Parra</strong>, particular con domicilio en España.</p>
@@ -82,23 +82,23 @@
   </ul>
 
   <h2>4. Cookies</h2>
-  <p>Este sitio utiliza cookies de terceros <strong>únicamente si el usuario acepta</strong> mediante el banner que aparece en la primera visita. Si rechazas, no se instala ninguna cookie de terceros. Puedes consultar la política completa y cambiar tu decisión en cualquier momento en nuestra <a href="/cookies.html">Política de Cookies</a>.</p>
+  <p>En los territorios donde corresponde, el consentimiento para los servicios de Google se gestiona mediante la plataforma de gestión del consentimiento (CMP) de Google. El mensaje permite consentir, no consentir o gestionar las finalidades, y comunica esas elecciones mediante Google Consent Mode. Puedes consultar más detalles en nuestra <a href="/cookies.html">Política de Cookies</a>.</p>
 
   <h2>4.1 Cookies de Google Analytics</h2>
-  <p>Utilizamos Google Analytics (cookies <code>_ga</code>, <code>_ga_*</code>) para medir el uso del sitio y elaborar estadísticas agregadas. Google puede tratar identificadores en línea y datos técnicos asociados a la navegación. Estas cookies se activan solo con tu consentimiento y tienen una duración máxima de 2 años.</p>
+  <p>Utilizamos Google Analytics para medir el uso del sitio y elaborar estadísticas agregadas. Google puede tratar identificadores en línea y datos técnicos asociados a la navegación. El almacenamiento analítico depende de la elección comunicada por la CMP y de la configuración aplicable de Consent Mode.</p>
 
   <h2>4.2 Cookies de Google AdSense</h2>
-  <p>Utilizamos Google AdSense para mostrar publicidad. Google utiliza cookies para mostrar anuncios relevantes. Puedes desactivar la publicidad personalizada en <a href="https://www.google.com/settings/ads" target="_blank">Configuración de anuncios de Google</a>. Estas cookies se activan solo con tu consentimiento.</p>
+  <p>Utilizamos Google AdSense para mostrar publicidad. El uso de almacenamiento publicitario y de personalización depende de la elección comunicada por la CMP y de la configuración aplicable de Consent Mode. Puedes gestionar la personalización publicitaria en <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Configuración de anuncios de Google</a>.</p>
 
   <h2>4.3 Cómo desactivar las cookies</h2>
-  <p>Puedes retirar tu consentimiento en cualquier momento desde nuestra <a href="/cookies.html">página de cookies</a>. También puedes configurar tu navegador para rechazar todas las cookies. Ten en cuenta que algunas funciones del sitio pueden verse afectadas.</p>
+  <p>Puedes revisar o modificar tus elecciones mediante las opciones de privacidad que proporciona el mensaje de consentimiento de Google cuando esté disponible. También puedes configurar tu navegador para eliminar o bloquear cookies; algunas funciones del sitio podrían verse afectadas.</p>
 
   <h2>5. Publicidad de Google AdSense</h2>
   <p>Este sitio web participa en el programa Google AdSense. Google, como proveedor externo, utiliza cookies para publicar anuncios en este sitio. Google utiliza la cookie DART para publicar anuncios a los usuarios basándose en su visita a este sitio y a otros sitios de Internet.</p>
   <p>Los usuarios pueden optar por no usar la cookie DART visitando la <a href="https://policies.google.com/privacy" target="_blank">política de privacidad de Google</a>.</p>
 
   <h2>6. Base legal del tratamiento</h2>
-  <p>El tratamiento de datos mediante cookies de análisis y publicidad se realiza con base en el <strong>consentimiento explícito del usuario</strong> (art. 6.1.a RGPD), prestado a través del banner de cookies que aparece en la primera visita. El usuario puede retirar su consentimiento en cualquier momento desde la <a href="/cookies.html">página de cookies</a>.</p>
+  <p>Cuando el tratamiento de datos mediante almacenamiento analítico o publicitario requiere consentimiento, la elección se recaba y comunica mediante la CMP de Google y Consent Mode. La base jurídica concreta puede depender del servicio, la finalidad, la configuración y la normativa aplicable.</p>
 
   <h2>7. Transferencias internacionales de datos</h2>
   <p>Google LLC, con sede en Estados Unidos, puede realizar transferencias internacionales de datos. Estas transferencias están amparadas por las garantías adecuadas establecidas por la Comisión Europea.</p>
@@ -129,18 +129,5 @@
   <p>© 2026 Metaphai · <a href="/">Volver a las calculadoras</a> · <a href="/cookies.html">Política de cookies</a></p>
 </footer>
 
-<!-- Banner cookies -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/cookies.html" style="color:#5dcaa5;">Más info</a></p>
-  <div style="display:flex;gap:8px;">
-    <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
-    <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
-  </div>
-</div>
-<script>
-  function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.getElementById("cookie-banner").style.display="none";}
-  function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
-  window.addEventListener("load",function(){if(!localStorage.getItem("cookies"))document.getElementById("cookie-banner").style.display="flex";});
-</script>
 </body>
 </html>
