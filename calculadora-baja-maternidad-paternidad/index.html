@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Baja Maternidad y Paternidad 2026 | Metaphai</title>
+  <meta name="description" content="Estima las semanas del permiso por nacimiento y cuidado del menor, la prestación del INSS y la lactancia acumulada en España en 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://metaphai.com/calculadora-baja-maternidad-paternidad/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="google-adsense-account" content="ca-pub-7545567251029894">
+  <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <meta property="og:title" content="Calculadora de baja por maternidad y paternidad 2026 | Metaphai">
+  <meta property="og:description" content="Calcula una estimación del permiso por nacimiento, la prestación del INSS y la lactancia acumulada con las reglas vigentes en España.">
+  <meta property="og:url" content="https://metaphai.com/calculadora-baja-maternidad-paternidad/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Metaphai">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Calculadora de baja por maternidad y paternidad 2026 | Metaphai">
+  <meta name="twitter:description" content="Estima semanas, prestación por nacimiento y lactancia acumulada en España.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #ffffff; --border: #e2e0d8;
+      --text: #1a1916; --muted: #6b6960; --hint: #9e9c94;
+      --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --danger: #8b2a2a; --warn: #7a4f1a;
+      --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+    main { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .breadcrumb { font-size: 12px; color: var(--hint); margin-top: .25rem; }
+    .breadcrumb a { color: var(--muted); }
+    .hero { text-align: center; padding: 1.6rem 0 2rem; }
+    .hero h1 { font-size: clamp(22px, 3.5vw, 34px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: .75rem; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 590px; margin: 0 auto; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } header { padding: 0 1rem; } main { padding-inline: 1rem; } }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select { font: 14px 'DM Sans', sans-serif; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); width: 100%; }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(45,106,79,.1); }
+    .tip { font-size: 12px; color: var(--hint); line-height: 1.5; }
+    .advanced-toggle { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--muted); font: 500 13px 'DM Sans', sans-serif; cursor: pointer; text-align: left; }
+    .advanced-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .advanced-panel { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .advanced-panel.open { display: block; }
+    .advanced-panel .grid2 + .grid2 { margin-top: 12px; }
+    .subheading { font-size: 13px; font-weight: 600; margin: 1rem 0 .65rem; }
+    .calculate-btn { width: 100%; border: 0; border-radius: var(--radius); background: var(--accent); color: white; padding: 12px 16px; font: 600 15px 'DM Sans', sans-serif; cursor: pointer; margin-top: .25rem; }
+    .calculate-btn:hover { filter: brightness(.95); }
+    .alert { border-radius: var(--radius); padding: 12px 14px; font-size: 13px; margin: 1rem 0; display: none; }
+    .alert.show { display: block; }
+    .alert.error { background: #fdf0f0; border: 1px solid #f0c0c0; color: var(--danger); }
+    .alert.warning { background: #fef6ec; border: 1px solid #f0d0a0; color: var(--warn); }
+    .results { display: none; margin-top: 1.5rem; }
+    .results.show { display: block; }
+    .results-main { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+    .results-header { background: var(--accent); color: white; padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .main-label { font-size: 13px; color: rgba(255,255,255,.72); }
+    .main-value { font: 600 clamp(26px, 5vw, 38px) 'DM Mono', monospace; letter-spacing: -.03em; }
+    .header-note { max-width: 260px; font-size: 12px; color: rgba(255,255,255,.76); text-align: right; }
+    .result-section { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .result-section:first-of-type { border-top: 0; }
+    .result-section h2 { font-size: 16px; margin-bottom: .75rem; }
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    @media (max-width: 600px) { .result-grid { grid-template-columns: 1fr 1fr; } .header-note { text-align: left; } }
+    @media (max-width: 390px) { .result-grid { grid-template-columns: 1fr; } }
+    .res-item { padding: .9rem; background: var(--surface); min-width: 0; }
+    .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .rv { font: 500 14px 'DM Mono', monospace; overflow-wrap: anywhere; }
+    .result-note { margin-top: .8rem; font-size: 12px; color: var(--muted); line-height: 1.65; }
+    .status-box { border-left: 3px solid var(--accent); background: var(--accent-light); padding: 11px 13px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 13px; color: var(--muted); }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin: 1.8rem 0 .75rem; }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content h3 { font-size: 15px; font-weight: 600; margin: 1.35rem 0 .5rem; }
+    .seo-content p, .seo-content li { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .seo-content p { margin-bottom: .75rem; }
+    .seo-content ul { padding-left: 1.25rem; margin-bottom: .8rem; }
+    .seo-content a, .related a { color: var(--accent); }
+    .method { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.15rem; margin: 1rem 0; }
+    .method code { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q { padding: 12px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; background: var(--surface); }
+    .faq-q:hover { background: var(--bg); }
+    .faq-a { display: none; padding: 0 16px 12px; font-size: 14px; color: var(--muted); background: var(--surface); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform .2s; font-size: 12px; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .related { margin-top: 2rem; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .related h2 { font-size: 18px; margin-bottom: .65rem; }
+    .related p { font-size: 14px; line-height: 1.8; }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Metaphai", "item": "https://metaphai.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Calculadora de baja por maternidad y paternidad", "item": "https://metaphai.com/calculadora-baja-maternidad-paternidad/"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <nav class="breadcrumb" aria-label="Migas de pan"><a href="/">Inicio</a> › Baja por maternidad y paternidad</nav>
+  <div class="hero">
+    <h1>Calculadora de <em>baja por maternidad y paternidad</em><br>España 2026</h1>
+    <p>Estima el permiso por nacimiento y cuidado del menor, la prestación del INSS y la lactancia. Separa cada derecho para evitar sumar conceptos incompatibles.</p>
+  </div>
+
+  <form id="form_calculadora" novalidate>
+    <div class="card">
+      <div class="section-label">Nacimiento, adopción o acogimiento</div>
+      <div class="grid2">
+        <div class="field">
+          <label for="fecha_hecho">Fecha real o prevista del hecho causante</label>
+          <input type="date" id="fecha_hecho" required>
+          <p class="tip">Fecha de nacimiento o de la resolución judicial/administrativa.</p>
+        </div>
+        <div class="field">
+          <label for="situacion">Situación</label>
+          <select id="situacion">
+            <option value="nacimiento">Nacimiento</option>
+            <option value="adopcion">Adopción</option>
+            <option value="guarda">Guarda con fines de adopción</option>
+            <option value="acogimiento">Acogimiento</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hogar">Unidad familiar</label>
+          <select id="hogar">
+            <option value="estandar">Dos progenitores / situación general</option>
+            <option value="monoparental">Familia monoparental</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="numero_menores">Menores en el mismo nacimiento o resolución</label>
+          <input type="number" id="numero_menores" value="1" min="1" max="6" step="1">
+        </div>
+        <div class="field">
+          <label for="discapacidad_menor">Discapacidad reconocida del menor</label>
+          <select id="discapacidad_menor">
+            <option value="no">No</option>
+            <option value="si">Sí</option>
+          </select>
+          <p class="tip">Afecta a la ampliación del permiso; no se infiere ningún grado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Prestación económica del INSS</div>
+      <div class="grid2">
+        <div class="field">
+          <label for="tipo_trabajador">Situación laboral</label>
+          <select id="tipo_trabajador">
+            <option value="ajena_completa">Cuenta ajena · jornada completa (ET)</option>
+            <option value="ajena_parcial">Cuenta ajena · jornada parcial (ET)</option>
+            <option value="reta">Autónomo/a (RETA)</option>
+            <option value="publico">Empleado/a público/a</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="edad_beneficiaria">Edad de la persona beneficiaria</label>
+          <input type="number" id="edad_beneficiaria" value="30" min="16" max="80" step="1">
+        </div>
+        <div class="field">
+          <label for="cotizados_7">Días cotizados en los 7 años anteriores</label>
+          <input type="number" id="cotizados_7" value="180" min="0" max="2557" step="1">
+        </div>
+        <div class="field">
+          <label for="cotizados_vida">Días cotizados en toda la vida laboral</label>
+          <input type="number" id="cotizados_vida" value="360" min="0" max="25000" step="1">
+        </div>
+        <div class="field">
+          <label for="base_mensual" id="label_base_mensual">Base mensual por contingencias comunes (€)</label>
+          <input type="number" id="base_mensual" value="1000" min="0" max="100000" step="10">
+          <p class="tip" id="tip_base_mensual">Consulta la base, no el salario neto, en tu nómina.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Permiso por cuidado del lactante</div>
+      <div class="grid2">
+        <div class="field">
+          <label for="lactancia_modalidad">Modalidad que quieres estimar</label>
+          <select id="lactancia_modalidad">
+            <option value="acumulada">Acumulación en jornadas completas</option>
+            <option value="ausencia">Una hora de ausencia por día laborable</option>
+            <option value="reduccion">Reducción diaria de media hora</option>
+            <option value="ninguna">No calcular lactancia</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fecha_reincorporacion">Fecha prevista de reincorporación</label>
+          <input type="date" id="fecha_reincorporacion">
+          <p class="tip">Primer día en que volverías a trabajar antes de disfrutar la lactancia.</p>
+        </div>
+        <div class="field">
+          <label for="horas_dia">Horas de tu jornada diaria</label>
+          <input type="number" id="horas_dia" value="8" min="1" max="24" step="0.25">
+        </div>
+        <div class="field">
+          <label for="dias_semana">Días laborables por semana</label>
+          <input type="number" id="dias_semana" value="5" min="1" max="7" step="1">
+        </div>
+      </div>
+      <p class="tip" style="margin-top:10px">La estimación ordinaria cuenta una hora por día laborable hasta los 9 meses y la divide entre tu jornada diaria. Vacaciones, festivos, ausencias y el calendario real pueden cambiar el resultado.</p>
+    </div>
+
+    <div class="card">
+      <button type="button" class="advanced-toggle" id="toggle_avanzadas" aria-expanded="false" aria-controls="opciones_avanzadas">Opciones avanzadas ▼</button>
+      <div class="advanced-panel" id="opciones_avanzadas">
+        <div class="grid2">
+          <div class="field">
+            <label for="fecha_nacimiento_menor">Fecha de nacimiento del menor si difiere</label>
+            <input type="date" id="fecha_nacimiento_menor">
+            <p class="tip">Útil en adopción, guarda o acogimiento. Se usa para los límites de 9 meses y 8 años.</p>
+          </div>
+          <div class="field">
+            <label for="base_diaria_conocida">Base reguladora diaria conocida (€)</label>
+            <input type="number" id="base_diaria_conocida" min="0" max="5000" step="0.01" placeholder="Opcional">
+            <p class="tip">Si la conoces, sustituye a la estimación obtenida de la base mensual.</p>
+          </div>
+          <div class="field">
+            <label for="porcentaje_disfrute">Disfrute de semanas voluntarias</label>
+            <select id="porcentaje_disfrute">
+              <option value="100">100% · jornada completa</option>
+              <option value="75">75% de jornada</option>
+              <option value="50">50% de jornada</option>
+            </select>
+            <p class="tip">Requiere acuerdo cuando corresponda. Las 6 semanas obligatorias siguen siendo a jornada completa.</p>
+          </div>
+          <div class="field">
+            <label for="hospitalizacion_dias">Días de hospitalización a continuación del parto</label>
+            <input type="number" id="hospitalizacion_dias" value="0" min="0" max="365" step="1">
+            <p class="tip">Introduce todos los días del ingreso continuado, no solo los que excedan de 7. Si dura 8 días, amplía 8; máximo: 91 días. El aplazamiento del periodo no obligatorio hasta el alta es una regla distinta y no cambia este número.</p>
+          </div>
+          <div class="field">
+            <label for="dias_laborables_exactos">Días laborables exactos hasta los 9 meses</label>
+            <input type="number" id="dias_laborables_exactos" min="0" max="366" step="1" placeholder="Usar estimación automática">
+            <p class="tip">Si los conoces por tu calendario, tienen prioridad sobre días por semana.</p>
+          </div>
+          <div class="field">
+            <label for="convenio_lactancia_dias">Días completos fijados por convenio</label>
+            <input type="number" id="convenio_lactancia_dias" min="0" max="180" step="0.25" placeholder="Sin regla de convenio">
+            <p class="tip">Introduce el total que reconozca tu convenio; sustituye la fórmula general de acumulación.</p>
+          </div>
+          <div class="field">
+            <label for="alta_ss">Alta o situación asimilada al alta</label>
+            <select id="alta_ss"><option value="si">Sí</option><option value="no">No</option></select>
+          </div>
+          <div class="field">
+            <label for="pagos_reta">Al corriente de pago en RETA</label>
+            <select id="pagos_reta"><option value="si">Sí</option><option value="no">No / no lo sé</option></select>
+          </div>
+          <div class="field">
+            <label for="familia_numerosa">Familia numerosa o pasa a serlo</label>
+            <select id="familia_numerosa"><option value="no">No</option><option value="si">Sí</option></select>
+            <p class="tip">Solo afecta a la posible ampliación de 14 días del subsidio no contributivo.</p>
+          </div>
+          <div class="field">
+            <label for="discapacidad_65">Discapacidad ≥65% del menor o beneficiario</label>
+            <select id="discapacidad_65"><option value="no">No</option><option value="si">Sí</option></select>
+            <p class="tip">Solo se usa para el supuesto especial no contributivo.</p>
+          </div>
+        </div>
+
+        <h3 class="subheading">Corresponsabilidad en el cuidado del lactante (9 a 12 meses)</h3>
+        <div class="grid2">
+          <div class="field">
+            <label for="ambos_trabajan">¿Ambas personas trabajan?</label>
+            <select id="ambos_trabajan"><option value="no">No / no indicado</option><option value="si">Sí</option></select>
+          </div>
+          <div class="field">
+            <label for="reduccion_coincidente">¿Ambas reducen 30 min con igual duración y régimen?</label>
+            <select id="reduccion_coincidente"><option value="no">No / no indicado</option><option value="si">Sí</option></select>
+          </div>
+          <div class="field">
+            <label for="base_it_diaria">Base reguladora diaria de IT conocida (€)</label>
+            <input type="number" id="base_it_diaria" min="0" max="5000" step="0.01" placeholder="Opcional">
+            <p class="tip">Necesaria para estimar la cuantía de corresponsabilidad. En tiempo parcial, el INSS toma las bases de los 3 meses anteriores al inicio de la reducción.</p>
+          </div>
+        </div>
+        <p class="tip" style="margin-top:8px">No se activa salvo que confirmes ambas condiciones. El INSS solo puede reconocerla a una de las dos personas y la empresa debe certificar las reducciones coincidentes.</p>
+      </div>
+    </div>
+
+    <button type="submit" class="calculate-btn">Calcular estimación</button>
+  </form>
+
+  <div id="errores" class="alert error" role="alert"></div>
+  <div id="avisos" class="alert warning" role="status"></div>
+
+  <div id="resultados" class="results" aria-live="polite">
+    <div class="results-main">
+      <div class="results-header">
+        <div>
+          <div class="main-label">Permiso por nacimiento y cuidado</div>
+          <div class="main-value" id="res_total_semanas">—</div>
+        </div>
+        <div class="header-note" id="res_regimen_fecha">—</div>
+      </div>
+
+      <section class="result-section" aria-labelledby="titulo_permiso">
+        <h2 id="titulo_permiso">Distribución del permiso</h2>
+        <div class="result-grid">
+          <div class="res-item"><div class="rl">Obligatorias</div><div class="rv" id="res_obligatorias">—</div></div>
+          <div class="res-item"><div class="rl">Flexibles hasta 12 meses</div><div class="rv" id="res_flexibles">—</div></div>
+          <div class="res-item"><div class="rl">Retribuidas hasta 8 años</div><div class="rv" id="res_hasta_ocho">—</div></div>
+          <div class="res-item"><div class="rl">Múltiple / discapacidad</div><div class="rv" id="res_ampliaciones">—</div></div>
+          <div class="res-item"><div class="rl">Hospitalización</div><div class="rv" id="res_hospitalizacion">—</div></div>
+          <div class="res-item"><div class="rl">Fin seguido a jornada completa*</div><div class="rv" id="res_fecha_fin">—</div></div>
+        </div>
+        <p class="result-note" id="nota_permiso">—</p>
+      </section>
+
+      <section class="result-section" aria-labelledby="titulo_prestacion">
+        <h2 id="titulo_prestacion">Prestación económica</h2>
+        <div class="result-grid">
+          <div class="res-item"><div class="rl">Tipo estimado</div><div class="rv" id="res_tipo_prestacion">—</div></div>
+          <div class="res-item"><div class="rl">Base reguladora diaria</div><div class="rv" id="res_base_diaria">—</div></div>
+          <div class="res-item"><div class="rl">Importe mensual aprox.</div><div class="rv" id="res_importe_mensual">—</div></div>
+          <div class="res-item"><div class="rl">Importe del permiso calculado</div><div class="rv" id="res_importe_total">—</div></div>
+          <div class="res-item"><div class="rl">Semanas voluntarias al régimen elegido</div><div class="rv" id="res_parcial">—</div></div>
+          <div class="res-item"><div class="rl">Subsidio especial por múltiple*</div><div class="rv" id="res_multiple_economico">—</div></div>
+        </div>
+        <p class="result-note" id="nota_prestacion">—</p>
+      </section>
+
+      <section class="result-section" aria-labelledby="titulo_lactancia">
+        <h2 id="titulo_lactancia">Permiso por cuidado del lactante</h2>
+        <div class="result-grid">
+          <div class="res-item"><div class="rl">Modalidad</div><div class="rv" id="res_lactancia_modalidad">—</div></div>
+          <div class="res-item"><div class="rl">Días laborables computados</div><div class="rv" id="res_laborables">—</div></div>
+          <div class="res-item"><div class="rl">Horas generadas</div><div class="rv" id="res_horas_lactancia">—</div></div>
+          <div class="res-item"><div class="rl">Jornadas completas equivalentes</div><div class="rv" id="res_dias_lactancia">—</div></div>
+          <div class="res-item"><div class="rl">Límite ordinario</div><div class="rv" id="res_limite_lactancia">—</div></div>
+          <div class="res-item"><div class="rl">Origen del cálculo</div><div class="rv" id="res_origen_lactancia">—</div></div>
+        </div>
+        <p class="result-note" id="nota_lactancia">—</p>
+      </section>
+
+      <section class="result-section" aria-labelledby="titulo_otros">
+        <h2 id="titulo_otros">Otros derechos que no se suman al permiso</h2>
+        <div class="status-box" id="res_corresponsabilidad">—</div>
+        <div class="status-box" id="res_parental" style="margin-top:10px">—</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="seo-content">
+    <h2>Qué calcula esta herramienta</h2>
+    <p>“Baja por maternidad” y “baja por paternidad” siguen siendo búsquedas habituales, pero desde 2019 el nombre legal unificado es <strong>nacimiento y cuidado del menor</strong>. La herramienta aplica el marco vigente revisado en agosto de 2026 y mantiene separados el permiso laboral, la prestación económica, la lactancia, la corresponsabilidad y el permiso parental.</p>
+    <p>Es una estimación informativa. El INSS reconoce la prestación y la empresa o administración concreta el calendario de disfrute. Convenios colectivos, regímenes especiales y datos reales de cotización pueden cambiar el resultado.</p>
+
+    <h2>Duración vigente en 2026</h2>
+    <p>Para hechos causantes desde el 31 de julio de 2025, cada progenitor dispone con carácter general de 19 semanas: 6 obligatorias e ininterrumpidas a jornada completa, 11 distribuibles por semanas hasta que el menor cumpla 12 meses y 2 distribuibles por semanas hasta los 8 años. En familia monoparental son 32 semanas, repartidas en 6, 22 y 4.</p>
+    <p>La madre biológica puede anticipar hasta cuatro semanas antes del parto parte del periodo voluntario. En adopción internacional, el permiso puede iniciarse hasta cuatro semanas antes de la resolución cuando sea necesario desplazarse al país de origen. Esta calculadora toma como inicio la fecha que introduces y no reconstruye esos anticipos.</p>
+    <p>El nacimiento, adopción, guarda o acogimiento múltiple y la discapacidad reconocida añaden tiempo. En la situación general corresponden a cada progenitor una semana por discapacidad y una semana por cada menor a partir del segundo. En familia monoparental, la única persona progenitora disfruta las dos semanas que en otro caso se repartirían entre ambas; las causas diferentes se acumulan sin duplicar una misma causa.</p>
+    <p>Si el neonato permanece hospitalizado a continuación del parto por prematuridad, falta de peso u otra condición clínica durante más de siete días, el permiso de cada progenitor se amplía por todos los días de ese ingreso, no solo por el exceso sobre siete, con un máximo de trece semanas. De forma separada, puede pedirse que el periodo no obligatorio se compute desde el alta hospitalaria; la calculadora no desplaza el calendario por esa opción.</p>
+
+    <h2>Cómo se estima cuánto paga la Seguridad Social</h2>
+    <p>La prestación contributiva equivale al 100% de la base reguladora correspondiente. No equivale necesariamente al 100% del salario neto ni incluye complementos empresariales. La prestación pública por nacimiento está exenta de IRPF con los límites legales, pero el resultado mostrado es una estimación de la prestación antes de cualquier ajuste particular.</p>
+    <p>No se aplica un tope independiente a la prestación: el límite práctico deriva de la propia base de cotización válida. Por eso no debe introducirse una cifra superior a la base realmente cotizada.</p>
+    <div class="method">
+      <p><strong>Cuenta ajena mensual:</strong> <code>base del mes de referencia ÷ 30</code>.</p>
+      <p><strong>Tiempo parcial:</strong> <code>suma estimada de 12 meses ÷ 365</code>. El formulario usa la media mensual indicada × 12, salvo que introduzcas la base diaria conocida.</p>
+      <p><strong>RETA:</strong> <code>suma de las bases de los 6 meses de referencia ÷ 180</code>. El formulario usa la base mensual media indicada × 6.</p>
+    </div>
+    <p>Si falta cotización pero se cumplen los demás requisitos, puede existir un subsidio no contributivo durante las seis semanas obligatorias: 100% del IPREM vigente o la base reguladora si fuera inferior. En 2026 el IPREM mensual continúa en 600 € (20 € diarios). Se añaden 14 días por familia numerosa —o que pase a serlo—, monoparentalidad, hecho múltiple o discapacidad igual o superior al 65% de la persona beneficiaria o del menor. La ampliación se aplica una sola vez aunque coincidan varias causas.</p>
+
+    <h2>Requisitos de cotización</h2>
+    <ul>
+      <li>Menores de 21 años: no se exige periodo mínimo.</li>
+      <li>Desde 21 y menores de 26: 90 días en los 7 años anteriores o 180 días en toda la vida laboral.</li>
+      <li>Desde 26 años: 180 días en los 7 años anteriores o 360 días en toda la vida laboral.</li>
+    </ul>
+    <p>También debe existir alta o situación asimilada. Quien cotiza directamente —incluido RETA— debe estar al corriente de pago, sin perjuicio del mecanismo de invitación al pago que pueda aplicar la Seguridad Social.</p>
+
+    <h2>Lactancia ordinaria y lactancia acumulada</h2>
+    <p>El artículo 37.4 del Estatuto de los Trabajadores reconoce una hora de ausencia por día laborable hasta los nueve meses, divisible en dos fracciones. Puede sustituirse por media hora de reducción o acumularse en jornadas completas. En supuestos múltiples la duración aumenta proporcionalmente.</p>
+    <p>No existe un número universal de días acumulados. La regla general divide las horas generadas —una por día laborable restante— entre las horas de la jornada diaria. Por eso una jornada parcial puede producir más jornadas completas de libranza, aunque el total de horas sea el mismo. El convenio puede reconocer una regla más favorable o un número directo de días.</p>
+
+    <h2>Corresponsabilidad del lactante y permiso parental</h2>
+    <p>La corresponsabilidad protege, entre los 9 y 12 meses, la reducción diaria de media hora realizada por ambas personas trabajadoras con la misma duración y régimen. Solo una puede cobrar el subsidio: 100% de la base reguladora de incapacidad temporal por contingencias comunes, en proporción a esa media hora. Para contratos a tiempo parcial, la Seguridad Social toma las bases de los tres meses anteriores al inicio de la reducción y los días naturales correspondientes. No es la lactancia ordinaria ni puede sumarse automáticamente a ella.</p>
+    <p>El permiso parental del artículo 48 bis permite hasta ocho semanas, continuas o discontinuas, a jornada completa o parcial, hasta que el menor cumpla ocho años. En el régimen laboral general sigue siendo un permiso no retribuido en 2026. Tampoco debe confundirse con las 2 semanas retribuidas —4 en familia monoparental— incorporadas al permiso por nacimiento y utilizables hasta los 8 años.</p>
+
+    <h2>Autónomos y empleados públicos</h2>
+    <p>Las personas autónomas pueden recibir la prestación por nacimiento y cuidado si reúnen los requisitos; su base se calcula con las bases RETA de los seis meses de referencia y el disfrute parcial solo se contempla al 50%. La lactancia del artículo 37.4 y la prestación de corresponsabilidad aquí calculadas se refieren a relaciones laborales sometidas al Estatuto de los Trabajadores.</p>
+    <p>El personal empleado público se rige además por el Estatuto Básico del Empleado Público y por su régimen de previsión. La calculadora muestra la duración general introducida en 2025, pero no estima su lactancia ni particularidades de mutualidades administrativas.</p>
+
+    <h2>Fuentes oficiales</h2>
+    <p><a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/6b96a085-4dc0-47af-b2cb-97e00716791e/subsidionycm?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — nacimiento y cuidado del menor</a>; <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/61f8b540-c867-43cf-926d-77476b975f36?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — corresponsabilidad en el cuidado del lactante</a>; <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/9932/730?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — IPREM 2026</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11430" rel="noopener noreferrer">Estatuto de los Trabajadores, arts. 37.4, 48 y 48 bis</a>; <a href="https://www.boe.es/eli/es/rdl/2025/07/29/9/dof/spa/html" rel="noopener noreferrer">Real Decreto-ley 9/2025</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724" rel="noopener noreferrer">Ley General de la Seguridad Social, arts. 177 a 185</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764#a7" rel="noopener noreferrer">Ley del IRPF, artículo 7</a>; y <a href="https://www.boe.es/biblioteca_juridica/anuarios_derecho/articulo.php?id=ANU-L-2024-00000002598" rel="noopener noreferrer">BOE — doctrina del Tribunal Supremo sobre lactancia acumulada y tiempo parcial</a>.</p>
+    <p><strong>Última revisión normativa:</strong> 13 de agosto de 2026.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cuántas semanas corresponden en 2026? <span class="faq-arrow">▼</span></div><div class="faq-a">Para hechos causantes desde el 31 de julio de 2025, 19 semanas por progenitor en la situación general y 32 en familia monoparental, antes de ampliaciones específicas.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cobro el 100% de mi sueldo? <span class="faq-arrow">▼</span></div><div class="faq-a">Se cobra el 100% de la base reguladora reconocida, que no siempre coincide con el salario neto ni con todos los complementos de la nómina.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cuánto paga la Seguridad Social? <span class="faq-arrow">▼</span></div><div class="faq-a">La prestación contributiva diaria es el 100% de la base reguladora. Esta calculadora la estima con la base de cotización o usa directamente la base diaria que indiques.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Las semanas son iguales para ambos progenitores? <span class="faq-arrow">▼</span></div><div class="faq-a">Sí en la situación general: el derecho es individual y no transferible. Las ampliaciones por múltiple o discapacidad se distribuyen conforme a la ley; la calculadora muestra la parte de una persona.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cuántas semanas son obligatorias? <span class="faq-arrow">▼</span></div><div class="faq-a">Seis semanas ininterrumpidas e inmediatamente posteriores al hecho causante, a jornada completa.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Puedo repartir el permiso? <span class="faq-arrow">▼</span></div><div class="faq-a">Las 11 semanas flexibles —22 en monoparental— pueden distribuirse por semanas hasta los 12 meses. Las 2 adicionales —4 en monoparental— pueden disfrutarse por semanas hasta los 8 años, con el preaviso aplicable.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cómo se calcula la lactancia acumulada? <span class="faq-arrow">▼</span></div><div class="faq-a">Se cuentan los días laborables desde la reincorporación hasta que el menor cumple nueve meses, se asigna una hora a cada día y se divide el total entre las horas de jornada diaria. Un convenio puede mejorar esa regla.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Cuántos días de lactancia me corresponden? <span class="faq-arrow">▼</span></div><div class="faq-a">No hay una cifra fija. Depende del calendario laboral restante, la jornada diaria, si el supuesto es múltiple y la regulación del convenio.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Qué ocurre si trabajo a media jornada? <span class="faq-arrow">▼</span></div><div class="faq-a">La hora diaria de lactancia no se reduce proporcionalmente. Al acumularla, se divide entre tu jornada diaria real. Para la prestación por nacimiento, la base de tiempo parcial se obtiene con las cotizaciones del periodo oficial.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Qué ocurre si soy autónomo? <span class="faq-arrow">▼</span></div><div class="faq-a">Puedes acceder a la prestación si cumples alta, cotización y pago. La base diaria usa las bases RETA de seis meses. La lactancia laboral del Estatuto de los Trabajadores no se aplica igual a la actividad autónoma.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿Qué cambia si soy familia monoparental? <span class="faq-arrow">▼</span></div><div class="faq-a">El permiso general es de 32 semanas (6 obligatorias, 22 flexibles hasta 12 meses y 4 hasta 8 años). Las ampliaciones por múltiple o discapacidad corresponden íntegramente a la única persona progenitora según el criterio publicado por la Seguridad Social.</div></div>
+    <div class="faq-item"><div class="faq-q" role="button" tabindex="0">¿El permiso parental de 8 semanas es retribuido? <span class="faq-arrow">▼</span></div><div class="faq-a">No con carácter general en el régimen laboral en 2026. Es distinto de las 2 o 4 semanas retribuidas que forman parte del permiso por nacimiento y pueden usarse hasta que el menor cumpla ocho años.</div></div>
+  </div>
+
+  <section class="related" aria-labelledby="relacionadas_titulo">
+    <h2 id="relacionadas_titulo">Calculadoras relacionadas</h2>
+    <p><a href="/calculadora-salario-neto-espana/">Salario neto</a> · <a href="/calculadora-irpf-autonomos/">IRPF de autónomos</a> · <a href="/calculadora-paro-desempleo-espana/">Prestación por desempleo</a> · <a href="/calculadora-finiquito-espana/">Finiquito</a> · <a href="/simulador-declaracion-renta-2025/">Renta 2025</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
+  <p style="margin-top:6px">Estimación orientativa. Contrasta el reconocimiento y las fechas con el INSS y tu empresa o administración.</p>
+</footer>
+
+<script>
+'use strict';
+
+const MS_DIA = 86400000;
+const FECHA_REFORMA = '2025-07-31';
+const FECHA_TRANSITORIA = '2024-08-02';
+const IPREM_DIARIO_2026 = 20;
+
+function fechaUTC(valor) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(valor || '')) return null;
+  const [ano, mes, dia] = valor.split('-').map(Number);
+  const fecha = new Date(Date.UTC(ano, mes - 1, dia));
+  if (fecha.getUTCFullYear() !== ano || fecha.getUTCMonth() !== mes - 1 || fecha.getUTCDate() !== dia) return null;
+  return fecha;
+}
+
+function aISO(fecha) { return fecha.toISOString().slice(0, 10); }
+function sumarDias(fecha, dias) { return new Date(fecha.getTime() + dias * MS_DIA); }
+function diasEntre(inicio, fin) { return Math.max(0, Math.round((fin - inicio) / MS_DIA)); }
+
+function sumarMeses(fecha, meses) {
+  const ano = fecha.getUTCFullYear();
+  const mes = fecha.getUTCMonth();
+  const dia = fecha.getUTCDate();
+  const primero = new Date(Date.UTC(ano, mes + meses, 1));
+  const ultimo = new Date(Date.UTC(primero.getUTCFullYear(), primero.getUTCMonth() + 1, 0)).getUTCDate();
+  primero.setUTCDate(Math.min(dia, ultimo));
+  return primero;
+}
+
+function formatearFecha(fecha) {
+  return fecha ? new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(fecha) : '—';
+}
+
+function euros(valor) {
+  return Number.isFinite(valor) ? valor.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €' : '—';
+}
+
+function numero(valor, decimales = 1) {
+  return Number(valor).toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: decimales });
+}
+
+function diasComoSemanas(dias) {
+  if (!Number.isFinite(dias)) return '—';
+  const semanas = Math.floor(dias / 7);
+  const resto = Math.round((dias - semanas * 7) * 10) / 10;
+  if (!resto) return `${semanas} ${semanas === 1 ? 'semana' : 'semanas'}`;
+  return `${semanas} sem. + ${numero(resto)} días`;
+}
+
+function calcularDuracion(datos) {
+  const fechaReforma = fechaUTC(FECHA_REFORMA);
+  const fechaTransitoria = fechaUTC(FECHA_TRANSITORIA);
+  const limiteOcho = sumarMeses(datos.fechaNacimientoMenor, 96);
+  const semanasHastaOcho = datos.fechaHecho < limiteOcho ? (datos.hogar === 'monoparental' ? 4 : 2) : 0;
+  if (datos.fechaHecho >= fechaReforma) {
+    const monoparental = datos.hogar === 'monoparental';
+    const obligatorias = 6;
+    const flexibles = monoparental ? 22 : 11;
+    const hastaOcho = semanasHastaOcho;
+    const factorAmpliacion = monoparental ? 2 : 1;
+    const ampliaciones = factorAmpliacion * (Math.max(0, datos.numeroMenores - 1) + (datos.discapacidadMenor ? 1 : 0));
+    const hospitalDias = datos.situacion === 'nacimiento' && datos.hospitalizacionDias > 7 ? Math.min(91, datos.hospitalizacionDias) : 0;
+    const diasIniciales = (obligatorias + flexibles + ampliaciones) * 7 + hospitalDias;
+    return {
+      regimen: 'vigente', obligatorias, flexibles, hastaOcho, ampliaciones, hospitalDias,
+      diasTotales: diasIniciales + hastaOcho * 7,
+      diasIniciales,
+      fechaFinInicial: sumarDias(datos.fechaHecho, diasIniciales - 1)
+    };
+  }
+  if (datos.fechaHecho >= fechaTransitoria) {
+    const hastaOcho = semanasHastaOcho;
+    return {
+      regimen: 'transitorio', obligatorias: 0, flexibles: 0, hastaOcho, ampliaciones: 0, hospitalDias: 0,
+      diasTotales: hastaOcho * 7, diasIniciales: 0, fechaFinInicial: null
+    };
+  }
+  return { regimen: 'fuera', obligatorias: 0, flexibles: 0, hastaOcho: 0, ampliaciones: 0, hospitalDias: 0, diasTotales: 0, diasIniciales: 0, fechaFinInicial: null };
+}
+
+function cumpleCotizacion(edad, dias7, diasVida) {
+  if (edad < 21) return { cumple: true, requisito: 'No se exige periodo mínimo por edad.' };
+  if (edad < 26) return { cumple: dias7 >= 90 || diasVida >= 180, requisito: '90 días en 7 años o 180 en la vida laboral.' };
+  return { cumple: dias7 >= 180 || diasVida >= 360, requisito: '180 días en 7 años o 360 en la vida laboral.' };
+}
+
+function calcularBaseDiaria(datos) {
+  if (datos.baseDiariaConocida > 0) return { diaria: datos.baseDiariaConocida, origen: 'Base diaria conocida' };
+  if (!(datos.baseMensual > 0)) return { diaria: null, origen: 'Sin base suficiente' };
+  if (datos.tipoTrabajador === 'ajena_parcial') return { diaria: datos.baseMensual * 12 / 365, origen: 'Media mensual de 12 meses (estimada)' };
+  if (datos.tipoTrabajador === 'reta') return { diaria: datos.baseMensual * 6 / 180, origen: 'Media RETA de 6 meses (estimada)' };
+  return { diaria: datos.baseMensual / 30, origen: 'Base mensual ÷ 30' };
+}
+
+function calcularPrestacion(datos, duracion) {
+  const cotizacion = cumpleCotizacion(datos.edad, datos.cotizados7, datos.cotizadosVida);
+  const base = calcularBaseDiaria(datos);
+  if (duracion.regimen === 'fuera') return { tipo: 'no_calculada', cotizacion, base };
+  if (!datos.altaSS || (datos.tipoTrabajador === 'reta' && !datos.pagosReta)) return { tipo: 'sin_requisito', cotizacion, base };
+  if (!base.diaria) return { tipo: 'sin_base', cotizacion, base };
+  if (cotizacion.cumple) {
+    const porcentaje = datos.porcentajeDisfrute / 100;
+    const semanasVoluntarias = duracion.flexibles + duracion.hastaOcho;
+    const multiple = datos.numeroMenores > 1 ? base.diaria * 42 * (datos.numeroMenores - 1) : 0;
+    return {
+      tipo: 'contributiva', cotizacion, base,
+      diaria: base.diaria,
+      mensual: base.diaria * 30,
+      total: base.diaria * duracion.diasTotales,
+      mensualParcial: base.diaria * 30 * porcentaje,
+      semanasCalendarioParcial: porcentaje > 0 ? semanasVoluntarias / porcentaje : null,
+      multiple
+    };
+  }
+  const ampliacion14 = datos.hogar === 'monoparental' || datos.numeroMenores > 1 || datos.familiaNumerosa || datos.discapacidad65;
+  const dias = 42 + (ampliacion14 ? 14 : 0);
+  const diaria = Math.min(IPREM_DIARIO_2026, base.diaria);
+  return {
+    tipo: 'no_contributiva', cotizacion, base, diaria, mensual: diaria * 30,
+    total: diaria * dias, diasNoContributivos: dias, multiple: 0
+  };
+}
+
+function contarLaborables(inicio, finExclusivo, diasSemana) {
+  let total = 0;
+  for (let fecha = new Date(inicio); fecha < finExclusivo; fecha = sumarDias(fecha, 1)) {
+    const dia = fecha.getUTCDay();
+    const indiceLunes = dia === 0 ? 7 : dia;
+    if (indiceLunes <= diasSemana) total++;
+  }
+  return total;
+}
+
+function calcularLactancia(datos) {
+  const limite = sumarMeses(datos.fechaNacimientoMenor, 9);
+  const laboralET = datos.tipoTrabajador === 'ajena_completa' || datos.tipoTrabajador === 'ajena_parcial';
+  if (!laboralET) return { estado: 'no_aplicable', limite };
+  if (datos.lactanciaModalidad === 'ninguna') return { estado: 'no_solicitada', limite };
+  if (!datos.fechaReincorporacion) return { estado: 'sin_fecha', limite };
+  if (datos.fechaReincorporacion >= limite) return { estado: 'sin_dias', limite, laborables: 0, horas: 0, jornadas: 0 };
+  const laborables = Number.isFinite(datos.diasLaborablesExactos)
+    ? datos.diasLaborablesExactos
+    : contarLaborables(datos.fechaReincorporacion, limite, datos.diasSemana);
+  if (datos.lactanciaModalidad === 'acumulada' && datos.convenioLactanciaDias > 0) {
+    return {
+      estado: 'calculada', limite, laborables,
+      horas: datos.convenioLactanciaDias * datos.horasDia,
+      jornadas: datos.convenioLactanciaDias,
+      origen: 'Días indicados por convenio'
+    };
+  }
+  const horas = laborables * datos.numeroMenores;
+  return {
+    estado: 'calculada', limite, laborables, horas,
+    jornadas: horas / datos.horasDia,
+    origen: Number.isFinite(datos.diasLaborablesExactos) ? 'Calendario exacto indicado' : 'Calendario semanal estimado'
+  };
+}
+
+function calcularCorresponsabilidad(datos, prestacion) {
+  const laboralET = datos.tipoTrabajador === 'ajena_completa' || datos.tipoTrabajador === 'ajena_parcial';
+  if (!laboralET) return { estado: 'no_aplicable' };
+  if (!datos.ambosTrabajan || !datos.reduccionCoincidente) return { estado: 'no_activada' };
+  if (!prestacion.cotizacion.cumple) return { estado: 'sin_cotizacion' };
+  const baseIT = datos.baseITDiaria > 0 ? datos.baseITDiaria : null;
+  if (!baseIT) return { estado: 'sin_base_it' };
+  const inicio = sumarMeses(datos.fechaNacimientoMenor, 9);
+  const fin = sumarMeses(datos.fechaNacimientoMenor, 12);
+  const dias = diasEntre(inicio, fin);
+  const proporcion = Math.min(1, .5 / datos.horasDia);
+  const diaria = baseIT * proporcion;
+  return {
+    estado: 'estimada', inicio, fin, dias, diaria, mensual: diaria * 30, total: diaria * dias, proporcion,
+    baseIT, origenBase: 'base diaria de IT indicada'
+  };
+}
+
+function leerNumero(id, porDefecto = 0) {
+  const valor = document.getElementById(id).value.trim();
+  if (valor === '') return porDefecto;
+  const numeroLeido = Number(valor);
+  return Number.isFinite(numeroLeido) ? numeroLeido : NaN;
+}
+
+function leerDatos() {
+  const fechaHecho = fechaUTC(document.getElementById('fecha_hecho').value);
+  const fechaNacimientoAlternativa = fechaUTC(document.getElementById('fecha_nacimiento_menor').value);
+  return {
+    fechaHecho,
+    situacion: document.getElementById('situacion').value,
+    hogar: document.getElementById('hogar').value,
+    numeroMenores: leerNumero('numero_menores'),
+    discapacidadMenor: document.getElementById('discapacidad_menor').value === 'si',
+    tipoTrabajador: document.getElementById('tipo_trabajador').value,
+    edad: leerNumero('edad_beneficiaria'),
+    cotizados7: leerNumero('cotizados_7'),
+    cotizadosVida: leerNumero('cotizados_vida'),
+    baseMensual: leerNumero('base_mensual'),
+    baseDiariaConocida: leerNumero('base_diaria_conocida'),
+    porcentajeDisfrute: leerNumero('porcentaje_disfrute', 100),
+    hospitalizacionDias: leerNumero('hospitalizacion_dias'),
+    lactanciaModalidad: document.getElementById('lactancia_modalidad').value,
+    fechaReincorporacion: fechaUTC(document.getElementById('fecha_reincorporacion').value),
+    fechaNacimientoMenor: fechaNacimientoAlternativa || fechaHecho,
+    horasDia: leerNumero('horas_dia'),
+    diasSemana: leerNumero('dias_semana'),
+    diasLaborablesExactos: document.getElementById('dias_laborables_exactos').value.trim() === '' ? NaN : leerNumero('dias_laborables_exactos'),
+    convenioLactanciaDias: leerNumero('convenio_lactancia_dias'),
+    altaSS: document.getElementById('alta_ss').value === 'si',
+    pagosReta: document.getElementById('pagos_reta').value === 'si',
+    familiaNumerosa: document.getElementById('familia_numerosa').value === 'si',
+    discapacidad65: document.getElementById('discapacidad_65').value === 'si',
+    ambosTrabajan: document.getElementById('ambos_trabajan').value === 'si',
+    reduccionCoincidente: document.getElementById('reduccion_coincidente').value === 'si',
+    baseITDiaria: leerNumero('base_it_diaria')
+  };
+}
+
+function validar(datos) {
+  const errores = [];
+  if (!datos.fechaHecho) errores.push('Introduce una fecha real o prevista válida.');
+  if (!Number.isInteger(datos.numeroMenores) || datos.numeroMenores < 1 || datos.numeroMenores > 6) errores.push('El número de menores debe estar entre 1 y 6.');
+  if (!Number.isFinite(datos.edad) || datos.edad < 16 || datos.edad > 80) errores.push('La edad debe estar entre 16 y 80 años.');
+  if (![datos.cotizados7, datos.cotizadosVida, datos.baseMensual, datos.baseDiariaConocida, datos.baseITDiaria, datos.hospitalizacionDias, datos.convenioLactanciaDias].every(v => Number.isFinite(v) && v >= 0)) errores.push('Las bases, cotizaciones y días no pueden ser negativos.');
+  if (!Number.isFinite(datos.horasDia) || datos.horasDia < 1 || datos.horasDia > 24) errores.push('La jornada diaria debe estar entre 1 y 24 horas.');
+  if (!Number.isInteger(datos.diasSemana) || datos.diasSemana < 1 || datos.diasSemana > 7) errores.push('Los días laborables semanales deben estar entre 1 y 7.');
+  if (Number.isFinite(datos.diasLaborablesExactos) && (datos.diasLaborablesExactos < 0 || datos.diasLaborablesExactos > 366)) errores.push('Los días laborables exactos deben estar entre 0 y 366.');
+  if (datos.fechaHecho && datos.fechaReincorporacion && datos.fechaReincorporacion < datos.fechaHecho) errores.push('La reincorporación no puede ser anterior al hecho causante.');
+  if (datos.situacion === 'nacimiento' && datos.fechaHecho && datos.fechaNacimientoMenor && aISO(datos.fechaHecho) !== aISO(datos.fechaNacimientoMenor)) errores.push('En un nacimiento, la fecha del menor debe coincidir con el hecho causante o dejarse vacía.');
+  if (datos.tipoTrabajador === 'reta' && datos.porcentajeDisfrute === 75) errores.push('En RETA, el disfrute parcial contemplado por la Seguridad Social es del 50%; selecciona 50% o jornada completa.');
+  return errores;
+}
+
+function obtenerAvisos(datos, duracion) {
+  const avisos = [];
+  const hoy = fechaUTC(new Date().toISOString().slice(0, 10));
+  if (datos.fechaHecho > hoy) avisos.push('La fecha es futura: se aplican las reglas vigentes en la revisión del 13/08/2026, que podrían cambiar antes del hecho causante.');
+  if (duracion.regimen === 'transitorio') avisos.push('Hecho causante entre 02/08/2024 y 30/07/2025: solo se muestran las 2 semanas retribuidas adicionales (4 en monoparental) reclamables desde 01/01/2026. No se reconstruye el permiso histórico ya disfrutado.');
+  if (duracion.regimen === 'fuera') avisos.push('La fecha es anterior al 02/08/2024: esta calculadora no reconstruye el permiso histórico ni su prestación. Solo comprueba los límites actuales de lactancia y permiso parental con la fecha del menor.');
+  if (datos.hospitalizacionDias > 0 && datos.situacion !== 'nacimiento') avisos.push('La ampliación por hospitalización neonatal no se ha aplicado porque la situación seleccionada no es nacimiento.');
+  if (datos.hospitalizacionDias > 0 && datos.hospitalizacionDias <= 7 && datos.situacion === 'nacimiento') avisos.push('La hospitalización no supera 7 días y, por tanto, no genera la ampliación indicada en el artículo 48.4 ET.');
+  if (datos.tipoTrabajador === 'publico') avisos.push('El personal empleado público puede tener reglas propias del EBEP o de su mutualidad; no se calcula aquí la lactancia ni la corresponsabilidad del ET.');
+  if (datos.situacion !== 'nacimiento' && datos.fechaHecho >= sumarMeses(datos.fechaNacimientoMenor, 72)) avisos.push('Para adopción, guarda o acogimiento de un menor mayor de 6 años, la situación protegida exige discapacidad o especiales dificultades de inserción debidamente acreditadas; la calculadora no verifica esa acreditación.');
+  if (datos.fechaHecho >= sumarMeses(datos.fechaNacimientoMenor, 96)) avisos.push('El menor ya había cumplido 8 años en la fecha del hecho causante: no se añaden las semanas cuyo límite legal es esa edad.');
+  else if (hoy >= sumarMeses(datos.fechaNacimientoMenor, 96)) avisos.push('El menor ya ha cumplido 8 años: las semanas tardías aparecen como parte del derecho original, pero ya no pueden solicitarse si no se disfrutaron dentro de plazo.');
+  return avisos;
+}
+
+function textoModalidad(valor) {
+  return { acumulada: 'Jornadas completas', ausencia: '1 hora diaria', reduccion: 'Reducción de 30 min', ninguna: 'No solicitada' }[valor] || '—';
+}
+
+function renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad) {
+  const totalTexto = duracion.regimen === 'fuera' ? 'No calculado' : diasComoSemanas(duracion.diasTotales);
+  document.getElementById('res_total_semanas').textContent = totalTexto;
+  document.getElementById('res_regimen_fecha').textContent = duracion.regimen === 'vigente'
+    ? 'Régimen vigente para hechos causantes desde el 31/07/2025.'
+    : duracion.regimen === 'transitorio' ? 'Solo semanas adicionales del régimen transitorio.' : 'Fecha fuera del periodo que calcula esta versión.';
+  document.getElementById('res_obligatorias').textContent = duracion.regimen === 'transitorio' ? 'Históricas, no recalculadas' : `${duracion.obligatorias} semanas`;
+  document.getElementById('res_flexibles').textContent = duracion.regimen === 'transitorio' ? 'Históricas, no recalculadas' : `${duracion.flexibles} semanas`;
+  document.getElementById('res_hasta_ocho').textContent = `${duracion.hastaOcho} semanas`;
+  document.getElementById('res_ampliaciones').textContent = `${duracion.ampliaciones} semanas`;
+  document.getElementById('res_hospitalizacion').textContent = `${duracion.hospitalDias} días`;
+  document.getElementById('res_fecha_fin').textContent = formatearFecha(duracion.fechaFinInicial);
+  const voluntarias = duracion.flexibles + duracion.hastaOcho;
+  document.getElementById('nota_permiso').textContent = duracion.regimen === 'vigente'
+    ? `*La fecha de fin suma las semanas obligatorias, las flexibles del primer año y las ampliaciones a jornada completa; no añade las ${duracion.hastaOcho} semanas que pueden reservarse hasta los 8 años. Si las semanas voluntarias se disfrutan al ${datos.porcentajeDisfrute}%, ${numero(voluntarias)} semanas de derecho ocuparían aproximadamente ${numero(voluntarias / (datos.porcentajeDisfrute / 100))} semanas de calendario.`
+    : 'Las semanas transitorias deben solicitarse por periodos semanales y su reconocimiento corresponde al INSS.';
+
+  let notaPrestacion = prestacion.cotizacion ? prestacion.cotizacion.requisito : '';
+  if (prestacion.tipo === 'contributiva') {
+    document.getElementById('res_tipo_prestacion').textContent = 'Contributiva · 100% BR';
+    document.getElementById('res_base_diaria').textContent = euros(prestacion.diaria);
+    document.getElementById('res_importe_mensual').textContent = euros(prestacion.mensual);
+    document.getElementById('res_importe_total').textContent = euros(prestacion.total);
+    document.getElementById('res_parcial').textContent = `${numero(prestacion.semanasCalendarioParcial)} sem. calendario`;
+    document.getElementById('res_multiple_economico').textContent = prestacion.multiple > 0 ? euros(prestacion.multiple) : 'No procede';
+    notaPrestacion += ` Base usada: ${prestacion.base.origen}. El total presupone que se disfruta todo el derecho calculado; el pago de semanas a tiempo parcial se reduce en proporción y dura más tiempo, sin aumentar esa bolsa económica. *El subsidio por múltiple es adicional, se abona una sola vez a una de las personas beneficiarias y no se suma al total mostrado.`;
+  } else if (prestacion.tipo === 'no_contributiva') {
+    document.getElementById('res_tipo_prestacion').textContent = 'Supuesto no contributivo';
+    document.getElementById('res_base_diaria').textContent = euros(prestacion.diaria);
+    document.getElementById('res_importe_mensual').textContent = euros(prestacion.mensual);
+    document.getElementById('res_importe_total').textContent = euros(prestacion.total);
+    document.getElementById('res_parcial').textContent = `${prestacion.diasNoContributivos} días a jornada completa`;
+    document.getElementById('res_multiple_economico').textContent = 'Consultar INSS';
+    notaPrestacion += ` Se estima el supuesto especial por falta de cotización: ${prestacion.diasNoContributivos} días al menor importe entre IPREM diario 2026 y base reguladora. El INSS debe confirmar que se cumplen todos los demás requisitos.`;
+  } else {
+    document.getElementById('res_tipo_prestacion').textContent = prestacion.tipo === 'sin_requisito' ? 'Requisitos no acreditados' : prestacion.tipo === 'sin_base' ? 'Falta base' : 'No calculada';
+    document.getElementById('res_base_diaria').textContent = prestacion.base && prestacion.base.diaria ? euros(prestacion.base.diaria) : '—';
+    document.getElementById('res_importe_mensual').textContent = '—';
+    document.getElementById('res_importe_total').textContent = '—';
+    document.getElementById('res_parcial').textContent = '—';
+    document.getElementById('res_multiple_economico').textContent = '—';
+    if (prestacion.tipo === 'sin_requisito') notaPrestacion += ' No se estima prestación porque no se ha acreditado alta o, en RETA, estar al corriente de pago.';
+    if (prestacion.tipo === 'sin_base') notaPrestacion += ' Introduce una base mensual o una base reguladora diaria conocida.';
+  }
+  document.getElementById('nota_prestacion').textContent = notaPrestacion;
+
+  document.getElementById('res_lactancia_modalidad').textContent = textoModalidad(datos.lactanciaModalidad);
+  document.getElementById('res_limite_lactancia').textContent = formatearFecha(lactancia.limite);
+  if (lactancia.estado === 'calculada') {
+    document.getElementById('res_laborables').textContent = `${numero(lactancia.laborables, 0)} días`;
+    document.getElementById('res_horas_lactancia').textContent = `${numero(lactancia.horas)} h`;
+    document.getElementById('res_dias_lactancia').textContent = datos.lactanciaModalidad === 'acumulada' ? `${numero(lactancia.jornadas, 2)} días` : 'No se acumula';
+    document.getElementById('res_origen_lactancia').textContent = lactancia.origen;
+    document.getElementById('nota_lactancia').textContent = `El cálculo aplica ${datos.numeroMenores > 1 ? `${datos.numeroMenores} horas por día por el supuesto múltiple` : 'una hora por día laborable'}. El calendario real, vacaciones, festivos y el convenio pueden modificar el resultado. La empresa debe concretar el disfrute.`;
+  } else {
+    document.getElementById('res_laborables').textContent = lactancia.estado === 'sin_dias' ? '0 días' : '—';
+    document.getElementById('res_horas_lactancia').textContent = lactancia.estado === 'sin_dias' ? '0 h' : '—';
+    document.getElementById('res_dias_lactancia').textContent = lactancia.estado === 'sin_dias' ? '0 días' : '—';
+    document.getElementById('res_origen_lactancia').textContent = '—';
+    const mensajes = {
+      no_aplicable: 'No se estima: la regla del artículo 37.4 ET no se aplica de la misma forma a RETA ni se ha modelado el régimen del empleo público.',
+      no_solicitada: 'No has solicitado calcular esta modalidad.',
+      sin_fecha: 'Introduce la fecha prevista de reincorporación para contar los días laborables.',
+      sin_dias: 'No quedan días laborables entre la reincorporación y el límite ordinario de nueve meses.'
+    };
+    document.getElementById('nota_lactancia').textContent = mensajes[lactancia.estado] || 'No calculada.';
+  }
+
+  const corrEl = document.getElementById('res_corresponsabilidad');
+  if (corresponsabilidad.estado === 'estimada') {
+    corrEl.innerHTML = `<strong>Corresponsabilidad del lactante:</strong> posible estimación máxima de ${euros(corresponsabilidad.total)} entre ${formatearFecha(corresponsabilidad.inicio)} y ${formatearFecha(corresponsabilidad.fin)} (${euros(corresponsabilidad.mensual)}/mes aprox.). Se aplica el 100% de ${euros(corresponsabilidad.baseIT)}/día, en proporción a 30 minutos sobre tu jornada (${numero(corresponsabilidad.proporcion * 100, 2)}%). Origen: ${corresponsabilidad.origenBase}. Solo puede cobrarla una persona.`;
+  } else {
+    const textoCorr = {
+      no_aplicable: 'No se calcula para RETA ni empleo público en esta herramienta.',
+      no_activada: 'Para estudiarla, abre Opciones avanzadas e indica que ambas personas trabajan y reducen diariamente media hora con igual duración y régimen.',
+      sin_cotizacion: 'No se cumplen los requisitos de cotización exigidos para esta prestación.',
+      sin_base_it: 'Se cumplen las condiciones declaradas, pero falta la base reguladora diaria de IT vigente al comenzar la reducción para estimar la cuantía sin reutilizar una base antigua.'
+    }[corresponsabilidad.estado];
+    corrEl.innerHTML = `<strong>Corresponsabilidad del lactante:</strong> ${textoCorr}`;
+  }
+
+  const hoy = fechaUTC(new Date().toISOString().slice(0, 10));
+  const cumpleOcho = sumarMeses(datos.fechaNacimientoMenor, 96);
+  const parentalVigente = hoy < cumpleOcho;
+  document.getElementById('res_parental').innerHTML = parentalVigente
+    ? `<strong>Permiso parental del art. 48 bis:</strong> hasta 8 semanas, continuas o discontinuas, antes del ${formatearFecha(cumpleOcho)}. No es retribuido con carácter general en 2026 y no está incluido en el total superior.`
+    : '<strong>Permiso parental del art. 48 bis:</strong> el menor ya ha alcanzado el límite de 8 años según la fecha introducida.';
+
+  document.getElementById('resultados').classList.add('show');
+}
+
+function calcularYMostrar(evento) {
+  if (evento) evento.preventDefault();
+  const datos = leerDatos();
+  const errores = validar(datos);
+  const cajaErrores = document.getElementById('errores');
+  if (errores.length) {
+    cajaErrores.textContent = errores.join(' ');
+    cajaErrores.classList.add('show');
+    document.getElementById('avisos').classList.remove('show');
+    document.getElementById('resultados').classList.remove('show');
+    return;
+  }
+  cajaErrores.classList.remove('show');
+  const duracion = calcularDuracion(datos);
+  const prestacion = calcularPrestacion(datos, duracion);
+  const lactancia = calcularLactancia(datos);
+  const corresponsabilidad = calcularCorresponsabilidad(datos, prestacion);
+  const avisos = obtenerAvisos(datos, duracion);
+  const cajaAvisos = document.getElementById('avisos');
+  cajaAvisos.textContent = avisos.join(' ');
+  cajaAvisos.classList.toggle('show', avisos.length > 0);
+  renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad);
+}
+
+function actualizarEtiquetaBase() {
+  const tipo = document.getElementById('tipo_trabajador').value;
+  const etiqueta = document.getElementById('label_base_mensual');
+  const ayuda = document.getElementById('tip_base_mensual');
+  if (tipo === 'ajena_parcial') {
+    etiqueta.textContent = 'Base mensual media de los 12 meses de referencia (€)';
+    ayuda.textContent = 'La fórmula oficial usa la suma exacta de bases y días; esta media produce una estimación.';
+  } else if (tipo === 'reta') {
+    etiqueta.textContent = 'Base RETA mensual media de los 6 meses de referencia (€)';
+    ayuda.textContent = 'No introduzcas la cuota pagada: se necesita la base por la que cotizaste.';
+  } else {
+    etiqueta.textContent = 'Base mensual por contingencias comunes (€)';
+    ayuda.textContent = 'Consulta la base, no el salario neto, en tu nómina o documento de cotización.';
+  }
+}
+
+function toggleAvanzadas() {
+  const panel = document.getElementById('opciones_avanzadas');
+  const boton = document.getElementById('toggle_avanzadas');
+  const abierto = panel.classList.toggle('open');
+  boton.setAttribute('aria-expanded', String(abierto));
+  boton.textContent = `Opciones avanzadas ${abierto ? '▲' : '▼'}`;
+}
+
+document.getElementById('form_calculadora').addEventListener('submit', calcularYMostrar);
+document.getElementById('toggle_avanzadas').addEventListener('click', toggleAvanzadas);
+document.getElementById('tipo_trabajador').addEventListener('change', actualizarEtiquetaBase);
+document.querySelectorAll('.faq-q').forEach(pregunta => {
+  const activar = () => pregunta.parentElement.classList.toggle('open');
+  pregunta.addEventListener('click', activar);
+  pregunta.addEventListener('keydown', evento => {
+    if (evento.key === 'Enter' || evento.key === ' ') { evento.preventDefault(); activar(); }
+  });
+});
+
+window.MetaphaiNacimientoCore = {
+  fechaUTC, sumarDias, sumarMeses, diasEntre, calcularDuracion, cumpleCotizacion,
+  calcularBaseDiaria, calcularPrestacion, contarLaborables, calcularLactancia,
+  calcularCorresponsabilidad, validar
+};
+</script>
+</body>
+</html>
