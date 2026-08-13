@@ -60,6 +60,9 @@
     .info-box.blue p { font-size: 13px; color: var(--hip); margin: 0; }
     .info-box.warn { background: var(--warn-light); border: 1px solid #f0d0a0; }
     .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
+    .advanced-toggle { width:100%;margin-top:12px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--muted);font:500 13px 'DM Sans',sans-serif;cursor:pointer;text-align:left; }
+    .advanced-panel { display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border); }
+    .advanced-panel.open { display:block; }
     .slider-wrap { margin-top: 6px; }
     .slider-wrap input[type=range] { width: 100%; accent-color: var(--hip); }
     .slider-val { font-size: 13px; color: var(--hip); font-weight: 500; text-align: right; margin-top: 2px; }
@@ -238,7 +241,15 @@
         </div>
       </div>
       <div class="info-box warn" style="margin-top:12px">
-        <p>⚠️ Los bancos financian máximo el 80% del valor de tasación en vivienda habitual y el 70% en segunda residencia. Necesitas al menos un 20-30% de ahorros más los gastos de compra (notaría, registro, impuestos: ~10-12%).</p>
+        <p>⚠️ El 80% del valor de tasación es una práctica bancaria habitual, no un límite legal ni una garantía de concesión. La entidad valorará solvencia, garantía y condiciones concretas.</p>
+      </div>
+      <button type="button" class="advanced-toggle" id="toggle_avanzadas_hip" aria-expanded="false" aria-controls="opciones_avanzadas_hip" onclick="toggleAvanzadasHipoteca()">Opciones avanzadas ▼</button>
+      <div class="advanced-panel" id="opciones_avanzadas_hip">
+        <div class="grid3">
+          <div class="field"><label>Comisión de apertura (€)</label><input type="number" id="comision_apertura" value="0" min="0" step="100" oninput="calcular()"></div>
+          <div class="field"><label>Otros costes iniciales obligatorios (€)</label><input type="number" id="costes_iniciales" value="0" min="0" step="100" oninput="calcular()"></div>
+          <div class="field"><label>Costes vinculados recurrentes (€/año)</label><input type="number" id="costes_anuales" value="0" min="0" step="50" oninput="calcular()"><p class="tip">Incluye solo productos necesarios para obtener esas condiciones</p></div>
+        </div>
       </div>
     </div>
 
@@ -280,6 +291,8 @@
           <div class="rl">% intereses sobre total</div>
           <div class="rv" id="d_pct_int">—</div>
         </div>
+        <div class="res-item"><div class="rl">Costes adicionales indicados</div><div class="rv" id="d_costes">—</div></div>
+        <div class="res-item hip"><div class="rl">Cuota tras cambio de tipo</div><div class="rv" id="d_cuota_posterior">—</div></div>
       </div>
       <div class="barra-wrap">
         <div class="barra-title">Distribución del pago total</div>
@@ -289,7 +302,7 @@
         </div>
         <div class="legend">
           <div class="legend-item"><div class="legend-dot" style="background:var(--hip)"></div>Capital (<span id="leg_capital">—</span>)</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div>Intereses (<span id="leg_intereses">—</span>)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div>Intereses y costes (<span id="leg_intereses">—</span>)</div>
         </div>
       </div>
     </div>
@@ -353,7 +366,7 @@
         <div class="field">
           <label>Comisión por amortización anticipada (%)</label>
           <input type="number" id="comision_amort" value="0" min="0" max="2" step="0.1" oninput="calcAmort()">
-          <p class="tip">En hipotecas variables suele ser 0% o 0,15%. En fijas hasta 2%.</p>
+          <p class="tip">Introduce la comisión pactada en tu contrato; la ley fija límites distintos según fecha y tipo.</p>
         </div>
       </div>
     </div>
@@ -421,21 +434,21 @@
 
   <div class="seo-content">
     <h2>¿Cómo funciona una hipoteca en España?</h2>
-    <p>Una hipoteca es un préstamo a largo plazo garantizado con el inmueble que se compra. El banco financia generalmente hasta el 80% del valor de tasación de la vivienda habitual, y el comprador debe aportar el resto más los gastos de compra (notaría, registro, impuestos y gestoría), que suelen suponer entre el 10% y el 12% del precio.</p>
+    <p>Una hipoteca es un préstamo garantizado con un inmueble. La calculadora aplica el sistema francés: cada cuota se divide entre intereses sobre el capital pendiente y amortización de capital. Los porcentajes habituales de financiación son criterios comerciales, no límites legales.</p>
 
     <h3>Hipoteca fija vs variable ¿cuál elegir?</h3>
-    <p>La hipoteca fija ofrece estabilidad: pagas siempre la misma cuota independientemente de cómo evolucione el Euríbor. La variable está referenciada al Euríbor más un diferencial, por lo que la cuota sube o baja cada vez que se revisa (normalmente cada 6 o 12 meses). La variable suele arrancar más barata pero conlleva más riesgo si el Euríbor sube.</p>
+    <p>La hipoteca fija ofrece estabilidad: pagas siempre la misma cuota independientemente de cómo evolucione el Euríbor. La variable está referenciada al Euríbor más un diferencial, por lo que la cuota sube o baja cada vez que se revisa (normalmente cada 6 o 12 meses). Puede partir de un tipo distinto al fijo y conlleva riesgo si el índice sube.</p>
 
     <h3>¿Qué es el Euríbor?</h3>
-    <p>El Euríbor (Euro Interbank Offered Rate) es el tipo de interés al que los bancos europeos se prestan dinero entre sí. Es el índice de referencia más usado en las hipotecas variables españolas. Ha oscilado entre valores negativos en 2021 y máximos del 4% en 2023, situándose en torno al 2,5% a principios de 2026.</p>
+    <p>El Euríbor es el índice de referencia más utilizado en las hipotecas variables españolas. La calculadora no predice su evolución: mantiene constante el valor que introduzcas para mostrar un escenario comparable.</p>
 
     <h3>¿Cuánto debo tener ahorrado para una hipoteca?</h3>
-    <p>Como mínimo necesitas el 20% del precio de la vivienda (la entrada, ya que los bancos financian el 80%) más entre un 10% y un 12% adicional para cubrir los gastos de compra. En total, para una vivienda de 250.000 euros necesitarías disponer de unos 75.000-80.000 euros en ahorros.</p>
+    <p>Muchas entidades toman como referencia financiar alrededor del 80% del valor que acepten, pero no es un límite legal ni una concesión garantizada. La entrada y los gastos de compra dependen de la financiación obtenida, el inmueble y los impuestos aplicables.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cuánto me puede prestar el banco? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Los bancos financian hasta el 80% del valor de tasación de la vivienda habitual (70% para segunda residencia). Además, tu cuota mensual no debería superar el 30-35% de tus ingresos netos mensuales. Si ganas 2.000 € netos al mes, lo recomendable es que la cuota no supere los 600-700 €.</div>
+      <div class="faq-a">No existe un porcentaje universal. Muchas entidades usan como referencia alrededor del 80% del valor que admitan y ratios de esfuerzo sobre ingresos, pero son criterios de riesgo y solvencia, no límites legales ni garantías de concesión.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué gastos tiene la hipoteca además de la cuota? <span class="faq-arrow">▼</span></div>
@@ -443,7 +456,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Conviene amortizar anticipadamente la hipoteca? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Depende de tu tipo de interés y de las alternativas de inversión. Si tu hipoteca tiene un tipo alto (por encima del 3-4%), amortizar anticipadamente suele ser una buena decisión ya que el ahorro en intereses está garantizado. Si el tipo es bajo, puede ser más rentable invertir ese dinero en fondos indexados u otras opciones.</div>
+      <div class="faq-a">La calculadora compara intereses futuros con y sin amortización y resta la comisión introducida. La conveniencia personal depende de liquidez, fiscalidad, riesgo y condiciones del contrato.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Hay deducción fiscal por hipoteca en 2026? <span class="faq-arrow">▼</span></div>
@@ -451,8 +464,9 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué es la TAE de una hipoteca? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">La TAE (Tasa Anual Equivalente) incluye el TIN más todos los gastos asociados al préstamo (comisiones, seguros vinculados, etc.). Es el indicador más completo para comparar hipotecas, ya que el TIN solo refleja el tipo de interés puro. Una hipoteca puede tener un TIN bajo pero una TAE alta si incluye muchos productos vinculados.</div>
+      <div class="faq-a">El TIN es el tipo nominal usado para calcular intereses. La TAE transforma los flujos del préstamo en un coste anual efectivo e incorpora las comisiones y gastos que introduzcas. Si omites un coste obligatorio, la TAE estimada quedará infravalorada.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://clientebancario.bde.es/pcb/es/menu-horizontal/productosservici/financiacion/hipotecas/guia-textual/primerospasoscon/Cuota_hipotecaria.html" rel="noopener noreferrer">cuota y sistema francés (Banco de España)</a>, <a href="https://clientebancario.bde.es/pcb/es/menu-horizontal/podemosayudarte/simuladores/calculo-de-la-tae-de-un-prestamo-hipotecario.html" rel="noopener noreferrer">TAE hipotecaria (Banco de España)</a> y <a href="https://clientebancario.bde.es/pcb/es/menu-horizontal/productosservici/financiacion/hipotecas/guia-textual/vidahipoteca/Amortizacion_pa_b3dc24e53ab1d51.html" rel="noopener noreferrer">amortización anticipada (Banco de España)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -504,9 +518,24 @@ function pct(n){return n.toFixed(2)+'%';}
 function actualizarAhorro(){
   const precio=parseFloat(document.getElementById('precio_inmueble').value)||0;
   const entrada=parseFloat(document.getElementById('entrada').value)||0;
-  const capital=precio-entrada;
-  if(capital>0) document.getElementById('capital').value=capital;
+  document.getElementById('capital').value=Math.max(0,precio-entrada);
+  document.getElementById('tip_entrada').textContent=`Porcentaje de entrada: ${precio>0?pct(entrada/precio*100):'0%'}`;
   calcular();
+}
+
+function cambiarTab(nombre){
+  const nombres=['cuota','amortizacion','comparativa'];
+  document.querySelectorAll('.tab').forEach((tab,i)=>tab.classList.toggle('active',nombres[i]===nombre));
+  document.querySelectorAll('.tab-content').forEach(panel=>panel.classList.toggle('active',panel.id===`tab-${nombre}`));
+  if(nombre==='amortizacion') calcAmort();
+  if(nombre==='comparativa') calcComp();
+}
+
+function toggleAvanzadasHipoteca(){
+  const panel=document.getElementById('opciones_avanzadas_hip'), boton=document.getElementById('toggle_avanzadas_hip');
+  const abierto=panel.classList.toggle('open');
+  boton.setAttribute('aria-expanded',String(abierto));
+  boton.textContent=`Opciones avanzadas ${abierto?'▲':'▼'}`;
 }
 
 function cambiarTipoHip(){
@@ -518,171 +547,144 @@ function cambiarTipoHip(){
   calcular();
 }
 
-// Cuota mensual francesa
-function cuotaMensual(capital, tinAnual, meses){
-  if(tinAnual===0) return capital/meses;
-  const r=tinAnual/12/100;
-  return capital*r*Math.pow(1+r,meses)/(Math.pow(1+r,meses)-1);
+function cuotaMensual(capital,tinAnual,meses){
+  if(capital<=0||meses<=0) return 0;
+  const r=tinAnual/1200;
+  if(Math.abs(r)<1e-12) return capital/meses;
+  return capital*r/(1-Math.pow(1+r,-meses));
 }
 
-// TAE aproximada
-function calcTAE(capital, cuota, meses){
-  let lo=0, hi=100;
-  for(let i=0;i<50;i++){
-    const mid=(lo+hi)/2;
-    const r=mid/12/100;
-    const pv=r===0?cuota*meses:cuota*(1-Math.pow(1+r,-meses))/r;
-    if(pv>capital) lo=mid; else hi=mid;
+function simularPrestamo(capital,fases){
+  let saldo=capital, pagos=[], detalle=[];
+  const mesesTotales=fases.reduce((s,f)=>s+f.meses,0);
+  let transcurridos=0, cuotaInicial=0, cuotaPosterior=null;
+  fases.forEach((fase,indice)=>{
+    const restantes=mesesTotales-transcurridos;
+    const cuota=cuotaMensual(saldo,fase.tin,restantes);
+    if(indice===0) cuotaInicial=cuota; else cuotaPosterior=cuota;
+    const r=fase.tin/1200;
+    for(let m=0;m<fase.meses;m++){
+      const interes=saldo*r;
+      const capitalMes=m===fase.meses-1&&transcurridos+1===mesesTotales?saldo:Math.min(saldo,cuota-interes);
+      const pago=capitalMes+interes;
+      saldo=Math.max(0,saldo-capitalMes); transcurridos++;
+      pagos.push(pago); detalle.push({mes:transcurridos,pago,interes,capital:capitalMes,saldo,tin:fase.tin});
+    }
+  });
+  const totalCuotas=pagos.reduce((a,b)=>a+b,0);
+  return {pagos,detalle,cuotaInicial,cuotaPosterior,totalCuotas,intereses:totalCuotas-capital};
+}
+
+function calcularTAEFlujos(capital,pagos,costesIniciales,costeAnual){
+  const neto=capital-costesIniciales;
+  if(neto<=0||!pagos.length) return null;
+  const flujos=pagos.map(p=>p+costeAnual/12);
+  if(flujos.reduce((a,b)=>a+b,0)<=neto) return 0;
+  let lo=0,hi=1;
+  for(let i=0;i<80;i++){
+    const r=(lo+hi)/2;
+    let pv=0;
+    for(let m=0;m<flujos.length;m++) pv+=flujos[m]/Math.pow(1+r,m+1);
+    if(pv>neto) lo=r; else hi=r;
   }
-  return (lo+hi)/2;
+  return (Math.pow(1+(lo+hi)/2,12)-1)*100;
 }
 
 let tablaCompleta=false;
-function toggleTabla(){
-  tablaCompleta=!tablaCompleta;
-  document.getElementById('btn-ver-mas').textContent=tablaCompleta?'Ver menos':'Ver todos los años';
-  calcular();
+function toggleTabla(){tablaCompleta=!tablaCompleta;document.getElementById('btn-ver-mas').textContent=tablaCompleta?'Ver menos':'Ver todos los años';calcular();}
+
+function fasesHipoteca(tipo,plazo){
+  const meses=plazo*12;
+  if(tipo==='fija') return [{meses,tin:Math.max(0,parseFloat(document.getElementById('tin').value)||0)}];
+  if(tipo==='variable'){
+    const tin=Math.max(0,(parseFloat(document.getElementById('euribor').value)||0)+(parseFloat(document.getElementById('diferencial').value)||0));
+    return [{meses,tin}];
+  }
+  const añosFijos=Math.min(plazo,Math.max(0,parseInt(document.getElementById('años_fijo').value)||0));
+  const primera=añosFijos*12, fases=[];
+  if(primera) fases.push({meses:primera,tin:Math.max(0,parseFloat(document.getElementById('tin_fijo_mixta').value)||0)});
+  if(meses>primera) fases.push({meses:meses-primera,tin:Math.max(0,parseFloat(document.getElementById('tin_variable_mixta').value)||0)});
+  return fases;
 }
 
 function calcular(){
-  const capital=parseFloat(document.getElementById('capital').value)||0;
-  const plazo=parseInt(document.getElementById('plazo').value)||30;
-  const tipo=document.getElementById('tipo_hip').value;
-  const meses=plazo*12;
-
-  let tin=0;
-  if(tipo==='fija') tin=parseFloat(document.getElementById('tin').value)||0;
-  else if(tipo==='variable') tin=(parseFloat(document.getElementById('euribor').value)||0)+(parseFloat(document.getElementById('diferencial').value)||0);
-  else tin=parseFloat(document.getElementById('tin_fijo_mixta').value)||0;
-
+  const capital=parseFloat(document.getElementById('capital').value)||0, plazo=parseInt(document.getElementById('plazo').value)||0;
   if(capital<=0||plazo<=0) return;
-
-  const cuota=cuotaMensual(capital,tin,meses);
-  const totalPagado=cuota*meses;
-  const totalIntereses=totalPagado-capital;
-  const tae=calcTAE(capital,cuota,meses);
-  const pctIntereses=capital>0?(totalIntereses/totalPagado)*100:0;
-
-  document.getElementById('res_cuota').textContent=fmt(cuota)+'/mes';
-  document.getElementById('res_total').textContent='Total: '+fmtN(totalPagado);
-  document.getElementById('res_intereses').textContent='Intereses: '+fmtN(totalIntereses);
+  const tipo=document.getElementById('tipo_hip').value, fases=fasesHipoteca(tipo,plazo);
+  const simulacion=simularPrestamo(capital,fases);
+  const apertura=parseFloat(document.getElementById('comision_apertura').value)||0;
+  const iniciales=parseFloat(document.getElementById('costes_iniciales').value)||0;
+  const anuales=parseFloat(document.getElementById('costes_anuales').value)||0;
+  const costes=apertura+iniciales+anuales*plazo;
+  const total=simulacion.totalCuotas+costes;
+  const tae=calcularTAEFlujos(capital,simulacion.pagos,apertura+iniciales,anuales);
+  const pctIntereses=total>0?simulacion.intereses/total*100:0;
+  document.getElementById('res_cuota').textContent=fmt(simulacion.cuotaInicial)+'/mes';
+  document.getElementById('res_total').textContent='Total: '+fmtN(total);
+  document.getElementById('res_intereses').textContent='Intereses: '+fmtN(simulacion.intereses);
   document.getElementById('d_capital').textContent=fmtN(capital);
-  document.getElementById('d_intereses').textContent=fmtN(totalIntereses);
-  document.getElementById('d_total').textContent=fmtN(totalPagado);
-  document.getElementById('d_tin').textContent=pct(tin);
-  document.getElementById('d_tae').textContent=pct(tae);
+  document.getElementById('d_intereses').textContent=fmtN(simulacion.intereses);
+  document.getElementById('d_total').textContent=fmtN(total);
+  document.getElementById('d_tin').textContent=fases.length===1?pct(fases[0].tin):`${pct(fases[0].tin)} → ${pct(fases[1].tin)}`;
+  document.getElementById('d_tae').textContent=tae===null?'No calculable':pct(tae);
   document.getElementById('d_pct_int').textContent=pct(pctIntereses);
-
-  // Barra capital/intereses
-  const pctCap=capital>0?(capital/totalPagado)*100:0;
-  document.getElementById('seg_capital').style.width=pctCap+'%';
-  document.getElementById('seg_intereses').style.width=(100-pctCap)+'%';
-  document.getElementById('leg_capital').textContent=pct(pctCap);
-  document.getElementById('leg_intereses').textContent=pct(100-pctCap);
-
-  // Tabla amortización anual
-  let saldo=capital, html='<table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:1rem"><tr style="background:var(--bg)"><th style="padding:8px;text-align:left;border-bottom:1px solid var(--border)">Año</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Cuota anual</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Capital</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Intereses</th><th style="padding:8px;text-align:right;border-bottom:1px solid var(--border)">Saldo</th></tr>';
-  const r=tin/12/100;
-  const añosMostrar=tablaCompleta?plazo:Math.min(5,plazo);
+  document.getElementById('d_costes').textContent=fmtN(costes);
+  document.getElementById('d_cuota_posterior').textContent=simulacion.cuotaPosterior===null?'No aplica':fmt(simulacion.cuotaPosterior)+'/mes';
+  const pctCap=total>0?capital/total*100:0, pctInt=Math.max(0,100-pctCap);
+  document.getElementById('seg_capital').style.width=pctCap+'%';document.getElementById('seg_intereses').style.width=pctInt+'%';
+  document.getElementById('leg_capital').textContent=pct(pctCap);document.getElementById('leg_intereses').textContent=pct(pctInt);
+  const añosMostrar=tablaCompleta?plazo:Math.min(5,plazo), filas=[];
   for(let y=1;y<=añosMostrar;y++){
-    let capAnual=0,intAnual=0;
-    for(let m=0;m<12;m++){
-      const intMes=saldo*r;
-      const capMes=cuota-intMes;
-      intAnual+=intMes; capAnual+=capMes; saldo-=capMes;
-    }
-    html+=`<tr style="border-bottom:1px solid var(--border)"><td style="padding:8px;color:var(--muted)">Año ${y}</td><td style="padding:8px;text-align:right">${fmtN(cuota*12)}</td><td style="padding:8px;text-align:right;color:var(--accent)">${fmtN(capAnual)}</td><td style="padding:8px;text-align:right;color:#b91c1c">${fmtN(intAnual)}</td><td style="padding:8px;text-align:right">${fmtN(Math.max(0,saldo))}</td></tr>`;
+    const meses=simulacion.detalle.slice((y-1)*12,y*12), pago=meses.reduce((s,x)=>s+x.pago,0), interes=meses.reduce((s,x)=>s+x.interes,0), cap=meses.reduce((s,x)=>s+x.capital,0);
+    filas.push(`<tr><td>Año ${y}</td><td>${fmtN(pago)}</td><td>${fmtN(interes)}</td><td>${fmtN(cap)}</td><td>${fmtN(meses.at(-1)?.saldo||0)}</td></tr>`);
   }
-  html+='</table>';
-  const tabla=document.getElementById('tabla-amortizacion');
-  if(tabla) tabla.innerHTML=html;
+  document.getElementById('tabla-body').innerHTML=filas.join('');
+}
+
+function calcularAmortizacion(capital,tin,meses,importe,tipo,comisionPct){
+  const amortizado=Math.min(Math.max(0,importe),capital), capitalNuevo=capital-amortizado;
+  const cuotaActual=cuotaMensual(capital,tin,meses), interesSin=cuotaActual*meses-capital, comision=amortizado*comisionPct/100;
+  let cuotaNueva=cuotaActual, mesesNuevos=meses, interesCon=interesSin;
+  if(amortizado>0){
+    if(capitalNuevo<=0){cuotaNueva=0;mesesNuevos=0;interesCon=0;}
+    else if(tipo==='plazo'){
+      const r=tin/1200;
+      let saldo=capitalNuevo,totalPagado=0;mesesNuevos=0;
+      while(saldo>1e-8&&mesesNuevos<meses){
+        const interes=saldo*r,pago=Math.min(cuotaActual,saldo+interes);
+        saldo=Math.max(0,saldo-(pago-interes));totalPagado+=pago;mesesNuevos++;
+      }
+      interesCon=totalPagado-capitalNuevo;
+    }else{
+      cuotaNueva=cuotaMensual(capitalNuevo,tin,meses);interesCon=cuotaNueva*meses-capitalNuevo;
+    }
+  }
+  return {cuotaActual,cuotaNueva,mesesNuevos,interesSin,interesCon,comision,ahorroNeto:interesSin-interesCon-comision};
 }
 
 function calcAmort(){
-  const capPend=parseFloat(document.getElementById('cap_pendiente').value)||0;
-  const tinActual=parseFloat(document.getElementById('tin_actual').value)||0;
-  const añosRest=parseInt(document.getElementById('años_restantes').value)||0;
-  const importeAmort=parseFloat(document.getElementById('importe_amort').value)||0;
-  const tipoAmort=document.querySelector('input[name="tipo_amort"]:checked')?.value||'plazo';
-  const comisionPct=parseFloat(document.getElementById('comision_amort').value)||0;
-
-  if(capPend<=0||añosRest<=0) return;
-
-  const mesesRest=añosRest*12;
-  const cuotaActual=cuotaMensual(capPend,tinActual,mesesRest);
-  const intSin=cuotaActual*mesesRest-capPend;
-  const capNuevo=capPend-importeAmort;
-  const comision=importeAmort*(comisionPct/100);
-
-  let cuotaNueva=cuotaActual, intCon=intSin, ahorroNeto=0;
-  if(capNuevo>0&&importeAmort>0){
-    if(tipoAmort==='plazo'){
-      cuotaNueva=cuotaActual; // misma cuota
-      // calcular nuevos meses
-      const r=tinActual/12/100;
-      let m=0;
-      if(r>0) m=Math.log(cuotaNueva/(cuotaNueva-capNuevo*r))/Math.log(1+r);
-      else m=capNuevo/cuotaNueva;
-      intCon=cuotaNueva*m-capNuevo;
-    } else {
-      cuotaNueva=cuotaMensual(capNuevo,tinActual,mesesRest);
-      intCon=cuotaNueva*mesesRest-capNuevo;
-    }
-    ahorroNeto=Math.max(0,intSin-intCon)-comision;
-  }
-
-  document.getElementById('a_cuota_actual').textContent=fmt(cuotaActual)+'/mes';
-  document.getElementById('a_nuevo').textContent=tipoAmort==='plazo'?'Reducción plazo':fmt(cuotaNueva)+'/mes';
-  document.getElementById('a_label_nuevo').textContent=tipoAmort==='plazo'?'Efecto en plazo':'Nueva cuota';
-  document.getElementById('a_int_sin').textContent=fmtN(intSin);
-  document.getElementById('a_int_con').textContent=fmtN(intCon);
-  document.getElementById('a_comision').textContent=fmtN(comision);
-  document.getElementById('a_ahorro').textContent=fmtN(ahorroNeto);
+  const capital=parseFloat(document.getElementById('cap_pendiente').value)||0, años=parseInt(document.getElementById('años_restantes').value)||0;
+  const importe=parseFloat(document.getElementById('importe_amort').value)||0, tin=parseFloat(document.getElementById('tin_actual').value)||0;
+  const tipo=document.getElementById('tipo_amort').value, comision=parseFloat(document.getElementById('comision_amort').value)||0;
+  if(capital<=0||años<=0) return;
+  const r=calcularAmortizacion(capital,tin,años*12,importe,tipo,comision);
+  const mesesFinales=Math.ceil(r.mesesNuevos);
+  document.getElementById('amort-result').style.display=importe>0?'block':'none';
+  document.getElementById('a_cuota_actual').textContent=fmt(r.cuotaActual)+'/mes';
+  document.getElementById('a_label_nuevo').textContent=tipo==='plazo'?'Nuevo plazo estimado':'Nueva cuota';
+  document.getElementById('a_nuevo').textContent=tipo==='plazo'?`${Math.floor(mesesFinales/12)} años ${mesesFinales%12} meses`:fmt(r.cuotaNueva)+'/mes';
+  document.getElementById('a_int_sin').textContent=fmtN(r.interesSin);document.getElementById('a_int_con').textContent=fmtN(r.interesCon);
+  document.getElementById('a_comision').textContent=fmtN(r.comision);document.getElementById('a_ahorro').textContent=fmtN(r.ahorroNeto);
 }
 
 function calcComp(){
-  const capital=parseFloat(document.getElementById('comp_capital').value)||0;
-  const plazo=parseInt(document.getElementById('comp_plazo').value)||30;
-  const escenario=document.getElementById('escenario_euribor').value;
-  const tinFijo=parseFloat(document.getElementById('comp_tin_fijo').value)||0;
-  const diferencial=parseFloat(document.getElementById('comp_diferencial').value)||0;
-  const tinInicial=parseFloat(document.getElementById('comp_tin_inicial').value)||0;
-
-  const euribors={bajo:1.5,medio:2.5,alto:4.0};
-  const euribor=euribors[escenario]||2.5;
-  const tinVar=euribor+diferencial;
-  const meses=plazo*12;
-
-  const cuotaFija=cuotaMensual(capital,tinFijo,meses);
-  const cuotaVar=cuotaMensual(capital,tinVar,meses);
-  const cuotaIni=cuotaMensual(capital,tinInicial,meses);
-
-  const totalFija=cuotaFija*meses;
-  const totalVar=cuotaVar*meses;
-  const totalIni=cuotaIni*meses;
-
-  document.getElementById('comp-resultado').innerHTML=`
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1rem">
-      <div style="background:var(--surface);border:2px solid var(--hip);border-radius:12px;padding:1rem;text-align:center">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Fija ${pct(tinFijo)}</div>
-        <div style="font-size:22px;font-weight:700;color:var(--hip)">${fmt(cuotaFija)}<span style="font-size:12px">/mes</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:8px">Total: ${fmtN(totalFija)}</div>
-        <div style="font-size:12px;color:var(--muted)">Intereses: ${fmtN(totalFija-capital)}</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Variable ${pct(tinVar)} (Eur.${pct(euribor)}+${pct(diferencial)})</div>
-        <div style="font-size:22px;font-weight:700">${fmt(cuotaVar)}<span style="font-size:12px">/mes</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:8px">Total: ${fmtN(totalVar)}</div>
-        <div style="font-size:12px;color:var(--muted)">Intereses: ${fmtN(totalVar-capital)}</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Mixta (ini. ${pct(tinInicial)} → var.)</div>
-        <div style="font-size:22px;font-weight:700">${fmt(cuotaIni)}<span style="font-size:12px">/mes ini.</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:8px">Inicio: ${fmtN(totalIni)}</div>
-        <div style="font-size:12px;color:var(--hint)">Cambia según Euríbor</div>
-      </div>
-    </div>
-    <div style="font-size:12px;color:var(--hint);margin-top:8px;text-align:center">Escenario Euríbor: ${escenario==='bajo'?'bajo (1.5%)':escenario==='medio'?'medio (2.5%)':'alto (4.0%)'}</div>`;
+  const capital=parseFloat(document.getElementById('comp_capital').value)||0, plazo=parseInt(document.getElementById('comp_plazo').value)||0;
+  if(capital<=0||plazo<=0) return;
+  const euribor=parseFloat(document.getElementById('escenario_euribor').value)||0, diferencial=parseFloat(document.getElementById('comp_diferencial').value)||0;
+  const tinFijo=parseFloat(document.getElementById('comp_tin_fijo').value)||0, tinInicial=parseFloat(document.getElementById('comp_tin_inicial').value)||0;
+  const fija=simularPrestamo(capital,[{meses:plazo*12,tin:tinFijo}]);
+  const variable=simularPrestamo(capital,[{meses:Math.min(12,plazo*12),tin:tinInicial},{meses:Math.max(0,plazo*12-12),tin:Math.max(0,euribor+diferencial)}].filter(f=>f.meses));
+  document.getElementById('comp-resultado').innerHTML=`<div class="comp-card"><h4>Fija ${pct(tinFijo)}</h4><div class="comp-row"><span class="cl">Cuota</span><span class="cv">${fmt(fija.cuotaInicial)}</span></div><div class="comp-row"><span class="cl">Intereses</span><span class="cv">${fmtN(fija.intereses)}</span></div></div><div class="comp-card"><h4>Variable: inicial ${pct(tinInicial)}, después ${pct(euribor+diferencial)}</h4><div class="comp-row"><span class="cl">Cuota inicial</span><span class="cv">${fmt(variable.cuotaInicial)}</span></div><div class="comp-row"><span class="cl">Cuota escenario</span><span class="cv">${fmt(variable.cuotaPosterior||variable.cuotaInicial)}</span></div><div class="comp-row"><span class="cl">Intereses</span><span class="cv">${fmtN(variable.intereses)}</span></div></div><p style="grid-column:1/-1;font-size:12px;color:var(--hint)">Escenario constante, no previsión del Euríbor.</p>`;
 }
 </script>
 </body>

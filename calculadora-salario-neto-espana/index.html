@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Salario Neto España 2026 | Metaphai</title>
-  <meta name="description" content="Calcula tu salario neto en España 2026 gratis. Incluye IRPF por comunidad autónoma, Seguridad Social, hijos, discapacidad, plan de pensiones y más variables.">
+  <meta name="description" content="Estima tu salario neto en España en 2026 con la retención general del IRPF, Seguridad Social y circunstancias personales relevantes.">
   <meta name="keywords" content="calculadora salario neto españa 2026, calcular sueldo neto, irpf salario, seguridad social trabajador, salario bruto neto">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-salario-neto-espana/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Salario Neto España 2026">
-  <meta property="og:description" content="Descubre cuánto cobras realmente. Calcula tu neto con todas las variables: IRPF, SS, hijos, comunidad autónoma y más.">
+  <meta property="og:description" content="Estima tu salario neto con la retención general del IRPF, cotizaciones y circunstancias personales relevantes.">
   <meta property="og:type" content="website">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -380,7 +380,7 @@
 
   <div class="hero">
     <h1>Calculadora salario neto<br><em>España 2026</em></h1>
-    <p>Descubre cuánto cobras realmente tras IRPF y Seguridad Social. Gratis, sin registro, actualizada.</p>
+    <p>Obtén una estimación de tu salario neto tras la retención del IRPF y las cotizaciones a la Seguridad Social.</p>
   </div>
 
   <!-- AD SLOT TOP -->
@@ -492,7 +492,7 @@
 
     <!-- AVANZADO -->
     <div style="margin-top:14px">
-      <button onclick="toggleAvanzado()" id="btn-avanzado" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;">
+      <button type="button" onclick="toggleAvanzado()" id="btn-avanzado" aria-expanded="false" aria-controls="avanzado-panel" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;">
         <span id="avanzado-icon">⚙️</span> Opciones avanzadas
         <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span>
       </button>
@@ -938,9 +938,11 @@ document.querySelectorAll('input, select').forEach(el => el.addEventListener('in
 
 function toggleAvanzado() {
   const panel = document.getElementById('avanzado-panel');
+  const button = document.getElementById('btn-avanzado');
   const arrow = document.getElementById('avanzado-arrow');
   const open = panel.style.display === 'none';
   panel.style.display = open ? 'block' : 'none';
+  button.setAttribute('aria-expanded', String(open));
   arrow.style.transform = open ? 'rotate(180deg)' : '';
 }
 

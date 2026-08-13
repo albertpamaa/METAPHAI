@@ -58,6 +58,8 @@
     .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
     .apuesta-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
     @media (max-width: 540px) { .apuesta-row { grid-template-columns: 1fr 1fr; } }
+    .plataforma-row { display: grid; grid-template-columns: 1.15fr repeat(4, 1fr) auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+    @media (max-width: 680px) { .plataforma-row { grid-template-columns: 1fr 1fr; padding-bottom: 12px; border-bottom: 1px solid var(--border); } }
     .btn-add { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 16px; border: 1px dashed var(--border); border-radius: var(--radius); background: transparent; color: var(--muted); cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.15s; }
     .btn-add:hover { border-color: var(--ap); color: var(--ap); }
     .btn-del { font-family: 'DM Sans', sans-serif; width: 32px; height: 36px; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--hint); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -150,6 +152,7 @@
         <select id="modo" onchange="cambiarModo()">
           <option value="simple">Resumen anual (total ganancias y pérdidas)</option>
           <option value="detallado">Apuesta a apuesta (desglose detallado)</option>
+          <option value="saldos">Saldos y movimientos por plataforma</option>
         </select>
       </div>
       <div class="field">
@@ -198,6 +201,18 @@
     </div>
   </div>
 
+  <!-- MODO POR SALDOS Y MOVIMIENTOS -->
+  <div id="bloque_saldos" style="display:none">
+    <div class="card">
+      <div class="section-label">Resumen anual por casa o plataforma</div>
+      <div id="plataformas-lista"></div>
+      <button class="btn-add" onclick="añadirPlataforma()">+ Añadir plataforma</button>
+      <div class="info-box blue" style="margin-top:12px">
+        <p>Resultado de cada plataforma = saldo final + retiradas − depósitos − saldo inicial. Usa el historial anual completo e incluye todas tus cuentas; revisa por separado ajustes o movimientos que no procedan del juego.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="card">
     <div class="section-label">Tratamiento fiscal</div>
     <div class="info-box blue"><p>Las ganancias del juego no se mezclan con acciones, fondos o dividendos: son ganancias patrimoniales que no proceden de una transmisión y se integran en la base general.</p></div>
@@ -219,11 +234,11 @@
       </div>
       <div class="results-grid">
         <div class="res-item pos">
-          <div class="rl">Total premios/cobros</div>
+          <div class="rl" id="label_ganancias">Total premios/cobros</div>
           <div class="rv" id="d_ganancias">—</div>
         </div>
         <div class="res-item neg">
-          <div class="rl">Total apostado</div>
+          <div class="rl" id="label_perdidas">Total apostado</div>
           <div class="rv" id="d_perdidas">—</div>
         </div>
         <div class="res-item ap">
@@ -351,6 +366,8 @@ function cambiarModo() {
   const modo = document.getElementById('modo').value;
   document.getElementById('bloque_simple').style.display = modo === 'simple' ? 'block' : 'none';
   document.getElementById('bloque_detallado').style.display = modo === 'detallado' ? 'block' : 'none';
+  document.getElementById('bloque_saldos').style.display = modo === 'saldos' ? 'block' : 'none';
+  if (modo === 'saldos' && !document.querySelector('.plataforma-row')) añadirPlataforma();
   calcular();
 }
 
@@ -373,7 +390,29 @@ function añadirApuesta() {
   calcular();
 }
 
+let plataformaId = 0;
+function añadirPlataforma() {
+  plataformaId++;
+  const div = document.createElement('div');
+  div.className = 'plataforma-row';
+  div.id = 'plataforma-' + plataformaId;
+  div.innerHTML = `
+    <div class="field"><label>Plataforma</label><input type="text" class="pl-nombre" placeholder="Nombre opcional"></div>
+    <div class="field"><label>Saldo inicial (€)</label><input type="number" class="pl-inicial" value="0" min="0" step="0.01" oninput="calcular()"></div>
+    <div class="field"><label>Depósitos (€)</label><input type="number" class="pl-depositos" value="0" min="0" step="0.01" oninput="calcular()"></div>
+    <div class="field"><label>Retiradas (€)</label><input type="number" class="pl-retiradas" value="0" min="0" step="0.01" oninput="calcular()"></div>
+    <div class="field"><label>Saldo final (€)</label><input type="number" class="pl-final" value="0" min="0" step="0.01" oninput="calcular()"></div>
+    <button class="btn-del" aria-label="Eliminar plataforma" onclick="document.getElementById('plataforma-${plataformaId}').remove();calcular()">✕</button>
+  `;
+  document.getElementById('plataformas-lista').appendChild(div);
+  calcular();
+}
+
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
+
+function calcularResultadoPlataforma({ inicial, final, depositos, retiradas }) {
+  return Math.max(0, final) + Math.max(0, retiradas) - Math.max(0, depositos) - Math.max(0, inicial);
+}
 
 function calcular() {
   const modo = document.getElementById('modo').value;
@@ -382,9 +421,19 @@ function calcular() {
   if (modo === 'simple') {
     ganancias = parseFloat(document.getElementById('ganancias_total').value) || 0;
     perdidas = parseFloat(document.getElementById('perdidas_total').value) || 0;
-  } else {
+  } else if (modo === 'detallado') {
     document.querySelectorAll('.ap-gan').forEach(el => ganancias += parseFloat(el.value) || 0);
     document.querySelectorAll('.ap-per').forEach(el => perdidas += parseFloat(el.value) || 0);
+  } else {
+    document.querySelectorAll('.plataforma-row').forEach(fila => {
+      const inicial = parseFloat(fila.querySelector('.pl-inicial').value) || 0;
+      const depositos = parseFloat(fila.querySelector('.pl-depositos').value) || 0;
+      const retiradas = parseFloat(fila.querySelector('.pl-retiradas').value) || 0;
+      const final = parseFloat(fila.querySelector('.pl-final').value) || 0;
+      const resultadoPlataforma = calcularResultadoPlataforma({ inicial, final, depositos, retiradas });
+      if (resultadoPlataforma >= 0) ganancias += resultadoPlataforma;
+      else perdidas += Math.abs(resultadoPlataforma);
+    });
   }
 
   const perdidasComputables = Math.min(ganancias, perdidas);
@@ -411,6 +460,8 @@ function calcular() {
   document.getElementById('res_ganancia_neta').textContent = fmt(perdidasComputables);
   document.getElementById('res_tipo_efectivo').textContent = 'No calculable con estos datos';
 
+  document.getElementById('label_ganancias').textContent = modo === 'saldos' ? 'Resultados positivos de plataformas' : 'Total premios/cobros';
+  document.getElementById('label_perdidas').textContent = modo === 'saldos' ? 'Resultados negativos de plataformas' : 'Total apostado';
   document.getElementById('d_ganancias').textContent = fmt(ganancias);
   document.getElementById('d_perdidas').textContent = fmt(perdidas);
   document.getElementById('d_neta').textContent = fmt(neta);

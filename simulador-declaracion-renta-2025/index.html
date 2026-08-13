@@ -200,7 +200,7 @@
   </div>
 
   <div class="card">
-    <button type="button" class="toggle-btn" id="btn_avanzado_renta" onclick="toggleAvanzadoRenta()">Opciones avanzadas <span id="avanzado_renta_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+    <button type="button" class="toggle-btn" id="btn_avanzado_renta" aria-expanded="false" aria-controls="avanzado_renta_panel" onclick="toggleAvanzadoRenta()">Opciones avanzadas <span id="avanzado_renta_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
     <div id="avanzado_renta_panel" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
       <div class="section-label">Familia y mínimos</div>
       <div class="grid3">
@@ -555,6 +555,7 @@ function toggleAvanzadoRenta(){
   const abrir=panel.style.display!=='block';
   panel.style.display=abrir?'block':'none';
   btn.classList.toggle('active',abrir);
+  btn.setAttribute('aria-expanded',String(abrir));
   arrow.style.transform=abrir?'rotate(180deg)':'';
 }
 

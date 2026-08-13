@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de Finiquito España 2026 | Metaphai</title>
-  <meta name="description" content="Calcula tu finiquito gratis. Incluye vacaciones no disfrutadas, parte proporcional de pagas extra, salario pendiente y indemnización por despido. España 2026.">
+  <meta name="description" content="Estima tu finiquito en España en 2026: salario pendiente, vacaciones, pagas extra y, por separado, indemnización si procede.">
   <meta name="keywords" content="calculadora finiquito españa 2026, calcular finiquito, finiquito vacaciones, finiquito despido, cuanto me corresponde finiquito">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-finiquito-espana/">
@@ -107,7 +107,7 @@
 <main>
   <div class="hero">
     <h1>Calculadora de <em>finiquito</em><br>España 2026</h1>
-    <p>Calcula lo que te corresponde al finalizar tu contrato. Gratis, sin registro, actualizada.</p>
+    <p>Obtén una estimación de las cantidades pendientes al finalizar tu contrato y de la indemnización, si procede.</p>
   </div>
 
   
@@ -169,7 +169,7 @@
     </div>
     <p class="tip" id="motivo_tip" style="margin-top:8px"></p>
     <div style="margin-top:14px">
-      <button type="button" class="advanced-btn" id="btn-avanzado" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+      <button type="button" class="advanced-btn" id="btn-avanzado" aria-expanded="false" aria-controls="avanzado-panel" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
       <div class="advanced-panel" id="avanzado-panel">
         <p class="tip" style="margin:0 0 12px">Deja los importes exactos vacíos para conservar el cálculo automático actual.</p>
         <div class="grid2">
@@ -404,9 +404,11 @@ function valorOpcional(id) {
 
 function toggleAvanzado() {
   const panel = document.getElementById('avanzado-panel');
+  const button = document.getElementById('btn-avanzado');
   const arrow = document.getElementById('avanzado-arrow');
   const abrir = panel.style.display !== 'block';
   panel.style.display = abrir ? 'block' : 'none';
+  button.setAttribute('aria-expanded', String(abrir));
   arrow.style.transform = abrir ? 'rotate(180deg)' : '';
 }
 

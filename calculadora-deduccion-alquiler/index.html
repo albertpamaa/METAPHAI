@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Deducción Alquiler Vivienda 2026 | Metaphai</title>
-  <meta name="description" content="Calcula cuánto te puedes deducir por el alquiler de tu vivienda habitual en 2026. Deducciones estatales y autonómicas para inquilinos y propietarios. Gratis y sin registro.">
+  <meta name="description" content="Estima la deducción estatal transitoria del inquilino y el rendimiento del alquiler del propietario en 2026, con sus limitaciones indicadas.">
   <meta name="keywords" content="deduccion alquiler vivienda 2026, deduccion irpf alquiler inquilino, deduccion alquiler comunidad autonoma, gastos deducibles alquiler propietario, cuanto me deduzco por el alquiler">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-deduccion-alquiler/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Deducción Alquiler Vivienda 2026 | Metaphai">
-  <meta property="og:description" content="Calcula tu deducción por alquiler de vivienda habitual. Deducciones estatales y autonómicas para inquilinos y propietarios.">
+  <meta property="og:description" content="Obtén una referencia estatal para inquilinos y estima el rendimiento del alquiler para propietarios.">
   <meta property="og:url" content="https://metaphai.com/calculadora-deduccion-alquiler/">
   <meta property="og:type" content="website">
   
@@ -132,7 +132,7 @@
   <div class="hero">
     <div class="badge">🏠 Alquiler 2026</div>
     <h1>Calculadora de deducciones<br>por <em>alquiler de vivienda</em></h1>
-    <p>Tanto si eres inquilino como propietario, calcula cuánto puedes ahorrar en el IRPF por el alquiler de tu vivienda.</p>
+    <p>Obtén una referencia estatal para inquilinos o estima el rendimiento del alquiler si eres propietario.</p>
   </div>
 
   
@@ -199,7 +199,7 @@
         </div>
       </div>
       <div style="margin-top:14px">
-        <button type="button" class="advanced-btn" id="btn_avanzado_inq" onclick="toggleAvanzadoAlquiler('inq')">Opciones avanzadas <span id="avanzado_inq_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <button type="button" class="advanced-btn" id="btn_avanzado_inq" aria-expanded="false" aria-controls="avanzado_inq_panel" onclick="toggleAvanzadoAlquiler('inq')">Opciones avanzadas <span id="avanzado_inq_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
         <div class="advanced-panel" id="avanzado_inq_panel">
           <div class="grid3">
             <div class="field"><label>¿Pagaste alquiler antes de 2015?</label><select id="pagos_pre2015"><option value="no">No</option><option value="si">Sí</option></select></div>
@@ -315,7 +315,7 @@
         <div class="field"><label>Ingresos de alquiler realmente cobrados (€)</label><input type="number" id="ingresos_reales_prop" value="" min="0" step="100" placeholder="Vacío = renta × tiempo"></div>
       </div>
       <div style="margin-top:14px">
-        <button type="button" class="advanced-btn" id="btn_avanzado_prop" onclick="toggleAvanzadoAlquiler('prop')">Opciones avanzadas <span id="avanzado_prop_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <button type="button" class="advanced-btn" id="btn_avanzado_prop" aria-expanded="false" aria-controls="avanzado_prop_panel" onclick="toggleAvanzadoAlquiler('prop')">Opciones avanzadas <span id="avanzado_prop_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
         <div class="advanced-panel" id="avanzado_prop_panel">
           <div class="grid3">
             <div class="field"><label>Días efectivamente alquilado</label><input type="number" id="dias_prop" value="" min="1" max="365" step="1" placeholder="Vacío = meses"></div>
@@ -501,9 +501,11 @@ function fechaUTC(valor){
 
 function toggleAvanzadoAlquiler(tipo){
   const panel=document.getElementById('avanzado_'+tipo+'_panel');
+  const button=document.getElementById('btn_avanzado_'+tipo);
   const arrow=document.getElementById('avanzado_'+tipo+'_arrow');
   const abrir=panel.style.display!=='block';
   panel.style.display=abrir?'block':'none';
+  button.setAttribute('aria-expanded',String(abrir));
   arrow.style.transform=abrir?'rotate(180deg)':'';
 }
 

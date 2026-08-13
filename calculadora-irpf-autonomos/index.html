@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora IRPF Autónomos 2026 | Cuota RETA y Retenciones | Metaphai</title>
-  <meta name="description" content="Calcula cuánto pagas de IRPF y Seguridad Social como autónomo en 2026. Incluye el nuevo sistema de cuotas por tramos de ingresos, retenciones trimestrales y gastos deducibles.">
+  <meta name="description" content="Estima el rendimiento, la cotización RETA y un IRPF anual aislado como autónomo en 2026, con opción de usar cuotas y acumulados reales.">
   <meta name="keywords" content="calculadora irpf autonomos 2026, cuota autonomos ingresos reales, cuanto paga autonomo seguridad social, retenciones autonomo trimestral, gastos deducibles autonomo, modelo 130 autonomo">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-irpf-autonomos/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora IRPF Autónomos 2026 | Metaphai">
-  <meta property="og:description" content="Calcula tu cuota de autónomo, IRPF trimestral y neto real. Nuevo sistema de cotización por ingresos reales 2026.">
+  <meta property="og:description" content="Estima tu cuota RETA, rendimiento e IRPF aislado con datos de ingresos y, si los conoces, acumulados reales.">
   <meta property="og:url" content="https://metaphai.com/calculadora-irpf-autonomos/">
   <meta property="og:type" content="website">
   
@@ -292,7 +292,7 @@
   </div>
 
   <div class="card">
-    <button type="button" class="toggle-btn" id="btn_avanzado" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+    <button type="button" class="toggle-btn" id="btn_avanzado" aria-expanded="false" aria-controls="avanzado_panel" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
     <div id="avanzado_panel" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
       <div class="section-label">RETA con datos reales</div>
       <div class="grid3">
@@ -611,6 +611,7 @@ function toggleAvanzado(){
   const abrir=panel.style.display!=='block';
   panel.style.display=abrir?'block':'none';
   btn.classList.toggle('active',abrir);
+  btn.setAttribute('aria-expanded',String(abrir));
   arrow.style.transform=abrir?'rotate(180deg)':'';
 }
 

@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Deducción Placas Solares IRPF 2026 | Metaphai</title>
-  <meta name="description" content="Calcula cuánto te devuelve Hacienda por instalar placas solares en 2026. Deducción del 30% en el IRPF por obras de mejora energética. Gratis y sin registro.">
+  <meta name="description" content="Comprueba los requisitos y estima la deducción del 20%, 40% o 60% por obras de mejora energética, incluidas placas solares, en 2026.">
   <meta name="keywords" content="deduccion placas solares irpf 2026, cuanto devuelve hacienda placas solares, deduccion fiscal energia solar, mejora eficiencia energetica irpf">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-deduccion-placas-solares/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Deducción Placas Solares IRPF 2026 | Metaphai">
-  <meta property="og:description" content="Calcula cuánto te devuelve Hacienda por instalar placas solares. Deducción del 30% en el IRPF por mejora energética.">
+  <meta property="og:description" content="Comprueba los requisitos y estima las deducciones energéticas del 20%, 40% o 60% aplicables en 2026.">
   <meta property="og:url" content="https://metaphai.com/calculadora-deduccion-placas-solares/">
   <meta property="og:type" content="website">
   
@@ -52,6 +52,10 @@
     .tip.highlight { color: var(--solar); background: var(--solar-light); padding: 6px 10px; border-radius: 6px; }
     .info-box { background: var(--accent-light); border: 1px solid #b8dece; border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
     .info-box p { font-size: 13px; color: var(--accent); margin: 0; }
+    .advanced-toggle { width: 100%; margin-top: 12px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--muted); font: 500 13px 'DM Sans', sans-serif; cursor: pointer; text-align: left; }
+    .advanced-toggle:hover { border-color: var(--solar); color: var(--solar); }
+    .advanced-panel { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .advanced-panel.open { display: block; }
     .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
     .results-header { background: var(--solar); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
     .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
@@ -132,33 +136,20 @@
   
 
   <div class="card">
-    <div class="section-label">Datos de la instalación</div>
+    <div class="section-label">Datos de la obra y mejora energética</div>
     <div class="grid2">
       <div class="field">
-        <label>Importe elegible pagado, neto de ayudas (€)</label>
+        <label>Cantidad efectivamente pagada por ti (€)</label>
         <input type="number" id="coste" value="8000" min="0" step="500">
-        <p class="tip">Resta subvenciones concedidas; paga por tarjeta, transferencia, cheque nominativo o ingreso en cuenta, nunca en efectivo</p>
+        <p class="tip">Incluye IVA y solo la parte satisfecha por el contribuyente que aplica la deducción</p>
       </div>
       <div class="field">
-        <label>Tipo de deducción aplicable</label>
-        <select id="tipo_deduccion">
-          <option value="0" selected>No acreditada / todavía no lo sé</option>
-          <option value="20">20% — Certificado: demanda de calefacción/refrigeración baja ≥7%</option>
-          <option value="40">40% — Certificado: consumo no renovable baja ≥30% o clase A/B</option>
-          <option value="60">60% — Rehabilitación de edificio residencial: mejora ≥30% o clase A/B</option>
-        </select>
+        <label>Ayudas o subvenciones imputables a la obra (€)</label>
+        <input type="number" id="ayudas" value="0" min="0" step="100">
+        <p class="tip">Se restan automáticamente de las cantidades satisfechas</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
-      <div class="field">
-        <label>Ejercicio del certificado energético posterior</label>
-        <select id="año_instalacion">
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026" selected>2026</option>
-          <option value="2027">2027 (solo modalidad del 60%)</option>
-        </select>
-      </div>
       <div class="field">
         <label>Tipo de vivienda</label>
         <select id="tipo_vivienda">
@@ -167,6 +158,77 @@
           <option value="expectativa">Vivienda en expectativa de alquiler</option>
           <option value="otra">Otra vivienda propia</option>
         </select>
+      </div>
+      <div class="field">
+        <label>Ámbito de la mejora certificada</label>
+        <select id="ambito_mejora">
+          <option value="vivienda">Mi vivienda individual</option>
+          <option value="edificio">Conjunto del edificio residencial</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field">
+        <label>Demanda antes de la obra (kWh/m² año)</label>
+        <input type="number" id="demanda_anterior" min="0" step="0.01" placeholder="Dato del certificado anterior">
+      </div>
+      <div class="field">
+        <label>Demanda después de la obra (kWh/m² año)</label>
+        <input type="number" id="demanda_posterior" min="0" step="0.01" placeholder="Dato del certificado posterior">
+      </div>
+      <div class="field">
+        <label>Energía primaria no renovable antes (kWh/m² año)</label>
+        <input type="number" id="energia_anterior" min="0" step="0.01" placeholder="Dato del certificado anterior">
+      </div>
+      <div class="field">
+        <label>Energía primaria no renovable después (kWh/m² año)</label>
+        <input type="number" id="energia_posterior" min="0" step="0.01" placeholder="Dato del certificado posterior">
+      </div>
+    </div>
+    <div class="field" style="max-width:340px;margin-top:12px">
+      <label>Calificación energética posterior</label>
+      <select id="calificacion_posterior">
+        <option value="">No indicada</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="otra">C o inferior</option>
+      </select>
+    </div>
+    <div class="info-box"><p>La calculadora determinará automáticamente el 20%, 40%, 60% o que no existe derecho. Las placas por sí solas no generan la deducción.</p></div>
+    <button type="button" class="advanced-toggle" id="toggle_avanzadas" aria-expanded="false" aria-controls="opciones_avanzadas" onclick="toggleAvanzadas()">Opciones avanzadas ▼</button>
+    <div class="advanced-panel" id="opciones_avanzadas">
+      <div class="grid2">
+        <div class="field">
+          <label>Fecha de inicio de las obras</label>
+          <input type="date" id="fecha_inicio_obras">
+        </div>
+        <div class="field">
+          <label>Fecha del certificado anterior</label>
+          <input type="date" id="fecha_certificado_anterior">
+          <p class="tip">No puede tener más de dos años al comenzar las obras</p>
+        </div>
+        <div class="field">
+          <label>Fecha del certificado posterior</label>
+          <input type="date" id="fecha_certificado_posterior">
+        </div>
+        <div class="field">
+          <label>Fecha del último pago incluido</label>
+          <input type="date" id="fecha_pago">
+        </div>
+        <div class="field">
+          <label>¿Ambos certificados están expedidos y registrados?</label>
+          <select id="certificados_registrados">
+            <option value="0">No / no lo sé</option>
+            <option value="1">Sí</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>¿Pagaste sin efectivo?</label>
+          <select id="pago_valido">
+            <option value="0">No / no lo sé</option>
+            <option value="1">Sí, por medio bancario admitido</option>
+          </select>
+        </div>
       </div>
     </div>
     <div id="aviso_vivienda" class="aviso">
@@ -190,10 +252,15 @@
         </select>
       </div>
     </div>
+    <div class="field" style="max-width:340px;margin-top:12px">
+      <label>Base del 60% ya aplicada en ejercicios anteriores (€)</label>
+      <input type="number" id="base_aplicada_anterior" value="0" min="0" max="15000" step="100">
+      <p class="tip">Aunque no quede base pendiente, reduce el límite acumulado de 15.000 €</p>
+    </div>
     <div id="campo_pendiente" style="display:none;margin-top:12px">
-      <div class="field" style="max-width:260px">
-        <label>Base pendiente de años anteriores (€)</label>
-        <input type="number" id="importe_pendiente" value="1000" min="0" step="100">
+      <div class="field" style="max-width:340px">
+        <label>Base pendiente de ejercicios anteriores (€)</label>
+        <input type="number" id="importe_pendiente" value="0" min="0" max="15000" step="100">
       </div>
     </div>
     <div class="info-box" style="margin-top:12px">
@@ -349,15 +416,21 @@ function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.ge
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics(); calcular();});
 
+function toggleAvanzadas() {
+  const panel = document.getElementById('opciones_avanzadas');
+  const boton = document.getElementById('toggle_avanzadas');
+  const abierto = panel.classList.toggle('open');
+  boton.setAttribute('aria-expanded', String(abierto));
+  boton.textContent = `Opciones avanzadas ${abierto ? '▲' : '▼'}`;
+}
+
 // Show/hide pending field
 function actualizarCamposCondicionales() {
-  const tipoPct = Number(document.getElementById('tipo_deduccion').value);
   const tienePendiente = document.getElementById('pendiente_anterior').value === '1';
-  document.getElementById('campo_pendiente').style.display = tipoPct === 60 && tienePendiente ? 'block' : 'none';
+  document.getElementById('campo_pendiente').style.display = tienePendiente ? 'block' : 'none';
 }
 
 document.getElementById('pendiente_anterior').addEventListener('change', actualizarCamposCondicionales);
-document.getElementById('tipo_deduccion').addEventListener('change', actualizarCamposCondicionales);
 
 // Auto-calc on any input change
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
@@ -371,23 +444,69 @@ const MODALIDADES_DEDUCCION = {
   60: { porcentaje: 0.60, limiteAnual: 5000, limiteAcumulado: 15000, ultimoAño: 2027 }
 };
 
-function calcularDeduccionEnergetica({ coste, tipoPct, cuotaDisponible, basePendiente, tipoVivienda, año }) {
+function fechaLocal(valor) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(valor || '')) return null;
+  const [año, mes, dia] = valor.split('-').map(Number);
+  const fecha = new Date(año, mes - 1, dia);
+  return fecha.getFullYear() === año && fecha.getMonth() === mes - 1 && fecha.getDate() === dia ? fecha : null;
+}
+
+function calcularReduccion(valorAnterior, valorPosterior) {
+  if (!(valorAnterior > 0) || valorPosterior < 0 || !Number.isFinite(valorPosterior)) return 0;
+  return Math.max(0, (valorAnterior - valorPosterior) / valorAnterior * 100);
+}
+
+function determinarModalidadEnergetica(datos) {
+  if (!datos.certificadosRegistrados) return { tipoPct: 0, motivo: 'registro' };
+  if (!datos.pagoValido) return { tipoPct: 0, motivo: 'pago' };
+
+  const inicio = fechaLocal(datos.fechaInicio);
+  const anterior = fechaLocal(datos.fechaAnterior);
+  const posterior = fechaLocal(datos.fechaPosterior);
+  const pago = fechaLocal(datos.fechaPago);
+  if (!inicio || !anterior || !posterior || !pago) return { tipoPct: 0, motivo: 'fechas' };
+
+  const limiteAnterior = new Date(inicio);
+  limiteAnterior.setFullYear(limiteAnterior.getFullYear() - 2);
+  if (anterior > inicio || anterior < limiteAnterior || posterior < inicio) return { tipoPct: 0, motivo: 'certificados' };
+
+  const alcanzaAB = datos.calificacion === 'A' || datos.calificacion === 'B';
+  let tipoPct = 0;
+  if (datos.ambito === 'edificio' && (datos.reduccionEnergia >= 30 || alcanzaAB)) {
+    tipoPct = 60;
+  } else if (datos.ambito === 'vivienda' && datos.tipoVivienda !== 'otra') {
+    if (datos.reduccionEnergia >= 30 || alcanzaAB) tipoPct = 40;
+    else if (datos.reduccionDemanda >= 7) tipoPct = 20;
+  }
+  if (!tipoPct) return { tipoPct: 0, motivo: datos.tipoVivienda === 'otra' ? 'vivienda' : 'mejora' };
+
+  const fechaLimite = new Date(tipoPct === 60 ? 2027 : 2026, 11, 31);
+  if (posterior > fechaLimite || pago > fechaLimite) return { tipoPct: 0, motivo: 'fecha' };
+  return { tipoPct, año: posterior.getFullYear() };
+}
+
+function calcularDeduccionEnergetica({ coste, ayudas, tipoPct, cuotaDisponible, basePendiente, baseAplicadaAnterior, tipoVivienda, año }) {
   const modalidad = MODALIDADES_DEDUCCION[tipoPct];
   if (!modalidad) return { aplica: false, motivo: 'certificado' };
   if (año < 2021 || año > modalidad.ultimoAño) return { aplica: false, motivo: 'fecha' };
   if (tipoPct !== 60 && tipoVivienda === 'otra') return { aplica: false, motivo: 'vivienda' };
 
-  const costeElegible = Math.max(0, coste);
+  const costeElegible = Math.max(0, coste - ayudas);
   const cuota = Math.max(0, cuotaDisponible);
   let baseAplicada;
   let basePendienteSiguiente = 0;
   let baseNoTrasladable = 0;
+  let baseExcluidaAcumulada = 0;
 
   if (tipoPct === 60) {
-    const pendienteValida = Math.min(Math.max(0, basePendiente), modalidad.limiteAcumulado);
-    const baseDisponible = Math.min(modalidad.limiteAcumulado, pendienteValida + costeElegible);
+    const aplicadaPrevia = Math.min(Math.max(0, baseAplicadaAnterior), modalidad.limiteAcumulado);
+    const capacidadRestante = Math.max(0, modalidad.limiteAcumulado - aplicadaPrevia);
+    const pendienteValida = Math.min(Math.max(0, basePendiente), capacidadRestante);
+    const baseDisponibleBruta = pendienteValida + costeElegible;
+    const baseDisponible = Math.min(capacidadRestante, baseDisponibleBruta);
     baseAplicada = Math.min(modalidad.limiteAnual, baseDisponible);
     basePendienteSiguiente = Math.max(0, baseDisponible - baseAplicada);
+    baseExcluidaAcumulada = Math.max(0, baseDisponibleBruta - capacidadRestante);
   } else {
     baseAplicada = Math.min(costeElegible, modalidad.limiteAnual);
     baseNoTrasladable = Math.max(0, costeElegible - modalidad.limiteAnual);
@@ -398,9 +517,11 @@ function calcularDeduccionEnergetica({ coste, tipoPct, cuotaDisponible, basePend
   return {
     aplica: true,
     modalidad,
+    costeElegible,
     baseAplicada,
     basePendienteSiguiente,
     baseNoTrasladable,
+    baseExcluidaAcumulada,
     deduccionTeorica,
     deduccionAplicable,
     noAplicadaPorCuota: deduccionTeorica - deduccionAplicable
@@ -421,18 +542,50 @@ function limpiarResultados(mensaje) {
 function calcular() {
   actualizarCamposCondicionales();
   const coste = parseFloat(document.getElementById('coste').value) || 0;
-  const tipoPct = parseInt(document.getElementById('tipo_deduccion').value, 10);
+  const ayudas = parseFloat(document.getElementById('ayudas').value) || 0;
   const cuotaDisponible = parseFloat(document.getElementById('cuota_integra').value) || 0;
   const tienePendiente = document.getElementById('pendiente_anterior').value === '1';
-  const basePendiente = tipoPct === 60 && tienePendiente ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const basePendiente = tienePendiente ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const baseAplicadaAnterior = parseFloat(document.getElementById('base_aplicada_anterior').value) || 0;
   const tipoVivienda = document.getElementById('tipo_vivienda').value;
-  const año = parseInt(document.getElementById('año_instalacion').value, 10);
-  const resultado = calcularDeduccionEnergetica({ coste, tipoPct, cuotaDisponible, basePendiente, tipoVivienda, año });
+  const acreditacion = determinarModalidadEnergetica({
+    tipoVivienda,
+    ambito: document.getElementById('ambito_mejora').value,
+    reduccionDemanda: calcularReduccion(
+      parseFloat(document.getElementById('demanda_anterior').value),
+      parseFloat(document.getElementById('demanda_posterior').value)
+    ),
+    reduccionEnergia: calcularReduccion(
+      parseFloat(document.getElementById('energia_anterior').value),
+      parseFloat(document.getElementById('energia_posterior').value)
+    ),
+    calificacion: document.getElementById('calificacion_posterior').value,
+    fechaInicio: document.getElementById('fecha_inicio_obras').value,
+    fechaAnterior: document.getElementById('fecha_certificado_anterior').value,
+    fechaPosterior: document.getElementById('fecha_certificado_posterior').value,
+    fechaPago: document.getElementById('fecha_pago').value,
+    certificadosRegistrados: document.getElementById('certificados_registrados').value === '1',
+    pagoValido: document.getElementById('pago_valido').value === '1'
+  });
+  const tipoPct = acreditacion.tipoPct;
+  const resultado = tipoPct
+    ? calcularDeduccionEnergetica({ coste, ayudas, tipoPct, cuotaDisponible, basePendiente, baseAplicadaAnterior, tipoVivienda, año: acreditacion.año })
+    : { aplica: false, motivo: acreditacion.motivo };
   const avisoVivienda = document.getElementById('aviso_vivienda');
 
   if (!resultado.aplica) {
-    avisoVivienda.style.display = resultado.motivo === 'vivienda' ? 'block' : 'none';
-    limpiarResultados(resultado.motivo === 'certificado' ? 'No calculable sin acreditación' : 'No aplica');
+    const motivos = {
+      registro: 'Indica en Opciones avanzadas que ambos certificados están expedidos y registrados.',
+      pago: 'La deducción exige un medio de pago admitido distinto del efectivo.',
+      fechas: 'Completa las fechas de obra, certificados y pago para validar la modalidad.',
+      certificados: 'El certificado anterior debe ser previo a la obra y no tener más de dos años; el posterior debe ser posterior al inicio.',
+      mejora: 'La mejora acreditada no alcanza los requisitos del 20%, 40% o 60%.',
+      vivienda: 'El 20% y el 40% no se aplican a otra vivienda propia que no esté alquilada ni en expectativa de alquiler.',
+      fecha: 'La fecha del certificado posterior o del pago queda fuera del plazo legal de la modalidad.'
+    };
+    avisoVivienda.textContent = `⚠️ ${motivos[resultado.motivo] || 'No se ha podido acreditar una modalidad aplicable.'}`;
+    avisoVivienda.style.display = 'block';
+    limpiarResultados('No acreditada');
     return;
   }
 
@@ -447,12 +600,13 @@ function calcular() {
   }
 
   const costeComparable = basePendiente === 0;
-  const costeNeto = costeComparable ? coste - resultado.deduccionAplicable : null;
-  const pctAhorro = costeComparable && coste > 0 ? (resultado.deduccionAplicable / coste) * 100 : null;
+  const costeNeto = costeComparable ? resultado.costeElegible - resultado.deduccionAplicable : null;
+  const pctAhorro = costeComparable && resultado.costeElegible > 0 ? (resultado.deduccionAplicable / resultado.costeElegible) * 100 : null;
   const avisoLimite = document.getElementById('aviso_limite');
   const mensajes = [];
   if (resultado.basePendienteSiguiente > 0) mensajes.push(`Quedan ${fmt(resultado.basePendienteSiguiente)} de base del 60% potencialmente trasladable hasta cuatro ejercicios, respetando el límite acumulado de 15.000 €.`);
   if (resultado.baseNoTrasladable > 0) mensajes.push(`${fmt(resultado.baseNoTrasladable)} exceden la base anual del ${tipoPct}% y no se trasladan.`);
+  if (resultado.baseExcluidaAcumulada > 0) mensajes.push(`${fmt(resultado.baseExcluidaAcumulada)} quedan fuera por haberse alcanzado la base acumulada máxima de 15.000 €.`);
   if (resultado.noAplicadaPorCuota > 0) mensajes.push(`${fmt(resultado.noAplicadaPorCuota)} de deducción teórica no se aplican por falta de cuota estatal y no generan por sí solos base pendiente.`);
   avisoLimite.textContent = mensajes.length ? `⚠️ ${mensajes.join(' ')}` : '';
   avisoLimite.style.display = mensajes.length ? 'block' : 'none';

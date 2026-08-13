@@ -60,6 +60,14 @@
     .tabla-iva{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0;}
     .tabla-iva th{text-align:left;padding:8px 12px;background:var(--bg);font-weight:500;color:var(--muted);border-bottom:1px solid var(--border);}
     .tabla-iva td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--muted);}
+    .advanced-toggle{width:100%;margin-top:12px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--muted);font:500 13px 'DM Sans',sans-serif;cursor:pointer;text-align:left;}
+    .advanced-panel{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+    .advanced-panel.open{display:block;}
+    .advanced-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .field{display:flex;flex-direction:column;gap:5px;}.field label{font-size:12px;color:var(--muted);font-weight:500;}.field input{font:14px 'DM Sans',sans-serif;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);width:100%;}.field input:focus{outline:none;border-color:var(--iva);background:var(--surface);}.tip{font-size:11px;color:var(--hint);}
+    .info-box{border-radius:var(--radius);padding:12px 14px;margin-top:12px;background:var(--iva-light);border:1px solid #b8dece;}.info-box p{font-size:13px;color:var(--iva);margin:0;}
+    .calc-warning{display:none;margin-top:10px;padding:9px 12px;border-radius:var(--radius);background:#fef0e8;color:#8a3a1a;font-size:12px;}
+    @media(max-width:540px){.tipo-grid,.advanced-grid{grid-template-columns:1fr;}.tabs-calc{flex-direction:column;}.desglose{grid-template-columns:1fr;}}
     .seo-content{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
     .seo-content h2{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;}
     .seo-content h3{font-size:15px;font-weight:600;margin:1.5rem 0 .5rem;}
@@ -104,7 +112,7 @@
   <div class="hero">
     <div class="badge">🧾 IVA 2026</div>
     <h1>Calculadora de <em>IVA</em></h1>
-    <p>Añade o quita el IVA a cualquier precio al instante. IVA general, reducido y superreducido.</p>
+    <p>Calcula base, cuota y total si ya conoces el tipo aplicable a la operación.</p>
   </div>
 
   <!-- SELECTOR TIPO IVA -->
@@ -112,17 +120,17 @@
     <div class="tipo-btn active" id="btn21" onclick="setTipo(21)">
       <div class="tb-pct">21%</div>
       <div class="tb-label">IVA General</div>
-      <div class="tb-ejemplos">Ropa, electrónica, servicios...</div>
+      <div class="tb-ejemplos">Tipo ordinario cuando no procede otro</div>
     </div>
     <div class="tipo-btn" id="btn10" onclick="setTipo(10)">
       <div class="tb-pct">10%</div>
       <div class="tb-label">IVA Reducido</div>
-      <div class="tb-ejemplos">Alimentos, transporte, hostelería...</div>
+      <div class="tb-ejemplos">Solo operaciones previstas legalmente</div>
     </div>
     <div class="tipo-btn" id="btn4" onclick="setTipo(4)">
       <div class="tb-pct">4%</div>
       <div class="tb-label">IVA Superreducido</div>
-      <div class="tb-ejemplos">Pan, leche, medicamentos, libros...</div>
+      <div class="tb-ejemplos">Solo operaciones previstas legalmente</div>
     </div>
   </div>
 
@@ -131,6 +139,7 @@
     <div class="tabs-calc">
       <div class="tab-calc active" id="tab_añadir" onclick="setMode('añadir')">➕ Añadir IVA (precio sin IVA)</div>
       <div class="tab-calc" id="tab_quitar" onclick="setMode('quitar')">➖ Quitar IVA (precio con IVA)</div>
+      <div class="tab-calc" id="tab_cuota" onclick="setMode('cuota')">🧮 Desde cuota de IVA</div>
     </div>
     <div id="label_input" style="font-size:13px;color:var(--muted);margin-bottom:8px;">Introduce el precio sin IVA (base imponible)</div>
     <div class="big-input-wrap">
@@ -156,6 +165,15 @@
         <div class="di-val" id="d_total">—</div>
       </div>
     </div>
+    <div class="calc-warning" id="aviso_calculo"></div>
+    <button type="button" class="advanced-toggle" id="toggle_avanzadas_iva" aria-expanded="false" aria-controls="opciones_avanzadas_iva" onclick="toggleAvanzadasIVA()">Opciones avanzadas ▼</button>
+    <div class="advanced-panel" id="opciones_avanzadas_iva">
+      <div class="advanced-grid">
+        <div class="field"><label>Tipo personalizado (%)</label><input type="number" id="tipo_custom" min="0" max="100" step="0.01" placeholder="Ej.: 5,5" oninput="usarTipoPersonalizado()"><p class="tip">La calculadora no determina si este tipo es legalmente aplicable.</p></div>
+        <div class="field"><label>Número de unidades</label><input type="number" id="unidades" value="1" min="1" step="1" oninput="calcular()"><p class="tip">El importe introducido se considera precio o cuota por unidad.</p></div>
+      </div>
+    </div>
+    <div class="info-box"><p>Resultado aritmético: “si el tipo aplicable es el seleccionado, este es el cálculo”. Un 0% no equivale por sí solo a operación exenta o no sujeta.</p></div>
   </div>
 
   <!-- TABLA COMPARATIVA -->
@@ -169,27 +187,29 @@
 
   <div class="seo-content">
     <h2>Tipos de IVA en España 2026</h2>
-    <p>En España existen tres tipos de IVA que se aplican según el bien o servicio. El tipo general del 21% se aplica a la mayoría de productos y servicios. El tipo reducido del 10% se aplica a alimentos en general, transporte de viajeros, hostelería y restauración, y algunos servicios culturales. El tipo superreducido del 4% se aplica a alimentos básicos (pan, leche, huevos, frutas, verduras), medicamentos, libros, periódicos y viviendas de protección oficial.</p>
+    <p>El tipo general es el 21% y existen tipos reducidos del 10% y del 4%; también se aplica el 0% a determinadas operaciones expresamente previstas. Los tipos distintos del general solo proceden cuando se cumplen los requisitos legales concretos. Esta página calcula importes, pero no clasifica fiscalmente el bien o servicio.</p>
 
     <h3>¿Qué productos tienen IVA 0%?</h3>
-    <p>Desde 2022, algunos productos alimentarios básicos han tenido temporalmente IVA 0% como medida ante la inflación. En 2026 estos tipos especiales pueden seguir vigentes o haber vuelto a su tipo normal. Consulta la normativa vigente para productos específicos.</p>
+    <p>El 0% vigente no debe aplicarse por analogía ni porque una operación esté exenta o no sujeta. En 2026 debe comprobarse el supuesto concreto en la tabla oficial de la Agencia Tributaria; la reducción temporal general de alimentos básicos de ejercicios anteriores no se mantiene como regla genérica.</p>
 
     <h3>¿Cómo se calcula el IVA?</h3>
-    <p>Para añadir IVA: precio con IVA = base imponible × (1 + tipo IVA / 100). Para quitar IVA: base imponible = precio con IVA / (1 + tipo IVA / 100).</p>
+    <p>Para añadir IVA: precio con IVA = base imponible × (1 + tipo IVA / 100). Para quitar IVA: base imponible = precio con IVA / (1 + tipo IVA / 100). La herramienta multiplica primero las unidades y redondea base, cuota y total a céntimos, manteniendo que base + cuota = total; una factura con redondeo individual por líneas puede diferir algunos céntimos.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Las facturas entre empresas llevan siempre IVA? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí, salvo algunas excepciones como las operaciones exentas (seguros, educación, sanidad, alquileres de vivienda) o las exportaciones fuera de la UE. Las empresas y autónomos repercuten el IVA en sus facturas y luego lo ingresan trimestralmente a Hacienda a través del modelo 303.</div>
+      <div class="faq-a">No. Puede tratarse de una operación sujeta y no exenta, exenta, no sujeta o con inversión del sujeto pasivo. La condición empresarial de las partes no basta para decidirlo.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Los autónomos siempre tienen que cobrar IVA? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Depende de la actividad. La mayoría de autónomos repercuten IVA en sus facturas. Sin embargo, algunas actividades están exentas de IVA, como los servicios médicos, de enseñanza reglada o financieros. Los autónomos en recargo de equivalencia tampoco gestionan el IVA directamente.</div>
+      <div class="faq-a">Depende de la operación y del régimen. Exenciones, no sujeción e inversión del sujeto pasivo tienen efectos diferentes. En recargo de equivalencia el proveedor repercute IVA y recargo por separado al comerciante; esta calculadora no determina si el régimen resulta aplicable.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cuándo se paga el IVA a Hacienda? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Las empresas y autónomos presentan el modelo 303 cada trimestre (en enero, abril, julio y octubre). Se declara el IVA cobrado a los clientes (repercutido) menos el IVA pagado a los proveedores (soportado). Si el resultado es positivo, se ingresa a Hacienda. Si es negativo, se puede pedir devolución o compensar en el siguiente trimestre.</div>
+      <div class="faq-a">La periodicidad y el resultado del modelo 303 dependen de las obligaciones del contribuyente. Con carácter general se liquida el IVA repercutido menos el deducible, pero una cuota negativa no implica siempre devolución inmediata.</div>
     </div>
+    <p>En Canarias se aplica IGIC y en Ceuta y Melilla IPSI, no IVA. Esta herramienta no calcula esos impuestos ni el recargo de equivalencia.</p>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/iva/calculo-iva-repercutido-clientes/tipos-impositivos-iva.html" rel="noopener noreferrer">tipos impositivos 2026 (AEAT)</a>, <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1992-28740" rel="noopener noreferrer">Ley 37/1992 del IVA (BOE)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/iva/calculo-iva-repercutido-clientes/que-casos-no-tengo-que-iva.html" rel="noopener noreferrer">operaciones no sujetas, exentas e inversión (AEAT)</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/iva/regimenes-tributacion-iva/regimen-especial-recargo-equivalencia/que-consiste-regimen-especial-recargo-equivalencia.html" rel="noopener noreferrer">recargo de equivalencia (AEAT)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -230,24 +250,44 @@ window.addEventListener("load",function(){var c=localStorage.getItem("cookies");
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
 let tipoIVA=21, modo='añadir';
 function setTipo(t){
-  tipoIVA=t;
+  tipoIVA=Number(t);
   ['21','10','4'].forEach(x=>document.getElementById('btn'+x).classList.remove('active'));
-  document.getElementById('btn'+t).classList.add('active');
+  if([21,10,4].includes(tipoIVA)) document.getElementById('btn'+tipoIVA).classList.add('active');
   calcular();
+}
+function usarTipoPersonalizado(){
+  const valor=parseFloat(document.getElementById('tipo_custom').value);
+  if(Number.isFinite(valor)&&valor>=0){tipoIVA=valor;['21','10','4'].forEach(x=>document.getElementById('btn'+x).classList.remove('active'));calcular();}
 }
 function setMode(m){
   modo=m;
   document.getElementById('tab_añadir').classList.toggle('active',m==='añadir');
   document.getElementById('tab_quitar').classList.toggle('active',m==='quitar');
-  document.getElementById('label_input').textContent=m==='añadir'?'Introduce el precio sin IVA (base imponible)':'Introduce el precio con IVA incluido';
+  document.getElementById('tab_cuota').classList.toggle('active',m==='cuota');
+  document.getElementById('label_input').textContent=m==='añadir'?'Introduce el precio sin IVA por unidad':m==='quitar'?'Introduce el precio final con IVA por unidad':'Introduce la cuota de IVA por unidad';
   calcular();
+}
+function toggleAvanzadasIVA(){
+  const panel=document.getElementById('opciones_avanzadas_iva'),boton=document.getElementById('toggle_avanzadas_iva');
+  const abierto=panel.classList.toggle('open');boton.setAttribute('aria-expanded',String(abierto));boton.textContent=`Opciones avanzadas ${abierto?'▲':'▼'}`;
+}
+function calcularImportesIVA(importe,tipo,modoCalculo,unidades){
+  const redondear=valor=>Math.round((valor+Number.EPSILON)*100)/100;
+  const cantidad=redondear(Math.max(0,Number(importe)||0)*Math.max(1,Math.floor(Number(unidades)||1)));
+  const porcentaje=Math.min(100,Math.max(0,Number(tipo)||0));
+  if(modoCalculo==='cuota'&&porcentaje===0) return {valido:false,base:0,iva:cantidad,total:cantidad,motivo:'No puede obtenerse una base desde una cuota con tipo 0%.'};
+  let base=0,iva=0,total=0;
+  if(modoCalculo==='añadir'){base=cantidad;iva=redondear(base*porcentaje/100);total=redondear(base+iva);}
+  else if(modoCalculo==='quitar'){total=cantidad;base=redondear(total/(1+porcentaje/100));iva=redondear(total-base);}
+  else{iva=cantidad;base=redondear(iva/(porcentaje/100));total=redondear(base+iva);}
+  return {valido:true,base,iva,total};
 }
 function calcular(){
   const precio=parseFloat(document.getElementById('precio').value)||0;
-  let base,iva,total;
-  if(modo==='añadir'){base=precio;iva=base*tipoIVA/100;total=base+iva;}
-  else{total=precio;base=total/(1+tipoIVA/100);iva=total-base;}
-  document.getElementById('rp_label').textContent=modo==='añadir'?`Precio con IVA (${tipoIVA}%)`:`Base imponible (sin IVA ${tipoIVA}%)`;
+  const unidades=parseFloat(document.getElementById('unidades').value)||1;
+  const resultado=calcularImportesIVA(precio,tipoIVA,modo,unidades),{base,iva,total}=resultado;
+  const aviso=document.getElementById('aviso_calculo');aviso.textContent=resultado.motivo||'';aviso.style.display=resultado.valido?'none':'block';
+  document.getElementById('rp_label').textContent=modo==='añadir'?`Total con IVA (${tipoIVA}%)`:`Base imponible total (tipo ${tipoIVA}%)`;
   document.getElementById('rp_value').textContent=modo==='añadir'?fmt(total):fmt(base);
   document.getElementById('rp_sub').textContent=`IVA ${tipoIVA}%: ${fmt(iva)}`;
   document.getElementById('d_base').textContent=fmt(base);
@@ -255,11 +295,9 @@ function calcular(){
   document.getElementById('d_iva').textContent=fmt(iva);
   document.getElementById('d_total').textContent=fmt(total);
   // Tabla comparativa
-  const tipos=[21,10,4];
+  const tipos=[...new Set([21,10,4,tipoIVA])];
   document.getElementById('tabla-comp').innerHTML=tipos.map(t=>{
-    let b2,i2,tot2;
-    if(modo==='añadir'){b2=precio;i2=b2*t/100;tot2=b2+i2;}
-    else{tot2=precio;b2=tot2/(1+t/100);i2=tot2-b2;}
+    const comparado=calcularImportesIVA(precio,t,modo,unidades),b2=comparado.base,i2=comparado.iva,tot2=comparado.total;
     const activo=t===tipoIVA;
     return `<tr style="${activo?'background:var(--iva-light);font-weight:500':''}">
       <td>${t}%</td><td>${fmt(b2)}</td><td>${fmt(i2)}</td><td>${fmt(tot2)}</td></tr>`;

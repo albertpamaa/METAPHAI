@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Deducción Coche Eléctrico IRPF 2026 | Metaphai</title>
-  <meta name="description" content="Calcula cuánto te devuelve Hacienda por comprar un coche eléctrico en 2026. Deducción del 15% en el IRPF más ayudas MOVES III. Gratis y sin registro.">
-  <meta name="keywords" content="deduccion coche electrico irpf 2026, cuanto devuelve hacienda coche electrico, ayudas moves iii, deduccion fiscal vehiculo electrico, comprar coche electrico subvencion">
+  <meta name="description" content="Calcula la deducción estatal del 15% por vehículo eléctrico en 2026 y estima por separado la ayuda potencial del Programa Auto+.">
+  <meta name="keywords" content="deduccion coche electrico irpf 2026, programa auto plus, ayudas coche electrico 2026, deduccion fiscal vehiculo electrico">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-deduccion-coche-electrico/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Deducción Coche Eléctrico IRPF 2026 | Metaphai">
-  <meta property="og:description" content="Calcula cuánto te devuelve Hacienda por comprar un coche eléctrico. Deducción del 15% en el IRPF más ayudas MOVES III.">
+  <meta property="og:description" content="Calcula la deducción estatal del 15% por vehículo eléctrico y separa la ayuda potencial Auto+.">
   <meta property="og:url" content="https://metaphai.com/calculadora-deduccion-coche-electrico/">
   <meta property="og:type" content="website">
   
@@ -51,6 +51,9 @@
     .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
     .info-box { background: var(--ev-light); border: 1px solid #b8cff0; border-radius: var(--radius); padding: 12px 14px; margin-top: 12px; }
     .info-box p { font-size: 13px; color: var(--ev); margin: 0; }
+    .advanced-toggle { width:100%;margin-top:12px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--muted);font:500 13px 'DM Sans',sans-serif;cursor:pointer;text-align:left; }
+    .advanced-panel { display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border); }
+    .advanced-panel.open { display:block; }
     .aviso { margin: 1rem; background: #fef6ec; border: 1px solid #f0d0a0; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: #7a4f1a; display: none; }
     .aviso.show { display: block; }
     .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
@@ -125,7 +128,7 @@
   <div class="hero">
     <div class="badge">⚡ Deducciones y ayudas 2026</div>
     <h1>¿Cuánto te ahorras comprando<br>un <em>coche eléctrico</em>?</h1>
-    <p>Calcula la deducción del IRPF más las ayudas MOVES III y el ahorro real en combustible frente a un vehículo de gasolina.</p>
+    <p>Calcula la deducción estatal del IRPF y muestra por separado la ayuda potencial del Programa Auto+ 2026.</p>
   </div>
 
   
@@ -134,36 +137,71 @@
     <div class="section-label">Datos del vehículo</div>
     <div class="grid2">
       <div class="field">
-        <label>Precio de compra del vehículo (€)</label>
+        <label>Valor de adquisición con impuestos y gastos (€)</label>
         <input type="number" id="precio" value="35000" min="0" step="500">
-        <p class="tip">Precio de venta al público antes de ayudas</p>
+        <p class="tip">Importe satisfecho que formaría la base fiscal antes de restar ayudas públicas</p>
+      </div>
+      <div class="field">
+        <label>Precio de venta sin impuestos, tras descuentos (€)</label>
+        <input type="number" id="precio_auto" min="0" step="100" placeholder="Necesario para comprobar el límite">
+        <p class="tip">Se usa para verificar el límite de precio del programa estatal aplicable</p>
       </div>
       <div class="field">
         <label>Tipo de vehículo</label>
         <select id="tipo_vehiculo">
-          <option value="turismo_bev">Turismo eléctrico puro (BEV)</option>
-          <option value="turismo_phev">Turismo híbrido enchufable (PHEV)</option>
-          <option value="moto">Motocicleta eléctrica</option>
-          <option value="furgoneta">Furgoneta eléctrica</option>
+          <option value="m1">Turismo M1</option>
+          <option value="n1">Furgoneta / vehículo ligero N1</option>
+          <option value="moto">Motocicleta L3e, L4e o L5e</option>
+          <option value="cuadriciclo">Cuadriciclo L6e o L7e</option>
         </select>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>¿Achatas un vehículo de más de 7 años?</label>
-        <select id="achatarramiento">
-          <option value="si">Sí, achatarro un vehículo antiguo</option>
-          <option value="no">No</option>
+        <label>Tecnología</label>
+        <select id="propulsion">
+          <option value="bev">Eléctrico de batería (BEV)</option>
+          <option value="fcev">Pila de combustible (FCEV)</option>
+          <option value="phev">Híbrido enchufable (PHEV)</option>
+          <option value="erev">Eléctrico de autonomía extendida (EREV)</option>
         </select>
       </div>
       <div class="field">
-        <label>Comunidad autónoma</label>
-        <select id="ccaa">
-          <option value="general">Resto de España</option>
-          <option value="madrid">Madrid (deducción adicional)</option>
-          <option value="cataluña">Cataluña</option>
-          <option value="andalucia">Andalucía</option>
+        <label>Uso del vehículo</label>
+        <select id="uso">
+          <option value="particular">Particular, no afecto a actividad económica</option>
+          <option value="economico">Afecto a actividad económica</option>
         </select>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field"><label>Fecha de matriculación a tu nombre</label><input type="date" id="fecha_matriculacion"></div>
+      <div class="field"><label>Ayudas públicas recibidas o que vayas a recibir (€)</label><input type="number" id="subvenciones" value="0" min="0" step="100"></div>
+      <div class="field"><label>¿Es nuevo y se matricula por primera vez en España a tu nombre?</label><select id="primera_matriculacion"><option value="0">No / no lo sé</option><option value="1">Sí</option></select></div>
+      <div class="field"><label>¿El modelo figura como elegible en el programa estatal aplicable?</label><select id="modelo_elegible"><option value="0">No / no lo sé</option><option value="1">Sí</option></select></div>
+    </div>
+    <button type="button" class="advanced-toggle" id="toggle_avanzadas_ev" aria-expanded="false" aria-controls="opciones_avanzadas_ev" onclick="toggleAvanzadasEV()">Opciones avanzadas ▼</button>
+    <div class="advanced-panel" id="opciones_avanzadas_ev">
+      <div class="section-label">Pago a cuenta y Programa Auto+</div>
+      <div class="grid2">
+        <div class="field"><label>Modalidad temporal de la deducción</label><select id="modalidad_irpf"><option value="matricula">Vehículo adquirido y matriculado</option><option value="anticipo">Pago a cuenta de al menos el 25%</option></select></div>
+        <div class="field"><label>Pago a cuenta realizado (€)</label><input type="number" id="pago_cuenta" value="0" min="0" step="100"></div>
+        <div class="field"><label>Fecha del pago a cuenta</label><input type="date" id="fecha_pago_cuenta"></div>
+        <div class="field"><label>Beneficiario Auto+</label><select id="beneficiario_auto"><option value="particular">Persona física</option><option value="micro">Autónomo o empresa de hasta 10 trabajadores</option><option value="empresa">Otra empresa</option></select></div>
+        <div class="field"><label>Fecha de compra Auto+</label><input type="date" id="fecha_compra_auto"></div>
+        <div class="field"><label>¿Tiene distintivo ambiental CERO?</label><select id="etiqueta_cero"><option value="0">No / no lo sé</option><option value="1">Sí</option></select></div>
+        <div class="field"><label>Estado del vehículo para Auto+</label><select id="estado_auto"><option value="nuevo">Nuevo, primera matriculación a mi nombre</option><option value="prerregistrado">Previamente matriculado y vendido por concesionario</option></select></div>
+        <div class="field"><label>Primera matriculación del seminuevo/demostración</label><input type="date" id="fecha_primera_auto"></div>
+        <div class="field"><label>¿Montaje y terminación final en la UE?</label><select id="fabricacion_ue"><option value="0">No / no lo sé</option><option value="1">Sí</option></select></div>
+        <div class="field"><label>¿Ensamblaje del battery pack en la UE?</label><select id="bateria_ue"><option value="0">No / no lo sé</option><option value="1">Sí</option></select></div>
+      </div>
+      <div class="section-label" style="margin-top:18px">Punto de recarga en inmueble propio</div>
+      <div class="grid2">
+        <div class="field"><label>¿Quieres calcular también el punto de recarga?</label><select id="incluir_recarga"><option value="0">No</option><option value="1">Sí</option></select></div>
+        <div class="field"><label>Cantidades pagadas por instalación (€)</label><input type="number" id="coste_recarga" value="0" min="0" step="100"></div>
+        <div class="field"><label>Ayudas del punto de recarga (€)</label><input type="number" id="ayuda_recarga" value="0" min="0" step="100"></div>
+        <div class="field"><label>Fecha de finalización</label><input type="date" id="fecha_recarga"></div>
+        <div class="field"><label>Pago bancario, permisos, inmueble propio y uso no económico</label><select id="recarga_requisitos"><option value="0">No / no puedo confirmarlo</option><option value="1">Sí, cumplo todo</option></select></div>
       </div>
     </div>
   </div>
@@ -172,14 +210,13 @@
     <div class="section-label">Tu situación fiscal</div>
     <div class="grid2">
       <div class="field">
-        <label>Base liquidable del IRPF (€)</label>
-        <input type="number" id="base_liquidable" value="30000" min="0" step="500">
-        <p class="tip">Tu salario bruto menos cotizaciones SS y reducciones</p>
+        <label>Cuota estatal disponible para estas deducciones (€)</label>
+        <input type="number" id="cuota_integra" value="4000" min="0" step="100">
+        <p class="tip">Cuota estatal restante tras las deducciones que se aplican antes</p>
       </div>
       <div class="field">
-        <label>Cuota íntegra estatal (€)</label>
-        <input type="number" id="cuota_integra" value="4000" min="0" step="100">
-        <p class="tip">Casilla 545 de tu declaración de la Renta</p>
+        <label>Precio máximo del programa aplicable</label>
+        <p class="tip">Se comprueba con el precio de venta sin impuestos: 45.000 € para M1 y 10.000 € para motocicletas; N1 y cuadriciclos no tienen límite Auto+.</p>
       </div>
     </div>
     <div class="info-box">
@@ -187,37 +224,20 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="section-label">Comparativa de consumo (opcional)</div>
-    <div class="grid3">
-      <div class="field">
-        <label>Km anuales recorridos</label>
-        <input type="number" id="km_anuales" value="15000" min="0" step="1000">
-      </div>
-      <div class="field">
-        <label>Precio gasolina (€/litro)</label>
-        <input type="number" id="precio_gasolina" value="1.65" min="0" step="0.01">
-      </div>
-      <div class="field">
-        <label>Precio electricidad (€/kWh)</label>
-        <input type="number" id="precio_electricidad" value="0.18" min="0" step="0.01">
-      </div>
-    </div>
-  </div>
-
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Ahorro total estimado</div>
+        <div class="main-label">Deducción estatal aplicable estimada</div>
         <div class="main-value" id="res_ahorro_total">—</div>
       </div>
       <div class="sub-block">
-        <div class="sub-label">Coste real del vehículo</div>
+        <div class="sub-label">Ayuda Auto+ potencial, no concedida</div>
         <div class="sub-value" id="res_coste_real">—</div>
-        <div class="sub-label" style="margin-top:8px">% ahorro sobre precio</div>
+        <div class="sub-label" style="margin-top:8px">Coste tras deducción confirmable</div>
         <div class="sub-value" id="res_pct_ahorro">—</div>
       </div>
     </div>
+    <div class="aviso" id="aviso_requisitos"></div>
 
     <div class="results-grid">
       <div class="res-item ev">
@@ -225,12 +245,12 @@
         <div class="rv" id="d_deduccion_irpf">—</div>
       </div>
       <div class="res-item ev">
-        <div class="rl">Ayuda MOVES III</div>
-        <div class="rv" id="d_moves">—</div>
+        <div class="rl">Ayuda Auto+ potencial</div>
+        <div class="rv" id="d_auto">—</div>
       </div>
       <div class="res-item pos">
-        <div class="rl">Ahorro combustible/año</div>
-        <div class="rv" id="d_ahorro_combustible">—</div>
+        <div class="rl">Deducción punto de recarga</div>
+        <div class="rv" id="d_recarga">—</div>
       </div>
       <div class="res-item">
         <div class="rl">Base deducción IRPF</div>
@@ -241,8 +261,8 @@
         <div class="rv" id="d_limite_irpf">20.000 €</div>
       </div>
       <div class="res-item pos">
-        <div class="rl">Ahorro combustible 5 años</div>
-        <div class="rv" id="d_ahorro_5años">—</div>
+        <div class="rl">Resultado de requisitos</div>
+        <div class="rv" id="d_estado">—</div>
       </div>
     </div>
 
@@ -258,8 +278,8 @@
           <div class="ri-val" id="r_irpf">—</div>
         </div>
         <div class="resumen-item">
-          <div class="ri-label">− Ayuda MOVES III</div>
-          <div class="ri-val" id="r_moves">—</div>
+          <div class="ri-label">Ayuda Auto+ potencial (condicionada)</div>
+          <div class="ri-val" id="r_auto">—</div>
         </div>
         <div class="resumen-item" style="border: 2px solid var(--ev)">
           <div class="ri-label">= Coste real</div>
@@ -272,45 +292,45 @@
   
 
   <div class="seo-content">
-    <h2>Ayudas para comprar un coche eléctrico en España 2026</h2>
-    <p>Comprar un vehículo eléctrico en España en 2026 puede suponer un ahorro considerable gracias a la combinación de la deducción en el IRPF y las ayudas directas del Plan MOVES III.</p>
+    <h2>Deducción y ayudas para coche eléctrico en 2026</h2>
+    <p>La deducción estatal del IRPF y el Programa Auto+ son instrumentos distintos. La primera reduce la cuota estatal si se cumplen los requisitos fiscales; Auto+ es una ayuda administrativa sujeta a convocatoria, presupuesto y resolución favorable. MOVES III 2025 no se calcula como ayuda para compras de 2026.</p>
 
     <h3>Deducción del 15% en el IRPF</h3>
-    <p>Puedes deducirte el 15% del precio de compra de un vehículo eléctrico nuevo en tu declaración de la Renta, con una base máxima de 20.000 euros. Esto supone una deducción máxima de 3.000 euros. Para tener derecho hay que adquirir el vehículo entre el 30 de junio de 2023 y el 31 de diciembre de 2026, y que sea un vehículo de turismo eléctrico puro (BEV) o híbrido enchufable (PHEV) con autonomía mínima de 40 km en modo eléctrico.</p>
+    <p>La deducción es el 15% de una base máxima de 20.000 euros. La base incluye gastos y tributos inherentes y resta las subvenciones recibidas o previstas. El vehículo debe ser nuevo, matricularse por primera vez en España a nombre del contribuyente, ser un modelo elegible y no estar afecto a una actividad económica.</p>
 
-    <h3>Plan MOVES III</h3>
-    <p>Además de la deducción fiscal, el Plan MOVES III ofrece ayudas directas de hasta 7.000 euros para la compra de vehículos eléctricos. El importe varía según el tipo de vehículo y si se achatarrra un coche antiguo de más de 7 años.</p>
+    <h3>Programa Auto+ 2026</h3>
+    <p>Auto+ exige distintivo CERO y aplica un importe potencial modulado por tecnología eléctrica, precio y fabricación europea. La calculadora solo estima ese importe: no confirma disponibilidad presupuestaria ni concesión.</p>
 
     <div class="ayudas-grid">
       <div class="ayuda-item">
-        <div class="ai-titulo">🚗 Turismo BEV sin achatarramiento</div>
-        <div class="ai-importe">4.500 €</div>
-        <div class="ai-desc">Ayuda base para vehículo eléctrico puro sin entregar vehículo antiguo</div>
+        <div class="ai-titulo">Turismo M1</div>
+        <div class="ai-importe">Hasta 4.500 €</div>
+        <div class="ai-desc">Hasta 6.000 € para autónomos y empresas de hasta 10 trabajadores</div>
       </div>
       <div class="ayuda-item">
-        <div class="ai-titulo">🚗 Turismo BEV con achatarramiento</div>
-        <div class="ai-importe">7.000 €</div>
-        <div class="ai-desc">Ayuda máxima entregando un vehículo de más de 7 años</div>
+        <div class="ai-titulo">Vehículo N1</div>
+        <div class="ai-importe">Hasta 5.000 €</div>
+        <div class="ai-desc">Hasta 7.500 € para autónomos y empresas de hasta 10 trabajadores</div>
       </div>
       <div class="ayuda-item">
-        <div class="ai-titulo">🔌 Turismo PHEV sin achatarramiento</div>
-        <div class="ai-importe">2.500 €</div>
-        <div class="ai-desc">Híbrido enchufable con autonomía mínima de 40 km eléctricos</div>
+        <div class="ai-titulo">Motocicletas elegibles</div>
+        <div class="ai-importe">Hasta 1.100 €</div>
+        <div class="ai-desc">Sujetas a las características oficiales de categoría y potencia</div>
       </div>
       <div class="ayuda-item">
-        <div class="ai-titulo">🔌 Turismo PHEV con achatarramiento</div>
-        <div class="ai-importe">4.500 €</div>
-        <div class="ai-desc">Híbrido enchufable entregando vehículo antiguo</div>
+        <div class="ai-titulo">Cuadriciclos L6e/L7e</div>
+        <div class="ai-importe">Hasta 1.500 €</div>
+        <div class="ai-desc">Importe máximo antes de aplicar los factores de modulación</div>
       </div>
     </div>
 
-    <h3>¿Son compatibles la deducción IRPF y el MOVES III?</h3>
-    <p>Sí, ambas ayudas son compatibles y acumulables. Puedes beneficiarte de la deducción fiscal en la declaración de la Renta y al mismo tiempo solicitar la ayuda directa del Plan MOVES III. La ayuda MOVES se descuenta del precio en el momento de la compra, mientras que la deducción IRPF la recuperas al hacer la declaración.</p>
+    <h3>Punto de recarga</h3>
+    <p>La instalación en un inmueble propio tiene una deducción distinta del 15%, con base anual máxima de 4.000 euros, pago bancario, permisos y finalización no posterior a 2026. Las ayudas recibidas reducen su base.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Los híbridos no enchufables tienen deducción? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">No. La deducción del 15% en el IRPF solo aplica a vehículos eléctricos puros (BEV) e híbridos enchufables (PHEV) con una autonomía mínima de 40 km en modo eléctrico. Los híbridos convencionales (HEV) no tienen derecho a esta deducción.</div>
+      <div class="faq-a">No. Debe tratarse de una categoría y un modelo elegibles en el programa estatal aplicable, con propulsión eléctrica enchufable o pila de combustible cuando corresponda. Los híbridos convencionales no enchufables (HEV) no tienen derecho a esta deducción.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si no tengo suficiente cuota íntegra? <span class="faq-arrow">▼</span></div>
@@ -322,12 +342,13 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Hay que instalar punto de recarga para tener la deducción? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">No es obligatorio para la deducción del vehículo. Sin embargo, existe una deducción adicional del 15% para la instalación de puntos de recarga en vivienda habitual, con una base máxima de 4.000 euros.</div>
+      <div class="faq-a">No es obligatorio para la deducción del vehículo. Existe una deducción distinta del 15% para instalar puntos de recarga en un inmueble de tu propiedad, con una base anual máxima de 4.000 euros y requisitos propios.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Puedo solicitar MOVES III y la deducción IRPF a la vez? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí, son perfectamente compatibles. El MOVES III es una subvención directa que se aplica en el momento de la compra, y la deducción IRPF la aplicas en tu declaración anual. Puedes y debes solicitar ambas.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Puedo solicitar Auto+ y aplicar la deducción IRPF? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">La deducción fiscal y Auto+ se calculan por separado. Cualquier ayuda pública recibida o prevista reduce la base de la deducción del IRPF. Auto+ no está garantizado hasta que exista resolución favorable.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764" rel="noopener noreferrer">disposición adicional 58.ª de la Ley del IRPF (BOE)</a>, <a href="https://www.mintur.gob.es/es-es/programa-auto/" rel="noopener noreferrer">Programa Auto+ 2026 (Ministerio de Industria)</a> y <a href="https://www.idae.es/ayudas-y-financiacion/para-movilidad-y-vehiculos/moves-iii-2025" rel="noopener noreferrer">MOVES III 2025 (IDAE)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -338,7 +359,7 @@
 
 <footer>
   <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
-  <p style="margin-top:6px">Estimación orientativa. Las ayudas MOVES están sujetas a disponibilidad presupuestaria. Consulta con un asesor fiscal.</p>
+  <p style="margin-top:6px">Estimación orientativa. Auto+ está sujeto a convocatoria, presupuesto y resolución administrativa. Consulta las fuentes oficiales.</p>
 </footer>
 
 
@@ -372,70 +393,115 @@ document.querySelectorAll('input, select').forEach(el => el.addEventListener('in
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
 function pct(n) { return n.toFixed(1) + '%'; }
 
-function calcular() {
-  const precio = parseFloat(document.getElementById('precio').value) || 0;
-  const tipoVehiculo = document.getElementById('tipo_vehiculo').value;
-  const achatarramiento = document.getElementById('achatarramiento').value;
-  const ccaa = document.getElementById('ccaa').value;
-  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
-  const kmAnuales = parseFloat(document.getElementById('km_anuales').value) || 0;
-  const precioGasolina = parseFloat(document.getElementById('precio_gasolina').value) || 1.65;
-  const precioElectricidad = parseFloat(document.getElementById('precio_electricidad').value) || 0.18;
+function toggleAvanzadasEV(){
+  const panel=document.getElementById('opciones_avanzadas_ev');
+  const boton=document.getElementById('toggle_avanzadas_ev');
+  const abierto=panel.classList.toggle('open');
+  boton.setAttribute('aria-expanded',String(abierto));
+  boton.textContent=`Opciones avanzadas ${abierto?'▲':'▼'}`;
+}
 
-  // --- IRPF deducción 15%, base máx 20.000 € ---
-  // Solo aplica a BEV y PHEV
-  let baseIRPF = 0;
-  let deduccionIRPF = 0;
-  if (tipoVehiculo === 'turismo_bev' || tipoVehiculo === 'turismo_phev') {
-    baseIRPF = Math.min(precio, 20000);
-    deduccionIRPF = Math.min(baseIRPF * 0.15, cuotaIntegra);
+function fechaValida(valor){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(valor||'')) return null;
+  const [a,m,d]=valor.split('-').map(Number), fecha=new Date(a,m-1,d);
+  return fecha.getFullYear()===a&&fecha.getMonth()===m-1&&fecha.getDate()===d?fecha:null;
+}
+
+function precioMaximoCategoria(categoria){
+  if(categoria==='m1') return 45000;
+  if(categoria==='moto') return 10000;
+  return Infinity;
+}
+
+function calcularDeduccionVehiculo(datos){
+  const categoriaAdmitida=['m1','moto','cuadriciclo'].includes(datos.categoria);
+  const fechaInicio=new Date(2023,5,30), fechaFin=new Date(2026,11,31);
+  const precioProgramaOk=datos.precioPrograma>0&&datos.precioPrograma<=precioMaximoCategoria(datos.categoria);
+  const comunes=categoriaAdmitida&&datos.uso==='particular'&&datos.primeraMatriculacion&&datos.modeloElegible&&precioProgramaOk;
+  let tiempoOk=false, motivo='';
+  if(datos.modalidad==='matricula'){
+    tiempoOk=!!datos.fechaMatricula&&datos.fechaMatricula>=fechaInicio&&datos.fechaMatricula<=fechaFin;
+    if(!tiempoOk) motivo='La matriculación debe producirse entre el 30/06/2023 y el 31/12/2026.';
+  }else{
+    tiempoOk=!!datos.fechaAnticipo&&datos.fechaAnticipo>=fechaInicio&&datos.fechaAnticipo<=fechaFin&&datos.precio>0&&datos.anticipo>=datos.precio*.25;
+    if(!tiempoOk) motivo='El pago a cuenta debe realizarse en plazo y alcanzar al menos el 25% del valor de adquisición.';
   }
+  if(!categoriaAdmitida) motivo='La categoría N1 no está incluida en esta deducción estatal del IRPF.';
+  else if(datos.uso!=='particular') motivo='El vehículo afecto a una actividad económica no da derecho a esta deducción del IRPF.';
+  else if(!datos.primeraMatriculacion||!datos.modeloElegible) motivo='Debe ser nuevo, matricularse por primera vez a tu nombre y ser un modelo elegible.';
+  else if(!precioProgramaOk) motivo=datos.precioPrograma>0?'El precio sin impuestos supera el límite de la categoría.':'Falta el precio sin impuestos necesario para comprobar el límite.';
+  const aplica=comunes&&tiempoOk;
+  const base=aplica?Math.min(20000,Math.max(0,datos.precio-datos.subvenciones)):0;
+  return {aplica,base,deduccionTeorica:base*.15,motivo};
+}
 
-  // Deducción autonómica adicional (Madrid: 15% adicional, máx 1.500 €)
-  let deduccionCCAA = 0;
-  if (ccaa === 'madrid' && (tipoVehiculo === 'turismo_bev' || tipoVehiculo === 'turismo_phev')) {
-    deduccionCCAA = Math.min(precio * 0.15, 1500);
-  }
+function calcularAutoPlus(datos){
+  const compraInicio=new Date(2026,0,1), compraFin=new Date(2026,11,31);
+  const fechaOk=!!datos.fechaCompra&&datos.fechaCompra>=compraInicio&&datos.fechaCompra<=compraFin;
+  const seminuevoOk=datos.estado==='nuevo'||(datos.estado==='prerregistrado'&&datos.fechaPrimera&&datos.fechaPrimera>=new Date(2025,0,1));
+  const precioOk=datos.precio>0&&datos.precio<=precioMaximoCategoria(datos.categoria);
+  const propulsionOk=datos.categoria==='m1'||datos.categoria==='n1'||(['bev','fcev'].includes(datos.propulsion));
+  if(!fechaOk||!seminuevoOk||!precioOk||!datos.etiquetaCero||!propulsionOk) return {estimable:false,ayuda:0};
+  const micro=datos.beneficiario==='micro';
+  const maximos={m1:micro?6000:4500,n1:micro?7500:5000,moto:1100,cuadriciclo:1500};
+  let factor=['bev','fcev'].includes(datos.propulsion)?.50:.25;
+  factor+=datos.categoria==='m1'?(datos.precio<=35000?.25:.15):.25;
+  if(datos.fabricacionUE) factor+=.15;
+  if(datos.fabricacionUE&&datos.bateriaUE) factor+=.10;
+  return {estimable:true,ayuda:(maximos[datos.categoria]||0)*Math.min(1,factor),factor};
+}
 
-  // --- MOVES III ayudas ---
-  const moves = {
-    turismo_bev:  { si: 7000, no: 4500 },
-    turismo_phev: { si: 4500, no: 2500 },
-    moto:         { si: 1100, no: 750  },
-    furgoneta:    { si: 7000, no: 4500 },
-  };
-  const ayudaMOVES = moves[tipoVehiculo]?.[achatarramiento] || 0;
+function calcularRecarga(datos){
+  const limite=new Date(2026,11,31);
+  const aplica=datos.incluir&&datos.requisitos&&datos.fecha&&datos.fecha<=limite;
+  const base=aplica?Math.min(4000,Math.max(0,datos.coste-datos.ayuda)):0;
+  return {solicitada:datos.incluir,aplica,base,deduccionTeorica:base*.15};
+}
 
-  // --- Ahorro combustible ---
-  // Gasolina: ~6.5 L/100km; Eléctrico: ~16 kWh/100km
-  const consumoGasolina = 6.5;
-  const consumoElectrico = 16;
-  const costeGasolina = (kmAnuales / 100) * consumoGasolina * precioGasolina;
-  const costeElectrico = (kmAnuales / 100) * consumoElectrico * precioElectricidad;
-  const ahorroCombustibleAnual = Math.max(0, costeGasolina - costeElectrico);
-  const ahorroCombustible5 = ahorroCombustibleAnual * 5;
-
-  // --- Totales ---
-  const ahorroTotal = deduccionIRPF + deduccionCCAA + ayudaMOVES;
-  const costeReal = precio - ahorroTotal;
-  const pctAhorro = precio > 0 ? (ahorroTotal / precio) * 100 : 0;
-
-  // --- Mostrar resultados ---
-  document.getElementById('res_ahorro_total').textContent = fmt(ahorroTotal);
-  document.getElementById('res_coste_real').textContent = fmt(costeReal);
-  document.getElementById('res_pct_ahorro').textContent = pct(pctAhorro);
-
-  document.getElementById('d_deduccion_irpf').textContent = fmt(deduccionIRPF);
-  document.getElementById('d_moves').textContent = fmt(ayudaMOVES);
-  document.getElementById('d_ahorro_combustible').textContent = fmt(ahorroCombustibleAnual) + '/año';
-  document.getElementById('d_base_irpf').textContent = fmt(baseIRPF);
-  document.getElementById('d_ahorro_5años').textContent = fmt(ahorroCombustible5);
-
-  // Resumen
-  document.getElementById('r_precio').textContent = fmt(precio);
-  document.getElementById('r_irpf').textContent = fmt(deduccionIRPF);
-  document.getElementById('r_moves').textContent = fmt(ayudaMOVES);
-  document.getElementById('r_coste_real').textContent = fmt(costeReal);
+function calcular(){
+  const n=id=>parseFloat(document.getElementById(id).value)||0;
+  const categoria=document.getElementById('tipo_vehiculo').value;
+  const propulsion=document.getElementById('propulsion').value;
+  const precio=n('precio'), precioAuto=n('precio_auto'), cuota=Math.max(0,n('cuota_integra'));
+  const vehiculo=calcularDeduccionVehiculo({
+    categoria,propulsion,precio,precioPrograma:precioAuto,subvenciones:n('subvenciones'),uso:document.getElementById('uso').value,
+    primeraMatriculacion:document.getElementById('primera_matriculacion').value==='1',modeloElegible:document.getElementById('modelo_elegible').value==='1',
+    modalidad:document.getElementById('modalidad_irpf').value,fechaMatricula:fechaValida(document.getElementById('fecha_matriculacion').value),
+    anticipo:n('pago_cuenta'),fechaAnticipo:fechaValida(document.getElementById('fecha_pago_cuenta').value)
+  });
+  const auto=calcularAutoPlus({
+    categoria,propulsion,precio:precioAuto,beneficiario:document.getElementById('beneficiario_auto').value,
+    fechaCompra:fechaValida(document.getElementById('fecha_compra_auto').value),etiquetaCero:document.getElementById('etiqueta_cero').value==='1',
+    estado:document.getElementById('estado_auto').value,fechaPrimera:fechaValida(document.getElementById('fecha_primera_auto').value),
+    fabricacionUE:document.getElementById('fabricacion_ue').value==='1',bateriaUE:document.getElementById('bateria_ue').value==='1'
+  });
+  const recarga=calcularRecarga({
+    incluir:document.getElementById('incluir_recarga').value==='1',coste:n('coste_recarga'),ayuda:n('ayuda_recarga'),
+    fecha:fechaValida(document.getElementById('fecha_recarga').value),requisitos:document.getElementById('recarga_requisitos').value==='1'
+  });
+  const deduccionVehiculo=Math.min(vehiculo.deduccionTeorica,cuota);
+  const deduccionRecarga=Math.min(recarga.deduccionTeorica,Math.max(0,cuota-deduccionVehiculo));
+  const deduccionTotal=deduccionVehiculo+deduccionRecarga;
+  const costeFiscal=Math.max(0,precio-deduccionTotal);
+  const avisos=[];
+  if(!vehiculo.aplica) avisos.push(vehiculo.motivo||'No se acreditan todos los requisitos de la deducción del vehículo.');
+  if(auto.estimable) avisos.push('Auto+ es una ayuda potencial: depende de convocatoria, presupuesto y resolución administrativa; no se suma al ahorro fiscal confirmado.');
+  if(recarga.solicitada&&!recarga.aplica) avisos.push('El punto de recarga no cumple o no acredita todos los requisitos introducidos.');
+  const aviso=document.getElementById('aviso_requisitos');
+  aviso.textContent=avisos.length?`⚠️ ${avisos.join(' ')}`:'';
+  aviso.style.display=avisos.length?'block':'none';
+  document.getElementById('res_ahorro_total').textContent=fmt(deduccionTotal);
+  document.getElementById('res_coste_real').textContent=auto.estimable?fmt(auto.ayuda):'No calculable';
+  document.getElementById('res_pct_ahorro').textContent=fmt(costeFiscal);
+  document.getElementById('d_deduccion_irpf').textContent=fmt(deduccionVehiculo);
+  document.getElementById('d_auto').textContent=auto.estimable?fmt(auto.ayuda):'Faltan datos';
+  document.getElementById('d_recarga').textContent=fmt(deduccionRecarga);
+  document.getElementById('d_base_irpf').textContent=fmt(vehiculo.base);
+  document.getElementById('d_estado').textContent=vehiculo.aplica?'Vehículo: cumple':'Vehículo: no acreditado';
+  document.getElementById('r_precio').textContent=fmt(precio);
+  document.getElementById('r_irpf').textContent=fmt(deduccionTotal);
+  document.getElementById('r_auto').textContent=auto.estimable?fmt(auto.ayuda):'No estimada';
+  document.getElementById('r_coste_real').textContent=fmt(costeFiscal);
 }
 </script>
 </body>

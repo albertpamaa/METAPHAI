@@ -266,7 +266,7 @@
         </div>
       </div>
       <div style="margin-top:14px">
-        <button type="button" class="btn-add" id="btn_avanzado_resumen" onclick="toggleAvanzadoResumen()">Opciones avanzadas <span id="avanzado_resumen_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <button type="button" class="btn-add" id="btn_avanzado_resumen" aria-expanded="false" aria-controls="avanzado_resumen_panel" onclick="toggleAvanzadoResumen()">Opciones avanzadas <span id="avanzado_resumen_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
         <div id="avanzado_resumen_panel" style="display:none;margin-top:12px;padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)">
           <div class="grid2">
             <div class="field"><label>Usar saldo patrimonial fiscal neto conocido</label><select id="usar_saldo_fiscal" oninput="calcularResumen()"><option value="no">No</option><option value="si">Sí, sustituir ganancias y pérdidas</option></select></div>
@@ -419,9 +419,11 @@ function integrarBaseAhorro(ganancias,perdidas,rcmPositivo,rcmNegativo=0,pendien
 
 function toggleAvanzadoResumen(){
   const panel=document.getElementById('avanzado_resumen_panel');
+  const button=document.getElementById('btn_avanzado_resumen');
   const arrow=document.getElementById('avanzado_resumen_arrow');
   const abrir=panel.style.display!=='block';
   panel.style.display=abrir?'block':'none';
+  button.setAttribute('aria-expanded',String(abrir));
   arrow.style.transform=abrir?'rotate(180deg)':'';
 }
 

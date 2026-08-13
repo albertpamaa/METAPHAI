@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora Precio por Hora Freelance 2026 | ¿Cuánto Cobrar? | Metaphai</title>
-  <meta name="description" content="Calcula cuánto debes cobrar por hora como freelance o autónomo en España 2026. Incluye gastos, impuestos, vacaciones y el sueldo que quieres tener. Gratis y sin registro.">
+  <title>Calculadora Precio por Hora Freelance 2026 | Tarifa Orientativa | Metaphai</title>
+  <meta name="description" content="Estima una tarifa por hora freelance en España en 2026 a partir de gastos, impuestos, vacaciones, horas facturables y sueldo objetivo.">
   <meta name="keywords" content="calculadora precio hora freelance, cuanto cobrar hora freelance, tarifa hora autonomo spain, precio hora diseñador programador, cuanto cobrar como freelance españa 2026">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-precio-hora-freelance/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Precio por Hora Freelance 2026 | Metaphai">
-  <meta property="og:description" content="Descubre cuánto debes cobrar por hora como freelance para cubrir gastos, impuestos y tener el sueldo que mereces.">
+  <meta property="og:description" content="Estima una tarifa mínima y objetivo para cubrir gastos, impuestos, vacaciones y tu sueldo deseado.">
   <meta property="og:url" content="https://metaphai.com/calculadora-precio-hora-freelance/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,6 +49,9 @@
     .info-box.blue{background:var(--fr-light);border:1px solid #b8cff0;}.info-box.blue p{font-size:13px;color:var(--fr);margin:0;}
     .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
     .info-box.green{background:var(--accent-light);border:1px solid #b8dece;}.info-box.green p{font-size:13px;color:var(--accent);margin:0;}
+    .advanced-toggle{width:100%;margin-top:12px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--muted);font:500 13px 'DM Sans',sans-serif;cursor:pointer;text-align:left;}
+    .advanced-panel{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+    .advanced-panel.open{display:block;}
     /* RESULTADO PRINCIPAL */
     .resultado-hero{background:var(--fr);border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-top:1.5rem;}
     .rh-label{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:8px;}
@@ -131,8 +134,8 @@
 <main>
   <div class="hero">
     <div class="badge">💻 Freelance 2026</div>
-    <h1>¿Cuánto debes cobrar<br>por hora como <em>freelance</em>?</h1>
-    <p>Calcula tu tarifa mínima por hora teniendo en cuenta gastos, impuestos, vacaciones y el sueldo que quieres llevar a casa.</p>
+    <h1>Estima tu tarifa<br>por hora como <em>freelance</em></h1>
+    <p>Calcula una tarifa mínima y una tarifa objetivo a partir de tus horas facturables y presupuesto anual.</p>
   </div>
 
   <!-- SUELDO OBJETIVO -->
@@ -142,24 +145,24 @@
       <div class="field">
         <label>Sueldo neto mensual deseado (€)</label>
         <input type="number" id="sueldo_deseado" value="2500" min="0" step="100" oninput="calcular()">
-        <p class="tip">Lo que quieres ingresar en tu cuenta cada mes</p>
+        <p class="tip">Renta disponible deseada después de gastos e IRPF anual estimado</p>
       </div>
       <div class="field">
         <label>Semanas de vacaciones al año</label>
         <input type="number" id="semanas_vacaciones" value="4" min="0" max="20" oninput="calcular()">
-        <p class="tip">El mínimo legal es 4 semanas (30 días naturales)</p>
+        <p class="tip">Tiempo que decides reservar sin facturar; el autónomo no tiene vacaciones retribuidas</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>Horas facturables por semana</label>
-        <input type="number" id="horas_facturables" value="30" min="1" max="60" oninput="calcular()">
-        <p class="tip">No todas las horas trabajadas son facturables (reuniones, admin, formación...)</p>
+        <label>Horas totales de trabajo por semana</label>
+        <input type="number" id="horas_semanales" value="40" min="1" max="80" step="0.5" oninput="calcular()">
+        <p class="tip">Incluye trabajo facturable y gestión interna</p>
       </div>
       <div class="field">
-        <label>% de tiempo no facturable (gestión, admin, ventas...)</label>
-        <input type="number" id="pct_no_facturable" value="20" min="0" max="70" oninput="calcular()">
-        <p class="tip">Un freelance típico dedica un 20-30% a tareas no facturables</p>
+        <label>Porcentaje del tiempo realmente facturable (%)</label>
+        <input type="number" id="pct_facturable" value="75" min="1" max="100" step="1" oninput="calcular()">
+        <p class="tip">El resto cubre administración, ventas, propuestas o formación</p>
       </div>
     </div>
   </div>
@@ -169,7 +172,7 @@
     <div class="section-label">Gastos mensuales de tu actividad</div>
     <div class="grid2">
       <div class="field">
-        <label>Cuota de autónomo RETA (€/mes)</label>
+        <label>Cuota RETA real o prevista (€/mes)</label>
         <input type="number" id="cuota_reta" value="350" min="0" step="10" oninput="calcular()">
         <p class="tip">Varía según tus ingresos. Usa nuestra <a href="/calculadora-irpf-autonomos/">calculadora de autónomos</a>.</p>
       </div>
@@ -205,37 +208,49 @@
     <div class="section-label">Impuestos estimados</div>
     <div class="grid2">
       <div class="field">
-        <label>Tipo estimado de IRPF (%)</label>
+        <label>Tipo efectivo anual de IRPF estimado (%)</label>
         <input type="number" id="tipo_irpf" value="20" min="0" max="47" step="1" oninput="calcular()">
         <p class="tip">Mira el resultado en nuestra <a href="/calculadora-irpf-autonomos/">calculadora de autónomos</a></p>
       </div>
       <div class="field">
-        <label>Colchón imprevistos y morosidad (%)</label>
+        <label>Margen de seguridad sobre la tarifa (%)</label>
         <input type="number" id="pct_imprevistos" value="10" min="0" max="30" step="1" oninput="calcular()">
-        <p class="tip">Clientes que pagan tarde, meses flojos, imprevistos... un 10% es prudente.</p>
+        <p class="tip">Se suma a la tarifa mínima; no representa un impuesto</p>
       </div>
     </div>
     <div class="info-box blue" style="margin-top:12px">
-      <p>💡 Como freelance en estimación directa pagas el 20% del beneficio trimestralmente (modelo 130) más el ajuste anual en la Renta. Reserva siempre ese % de cada factura.</p>
+      <p>💡 El porcentaje introducido es una hipótesis presupuestaria de IRPF anual, no una retención de factura ni el resultado definitivo de la Renta.</p>
+    </div>
+    <button type="button" class="advanced-toggle" id="toggle_avanzadas_freelance" aria-expanded="false" aria-controls="opciones_avanzadas_freelance" onclick="toggleAvanzadasFreelance()">Opciones avanzadas ▼</button>
+    <div class="advanced-panel" id="opciones_avanzadas_freelance">
+      <div class="grid2">
+        <div class="field"><label>Festivos y otros días no trabajados fuera de vacaciones</label><input type="number" id="dias_no_trabajados" value="0" min="0" max="100" step="1" oninput="calcular()"><p class="tip">Valor neutro 0; no repitas días incluidos en las vacaciones.</p></div>
+        <div class="field"><label>Horas facturables anuales conocidas</label><input type="number" id="horas_anuales_conocidas" min="1" step="1" placeholder="Si las conoces, prevalecen" oninput="calcular()"></div>
+        <div class="field"><label>Cuota RETA anual conocida (€)</label><input type="number" id="reta_anual_conocida" min="0" step="10" placeholder="Prevalece sobre la cuota mensual" oninput="calcular()"></div>
+        <div class="field"><label>Otros gastos anuales no incluidos (€)</label><input type="number" id="gastos_anuales_extra" value="0" min="0" step="100" oninput="calcular()"></div>
+        <div class="field"><label>IVA orientativo de factura (%)</label><input type="number" id="tipo_iva_factura" value="21" min="0" max="100" step="0.01" oninput="calcular()"><p class="tip">Solo para visualizar cobros; no modifica la tarifa base.</p></div>
+        <div class="field"><label>Retención profesional aplicable (%)</label><input type="number" id="retencion_factura" value="15" min="0" max="100" step="0.01" oninput="calcular()"></div>
+        <div class="field"><label>Facturación prevista sujeta a retención (%)</label><input type="number" id="pct_sujeto_retencion" value="0" min="0" max="100" step="1" oninput="calcular()"><p class="tip">La retención es un pago a cuenta: no reduce ingresos ni tarifa necesaria.</p></div>
+      </div>
     </div>
   </div>
 
   <!-- RESULTADO -->
   <div class="resultado-hero">
-    <div class="rh-label">Tu tarifa mínima por hora</div>
+    <div class="rh-label">Tu tarifa objetivo por hora</div>
     <div class="rh-precio" id="rh_precio">—</div>
     <div class="rh-sub" id="rh_sub">— €/hora antes de IVA</div>
     <div class="rh-grid">
       <div class="rh-item">
-        <div class="ri-label">Tarifa diaria (8h)</div>
-        <div class="ri-val" id="rh_dia">—</div>
+        <div class="ri-label">Tarifa mínima sin margen</div>
+        <div class="ri-val" id="rh_minima">—</div>
       </div>
       <div class="rh-item">
-        <div class="ri-label">Tarifa semanal</div>
+        <div class="ri-label">Objetivo semanal facturable</div>
         <div class="ri-val" id="rh_semana">—</div>
       </div>
       <div class="rh-item">
-        <div class="ri-label">Tarifa mensual</div>
+        <div class="ri-label">Facturación objetivo mensual</div>
         <div class="ri-val" id="rh_mes">—</div>
       </div>
     </div>
@@ -246,8 +261,8 @@
     <div class="des-section">
       <div class="des-title">Tiempo disponible para facturar</div>
       <div class="des-row"><span class="des-label">Semanas trabajadas al año</span><span class="des-val" id="d_semanas_trabajo">—</span></div>
-      <div class="des-row"><span class="des-label">Horas brutas facturables/año</span><span class="des-val" id="d_horas_brutas">—</span></div>
-      <div class="des-row"><span class="des-label">− Tiempo no facturable (admin, ventas...)</span><span class="des-val" id="d_no_facturable">—</span></div>
+      <div class="des-row"><span class="des-label">Horas de trabajo disponibles/año</span><span class="des-val" id="d_horas_brutas">—</span></div>
+      <div class="des-row"><span class="des-label">− Tiempo no facturable estimado</span><span class="des-val" id="d_no_facturable">—</span></div>
       <div class="des-row"><span class="des-label">Horas facturables reales/año</span><span class="des-val highlight" id="d_horas_reales">—</span></div>
     </div>
     <div class="des-section">
@@ -255,8 +270,16 @@
       <div class="des-row"><span class="des-label">Sueldo neto deseado anual</span><span class="des-val" id="d_sueldo_anual">—</span></div>
       <div class="des-row"><span class="des-label">+ Gastos del negocio anuales</span><span class="des-val" id="d_gastos_anuales">—</span></div>
       <div class="des-row"><span class="des-label">+ IRPF estimado</span><span class="des-val" id="d_irpf_estimado">—</span></div>
-      <div class="des-row"><span class="des-label">+ Colchón imprevistos</span><span class="des-val" id="d_imprevistos">—</span></div>
       <div class="des-row"><span class="des-label">Facturación mínima necesaria/año</span><span class="des-val highlight" id="d_facturacion_minima">—</span></div>
+      <div class="des-row"><span class="des-label">+ Margen de seguridad</span><span class="des-val" id="d_imprevistos">—</span></div>
+      <div class="des-row"><span class="des-label">Facturación objetivo/año</span><span class="des-val highlight" id="d_facturacion_objetivo">—</span></div>
+    </div>
+    <div class="des-section">
+      <div class="des-title">Factura y flujo de cobro orientativo</div>
+      <div class="des-row"><span class="des-label">Base facturada objetivo</span><span class="des-val" id="d_base_facturada">—</span></div>
+      <div class="des-row"><span class="des-label">+ IVA repercutido</span><span class="des-val" id="d_iva_facturado">—</span></div>
+      <div class="des-row"><span class="des-label">− Retenciones soportadas</span><span class="des-val" id="d_retenciones">—</span></div>
+      <div class="des-row"><span class="des-label">Cobros de clientes estimados</span><span class="des-val highlight" id="d_cobros">—</span></div>
     </div>
     <div class="barra-wrap">
       <div class="barra-title">Distribución de cada euro facturado</div>
@@ -270,7 +293,7 @@
         <div class="legend-item"><div class="legend-dot" style="background:var(--fr)"></div>Sueldo neto (<span id="leg_sueldo">—</span>)</div>
         <div class="legend-item"><div class="legend-dot" style="background:#8a3a1a"></div>Gastos (<span id="leg_gastos">—</span>)</div>
         <div class="legend-item"><div class="legend-dot" style="background:#8b2a2a"></div>IRPF (<span id="leg_irpf">—</span>)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#c07a00"></div>Imprevistos (<span id="leg_imp">—</span>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c07a00"></div>Margen (<span id="leg_imp">—</span>)</div>
       </div>
     </div>
   </div>
@@ -278,7 +301,7 @@
   <!-- ESCENARIOS -->
   <div class="escenarios" style="margin-top:1rem">
     <div class="card">
-      <div class="section-label">¿Y si cambias tus horas facturables?</div>
+      <div class="section-label">¿Y si cambia tu porcentaje facturable?</div>
       <div class="esc-grid" id="esc-grid"></div>
       <div class="info-box warn" style="margin-top:1rem">
         <p>⚠️ Trabajar más horas no siempre es la solución. Aumentar tu tarifa o reducir el tiempo no facturable puede ser más efectivo para mejorar tu rentabilidad.</p>
@@ -288,34 +311,39 @@
 
   <div class="seo-content">
     <h2>¿Cuánto debe cobrar un freelance por hora en España?</h2>
-    <p>Uno de los errores más comunes de los freelances es calcular su tarifa dividiendo simplemente el sueldo que quieren entre las horas que trabajan. Esto ignora impuestos, gastos, vacaciones y el tiempo no facturable, lo que lleva a cobrar muy por debajo de lo necesario.</p>
+    <p>Dividir el ingreso deseado entre todas las horas de trabajo ignora gastos, vacaciones y tareas que no pueden facturarse. La calculadora separa las horas disponibles de las realmente facturables y construye un presupuesto anual.</p>
 
     <h3>El error del "empleado freelance"</h3>
-    <p>Un empleado con 2.500 € netos al mes le cuesta a la empresa aproximadamente 3.500-4.000 € incluyendo cotizaciones. Como freelance, además de ese coste base, tienes gastos propios (gestoría, software, seguros) y debes gestionar tus propios impuestos. Por eso tu tarifa debe ser significativamente mayor que el equivalente en salario de empleado.</p>
+    <p>Una tarifa profesional debe cubrir la renta disponible buscada, los gastos de actividad, la cuota RETA y una estimación prudente del IRPF anual. No es comparable directamente con el salario neto de una persona empleada.</p>
 
     <h3>El tiempo no facturable: el gran olvidado</h3>
-    <p>No todas las horas que trabajas son horas que puedes cobrar. Las reuniones de captación de clientes, la gestión administrativa, la formación, el marketing y las propuestas que no se convierten en proyectos consumen entre el 20% y el 40% de tu tiempo. Si trabajas 40 horas semanales, puede que solo puedas facturar 25-30.</p>
+    <p>No todas las horas trabajadas pueden cobrarse: administración, captación, presupuestos y formación consumen capacidad. Introduce tu propio porcentaje; la herramienta no aplica una media sectorial.</p>
 
-    <h3>Tarifas orientativas por sector en España 2026</h3>
-    <p>Los diseñadores gráficos y UX suelen cobrar entre 35 y 80 €/hora. Los desarrolladores web y de software entre 50 y 120 €/hora. Los consultores de marketing digital entre 40 y 90 €/hora. Los redactores y copywriters entre 30 y 70 €/hora. Estas tarifas varían mucho según la experiencia, el tipo de cliente y la especialización.</p>
+    <h3>Retención en factura e IRPF anual</h3>
+    <p>La retención profesional es un pago a cuenta: con carácter general es el 15% y existen supuestos del 7%, pero no determina el impuesto anual definitivo. Por eso la retención solo se refleja en el flujo de cobro y no reduce la tarifa necesaria.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Debo añadir IVA a mi tarifa por hora? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí, si realizas actividades sujetas a IVA debes añadir el IVA correspondiente (normalmente 21%) a tu tarifa. La tarifa que calculas en esta herramienta es el precio sin IVA (base imponible). El IVA lo cobras a tu cliente y lo ingresas trimestralmente a Hacienda — no es un ingreso tuyo.</div>
+      <div class="faq-a">Si la operación está sujeta y no exenta debes repercutir el tipo aplicable. La tarifa calculada es base imponible; el IVA se muestra aparte y no se trata como ingreso disponible.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cómo negocio mi tarifa con un cliente? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Conocer tu tarifa mínima te da poder de negociación. Puedes presentar un precio superior al mínimo para tener margen de negociación, y saber exactamente hasta dónde puedes bajar sin perder dinero. También puedes ofrecer descuentos por volumen (proyectos largos) o por pago anticipado, siempre partiendo de una base que te resulte rentable.</div>
     </div>
     <div class="faq-item">
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿El IRPF estimado es mi declaración anual? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No. Es una hipótesis presupuestaria aplicada al rendimiento antes de IRPF. Otras rentas, reducciones, mínimos y circunstancias personales pueden cambiar el resultado. Usa la calculadora específica de autónomos para una estimación fiscal más detallada.</div>
+    </div>
+    <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Es mejor cobrar por hora o por proyecto? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Depende. Cobrar por hora es más seguro cuando el alcance es incierto. Cobrar por proyecto puede ser más rentable si eres eficiente, ya que si terminas antes ganas más por hora efectiva. Lo ideal es usar la tarifa horaria como base para calcular presupuestos por proyecto, estimando el tiempo necesario y añadiendo un margen de seguridad del 20-30%.</div>
+      <div class="faq-a">Depende. Cobrar por hora es más seguro cuando el alcance es incierto. Cobrar por proyecto puede ser más rentable si eres eficiente. Puedes usar la tarifa horaria como base del presupuesto y añadir el margen de seguridad que corresponda al riesgo real del proyecto.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cuándo debo subir mi tarifa? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Señales de que debes subir tu tarifa: tienes más demanda de la que puedes asumir, llevas más de un año sin subir precios (la inflación erosiona tu poder adquisitivo), has adquirido más experiencia y especialización, o tus clientes nunca negocian el precio (señal de que estás barato). Subidas graduales del 10-20% son más fáciles de aceptar que grandes saltos.</div>
+      <div class="faq-a">Revisa la tarifa cuando cambien tus costes, capacidad facturable, experiencia, especialización o demanda. La calculadora muestra el suelo presupuestario; el precio comercial puede ser superior.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/folleto-actividades-economicas/7-otras-obligaciones-fiscales-retenciones.html" rel="noopener noreferrer">retenciones de actividades profesionales (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-130-irpf______esionales-estimacion-directa-fraccionado_/instrucciones.html" rel="noopener noreferrer">modelo 130 (AEAT)</a> y <a href="https://www.seg-social.es/wps/portal/wss/internet/HerramientasWeb/a0f05310-9c20-45ba-9dd2-47c9e88f34c1?changeLanguage=es" rel="noopener noreferrer">regularización anual RETA (Seguridad Social)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -358,73 +386,86 @@ window.addEventListener("load",function(){var c=localStorage.getItem("cookies");
 function fmtE(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
 function fmtH(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/h';}
 
-function calcularTarifa(sueldoDeseadoAnual, gastosAnuales, tipoIrpf, pctImprevistos, horasFacturables) {
-  const base = sueldoDeseadoAnual + gastosAnuales;
-  const conIrpf = base / (1 - tipoIrpf / 100);
-  const conImprevistos = conIrpf / (1 - pctImprevistos / 100);
-  return conImprevistos / horasFacturables;
+function toggleAvanzadasFreelance(){
+  const panel=document.getElementById('opciones_avanzadas_freelance'),boton=document.getElementById('toggle_avanzadas_freelance');
+  const abierto=panel.classList.toggle('open');boton.setAttribute('aria-expanded',String(abierto));boton.textContent=`Opciones avanzadas ${abierto?'▲':'▼'}`;
+}
+
+function calcularPresupuestoFreelance(datos) {
+  const semanasTrabajo=Math.max(0,52-Math.min(52,Math.max(0,datos.semanasVacaciones||0)));
+  const horasDia=Math.max(0,datos.horasSemanales)/5;
+  const horasDisponibles=Math.max(0,semanasTrabajo*Math.max(0,datos.horasSemanales)-Math.max(0,datos.diasNoTrabajados)*horasDia);
+  const horasCalculadas=horasDisponibles*Math.min(100,Math.max(0,datos.pctFacturable))/100;
+  const usaHorasConocidas=datos.horasAnualesConocidas>0;
+  const horasFacturables=usaHorasConocidas?datos.horasAnualesConocidas:horasCalculadas;
+  const retaConocida=typeof datos.retaAnualConocida==='number'&&Number.isFinite(datos.retaAnualConocida);
+  const retaAnual=retaConocida?Math.max(0,datos.retaAnualConocida):Math.max(0,datos.cuotaRetaMensual)*12;
+  const gastosAnuales=(Math.max(0,datos.gastosMensualesSinReta)*12)+retaAnual+Math.max(0,datos.gastosAnualesExtra);
+  const sueldoNetoAnual=Math.max(0,datos.sueldoNetoMensual)*12;
+  const tipoIrpf=Math.min(99,Math.max(0,datos.tipoIrpf))/100;
+  const rendimientoAntesIrpf=tipoIrpf<1?sueldoNetoAnual/(1-tipoIrpf):0;
+  const irpfEstimado=Math.max(0,rendimientoAntesIrpf-sueldoNetoAnual);
+  const facturacionMinima=rendimientoAntesIrpf+gastosAnuales;
+  const margen=facturacionMinima*Math.max(0,datos.pctMargen)/100;
+  const facturacionObjetivo=facturacionMinima+margen;
+  const tarifaMinima=horasFacturables>0?facturacionMinima/horasFacturables:0;
+  const tarifaObjetivo=horasFacturables>0?facturacionObjetivo/horasFacturables:0;
+  const iva=facturacionObjetivo*Math.max(0,datos.tipoIva)/100;
+  const retenciones=facturacionObjetivo*Math.max(0,datos.retencionFactura)/100*Math.min(100,Math.max(0,datos.pctSujetoRetencion))/100;
+  return {semanasTrabajo,horasDisponibles,horasFacturables,horasNoFacturables:Math.max(0,horasDisponibles-horasFacturables),usaHorasConocidas,retaAnual,gastosAnuales,sueldoNetoAnual,rendimientoAntesIrpf,irpfEstimado,facturacionMinima,margen,facturacionObjetivo,tarifaMinima,tarifaObjetivo,iva,retenciones,cobros:facturacionObjetivo+iva-retenciones};
 }
 
 function calcular() {
   const sueldoMensual = parseFloat(document.getElementById('sueldo_deseado').value) || 0;
-  const semanasVac = parseFloat(document.getElementById('semanas_vacaciones').value) || 4;
-  const horasFact = parseFloat(document.getElementById('horas_facturables').value) || 30;
-  const pctNoFact = parseFloat(document.getElementById('pct_no_facturable').value) || 20;
+  const semanasVac = parseFloat(document.getElementById('semanas_vacaciones').value) || 0;
+  const horasSemanales = parseFloat(document.getElementById('horas_semanales').value) || 0;
+  const pctFacturable = parseFloat(document.getElementById('pct_facturable').value) || 0;
   const cuotaReta = parseFloat(document.getElementById('cuota_reta').value) || 0;
   const gestoria = parseFloat(document.getElementById('gestoria').value) || 0;
   const software = parseFloat(document.getElementById('software').value) || 0;
   const formacion = parseFloat(document.getElementById('formacion').value) || 0;
   const seguros = parseFloat(document.getElementById('seguros').value) || 0;
   const otrosGastos = parseFloat(document.getElementById('otros_gastos').value) || 0;
-  const tipoIrpf = parseFloat(document.getElementById('tipo_irpf').value) || 20;
-  const pctImprevistos = parseFloat(document.getElementById('pct_imprevistos').value) || 10;
-
-  const semanasAnio = 52 - semanasVac;
-  const horasBrutas = horasFact * semanasAnio;
-  const horasNoFact = horasBrutas * pctNoFact / 100;
-  const horasReales = horasBrutas - horasNoFact;
-
-  const sueldoAnual = sueldoMensual * 12;
-  const gastosMes = cuotaReta + gestoria + software + formacion + seguros + otrosGastos;
-  const gastosAnuales = gastosMes * 12;
-
-  // Facturación necesaria: sueldo + gastos + irpf + imprevistos
-  const base = sueldoAnual + gastosAnuales;
-  const conIrpf = base / (1 - tipoIrpf / 100);
-  const facturacionNecesaria = conIrpf / (1 - pctImprevistos / 100);
-  const irpfEstimado = conIrpf * tipoIrpf / 100;
-  const imprevistos = facturacionNecesaria - conIrpf;
-
-  const tarifaHora = horasReales > 0 ? facturacionNecesaria / horasReales : 0;
-  const tarifaDia = tarifaHora * 8;
-  const tarifaSemana = tarifaHora * horasFact;
-  const tarifaMes = facturacionNecesaria / 12;
+  const tipoIrpf = parseFloat(document.getElementById('tipo_irpf').value) || 0;
+  const pctImprevistos = parseFloat(document.getElementById('pct_imprevistos').value) || 0;
+  const valorRetaAnual=document.getElementById('reta_anual_conocida').value;
+  const resultado=calcularPresupuestoFreelance({sueldoNetoMensual:sueldoMensual,semanasVacaciones:semanasVac,horasSemanales,pctFacturable,cuotaRetaMensual:cuotaReta,
+    gastosMensualesSinReta:gestoria+software+formacion+seguros+otrosGastos,tipoIrpf,pctMargen:pctImprevistos,diasNoTrabajados:parseFloat(document.getElementById('dias_no_trabajados').value)||0,
+    horasAnualesConocidas:parseFloat(document.getElementById('horas_anuales_conocidas').value)||0,retaAnualConocida:valorRetaAnual===''?null:(parseFloat(valorRetaAnual)||0),
+    gastosAnualesExtra:parseFloat(document.getElementById('gastos_anuales_extra').value)||0,tipoIva:parseFloat(document.getElementById('tipo_iva_factura').value)||0,
+    retencionFactura:parseFloat(document.getElementById('retencion_factura').value)||0,pctSujetoRetencion:parseFloat(document.getElementById('pct_sujeto_retencion').value)||0});
+  const horasSemanaFacturables=resultado.semanasTrabajo>0?resultado.horasFacturables/resultado.semanasTrabajo:0;
 
   // Render principal
-  document.getElementById('rh_precio').textContent = fmtH(tarifaHora).replace(' €/h','');
-  document.getElementById('rh_sub').textContent = fmtH(tarifaHora) + ' antes de IVA';
-  document.getElementById('rh_dia').textContent = fmtE(tarifaDia);
-  document.getElementById('rh_semana').textContent = fmtE(tarifaSemana);
-  document.getElementById('rh_mes').textContent = fmtE(tarifaMes);
+  document.getElementById('rh_precio').textContent = fmtH(resultado.tarifaObjetivo).replace(' €/h','');
+  document.getElementById('rh_sub').textContent = fmtH(resultado.tarifaObjetivo) + ' de base, antes de IVA';
+  document.getElementById('rh_minima').textContent = fmtH(resultado.tarifaMinima);
+  document.getElementById('rh_semana').textContent = fmtE(resultado.tarifaObjetivo*horasSemanaFacturables);
+  document.getElementById('rh_mes').textContent = fmtE(resultado.facturacionObjetivo/12);
 
   // Desglose tiempo
-  document.getElementById('d_semanas_trabajo').textContent = semanasAnio + ' semanas';
-  document.getElementById('d_horas_brutas').textContent = horasBrutas.toFixed(0) + ' horas';
-  document.getElementById('d_no_facturable').textContent = horasNoFact.toFixed(0) + ' horas (' + pctNoFact + '%)';
-  document.getElementById('d_horas_reales').textContent = horasReales.toFixed(0) + ' horas';
+  document.getElementById('d_semanas_trabajo').textContent = resultado.semanasTrabajo + ' semanas';
+  document.getElementById('d_horas_brutas').textContent = resultado.horasDisponibles.toFixed(0) + ' horas';
+  document.getElementById('d_no_facturable').textContent = resultado.horasNoFacturables.toFixed(0) + ' horas' + (resultado.usaHorasConocidas?' (diferencia)':' (' + (100-pctFacturable) + '%)');
+  document.getElementById('d_horas_reales').textContent = resultado.horasFacturables.toFixed(0) + ' horas' + (resultado.usaHorasConocidas?' (dato conocido)':'');
 
   // Desglose dinero
-  document.getElementById('d_sueldo_anual').textContent = fmtE(sueldoAnual);
-  document.getElementById('d_gastos_anuales').textContent = fmtE(gastosAnuales);
-  document.getElementById('d_irpf_estimado').textContent = fmtE(irpfEstimado);
-  document.getElementById('d_imprevistos').textContent = fmtE(imprevistos);
-  document.getElementById('d_facturacion_minima').textContent = fmtE(facturacionNecesaria);
+  document.getElementById('d_sueldo_anual').textContent = fmtE(resultado.sueldoNetoAnual);
+  document.getElementById('d_gastos_anuales').textContent = fmtE(resultado.gastosAnuales);
+  document.getElementById('d_irpf_estimado').textContent = fmtE(resultado.irpfEstimado);
+  document.getElementById('d_imprevistos').textContent = fmtE(resultado.margen);
+  document.getElementById('d_facturacion_minima').textContent = fmtE(resultado.facturacionMinima);
+  document.getElementById('d_facturacion_objetivo').textContent = fmtE(resultado.facturacionObjetivo);
+  document.getElementById('d_base_facturada').textContent = fmtE(resultado.facturacionObjetivo);
+  document.getElementById('d_iva_facturado').textContent = fmtE(resultado.iva);
+  document.getElementById('d_retenciones').textContent = fmtE(resultado.retenciones);
+  document.getElementById('d_cobros').textContent = fmtE(resultado.cobros);
 
   // Barra
-  const pS = facturacionNecesaria > 0 ? sueldoAnual / facturacionNecesaria * 100 : 0;
-  const pG = facturacionNecesaria > 0 ? gastosAnuales / facturacionNecesaria * 100 : 0;
-  const pI = facturacionNecesaria > 0 ? irpfEstimado / facturacionNecesaria * 100 : 0;
-  const pIm = facturacionNecesaria > 0 ? imprevistos / facturacionNecesaria * 100 : 0;
+  const pS = resultado.facturacionObjetivo > 0 ? resultado.sueldoNetoAnual / resultado.facturacionObjetivo * 100 : 0;
+  const pG = resultado.facturacionObjetivo > 0 ? resultado.gastosAnuales / resultado.facturacionObjetivo * 100 : 0;
+  const pI = resultado.facturacionObjetivo > 0 ? resultado.irpfEstimado / resultado.facturacionObjetivo * 100 : 0;
+  const pIm = resultado.facturacionObjetivo > 0 ? resultado.margen / resultado.facturacionObjetivo * 100 : 0;
   document.getElementById('seg_sueldo').style.width = pS.toFixed(1) + '%';
   document.getElementById('seg_sueldo').textContent = pS > 8 ? Math.round(pS) + '%' : '';
   document.getElementById('seg_gastos').style.width = pG.toFixed(1) + '%';
@@ -438,20 +479,19 @@ function calcular() {
   document.getElementById('leg_irpf').textContent = Math.round(pI) + '%';
   document.getElementById('leg_imp').textContent = Math.round(pIm) + '%';
 
-  // Escenarios horas facturables
-  const escenarios = [
-    { label: 'Poco trabajo', horas: Math.max(10, horasFact - 10), tipo: '' },
-    { label: 'Tu escenario actual', horas: horasFact, tipo: 'actual' },
-    { label: 'Máxima carga', horas: Math.min(50, horasFact + 10), tipo: '' },
-  ];
+  // Escenarios de capacidad facturable; no alteran el presupuesto anual
+  const escenarios = resultado.usaHorasConocidas?[
+    {label:'Capacidad -20%',horas:resultado.horasFacturables*.8,tipo:''},{label:'Dato anual conocido',horas:resultado.horasFacturables,tipo:'actual'},{label:'Capacidad +20%',horas:resultado.horasFacturables*1.2,tipo:''}
+  ]:[
+    {label:'Menor porcentaje',pct:Math.max(1,pctFacturable-15),tipo:''},{label:'Tu escenario actual',pct:pctFacturable,tipo:'actual'},{label:'Mayor porcentaje',pct:Math.min(100,pctFacturable+15),tipo:''}
+  ].map(e=>({...e,horas:resultado.horasDisponibles*e.pct/100}));
   document.getElementById('esc-grid').innerHTML = escenarios.map(e => {
-    const hR = (e.horas * semanasAnio) * (1 - pctNoFact / 100);
-    const t = hR > 0 ? facturacionNecesaria / hR : 0;
+    const t = e.horas > 0 ? resultado.facturacionObjetivo / e.horas : 0;
     return `<div class="esc-item ${e.tipo}">
       <div class="ei-label">${e.label}</div>
-      <div class="ei-tipo">${e.horas}h facturables/semana</div>
+      <div class="ei-tipo">${e.pct!==undefined?e.pct+'% facturable':e.horas.toFixed(0)+' h/año'}</div>
       <div class="ei-precio">${t.toFixed(0)} €/h</div>
-      <div class="ei-detalle">${hR.toFixed(0)} h reales/año</div>
+      <div class="ei-detalle">${e.horas.toFixed(0)} h facturables/año</div>
     </div>`;
   }).join('');
 }
