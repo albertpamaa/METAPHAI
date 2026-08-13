@@ -7,6 +7,9 @@
   <meta name="description" content="Calcula cuánto cobrarías de paro en España 2026. Introduce tus meses cotizados y salario para saber tu prestación por desempleo, duración y importe mensual.">
   <meta name="keywords" content="calculadora paro españa 2026, calcular prestacion desempleo, cuanto cobro de paro, prestacion por desempleo, SEPE calculadora">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://metaphai.com/calculadora-paro-desempleo-espana/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -83,6 +86,26 @@
     footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
     footer a { color: var(--hint); }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Metaphai",
+      "item": "https://metaphai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculadora de paro",
+      "item": "https://metaphai.com/calculadora-paro-desempleo-espana/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 <header>
@@ -103,7 +126,7 @@
       <div class="field">
         <label>Meses cotizados en los últimos 6 años</label>
         <input type="number" id="meses_cotizados" value="24" min="0" max="72" step="1">
-        <p class="tip">Mínimo 12 meses para tener derecho</p>
+        <p class="tip">Mínimo 12 meses. El SEPE computa días exactos; aquí cada mes se aproxima a 30 días.</p>
       </div>
       <div class="field">
         <label>Base reguladora mensual (€) <span style="font-weight:400;font-size:12px;color:var(--muted)">(importe bruto)</span></label>
@@ -169,7 +192,7 @@
           <div class="rv" id="d_tramo1">—</div>
         </div>
         <div class="res-item">
-          <div class="rl" data-tramo="2">Resto del período (50% base)</div>
+          <div class="rl" data-tramo="2">Resto del período (60% base)</div>
           <div class="rv" id="d_tramo2">—</div>
         </div>
         <div class="res-item">
@@ -225,51 +248,64 @@
         <tr><td>De 30 a 35 meses</td><td>10 meses</td></tr>
         <tr><td>De 36 a 41 meses</td><td>12 meses</td></tr>
         <tr><td>De 42 a 47 meses</td><td>14 meses</td></tr>
-        <tr><td>48 meses o más</td><td>24 meses (máximo)</td></tr>
+        <tr><td>De 48 a 53 meses</td><td>16 meses</td></tr>
+        <tr><td>De 54 a 59 meses</td><td>18 meses</td></tr>
+        <tr><td>De 60 a 65 meses</td><td>20 meses</td></tr>
+        <tr><td>De 66 a 71 meses</td><td>22 meses</td></tr>
+        <tr><td>72 meses</td><td>24 meses (máximo)</td></tr>
       </tbody>
     </table>
 
     <h3>¿Cuánto dinero cobro cada mes?</h3>
-    <p>Los primeros 180 días (6 meses) cobras el 70% de tu base reguladora. A partir del día 181 cobras el 50%. La base reguladora es la media de tus bases de cotización de los últimos 180 días trabajados.</p>
+    <p>Los primeros 180 días cobras el 70% de tu base reguladora. A partir del día 181 cobras el 60%. La base reguladora es la media de tus bases de cotización por desempleo de los últimos 180 días trabajados, sin incluir la retribución por horas extraordinarias. Los importes mostrados son brutos, antes de la cotización a la Seguridad Social y, cuando corresponda, IRPF.</p>
+
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.sepe.es/HomeSepe/prestaciones-desempleo/duracion-prestacion-contributiva.html" rel="noopener noreferrer">duración de la prestación (SEPE)</a> y <a href="https://www.sepe.es/HomeSepe/prestaciones-desempleo/Cuantias-anuales.html" rel="noopener noreferrer">cuantías mínimas y máximas 2026 (SEPE)</a>.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿La baja voluntaria da derecho al paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿La baja voluntaria da derecho al paro? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">No. La baja voluntaria no da derecho a la prestación contributiva por desempleo. Solo se puede acceder si el cese es involuntario (despido, fin de contrato, ERE, etc.) o por causas objetivas reconocidas.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Qué es la base reguladora? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué es la base reguladora? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Es la media de tus bases de cotización por desempleo de los últimos 180 días trabajados. Es un importe bruto — aparece en tu nómina (no es tu salario neto) o puedes consultarla en tu informe de vida laboral en la Seguridad Social (sede.seg-social.gob.es). Suele ser similar a tu salario bruto mensual, pero puede diferir si has tenido pagas extras, horas extra o complementos.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay un mínimo y un máximo de paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Hay un mínimo y un máximo de paro? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Sí. El importe mínimo en 2026 es 560 € sin hijos y 749 € con uno o más hijos. El máximo es de 1.225 € sin hijos, 1.400 € con un hijo y 1.575 € con dos o más hijos. Estas cifras se calculan en función del IPREM (600 €/mes en 2026) y se actualizan cada año.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tengo para solicitar el paro? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cuánto tiempo tengo para solicitar el paro? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Tienes 15 días hábiles desde la fecha del cese para solicitar la prestación sin perder días. Si lo solicitas fuera de ese plazo, perderás los días de retraso.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El paro cotiza para la jubilación? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿El paro cotiza para la jubilación? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Sí. Durante la prestación contributiva, el SEPE cotiza por ti a la Seguridad Social por contingencias comunes, lo que computa para tu futura jubilación.</div>
     </div>
   </div>
+
+  <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
+    <h2 id="relacionadas-titulo" style="font-size:18px;margin-bottom:.65rem;">Calculadoras relacionadas</h2>
+    <p style="font-size:14px;line-height:1.8;margin:0;"><a href="/calculadora-finiquito-espana/">Calculadora de finiquito</a> · <a href="/calculadora-salario-neto-espana/">Calculadora de salario neto</a> · <a href="/calculadora-jubilacion-pension/">Calculadora de jubilación</a></p>
+  </section>
 </main>
 
 <footer>
-  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a></p>
+  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
   <p style="margin-top:6px">Estimación orientativa basada en la normativa SEPE 2026. Consulta siempre con el SEPE para datos exactos.</p>
 </footer>
 
 <script>
 function fmt(n) { return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
 
-// Tabla meses cotizados -> meses prestación
+// Aproximación mensual de la escala oficial SEPE expresada en días.
+// 12, 18, 24... meses equivalen a 360, 540, 720... días cotizados.
 const tablaDuracion = [
-  [12, 4], [18, 6], [24, 8], [30, 10], [36, 12], [42, 14], [48, 24]
+  [12, 4], [18, 6], [24, 8], [30, 10], [36, 12], [42, 14],
+  [48, 16], [54, 18], [60, 20], [66, 22], [72, 24]
 ];
 
-// Topes 2026 (aproximados basados en IPREM)
+// Cuantías oficiales SEPE 2026 (importe bruto mensual).
 const MINIMOS = { 0: 560, 1: 749, 2: 749 };
 const MAXIMOS = { 0: 1225, 1: 1400, 2: 1575 };
 
@@ -306,14 +342,14 @@ function calcular() {
   const tramo2Meses = Math.max(0, duracionMeses - 6);
 
   const bruto70 = base * 0.70;
-  const bruto50 = base * 0.50;
+  const bruto60 = base * 0.60;
   const min = MINIMOS[Math.min(hijos, 2)];
   const max = MAXIMOS[Math.min(hijos, 2)];
 
   const prestacion70 = Math.min(Math.max(bruto70, min), max);
-  const prestacion50 = Math.min(Math.max(bruto50, min), max);
+  const prestacion60 = Math.min(Math.max(bruto60, min), max);
 
-  const totalEstimado = prestacion70 * tramo1Meses + prestacion50 * tramo2Meses;
+  const totalEstimado = prestacion70 * tramo1Meses + prestacion60 * tramo2Meses;
   const mensualMedio = duracionMeses > 0 ? totalEstimado / duracionMeses : 0;
 
   document.getElementById('res_mensual').textContent = fmt(prestacion70);
@@ -321,15 +357,15 @@ function calcular() {
   document.getElementById('res_total').textContent = fmt(totalEstimado);
   document.getElementById('d_base').textContent = fmt(base);
   const capped70 = bruto70 > max;
-  const capped50 = bruto50 > max;
+  const capped60 = bruto60 > max;
   const below70 = bruto70 < min;
-  const below50 = bruto50 < min;
-  const label70 = capped70 ? 'Primeros 6 meses (tope máximo)' : below70 ? 'Primeros 6 meses (mínimo garantizado)' : 'Primeros 6 meses (70% base)';
-  const label50 = capped50 ? 'Resto período (tope máximo)' : below50 ? 'Resto período (mínimo garantizado)' : 'Resto período (50% base)';
+  const below60 = bruto60 < min;
+  const label70 = capped70 ? 'Primeros 6 meses (tope máximo)' : below70 ? 'Primeros 6 meses (mínimo aplicable)' : 'Primeros 6 meses (70% base)';
+  const label60 = capped60 ? 'Desde día 181 (tope máximo)' : below60 ? 'Desde día 181 (mínimo aplicable)' : 'Desde día 181 (60% base)';
   document.querySelector('.rl[data-tramo="1"]').textContent = label70;
-  document.querySelector('.rl[data-tramo="2"]').textContent = label50;
+  document.querySelector('.rl[data-tramo="2"]').textContent = label60;
   document.getElementById('d_tramo1').textContent = fmt(prestacion70) + '/mes';
-  document.getElementById('d_tramo2').textContent = tramo2Meses > 0 ? fmt(prestacion50) + '/mes' : 'No aplica';
+  document.getElementById('d_tramo2').textContent = tramo2Meses > 0 ? fmt(prestacion60) + '/mes' : 'No aplica';
   document.getElementById('d_minimo').textContent = fmt(min);
   document.getElementById('d_maximo').textContent = fmt(max);
   document.getElementById('d_meses').textContent = meses + ' meses';
@@ -349,7 +385,7 @@ calcular();
 
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/cookies.html" style="color:#5dcaa5;">Más información</a></p>
   <div style="display:flex;gap:8px;flex-shrink:0;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>

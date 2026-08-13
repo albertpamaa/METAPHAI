@@ -7,6 +7,9 @@
   <meta name="description" content="Calcula tu salario neto en España 2026 gratis. Incluye IRPF por comunidad autónoma, Seguridad Social, hijos, discapacidad, plan de pensiones y más variables.">
   <meta name="keywords" content="calculadora salario neto españa 2026, calcular sueldo neto, irpf salario, seguridad social trabajador, salario bruto neto">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://metaphai.com/calculadora-salario-neto-espana/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Salario Neto España 2026">
   <meta property="og:description" content="Descubre cuánto cobras realmente. Calcula tu neto con todas las variables: IRPF, SS, hijos, comunidad autónoma y más.">
   <meta property="og:type" content="website">
@@ -345,6 +348,26 @@
     /* ADSENSE PLACEHOLDER */
 
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Metaphai",
+      "item": "https://metaphai.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculadora de salario neto",
+      "item": "https://metaphai.com/calculadora-salario-neto-espana/"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -452,8 +475,8 @@
       <div class="field">
         <label>Tipo de contrato</label>
         <select id="contrato">
-          <option value="indefinido">Indefinido / por obra</option>
-          <option value="temporal">Temporal (desempleo 3,5%)</option>
+          <option value="indefinido">Indefinido / fijo discontinuo</option>
+          <option value="temporal">Duración determinada (desempleo 1,60%)</option>
         </select>
       </div>
       <div class="field">
@@ -508,12 +531,12 @@
         <label>Aportación anual al plan de pensiones (€)</label>
         <input type="number" id="pension_aporte" value="1500" min="0" max="10000" step="100">
       </div>
-      <p class="tip">Límite deducible: 1.500 € anuales o 30% de los rendimientos netos del trabajo.</p>
+      <p class="tip">Puede reducir la tributación final en la Renta, pero no se descuenta automáticamente en esta estimación de retención de nómina.</p>
     </div>
 
     <div class="extra-field" id="extra_segunda">
       <div class="field" style="max-width:260px">
-        <label>Ingresos segunda actividad — bruto anual (€)</label>
+        <label>Segundo empleo por cuenta ajena — bruto anual (€)</label>
         <input type="number" id="segunda_bruto" value="5000" min="0" step="500">
       </div>
     </div>
@@ -538,7 +561,7 @@
         <div class="rv" id="d_bruto">—</div>
       </div>
       <div class="res-item neg">
-        <div class="rl">IRPF retenido</div>
+        <div class="rl">IRPF estimado</div>
         <div class="rv" id="d_irpf">—</div>
       </div>
       <div class="res-item neg">
@@ -554,7 +577,7 @@
         <div class="rv" id="d_marginal">—</div>
       </div>
       <div class="res-item">
-        <div class="rl">Base imponible</div>
+        <div class="rl">Base para retención</div>
         <div class="rv" id="d_base">—</div>
       </div>
     </div>
@@ -572,6 +595,7 @@
         <div class="legend-item"><div class="legend-dot" style="background:#7a4f1a"></div>SS (<span id="leg_ss">—</span>)</div>
       </div>
     </div>
+    <p id="metodologia_aviso" class="tip" style="padding:12px 16px;margin:0;border-top:1px solid var(--border);line-height:1.6"></p>
   </div>
 
   <!-- AD SLOT MIDDLE -->
@@ -584,54 +608,61 @@
     <p>La fórmula básica es: <strong>Salario neto = Bruto – Cotización SS trabajador – Retención IRPF</strong></p>
 
     <h3>¿Qué es la retención del IRPF?</h3>
-    <p>El IRPF es un impuesto progresivo: cuanto más ganas, mayor porcentaje pagas. En España se comparte entre el Estado y tu comunidad autónoma, por eso los tipos varían según dónde vivas. Los tramos estatales van del 19% al 47% sobre la base liquidable, que se calcula restando el mínimo personal y familiar a tu base imponible.</p>
+    <p>La calculadora estima la retención de nómina mediante la escala y el procedimiento general de retenciones de la Agencia Tributaria para 2026. El mínimo personal y familiar no se resta directamente de la base: se calcula la cuota sobre la base de retención y se minora con la cuota correspondiente al mínimo, como establece el algoritmo oficial.</p>
 
     <h3>¿Qué cotiza el trabajador a la Seguridad Social?</h3>
-    <p>Como empleado por cuenta ajena pagas un 6,35% de tu salario bruto a la Seguridad Social: 4,70% por contingencias comunes, 1,55% por desempleo (3,5% en contratos temporales) y 0,10% por formación profesional.</p>
+    <p>En el régimen general, el trabajador aporta en 2026 un 4,70% por contingencias comunes, un 1,55% por desempleo con contratación indefinida o un 1,60% con contratación de duración determinada, un 0,10% por formación profesional y un 0,15% por el mecanismo de equidad intergeneracional (MEI). Sobre la retribución que supera la base máxima mensual se añade, cuando corresponde, la cotización de solidaridad.</p>
 
     <h3>¿Influye la comunidad autónoma en mi neto?</h3>
-    <p>Sí. La parte autonómica del IRPF varía entre regiones. Madrid aplica tipos más bajos que Cataluña o Asturias, por ejemplo. La diferencia puede suponer varios cientos de euros al año con el mismo salario bruto.</p>
+    <p>La comunidad autónoma influye en la liquidación anual del IRPF, pero la retención ordinaria de nómina se calcula con el algoritmo general de retenciones de la AEAT y no aplicando directamente una escala autonómica. Por eso el selector se conserva como dato informativo y no altera esta estimación. Navarra y País Vasco tienen normativa foral propia y deben comprobarse con su hacienda competente.</p>
 
     <h3>¿Qué deducciones puedo aplicar?</h3>
-    <p>Las principales reducciones son el mínimo personal (5.550 €), el mínimo por descendientes (hijos), la reducción por rendimientos del trabajo (varía según el nivel salarial), y las aportaciones a planes de pensiones (hasta 1.500 € anuales deducibles desde 2023).</p>
+    <p>Se aplican el mínimo personal, los mínimos básicos por descendientes, el mínimo por discapacidad del trabajador, los gastos deducibles generales y la reducción por obtención de rendimientos del trabajo. Sin la edad de los hijos, custodia compartida, ascendientes, pensiones judiciales u otros datos del modelo 145, el resultado solo puede ser orientativo.</p>
+
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/Retenciones.shtml" rel="noopener noreferrer">algoritmo de retenciones IRPF 2026 (AEAT)</a> y <a href="https://www.boe.es/eli/es/o/2026/03/30/pjc297/dof/spa" rel="noopener noreferrer">cotizaciones sociales 2026 (BOE)</a>.</p>
 
     <!-- FAQ -->
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿La calculadora es válida para 2026? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí. Los tramos y tipos utilizados corresponden a la normativa del IRPF vigente en 2026, incluyendo los tipos autonómicos de las 17 comunidades autónomas.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿La calculadora es válida para 2026? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Las cotizaciones y la escala general de retención están actualizadas a 2026. Es una estimación: el cálculo exacto de la empresa necesita todos los datos económicos, personales y de regularización comunicados mediante el modelo 145. Navarra y País Vasco requieren además comprobar su normativa foral.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Por qué el resultado puede diferir de mi nómina? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Esta calculadora ofrece una estimación orientativa. Tu empresa calcula la retención exacta según tu situación al inicio del año, pudiendo ajustarla a lo largo del ejercicio. Situaciones como cambios de empleo a mitad de año, rentas del capital o deducciones autonómicas específicas pueden generar diferencias.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Por qué el resultado puede diferir de mi nómina? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Esta calculadora ofrece una estimación orientativa. Tu empresa calcula y regulariza la retención con datos que aquí no se solicitan: edad y discapacidad de descendientes o ascendientes, custodia compartida, pensiones judiciales, retribuciones ya satisfechas y retenciones anteriores, entre otros. Con dos pagadores, cada empresa puede practicar una retención distinta.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Cómo afectan los hijos al salario neto? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Los hijos reducen la base imponible del IRPF mediante el mínimo por descendientes: 2.400 € por el primero, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes. A mayor mínimo, menor impuesto y mayor neto.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Cómo afectan los hijos al salario neto? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">Los hijos generan un mínimo por descendientes de 2.400 € por el primero, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes. La calculadora presupone derecho íntegro al mínimo básico; no puede aplicar el incremento por menores de tres años ni repartirlo por custodia compartida porque no solicita esos datos.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Qué diferencia hay entre 12 y 14 pagas? <span class="faq-arrow">▼</span></div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Qué diferencia hay entre 12 y 14 pagas? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Con 14 pagas, dos de ellas son las pagas extra (normalmente en verano y Navidad). El salario neto anual total es el mismo; solo cambia cómo se distribuye. Con 12 pagas las extras están prorrateadas mensualmente.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">¿Puedo usarla si soy autónomo? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Parcialmente. Activa el botón "Autónomo (RETA)" para añadir la cuota mensual aproximada. Sin embargo, los autónomos tributan de forma distinta (estimación directa o módulos) y tienen deducciones específicas no contempladas en esta calculadora.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Puedo usarla si soy autónomo? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">No para calcular la actividad autónoma. El botón únicamente muestra la advertencia correspondiente: sin rendimientos netos, base RETA y régimen fiscal no es posible incorporar esa actividad sin inventar datos.</div>
     </div>
   </div>
 
   <!-- AD SLOT BOTTOM -->
   
 
+
+  <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
+    <h2 id="relacionadas-titulo" style="font-size:18px;margin-bottom:.65rem;">Calculadoras relacionadas</h2>
+    <p style="font-size:14px;line-height:1.8;margin:0;"><a href="/calculadora-horas-extra/">Calculadora de horas extra</a> · <a href="/calculadora-finiquito-espana/">Calculadora de finiquito</a> · <a href="/calculadora-paro-desempleo-espana/">Calculadora de paro</a></p>
+  </section>
 </main>
 
 <footer>
   <p>© 2026 Metaphai · Estimación orientativa basada en la normativa IRPF 2026 · No constituye asesoramiento fiscal</p>
-  <p style="margin-top:6px"><a href="/sobre-nosotros.html" style="color:var(--hint)">Sobre nosotros</a> · <a href="/contacto.html" style="color:var(--hint)">Contacto</a> · <a href="/privacidad.html" style="color:var(--hint)">Política de privacidad</a></p>
+  <p style="margin-top:6px"><a href="/sobre-nosotros.html" style="color:var(--hint)">Sobre nosotros</a> · <a href="/contacto.html" style="color:var(--hint)">Contacto</a> · <a href="/privacidad.html" style="color:var(--hint)">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
 </footer>
 
 <script>
@@ -649,59 +680,88 @@ function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
 
-const TRAMOS = [
-  { hasta: 12450 }, { hasta: 20200 }, { hasta: 35200 },
-  { hasta: 60000 }, { hasta: 300000 }, { hasta: 1000000 }, { hasta: Infinity }
+// Escala general del algoritmo de retenciones AEAT 2026 (tabla 2).
+const ESCALA_RETENCION = [
+  { hasta: 12450, tipo: 0.19 }, { hasta: 20200, tipo: 0.24 },
+  { hasta: 35200, tipo: 0.30 }, { hasta: 60000, tipo: 0.37 },
+  { hasta: 300000, tipo: 0.45 }, { hasta: Infinity, tipo: 0.47 }
 ];
 
-const TIPOS_ESTATAL = [0.095, 0.12, 0.15, 0.185, 0.225, 0.245, 0.27];
+const BASE_MAX_MENSUAL_2026 = 5101.20;
+const MEI_TRABAJADOR_2026 = 0.15;
 
+function truncar2(n) { return Math.floor(Math.max(0, n) * 100) / 100; }
 
-const TIPOS_AUTON = [
-  [0.095,0.12,0.14,0.17,0.185,0.235],
-  [0.10,0.13,0.15,0.17,0.19,0.21],
-  [0.10,0.12,0.14,0.18,0.195,0.21],
-  [0.09,0.115,0.155,0.185,0.20,0.22],
-  [0.085,0.105,0.125,0.165,0.185,0.20],
-  [0.09,0.115,0.14,0.175,0.185,0.215],
-  [0.095,0.12,0.14,0.175,0.185,0.215],
-  [0.09,0.12,0.14,0.17,0.185,0.215],
-  [0.105,0.12,0.14,0.175,0.21,0.235],
-  [0.085,0.105,0.14,0.175,0.195,0.215],
-  [0.09,0.12,0.14,0.175,0.185,0.215],
-  [0.09,0.11,0.13,0.17,0.185,0.21],
-  [0.095,0.12,0.14,0.175,0.185,0.215],
-  [0.08,0.11,0.14,0.17,0.20,0.22],
-  [0.07,0.10,0.12,0.16,0.18,0.19],
-  [0.08,0.10,0.13,0.16,0.18,0.205],
-  [0.095,0.12,0.14,0.175,0.185,0.22]
-];
-
-function calcIRPF(base, ccaa) {
-  let cuota = 0, ant = 0, marginal = 0;
-  for (let i = 0; i < TRAMOS.length; i++) {
-    if (base <= ant) break;
-    const tramo = Math.min(base, TRAMOS[i].hasta) - ant;
-    const tipo = TIPOS_ESTATAL[i] + TIPOS_AUTON[ccaa][Math.min(i, 5)];
-    cuota += tramo * tipo;
-    marginal = tipo * 100;
-    ant = TRAMOS[i].hasta;
+function escalaRetencion(base) {
+  let cuota = 0, anterior = 0, marginal = 0;
+  for (const tramo of ESCALA_RETENCION) {
+    if (base <= anterior) break;
+    const importe = Math.min(base, tramo.hasta) - anterior;
+    cuota += importe * tramo.tipo;
+    marginal = tramo.tipo * 100;
+    anterior = tramo.hasta;
   }
   return { cuota, marginal };
 }
 
-function minimos(bruto, hijos, estado, edad, discap, movilidad) {
-  let mp = 5550;
-  if (edad === '65_75') mp += 1150;
-  if (edad === 'mayor75') mp += 2550;
-  const mhijos = [0, 2400, 5100, 9100, 13600];
-  let mc = estado === 'casado' ? 3400 : 0;
-  let md = discap === '33' ? 3000 : discap === '65' ? 9000 : 0;
-  let rend = 0;
-  if (bruto <= 13115) rend = 5565;
-  else if (bruto <= 16825) rend = Math.max(0, 5565 - 1.5 * (bruto - 13115));
-  if (movilidad) rend += 2000;
-  return mp + (mhijos[Math.min(hijos,4)] || 0) + mc + md + rend;
+function reduccionRendimientosTrabajo(rnt) {
+  if (rnt <= 14852) return 7302;
+  if (rnt <= 17673.52) return 7302 - 1.75 * (rnt - 14852);
+  if (rnt < 19747.50) return Math.max(0, 2364.34 - 1.14 * (rnt - 17673.52));
+  return 0;
+}
+
+function minimoPersonalFamiliar(hijos, edad, discap) {
+  let minimo = 5550;
+  if (edad === '65_75') minimo += 1150;
+  if (edad === 'mayor75') minimo += 2550;
+  const minimosHijos = [0, 2400, 5100, 9100, 13600];
+  minimo += minimosHijos[Math.min(hijos, 4)] || 0;
+  if (discap === '33') minimo += 3000;
+  if (discap === '65') minimo += 9000;
+  return minimo;
+}
+
+function situacionFamiliarRetencion(estado) {
+  // Situación 2: casado/a con cónyuge que obtiene como máximo 1.500 € anuales.
+  // Los demás casos se tratan prudentemente como situación 3 al faltar datos de custodia.
+  return estado === 'casado' ? 2 : 3;
+}
+
+function limiteExentoRetencion(situacion, hijos) {
+  const n = Math.min(hijos, 2);
+  if (situacion === 2) return [17197, 18130, 19262][n];
+  return [15876, 16342, 16867][n];
+}
+
+function cotizacionSolidaridadAnual(brutoAnual) {
+  const mensual = brutoAnual / 12;
+  const tramo1 = Math.max(0, Math.min(mensual, 5611.32) - 5101.20) * 0.0019;
+  const tramo2 = Math.max(0, Math.min(mensual, 7651.80) - 5611.32) * 0.0021;
+  const tramo3 = Math.max(0, mensual - 7651.80) * 0.0024;
+  return (tramo1 + tramo2 + tramo3) * 12;
+}
+
+function estimarRetencion2026(retribuciones, cotizaciones, hijos, estado, edad, discap, movilidad) {
+  const rnt = Math.max(0, retribuciones - cotizaciones);
+  const gastoDiscapacidad = discap === '65' ? 7750 : discap === '33' ? 3500 : 0;
+  const otrosGastos = Math.min(Math.max(0, retribuciones - cotizaciones), 2000 + (movilidad ? 2000 : 0) + gastoDiscapacidad);
+  const reduccionTrabajo = reduccionRendimientosTrabajo(rnt);
+  const reduccionMasDosHijos = hijos > 2 ? 600 : 0;
+  const base = Math.max(0, rnt - otrosGastos - reduccionTrabajo - reduccionMasDosHijos);
+  const minimo = minimoPersonalFamiliar(hijos, edad, discap);
+  const situacion = situacionFamiliarRetencion(estado);
+  const exento = limiteExentoRetencion(situacion, hijos);
+  const cuotaBase = escalaRetencion(base);
+  let cuota = Math.max(0, cuotaBase.cuota - escalaRetencion(minimo).cuota);
+
+  if (retribuciones <= exento) cuota = 0;
+  if (retribuciones <= 35200) {
+    cuota = Math.min(cuota, Math.max(0, (retribuciones - exento) * 0.43));
+  }
+
+  const tipo = retribuciones > 0 ? truncar2(cuota / retribuciones * 100) : 0;
+  return { importe: retribuciones * tipo / 100, tipo, marginal: cuotaBase.marginal, base };
 }
 
 function fmt(n) {
@@ -720,39 +780,43 @@ function calcular() {
   const erte = parseInt(document.getElementById('erte').value);
 
   const ss_cc = parseFloat(document.getElementById('ss_cc').value) || 4.7;
-  const ss_des = contrato === 'temporal' ? 3.5 : (parseFloat(document.getElementById('ss_desempleo').value) || 1.55);
-  if (contrato === 'temporal') document.getElementById('ss_desempleo').value = '3.50';
+  const desempleoInput = document.getElementById('ss_desempleo');
+  const contextoDesempleo = contrato + '-' + discap;
+  const desempleoPredeterminado = contrato === 'temporal' && discap === '0' ? 1.60 : 1.55;
+  if (desempleoInput.dataset.contexto !== contextoDesempleo) {
+    desempleoInput.value = desempleoPredeterminado.toFixed(2);
+    desempleoInput.dataset.contexto = contextoDesempleo;
+  }
+  const ss_des = parseFloat(desempleoInput.value) || desempleoPredeterminado;
   const ss_fp = parseFloat(document.getElementById('ss_fp').value) || 0.10;
 
   if (erte > 0) bruto = bruto * (1 - erte / 100);
 
   const bruto2 = extras.segunda ? (parseFloat(document.getElementById('segunda_bruto').value) || 0) : 0;
   const brutoTotal = bruto + bruto2;
-  const totalSS = (ss_cc + ss_des + ss_fp) / 100;
-  const cuotaSS = bruto * totalSS;
-  const pension = extras.pension ? Math.min(parseFloat(document.getElementById('pension_aporte').value) || 0, 1500, brutoTotal * 0.3) : 0;
-  const autonomo = extras.autonomo ? 294 * 12 : 0;
-
-  const baseImponible = Math.max(0, brutoTotal - cuotaSS - pension);
-  const min = minimos(brutoTotal, hijos, estado, edad, discap, extras.movilidad);
-  const baseIRPF = Math.max(0, baseImponible - min);
-  const { cuota: irpf, marginal } = calcIRPF(baseIRPF, ccaa);
-  const tipoEf = brutoTotal > 0 ? irpf / brutoTotal * 100 : 0;
-  const neto = bruto - irpf - cuotaSS - autonomo;
+  const baseCotizacion = Math.min(brutoTotal, BASE_MAX_MENSUAL_2026 * 12);
+  const cuotaOrdinariaSS = baseCotizacion * (ss_cc + ss_des + ss_fp + MEI_TRABAJADOR_2026) / 100;
+  const cuotaSolidaridad = cotizacionSolidaridadAnual(brutoTotal);
+  const cuotaSS = cuotaOrdinariaSS + cuotaSolidaridad;
+  const retencion = estimarRetencion2026(brutoTotal, cuotaSS, hijos, estado, edad, discap, extras.movilidad);
+  const irpf = retencion.importe;
+  const tipoEf = retencion.tipo;
+  const marginal = retencion.marginal;
+  const neto = brutoTotal - irpf - cuotaSS;
 
   document.getElementById('res_neto_anual').textContent = fmt(neto);
   document.getElementById('res_paga').textContent = fmt(neto / pagas);
   document.getElementById('paga-label').textContent = `Por paga (${pagas} pagas)`;
-  document.getElementById('d_bruto').textContent = fmt(bruto);
+  document.getElementById('d_bruto').textContent = fmt(brutoTotal);
   document.getElementById('d_irpf').textContent = '-' + fmt(irpf);
   document.getElementById('d_ss').textContent = '-' + fmt(cuotaSS);
   document.getElementById('d_tipo_ef').textContent = tipoEf.toFixed(1) + '%';
   document.getElementById('d_marginal').textContent = marginal.toFixed(0) + '%';
-  document.getElementById('d_base').textContent = fmt(baseImponible);
+  document.getElementById('d_base').textContent = fmt(retencion.base);
 
-  const pN = brutoTotal > 0 ? Math.max(0, neto / bruto * 100) : 0;
-  const pI = brutoTotal > 0 ? irpf / bruto * 100 : 0;
-  const pS = brutoTotal > 0 ? cuotaSS / bruto * 100 : 0;
+  const pN = brutoTotal > 0 ? Math.max(0, neto / brutoTotal * 100) : 0;
+  const pI = brutoTotal > 0 ? irpf / brutoTotal * 100 : 0;
+  const pS = brutoTotal > 0 ? cuotaSS / brutoTotal * 100 : 0;
 
   document.getElementById('seg_neto').style.width = pN.toFixed(1) + '%';
   document.getElementById('seg_irpf').style.width = pI.toFixed(1) + '%';
@@ -764,6 +828,18 @@ function calcular() {
   document.getElementById('leg_neto').textContent = Math.round(pN) + '%';
   document.getElementById('leg_irpf').textContent = Math.round(pI) + '%';
   document.getElementById('leg_ss').textContent = Math.round(pS) + '%';
+
+  const avisos = ['Estimación de retención AEAT 2026; la comunidad autónoma no altera esta retención de nómina, aunque sí puede afectar a la Renta anual.'];
+  if (hijos > 0) avisos.push('Se presupone derecho íntegro al mínimo básico por descendientes; faltan edades y posible custodia compartida.');
+  if (contrato === 'temporal') avisos.push('No se aplica el tipo mínimo de retención de contratos inferiores a un año porque la duración no se solicita.');
+  if (extras.segunda) avisos.push('El segundo empleo se agrega como provisión fiscal anual; las retenciones y pagas reales de cada empresa pueden diferir.');
+  if (erte > 0) avisos.push('La reducción ajusta únicamente el salario de empresa; no incorpora la prestación del SEPE.');
+  if (extras.autonomo) avisos.push('La actividad autónoma no se incluye: faltan rendimiento neto, base RETA y régimen fiscal.');
+  if (extras.pension) avisos.push('La aportación al plan no se descuenta de la retención de nómina estimada; puede afectar a la Renta anual.');
+  if (extras.movilidad) avisos.push('Se presupone que se cumplen los requisitos legales de movilidad geográfica.');
+  if (brutoTotal > BASE_MAX_MENSUAL_2026 * 12) avisos.push('La solidaridad se estima repartiendo uniformemente el bruto anual; la nómina real se calcula mes a mes.');
+  if (ccaa === 13 || ccaa === 14) avisos.push('La estimación común de AEAT no sustituye el cálculo de la Hacienda Foral de Navarra o País Vasco.');
+  document.getElementById('metodologia_aviso').textContent = avisos.join(' ');
 }
 
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
@@ -782,7 +858,7 @@ calcular();
 
 <!-- Banner cookies -->
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1916;color:#f7f6f2;padding:1rem 1.5rem;z-index:999;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/privacidad.html" style="color:#5dcaa5;">Más información</a></p>
+  <p style="font-size:13px;margin:0;flex:1;min-width:200px;">Usamos cookies de terceros (Google AdSense, Analytics) para analizar el tráfico y mostrar publicidad. <a href="/cookies.html" style="color:#5dcaa5;">Más información</a></p>
   <div style="display:flex;gap:8px;flex-shrink:0;">
     <button onclick="rechazarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:1px solid #6b6960;border-radius:8px;background:transparent;color:#9e9c94;cursor:pointer;">Rechazar</button>
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
