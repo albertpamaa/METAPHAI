@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador IRPF Declaración de la Renta 2025-2026 | Metaphai</title>
-  <meta name="description" content="Simula tu declaración de la Renta 2025 (ejercicio 2026). Calcula cuánto te devuelve Hacienda o cuánto debes pagar. Incluye todas las deducciones y rendimientos. Gratis y sin registro.">
-  <meta name="keywords" content="simulador renta 2025 2026, cuanto me devuelve hacienda, declaracion renta calculadora, irpf 2026 simulador, borrador renta, resultado declaracion renta">
+  <meta name="description" content="Simula de forma orientativa tu declaración del IRPF del ejercicio 2025, presentada en 2026. Incluye escala estatal y autonómica, ahorro, retenciones y deducciones seleccionadas.">
+  <meta name="keywords" content="simulador renta 2025 campaña 2026, cuanto me devuelve hacienda, declaracion renta calculadora, irpf ejercicio 2025, borrador renta, resultado declaracion renta">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/simulador-declaracion-renta-2025/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Simulador IRPF Declaración de la Renta 2025-2026 | Metaphai">
-  <meta property="og:description" content="Simula tu declaración de la Renta y descubre si Hacienda te devuelve dinero o tienes que pagar. Incluye todas las deducciones.">
+  <meta property="og:description" content="Estimación orientativa de la Renta 2025 con cuota estatal y autonómica, ahorro, retenciones y deducciones seleccionadas.">
   <meta property="og:url" content="https://metaphai.com/simulador-declaracion-renta-2025/">
   <meta property="og:type" content="website">
   
@@ -131,7 +131,7 @@
   <div class="hero">
     <div class="badge">📑 Simulador Renta 2025</div>
     <h1>¿Te devuelve o pagas en la<br><em>declaración de la Renta</em>?</h1>
-    <p>Simula tu declaración del IRPF 2025 y descubre el resultado antes de presentarla. Incluye todas las fuentes de ingresos y deducciones.</p>
+    <p>Estima tu declaración del IRPF del ejercicio 2025 antes de presentarla en 2026. Incluye las rentas y deducciones seleccionadas, con las limitaciones indicadas.</p>
   </div>
 
 
@@ -217,7 +217,7 @@
       <div class="field">
         <label>Cotizaciones SS pagadas (€)</label>
         <input type="number" id="cuota_ss" value="1905" min="0" step="50">
-        <p class="tip">~6,35% del salario bruto</p>
+        <p class="tip">Usa el importe exacto de tu certificado fiscal o nóminas de 2025</p>
       </div>
       <div class="field">
         <label>Número de pagadores</label>
@@ -228,7 +228,7 @@
       </div>
     </div>
     <div id="aviso_pagadores" class="info-box red" style="display:none;margin-top:12px">
-      <p>⚠️ Con 2 o más pagadores, si el segundo pagador supera 1.500 €, el límite para no declarar baja a 12.000 €. Es probable que tengas que declarar y posiblemente pagar.</p>
+      <p>⚠️ En 2025, con varios pagadores el límite general puede ser 15.876 € si el segundo y restantes superan conjuntamente 1.500 €; si no los superan, puede mantenerse en 22.000 €. Este formulario no solicita el importe por pagador y no puede decidirlo por sí solo.</p>
     </div>
   </div>
 
@@ -306,7 +306,7 @@
       <div class="field" style="max-width:280px">
         <label>Donativos a ONGs reconocidas (€)</label>
         <input type="number" id="donativos" value="300" min="0" step="50" oninput="calcular()">
-        <p class="tip">Deducción del 80% hasta 150 €, luego 35% (o 40% si llevas más de 3 años donando)</p>
+        <p class="tip">Deducción general: 80% hasta 250 € y 40% sobre el exceso; el 45% por recurrencia no se estima sin el historial de donaciones</p>
       </div>
     </div>
 
@@ -340,7 +340,7 @@
 
     <div class="extra-field" id="extra_movilidad">
       <div class="info-box green">
-        <p>✅ La movilidad geográfica añade una reducción adicional de 2.000 € sobre los rendimientos del trabajo.</p>
+        <p>✅ La movilidad geográfica puede añadir hasta 2.000 € de gasto deducible adicional sobre los rendimientos del trabajo.</p>
       </div>
     </div>
 
@@ -369,7 +369,7 @@
   <div class="resultado-box" id="resultado-box">
     <div class="resultado-header devolucion" id="resultado-header">
       <div>
-        <div class="resultado-label" id="resultado-label">Hacienda te devuelve</div>
+        <div class="resultado-label" id="resultado-label">Diferencia fiscal estimada</div>
         <div class="resultado-importe" id="resultado-importe">—</div>
       </div>
       <div class="resultado-sub">
@@ -382,13 +382,13 @@
 
     <div class="liquidacion">
       <div class="liq-row"><span class="liq-label">Rendimientos del trabajo</span><span class="liq-val neutral" id="liq_trabajo">—</span></div>
-      <div class="liq-row"><span class="liq-label">Otros rendimientos (autónomo, alquiler, pensión, paro)</span><span class="liq-val neutral" id="liq_otros">—</span></div>
-      <div class="liq-row"><span class="liq-label">Reducción rendimientos del trabajo</span><span class="liq-val neg" id="liq_red_trabajo">—</span></div>
+      <div class="liq-row"><span class="liq-label">Otros rendimientos generales (autónomo y alquiler)</span><span class="liq-val neutral" id="liq_otros">—</span></div>
+      <div class="liq-row"><span class="liq-label">Gastos y reducción de rendimientos del trabajo</span><span class="liq-val neg" id="liq_red_trabajo">—</span></div>
       <div class="liq-row"><span class="liq-label">Aportación plan de pensiones</span><span class="liq-val neg" id="liq_pension_plan">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Base imponible general</span><span class="liq-val neutral" id="liq_base_gral">—</span></div>
-      <div class="liq-row"><span class="liq-label">Mínimo personal y familiar</span><span class="liq-val neg" id="liq_minimo">—</span></div>
+      <div class="liq-row"><span class="liq-label">Mínimo estatal personal y familiar</span><span class="liq-val neg" id="liq_minimo">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Base liquidable general</span><span class="liq-val neutral" id="liq_base_liq">—</span></div>
-      <div class="liq-row"><span class="liq-label">Cuota íntegra (escala general)</span><span class="liq-val neg" id="liq_cuota_integra">—</span></div>
+      <div class="liq-row"><span class="liq-label">Cuota íntegra general (estatal + autonómica)</span><span class="liq-val neg" id="liq_cuota_integra">—</span></div>
       <div class="liq-row"><span class="liq-label">Cuota base ahorro (inversiones)</span><span class="liq-val neg" id="liq_cuota_ahorro">—</span></div>
       <div class="liq-row"><span class="liq-label">Deducción maternidad</span><span class="liq-val pos" id="liq_maternidad">—</span></div>
       <div class="liq-row"><span class="liq-label">Deducción donativos</span><span class="liq-val pos" id="liq_donativos">—</span></div>
@@ -402,14 +402,15 @@
     </div>
 
     <div class="tramos-box">
-      <div class="tramos-title">Tramos escala general aplicados</div>
-      <div class="tramo-row" id="tr1"><span class="tramo-left">Hasta 12.450 € → ~19%</span><span class="tramo-right" id="tr1v">—</span></div>
-      <div class="tramo-row" id="tr2"><span class="tramo-left">12.450 – 20.200 € → ~24%</span><span class="tramo-right" id="tr2v">—</span></div>
-      <div class="tramo-row" id="tr3"><span class="tramo-left">20.200 – 35.200 € → ~30%</span><span class="tramo-right" id="tr3v">—</span></div>
-      <div class="tramo-row" id="tr4"><span class="tramo-left">35.200 – 60.000 € → ~37%</span><span class="tramo-right" id="tr4v">—</span></div>
-      <div class="tramo-row" id="tr5"><span class="tramo-left">60.000 – 300.000 € → ~45%</span><span class="tramo-right" id="tr5v">—</span></div>
-      <div class="tramo-row" id="tr6"><span class="tramo-left">Más de 300.000 € → ~47%</span><span class="tramo-right" id="tr6v">—</span></div>
+      <div class="tramos-title">Composición de la estimación</div>
+      <div class="tramo-row" id="tr1"><span class="tramo-left">Cuota general estatal</span><span class="tramo-right" id="tr1v">—</span></div>
+      <div class="tramo-row" id="tr2"><span class="tramo-left">Cuota general autonómica</span><span class="tramo-right" id="tr2v">—</span></div>
+      <div class="tramo-row" id="tr3"><span class="tramo-left">Cuota del ahorro</span><span class="tramo-right" id="tr3v">—</span></div>
+      <div class="tramo-row" id="tr4"><span class="tramo-left">Deducciones limitadas por cuota</span><span class="tramo-right" id="tr4v">—</span></div>
+      <div class="tramo-row" id="tr5"><span class="tramo-left">Retenciones y pagos a cuenta</span><span class="tramo-right" id="tr5v">—</span></div>
+      <div class="tramo-row" id="tr6"><span class="tramo-left">Deducción por maternidad estimada</span><span class="tramo-right" id="tr6v">—</span></div>
     </div>
+    <p id="metodologia_aviso" class="tip" style="padding:12px 16px;margin:0;border-top:1px solid var(--border);line-height:1.6"></p>
   </div>
 
 
@@ -418,10 +419,12 @@
     <p>La declaración de la Renta o IRPF es el impuesto anual sobre los ingresos de las personas físicas residentes en España. Se presenta entre abril y junio del año siguiente al ejercicio fiscal. Por ejemplo, la Renta 2025 se presenta en primavera de 2026.</p>
 
     <h3>¿Cuándo estoy obligado a declarar?</h3>
-    <p>Debes declarar si tienes rendimientos del trabajo superiores a 22.000 euros anuales con un solo pagador, o superiores a 12.000 euros con dos o más pagadores. También si tienes rendimientos del capital o ganancias patrimoniales superiores a 1.600 euros, o rendimientos de actividades económicas superiores a 1.000 euros.</p>
+    <p>El límite general de rendimientos del trabajo es 22.000 euros. En determinados supuestos, entre ellos varios pagadores cuando el segundo y restantes superan conjuntamente 1.500 euros, el límite es 15.876 euros. Existen además reglas por naturaleza de las rentas, pérdidas, actividad económica y otras circunstancias, por lo que este simulador no determina de forma concluyente la obligación de declarar.</p>
 
     <h3>¿Qué es el mínimo personal y familiar?</h3>
-    <p>El mínimo personal y familiar es una cantidad que reduce la base imponible y sobre la que no se paga impuesto. El mínimo personal general es de 5.550 euros. Se incrementa por edad (1.150 euros más a partir de 65 años), por descendientes (2.400 euros por el primer hijo, 2.700 por el segundo...) y por discapacidad.</p>
+    <p>El mínimo personal y familiar no se resta directamente de la base: la cuota calculada sobre el mínimo reduce las cuotas estatal y autonómica. El mínimo estatal general es de 5.550 euros, con incrementos por edad, descendientes y discapacidad; algunas comunidades aprueban importes autonómicos propios.</p>
+
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/presentacion.html" rel="noopener noreferrer">Manual práctico de Renta 2025 (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c15-calculo-impuesto-determinacion-cuotas-integras/gravamen-base-liquidable-general/gravamen-autonomico.html" rel="noopener noreferrer">escalas autonómicas 2025 (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c01-campana-declaracion-renta/quienes-estan-obligados-presentar-declaracion-irpf.html" rel="noopener noreferrer">obligación de declarar (AEAT)</a> y <a href="https://www.boe.es/eli/es/l/2006/11/28/35/con" rel="noopener noreferrer">Ley del IRPF consolidada (BOE)</a>.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -487,158 +490,195 @@ window.addEventListener("load",function(){
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
 
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
-function fmtS(n){return (n>=0?'+':'')+n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
+
+const extrasActivos=new Set();
 
 function toggleExtra(id){
   const el=document.getElementById('extra_'+id);
   const btn=document.getElementById('btn_'+id);
-  const vis=el.style.display==='block';
-  el.style.display=vis?'none':'block';
-  btn.classList.toggle('active',!vis);
+  const activar=!extrasActivos.has(id);
+  if(activar) extrasActivos.add(id); else extrasActivos.delete(id);
+  el.style.display=activar?'block':'none';
+  btn.classList.toggle('active',activar);
   calcular();
 }
 
-// Tramos escala general IRPF estatal 2026
-function cuotaEscalaGeneral(base){
-  if(base<=0) return 0;
-  const tramos=[{h:12450,t:.095},{h:20200,t:.12},{h:35200,t:.15},{h:60000,t:.185},{h:300000,t:.225},{h:Infinity,t:.245}];
-  let r=base,prev=0,total=0;
-  for(const t of tramos){const en=Math.min(Math.max(0,r),t.h-prev);total+=en*t.t;r-=en;prev=t.h;if(r<=0)break;}
+const ESCALA_ESTATAL=[
+  [12450,.095],[20200,.12],[35200,.15],[60000,.185],[Infinity,.225]
+];
+
+// Escalas autonómicas oficiales del ejercicio 2025. Navarra y País Vasco son forales.
+const ESCALAS_AUTONOMICAS={
+  0:[[13000,.095],[21100,.12],[35200,.15],[60000,.185],[Infinity,.225]],
+  1:[[13072.50,.095],[21210,.12],[36960,.15],[52500,.185],[60000,.205],[80000,.23],[90000,.24],[130000,.25],[Infinity,.255]],
+  2:[[12450,.09],[17707.20,.12],[33007.20,.14],[53407.20,.192],[70000,.215],[90000,.225],[175000,.25],[Infinity,.26]],
+  3:[[10000,.09],[18000,.1125],[30000,.1425],[48000,.175],[70000,.19],[90000,.2175],[120000,.2275],[175000,.2375],[Infinity,.2475]],
+  4:[[13748,.09],[19422,.115],[35924,.14],[57566,.185],[93268,.235],[123745,.25],[Infinity,.26]],
+  5:[[13000,.085],[21000,.11],[35200,.145],[60000,.18],[90000,.225],[Infinity,.245]],
+  6:[[12450,.095],[20200,.12],[35200,.15],[60000,.185],[Infinity,.225]],
+  7:[[12450,.09],[20200,.12],[35200,.14],[53407.20,.185],[Infinity,.215]],
+  8:[[12500,.095],[22000,.125],[33000,.16],[53000,.19],[90000,.215],[120000,.235],[175000,.245],[Infinity,.255]],
+  9:[[12450,.08],[20200,.10],[24200,.16],[35200,.175],[60000,.21],[80200,.235],[99200,.24],[120200,.245],[Infinity,.25]],
+  10:[[12985.35,.09],[21068.60,.1165],[35200,.149],[60000,.184],[Infinity,.225]],
+  11:[[13362.22,.085],[19004.63,.107],[35425.68,.128],[57320.40,.174],[Infinity,.205]],
+  12:[[12450,.095],[20200,.112],[34000,.133],[60000,.179],[Infinity,.225]],
+  15:[[12450,.08],[20200,.106],[35200,.136],[40000,.178],[50000,.183],[60000,.19],[120000,.245],[Infinity,.27]],
+  16:[[12000,.09],[22000,.12],[32000,.15],[42000,.175],[52000,.20],[62000,.225],[72000,.25],[100000,.265],[150000,.275],[200000,.285],[Infinity,.295]]
+};
+
+const MINIMO_ESTATAL={base:5550,edad65:1150,edad75:1400,hijos:[2400,2700,4000,4500],menor3:2800,disc33:3000,disc65:9000,asistencia65:3000};
+const MINIMOS_AUTONOMICOS={
+  0:{base:5790,edad65:1200,edad75:1460,hijos:[2510,2820,4170,4700],menor3:2920,disc33:3130,disc65:9390,asistencia65:3130},
+  2:{base:6105,edad65:1265,edad75:1540,hijos:[2640,2970,4400,4950],menor3:3080,disc33:3300,disc65:9900,asistencia65:3300},
+  3:{base:5550,base65:6105,edad65:1265,edad75:1540,hijos:[2400,2970,4400,4950],menor3:2800,disc33:3300,disc65:9900,asistencia65:3300},
+  4:{base:5606,edad65:1162,edad75:1414,hijos:[2424,2727,4040,4545],menor3:2828,disc33:3030,disc65:9090,asistencia65:3030},
+  10:{base:5789,edad65:1199,edad75:1460,hijos:[2503,2816,4172,4694],menor3:2920,disc33:3129,disc65:9387,asistencia65:3129},
+  11:{base:5956.65,edad65:1234.26,edad75:1502.58,hijos:[2575.85,2897.83,4400,4950],menor3:3005.16,disc33:3219.81,disc65:9659.44,asistencia65:3219.81},
+  16:{base:6105,edad65:1265,edad75:1540,hijos:[2640,2970,4400,4950],menor3:3080,disc33:3300,disc65:9900,asistencia65:3300}
+};
+
+const ESCALA_AHORRO_MITAD=[[6000,.095],[50000,.105],[200000,.115],[300000,.135],[Infinity,.15]];
+
+function cuotaPorEscala(base,tramos){
+  let total=0,anterior=0;
+  for(const [hasta,tipo] of tramos){
+    if(base<=anterior) break;
+    total+=(Math.min(base,hasta)-anterior)*tipo;
+    anterior=hasta;
+  }
+  return Math.max(0,total);
+}
+
+function reduccionTrabajo(rendimientoNetoPrevio,rentasNoTrabajo){
+  if(rentasNoTrabajo>6500||rendimientoNetoPrevio>=19747.50) return 0;
+  if(rendimientoNetoPrevio<=14852) return Math.min(rendimientoNetoPrevio,7302);
+  if(rendimientoNetoPrevio<=17673.52) return Math.max(0,7302-1.75*(rendimientoNetoPrevio-14852));
+  return Math.max(0,2364.34-1.14*(rendimientoNetoPrevio-17673.52));
+}
+
+function minimoPersonalFamiliar(tabla,edad,discapacidad,hijos,hijosMenores3){
+  let total=(tabla.base65&&edad!=='menor65')?tabla.base65:tabla.base;
+  if(edad==='65_75') total+=tabla.edad65;
+  if(edad==='mayor75') total+=tabla.edad65+tabla.edad75;
+  for(let i=0;i<hijos;i++) total+=tabla.hijos[Math.min(i,tabla.hijos.length-1)];
+  total+=Math.min(hijos,hijosMenores3)*tabla.menor3;
+  if(discapacidad==='33') total+=tabla.disc33;
+  if(discapacidad==='65') total+=tabla.disc65+tabla.asistencia65;
   return total;
 }
 
-// Tramos ahorro
-function cuotaAhorro(base){
-  if(base<=0) return 0;
-  const tramos=[{h:6000,t:.19},{h:50000,t:.21},{h:200000,t:.23},{h:300000,t:.27},{h:Infinity,t:.28}];
-  let r=base,prev=0,total=0;
-  for(const t of tramos){const en=Math.min(Math.max(0,r),t.h-prev);total+=en*t.t;r-=en;prev=t.h;if(r<=0)break;}
-  return total;
+function leerExtra(idCampo,seccion){
+  return extrasActivos.has(seccion)?(parseFloat(document.getElementById(idCampo)?.value)||0):0;
 }
 
 function calcular(){
-  // Datos personales
+  const ccaa=parseInt(document.getElementById('ccaa').value);
   const estado=document.getElementById('estado').value;
   const hijos=parseInt(document.getElementById('hijos').value)||0;
   const edad=document.getElementById('edad').value;
   const discapacidad=document.getElementById('discapacidad').value;
   const modalidad=document.getElementById('modalidad').value;
-
-  // Rendimientos trabajo
   const salarioBruto=parseFloat(document.getElementById('salario_bruto').value)||0;
   const retNomina=parseFloat(document.getElementById('retenciones_nomina').value)||0;
   const cuotaSS=parseFloat(document.getElementById('cuota_ss').value)||0;
   const numPagadores=document.getElementById('num_pagadores').value;
 
-  // Extras ingresos
-  const rendAutonomo=parseFloat(document.getElementById('rend_autonomo')?.value)||0;
-  const pagosFrac=parseFloat(document.getElementById('pagos_frac')?.value)||0;
-  const rendAlquiler=parseFloat(document.getElementById('rend_alquiler')?.value)||0;
-  const gananciasPat=parseFloat(document.getElementById('ganancias_pat')?.value)||0;
-  const dividendos=parseFloat(document.getElementById('dividendos')?.value)||0;
-  const retInversiones=parseFloat(document.getElementById('ret_inversiones')?.value)||0;
-  const importePension=parseFloat(document.getElementById('importe_pension')?.value)||0;
-  const importeParo=parseFloat(document.getElementById('importe_paro')?.value)||0;
-  const retParo=parseFloat(document.getElementById('ret_paro')?.value)||0;
+  document.getElementById('aviso_pagadores').style.display=numPagadores==='2'?'block':'none';
+  document.getElementById('campo_guarderia').style.display=extrasActivos.has('maternidad')&&document.getElementById('guarderia').value==='1'?'block':'none';
 
-  // Deducciones extras
-  const aportePension=parseFloat(document.getElementById('aporte_pension_plan')?.value)||0;
-  const donativos=parseFloat(document.getElementById('donativos')?.value)||0;
-  const hijosMat=parseInt(document.getElementById('hijos_maternidad')?.value)||0;
-  const guarderia=document.getElementById('guarderia')?.value||'no';
-  const gastoGuarderia=parseFloat(document.getElementById('gasto_guarderia')?.value)||0;
-  const dedAlquilerInq=parseFloat(document.getElementById('ded_alquiler_inq')?.value)||0;
-  const dedEficiencia=parseFloat(document.getElementById('ded_eficiencia')?.value)||0;
-
-  // --- CÁLCULO ---
-
-  // Rendimiento neto del trabajo
-  const rendTrabajo=salarioBruto-cuotaSS+importeParo;
-  const rendPension=importePension;
-  const rendOtros=rendAutonomo+rendAlquiler+rendPension;
-  const baseAhorro=gananciasPat+dividendos;
-
-  // Reducción por rendimientos del trabajo (escala 2026)
-  let redTrabajo=0;
-  if(rendTrabajo<=14852) redTrabajo=7302;
-  else if(rendTrabajo<=17673.52) redTrabajo=7302-1.75*(rendTrabajo-14852);
-  else redTrabajo=2364;
-
-  // Reducción por discapacidad trabajador
-  let redDiscapacidad=0;
-  if(discapacidad==='33') redDiscapacidad=3500;
-  else if(discapacidad==='65') redDiscapacidad=7750;
-
-  // Aportación plan de pensiones (límite 1.500€ o 30% rendimientos)
-  const limPension=Math.min(1500,rendTrabajo*0.30);
-  const redPension=Math.min(aportePension,limPension);
-
-  // Base imponible general
-  const baseImponibleGral=Math.max(0,rendTrabajo+rendOtros-redTrabajo-redDiscapacidad-redPension);
-
-  // Mínimo personal y familiar
-  let minimoPersonal=5550;
-  if(edad==='65_75') minimoPersonal+=1150;
-  if(edad==='mayor75') minimoPersonal+=1400+1150;
-  if(discapacidad==='33') minimoPersonal+=3000;
-  if(discapacidad==='65') minimoPersonal+=9000;
-
-  // Mínimo por descendientes
-  const minimoHijos_tabla=[0,2400,2700,4000,4500];
-  let minimoHijos=0;
-  for(let i=0;i<Math.min(hijos,4);i++) minimoHijos+=(minimoHijos_tabla[i+1]||4500);
-
-  // Reducción conjunta
-  let redConjunta=0;
-  if(modalidad==='conjunta'){
-    if(estado==='casado') redConjunta=3400;
-    else redConjunta=2150;
+  if(ccaa===13||ccaa===14){
+    const header=document.getElementById('resultado-header');
+    header.className='resultado-header cero';
+    document.getElementById('resultado-label').textContent='Régimen foral no calculado';
+    document.getElementById('resultado-importe').textContent='—';
+    document.getElementById('cuota-liquida').textContent='Consulta la Hacienda Foral competente';
+    document.getElementById('tipo-efectivo').textContent='—';
+    document.getElementById('metodologia_aviso').textContent='Navarra y País Vasco tienen normativa propia. Para evitar un resultado engañoso, este simulador no aplica las escalas de régimen común.';
+    return;
   }
 
-  const minimoTotal=minimoPersonal+minimoHijos;
-  const baseLiquidableGral=Math.max(0,baseImponibleGral-redConjunta);
+  const rendAutonomo=leerExtra('rend_autonomo','autonomo');
+  const pagosFrac=leerExtra('pagos_frac','autonomo');
+  const rendAlquiler=leerExtra('rend_alquiler','alquiler');
+  const gananciasPat=leerExtra('ganancias_pat','inversiones');
+  const dividendos=leerExtra('dividendos','inversiones');
+  const retInversiones=leerExtra('ret_inversiones','inversiones');
+  const importePension=leerExtra('importe_pension','pension');
+  const importeParo=leerExtra('importe_paro','paro');
+  const retParo=leerExtra('ret_paro','paro');
+  const aportePension=leerExtra('aporte_pension_plan','plan_pensiones');
+  const donativos=leerExtra('donativos','donativos');
+  const hijosMat=extrasActivos.has('maternidad')?(parseInt(document.getElementById('hijos_maternidad').value)||0):0;
+  const guarderia=extrasActivos.has('maternidad')&&document.getElementById('guarderia').value==='1';
+  const gastoGuarderia=guarderia?(parseFloat(document.getElementById('gasto_guarderia').value)||0):0;
+  const dedAlquiler=leerExtra('ded_alquiler_inq','deduccion_alquiler');
+  const dedEfic=leerExtra('ded_eficiencia','eficiencia');
+  const movilidad=extrasActivos.has('movilidad');
 
-  // Cuota íntegra
-  const cuotaIntegra=Math.max(0,cuotaEscalaGeneral(baseLiquidableGral)-cuotaEscalaGeneral(minimoTotal));
-  const cuotaAhorroBase=cuotaAhorro(baseAhorro);
+  const ingresosTrabajo=salarioBruto+importePension+importeParo;
+  const gastoGeneralTrabajo=ingresosTrabajo>0?2000:0;
+  const gastoMovilidad=movilidad&&salarioBruto>0?2000:0;
+  const gastoDiscapacidad=salarioBruto>0?(discapacidad==='65'?7750:discapacidad==='33'?3500:0):0;
+  const gastosTrabajo=Math.min(ingresosTrabajo,cuotaSS+gastoGeneralTrabajo+gastoMovilidad+gastoDiscapacidad);
+  const rendimientoNetoPrevioTrabajo=Math.max(0,ingresosTrabajo-gastosTrabajo);
+  const rentasNoTrabajo=rendAutonomo+rendAlquiler+gananciasPat+dividendos;
+  const redTrabajo=reduccionTrabajo(rendimientoNetoPrevioTrabajo,rentasNoTrabajo);
+  const rendimientoNetoTrabajo=Math.max(0,rendimientoNetoPrevioTrabajo-redTrabajo);
+  const rendOtros=rendAutonomo+rendAlquiler;
+  const baseImponibleGral=Math.max(0,rendimientoNetoTrabajo+rendOtros);
+  const baseAhorro=Math.max(0,gananciasPat+dividendos);
 
-  // Deducciones de la cuota
-  // Maternidad: 1.200€/hijo + guardería hasta 1.000€
-  const dedMaternidad=hijosMat>0?(hijosMat*1200+(guarderia==='si'?Math.min(gastoGuarderia,1000*hijosMat):0)):0;
-  // Donativos: 80% primeros 250€, 40% resto (simplificado)
-  const dedDonativos=donativos<=250?donativos*0.80:(250*0.80+(donativos-250)*0.40);
-  // Alquiler vivienda habitual (contratos pre-2015)
-  const dedAlquiler=dedAlquilerInq;
-  // Eficiencia energética
-  const dedEfic=dedEficiencia;
+  const limitePlan=Math.max(0,Math.min(1500,.30*(rendimientoNetoPrevioTrabajo+Math.max(0,rendAutonomo))));
+  const redPension=Math.min(aportePension,limitePlan);
+  let redConjunta=0;
+  if(modalidad==='conjunta'){
+    if(estado==='casado'||estado==='casado2') redConjunta=3400;
+    else if(hijos>0) redConjunta=2150;
+  }
+  const baseLiquidableGral=Math.max(0,baseImponibleGral-redPension-redConjunta);
 
-  const totalDeducciones=dedMaternidad+dedDonativos+dedAlquiler+dedEfic;
-  const cuotaLiquida=Math.max(0,cuotaIntegra+cuotaAhorroBase-totalDeducciones);
+  const hijosMenores3=Math.min(hijos,hijosMat);
+  const minimoEstatal=minimoPersonalFamiliar(MINIMO_ESTATAL,edad,discapacidad,hijos,hijosMenores3);
+  const tablaMinAut=MINIMOS_AUTONOMICOS[ccaa]||MINIMO_ESTATAL;
+  const minimoAutonomico=minimoPersonalFamiliar(tablaMinAut,edad,discapacidad,hijos,hijosMenores3);
+  const escalaAut=ESCALAS_AUTONOMICAS[ccaa];
+  const cuotaEstatal=Math.max(0,cuotaPorEscala(baseLiquidableGral,ESCALA_ESTATAL)-cuotaPorEscala(Math.min(baseLiquidableGral,minimoEstatal),ESCALA_ESTATAL));
+  const cuotaAutonomica=Math.max(0,cuotaPorEscala(baseLiquidableGral,escalaAut)-cuotaPorEscala(Math.min(baseLiquidableGral,minimoAutonomico),escalaAut));
 
-  // Retenciones
+  const remanenteEstatal=Math.min(baseAhorro,Math.max(0,minimoEstatal-baseLiquidableGral));
+  const remanenteAutonomico=Math.min(baseAhorro,Math.max(0,minimoAutonomico-baseLiquidableGral));
+  const cuotaAhorroEstatal=Math.max(0,cuotaPorEscala(baseAhorro,ESCALA_AHORRO_MITAD)-cuotaPorEscala(remanenteEstatal,ESCALA_AHORRO_MITAD));
+  const cuotaAhorroAutonomica=Math.max(0,cuotaPorEscala(baseAhorro,ESCALA_AHORRO_MITAD)-cuotaPorEscala(remanenteAutonomico,ESCALA_AHORRO_MITAD));
+  const cuotaGeneral=cuotaEstatal+cuotaAutonomica;
+  const cuotaAhorroBase=cuotaAhorroEstatal+cuotaAhorroAutonomica;
+  const cuotaIntegraTotal=cuotaGeneral+cuotaAhorroBase;
+
+  const baseDonativo=Math.min(donativos,.10*(baseLiquidableGral+baseAhorro));
+  const dedDonativos=baseDonativo<=250?baseDonativo*.80:200+(baseDonativo-250)*.40;
+  const deduccionesLimitadas=dedDonativos+dedAlquiler+dedEfic;
+  const cuotaLiquida=Math.max(0,cuotaIntegraTotal-deduccionesLimitadas);
+  const dedMaternidad=hijosMat*1200+(guarderia?Math.min(gastoGuarderia,1000*hijosMat):0);
   const totalRetenciones=retNomina+retInversiones+retParo+pagosFrac;
-
-  // Resultado
-  const resultado=cuotaLiquida-totalRetenciones;
+  const resultado=cuotaLiquida-totalRetenciones-dedMaternidad;
   const devolucion=resultado<0;
 
-  // --- MOSTRAR ---
   const header=document.getElementById('resultado-header');
-  header.className='resultado-header '+(devolucion?'devolucion':'pagar');
-  document.getElementById('resultado-label').textContent=devolucion?'Hacienda te devuelve':'Debes pagar a Hacienda';
+  header.className='resultado-header '+(Math.abs(resultado)<.5?'cero':devolucion?'devolucion':'pagar');
+  document.getElementById('resultado-label').textContent=devolucion?'Devolución estimada':'Ingreso estimado';
   document.getElementById('resultado-importe').textContent=fmt(Math.abs(resultado));
   document.getElementById('cuota-liquida').textContent='Cuota líquida: '+fmt(cuotaLiquida);
+  const rentaTotal=baseLiquidableGral+baseAhorro;
+  document.getElementById('tipo-efectivo').textContent=(rentaTotal>0?cuotaLiquida/rentaTotal*100:0).toFixed(1)+'%';
 
-  // Liquidación detallada
   const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=fmt(val);};
-  set('liq_trabajo',rendTrabajo);
+  set('liq_trabajo',rendimientoNetoTrabajo);
   set('liq_otros',rendOtros);
-  set('liq_red_trabajo',redTrabajo+redDiscapacidad);
+  set('liq_red_trabajo',gastosTrabajo+redTrabajo);
   set('liq_pension_plan',redPension);
   set('liq_base_gral',baseImponibleGral);
-  set('liq_minimo',minimoTotal);
+  set('liq_minimo',minimoEstatal);
   set('liq_base_liq',baseLiquidableGral);
-  set('liq_cuota_integra',cuotaIntegra);
+  set('liq_cuota_integra',cuotaGeneral);
   set('liq_cuota_ahorro',cuotaAhorroBase);
   set('liq_maternidad',dedMaternidad);
   set('liq_donativos',dedDonativos);
@@ -648,14 +688,21 @@ function calcular(){
   set('liq_ret_nomina',retNomina);
   set('liq_ret_otras',retInversiones+retParo);
   set('liq_pagos_frac',pagosFrac);
+  set('tr1v',cuotaEstatal);set('tr2v',cuotaAutonomica);set('tr3v',cuotaAhorroBase);
+  set('tr4v',deduccionesLimitadas);set('tr5v',totalRetenciones);set('tr6v',dedMaternidad);
 
   const resEl=document.getElementById('liq_resultado');
-  if(resEl){
-    resEl.textContent=(devolucion?'−':'+') + fmt(Math.abs(resultado));
-    resEl.style.color=devolucion?'var(--accent)':'#b91c1c';
-  }
+  resEl.textContent=(devolucion?'−':'+')+fmt(Math.abs(resultado));
+  resEl.style.color=devolucion?'var(--accent)':'#b91c1c';
 
-  // Mostrar caja resultado
+  const avisos=['Estimación del IRPF 2025 de régimen común; no sustituye Renta WEB ni comprueba todos los requisitos legales.'];
+  if(hijos>0) avisos.push('Se presupone derecho íntegro al mínimo por descendientes y que no existe prorrateo por custodia compartida. El incremento por menores de 3 años solo se aplica a los hijos indicados en el apartado Maternidad.');
+  if(modalidad==='conjunta') avisos.push('La modalidad conjunta se aproxima con los datos de una sola persona; faltan las rentas y circunstancias del resto de la unidad familiar.');
+  if(extrasActivos.has('inversiones')) avisos.push('La inversión se introduce ya neta y positiva; no se modelan pérdidas pendientes ni compensaciones entre componentes.');
+  if(extrasActivos.has('autonomo')) avisos.push('Quien haya estado de alta en RETA o en el régimen del mar durante 2025 está obligado a declarar; el rendimiento se presupone ya calculado conforme a su método fiscal.');
+  if(hijosMat>0) avisos.push('No se descuentan anticipos de la deducción por maternidad ya cobrados durante 2025.');
+  if(discapacidad!=='0'&&salarioBruto>0) avisos.push('Se presupone que la persona con discapacidad es trabajador activo.');
+  document.getElementById('metodologia_aviso').textContent=avisos.join(' ');
   document.getElementById('resultado-box').style.display='block';
 }
 </script>

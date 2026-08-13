@@ -177,9 +177,9 @@
           </select>
         </div>
         <div class="field">
-          <label>Base imponible general (€)</label>
+          <label>Base imponible total: general + ahorro (€)</label>
           <input type="number" id="base_imponible_inq" value="25000" min="0" step="500">
-          <p class="tip">Aproximadamente tu salario bruto menos SS</p>
+          <p class="tip">Suma de las casillas de base imponible general y del ahorro</p>
         </div>
       </div>
       <div class="grid2" style="margin-top:12px">
@@ -192,22 +192,22 @@
           </select>
         </div>
         <div class="field">
-          <label>¿Contrato anterior al 1 de enero de 2015?</label>
+          <label>¿Cumples íntegramente el régimen transitorio estatal?</label>
           <select id="contrato_antiguo">
-            <option value="no">No (contrato nuevo)</option>
-            <option value="si">Sí (contrato anterior a 2015)</option>
+            <option value="no">No / solo tengo un contrato antiguo</option>
+            <option value="si">Sí: contrato y pagos pre-2015, y derecho previo</option>
           </select>
         </div>
       </div>
       <div id="aviso_contrato_antiguo" class="aviso">
-        ℹ️ Los contratos anteriores a 2015 pueden mantener la deducción estatal del 10,05% si se firmaron antes de esa fecha. Esta deducción estatal ya no existe para contratos nuevos.
+        ℹ️ La estimación solo es válida si, además de haberse celebrado el contrato antes de 2015 y pagado rentas antes de esa fecha, ya existía derecho a la deducción en un ejercicio anterior a 2015.
       </div>
     </div>
 
     <div class="results" id="results-inquilino">
       <div class="results-header">
         <div>
-          <div class="main-label">Deducción total estimada</div>
+          <div class="main-label">Deducción estatal calculable</div>
           <div class="main-value" id="inq_deduccion_total">—</div>
         </div>
         <div class="sub-block">
@@ -296,21 +296,25 @@
       </div>
       <div class="grid2" style="margin-top:12px">
         <div class="field">
-          <label>Valor de compra del inmueble (€)</label>
+          <label>Mayor base amortizable de la construcción (€)</label>
           <input type="number" id="valor_inmueble" value="150000" min="0" step="5000">
-          <p class="tip">Para calcular la amortización (3% anual sobre el mayor de coste o valor catastral)</p>
+          <p class="tip">Mayor entre coste de adquisición y valor catastral de la construcción, siempre sin suelo</p>
         </div>
         <div class="field">
-          <label>Tipo de inquilino</label>
+          <label>Supuesto aplicable al contrato de vivienda</label>
           <select id="tipo_inquilino">
-            <option value="normal">General</option>
-            <option value="joven">Joven (18-35 años) — reducción 90%</option>
-            <option value="zona_tensionada">Zona de mercado tensionado — reducción 90%</option>
+            <option value="anterior_2023">Contrato anterior al 26/05/2023 — 60%</option>
+            <option value="general_50">Contrato desde 26/05/2023, caso general — 50%</option>
+            <option value="rehabilitacion_60">Rehabilitación finalizada en los 2 años anteriores — 60%</option>
+            <option value="completo_70">70% — Cumplo íntegramente el supuesto de joven o vivienda asequible</option>
+            <option value="completo_90">Zona tensionada y nueva renta reducida más del 5% — 90%</option>
+            <option value="joven_sin_requisitos">Inquilino joven, sin acreditar todos los requisitos — 50%</option>
+            <option value="zona_sin_requisitos">Zona tensionada, sin acreditar todos los requisitos — 50%</option>
           </select>
         </div>
       </div>
       <div class="info-box" style="margin-top:12px">
-        <p>💡 La reducción general del rendimiento neto es del <strong>60%</strong>. Si el inquilino tiene entre 18-35 años o la vivienda está en zona tensionada, la reducción sube al <strong>90%</strong>.</p>
+        <p>💡 Los contratos anteriores al 26/05/2023 mantienen en general el 60%. Para contratos posteriores, el porcentaje general es 50%; los porcentajes del 60%, 70% o 90% solo proceden cuando se cumplen íntegramente sus requisitos.</p>
       </div>
     </div>
 
@@ -323,7 +327,7 @@
         <div class="sub-block">
           <div class="sub-label">Reducción aplicada</div>
           <div class="sub-value" id="prop_reduccion_pct">—</div>
-          <div class="sub-label" style="margin-top:8px">Ahorro fiscal estimado</div>
+          <div class="sub-label" style="margin-top:8px">Gastos limitados pendientes</div>
           <div class="sub-value" id="prop_ahorro_fiscal">—</div>
         </div>
       </div>
@@ -373,24 +377,13 @@
     <p>El alquiler de vivienda tiene un tratamiento fiscal específico en el IRPF tanto para los inquilinos como para los propietarios. Conocer las deducciones disponibles puede suponer un ahorro significativo en la declaración de la Renta.</p>
 
     <h3>Para inquilinos: deducción estatal y autonómica</h3>
-    <p>La deducción estatal por alquiler de vivienda habitual desapareció en 2015 para contratos nuevos, pero muchas comunidades autónomas mantienen deducciones propias. El importe y los requisitos varían significativamente según la comunidad. Algunas, como Cataluña o Canarias, ofrecen deducciones de hasta el 10-15% del alquiler anual.</p>
+    <p>La deducción estatal por alquiler de vivienda habitual desapareció en 2015 para contratos nuevos. El régimen transitorio exige contrato y pagos anteriores a 2015 y haber tenido derecho a la deducción antes de esa fecha. Las deducciones autonómicas tienen requisitos propios que no pueden comprobarse solo con edad, comunidad y base imponible.</p>
 
-    <h3>Deducciones autonómicas por comunidad</h3>
-    <table class="ccaa-table">
-      <thead><tr><th>Comunidad</th><th>Deducción</th><th>Límite anual</th><th>Requisito base imponible</th></tr></thead>
-      <tbody>
-        <tr><td>Cataluña</td><td>10% (menores 33 años: 15%)</td><td>300 € (600 €)</td><td>hasta 20.000 €</td></tr>
-        <tr><td>Madrid</td><td>30% (menores 35 años)</td><td>1.000 €</td><td>hasta 25.620 €</td></tr>
-        <tr><td>Canarias</td><td>20%</td><td>500 €</td><td>hasta 22.000 €</td></tr>
-        <tr><td>Andalucía</td><td>15%</td><td>500 €</td><td>hasta 19.000 €</td></tr>
-        <tr><td>Galicia</td><td>10% (menores 35 años: 15%)</td><td>300 € (600 €)</td><td>hasta 22.000 €</td></tr>
-        <tr><td>Aragón</td><td>10%</td><td>300 €</td><td>hasta 15.000 €</td></tr>
-        <tr><td>C. Valenciana</td><td>15% (menores 35 años)</td><td>550 €</td><td>hasta 25.000 €</td></tr>
-      </tbody>
-    </table>
+    <h3>Deducciones autonómicas</h3>
+    <p>La comunidad seleccionada se muestra como recordatorio, pero su deducción no se suma automáticamente. Según el territorio pueden ser necesarios, entre otros datos, tributación individual o conjunta, discapacidad, familia numerosa, desempleo, depósito de fianza, municipio, fecha exacta del contrato y porcentaje que representa el alquiler sobre la renta.</p>
 
-    <h3>Para propietarios: gastos deducibles y reducción del 60%</h3>
-    <p>Los propietarios que alquilan una vivienda tributan por el rendimiento neto del capital inmobiliario. Pueden deducirse todos los gastos necesarios para el alquiler y aplicar una reducción del 60% sobre el rendimiento neto resultante. Si el inquilino tiene entre 18 y 35 años o la vivienda está en una zona de mercado tensionado, la reducción sube al 90%.</p>
+    <h3>Para propietarios: gastos deducibles y reducción del rendimiento</h3>
+    <p>Los propietarios tributan por el rendimiento neto del capital inmobiliario. Los contratos anteriores al 26 de mayo de 2023 mantienen, en general, la reducción del 60%. Para contratos posteriores la reducción general es del 50%, y solo asciende al 60%, 70% o 90% cuando se cumplen todos los requisitos legales del supuesto elegido.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -403,16 +396,17 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿El propietario puede deducirse el 100% de los gastos? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí, todos los gastos necesarios para el alquiler son deducibles al 100%: IBI, comunidad, seguros, reparaciones, intereses de hipoteca, honorarios de agencia, y la amortización del inmueble (3% anual sobre el mayor entre el coste de adquisición y el valor catastral).</div>
+      <div class="faq-a">Son deducibles los gastos necesarios y la amortización correctamente acreditados. Los intereses y los gastos de reparación y conservación, conjuntamente, no pueden superar los ingresos íntegros de cada inmueble en el ejercicio; el exceso puede trasladarse a los cuatro años siguientes. La amortización excluye siempre el valor del suelo.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué es la reducción del 60% para propietarios? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Es un beneficio fiscal que reduce el rendimiento neto del alquiler en un 60% antes de aplicar el IRPF. Es decir, si ganas 10.000 € netos de alquiler, solo tributas por 4.000 €. Si el inquilino tiene 18-35 años o la vivienda está en zona tensionada, la reducción sube al 90%.</div>
+      <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cuándo se aplican las reducciones del propietario? <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">La reducción solo se aplica al rendimiento neto positivo de alquiler destinado a vivienda. Para contratos nuevos, ser joven o estar en una zona tensionada no basta por sí solo: deben cumplirse todas las condiciones del 70% o 90%. La rehabilitación puede dar derecho al 60% si terminó en los dos años anteriores al contrato.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Hay que declarar el alquiler aunque se pierda dinero? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Sí, siempre hay que declarar los ingresos del alquiler. Si los gastos superan los ingresos, el resultado es un rendimiento negativo que podrás compensar con otros rendimientos del capital inmobiliario de los 4 años siguientes.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/vivienda-otros-inmuebles/deduccion-arrendatario-alquiler-vivienda-habitual/deduccion-arrendatario-alquiler-vivienda-habitual.html" rel="noopener noreferrer">régimen transitorio del inquilino (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/principales-novedades-tributarias-introducidas-ley-12_2023.html" rel="noopener noreferrer">reducciones 50/60/70/90 del propietario (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/vivienda-otros-inmuebles/tributacion-arrendador-viviendas-otros-inmuebles/calculo-rendimiento-alquiler-inmueble/gastos-deducibles.html" rel="noopener noreferrer">gastos deducibles (AEAT)</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c04-rendimientos-capital-inmobiliario/gastos-deducibles/cantidades-destinadas-amortizacion.html" rel="noopener noreferrer">amortización (AEAT)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -473,58 +467,32 @@ function cambiarTab(tab) {
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
 function pct(n) { return n.toFixed(1) + '%'; }
 
-// Deducciones autonómicas inquilino (% sobre alquiler, máx €)
-const CCAA_INQ = {
-  ninguna:        { pct: 0,    max: 0,    condicion: 'ninguna' },
-  andalucia:      { pct: 15,   max: 500,  condicion: 'menor35' },
-  aragon:         { pct: 10,   max: 300,  condicion: 'ninguna' },
-  asturias:       { pct: 10,   max: 455,  condicion: 'ninguna' },
-  baleares:       { pct: 15,   max: 530,  condicion: 'ninguna' },
-  canarias:       { pct: 20,   max: 600,  condicion: 'ninguna' },
-  cantabria:      { pct: 10,   max: 300,  condicion: 'ninguna' },
-  castilla_mancha:{ pct: 15,   max: 450,  condicion: 'ninguna' },
-  castilla_leon:  { pct: 10,   max: 459,  condicion: 'ninguna' },
-  cataluña:       { pct: 10,   max: 300,  condicion: 'ninguna' },
-  extremadura:    { pct: 10,   max: 300,  condicion: 'ninguna' },
-  galicia:        { pct: 10,   max: 300,  condicion: 'ninguna' },
-  madrid:         { pct: 30,   max: 1000, condicion: 'menor35' },
-  murcia:         { pct: 10,   max: 300,  condicion: 'ninguna' },
-  rioja:          { pct: 10,   max: 300,  condicion: 'ninguna' },
-  valencia:       { pct: 15,   max: 550,  condicion: 'ninguna' },
-};
+function deduccionEstatalAlquiler(alquilerAnual,baseImponibleTotal,tieneRegimenTransitorio){
+  if(!tieneRegimenTransitorio||baseImponibleTotal>=24107.20) return 0;
+  const baseMaxima=baseImponibleTotal<=17707.20
+    ?9040
+    :Math.max(0,9040-1.4125*(baseImponibleTotal-17707.20));
+  return Math.min(Math.max(0,alquilerAnual),baseMaxima)*.1005;
+}
+
+function porcentajeReduccionAlquiler(supuesto){
+  return ({anterior_2023:60,general_50:50,rehabilitacion_60:60,completo_70:70,completo_90:90,joven_sin_requisitos:50,zona_sin_requisitos:50})[supuesto]||50;
+}
 
 function calcularInquilino() {
   const alquilerMensual = parseFloat(document.getElementById('alquiler_mensual').value) || 0;
   const meses = parseFloat(document.getElementById('meses_alquiler').value) || 12;
   const ccaa = document.getElementById('ccaa_inquilino').value;
   const baseImponible = parseFloat(document.getElementById('base_imponible_inq').value) || 0;
-  const edad = document.getElementById('edad_inquilino').value;
   const contratoAntiguo = document.getElementById('contrato_antiguo').value;
 
   document.getElementById('aviso_contrato_antiguo').style.display = contratoAntiguo === 'si' ? 'block' : 'none';
 
   const alquilerAnual = alquilerMensual * meses;
 
-  // Deducción estatal (solo contratos anteriores a 2015 con base < 24.107,20€)
-  let deduccionEstatal = 0;
-  if (contratoAntiguo === 'si' && baseImponible < 24107.20) {
-    if (baseImponible <= 17707.20) {
-      deduccionEstatal = Math.min(alquilerAnual * 0.10805, 9040 * 0.10805);
-    } else {
-      const factor = 1 - ((baseImponible - 17707.20) / (24107.20 - 17707.20));
-      deduccionEstatal = Math.min(alquilerAnual * 0.10805, 9040 * 0.10805) * factor;
-    }
-  }
-
-  // Deducción autonómica
-  const ccaaData = CCAA_INQ[ccaa] || CCAA_INQ.ninguna;
-  let deduccionAutonomica = 0;
-  const aplica = ccaaData.condicion === 'ninguna' || (ccaaData.condicion === 'menor35' && edad === 'menor35');
-  if (aplica && ccaaData.pct > 0) {
-    deduccionAutonomica = Math.min(alquilerAnual * (ccaaData.pct / 100), ccaaData.max);
-  }
-
-  const deduccionTotal = deduccionEstatal + deduccionAutonomica;
+  const deduccionEstatal=deduccionEstatalAlquiler(alquilerAnual,baseImponible,contratoAntiguo==='si');
+  // Las deducciones autonómicas exigen datos adicionales no presentes en el formulario.
+  const deduccionTotal=deduccionEstatal;
   const totalPagado = alquilerAnual;
   const costeReal = totalPagado - deduccionTotal;
   const mensualEfectivo = meses > 0 ? costeReal / meses : 0;
@@ -534,7 +502,7 @@ function calcularInquilino() {
   document.getElementById('inq_ahorro_mensual').textContent = fmt(meses > 0 ? deduccionTotal / meses : 0) + '/mes';
   document.getElementById('inq_alquiler_anual').textContent = fmt(alquilerAnual) + '/año';
   document.getElementById('inq_estatal').textContent = fmt(deduccionEstatal);
-  document.getElementById('inq_autonomica').textContent = fmt(deduccionAutonomica);
+  document.getElementById('inq_autonomica').textContent = ccaa==='ninguna'?'No seleccionada':'No calculada: faltan requisitos';
   document.getElementById('inq_pct').textContent = pct(pctDed);
   document.getElementById('inq_total_pagado').textContent = fmt(totalPagado);
   document.getElementById('inq_coste_real').textContent = fmt(costeReal);
@@ -554,22 +522,29 @@ function calcularPropietario() {
   const tipoInquilino = document.getElementById('tipo_inquilino').value;
 
   const ingresos = rentaMensual * mesesProp;
-  const amortizacion = valorInmueble * 0.03; // 3% valor catastral construcción
-  const totalGastos = ibi + comunidad + seguros + reparaciones + hipotecaIntereses + honorarios + amortizacion;
+  const factorTiempo=Math.min(12,Math.max(0,mesesProp))/12;
+  const amortizacion=valorInmueble*.03*factorTiempo;
+  const ibiPeriodo=ibi*factorTiempo;
+  const comunidadPeriodo=comunidad*factorTiempo;
+  const segurosPeriodo=seguros*factorTiempo;
+  const interesesPeriodo=hipotecaIntereses*factorTiempo;
+  const gastosLimitadosSolicitados=reparaciones+interesesPeriodo;
+  const gastosLimitados=Math.min(ingresos,gastosLimitadosSolicitados);
+  const excesoGastosLimitados=Math.max(0,gastosLimitadosSolicitados-gastosLimitados);
+  const factorLimite=gastosLimitadosSolicitados>0?gastosLimitados/gastosLimitadosSolicitados:0;
+  const reparacionesDeducibles=reparaciones*factorLimite;
+  const interesesDeducibles=interesesPeriodo*factorLimite;
+  const totalGastos=ibiPeriodo+comunidadPeriodo+segurosPeriodo+gastosLimitados+honorarios+amortizacion;
   const rendimientoPrevio = ingresos - totalGastos;
 
-  // Reducción según tipo de inquilino (Ley Vivienda 2023)
-  const reducciones = { normal: 50, joven: 90, zona_tensionada: 90 };
-  const reduccionPct = reducciones[tipoInquilino] || 50;
+  const reduccionPct=porcentajeReduccionAlquiler(tipoInquilino);
   const reduccion = Math.max(0, rendimientoPrevio * (reduccionPct / 100));
-  const rendimientoReducido = Math.max(0, rendimientoPrevio - reduccion);
-
-  // Estimación ahorro fiscal (tipo marginal ~24%)
-  const ahorroFiscal = reduccion * 0.24;
+  const rendimientoReducido=rendimientoPrevio-reduccion;
+  const supuestoNoAcreditado=tipoInquilino==='joven_sin_requisitos'||tipoInquilino==='zona_sin_requisitos';
 
   document.getElementById('prop_rendimiento_neto').textContent = fmt(rendimientoReducido);
-  document.getElementById('prop_reduccion_pct').textContent = `Reducción ${reduccionPct}% aplicada`;
-  document.getElementById('prop_ahorro_fiscal').textContent = fmt(ahorroFiscal) + ' ahorro est.';
+  document.getElementById('prop_reduccion_pct').textContent = `Reducción ${reduccionPct}% ${supuestoNoAcreditado?'(sin mejora automática)':'aplicada'}`;
+  document.getElementById('prop_ahorro_fiscal').textContent = excesoGastosLimitados>0?fmt(excesoGastosLimitados)+' potencialmente trasladable':'0 €';
   document.getElementById('prop_ingresos').textContent = fmt(ingresos);
   document.getElementById('prop_gastos').textContent = fmt(totalGastos);
   document.getElementById('prop_amortizacion').textContent = fmt(amortizacion);
@@ -578,11 +553,11 @@ function calcularPropietario() {
   document.getElementById('prop_rend_reducido').textContent = fmt(rendimientoReducido);
 
   // Desglose gastos
-  document.getElementById('g_ibi').textContent = fmt(ibi);
-  document.getElementById('g_comunidad').textContent = fmt(comunidad);
-  document.getElementById('g_seguros').textContent = fmt(seguros);
-  document.getElementById('g_reparaciones').textContent = fmt(reparaciones);
-  document.getElementById('g_hipoteca').textContent = fmt(hipotecaIntereses);
+  document.getElementById('g_ibi').textContent = fmt(ibiPeriodo);
+  document.getElementById('g_comunidad').textContent = fmt(comunidadPeriodo);
+  document.getElementById('g_seguros').textContent = fmt(segurosPeriodo);
+  document.getElementById('g_reparaciones').textContent = fmt(reparacionesDeducibles);
+  document.getElementById('g_hipoteca').textContent = fmt(interesesDeducibles);
   document.getElementById('g_honorarios').textContent = fmt(honorarios);
   document.getElementById('g_amortizacion').textContent = fmt(amortizacion);
   document.getElementById('g_total').textContent = fmt(totalGastos);

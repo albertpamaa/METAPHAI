@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora IRPF Apuestas Deportivas y Juego Online 2026 | Metaphai</title>
-  <meta name="description" content="Calcula cuánto debes pagar a Hacienda por tus ganancias en apuestas deportivas, casino online o póker en 2026. Incluye compensación de pérdidas. Gratis y sin registro.">
-  <meta name="keywords" content="irpf apuestas deportivas 2026, hacienda apuestas online, declarar ganancias apuestas, tributar apuestas bet365 codere, ganancias juego online irpf, compensar perdidas apuestas">
+  <title>Calculadora fiscal Apuestas y Juego Online 2025 | Metaphai</title>
+  <meta name="description" content="Calcula la ganancia neta de apuestas, casino y póker que se integra en la base general del IRPF 2025, con el límite fiscal de las pérdidas del juego.">
+  <meta name="keywords" content="irpf apuestas deportivas 2025, hacienda apuestas online, declarar ganancias apuestas, tributar juego online, ganancias juego base general, compensar perdidas apuestas">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-irpf-apuestas-online/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
-  <meta property="og:title" content="Calculadora IRPF Apuestas y Juego Online 2026 | Metaphai">
-  <meta property="og:description" content="Calcula cuánto debes pagar a Hacienda por tus ganancias en apuestas deportivas, casino o póker. Incluye compensación de pérdidas.">
+  <meta property="og:title" content="Calculadora fiscal Apuestas y Juego Online 2025 | Metaphai">
+  <meta property="og:description" content="Calcula la ganancia neta del juego que se integra en la base general del IRPF 2025, sin aplicar incorrectamente la escala del ahorro.">
   <meta property="og:url" content="https://metaphai.com/calculadora-irpf-apuestas-online/">
   <meta property="og:type" content="website">
   
@@ -136,9 +136,9 @@
 </header>
 <main>
   <div class="hero">
-    <div class="badge">🎲 IRPF Apuestas 2026</div>
-    <h1>¿Cuánto le debes a Hacienda<br>por tus <em>apuestas</em>?</h1>
-    <p>Calcula el IRPF de tus ganancias en apuestas deportivas, casino online o póker. Incluye compensación de pérdidas.</p>
+    <div class="badge">🎲 Apuestas · ejercicio 2025</div>
+    <h1>¿Qué importe debes declarar<br>por tus <em>apuestas</em>?</h1>
+    <p>Calcula la ganancia neta del juego que debes integrar en la base general del IRPF. El impuesto exacto depende del resto de tu declaración.</p>
   </div>
 
   
@@ -170,18 +170,18 @@
       <div class="section-label">Resumen anual de apuestas</div>
       <div class="grid2">
         <div class="field">
-          <label>Total ganancias del año (€)</label>
+          <label>Total premios y cobros del año (€)</label>
           <input type="number" id="ganancias_total" value="5000" min="0" step="100">
-          <p class="tip">Suma de todos los premios cobrados</p>
+          <p class="tip">Importes brutos recibidos, incluido el retorno de la apuesta cuando corresponda</p>
         </div>
         <div class="field">
-          <label>Total pérdidas del año (€)</label>
+          <label>Total cantidades jugadas o apostadas (€)</label>
           <input type="number" id="perdidas_total" value="3000" min="0" step="100">
-          <p class="tip">Suma de todas las apuestas perdidas</p>
+          <p class="tip">Importes arriesgados durante el ejercicio, sin duplicar movimientos</p>
         </div>
       </div>
       <div class="info-box blue" style="margin-top:12px">
-        <p>💡 Las pérdidas solo pueden compensar ganancias del mismo tipo de juego dentro del mismo año fiscal. No pueden compensar otros rendimientos como el salario.</p>
+        <p>💡 El cálculo es global para los distintos juegos del mismo ejercicio. Las pérdidas solo se computan hasta el límite de las ganancias del juego y no generan una pérdida fiscal neta.</p>
       </div>
     </div>
   </div>
@@ -191,7 +191,7 @@
     <div class="card">
       <div class="section-label">Apuestas del año</div>
       <div style="font-size:12px;color:var(--hint);margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;">
-        <span>Descripción</span><span>Apostado (€)</span><span>Cobrado (€)</span><span></span>
+        <span>Descripción</span><span>Cobrado (€)</span><span>Apostado (€)</span><span></span>
       </div>
       <div id="apuestas-lista"></div>
       <button class="btn-add" onclick="añadirApuesta()">+ Añadir apuesta</button>
@@ -199,30 +199,19 @@
   </div>
 
   <div class="card">
-    <div class="section-label">Tu situación fiscal</div>
-    <div class="grid2">
-      <div class="field">
-        <label>Base imponible del ahorro (otras ganancias patrimoniales, €)</label>
-        <input type="number" id="otras_ganancias" value="0" min="0" step="100">
-        <p class="tip">Ganancias de acciones, fondos, etc. en el mismo año</p>
-      </div>
-      <div class="field">
-        <label>Otras pérdidas patrimoniales del año (€)</label>
-        <input type="number" id="otras_perdidas" value="0" min="0" step="100">
-        <p class="tip">Pérdidas de acciones u otras inversiones</p>
-      </div>
-    </div>
+    <div class="section-label">Tratamiento fiscal</div>
+    <div class="info-box blue"><p>Las ganancias del juego no se mezclan con acciones, fondos o dividendos: son ganancias patrimoniales que no proceden de una transmisión y se integran en la base general.</p></div>
   </div>
 
   <div id="bloque_resultados">
     <div class="results" id="results-main">
       <div class="results-header positivo" id="results-header">
         <div>
-          <div class="main-label">IRPF a pagar por apuestas</div>
+          <div class="main-label">Ganancia de juego a integrar en la base general</div>
           <div class="main-value" id="res_irpf">—</div>
         </div>
         <div class="sub-block">
-          <div class="sub-label">Ganancia neta</div>
+          <div class="sub-label">Pérdidas computables</div>
           <div class="sub-value" id="res_ganancia_neta">—</div>
           <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
           <div class="sub-value" id="res_tipo_efectivo">—</div>
@@ -230,11 +219,11 @@
       </div>
       <div class="results-grid">
         <div class="res-item pos">
-          <div class="rl">Total ganancias</div>
+          <div class="rl">Total premios/cobros</div>
           <div class="rv" id="d_ganancias">—</div>
         </div>
         <div class="res-item neg">
-          <div class="rl">Total pérdidas</div>
+          <div class="rl">Total apostado</div>
           <div class="rv" id="d_perdidas">—</div>
         </div>
         <div class="res-item ap">
@@ -242,60 +231,53 @@
           <div class="rv" id="d_neta">—</div>
         </div>
         <div class="res-item neg">
-          <div class="rl">IRPF estimado</div>
+          <div class="rl">IRPF atribuible al juego</div>
           <div class="rv" id="d_irpf_detalle">—</div>
         </div>
         <div class="res-item">
-          <div class="rl">Tramo marginal</div>
+          <div class="rl">Escala aplicable</div>
           <div class="rv" id="d_tramo">—</div>
         </div>
         <div class="res-item pos">
-          <div class="rl">Lo que te quedas</div>
+          <div class="rl">Neto después de IRPF</div>
           <div class="rv" id="d_neto_final">—</div>
         </div>
       </div>
       <div class="tramos-box">
-        <div class="tramos-title">Tramos del ahorro aplicados a tu ganancia neta</div>
-        <div class="tramo-row" id="t1"><span class="tramo-left">Hasta 6.000 € → 19%</span><span class="tramo-right" id="t1v">—</span></div>
-        <div class="tramo-row" id="t2"><span class="tramo-left">6.000 € – 50.000 € → 21%</span><span class="tramo-right" id="t2v">—</span></div>
-        <div class="tramo-row" id="t3"><span class="tramo-left">50.000 € – 200.000 € → 23%</span><span class="tramo-right" id="t3v">—</span></div>
-        <div class="tramo-row" id="t4"><span class="tramo-left">200.000 € – 300.000 € → 27%</span><span class="tramo-right" id="t4v">—</span></div>
-        <div class="tramo-row" id="t5"><span class="tramo-left">Más de 300.000 € → 28%</span><span class="tramo-right" id="t5v">—</span></div>
+        <div class="tramos-title">Reglas aplicadas</div>
+        <div class="tramo-row" id="t1"><span class="tramo-left">Premios y cantidades jugadas</span><span class="tramo-right" id="t1v">Mismo ejercicio</span></div>
+        <div class="tramo-row" id="t2"><span class="tramo-left">Límite de pérdidas computables</span><span class="tramo-right" id="t2v">Hasta las ganancias</span></div>
+        <div class="tramo-row" id="t3"><span class="tramo-left">Base del IRPF</span><span class="tramo-right" id="t3v">Base general</span></div>
+        <div class="tramo-row" id="t4"><span class="tramo-left">Compensación con inversiones</span><span class="tramo-right" id="t4v">No permitida</span></div>
+        <div class="tramo-row" id="t5"><span class="tramo-left">Exceso de pérdidas</span><span class="tramo-right" id="t5v">No trasladable</span></div>
       </div>
     </div>
   </div>
 
   <div id="bloque_sin_obligacion" class="sin-obligacion">
-    <h3>✅ Sin obligación de declarar por apuestas</h3>
-    <p id="msg_sin_obligacion">Tu ganancia neta es negativa o cero. No tienes que pagar IRPF por apuestas este año, aunque podrías compensar estas pérdidas con otras ganancias patrimoniales.</p>
+    <h3>✅ Sin ganancia de juego computable</h3>
+    <p id="msg_sin_obligacion">Las pérdidas computables alcanzan el límite de los premios. Esto no determina por sí solo si tienes obligación de presentar declaración por tus demás rentas.</p>
   </div>
 
  
 
   <div class="seo-content">
     <h2>¿Cómo tributan las apuestas deportivas en España?</h2>
-    <p>Las ganancias obtenidas en apuestas deportivas, casinos online, póker u otros juegos de azar tributan en el IRPF como ganancias patrimoniales en la base del ahorro. Esto significa que no se suman a tu salario sino que tienen sus propios tramos impositivos.</p>
+    <p>Las ganancias del juego son ganancias patrimoniales que no derivan de transmitir un elemento patrimonial. Se integran en la base imponible general junto con las demás rentas generales; por ello no existe un tipo fijo ni se les aplica la escala del ahorro.</p>
 
-    <h3>Tramos del ahorro para ganancias de apuestas 2026</h3>
-    <table class="tramos-tabla">
-      <thead><tr><th>Ganancia neta</th><th>Tipo</th><th>IRPF sobre ese tramo</th></tr></thead>
-      <tbody>
-        <tr><td>Hasta 6.000 €</td><td>19%</td><td>Hasta 1.140 €</td></tr>
-        <tr><td>De 6.000 € a 50.000 €</td><td>21%</td><td>Hasta 9.240 €</td></tr>
-        <tr><td>De 50.000 € a 200.000 €</td><td>23%</td><td>Hasta 34.500 €</td></tr>
-        <tr><td>De 200.000 € a 300.000 €</td><td>27%</td><td>Hasta 27.000 €</td></tr>
-        <tr><td>Más de 300.000 €</td><td>28%</td><td>Sin límite</td></tr>
-      </tbody>
-    </table>
+    <h3>¿Puede calcularse aquí el impuesto exacto?</h3>
+    <p>No con los datos actuales. Harían falta, como mínimo, el resto de rentas generales, la comunidad autónoma y las circunstancias personales y familiares. La calculadora ofrece el dato fiscal que sí puede determinar de forma fiable: la ganancia neta del juego que debe incorporarse a la declaración.</p>
+
+    <p>Los premios de determinadas loterías públicas, ONCE y Cruz Roja sometidos al gravamen especial no forman parte de este cálculo. Tampoco deben introducirse premios promocionales sin cantidad arriesgada, porque sus pérdidas no se compensan del mismo modo.</p>
 
     <h3>¿Puedo compensar las pérdidas?</h3>
     <p>Sí. Las pérdidas en apuestas y juego pueden compensar las ganancias del mismo año. Solo tributa la ganancia neta (ganancias menos pérdidas). Sin embargo, las pérdidas no pueden compensar otros rendimientos como el salario o los dividendos, y tampoco se pueden trasladar a ejercicios futuros si el resultado final es negativo.</p>
 
     <h3>¿Hacienda lo sabe aunque no declare?</h3>
-    <p>Las casas de apuestas con licencia española (Bet365, Codere, Sportium, Betfair, etc.) están obligadas a comunicar a Hacienda los premios superiores a 300 euros obtenidos por cada usuario. Hacienda cruza esta información con tu declaración. No declarar puede suponer sanciones de entre el 50% y el 150% de la cuota no declarada.</p>
+    <p>Conserva los historiales anuales de todas las cuentas y operadores. La ganancia se determina globalmente para el ejercicio y debe poder justificarse con documentación suficiente.</p>
 
     <h3>¿Cuándo estoy obligado a declarar?</h3>
-    <p>Estás obligado a incluir las ganancias de apuestas en tu declaración si tu ganancia neta supera los 1.000 euros anuales, o si junto con tus otros rendimientos superan los límites generales de obligación de declarar. En caso de duda, es mejor declarar.</p>
+    <p>La obligación de presentar declaración depende del conjunto y naturaleza de las rentas y pérdidas del ejercicio. La regla general de rentas de escasa cuantía utiliza, entre otros requisitos, un límite conjunto de 1.000 euros y pérdidas inferiores a 500 euros, pero no debe interpretarse como un umbral aislado específico para apuestas.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -308,16 +290,17 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿El póker online tributa igual que las apuestas deportivas? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí, el póker online tributa exactamente igual: como ganancia patrimonial en la base del ahorro. Se calcula la ganancia neta (premios menos compras de fichas o buy-ins) y se aplican los mismos tramos del 19% al 28%.</div>
+      <div class="faq-a">Las ganancias y pérdidas del póker sujeto al IRPF se computan con el resto del juego del ejercicio y el saldo positivo se integra en la base general. No se aplica la escala del ahorro.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si tengo pérdidas en apuestas y ganancias en bolsa? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Puedes compensar las pérdidas de apuestas con las ganancias de bolsa y viceversa, ya que ambas son ganancias patrimoniales en la base del ahorro. Si el saldo global es negativo, puedes compensarlo con rendimientos del capital mobiliario (dividendos, intereses) hasta un límite del 25%.</div>
+      <div class="faq-a">No. Las apuestas son ganancias no derivadas de transmisión de la base general; las acciones y fondos generan normalmente ganancias de transmisión de la base del ahorro. Las pérdidas del juego solo se admiten hasta las ganancias del propio juego del mismo ejercicio.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cómo sé cuánto he ganado y perdido exactamente? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Las casas de apuestas con licencia española están obligadas a facilitarte un historial de movimientos. Puedes solicitarlo desde tu perfil o área de cliente. Guarda siempre capturas de pantalla y extractos por si Hacienda los requiere.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c11-ganancias-perdidas-patrimoniales/declaracion-tributacion-ganancias-perdidas-patrimoniales/ganancias-perdidas-patrimoniales-que-integran-general.html" rel="noopener noreferrer">ganancias del juego en la base general (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c11-ganancias-perdidas-patrimoniales/ganancias-perdidas-patrimoniales-que-no-bi/perdidas-patrimoniales-que-no-se-tales.html" rel="noopener noreferrer">límite de las pérdidas del juego (AEAT)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c01-campana-declaracion-renta/quienes-estan-obligados-presentar-declaracion-irpf/contribuyentes-no-obligados-declarar-cuadro-resumen.html" rel="noopener noreferrer">obligación de declarar (AEAT)</a> y <a href="https://www.boe.es/eli/es/l/2006/11/28/35/con" rel="noopener noreferrer">Ley del IRPF consolidada (BOE)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -362,7 +345,7 @@ window.addEventListener("load",function(){
   calcular();
 });
 
-document.querySelectorAll('#ganancias_total,#perdidas_total,#otras_ganancias,#otras_perdidas').forEach(el => el.addEventListener('input', calcular));
+document.querySelectorAll('#ganancias_total,#perdidas_total').forEach(el => el.addEventListener('input', calcular));
 
 function cambiarModo() {
   const modo = document.getElementById('modo').value;
@@ -380,10 +363,10 @@ function añadirApuesta() {
   div.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px;';
   div.innerHTML = `
     <div class="field"><label>Tipo</label><select class="ap-tipo" onchange="calcular()">
-      <option>Apuestas deportivas</option><option>Casino</option><option>Póker</option><option>Lotería/Quiniela</option><option>Otro</option>
+      <option>Apuestas deportivas</option><option>Casino</option><option>Póker</option><option>Otro juego sujeto al IRPF con cantidad arriesgada</option>
     </select></div>
-    <div class="field"><label>Ganancias (€)</label><input type="number" class="ap-gan" value="0" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Pérdidas (€)</label><input type="number" class="ap-per" value="0" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Cobrado (€)</label><input type="number" class="ap-gan" value="0" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Apostado (€)</label><input type="number" class="ap-per" value="0" min="0" oninput="calcular()"></div>
     <button onclick="document.getElementById('ap-${apuestaId}').remove();calcular()" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:16px;margin-bottom:1px;">✕</button>
   `;
   document.getElementById('apuestas-lista').appendChild(div);
@@ -391,34 +374,6 @@ function añadirApuesta() {
 }
 
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
-function pct(n) { return n.toFixed(1) + '%'; }
-
-// Tramos IRPF 2026 ganancias patrimoniales
-function calcularIRPF(base) {
-  if (base <= 0) return { total: 0, tramos: [0,0,0,0,0] };
-  const tramos = [
-    { hasta: 6000,   tipo: 0.19 },
-    { hasta: 50000,  tipo: 0.21 },
-    { hasta: 200000, tipo: 0.23 },
-    { hasta: 300000, tipo: 0.27 },
-    { hasta: Infinity, tipo: 0.28 },
-  ];
-  let restante = base;
-  let prev = 0;
-  let total = 0;
-  const detalle = [];
-  for (const t of tramos) {
-    const en_tramo = Math.min(Math.max(0, restante), t.hasta - prev);
-    const imp = en_tramo * t.tipo;
-    detalle.push(imp);
-    total += imp;
-    restante -= en_tramo;
-    prev = t.hasta;
-    if (restante <= 0) break;
-  }
-  while (detalle.length < 5) detalle.push(0);
-  return { total, tramos: detalle };
-}
 
 function calcular() {
   const modo = document.getElementById('modo').value;
@@ -430,59 +385,38 @@ function calcular() {
   } else {
     document.querySelectorAll('.ap-gan').forEach(el => ganancias += parseFloat(el.value) || 0);
     document.querySelectorAll('.ap-per').forEach(el => perdidas += parseFloat(el.value) || 0);
-    ganancias += parseFloat(document.getElementById('otras_ganancias').value) || 0;
-    perdidas += parseFloat(document.getElementById('otras_perdidas').value) || 0;
   }
 
-  const neta = ganancias - perdidas;
+  const perdidasComputables = Math.min(ganancias, perdidas);
+  const excesoPerdidas = Math.max(0, perdidas - ganancias);
+  const neta = Math.max(0, ganancias - perdidasComputables);
 
-  // Si ganancia neta <= 0, no hay IRPF
+  // Las pérdidas del juego no pueden superar las ganancias del mismo ejercicio.
   if (neta <= 0) {
     document.getElementById('bloque_resultados').style.display = 'none';
     document.getElementById('bloque_sin_obligacion').style.display = 'block';
-    document.getElementById('msg_sin_obligacion').textContent = neta < 0
-      ? `Tienes pérdidas netas de ${fmt(Math.abs(neta))}. No pagas IRPF y puedes compensar estas pérdidas con otras ganancias patrimoniales en los próximos 4 años.`
-      : 'Tu ganancia neta es cero. No tienes que pagar IRPF por apuestas este año.';
+    document.getElementById('msg_sin_obligacion').textContent = excesoPerdidas > 0
+      ? `Las cantidades jugadas superan los premios en ${fmt(excesoPerdidas)}, pero ese exceso no genera una pérdida fiscal ni puede trasladarse a otro ejercicio. Esto no determina tu obligación de declarar por otras rentas.`
+      : 'La ganancia neta del juego es cero. Esto no determina tu obligación de declarar por las demás rentas del ejercicio.';
     return;
   }
 
   document.getElementById('bloque_resultados').style.display = 'block';
   document.getElementById('bloque_sin_obligacion').style.display = 'none';
 
-  const { total: irpf, tramos } = calcularIRPF(neta);
-  const tipoEfectivo = neta > 0 ? (irpf / neta) * 100 : 0;
-  const netoFinal = neta - irpf;
-
-  // Tramo más alto
-  let tramoAlto = '19%';
-  if (neta > 300000) tramoAlto = '28%';
-  else if (neta > 200000) tramoAlto = '27%';
-  else if (neta > 50000) tramoAlto = '23%';
-  else if (neta > 6000) tramoAlto = '21%';
-
-  // Resultados
   const header = document.getElementById('results-header');
-  header.className = 'results-header ' + (irpf > 0 ? 'negativo' : 'positivo');
+  header.className = 'results-header positivo';
 
-  document.getElementById('res_irpf').textContent = fmt(irpf);
-  document.getElementById('res_ganancia_neta').textContent = fmt(neta) + ' ganancia neta';
-  document.getElementById('res_tipo_efectivo').textContent = pct(tipoEfectivo) + ' tipo efectivo';
+  document.getElementById('res_irpf').textContent = fmt(neta);
+  document.getElementById('res_ganancia_neta').textContent = fmt(perdidasComputables);
+  document.getElementById('res_tipo_efectivo').textContent = 'No calculable con estos datos';
 
   document.getElementById('d_ganancias').textContent = fmt(ganancias);
   document.getElementById('d_perdidas').textContent = fmt(perdidas);
   document.getElementById('d_neta').textContent = fmt(neta);
-  document.getElementById('d_irpf_detalle').textContent = fmt(irpf);
-  document.getElementById('d_tramo').textContent = 'Hasta ' + tramoAlto;
-  document.getElementById('d_neto_final').textContent = fmt(netoFinal);
-
-  // Tramos detalle
-  const ids = ['t1v','t2v','t3v','t4v','t5v'];
-  ids.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = tramos[i] > 0 ? fmt(tramos[i]) : '—';
-    const row = document.getElementById('t' + (i+1));
-    if (row) row.style.opacity = tramos[i] > 0 ? '1' : '0.4';
-  });
+  document.getElementById('d_irpf_detalle').textContent = 'Depende del resto de la declaración';
+  document.getElementById('d_tramo').textContent = 'Escala general estatal + autonómica';
+  document.getElementById('d_neto_final').textContent = 'No calculable sin el resto de rentas';
 }
 </script>
 </body>

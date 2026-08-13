@@ -520,10 +520,15 @@
   <div class="card">
     <div class="section-label">Situaciones adicionales</div>
     <div class="toggles">
-      <button class="toggle-btn" id="btn_autonomo" onclick="toggleExtra('autonomo')">Autónomo (RETA)</button>
       <button class="toggle-btn" id="btn_segunda" onclick="toggleExtra('segunda')">Segunda actividad</button>
       <button class="toggle-btn" id="btn_movilidad" onclick="toggleExtra('movilidad')">Movilidad geográfica</button>
       <button class="toggle-btn" id="btn_pension" onclick="toggleExtra('pension')">Plan de pensiones</button>
+    </div>
+
+    <div style="margin-top:12px;padding:10px 12px;background:var(--accent-light);border:1px solid #cfe6da;border-radius:var(--radius);font-size:13px;color:var(--muted);line-height:1.55">
+      <strong style="color:var(--text)">¿También trabajas como autónomo?</strong>
+      Esta calculadora estima exclusivamente tu salario neto por cuenta ajena. Los ingresos de tu actividad, la cuota de autónomos y su efecto fiscal deben calcularse por separado.
+      <a href="/calculadora-irpf-autonomos/" style="color:var(--accent);font-weight:500;white-space:nowrap">Ver calculadora para autónomos</a>
     </div>
 
     <div class="extra-field" id="extra_pension">
@@ -666,7 +671,7 @@
 </footer>
 
 <script>
-const extras = { autonomo: false, segunda: false, movilidad: false, pension: false };
+const extras = { segunda: false, movilidad: false, pension: false };
 
 function toggleExtra(key) {
   extras[key] = !extras[key];
@@ -834,7 +839,6 @@ function calcular() {
   if (contrato === 'temporal') avisos.push('No se aplica el tipo mínimo de retención de contratos inferiores a un año porque la duración no se solicita.');
   if (extras.segunda) avisos.push('El segundo empleo se agrega como provisión fiscal anual; las retenciones y pagas reales de cada empresa pueden diferir.');
   if (erte > 0) avisos.push('La reducción ajusta únicamente el salario de empresa; no incorpora la prestación del SEPE.');
-  if (extras.autonomo) avisos.push('La actividad autónoma no se incluye: faltan rendimiento neto, base RETA y régimen fiscal.');
   if (extras.pension) avisos.push('La aportación al plan no se descuenta de la retención de nómina estimada; puede afectar a la Renta anual.');
   if (extras.movilidad) avisos.push('Se presupone que se cumplen los requisitos legales de movilidad geográfica.');
   if (brutoTotal > BASE_MAX_MENSUAL_2026 * 12) avisos.push('La solidaridad se estima repartiendo uniformemente el bruto anual; la nómina real se calcula mes a mes.');

@@ -125,8 +125,8 @@
 <main>
   <div class="hero">
     <div class="badge">☀️ Deducción fiscal 2026</div>
-    <h1>¿Cuánto te devuelve Hacienda<br>por tus <em>placas solares</em>?</h1>
-    <p>Calcula tu deducción en el IRPF por instalar paneles solares o mejorar la eficiencia energética de tu vivienda.</p>
+    <h1>Estima la deducción energética<br>de tus <em>obras o placas solares</em></h1>
+    <p>La instalación por sí sola no genera la deducción: la mejora debe quedar acreditada con certificados energéticos válidos.</p>
   </div>
 
   
@@ -135,26 +135,28 @@
     <div class="section-label">Datos de la instalación</div>
     <div class="grid2">
       <div class="field">
-        <label>Coste total de la instalación (€)</label>
+        <label>Importe elegible pagado, neto de ayudas (€)</label>
         <input type="number" id="coste" value="8000" min="0" step="500">
-        <p class="tip">Incluye materiales, mano de obra e IVA</p>
+        <p class="tip">Resta subvenciones concedidas; paga por tarjeta, transferencia, cheque nominativo o ingreso en cuenta, nunca en efectivo</p>
       </div>
       <div class="field">
         <label>Tipo de deducción aplicable</label>
         <select id="tipo_deduccion">
-          <option value="30">30% — Mejora eficiencia energética (calefacción/refrigeración)</option>
-          <option value="40">40% — Reducción ≥30% consumo energía primaria</option>
-          <option value="60">60% — Edificio de consumo energético casi nulo</option>
+          <option value="0" selected>No acreditada / todavía no lo sé</option>
+          <option value="20">20% — Certificado: demanda de calefacción/refrigeración baja ≥7%</option>
+          <option value="40">40% — Certificado: consumo no renovable baja ≥30% o clase A/B</option>
+          <option value="60">60% — Rehabilitación de edificio residencial: mejora ≥30% o clase A/B</option>
         </select>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>Año de la instalación</label>
+        <label>Ejercicio del certificado energético posterior</label>
         <select id="año_instalacion">
           <option value="2024">2024</option>
           <option value="2025">2025</option>
           <option value="2026" selected>2026</option>
+          <option value="2027">2027 (solo modalidad del 60%)</option>
         </select>
       </div>
       <div class="field">
@@ -162,12 +164,13 @@
         <select id="tipo_vivienda">
           <option value="habitual">Vivienda habitual</option>
           <option value="arrendada">Vivienda arrendada</option>
+          <option value="expectativa">Vivienda en expectativa de alquiler</option>
           <option value="otra">Otra vivienda propia</option>
         </select>
       </div>
     </div>
     <div id="aviso_vivienda" class="aviso">
-      ⚠️ La deducción solo aplica a la vivienda habitual o arrendada. Las segundas residencias no dan derecho a esta deducción.
+      ⚠️ El 20% y 40% no se aplican a una segunda residencia sin alquilar. El 60% puede corresponder a viviendas de propietarios dentro de edificios de uso predominantemente residencial.
     </div>
   </div>
 
@@ -175,12 +178,12 @@
     <div class="section-label">Tu situación fiscal</div>
     <div class="grid2">
       <div class="field">
-        <label>Cuota íntegra estatal (€)</label>
+        <label>Cuota estatal disponible para esta deducción (€)</label>
         <input type="number" id="cuota_integra" value="3500" min="0" step="100">
-        <p class="tip">Casilla 545 de tu declaración de la Renta</p>
+        <p class="tip">Parte disponible después de las deducciones estatales con aplicación prioritaria</p>
       </div>
       <div class="field">
-        <label>¿Tienes base de deducción pendiente de años anteriores?</label>
+        <label>¿Tienes base pendiente anterior de la deducción del 60%?</label>
         <select id="pendiente_anterior">
           <option value="0">No</option>
           <option value="1">Sí</option>
@@ -189,19 +192,19 @@
     </div>
     <div id="campo_pendiente" style="display:none;margin-top:12px">
       <div class="field" style="max-width:260px">
-        <label>Importe pendiente de años anteriores (€)</label>
+        <label>Base pendiente de años anteriores (€)</label>
         <input type="number" id="importe_pendiente" value="1000" min="0" step="100">
       </div>
     </div>
     <div class="info-box" style="margin-top:12px">
-      <p>💡 Si no sabes tu cuota íntegra, usa nuestra <a href="/calculadora-salario-neto-espana/" style="color:var(--accent);font-weight:500;">calculadora de salario</a> para estimarla a partir de tu sueldo bruto.</p>
+      <p>💡 Usa la cuota estatal que quede después de las deducciones con aplicación prioritaria. Un exceso por falta de cuota no se convierte en base trasladable.</p>
     </div>
   </div>
 
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Deducción total en el IRPF</div>
+        <div class="main-label">Deducción aplicable estimada</div>
         <div class="main-value" id="res_deduccion">—</div>
       </div>
       <div class="sub-block">
@@ -213,7 +216,7 @@
     </div>
 
     <div id="aviso_limite" class="aviso">
-      ⚠️ Tu deducción supera el límite anual permitido. El exceso se traslada a los 4 años siguientes.
+      ⚠️ Solo en la modalidad del 60% la base que excede el límite anual puede trasladarse hasta cuatro ejercicios, respetando el máximo acumulado de 15.000 €.
     </div>
 
     <div class="results-grid">
@@ -234,7 +237,7 @@
         <div class="rv" id="d_este_año">—</div>
       </div>
       <div class="res-item">
-        <div class="rl">Pendiente años siguientes</div>
+        <div class="rl">Base pendiente (solo 60%)</div>
         <div class="rv" id="d_pendiente">—</div>
       </div>
       <div class="res-item pos">
@@ -244,7 +247,7 @@
     </div>
 
     <div class="timeline" id="timeline_section" style="display:none">
-      <div class="timeline-title">Distribución de la deducción por años</div>
+      <div class="timeline-title">Base pendiente para ejercicios siguientes</div>
       <div id="timeline_rows"></div>
     </div>
   </div>
@@ -256,19 +259,19 @@
     <p>Desde 2021, el Gobierno español ofrece deducciones en el IRPF para incentivar la mejora de la eficiencia energética en viviendas. La instalación de paneles solares fotovoltaicos para autoconsumo puede acogerse a estas deducciones dependiendo del impacto energético que produzcan.</p>
 
     <h3>Los tres tipos de deducción</h3>
-    <p>Hay tres niveles de deducción según el grado de mejora energética conseguido. La deducción del 30% aplica cuando se reduce al menos un 7% la demanda de calefacción y refrigeración, con una base máxima de 5.000 € anuales. La deducción del 40% se aplica cuando se reduce al menos un 30% el consumo de energía primaria no renovable, con base máxima de 7.500 €. La deducción del 60% es para edificios de consumo de energía casi nulo, con base máxima de 5.000 € anuales por vivienda.</p>
+    <p>La deducción del 20% exige reducir al menos un 7% la demanda de calefacción y refrigeración y tiene una base máxima anual de 5.000 €. La del 40% exige reducir al menos un 30% el consumo de energía primaria no renovable o alcanzar clase A o B, con base máxima de 7.500 €. La del 60% corresponde a rehabilitación energética de edificios de uso predominantemente residencial, con el mismo requisito del 30% o clase A/B, base anual de 5.000 € y base acumulada máxima de 15.000 €.</p>
 
     <h3>Requisitos para aplicar la deducción</h3>
     <div class="req-grid">
       <div class="req-item">
         <div class="ri-icon">🏠</div>
         <div class="ri-title">Vivienda habitual o arrendada</div>
-        <div class="ri-desc">La deducción aplica solo a vivienda habitual o en alquiler, no a segundas residencias</div>
+        <div class="ri-desc">El 20% y 40% se limitan a vivienda habitual, arrendada o en expectativa de alquiler; el 60% se refiere al edificio residencial</div>
       </div>
       <div class="req-item">
         <div class="ri-icon">📋</div>
         <div class="ri-title">Certificado energético</div>
-        <div class="ri-desc">Necesitas certificado de eficiencia energética antes y después de la instalación</div>
+        <div class="ri-desc">Certificado previo válido, con antigüedad máxima de dos años, y certificado posterior expedido y registrado</div>
       </div>
       <div class="req-item">
         <div class="ri-icon">🧾</div>
@@ -278,7 +281,7 @@
       <div class="req-item">
         <div class="ri-icon">📅</div>
         <div class="ri-title">Plazo vigente</div>
-        <div class="ri-desc">Las deducciones aplican para obras realizadas hasta el 31 de diciembre de 2026</div>
+        <div class="ri-desc">20% y 40%: pagos hasta 31/12/2026. Rehabilitación del 60%: hasta 31/12/2027</div>
       </div>
     </div>
 
@@ -292,7 +295,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si la deducción supera mi cuota íntegra? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">El exceso no se pierde. Puedes aplicarlo en los 4 ejercicios fiscales siguientes hasta agotarlo, siempre respetando los límites anuales.</div>
+      <div class="faq-a">No siempre. En el 20% y 40% la base que excede el máximo anual no se traslada. En el 60% sí puede trasladarse la base excedente durante cuatro ejercicios, con base anual máxima de 5.000 € y acumulada de 15.000 €. La parte no utilizada por falta de cuota estatal no genera por sí misma un nuevo derecho de arrastre.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Incluye el IVA en la base de deducción? <span class="faq-arrow">▼</span></div>
@@ -300,12 +303,13 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Puedo aplicarla si soy propietario y alquilo la vivienda? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí. La deducción también aplica si eres propietario de una vivienda arrendada y realizas obras de mejora energética, siempre que la vivienda esté alquilada o en expectativa de alquiler.</div>
+      <div class="faq-a">Para el 20% y 40%, la vivienda debe estar arrendada o en expectativa de alquiler y arrendarse dentro del plazo legal. Para el 60%, el contribuyente debe ser propietario de una vivienda situada en el edificio residencial rehabilitado.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Es compatible con las ayudas del Plan de Recuperación? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Es compatible pero las subvenciones recibidas reducen la base de deducción. Por ejemplo, si la instalación cuesta 8.000 € y recibes 2.000 € de subvención, la base de deducción será de 6.000 €.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2026-2547" rel="noopener noreferrer">disposición adicional quincuagésima de la Ley del IRPF, redacción vigente (BOE)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c16-deducciones-generales-cuota/deducciones-obras-mejora-eficiencia-energetica-viviendas/cuadro-resumen-deducciones-obras-eficiencia-viviendas.html" rel="noopener noreferrer">cuadro resumen 20/40/60 (AEAT)</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/vivienda-otros-inmuebles/deducciones-obras-mejora-eficiencia-energetica-viviendas/deduccion-obras-rehabilitacion-energetica/base-deduccion-porcentaje-deduccion.html" rel="noopener noreferrer">base y arrastre del 60% (AEAT)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -346,16 +350,14 @@ function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics(); calcular();});
 
 // Show/hide pending field
-document.getElementById('pendiente_anterior').addEventListener('change', function() {
-  document.getElementById('campo_pendiente').style.display = this.value === '1' ? 'block' : 'none';
-  calcular();
-});
+function actualizarCamposCondicionales() {
+  const tipoPct = Number(document.getElementById('tipo_deduccion').value);
+  const tienePendiente = document.getElementById('pendiente_anterior').value === '1';
+  document.getElementById('campo_pendiente').style.display = tipoPct === 60 && tienePendiente ? 'block' : 'none';
+}
 
-// Show aviso vivienda
-document.getElementById('tipo_vivienda').addEventListener('change', function() {
-  document.getElementById('aviso_vivienda').style.display = this.value === 'otra' ? 'block' : 'none';
-  calcular();
-});
+document.getElementById('pendiente_anterior').addEventListener('change', actualizarCamposCondicionales);
+document.getElementById('tipo_deduccion').addEventListener('change', actualizarCamposCondicionales);
 
 // Auto-calc on any input change
 document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calcular));
@@ -363,78 +365,115 @@ document.querySelectorAll('input, select').forEach(el => el.addEventListener('in
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
 function pct(n) { return n.toFixed(1) + '%'; }
 
+const MODALIDADES_DEDUCCION = {
+  20: { porcentaje: 0.20, limiteAnual: 5000, ultimoAño: 2026 },
+  40: { porcentaje: 0.40, limiteAnual: 7500, ultimoAño: 2026 },
+  60: { porcentaje: 0.60, limiteAnual: 5000, limiteAcumulado: 15000, ultimoAño: 2027 }
+};
+
+function calcularDeduccionEnergetica({ coste, tipoPct, cuotaDisponible, basePendiente, tipoVivienda, año }) {
+  const modalidad = MODALIDADES_DEDUCCION[tipoPct];
+  if (!modalidad) return { aplica: false, motivo: 'certificado' };
+  if (año < 2021 || año > modalidad.ultimoAño) return { aplica: false, motivo: 'fecha' };
+  if (tipoPct !== 60 && tipoVivienda === 'otra') return { aplica: false, motivo: 'vivienda' };
+
+  const costeElegible = Math.max(0, coste);
+  const cuota = Math.max(0, cuotaDisponible);
+  let baseAplicada;
+  let basePendienteSiguiente = 0;
+  let baseNoTrasladable = 0;
+
+  if (tipoPct === 60) {
+    const pendienteValida = Math.min(Math.max(0, basePendiente), modalidad.limiteAcumulado);
+    const baseDisponible = Math.min(modalidad.limiteAcumulado, pendienteValida + costeElegible);
+    baseAplicada = Math.min(modalidad.limiteAnual, baseDisponible);
+    basePendienteSiguiente = Math.max(0, baseDisponible - baseAplicada);
+  } else {
+    baseAplicada = Math.min(costeElegible, modalidad.limiteAnual);
+    baseNoTrasladable = Math.max(0, costeElegible - modalidad.limiteAnual);
+  }
+
+  const deduccionTeorica = baseAplicada * modalidad.porcentaje;
+  const deduccionAplicable = Math.min(deduccionTeorica, cuota);
+  return {
+    aplica: true,
+    modalidad,
+    baseAplicada,
+    basePendienteSiguiente,
+    baseNoTrasladable,
+    deduccionTeorica,
+    deduccionAplicable,
+    noAplicadaPorCuota: deduccionTeorica - deduccionAplicable
+  };
+}
+
+function limpiarResultados(mensaje) {
+  document.getElementById('res_deduccion').textContent = mensaje;
+  document.getElementById('res_coste_real').textContent = '—';
+  document.getElementById('res_pct_ahorro').textContent = '—';
+  ['d_base','d_pct','d_limite_base','d_este_año','d_pendiente','d_coste_neto'].forEach(id => {
+    document.getElementById(id).textContent = '—';
+  });
+  document.getElementById('aviso_limite').style.display = 'none';
+  document.getElementById('timeline_section').style.display = 'none';
+}
+
 function calcular() {
+  actualizarCamposCondicionales();
   const coste = parseFloat(document.getElementById('coste').value) || 0;
-  const tipoPct = parseInt(document.getElementById('tipo_deduccion').value);
-  const cuotaIntegra = parseFloat(document.getElementById('cuota_integra').value) || 0;
-  const pendienteAnterior = parseInt(document.getElementById('pendiente_anterior').value);
-  const importePendiente = pendienteAnterior === 1 ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
+  const tipoPct = parseInt(document.getElementById('tipo_deduccion').value, 10);
+  const cuotaDisponible = parseFloat(document.getElementById('cuota_integra').value) || 0;
+  const tienePendiente = document.getElementById('pendiente_anterior').value === '1';
+  const basePendiente = tipoPct === 60 && tienePendiente ? (parseFloat(document.getElementById('importe_pendiente').value) || 0) : 0;
   const tipoVivienda = document.getElementById('tipo_vivienda').value;
-  const añoInstalacion = parseInt(document.getElementById('año_instalacion').value);
+  const año = parseInt(document.getElementById('año_instalacion').value, 10);
+  const resultado = calcularDeduccionEnergetica({ coste, tipoPct, cuotaDisponible, basePendiente, tipoVivienda, año });
+  const avisoVivienda = document.getElementById('aviso_vivienda');
 
-  // Límites base según tipo de deducción
-  const limitesBase = { 30: 5000, 40: 7500, 60: 5000 };
-  const limiteBase = limitesBase[tipoPct];
-
-  // Si vivienda no aplica, mostramos aviso y no calculamos
-  if (tipoVivienda === 'otra') {
-    document.getElementById('res_deduccion').textContent = 'No aplica';
-    document.getElementById('res_coste_real').textContent = '—';
-    document.getElementById('res_pct_ahorro').textContent = '—';
-    ['d_base','d_pct','d_limite_base','d_este_año','d_pendiente','d_coste_neto'].forEach(id => {
-      document.getElementById(id).textContent = '—';
-    });
+  if (!resultado.aplica) {
+    avisoVivienda.style.display = resultado.motivo === 'vivienda' ? 'block' : 'none';
+    limpiarResultados(resultado.motivo === 'certificado' ? 'No calculable sin acreditación' : 'No aplica');
     return;
   }
 
-  // Base de deducción: mínimo entre coste real y límite
-  const baseDeduccion = Math.min(coste, limiteBase);
-  // Incluir pendiente de años anteriores
-  const baseTotal = baseDeduccion + importePendiente;
+  if (tipoVivienda === 'expectativa' && tipoPct !== 60) {
+    avisoVivienda.textContent = '⚠️ La vivienda debe alquilarse antes del 31 de diciembre de 2027 para conservar el derecho a la deducción.';
+    avisoVivienda.style.display = 'block';
+  } else if (tipoPct === 60 && tipoVivienda === 'otra') {
+    avisoVivienda.textContent = '⚠️ El 60% exige que la vivienda esté en un edificio de uso predominantemente residencial y que la mejora se acredite para el conjunto del edificio.';
+    avisoVivienda.style.display = 'block';
+  } else {
+    avisoVivienda.style.display = 'none';
+  }
 
-  // Deducción bruta
-  const deduccionBruta = baseTotal * (tipoPct / 100);
+  const costeComparable = basePendiente === 0;
+  const costeNeto = costeComparable ? coste - resultado.deduccionAplicable : null;
+  const pctAhorro = costeComparable && coste > 0 ? (resultado.deduccionAplicable / coste) * 100 : null;
+  const avisoLimite = document.getElementById('aviso_limite');
+  const mensajes = [];
+  if (resultado.basePendienteSiguiente > 0) mensajes.push(`Quedan ${fmt(resultado.basePendienteSiguiente)} de base del 60% potencialmente trasladable hasta cuatro ejercicios, respetando el límite acumulado de 15.000 €.`);
+  if (resultado.baseNoTrasladable > 0) mensajes.push(`${fmt(resultado.baseNoTrasladable)} exceden la base anual del ${tipoPct}% y no se trasladan.`);
+  if (resultado.noAplicadaPorCuota > 0) mensajes.push(`${fmt(resultado.noAplicadaPorCuota)} de deducción teórica no se aplican por falta de cuota estatal y no generan por sí solos base pendiente.`);
+  avisoLimite.textContent = mensajes.length ? `⚠️ ${mensajes.join(' ')}` : '';
+  avisoLimite.style.display = mensajes.length ? 'block' : 'none';
 
-  // Límite: no puede superar cuota íntegra estatal
-  const limiteAnual = cuotaIntegra;
-  const deduccionEsteAño = Math.min(deduccionBruta, limiteAnual);
-  const pendienteSiguientes = Math.max(0, deduccionBruta - deduccionEsteAño);
-
-  // Coste neto
-  const costeNeto = coste - deduccionEsteAño;
-  const pctAhorro = coste > 0 ? (deduccionEsteAño / coste) * 100 : 0;
-
-  // Mostrar aviso límite
-  document.getElementById('aviso_limite').style.display = pendienteSiguientes > 0 ? 'block' : 'none';
-
-  // Resultados principales
-  document.getElementById('res_deduccion').textContent = fmt(deduccionEsteAño);
-  document.getElementById('res_coste_real').textContent = fmt(costeNeto);
-  document.getElementById('res_pct_ahorro').textContent = pct(pctAhorro);
-
-  // Desglose
-  document.getElementById('d_base').textContent = fmt(baseDeduccion);
+  document.getElementById('res_deduccion').textContent = fmt(resultado.deduccionAplicable);
+  document.getElementById('res_coste_real').textContent = costeComparable ? fmt(costeNeto) : 'No comparable';
+  document.getElementById('res_pct_ahorro').textContent = costeComparable ? pct(pctAhorro) : '—';
+  document.getElementById('d_base').textContent = fmt(resultado.baseAplicada);
   document.getElementById('d_pct').textContent = tipoPct + '%';
-  document.getElementById('d_limite_base').textContent = fmt(limiteBase);
-  document.getElementById('d_este_año').textContent = fmt(deduccionEsteAño);
-  document.getElementById('d_pendiente').textContent = fmt(pendienteSiguientes);
-  document.getElementById('d_coste_neto').textContent = fmt(costeNeto);
+  document.getElementById('d_limite_base').textContent = fmt(resultado.modalidad.limiteAnual);
+  document.getElementById('d_este_año').textContent = fmt(resultado.deduccionAplicable);
+  document.getElementById('d_pendiente').textContent = tipoPct === 60 ? fmt(resultado.basePendienteSiguiente) : 'No trasladable';
+  document.getElementById('d_coste_neto').textContent = costeComparable ? fmt(costeNeto) : 'No comparable';
 
-  // Timeline si hay pendiente
   const timelineSection = document.getElementById('timeline_section');
-  if (pendienteSiguientes > 0) {
+  if (resultado.basePendienteSiguiente > 0) {
     timelineSection.style.display = 'block';
-    let pendiente = pendienteSiguientes;
-    let html = '';
-    for (let i = 1; i <= 4 && pendiente > 0; i++) {
-      const aplicado = Math.min(pendiente, limiteAnual);
-      pendiente -= aplicado;
-      html += `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;">
-        <span style="color:var(--muted)">Año ${añoInstalacion + i}</span>
-        <span style="font-weight:600;color:var(--solar)">${fmt(aplicado)}</span>
-      </div>`;
-    }
-    document.getElementById('timeline_rows').innerHTML = html;
+    document.getElementById('timeline_rows').innerHTML = `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;">
+      <span style="color:var(--muted)">Base pendiente (aplicación futura sujeta a los límites legales)</span>
+      <span style="font-weight:600;color:var(--solar)">${fmt(resultado.basePendienteSiguiente)}</span>
+    </div>`;
   } else {
     timelineSection.style.display = 'none';
   }

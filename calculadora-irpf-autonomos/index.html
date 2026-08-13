@@ -152,7 +152,7 @@
   <div class="hero">
     <div class="badge">🧾 Autónomos 2026</div>
     <h1>Calculadora de IRPF y cuotas<br>para <em>autónomos</em></h1>
-    <p>Calcula tu cuota a la Seguridad Social, el IRPF trimestral y lo que te queda realmente en el bolsillo. Sistema de cotización por ingresos reales 2026.</p>
+    <p>Estima el rendimiento de tu actividad, la horquilla de cotización RETA y un IRPF anual aislado. Los pagos del Modelo 130 se explican por separado.</p>
   </div>
 
   <!-- INGRESOS -->
@@ -171,14 +171,15 @@
           <option value="empresarial">Empresarial / Comercial (sin retención)</option>
           <option value="agricola">Agrícola / Ganadera</option>
         </select>
+        <p class="tip">Dato informativo: sin facturas y retenciones acumuladas no se calcula el Modelo 130</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>¿Es tu primer año como autónomo?</label>
+        <label>¿Inicio reciente con posible retención reducida?</label>
         <select id="primer_año" onchange="calcular()">
           <option value="no">No</option>
-          <option value="si">Sí (retención reducida 7% los 2 primeros años)</option>
+          <option value="si">Sí (7% si se cumplen los requisitos)</option>
         </select>
       </div>
       <div class="field">
@@ -191,14 +192,14 @@
       </div>
     </div>
     <div class="info-box warn" id="aviso_modulos" style="display:none;margin-top:12px">
-      <p>⚠️ En módulos el rendimiento se calcula de forma objetiva según parámetros fijos, no sobre ingresos reales. Esta calculadora estima el resultado en estimación directa.</p>
+      <p>⚠️ En módulos el rendimiento se determina con parámetros objetivos que este formulario no solicita. Para evitar una cifra engañosa, la calculadora no ofrece resultado en este régimen.</p>
     </div>
   </div>
 
   <!-- GASTOS DEDUCIBLES -->
   <div class="card">
     <div class="section-label">Gastos deducibles</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Introduce solo los gastos relacionados con tu actividad económica. En estimación directa simplificada puedes deducir además un 5% de gastos de difícil justificación.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Introduce únicamente gastos justificados, registrados y vinculados a la actividad. En estimación directa simplificada se estima además el 5% de provisiones y gastos de difícil justificación, con un máximo de 2.000 €.</p>
     <div class="gastos-grid">
       <div class="gasto-item">
         <label>Alquiler oficina / local (€/año)</label>
@@ -235,7 +236,7 @@
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>¿Trabajas desde casa? (deducción parcial)</label>
+        <label>Superficie de la vivienda afecta a la actividad</label>
         <select id="home_office" onchange="calcular()">
           <option value="0">No</option>
           <option value="25">Sí — 25% del hogar dedicado a trabajo</option>
@@ -243,9 +244,9 @@
         </select>
       </div>
       <div class="field">
-        <label>Gastos del hogar anuales (alquiler/hipoteca+suministros) (€)</label>
+        <label>Suministros anuales de la vivienda (€)</label>
         <input type="number" id="gastos_hogar" value="12000" min="0" step="500" oninput="calcular()">
-        <p class="tip">Solo si trabajas desde casa</p>
+        <p class="tip">Agua, gas, electricidad, telefonía e internet; se aplica el 30% de la proporción afecta</p>
       </div>
     </div>
   </div>
@@ -286,7 +287,7 @@
       </div>
     </div>
     <div class="info-box orange" style="margin-top:12px">
-      <p>💡 La cuota RETA 2026 se calcula según tus ingresos netos reales (ingresos - gastos). El sistema tiene 15 tramos que van desde 200 €/mes (ingresos &lt;670 €/mes) hasta 590 €/mes (ingresos &gt;6.000 €/mes).</p>
+      <p>💡 La base RETA puede elegirse entre el mínimo y el máximo del tramo de rendimientos netos. Por eso se muestra una horquilla: la cuota real depende de la base elegida, meses de alta, bonificaciones y regularización.</p>
     </div>
   </div>
 
@@ -294,7 +295,7 @@
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Neto anual estimado</div>
+        <div class="main-label">Neto anual con cuota RETA mínima estimada</div>
         <div class="main-value" id="res_neto">—</div>
       </div>
       <div class="sub-block">
@@ -319,7 +320,7 @@
         <div class="rv" id="d_rend_neto">—</div>
       </div>
       <div class="res-item neg">
-        <div class="rl">Cuota RETA anual</div>
+        <div class="rl">Cuota RETA mensual estimada</div>
         <div class="rv" id="d_reta">—</div>
       </div>
       <div class="res-item neg">
@@ -336,18 +337,18 @@
       <div class="liq-title">Desglose completo</div>
       <div class="liq-row"><span class="liq-label">Ingresos brutos</span><span class="liq-val" id="l_ingresos">—</span></div>
       <div class="liq-row"><span class="liq-label">− Gastos deducibles</span><span class="liq-val neg" id="l_gastos">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Provisión difícil justificación (5%)</span><span class="liq-val neg" id="l_dificil">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Gastos difícil justificación (5%, máx. 2.000 €)</span><span class="liq-val neg" id="l_dificil">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Rendimiento neto previo</span><span class="liq-val" id="l_rend_previo">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Cuota RETA (deducible en IRPF)</span><span class="liq-val neg" id="l_reta">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Cuota RETA mínima estimada</span><span class="liq-val neg" id="l_reta">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Base imponible IRPF</span><span class="liq-val" id="l_base_irpf">—</span></div>
       <div class="liq-row"><span class="liq-label">− Mínimo personal y familiar</span><span class="liq-val neg" id="l_minimo">—</span></div>
-      <div class="liq-row"><span class="liq-label">− IRPF anual estimado</span><span class="liq-val neg" id="l_irpf">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Cuota RETA anual</span><span class="liq-val neg" id="l_reta2">—</span></div>
+      <div class="liq-row"><span class="liq-label">− IRPF anual aislado estimado</span><span class="liq-val neg" id="l_irpf">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Cuota RETA mínima anual</span><span class="liq-val neg" id="l_reta2">—</span></div>
       <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Neto real anual</span><span class="liq-val pos" id="l_neto">—</span></div>
     </div>
 
     <div class="tramos-reta">
-      <div class="tramos-reta-title">Tramo RETA aplicado según ingresos netos</div>
+      <div class="tramos-reta-title">Tramo RETA estimado y horquilla mensual</div>
       <div id="tramo-reta-activo" class="reta-row activo">
         <span class="reta-left" id="reta_tramo_label">—</span>
         <span class="reta-right" id="reta_tramo_cuota">—</span>
@@ -358,10 +359,10 @@
   <!-- PAGOS TRIMESTRALES -->
   <div class="card" style="margin-top:1.5rem">
     <div class="section-label">Pagos trimestrales estimados (Modelo 130)</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">Como autónomo en estimación directa debes hacer 4 pagos trimestrales del 20% sobre el beneficio trimestral acumulado.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">El Modelo 130 se calcula con importes acumulados desde el 1 de enero hasta el final de cada trimestre, restando pagos anteriores, retenciones acumuladas y otras minoraciones aplicables.</p>
     <div class="trimestres" id="trimestres-grid"></div>
     <div class="info-box green" style="margin-top:1rem">
-      <p>✅ Si eres profesional y tus clientes te retienen en factura, tus pagos trimestrales se reducen por esas retenciones. En ese caso puede que no tengas que pagar nada en el modelo 130.</p>
+      <p>ℹ️ No se calcula una cifra con los datos actuales: faltan ingresos y gastos acumulados por trimestre, retenciones soportadas, pagos anteriores y la minoración por bajos rendimientos. Los profesionales tampoco están obligados a presentarlo cuando se cumple la regla del 70% de ingresos sometidos a retención.</p>
     </div>
   </div>
 
@@ -370,26 +371,26 @@
     <p>Un autónomo en España tiene dos pagos principales a la Administración: la cuota a la Seguridad Social (RETA) y el IRPF. Desde 2023 la cuota RETA ya no es fija sino que depende de tus ingresos reales, lo que cambia significativamente cuánto paga cada autónomo.</p>
 
     <h3>Sistema de cotización por ingresos reales 2026</h3>
-    <p>El nuevo sistema tiene 15 tramos de cotización. Los ingresos netos (ingresos menos gastos) determinan en qué tramo estás y cuánto pagas cada mes a la Seguridad Social. Los autónomos con ingresos bajos pagan menos, y los de ingresos altos pagan más.</p>
+    <p>El sistema tiene 15 tramos de rendimientos netos. Cada tramo establece una base mínima y máxima; la cuota se obtiene aplicando los tipos vigentes a la base elegida. La calculadora usa la deducción genérica del 7% para aproximar el rendimiento computable a efectos de cotización y muestra la cuota ordinaria mínima y máxima del tramo.</p>
 
     <table class="tramos-tabla">
-      <thead><tr><th>Ingresos netos mensuales</th><th>Cuota mínima/mes</th><th>Cuota máxima/mes</th></tr></thead>
+      <thead><tr><th>Rendimiento neto mensual</th><th>Base mínima 2026</th><th>Base máxima 2026</th></tr></thead>
       <tbody>
-        <tr><td>Hasta 670 €</td><td>200 €</td><td>200 €</td></tr>
-        <tr><td>670 € – 900 €</td><td>200 €</td><td>258 €</td></tr>
-        <tr><td>900 € – 1.166 €</td><td>258 €</td><td>293 €</td></tr>
-        <tr><td>1.166 € – 1.300 €</td><td>293 €</td><td>320 €</td></tr>
-        <tr><td>1.300 € – 1.500 €</td><td>320 €</td><td>348 €</td></tr>
-        <tr><td>1.500 € – 1.700 €</td><td>348 €</td><td>374 €</td></tr>
-        <tr><td>1.700 € – 1.850 €</td><td>374 €</td><td>396 €</td></tr>
-        <tr><td>1.850 € – 2.030 €</td><td>396 €</td><td>420 €</td></tr>
-        <tr><td>2.030 € – 2.330 €</td><td>420 €</td><td>462 €</td></tr>
-        <tr><td>2.330 € – 2.760 €</td><td>462 €</td><td>490 €</td></tr>
-        <tr><td>2.760 € – 3.190 €</td><td>490 €</td><td>530 €</td></tr>
-        <tr><td>3.190 € – 3.620 €</td><td>530 €</td><td>547 €</td></tr>
-        <tr><td>3.620 € – 4.050 €</td><td>547 €</td><td>570 €</td></tr>
-        <tr><td>4.050 € – 6.000 €</td><td>570 €</td><td>590 €</td></tr>
-        <tr><td>Más de 6.000 €</td><td>590 €</td><td>590 €</td></tr>
+        <tr><td>Hasta 670 €</td><td>653,59 €</td><td>718,94 €</td></tr>
+        <tr><td>670 € – 900 €</td><td>718,95 €</td><td>900 €</td></tr>
+        <tr><td>900 € – 1.166,70 €</td><td>849,67 €</td><td>1.166,70 €</td></tr>
+        <tr><td>1.166,70 € – 1.300 €</td><td>950,98 €</td><td>1.300 €</td></tr>
+        <tr><td>1.300 € – 1.500 €</td><td>960,78 €</td><td>1.500 €</td></tr>
+        <tr><td>1.500 € – 1.700 €</td><td>960,78 €</td><td>1.700 €</td></tr>
+        <tr><td>1.700 € – 1.850 €</td><td>1.143,79 €</td><td>1.850 €</td></tr>
+        <tr><td>1.850 € – 2.030 €</td><td>1.209,15 €</td><td>2.030 €</td></tr>
+        <tr><td>2.030 € – 2.330 €</td><td>1.274,51 €</td><td>2.330 €</td></tr>
+        <tr><td>2.330 € – 2.760 €</td><td>1.356,21 €</td><td>2.760 €</td></tr>
+        <tr><td>2.760 € – 3.190 €</td><td>1.437,91 €</td><td>3.190 €</td></tr>
+        <tr><td>3.190 € – 3.620 €</td><td>1.519,61 €</td><td>3.620 €</td></tr>
+        <tr><td>3.620 € – 4.050 €</td><td>1.601,31 €</td><td>4.050 €</td></tr>
+        <tr><td>4.050 € – 6.000 €</td><td>1.732,03 €</td><td>5.101,20 €</td></tr>
+        <tr><td>Más de 6.000 €</td><td>1.928,10 €</td><td>5.101,20 €</td></tr>
       </tbody>
     </table>
 
@@ -397,7 +398,7 @@
     <p>En estimación directa, puedes deducir todos los gastos necesarios para tu actividad: alquiler de local u oficina, suministros, material, transporte, formación, seguros, gestoría y la propia cuota de autónomos. Además, en estimación directa simplificada puedes aplicar una deducción adicional del 5% sobre el rendimiento neto en concepto de gastos de difícil justificación (con un máximo de 2.000 €).</p>
 
     <h3>¿Cómo funciona el IRPF de los autónomos?</h3>
-    <p>Los autónomos tributan por el rendimiento neto de su actividad (ingresos menos gastos, incluyendo la cuota RETA). Este rendimiento se suma al resto de rentas y se aplican los tramos generales del IRPF. La cuota RETA es 100% deducible como gasto de la actividad.</p>
+    <p>Los autónomos tributan por el rendimiento neto de la actividad, incluyendo entre los gastos las cuotas RETA satisfechas. Ese rendimiento se integra con el resto de rentas en la declaración anual. Al no preguntar por esas otras rentas, esta página muestra únicamente un escenario aislado de régimen común, no el resultado completo de la Renta.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -406,7 +407,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué es el modelo 130? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">El modelo 130 es el pago fraccionado trimestral del IRPF para autónomos en estimación directa. Se presenta en enero, abril, julio y octubre. Se paga el 20% sobre el rendimiento neto acumulado del trimestre, restando los pagos anteriores y las retenciones soportadas.</div>
+      <div class="faq-a">Es un pago a cuenta para actividades en estimación directa. Los importes son acumulados desde el 1 de enero: se calcula generalmente el 20% del rendimiento neto acumulado y se restan los pagos positivos anteriores, las retenciones acumuladas y las minoraciones aplicables. No equivale al IRPF anual definitivo.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Puedo deducirme el coche como autónomo? <span class="faq-arrow">▼</span></div>
@@ -418,8 +419,9 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cómo afecta el nuevo sistema de cuotas si mis ingresos varían? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Al inicio del año eliges el tramo de cotización según tus ingresos previstos. A final de año, la Seguridad Social regulariza: si ganaste más de lo previsto pagarás la diferencia, y si ganaste menos te devolverán el exceso. Por eso es importante elegir el tramo más ajustado posible a tus ingresos reales.</div>
+      <div class="faq-a">La base puede ajustarse durante el año según la previsión de rendimientos y la Seguridad Social regulariza posteriormente con los rendimientos comunicados por la AEAT. La cifra mostrada es una horquilla ordinaria; no incorpora bases voluntarias superiores, altas parciales, bonificaciones ni colectivos especiales.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/eli/es/o/2026/03/30/pjc297/dof/spa" rel="noopener noreferrer">bases y tipos RETA 2026 (BOE)</a>, <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10724/1320/1322/cuota4425?changeLanguage=es" rel="noopener noreferrer">cotización de autónomos (Seguridad Social)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-130-irpf______esionales-estimacion-directa-fraccionado_/instrucciones.html" rel="noopener noreferrer">instrucciones del Modelo 130 (AEAT)</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-ayuda-presentacion/irpf-2025/7-cumplimentacion-irpf/7_4-rendimientos-actividades-economicas/7_4_2-regimen-estimacion-directa/7_4_2_3-gastos-fiscalmente-deducibles/suministros.html" rel="noopener noreferrer">suministros de vivienda afecta (AEAT)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -469,37 +471,70 @@ document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
 function fmtM(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €/mes';}
 
-// Tramos RETA 2026 por ingresos netos mensuales
+// Tabla general y reducida RETA 2026: cada tramo permite elegir una base.
 const RETA_TRAMOS=[
-  {max:670,  cuota:200,  label:'Hasta 670 €/mes'},
-  {max:900,  cuota:200,  label:'670 – 900 €/mes'},
-  {max:1166, cuota:258,  label:'900 – 1.166 €/mes'},
-  {max:1300, cuota:293,  label:'1.166 – 1.300 €/mes'},
-  {max:1500, cuota:320,  label:'1.300 – 1.500 €/mes'},
-  {max:1700, cuota:348,  label:'1.500 – 1.700 €/mes'},
-  {max:1850, cuota:374,  label:'1.700 – 1.850 €/mes'},
-  {max:2030, cuota:396,  label:'1.850 – 2.030 €/mes'},
-  {max:2330, cuota:420,  label:'2.030 – 2.330 €/mes'},
-  {max:2760, cuota:462,  label:'2.330 – 2.760 €/mes'},
-  {max:3190, cuota:490,  label:'2.760 – 3.190 €/mes'},
-  {max:3620, cuota:530,  label:'3.190 – 3.620 €/mes'},
-  {max:4050, cuota:547,  label:'3.620 – 4.050 €/mes'},
-  {max:6000, cuota:570,  label:'4.050 – 6.000 €/mes'},
-  {max:Infinity,cuota:590,label:'Más de 6.000 €/mes'},
+  {max:670,baseMin:653.59,baseMax:718.94,label:'Hasta 670 €/mes'},
+  {max:900,baseMin:718.95,baseMax:900,label:'Más de 670 hasta 900 €/mes'},
+  {max:1166.70,baseMin:849.67,baseMax:1166.70,label:'Más de 900 y menos de 1.166,70 €/mes'},
+  {max:1300,baseMin:950.98,baseMax:1300,label:'De 1.166,70 hasta 1.300 €/mes'},
+  {max:1500,baseMin:960.78,baseMax:1500,label:'Más de 1.300 hasta 1.500 €/mes'},
+  {max:1700,baseMin:960.78,baseMax:1700,label:'Más de 1.500 hasta 1.700 €/mes'},
+  {max:1850,baseMin:1143.79,baseMax:1850,label:'Más de 1.700 hasta 1.850 €/mes'},
+  {max:2030,baseMin:1209.15,baseMax:2030,label:'Más de 1.850 hasta 2.030 €/mes'},
+  {max:2330,baseMin:1274.51,baseMax:2330,label:'Más de 2.030 hasta 2.330 €/mes'},
+  {max:2760,baseMin:1356.21,baseMax:2760,label:'Más de 2.330 hasta 2.760 €/mes'},
+  {max:3190,baseMin:1437.91,baseMax:3190,label:'Más de 2.760 hasta 3.190 €/mes'},
+  {max:3620,baseMin:1519.61,baseMax:3620,label:'Más de 3.190 hasta 3.620 €/mes'},
+  {max:4050,baseMin:1601.31,baseMax:4050,label:'Más de 3.620 hasta 4.050 €/mes'},
+  {max:6000,baseMin:1732.03,baseMax:5101.20,label:'Más de 4.050 hasta 6.000 €/mes'},
+  {max:Infinity,baseMin:1928.10,baseMax:5101.20,label:'Más de 6.000 €/mes'}
 ];
+
+const TIPO_RETA_ORDINARIO_2026=.315;
 
 function getRETATramo(ingNetoMensual){
   for(const t of RETA_TRAMOS) if(ingNetoMensual<=t.max) return t;
   return RETA_TRAMOS[RETA_TRAMOS.length-1];
 }
 
-// IRPF escala general
-function calcIRPF(base){
-  if(base<=0) return 0;
-  const t=[{h:12450,r:.095},{h:20200,r:.12},{h:35200,r:.15},{h:60000,r:.185},{h:300000,r:.225},{h:Infinity,r:.245}];
-  let rem=base,prev=0,tot=0;
-  for(const s of t){const en=Math.min(Math.max(0,rem),s.h-prev);tot+=en*s.r;rem-=en;prev=s.h;if(rem<=0)break;}
-  return tot;
+const ESCALA_ESTATAL=[[12450,.095],[20200,.12],[35200,.15],[60000,.185],[300000,.225],[Infinity,.245]];
+const ESCALAS_AUTONOMICAS={
+  0:[[13000,.095],[21100,.12],[35200,.15],[60000,.185],[Infinity,.225]],
+  1:[[13072.50,.095],[21210,.12],[36960,.15],[52500,.185],[60000,.205],[80000,.23],[90000,.24],[130000,.25],[Infinity,.255]],
+  2:[[12450,.09],[17707.20,.12],[33007.20,.14],[53407.20,.192],[70000,.215],[90000,.225],[175000,.25],[Infinity,.26]],
+  3:[[10000,.09],[18000,.1125],[30000,.1425],[48000,.175],[70000,.19],[90000,.2175],[120000,.2275],[175000,.2375],[Infinity,.2475]],
+  4:[[13748,.09],[19422,.115],[35924,.14],[57566,.185],[93268,.235],[123745,.25],[Infinity,.26]],
+  5:[[13000,.085],[21000,.11],[35200,.145],[60000,.18],[90000,.225],[Infinity,.245]],
+  6:[[12450,.095],[20200,.12],[35200,.15],[60000,.185],[Infinity,.225]],
+  7:[[12450,.09],[20200,.12],[35200,.14],[53407.20,.185],[Infinity,.215]],
+  8:[[12500,.095],[22000,.125],[33000,.16],[53000,.19],[90000,.215],[120000,.235],[175000,.245],[Infinity,.255]],
+  9:[[12450,.08],[20200,.10],[24200,.16],[35200,.175],[60000,.21],[80200,.235],[99200,.24],[120200,.245],[Infinity,.25]],
+  10:[[12985.35,.09],[21068.60,.1165],[35200,.149],[60000,.184],[Infinity,.225]],
+  11:[[13362.22,.085],[19004.63,.107],[35425.68,.128],[57320.40,.174],[Infinity,.205]],
+  12:[[12450,.095],[20200,.112],[34000,.133],[60000,.179],[Infinity,.225]],
+  15:[[12450,.08],[20200,.106],[35200,.136],[40000,.178],[50000,.183],[60000,.19],[120000,.245],[Infinity,.27]],
+  16:[[12000,.09],[22000,.12],[32000,.15],[42000,.175],[52000,.20],[62000,.225],[72000,.25],[100000,.265],[150000,.275],[200000,.285],[Infinity,.295]]
+};
+const MINIMOS_AUTONOMICOS={0:{base:5790,hijos:[2510,2820,4170,4700]},2:{base:6105,hijos:[2640,2970,4400,4950]},3:{base:5550,hijos:[2400,2970,4400,4950]},4:{base:5606,hijos:[2424,2727,4040,4545]},10:{base:5789,hijos:[2503,2816,4172,4694]},11:{base:5956.65,hijos:[2575.85,2897.83,4400,4950]},16:{base:6105,hijos:[2640,2970,4400,4950]}};
+
+function cuotaEscala(base,tramos){
+  let total=0,anterior=0;
+  for(const [hasta,tipo] of tramos){
+    if(base<=anterior) break;
+    total+=(Math.min(base,hasta)-anterior)*tipo;
+    anterior=hasta;
+  }
+  return Math.max(0,total);
+}
+
+function minimoConHijos(tabla,hijos){
+  let total=tabla.base;
+  for(let i=0;i<hijos;i++) total+=tabla.hijos[Math.min(i,tabla.hijos.length-1)];
+  return total;
+}
+
+function calcularModelo130Acumulado(rendimientoAcumulado,retencionesAcumuladas,pagosAnteriores,minoracion=0){
+  return Math.max(0,Math.max(0,rendimientoAcumulado)*.20-Math.max(0,retencionesAcumuladas)-Math.max(0,pagosAnteriores)-Math.max(0,minoracion));
 }
 
 function toggleExtra(id){
@@ -516,10 +551,19 @@ function calcular(){
   const ingresos=parseFloat(document.getElementById('ingresos').value)||0;
   const primerAño=document.getElementById('primer_año').value;
   const regimen=document.getElementById('regimen').value;
-  const homeOffice=document.getElementById('home_office').value;
-  const gastoHogar=parseFloat(document.getElementById('gastos_hogar').value)||0;
+  const proporcionVivienda=(parseFloat(document.getElementById('home_office').value)||0)/100;
+  const suministrosVivienda=parseFloat(document.getElementById('gastos_hogar').value)||0;
   const estado=document.getElementById('estado').value;
   const hijos=parseInt(document.getElementById('hijos').value)||0;
+  const ccaa=parseInt(document.getElementById('ccaa').value);
+
+  document.getElementById('aviso_modulos').style.display=regimen==='modulos'?'block':'none';
+  if(regimen==='modulos'){
+    document.getElementById('aviso_modulos').innerHTML='<p>⚠️ En módulos el rendimiento y el Modelo 131 dependen de parámetros objetivos específicos que este formulario no solicita.</p>';
+    ['res_neto','res_neto_mensual','res_tipo_ef','d_ingresos','d_gastos','d_rend_neto','d_reta','d_irpf','d_neto_real','l_ingresos','l_gastos','l_dificil','l_rend_previo','l_reta','l_base_irpf','l_minimo','l_irpf','l_reta2','l_neto','reta_tramo_label','reta_tramo_cuota'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='No calculable en módulos';});
+    document.getElementById('trimestres-grid').innerHTML='<div class="info-box warn" style="grid-column:1/-1"><p>El Modelo 131 y el rendimiento por módulos requieren los parámetros objetivos específicos de la actividad.</p></div>';
+    return;
+  }
 
   // Gastos deducibles
   const gastos={
@@ -533,60 +577,48 @@ function calcular(){
     otros: parseFloat(document.getElementById('g_otros').value)||0,
   };
 
-  // Home office: 30% de los gastos del hogar
-  const gastoHomeOffice = homeOffice==='si' ? gastoHogar*0.30 : 0;
+  // Suministros de vivienda: 30% de la proporción de superficie afecta.
+  const gastoHomeOffice=suministrosVivienda*proporcionVivienda*.30;
   const totalGastos=Object.values(gastos).reduce((a,b)=>a+b,0)+gastoHomeOffice;
 
   // Provisión difícil justificación (solo estimación directa simplificada, 5%, máx 2.000€)
   const rendPrevio=Math.max(0,ingresos-totalGastos);
-  const provDificil=regimen==='simplificada'?Math.min(rendPrevio*0.05,2000):0;
+  const provDificil=regimen==='directa_simplificada'?Math.min(rendPrevio*0.05,2000):0;
   const rendNeto=Math.max(0,rendPrevio-provDificil);
 
-  // RETA según ingresos netos mensuales
-  let cuotaRetaMensual=200;
-  let retaLabel='';
-  if(primerAño==='si'){
-    cuotaRetaMensual=primerAño==='si'?80:200; // tarifa plana primer año
-    retaLabel='Tarifa plana primer año: 80 €/mes';
-    cuotaRetaMensual=80;
-    retaLabel='Tarifa plana primer año';
-  } else {
-    const ingNetoMensual=rendNeto/12;
-    const tramo=getRETATramo(ingNetoMensual);
-    cuotaRetaMensual=tramo.cuota;
-    retaLabel=tramo.label;
-  }
-  const retaAnual=cuotaRetaMensual*12;
+  // Rendimiento computable aproximado para encuadrar el tramo: deducción genérica del 7%.
+  const ingNetoMensualSS=rendNeto*.93/12;
+  const tramo=getRETATramo(ingNetoMensualSS);
+  const cuotaRetaMin=tramo.baseMin*TIPO_RETA_ORDINARIO_2026;
+  const cuotaRetaMax=tramo.baseMax*TIPO_RETA_ORDINARIO_2026;
+  const retaAnual=cuotaRetaMin*12;
 
   // Base IRPF (rendimiento neto - cuota RETA, ya que RETA es deducible)
   const baseIRPF=Math.max(0,rendNeto-retaAnual);
 
-  // Mínimo personal y familiar
-  let minimoPersonal=5550;
-  const minimoHijos_tabla=[0,2400,2700,4000,4500];
-  let minimoHijos=0;
-  for(let i=0;i<Math.min(hijos,4);i++) minimoHijos+=(minimoHijos_tabla[i+1]||4500);
-  const minimo=minimoPersonal+minimoHijos;
+  const minimoEstatal=minimoConHijos({base:5550,hijos:[2400,2700,4000,4500]},hijos);
+  const minimoAutonomico=minimoConHijos(MINIMOS_AUTONOMICOS[ccaa]||{base:5550,hijos:[2400,2700,4000,4500]},hijos);
   let redConjunta=0;
   if(estado==='casado') redConjunta=3400;
 
   const baseLiq=Math.max(0,baseIRPF-redConjunta);
-  const irpfBruto=Math.max(0,calcIRPF(baseLiq)-calcIRPF(minimo));
-  const netoReal=ingresos-totalGastos-provDificil-retaAnual-irpfBruto;
-
-  // Pagos trimestrales modelo 130 (20% beneficio acumulado)
-  const benTrimestral=rendNeto/4;
-  const pagoTrimestral=Math.max(0,benTrimestral*0.20);
+  const foral=ccaa===13||ccaa===14;
+  const cuotaEstatal=Math.max(0,cuotaEscala(baseLiq,ESCALA_ESTATAL)-cuotaEscala(Math.min(baseLiq,minimoEstatal),ESCALA_ESTATAL));
+  const cuotaAutonomica=foral?0:Math.max(0,cuotaEscala(baseLiq,ESCALAS_AUTONOMICAS[ccaa])-cuotaEscala(Math.min(baseLiq,minimoAutonomico),ESCALAS_AUTONOMICAS[ccaa]));
+  const irpfBruto=foral?0:cuotaEstatal+cuotaAutonomica;
+  // El gasto de difícil justificación reduce el IRPF, pero no es una salida de caja.
+  const netoReal=ingresos-totalGastos-retaAnual-irpfBruto;
 
   // Mostrar resultados principales
   const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
-  set('res_neto',fmt(netoReal));
+  set('res_neto',foral?'Antes de IRPF foral: '+fmt(netoReal):fmt(netoReal));
   set('res_neto_mensual',fmtM(netoReal/12));
+  set('res_tipo_ef',foral?'—':(baseIRPF>0?(irpfBruto/baseIRPF*100).toFixed(1)+'%':'0,0%'));
   set('d_ingresos',fmt(ingresos));
   set('d_gastos',fmt(totalGastos+provDificil));
   set('d_rend_neto',fmt(rendNeto));
-  set('d_reta',fmtM(cuotaRetaMensual));
-  set('d_irpf',fmt(irpfBruto));
+  set('d_reta',fmtM(cuotaRetaMin)+' – '+fmtM(cuotaRetaMax));
+  set('d_irpf',foral?'No calculado (régimen foral)':fmt(irpfBruto));
   set('d_neto_real',fmt(netoReal));
 
   // Liquidación detallada
@@ -596,25 +628,26 @@ function calcular(){
   set('l_rend_previo',fmt(rendPrevio));
   set('l_reta',fmt(retaAnual));
   set('l_base_irpf',fmt(baseIRPF));
-  set('l_minimo',fmt(minimo));
-  set('l_irpf',fmt(irpfBruto));
+  set('l_minimo',fmt(minimoEstatal));
+  set('l_irpf',foral?'No calculado':fmt(irpfBruto));
   set('l_reta2',fmt(retaAnual));
   set('l_neto',fmt(netoReal));
 
   // Tramo RETA
-  set('reta_tramo_label',retaLabel);
-  set('reta_tramo_cuota',fmtM(cuotaRetaMensual));
+  set('reta_tramo_label',tramo.label);
+  set('reta_tramo_cuota',fmtM(cuotaRetaMin)+' – '+fmtM(cuotaRetaMax));
 
   // Trimestres
   const grid=document.getElementById('trimestres-grid');
-  if(grid){
-    grid.innerHTML=['1er','2º','3er','4º'].map((t,i)=>`
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:4px">${t} trimestre</div>
-        <div style="font-size:20px;font-weight:700;color:var(--aut)">${fmt(pagoTrimestral)}</div>
-        <div style="font-size:11px;color:var(--hint);margin-top:4px">Modelo 130</div>
-      </div>`).join('');
-  }
+  if(grid) grid.innerHTML='<div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:14px;font-weight:600;color:var(--text)">No calculable con totales anuales</div><div style="font-size:12px;color:var(--muted);margin-top:6px">Se necesitan acumulados reales, retenciones y pagos anteriores de cada trimestre.</div></div>';
+
+  const avisos=['IRPF anual estimado como si esta actividad fuese la única renta y con la cuota RETA mínima ordinaria del tramo.'];
+  if(primerAño==='si') avisos.push('No se aplica una cuota reducida de inicio: su importe y duración efectiva deben verificarse; el 7% es solo una retención profesional a cuenta cuando se cumplen sus requisitos.');
+  if(estado==='casado') avisos.push('Se presupone tributación conjunta con cónyuge sin rentas; no se solicitan sus demás circunstancias.');
+  if(foral) avisos.push('Navarra y País Vasco tienen normativa propia y no se calcula su IRPF.');
+  document.getElementById('aviso_modulos').style.display='block';
+  document.getElementById('aviso_modulos').className='info-box warn';
+  document.getElementById('aviso_modulos').innerHTML='<p>⚠️ '+avisos.join(' ')+'</p>';
 }
 </script>
 </body>
