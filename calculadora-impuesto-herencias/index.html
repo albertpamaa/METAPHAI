@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Impuesto de Sucesiones Herencias 2026 | Metaphai</title>
-  <meta name="description" content="Calcula cuánto pagas de impuesto de sucesiones por una herencia en España 2026. Varía mucho por comunidad autónoma. Incluye reducciones y bonificaciones. Gratis.">
+  <meta name="description" content="Estima una liquidación estatal de referencia del impuesto de sucesiones en España y conoce por qué la cuota autonómica o foral requiere más datos.">
   <meta name="keywords" content="calculadora herencias 2026, impuesto sucesiones españa, cuanto se paga herencia, impuesto herencias comunidad autonoma, reduccion herencia hijos, bonificacion sucesiones">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-impuesto-herencias/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Impuesto de Sucesiones (Herencias) 2026 | Metaphai">
-  <meta property="og:description" content="Calcula el impuesto de sucesiones de tu herencia. Las diferencias entre comunidades autónomas son enormes.">
+  <meta property="og:description" content="Calcula una referencia estatal del impuesto de sucesiones e identifica los límites de la estimación autonómica.">
   <meta property="og:url" content="https://metaphai.com/calculadora-impuesto-herencias/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +43,11 @@
     .info-box.purple{background:var(--her-light);border:1px solid #c8b0f0;}.info-box.purple p{font-size:13px;color:var(--her);margin:0;}
     .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
     .info-box.green{background:var(--accent-light);border:1px solid #b8dece;}.info-box.green p{font-size:13px;color:var(--accent);margin:0;}
+    .advanced-toggle{width:100%;margin-top:14px;padding:9px 0;border:0;border-top:1px solid var(--border);background:transparent;color:var(--her);font:600 12px 'DM Sans',sans-serif;text-align:left;cursor:pointer;}
+    .advanced-toggle span{float:right;transition:transform .2s;}
+    .advanced-toggle[aria-expanded="true"] span{transform:rotate(180deg);}
+    .advanced-content{display:none;padding-top:12px;}
+    .advanced-content.open{display:block;}
     .results{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:1.5rem;}
     .results-header{background:var(--her);padding:1.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;}
     .results-header .main-label{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:4px;}
@@ -120,7 +125,7 @@
   <div class="hero">
     <div class="badge">📜 Herencias 2026</div>
     <h1>Calculadora de impuesto<br>sobre <em>herencias</em></h1>
-    <p>Calcula cuánto pagas de impuesto de sucesiones. Las diferencias entre comunidades autónomas son enormes — desde casi 0€ hasta el 34% de la herencia.</p>
+    <p>Calcula una liquidación estatal de referencia. El impuesto real depende de la normativa autonómica o foral y no puede obtenerse aplicando una bonificación genérica.</p>
   </div>
 
   <div class="card">
@@ -129,10 +134,10 @@
       <div class="field">
         <label>Valor total de la herencia (€)</label>
         <input type="number" id="valor_herencia" value="200000" min="0" step="5000" oninput="calcular()">
-        <p class="tip">Suma de bienes inmuebles, dinero, vehículos, etc. menos deudas</p>
+        <p class="tip">Dato informativo; la referencia se calcula sobre tu adquisición individual</p>
       </div>
       <div class="field">
-        <label>Tu parte de la herencia (€)</label>
+        <label>Tu parte de bienes y derechos, sin seguro de vida (€)</label>
         <input type="number" id="tu_parte" value="100000" min="0" step="5000" oninput="calcular()">
         <p class="tip">Si heredas al 50% con un hermano, es la mitad del total</p>
       </div>
@@ -142,11 +147,11 @@
         <label>¿Incluye vivienda habitual del fallecido?</label>
         <select id="vivienda_habitual" onchange="calcular()">
           <option value="0">No</option>
-          <option value="1">Sí</option>
+          <option value="1">Sí, y cumplo parentesco y permanencia estatales</option>
         </select>
       </div>
       <div class="field">
-        <label>Valor de la vivienda habitual (€)</label>
+        <label>Valor de tu parte heredada de la vivienda habitual (€)</label>
         <input type="number" id="valor_vivienda" value="0" min="0" step="5000" oninput="calcular()">
         <p class="tip">Solo si incluye la vivienda habitual del fallecido</p>
       </div>
@@ -159,10 +164,13 @@
       <div class="field">
         <label>Parentesco</label>
         <select id="parentesco" onchange="calcular()">
-          <option value="grupo1">Grupo I — Hijos menores de 21 años</option>
-          <option value="grupo2" selected>Grupo II — Hijos mayores 21, cónyuge, padres</option>
-          <option value="grupo3">Grupo III — Hermanos, tíos, sobrinos, cuñados</option>
-          <option value="grupo4">Grupo IV — Primos, extraños</option>
+          <option value="descendiente" selected>Hijo/a, nieto/a o descendiente</option>
+          <option value="conyuge">Cónyuge</option>
+          <option value="ascendiente">Padre, madre, abuelo/a o ascendiente</option>
+          <option value="colateral23">Hermano/a, tío/a o sobrino/a</option>
+          <option value="afinidad">Ascendiente o descendiente por afinidad</option>
+          <option value="colateral4">Primo/a (colateral de cuarto grado)</option>
+          <option value="sin_parentesco">Sin parentesco o parentesco más lejano</option>
         </select>
       </div>
       <div class="field">
@@ -173,22 +181,22 @@
     <div class="field" style="margin-top:12px">
       <label>Comunidad autónoma del fallecido (determina qué impuesto aplica)</label>
       <select id="ccaa_her" onchange="calcular()">
-        <option value="andalucia">Andalucía (bonificación 99% grupos I y II)</option>
+        <option value="andalucia">Andalucía</option>
         <option value="aragon">Aragón</option>
         <option value="asturias">Asturias</option>
         <option value="baleares">Baleares</option>
-        <option value="canarias">Canarias (bonificación 99,9% grupos I y II)</option>
-        <option value="cantabria">Cantabria (bonificación 100% grupos I y II)</option>
+        <option value="canarias">Canarias</option>
+        <option value="cantabria">Cantabria</option>
         <option value="castilla_mancha">Castilla-La Mancha</option>
-        <option value="castilla_leon">Castilla y León (bonificación 99% grupos I y II)</option>
+        <option value="castilla_leon">Castilla y León</option>
         <option value="cataluña">Cataluña</option>
         <option value="extremadura">Extremadura</option>
-        <option value="galicia">Galicia (bonificación 99% grupos I y II)</option>
-        <option value="madrid" selected>Madrid (bonificación 99% grupos I y II)</option>
-        <option value="murcia">Murcia (bonificación 99% grupos I y II)</option>
-        <option value="navarra">Navarra (régimen foral, tipos bajos)</option>
-        <option value="pais_vasco">País Vasco (régimen foral, muy bonificado)</option>
-        <option value="rioja">La Rioja (bonificación 99% grupos I y II)</option>
+        <option value="galicia">Galicia</option>
+        <option value="madrid" selected>Madrid</option>
+        <option value="murcia">Murcia</option>
+        <option value="navarra">Navarra (régimen foral)</option>
+        <option value="pais_vasco">País Vasco (régimen foral)</option>
+        <option value="rioja">La Rioja</option>
         <option value="valencia">C. Valenciana</option>
       </select>
     </div>
@@ -201,16 +209,44 @@
         <option value="3">Más de 4.020.770 €</option>
       </select>
     </div>
+    <button type="button" class="advanced-toggle" aria-expanded="false" aria-controls="opciones_avanzadas_her" onclick="toggleAvanzadas('opciones_avanzadas_her',this)">Opciones avanzadas <span>▼</span></button>
+    <div id="opciones_avanzadas_her" class="advanced-content">
+      <div class="grid2">
+        <div class="field">
+          <label>Discapacidad legalmente reconocida</label>
+          <select id="discapacidad" onchange="calcular()">
+            <option value="0">No o inferior al 33%</option>
+            <option value="33">Del 33% al 64%</option>
+            <option value="65">65% o superior</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Seguro de vida percibido (€)</label>
+          <input type="number" id="seguro_vida" value="0" min="0" step="1000" oninput="calcular()">
+          <p class="tip">Se acumula a la herencia; la reducción estatal depende del parentesco</p>
+        </div>
+        <div class="field">
+          <label>Deudas deducibles que corresponden a tu parte (€)</label>
+          <input type="number" id="deudas_deducibles" value="0" min="0" step="1000" oninput="calcular()">
+        </div>
+        <div class="field">
+          <label>Gastos deducibles que corresponden a tu parte (€)</label>
+          <input type="number" id="gastos_deducibles" value="0" min="0" step="500" oninput="calcular()">
+          <p class="tip">Solo los admitidos legalmente y acreditables</p>
+        </div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:12px"><p id="aviso_ccaa">ℹ️ La comunidad seleccionada determina la normativa real, pero este formulario no reúne todos sus requisitos. Se muestra solo una referencia estatal previa a beneficios autonómicos.</p></div>
   </div>
 
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Impuesto de sucesiones estimado</div>
+        <div class="main-label">Cuota estatal de referencia</div>
         <div class="main-value" id="res_impuesto">—</div>
       </div>
       <div class="sub-block">
-        <div class="sub-label">Lo que recibes neto</div>
+        <div class="sub-label">Neto después del impuesto real</div>
         <div class="sub-value" id="res_neto">—</div>
         <div class="sub-label" style="margin-top:8px">Tipo efectivo</div>
         <div class="sub-value" id="res_tipo">—</div>
@@ -234,38 +270,41 @@
         <div class="rv" id="d_cuota">—</div>
       </div>
       <div class="res-item pos">
-        <div class="rl">Bonificación autonómica</div>
+        <div class="rl">Normativa autonómica</div>
         <div class="rv" id="d_bonificacion">—</div>
       </div>
       <div class="res-item neg">
-        <div class="rl">Impuesto final</div>
+        <div class="rl">Cuota estatal de referencia</div>
         <div class="rv" id="d_impuesto_final">—</div>
       </div>
     </div>
     <div class="liq">
       <div class="liq-title">Liquidación paso a paso</div>
-      <div class="liq-row"><span class="liq-label">Tu parte de la herencia</span><span class="liq-val" id="l_parte">—</span></div>
+      <div class="liq-row"><span class="liq-label">Bienes y seguro de vida</span><span class="liq-val" id="l_parte">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Deudas y gastos deducibles</span><span class="liq-val neg" id="l_deudas_gastos">—</span></div>
       <div class="liq-row"><span class="liq-label">− Reducción por parentesco</span><span class="liq-val neg" id="l_reduccion_par">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Reducción por discapacidad</span><span class="liq-val neg" id="l_reduccion_discapacidad">—</span></div>
+      <div class="liq-row"><span class="liq-label">− Reducción por seguro de vida</span><span class="liq-val neg" id="l_reduccion_seguro">—</span></div>
       <div class="liq-row"><span class="liq-label">− Reducción por vivienda habitual</span><span class="liq-val neg" id="l_reduccion_viv">—</span></div>
-      <div class="liq-row subtotal"><span class="liq-label">Base imponible</span><span class="liq-val" id="l_base_imp">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base liquidable estatal</span><span class="liq-val" id="l_base_imp">—</span></div>
       <div class="liq-row"><span class="liq-label">Cuota íntegra (escala estatal)</span><span class="liq-val neg" id="l_cuota_integra">—</span></div>
       <div class="liq-row"><span class="liq-label">× Coeficiente multiplicador</span><span class="liq-val" id="l_coeficiente">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Cuota tributaria</span><span class="liq-val" id="l_cuota_trib">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Bonificación autonómica</span><span class="liq-val pos" id="l_bonificacion">—</span></div>
-      <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Impuesto a pagar</span><span class="liq-val neg" id="l_impuesto">—</span></div>
+      <div class="liq-row"><span class="liq-label">Normativa autonómica o foral</span><span class="liq-val pos" id="l_bonificacion">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Cuota estatal de referencia</span><span class="liq-val neg" id="l_impuesto">—</span></div>
     </div>
     <div class="comp-ccaa">
-      <div class="comp-title">📊 Comparativa — mismo caso en otras comunidades</div>
+      <div class="comp-title">📊 Alcance de la estimación autonómica</div>
       <div id="comp-ccaa-list"></div>
     </div>
   </div>
 
   <div class="seo-content">
     <h2>¿Cuánto se paga de herencia en España?</h2>
-    <p>El impuesto de sucesiones en España varía enormemente según la comunidad autónoma. Mientras que en Madrid, Andalucía, Canarias, Galicia o Murcia los hijos y cónyuges pagan prácticamente 0 gracias a bonificaciones del 99-100%, en comunidades como Asturias, Aragón o Valencia el impuesto puede ser muy elevado para herencias de cierto tamaño.</p>
+    <p>El impuesto de sucesiones varía según la comunidad autónoma aplicable. Las diferencias no se limitan a una bonificación: pueden cambiar las reducciones, la tarifa, los coeficientes, los límites y los requisitos. Por eso esta página no presenta la referencia estatal como impuesto autonómico definitivo.</p>
 
     <h3>¿Quién determina el impuesto?</h3>
-    <p>El impuesto de sucesiones es un tributo cedido a las comunidades autónomas, que pueden modificar las reducciones, los tipos y las bonificaciones. El Estado fija una escala mínima, pero las comunidades pueden mejorarla significativamente (o no). Por eso la diferencia entre heredar en Madrid y heredar en Asturias puede ser de decenas de miles de euros.</p>
+    <p>El impuesto está cedido a las comunidades autónomas. Cuando su normativa resulte aplicable, puede sustituir los elementos estatales de la liquidación. Navarra y los territorios históricos del País Vasco tienen además normativa foral propia y no se calculan mediante la escala estatal.</p>
 
     <h3>Grupos de parentesco</h3>
     <p>El Grupo I son los hijos y descendientes menores de 21 años, con la mayor reducción. El Grupo II engloba hijos mayores de 21, cónyuge, ascendientes (padres, abuelos) y adoptados. El Grupo III incluye hermanos, tíos, sobrinos y cuñados, con reducciones menores. El Grupo IV son los primos y personas sin parentesco, con las reducciones más bajas y los tipos más altos.</p>
@@ -277,7 +316,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Puede heredarse una vivienda sin pagar impuestos? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">En muchas comunidades autónomas sí, especialmente si eres hijo o cónyuge. La vivienda habitual tiene además una reducción estatal del 95% (hasta 122.606 €) cuando el heredero es cónyuge, hijo o pariente que hubiera convivido con el fallecido. En comunidades con bonificación del 99%, el impuesto resultante puede ser prácticamente cero.</div>
+      <div class="faq-a">La reducción estatal es del 95%, con límite de 122.606,47 € por adquirente, para cónyuge, ascendientes o descendientes y, bajo condiciones específicas, ciertos colaterales mayores de 65 años. Exige conservar la adquisición durante el plazo legal. La comunidad puede establecer reglas diferentes.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si no tengo dinero para pagar el impuesto? <span class="faq-arrow">▼</span></div>
@@ -287,6 +326,7 @@
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Los bienes en el extranjero también tributan? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">Si el fallecido era residente fiscal en España, todos sus bienes mundiales tributan en España por el impuesto de sucesiones. Si residía en el extranjero, solo tributan los bienes situados en España. Existen convenios para evitar la doble imposición con algunos países.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1987-28141" rel="noopener noreferrer">Ley 29/1987 del Impuesto sobre Sucesiones y Donaciones (BOE)</a>, <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1991-27678" rel="noopener noreferrer">Reglamento del impuesto (BOE)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/declaraciones-informativas-otros-impuestos-tasas/impuesto-sobre-sucesiones-donaciones.html" rel="noopener noreferrer">Impuesto sobre Sucesiones y Donaciones (AEAT)</a> y <a href="https://atv.gva.es/es/sucesiones-y-donaciones" rel="noopener noreferrer">gestión en la Comunitat Valenciana (ATV)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -328,32 +368,27 @@ window.addEventListener("load",function(){var c=localStorage.getItem("cookies");
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
 function fmtPct(n){return n.toFixed(1)+'%';}
 
-// Reducciones estatales por parentesco (mínimas garantizadas)
-const REDUCCIONES = {
-  grupo1: (edad) => edad < 21 ? 47858 + 3990*(21-edad) : 47858,
-  grupo2: () => 15956,
-  grupo3: () => 7993,
-  grupo4: () => 0
+const REDUCCIONES_ESTATALES={
+  grupo1:edad=>Math.min(47858.59,15956.87+3990.72*Math.max(0,21-edad)),
+  grupo2:()=>15956.87,
+  grupo3:()=>7993.46,
+  grupo4:()=>0
 };
 
-// Escala estatal sucesiones
-const ESCALA_SUC = [
-  {hasta:7993,tipo:0.0765},{hasta:15980,tipo:0.085},{hasta:23968,tipo:0.0935},
-  {hasta:31955,tipo:0.102},{hasta:39943,tipo:0.1105},{hasta:47930,tipo:0.119},
-  {hasta:55918,tipo:0.1275},{hasta:63905,tipo:0.136},{hasta:71893,tipo:0.1445},
-  {hasta:79880,tipo:0.153},{hasta:119770,tipo:0.1615},{hasta:159660,tipo:0.17},
-  {hasta:239550,tipo:0.1785},{hasta:399250,tipo:0.187},{hasta:798500,tipo:0.1955},
-  {hasta:Infinity,tipo:0.204}
+const TARIFA_ESTATAL=[
+  {base:0,cuota:0,tipo:.0765},{base:7993.46,cuota:611.50,tipo:.085},
+  {base:15980.91,cuota:1290.43,tipo:.0935},{base:23968.36,cuota:2037.26,tipo:.102},
+  {base:31955.81,cuota:2851.98,tipo:.1105},{base:39943.26,cuota:3734.59,tipo:.119},
+  {base:47930.72,cuota:4685.10,tipo:.1275},{base:55918.17,cuota:5703.50,tipo:.136},
+  {base:63905.62,cuota:6789.79,tipo:.1445},{base:71893.07,cuota:7943.98,tipo:.153},
+  {base:79880.52,cuota:9166.06,tipo:.1615},{base:119757.67,cuota:15606.22,tipo:.187},
+  {base:159634.83,cuota:23063.25,tipo:.2125},{base:239389.13,cuota:40011.04,tipo:.255},
+  {base:398777.54,cuota:80655.08,tipo:.2975},{base:797555.08,cuota:199291.40,tipo:.34}
 ];
 
-function calcEscala(base){
-  let cuota=0,ant=0;
-  for(const t of ESCALA_SUC){
-    if(base<=ant) break;
-    cuota+=(Math.min(base,t.hasta)-ant)*t.tipo;
-    ant=t.hasta;
-  }
-  return cuota;
+function calcEscalaEstatal(base){
+  const tramo=[...TARIFA_ESTATAL].reverse().find(t=>base>=t.base)||TARIFA_ESTATAL[0];
+  return tramo.cuota+Math.max(0,base-tramo.base)*tramo.tipo;
 }
 
 // Coeficiente multiplicador según parentesco y patrimonio preexistente
@@ -364,53 +399,42 @@ const COEFICIENTES = {
   grupo4: [2.0,2.1,2.2,2.4]
 };
 
-// Bonificaciones autonómicas para grupos I y II (simplificado)
-const BONIFICACIONES = {
-  andalucia: {g12:0.99, g3:0, g4:0, nombre:'Andalucía'},
-  aragon: {g12:0.65, g3:0, g4:0, nombre:'Aragón'},
-  asturias: {g12:0, g3:0, g4:0, nombre:'Asturias'},
-  baleares: {g12:0.50, g3:0, g4:0, nombre:'Baleares'},
-  canarias: {g12:0.999, g3:0, g4:0, nombre:'Canarias'},
-  cantabria: {g12:1.0, g3:0, g4:0, nombre:'Cantabria'},
-  castilla_mancha: {g12:0.85, g3:0, g4:0, nombre:'C.-La Mancha'},
-  castilla_leon: {g12:0.99, g3:0, g4:0, nombre:'C. y León'},
-  cataluña: {g12:0, g3:0, g4:0, nombre:'Cataluña'},
-  extremadura: {g12:0, g3:0, g4:0, nombre:'Extremadura'},
-  galicia: {g12:0.99, g3:0, g4:0, nombre:'Galicia'},
-  madrid: {g12:0.99, g3:0, g4:0, nombre:'Madrid'},
-  murcia: {g12:0.99, g3:0, g4:0, nombre:'Murcia'},
-  navarra: {g12:0.84, g3:0, g4:0, nombre:'Navarra'},
-  pais_vasco: {g12:0.95, g3:0, g4:0, nombre:'País Vasco'},
-  rioja: {g12:0.99, g3:0, g4:0, nombre:'La Rioja'},
-  valencia: {g12:0.25, g3:0, g4:0, nombre:'C. Valenciana'},
-};
+const NOMBRES_CCAA={andalucia:'Andalucía',aragon:'Aragón',asturias:'Asturias',baleares:'Baleares',canarias:'Canarias',cantabria:'Cantabria',castilla_mancha:'Castilla-La Mancha',castilla_leon:'Castilla y León',cataluña:'Cataluña',extremadura:'Extremadura',galicia:'Galicia',madrid:'Madrid',murcia:'Murcia',navarra:'Navarra',pais_vasco:'País Vasco',rioja:'La Rioja',valencia:'Comunitat Valenciana'};
 
-function calcImpuesto(parte, parentesco, edad, ccaa, patrimonio, viviendaHabitual, valorVivienda){
-  const ccaaData = BONIFICACIONES[ccaa] || BONIFICACIONES.madrid;
-  const isG12 = parentesco === 'grupo1' || parentesco === 'grupo2';
-  const isG3 = parentesco === 'grupo3';
-  const bonPct = isG12 ? ccaaData.g12 : isG3 ? ccaaData.g3 : ccaaData.g4;
+function toggleAvanzadas(id,boton){
+  const contenido=document.getElementById(id);
+  const abrir=!contenido.classList.contains('open');
+  contenido.classList.toggle('open',abrir);
+  boton.setAttribute('aria-expanded',String(abrir));
+}
 
-  // Reducción por parentesco
-  const redFn = REDUCCIONES[parentesco];
-  const reduccionPar = Math.min(parte, redFn(edad));
+function datosParentesco(parentesco,edad){
+  if(parentesco==='descendiente') return {grupo:edad<21?'grupo1':'grupo2',seguro:true,vivienda:true};
+  if(parentesco==='conyuge'||parentesco==='ascendiente') return {grupo:'grupo2',seguro:true,vivienda:true};
+  if(parentesco==='colateral23') return {grupo:'grupo3',seguro:false,vivienda:edad>=65};
+  if(parentesco==='afinidad') return {grupo:'grupo3',seguro:false,vivienda:false};
+  return {grupo:'grupo4',seguro:false,vivienda:false};
+}
 
-  // Reducción vivienda habitual (95% hasta 122.606€, solo grupos I, II y hermanos)
-  let reduccionViv = 0;
-  if(viviendaHabitual && (isG12 || parentesco==='grupo3')){
-    const partePropVivienda = Math.min(parte, valorVivienda);
-    reduccionViv = Math.min(partePropVivienda * 0.95, 122606);
-  }
-
-  const baseImponible = Math.max(0, parte - reduccionPar - reduccionViv);
-  const cuotaIntegra = calcEscala(baseImponible);
-  const coef = COEFICIENTES[parentesco][parseInt(patrimonio)];
-  const cuotaTributaria = cuotaIntegra * coef;
-  const bonificacion = cuotaTributaria * bonPct;
-  const impuesto = Math.max(0, cuotaTributaria - bonificacion);
-  const tipoEf = parte > 0 ? impuesto/parte*100 : 0;
-
-  return {impuesto, reduccionPar, reduccionViv, baseImponible, cuotaIntegra, coef, cuotaTributaria, bonificacion, tipoEf, bonPct};
+function calcReferenciaEstatal({parte,parentesco,edad,patrimonio,viviendaHabitual,valorVivienda,discapacidad=0,seguroVida=0,deudas=0,gastos=0}){
+  const datos=datosParentesco(parentesco,edad);
+  const adquisicionBruta=Math.max(0,parte)+Math.max(0,seguroVida);
+  const deudasGastos=Math.min(adquisicionBruta,Math.max(0,deudas)+Math.max(0,gastos));
+  const baseImponible=Math.max(0,adquisicionBruta-deudasGastos);
+  const reduccionPar=Math.min(baseImponible,REDUCCIONES_ESTATALES[datos.grupo](edad));
+  const limiteDiscapacidad=discapacidad>=65?150253.03:discapacidad>=33?47858.59:0;
+  const reduccionDiscapacidad=Math.min(Math.max(0,baseImponible-reduccionPar),limiteDiscapacidad);
+  const reduccionSeguro=datos.seguro
+    ?Math.min(Math.max(0,baseImponible-reduccionPar-reduccionDiscapacidad),Math.max(0,seguroVida),9195.49)
+    :0;
+  const reduccionViv=viviendaHabitual&&datos.vivienda
+    ?Math.min(Math.max(0,baseImponible-reduccionPar-reduccionDiscapacidad-reduccionSeguro),Math.max(0,valorVivienda)*.95,122606.47)
+    :0;
+  const baseLiquidable=Math.max(0,baseImponible-reduccionPar-reduccionDiscapacidad-reduccionSeguro-reduccionViv);
+  const cuotaIntegra=calcEscalaEstatal(baseLiquidable);
+  const coef=COEFICIENTES[datos.grupo][parseInt(patrimonio,10)];
+  const cuotaReferencia=cuotaIntegra*coef;
+  return {adquisicionBruta,deudasGastos,baseImponible,reduccionPar,reduccionDiscapacidad,reduccionSeguro,reduccionViv,baseLiquidable,cuotaIntegra,coef,cuotaReferencia,grupo:datos.grupo};
 }
 
 function calcular(){
@@ -421,43 +445,40 @@ function calcular(){
   const patrimonio = document.getElementById('patrimonio').value;
   const viviendaHabitual = document.getElementById('vivienda_habitual').value==='1';
   const valorVivienda = parseFloat(document.getElementById('valor_vivienda').value)||0;
+  const discapacidad = parseInt(document.getElementById('discapacidad').value)||0;
+  const seguroVida = parseFloat(document.getElementById('seguro_vida').value)||0;
+  const deudas = parseFloat(document.getElementById('deudas_deducibles').value)||0;
+  const gastos = parseFloat(document.getElementById('gastos_deducibles').value)||0;
 
-  const r = calcImpuesto(parte, parentesco, edad, ccaa, patrimonio, viviendaHabitual, valorVivienda);
+  const foral=ccaa==='navarra'||ccaa==='pais_vasco';
+  const r=calcReferenciaEstatal({parte,parentesco,edad,patrimonio,viviendaHabitual,valorVivienda,discapacidad,seguroVida,deudas,gastos});
+  const aviso=document.getElementById('aviso_ccaa');
+  aviso.textContent=foral
+    ?`⚠️ ${NOMBRES_CCAA[ccaa]} aplica normativa foral propia. La escala estatal no representa su impuesto y no se ofrece una cifra.`
+    :`ℹ️ Para ${NOMBRES_CCAA[ccaa]} se muestra únicamente la liquidación estatal de referencia. No se aplican reducciones, tarifa, coeficientes ni bonificaciones autonómicas.`;
 
-  document.getElementById('res_impuesto').textContent=fmt(r.impuesto);
-  document.getElementById('res_neto').textContent=fmt(parte-r.impuesto);
-  document.getElementById('res_tipo').textContent=fmtPct(r.tipoEf);
-  document.getElementById('d_parte').textContent=fmt(parte);
-  document.getElementById('d_reduccion').textContent=fmt(r.reduccionPar+r.reduccionViv);
-  document.getElementById('d_base_liq').textContent=fmt(r.baseImponible);
+  document.getElementById('res_impuesto').textContent=foral?'No calculable (régimen foral)':fmt(r.cuotaReferencia);
+  document.getElementById('res_neto').textContent='No calculado';
+  document.getElementById('res_tipo').textContent='No es cuota autonómica final';
+  document.getElementById('d_parte').textContent=fmt(r.adquisicionBruta);
+  document.getElementById('d_reduccion').textContent=fmt(r.reduccionPar+r.reduccionDiscapacidad+r.reduccionSeguro+r.reduccionViv);
+  document.getElementById('d_base_liq').textContent=fmt(r.baseLiquidable);
   document.getElementById('d_cuota').textContent=fmt(r.cuotaIntegra);
-  document.getElementById('d_bonificacion').textContent=fmtPct(r.bonPct*100)+' → '+fmt(r.bonificacion);
-  document.getElementById('d_impuesto_final').textContent=fmt(r.impuesto);
-  document.getElementById('l_parte').textContent=fmt(parte);
+  document.getElementById('d_bonificacion').textContent=foral?'Régimen foral no calculado':'No calculada';
+  document.getElementById('d_impuesto_final').textContent=foral?'—':fmt(r.cuotaReferencia);
+  document.getElementById('l_parte').textContent=fmt(r.adquisicionBruta);
+  document.getElementById('l_deudas_gastos').textContent=r.deudasGastos>0?'-'+fmt(r.deudasGastos):'—';
   document.getElementById('l_reduccion_par').textContent='-'+fmt(r.reduccionPar);
+  document.getElementById('l_reduccion_discapacidad').textContent=r.reduccionDiscapacidad>0?'-'+fmt(r.reduccionDiscapacidad):'—';
+  document.getElementById('l_reduccion_seguro').textContent=r.reduccionSeguro>0?'-'+fmt(r.reduccionSeguro):'—';
   document.getElementById('l_reduccion_viv').textContent=r.reduccionViv>0?'-'+fmt(r.reduccionViv):'—';
-  document.getElementById('l_base_imp').textContent=fmt(r.baseImponible);
+  document.getElementById('l_base_imp').textContent=fmt(r.baseLiquidable);
   document.getElementById('l_cuota_integra').textContent=fmt(r.cuotaIntegra);
   document.getElementById('l_coeficiente').textContent='×'+r.coef.toFixed(4);
-  document.getElementById('l_cuota_trib').textContent=fmt(r.cuotaTributaria);
-  document.getElementById('l_bonificacion').textContent=r.bonificacion>0?'-'+fmt(r.bonificacion):'—';
-  document.getElementById('l_impuesto').textContent=fmt(r.impuesto);
-
-  // Comparativa comunidades
-  const ccaas = Object.keys(BONIFICACIONES);
-  const resultados = ccaas.map(c=>{
-    const ri=calcImpuesto(parte,parentesco,edad,c,patrimonio,viviendaHabitual,valorVivienda);
-    return {ccaa:c,nombre:BONIFICACIONES[c].nombre,impuesto:ri.impuesto};
-  }).sort((a,b)=>a.impuesto-b.impuesto);
-
-  document.getElementById('comp-ccaa-list').innerHTML=resultados.map(res=>{
-    const esActual=res.ccaa===ccaa;
-    const esMejor=res.impuesto===resultados[0].impuesto&&!esActual;
-    return `<div class="comp-row ${esActual?'actual':esMejor?'mejor':''}">
-      <span class="comp-ccaa-label">${res.nombre}${esActual?' ← aquí estás':''}</span>
-      <span class="comp-ccaa-val" style="color:${res.impuesto===0?'var(--accent)':'var(--her)'}">${fmt(res.impuesto)}</span>
-    </div>`;
-  }).join('');
+  document.getElementById('l_cuota_trib').textContent=foral?'—':fmt(r.cuotaReferencia);
+  document.getElementById('l_bonificacion').textContent=foral?'Normativa foral no calculada':'Pendiente de normativa autonómica';
+  document.getElementById('l_impuesto').textContent=foral?'—':fmt(r.cuotaReferencia);
+  document.getElementById('comp-ccaa-list').innerHTML='<div class="comp-row"><span class="comp-ccaa-label">No se comparan comunidades con una bonificación genérica</span><span class="comp-ccaa-val">Requiere normativa completa</span></div>';
 }
 
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));

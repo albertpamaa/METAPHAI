@@ -58,6 +58,11 @@
     .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
     .info-box.green { background: var(--accent-light); border: 1px solid #b8dece; }
     .info-box.green p { font-size: 13px; color: var(--accent); margin: 0; }
+    .advanced-toggle { width: 100%; margin-top: 14px; padding: 9px 0; border: 0; border-top: 1px solid var(--border); background: transparent; color: var(--jub); font: 600 12px 'DM Sans', sans-serif; text-align: left; cursor: pointer; }
+    .advanced-toggle span { float: right; transition: transform .2s; }
+    .advanced-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+    .advanced-content { display: none; padding-top: 12px; }
+    .advanced-content.open { display: block; }
     /* TIMELINE JUBILACIÓN */
     .timeline-jub { margin-top: 1.5rem; }
     .tl-item { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
@@ -153,7 +158,7 @@
   <div class="hero">
     <div class="badge">🧓 Jubilación 2026</div>
     <h1>¿Cuándo me jubilo<br>y cuánto cobraré de <em>pensión</em>?</h1>
-    <p>Calcula tu pensión pública estimada, cuándo puedes jubilarte y qué diferencia hay entre jubilarte antes o después.</p>
+    <p>Estima tu edad ordinaria y tu pensión contributiva con bases de cotización. El mes de nacimiento mejora la fecha estimada; el día exacto y la base reguladora definitiva requieren los datos de la Seguridad Social.</p>
   </div>
 
   <!-- DATOS PERSONALES -->
@@ -165,16 +170,31 @@
         <input type="number" id="año_nacimiento" value="1970" min="1940" max="2000" oninput="calcular()">
       </div>
       <div class="field">
+        <label>Mes de nacimiento</label>
+        <select id="mes_nacimiento" onchange="calcular()">
+          <option value="0">No indicado (estimación por año)</option>
+          <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option>
+          <option value="4">Abril</option><option value="5">Mayo</option><option value="6">Junio</option>
+          <option value="7">Julio</option><option value="8">Agosto</option><option value="9">Septiembre</option>
+          <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+        </select>
+      </div>
+      <div class="field">
         <label>Años cotizados hasta hoy</label>
-        <input type="number" id="años_cotizados" value="25" min="0" max="50" oninput="calcular()">
+        <input type="number" id="años_cotizados" value="25" min="0" max="50" step="1" oninput="calcular()">
         <p class="tip">Consulta tu vida laboral en la Seguridad Social</p>
+      </div>
+      <div class="field">
+        <label>Meses cotizados adicionales</label>
+        <input type="number" id="meses_cotizados" value="0" min="0" max="11" step="1" oninput="calcular()">
+        <p class="tip">Los meses que no completen un año entero</p>
       </div>
       <div class="field">
         <label>Colectivo</label>
         <select id="colectivo" onchange="calcular()">
           <option value="general">Régimen General (asalariado)</option>
           <option value="autonomo">Autónomo (RETA)</option>
-          <option value="funcionario">Funcionario (MUFACE/ISFAS)</option>
+          <option value="funcionario">Clases Pasivas / MUFACE / ISFAS (no calculable aquí)</option>
         </select>
       </div>
     </div>
@@ -182,21 +202,46 @@
 
   <!-- BASE REGULADORA -->
   <div class="card">
-    <div class="section-label">Base reguladora (últimos 25 años)</div>
+    <div class="section-label">Bases para estimar la base reguladora en 2026</div>
     <div class="grid2">
       <div class="field">
-        <label>Salario bruto mensual actual (€)</label>
+        <label>Media actualizada de las 300 bases de los últimos 300 meses (€)</label>
         <input type="number" id="salario_actual" value="2500" min="0" step="100" oninput="calcular()">
-        <p class="tip">La base reguladora se calcula con los últimos 25 años de cotización</p>
+        <p class="tip">Consulta tus bases y actualiza las anteriores conforme a las reglas de la Seguridad Social</p>
       </div>
       <div class="field">
-        <label>Salario bruto mensual hace 25 años (€)</label>
+        <label>Media de las 302 bases más altas dentro de los últimos 304 meses (€)</label>
         <input type="number" id="salario_antiguo" value="1200" min="0" step="100" oninput="calcular()">
-        <p class="tip">Si no recuerdas, deja el mismo que el actual como estimación</p>
+        <p class="tip">En 2026 se compara esta alternativa transitoria con la fórmula de 300 meses</p>
       </div>
     </div>
     <div class="info-box purple" style="margin-top:12px">
-      <p>💡 La base reguladora es la media mensual de tus bases de cotización de los últimos 25 años (300 meses), actualizadas según el IPC. Para una estimación rápida usamos la media de tus salarios actual y pasado.</p>
+      <p id="aviso_jubilacion">💡 Se aplica la opción más favorable de 2026: suma de 300 bases ÷ 350, o suma de las 302 mejores bases de 304 meses ÷ 352,33. Si introduces medias aproximadas, el resultado también será aproximado.</p>
+    </div>
+    <button type="button" class="advanced-toggle" aria-expanded="false" aria-controls="opciones_avanzadas_jub" onclick="toggleAvanzadas('opciones_avanzadas_jub',this)">Opciones avanzadas <span>▼</span></button>
+    <div id="opciones_avanzadas_jub" class="advanced-content">
+      <div class="grid2">
+        <div class="field">
+          <label>¿Conoces tu base reguladora?</label>
+          <select id="conoce_base_reguladora" onchange="actualizarBaseConocida();calcular()">
+            <option value="0">No, estimarla con las medias</option>
+            <option value="1">Sí, usarla directamente</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Base reguladora conocida (€/mes)</label>
+          <input type="number" id="base_reguladora_conocida" value="0" min="0" step="10" disabled oninput="calcular()">
+          <p class="tip">La cifra calculada o comunicada por la Seguridad Social, no el salario</p>
+        </div>
+        <div class="field">
+          <label>Escenario de jubilación anticipada</label>
+          <select id="modalidad_anticipada" onchange="calcular()">
+            <option value="voluntaria24">Voluntaria, 24 meses antes</option>
+            <option value="involuntaria48">Involuntaria, 48 meses antes</option>
+          </select>
+          <p class="tip">Solo compara la cuantía; no valida todas las causas y requisitos de acceso</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -204,7 +249,7 @@
   <div class="results" id="results-main">
     <div class="results-header">
       <div>
-        <div class="main-label">Pensión estimada (jubilación ordinaria)</div>
+        <div class="main-label">Pensión de referencia con bases y límite 2026</div>
         <div class="main-value" id="res_pension">—</div>
       </div>
       <div class="sub-block">
@@ -233,11 +278,11 @@
       </div>
       <div class="res-item">
         <div class="rl">Pensión máxima 2026</div>
-        <div class="rv">3.267 €/mes</div>
+        <div class="rv">3.359,60 €/mes</div>
       </div>
       <div class="res-item">
-        <div class="rl">Pensión mínima 2026</div>
-        <div class="rv">~785 €/mes</div>
+        <div class="rl">Complemento a mínimos</div>
+        <div class="rv">No calculado</div>
       </div>
     </div>
 
@@ -277,7 +322,7 @@
     <div class="legend-años">
       <div class="legend-años-item"><div class="legend-años-dot" style="background:var(--jub)"></div>Años cotizados (<span id="leg_cotizados">—</span>)</div>
       <div class="legend-años-item"><div class="legend-años-dot" style="background:#b8d0f0"></div>Hasta jubilación (<span id="leg_restantes">—</span>)</div>
-      <div class="legend-años-item"><div class="legend-años-dot" style="background:#e8deff"></div>Años de pensión estimados (<span id="leg_pension_años">—</span>)</div>
+      <div class="legend-años-item"><div class="legend-años-dot" style="background:#e8deff"></div>Duración de la pensión (<span id="leg_pension_años">—</span>)</div>
     </div>
   </div>
 
@@ -289,25 +334,25 @@
 
   <div class="seo-content">
     <h2>¿Cómo se calcula la pensión de jubilación en España?</h2>
-    <p>La pensión pública de jubilación en España se calcula a partir de dos factores principales: la base reguladora (media de las bases de cotización de los últimos 25 años) y el porcentaje aplicado según los años cotizados.</p>
+    <p>La pensión contributiva se obtiene aplicando a la base reguladora el porcentaje correspondiente a los meses cotizados. Desde 2026 comienza una transición en la que se compara la fórmula de 300 bases divididas por 350 con otra que permite excluir determinadas bases de menor importe.</p>
 
     <h3>Años cotizados y porcentaje de pensión</h3>
-    <p>Con 15 años cotizados (el mínimo) percibes el 50% de la base reguladora. El porcentaje aumenta progresivamente hasta alcanzar el 100% con 36 años y 6 meses cotizados en 2026. Cada año adicional hasta ese mínimo sube el porcentaje aproximadamente 3 puntos.</p>
+    <p>En 2026, 15 años dan derecho al 50%. Después se suma un 0,21% por cada uno de los siguientes 49 meses y un 0,19% por los meses posteriores, hasta alcanzar el 100% con 36 años y 6 meses. Además, normalmente deben existir dos años cotizados dentro de los quince anteriores al hecho causante.</p>
 
     <h3>Edad de jubilación ordinaria en España 2026</h3>
     <table class="tabla-edades">
       <thead><tr><th>Años cotizados</th><th>Edad de jubilación ordinaria</th></tr></thead>
       <tbody>
-        <tr><td>Menos de 38 años y 3 meses</td><td>66 años y 8 meses</td></tr>
+        <tr><td>Menos de 38 años y 3 meses</td><td>66 años y 10 meses</td></tr>
         <tr><td>38 años y 3 meses o más</td><td>65 años</td></tr>
       </tbody>
     </table>
 
     <h3>Jubilación anticipada</h3>
-    <p>Puedes jubilarte hasta 2 años antes de la edad ordinaria si cumples ciertos requisitos. La jubilación anticipada voluntaria penaliza la pensión entre un 1,5% y un 3,5% por cada trimestre anticipado según los años cotizados. La anticipada involuntaria (por causas ajenas al trabajador como ERE) tiene una penalización menor.</p>
+    <p>La comparativa muestra el supuesto voluntario máximo de 24 meses de anticipo. Es condicional: exige, entre otros requisitos, al menos 35 años cotizados y que la pensión resultante supere la mínima correspondiente. Los coeficientes son mensuales y dependen de los meses anticipados y de la carrera de cotización.</p>
 
     <h3>Jubilación demorada</h3>
-    <p>Si decides trabajar más allá de la edad ordinaria, recibes un incentivo de entre el 4% y el 12% por año adicional trabajado (según los años cotizados). Esta puede ser una estrategia interesante si tienes buena salud y quieres maximizar tu pensión.</p>
+    <p>La comparativa utiliza la opción porcentual del 4% por cada año completo demorado: un 8% tras dos años. También existen las opciones de cantidad a tanto alzado o fórmula mixta, que esta página no calcula.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -316,7 +361,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿La pensión tiene un máximo? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Sí. La pensión máxima en 2026 es de aproximadamente 3.267 euros mensuales (en 14 pagas). Aunque tu base reguladora sea mayor, no puedes cobrar más que este límite. También existe una pensión mínima de aproximadamente 785 euros para quienes tienen pocos años cotizados.</div>
+      <div class="faq-a">Sí. El límite inicial de 2026 es 3.359,60 euros mensuales o 47.034,40 euros anuales. No existe una única pensión mínima: las cuantías y el posible complemento dependen de edad, cónyuge, ingresos y residencia, por lo que no se aplican automáticamente.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Los autónomos tienen la misma pensión? <span class="faq-arrow">▼</span></div>
@@ -328,8 +373,9 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Qué pasa si me jubilo y sigo trabajando? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Existe la jubilación activa o compatible, que permite cobrar el 50% de la pensión mientras se trabaja por cuenta propia o ajena. Si el autónomo tiene al menos un empleado, puede cobrar el 100%. Al dejar de trabajar definitivamente, se revisa la pensión al 100%.</div>
+      <div class="faq-a">La compatibilidad depende de la modalidad aplicable y de la demora en el acceso. Sus porcentajes y requisitos cambiaron, por lo que no debe suponerse un 50% o 100% automático; conviene comprobar el supuesto concreto con la Seguridad Social.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/10963/28393/28396/28472" rel="noopener noreferrer">edad ordinaria (Seguridad Social)</a>, <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/10963/28393/28396/28475" rel="noopener noreferrer">base reguladora y porcentaje (Seguridad Social)</a>, <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-1484" rel="noopener noreferrer">límites y cuantías 2026 (BOE)</a> y <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724" rel="noopener noreferrer">LGSS, jubilación anticipada y demorada (BOE)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -377,79 +423,157 @@ window.addEventListener("load",function(){
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
 
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';}
-function fmtM(n){return n.toLocaleString('es-ES',{minimumFractionDigits:0,maximumFractionDigits:0})+' €/mes';}
+function fmtM(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €/mes';}
+function fmtEdad(edad){
+  let años=Math.floor(edad),meses=Math.round((edad-años)*12);
+  if(meses===12){años++;meses=0;}
+  return meses?`${años} años y ${meses} meses`:`${años} años`;
+}
+
+function toggleAvanzadas(id,boton){
+  const contenido=document.getElementById(id);
+  const abrir=!contenido.classList.contains('open');
+  contenido.classList.toggle('open',abrir);
+  boton.setAttribute('aria-expanded',String(abrir));
+}
+
+function actualizarBaseConocida(){
+  const conocida=document.getElementById('conoce_base_reguladora').value==='1';
+  document.getElementById('base_reguladora_conocida').disabled=!conocida;
+}
+
+const AÑO_CALCULO=2026;
+const PENSION_MAX_MENSUAL_2026=47034.40/14;
+
+function edadActualEstimada(añoNacimiento,mesNacimiento=0){
+  return mesNacimiento>0?AÑO_CALCULO-añoNacimiento+(8-mesNacimiento)/12:AÑO_CALCULO-añoNacimiento;
+}
+
+function edadOrdinariaEstimada(añoNacimiento,añosCotizadosHoy,mesNacimiento=0){
+  const edadHoy=edadActualEstimada(añoNacimiento,mesNacimiento);
+  const añoAlCumplir65=añoNacimiento+65;
+  const regla=añoAlCumplir65<=2025
+    ?{cotizacion:38.25,edad:66+8/12}
+    :añoAlCumplir65===2026
+      ?{cotizacion:38.25,edad:66+10/12}
+      :{cotizacion:38.5,edad:67};
+  const cotizacionA65=añosCotizadosHoy+Math.max(0,65-edadHoy);
+  return cotizacionA65>=regla.cotizacion?65:regla.edad;
+}
+
+function porcentajeBaseReguladora(años,añoHecho=2026){
+  const meses=Math.floor(Math.max(0,años)*12);
+  if(meses<180) return 0;
+  const adicionales=meses-180;
+  if(añoHecho<=2026) return Math.min(100,50+Math.min(49,adicionales)*.21+Math.max(0,adicionales-49)*.19);
+  return Math.min(100,50+Math.min(248,adicionales)*.19+Math.max(0,adicionales-248)*.18);
+}
+
+function baseReguladora2026(media300,media302){
+  const formula300=Math.max(0,media300)*300/350;
+  const formulaTransitoria=Math.max(0,media302)*302/352.33;
+  return {base:Math.max(formula300,formulaTransitoria),formula300,formulaTransitoria};
+}
+
+function añosCotizadosConMeses(años,meses){
+  return Math.max(0,Math.floor(años))+Math.min(11,Math.max(0,Math.floor(meses)))/12;
+}
+
+function seleccionarBaseReguladora(bases,conoceBase,baseConocida){
+  const usaBaseConocida=conoceBase&&baseConocida>0;
+  return {base:usaBaseConocida?baseConocida:bases.base,usaBaseConocida};
+}
+
+function coeficienteVoluntaria24Meses(añosCotizados){
+  if(añosCotizados<38.5) return .21;
+  if(añosCotizados<41.5) return .19;
+  if(añosCotizados<44.5) return .17;
+  return .13;
+}
+
+function coeficienteInvoluntaria48Meses(añosCotizados){
+  if(añosCotizados<38.5) return .30;
+  if(añosCotizados<41.5) return .28;
+  if(añosCotizados<44.5) return .26;
+  return .24;
+}
 
 function calcular(){
   const añoNac=parseInt(document.getElementById('año_nacimiento').value)||1970;
-  const añosCotizados=parseFloat(document.getElementById('años_cotizados').value)||0;
+  const mesNac=parseInt(document.getElementById('mes_nacimiento').value)||0;
+  const añosEnterosCotizados=Math.max(0,parseInt(document.getElementById('años_cotizados').value)||0);
+  const mesesCotizados=Math.min(11,Math.max(0,parseInt(document.getElementById('meses_cotizados').value)||0));
+  const añosCotizados=añosCotizadosConMeses(añosEnterosCotizados,mesesCotizados);
   const colectivo=document.getElementById('colectivo').value;
-  const salarioActual=parseFloat(document.getElementById('salario_actual').value)||0;
-  const salarioAntiguo=parseFloat(document.getElementById('salario_antiguo').value)||0;
+  const media300=parseFloat(document.getElementById('salario_actual').value)||0;
+  const media302=parseFloat(document.getElementById('salario_antiguo').value)||0;
+  const conoceBase=document.getElementById('conoce_base_reguladora').value==='1';
+  const baseConocida=parseFloat(document.getElementById('base_reguladora_conocida').value)||0;
+  const modalidadAnticipada=document.getElementById('modalidad_anticipada').value;
+  const edadActual=edadActualEstimada(añoNac,mesNac);
+  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
 
-  const añoActual=2026;
-  const edadActual=añoActual-añoNac;
-
-  // Edad de jubilación ordinaria 2026
-  const edadJubOrdinaria=añosCotizados>=38.25?65:66+(8/12);
-  const añosHastaJub=Math.max(0,edadJubOrdinaria-edadActual);
-  const añoJub=añoActual+Math.ceil(añosHastaJub);
-  const añosCotizadosJub=añosCotizados+añosHastaJub;
-
-  // Base reguladora: media mensual últimos 25 años (simplificada)
-  const baseReg=(salarioActual+salarioAntiguo)/2;
-
-  // Porcentaje según años cotizados al jubilarse
-  // Mínimo 15 años = 50%, cada año adicional +3% hasta año 25, luego +2% hasta 100%
-  function getPct(años){
-    if(años<15) return 0;
-    let p=50;
-    const extra=Math.min(años-15,10);
-    p+=extra*3;
-    const extra2=Math.min(Math.max(0,años-25),11.5);
-    p+=extra2*2;
-    return Math.min(p,100);
+  if(colectivo==='funcionario'){
+    ['res_pension','d_base_reg','d_pct_aplicado','d_años_total','d_pension_anual','esc_ant_pension','esc_ord_pension','esc_dem_pension'].forEach(id=>set(id,'No calculable'));
+    set('res_edad_jub','Régimen no calculado');
+    set('res_años_quedan','Requiere normativa de Clases Pasivas');
+    set('esc_ant_detalle','No se aplica la fórmula del Régimen General');
+    set('esc_ord_detalle','No se aplica la fórmula del Régimen General');
+    set('esc_dem_detalle','No se aplica la fórmula del Régimen General');
+    document.getElementById('aviso_jubilacion').textContent='⚠️ Clases Pasivas, MUFACE e ISFAS pueden seguir reglas distintas. Estos campos no permiten calcular ese régimen sin inducir a error.';
+    document.getElementById('timeline-jub').innerHTML='';
+    return;
   }
 
-  const pctOrdinaria=getPct(añosCotizadosJub);
-  const pensionOrdinaria=baseReg*(pctOrdinaria/100);
+  const edadJubOrdinaria=edadOrdinariaEstimada(añoNac,añosCotizados,mesNac);
+  const añosHastaJub=Math.max(0,edadJubOrdinaria-edadActual);
+  const añoJub=AÑO_CALCULO+Math.ceil(añosHastaJub);
+  const añosCotizadosJub=añosCotizados+añosHastaJub;
+  const bases=baseReguladora2026(media300,media302);
+  const seleccionBase=seleccionarBaseReguladora(bases,conoceBase,baseConocida);
+  const usaBaseConocida=seleccionBase.usaBaseConocida;
+  const baseReg=seleccionBase.base;
+  const pctOrdinaria=porcentajeBaseReguladora(añosCotizadosJub,añoJub);
+  const pensionSinLimite=baseReg*pctOrdinaria/100;
+  const pensionOrdinariaFinal=Math.min(pensionSinLimite,PENSION_MAX_MENSUAL_2026);
 
-  // Pensión máxima 2026 ~3.175€/mes, mínima ~700€/mes
-  const PENSION_MAX=3175;
-  const PENSION_MIN=700;
-  const pensionOrdinariaFinal=Math.min(Math.max(pensionOrdinaria,añosCotizadosJub>=15?PENSION_MIN:0),PENSION_MAX);
+  const involuntaria=modalidadAnticipada==='involuntaria48';
+  const añosAnticipacion=involuntaria?4:2;
+  const edadAnticipada=edadJubOrdinaria-añosAnticipacion;
+  const añosCotizadosAnt=Math.max(0,añosCotizadosJub-añosAnticipacion);
+  const añoAnticipada=AÑO_CALCULO+Math.ceil(Math.max(0,edadAnticipada-edadActual));
+  const pctBaseAnt=porcentajeBaseReguladora(añosCotizadosAnt,añoAnticipada);
+  const reduccionAnt=involuntaria?coeficienteInvoluntaria48Meses(añosCotizadosAnt):coeficienteVoluntaria24Meses(añosCotizadosAnt);
+  const minimoCotizadoAnt=involuntaria?33:35;
+  const cumpleAnticipada=añosCotizadosAnt>=minimoCotizadoAnt;
+  const pensionAnticipada=cumpleAnticipada?Math.min(baseReg*pctBaseAnt/100*(1-reduccionAnt),PENSION_MAX_MENSUAL_2026):0;
 
-  // Jubilación anticipada (2 años antes, penalización ~3.5% por trimestre con <38 años cotizados)
-  const edadAnticipada=edadJubOrdinaria-2;
-  const trimestresAnt=8; // 2 años × 4 trimestres
-  const penalizacionAnt=años=>años>=38.25?0.015:0.035; // por trimestre
-  const pctAntPen=Math.max(0,pctOrdinaria-(trimestresAnt*penalizacionAnt(añosCotizadosJub)*100));
-  const pensionAnticipada=Math.min(Math.max(baseReg*(pctAntPen/100),PENSION_MIN),PENSION_MAX);
-
-  // Jubilación demorada (2 años después, +4% por año adicional si <37 cotizados, +12% si más)
   const edadDemorada=edadJubOrdinaria+2;
-  const bonificacion=añosCotizadosJub>=37?0.12:0.04; // por año
-  const pensionDemorada=Math.min(pensionOrdinariaFinal*(1+bonificacion*2),PENSION_MAX);
-
-  // Años esperanza de vida desde jubilación (~85 años promedio)
-  const añosPension=Math.max(0,85-edadJubOrdinaria);
+  const añoDemorada=AÑO_CALCULO+Math.ceil(Math.max(0,edadDemorada-edadActual));
+  const pctDemorada=porcentajeBaseReguladora(añosCotizadosJub+2,añoDemorada);
+  const pensionDemoradaTeorica=baseReg*pctDemorada/100*1.08;
+  const añosPension=0;
 
   // Mostrar resultados
-  const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
-  set('res_pension',fmtM(pensionOrdinariaFinal));
-  set('res_edad_jub',`Jubilación ordinaria a los ${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1).replace('.',',')} años`);
+  set('res_pension',pctOrdinaria>0?fmtM(pensionOrdinariaFinal):'Sin derecho con los años indicados');
+  set('res_edad_jub',`Jubilación ordinaria a los ${fmtEdad(edadJubOrdinaria)}`);
   set('res_años_quedan',`Te quedan ~${Math.ceil(añosHastaJub)} años para jubilarte`);
-  set('d_base_reg',fmtM(baseReg));
+  set('d_base_reg',fmtM(baseReg)+(usaBaseConocida?' (indicada por ti)':' (mejor fórmula 2026)'));
   set('d_pct_aplicado',pctOrdinaria.toFixed(1)+'%');
   set('d_años_total',añosCotizadosJub.toFixed(1)+' años');
   set('d_pension_anual',fmt(pensionOrdinariaFinal*14)); // 14 pagas
 
   // Escenarios
-  set('esc_ant_pension',fmtM(pensionAnticipada));
-  set('esc_ant_detalle',`A los ${edadAnticipada%1===0?edadAnticipada:edadAnticipada.toFixed(1).replace('.',',')} años · −${(pctOrdinaria-pctAntPen).toFixed(1)}% penalización`);
+  set('esc_ant_tipo',involuntaria?'Involuntaria (48 meses)':'Voluntaria (24 meses)');
+  set('esc_ant_pension',cumpleAnticipada?fmtM(pensionAnticipada):`No cumple ${minimoCotizadoAnt} años`);
+  set('esc_ant_detalle',cumpleAnticipada?`A los ${fmtEdad(edadAnticipada)} · coeficiente −${(reduccionAnt*100).toFixed(0)}% a ${añosAnticipacion*12} meses`:`Esta modalidad exige al menos ${minimoCotizadoAnt} años y otros requisitos`);
   set('esc_ord_pension',fmtM(pensionOrdinariaFinal));
-  set('esc_ord_detalle',`A los ${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1).replace('.',',')} años · ${pctOrdinaria.toFixed(0)}% base reguladora`);
-  set('esc_dem_pension',fmtM(pensionDemorada));
-  set('esc_dem_detalle',`A los ${edadDemorada%1===0?edadDemorada:edadDemorada.toFixed(1).replace('.',',')} años · +${(bonificacion*2*100).toFixed(0)}% bonificación`);
+  set('esc_ord_detalle',`A los ${fmtEdad(edadJubOrdinaria)} · ${pctOrdinaria.toFixed(0)}% base reguladora`);
+  set('esc_dem_pension',fmtM(pensionDemoradaTeorica)+'*');
+  set('esc_dem_detalle',`A los ${fmtEdad(edadDemorada)} · opción porcentual +8%; sujeta al límite y complemento aplicable`);
+  document.getElementById('aviso_jubilacion').textContent=usaBaseConocida
+    ?`💡 Se usa directamente la base reguladora indicada (${fmtM(baseConocida)}). Se supone cotización continua y no se comprueba el requisito de 2 años cotizados en los últimos 15.`
+    :`💡 Base reguladora de referencia: ${fmtM(bases.formula300)} por 300/350 y ${fmtM(bases.formulaTransitoria)} por la alternativa transitoria de 2026; se usa la mayor. Para jubilaciones futuras, la selección de bases cambia gradualmente y no puede proyectarse con estos dos promedios. Se supone cotización continua${mesNac?'':', falta el mes de nacimiento'} y no se comprueba el requisito de 2 años cotizados en los últimos 15.`;
 
   // Barra de años
   const totalBarra=Math.max(50,añosCotizados+añosHastaJub+añosPension);
@@ -462,17 +586,17 @@ function calcular(){
   setW('bar_pension',pctPen);
   set('leg_cotizados',añosCotizados+' años');
   set('leg_restantes',Math.ceil(añosHastaJub)+' años');
-  set('leg_pension_años',añosPension+' años est.');
+  set('leg_pension_años','No estimada');
 
   // Timeline
   const tl=document.getElementById('timeline-jub');
   if(tl){
     const eventos=[
-      {año:añoActual, label:'Hoy', detalle:`${edadActual} años · ${añosCotizados} años cotizados`, color:'var(--jub)'},
-      {año:añoActual+Math.ceil(Math.max(0,edadAnticipada-edadActual)), label:'Jubilación anticipada', detalle:`${edadAnticipada%1===0?edadAnticipada:edadAnticipada.toFixed(1)} años · ${fmtM(pensionAnticipada)}`, color:'#f59e0b'},
-      {año:añoJub, label:'Jubilación ordinaria', detalle:`${edadJubOrdinaria%1===0?edadJubOrdinaria:edadJubOrdinaria.toFixed(1)} años · ${fmtM(pensionOrdinariaFinal)}`, color:'var(--jub)'},
-      {año:añoActual+Math.ceil(Math.max(0,edadDemorada-edadActual)), label:'Jubilación demorada', detalle:`${edadDemorada%1===0?edadDemorada:edadDemorada.toFixed(1)} años · ${fmtM(pensionDemorada)}`, color:'#7c3aed'},
-    ].filter(e=>e.año>=añoActual).sort((a,b)=>a.año-b.año);
+      {año:AÑO_CALCULO, label:'Hoy', detalle:`~${edadActual} años · ${añosCotizados} años cotizados`, color:'var(--jub)'},
+      {año:añoAnticipada, label:`Anticipada ${involuntaria?'involuntaria':'voluntaria'} condicional`, detalle:cumpleAnticipada?`${fmtEdad(edadAnticipada)} · ${fmtM(pensionAnticipada)}`:`No alcanza ${minimoCotizadoAnt} años cotizados`, color:'#f59e0b'},
+      {año:añoJub, label:'Jubilación ordinaria', detalle:`${fmtEdad(edadJubOrdinaria)} · ${fmtM(pensionOrdinariaFinal)}`, color:'var(--jub)'},
+      {año:añoDemorada, label:'Jubilación demorada', detalle:`${fmtEdad(edadDemorada)} · ${fmtM(pensionDemoradaTeorica)}*`, color:'#7c3aed'},
+    ].filter(e=>e.año>=AÑO_CALCULO).sort((a,b)=>a.año-b.año);
 
     tl.innerHTML=eventos.map(e=>`
       <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:1rem">

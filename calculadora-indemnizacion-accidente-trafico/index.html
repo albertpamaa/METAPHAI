@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Indemnización Accidente Tráfico Baremo 2026 | Metaphai</title>
-  <meta name="description" content="Calcula la indemnización por accidente de tráfico según el baremo 2026. Incluye lesiones temporales, secuelas, daños morales y perjuicio personal. Gratis y sin registro.">
+  <meta name="description" content="Estima la parte calculable de una indemnización por accidente de tráfico con las cuantías oficiales 2026 para lesiones temporales y cirugía.">
   <meta name="keywords" content="calculadora indemnizacion accidente trafico 2026, baremo trafico 2026, cuanto me corresponde accidente, indemnizacion lesiones trafico, secuelas accidente coche">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/calculadora-indemnizacion-accidente-trafico/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <meta property="og:title" content="Calculadora Indemnización Accidente de Tráfico Baremo 2026 | Metaphai">
-  <meta property="og:description" content="Calcula tu indemnización por accidente de tráfico según el baremo oficial 2026. Incluye lesiones, secuelas y daños morales.">
+  <meta property="og:description" content="Estima lesiones temporales con el baremo oficial 2026 e identifica las partidas que requieren valoración adicional.">
   <meta property="og:url" content="https://metaphai.com/calculadora-indemnizacion-accidente-trafico/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,11 @@
     .info-box{border-radius:var(--radius);padding:12px 14px;margin-top:12px;}
     .info-box.red{background:var(--acc-light);border:1px solid #f0b0b0;}.info-box.red p{font-size:13px;color:var(--acc);margin:0;}
     .info-box.warn{background:var(--warn-light);border:1px solid #f0d0a0;}.info-box.warn p{font-size:13px;color:var(--warn);margin:0;}
+    .advanced-toggle{width:100%;margin-top:14px;padding:9px 0;border:0;border-top:1px solid var(--border);background:transparent;color:var(--acc);font:600 12px 'DM Sans',sans-serif;text-align:left;cursor:pointer;}
+    .advanced-toggle span{float:right;transition:transform .2s;}
+    .advanced-toggle[aria-expanded="true"] span{transform:rotate(180deg);}
+    .advanced-content{display:none;padding-top:12px;}
+    .advanced-content.open{display:block;}
     .results{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-top:1.5rem;}
     .results-header{background:var(--acc);padding:1.5rem;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;}
     .results-header .main-label{font-size:13px;color:rgba(255,255,255,.75);margin-bottom:4px;}
@@ -105,11 +110,11 @@
   <div class="hero">
     <div class="badge">🚗 Baremo Tráfico 2026</div>
     <h1>Calculadora de indemnización<br>por <em>accidente de tráfico</em></h1>
-    <p>Estima la indemnización que te corresponde según el baremo oficial 2026. Incluye lesiones temporales, secuelas y perjuicio personal.</p>
+    <p>Calcula una estimación parcial con el baremo oficial 2026. Las secuelas ya puntuadas por un profesional se valoran económicamente por edad mediante la tabla 2.A.2.</p>
   </div>
 
   <div class="info-box warn" style="margin-bottom:1.5rem">
-    <p>⚠️ Esta calculadora ofrece una estimación orientativa. La indemnización final la determina el juzgado o la aseguradora según el caso concreto. Consulta siempre con un abogado especialista en tráfico.</p>
+    <p id="aviso_calculo">⚠️ El total es parcial: puede incluir la valoración básica de secuelas ya puntuadas, pero no diagnostica lesiones ni calcula perjuicios particulares o lucro cesante futuro.</p>
   </div>
 
   <!-- DATOS PERSONALES -->
@@ -141,32 +146,33 @@
   <!-- LESIONES TEMPORALES -->
   <div class="card">
     <div class="section-label">Lesiones temporales (período de curación)</div>
-    <div class="grid3">
+    <div class="grid2">
       <div class="field">
-        <label>Días de hospitalización</label>
-        <input type="number" id="dias_hospital" value="0" min="0" oninput="calcular()">
-        <p class="tip">~97 €/día (baremo 2026)</p>
+        <label>Días de perjuicio muy grave</label>
+        <input type="number" id="dias_muy_grave" value="0" min="0" oninput="calcular()">
+        <p class="tip">130,69 €/día; pérdida temporal de calidad de vida muy grave</p>
       </div>
       <div class="field">
-        <label>Días de baja moderada (en casa, sin movilidad)</label>
+        <label>Días de perjuicio grave</label>
+        <input type="number" id="dias_hospital" value="0" min="0" oninput="calcular()">
+        <p class="tip">98,02 €/día; exige pérdida temporal de calidad de vida grave</p>
+      </div>
+      <div class="field">
+        <label>Días de perjuicio moderado</label>
         <input type="number" id="dias_baja_moderada" value="30" min="0" oninput="calcular()">
-        <p class="tip">~58 €/día</p>
+        <p class="tip">67,96 €/día; no equivale automáticamente a cualquier baja laboral</p>
       </div>
       <div class="field">
         <label>Días de baja básica (limitación leve)</label>
         <input type="number" id="dias_baja_basica" value="60" min="0" oninput="calcular()">
-        <p class="tip">~31 €/día</p>
+        <p class="tip">39,20 €/día</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
       <div class="field">
-        <label>¿Intervención quirúrgica?</label>
-        <select id="cirugia" onchange="calcular()">
-          <option value="0">No</option>
-          <option value="1500">Sí, menor (artroscopia, etc.)</option>
-          <option value="4000">Sí, mayor (columna, rodilla...)</option>
-          <option value="8000">Sí, muy grave (cráneo, órganos...)</option>
-        </select>
+        <label>Número de intervenciones quirúrgicas</label>
+        <input type="number" id="numero_cirugias" value="0" min="0" step="1" oninput="calcular()">
+        <p class="tip">Cada intervención se valora entre 522,76 y 2.091,05 € según sus características</p>
       </div>
       <div class="field">
         <label>Gastos médicos acreditados (€)</label>
@@ -174,33 +180,32 @@
         <p class="tip">Fisioterapia, psicólogo, fármacos...</p>
       </div>
     </div>
+    <button type="button" class="advanced-toggle" aria-expanded="false" aria-controls="opciones_avanzadas_cirugia" onclick="toggleAvanzadas('opciones_avanzadas_cirugia',this)">Opciones avanzadas <span>▼</span></button>
+    <div id="opciones_avanzadas_cirugia" class="advanced-content">
+      <div class="field">
+        <label>Valoración total conocida de las intervenciones (€)</label>
+        <input type="number" id="importe_cirugias" value="0" min="0" step="10" oninput="calcular()">
+        <p class="tip">Si ya conoces la valoración individual, introduce aquí la suma; sustituye al rango automático</p>
+      </div>
+    </div>
   </div>
 
   <!-- SECUELAS -->
   <div class="card">
-    <div class="section-label">Secuelas permanentes (si las hay)</div>
+    <div class="section-label">Secuelas permanentes ya puntuadas (si las hay)</div>
     <div class="grid2">
       <div class="field">
-        <label>Puntos de secuela (baremo médico)</label>
-        <input type="number" id="puntos_secuela" value="0" min="0" max="100" oninput="calcular()">
-        <p class="tip">El médico forense asigna puntos según el baremo. 0 si no hay secuelas.</p>
+        <label>Puntos psicofísicos totales ya determinados</label>
+        <input type="number" id="puntos_secuela" value="0" min="0" max="100" step="1" oninput="calcular()">
+        <p class="tip">Deben haber sido determinados previamente por un profesional o perito. Metaphai solo consulta su valoración económica; no asigna puntos ni aplica Balthazard.</p>
       </div>
       <div class="field">
-        <label>Tipo de secuela principal</label>
-        <select id="tipo_secuela" onchange="calcular()">
-          <option value="funcional">Funcional (movilidad reducida)</option>
-          <option value="estetica">Estética (cicatrices, deformidades)</option>
-          <option value="neurologica">Neurológica / Psicológica</option>
-          <option value="ninguna">Sin secuelas</option>
-        </select>
+        <label>Puntos de perjuicio estético ya determinados</label>
+        <input type="number" id="puntos_esteticos" value="0" min="0" max="50" step="1" oninput="calcular()">
+        <p class="tip">Se valoran separadamente con la tabla 2.A.2 y después se suman al perjuicio psicofísico. Máximo: 50 puntos.</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
-      <div class="field">
-        <label>¿Perjuicio estético independiente? (puntos)</label>
-        <input type="number" id="puntos_esteticos" value="0" min="0" max="50" oninput="calcular()">
-        <p class="tip">Se valora separadamente. 0 si no aplica.</p>
-      </div>
       <div class="field">
         <label>¿Incapacidad laboral derivada?</label>
         <select id="incapacidad" onchange="calcular()">
@@ -211,6 +216,7 @@
         </select>
       </div>
     </div>
+    <div class="info-box warn" id="aviso_secuelas" style="display:none"><p id="aviso_secuelas_texto"></p></div>
   </div>
 
   <!-- LUCRO CESANTE -->
@@ -222,9 +228,17 @@
         <input type="number" id="dias_sin_trabajo" value="90" min="0" oninput="calcular()">
       </div>
       <div class="field">
-        <label>¿Prestación de IT recibida? (€/mes)</label>
+        <label>Prestación de IT realmente recibida en todo el período (€)</label>
         <input type="number" id="prestacion_it" value="0" min="0" step="100" oninput="calcular()">
-        <p class="tip">Se descuenta del lucro cesante</p>
+        <p class="tip">Importe total acreditado, no mensual; se descuenta del lucro cesante</p>
+      </div>
+    </div>
+    <button type="button" class="advanced-toggle" aria-expanded="false" aria-controls="opciones_avanzadas_lucro" onclick="toggleAvanzadas('opciones_avanzadas_lucro',this)">Opciones avanzadas <span>▼</span></button>
+    <div id="opciones_avanzadas_lucro" class="advanced-content">
+      <div class="field">
+        <label>Ingresos netos acreditados que habrías percibido en el período (€)</label>
+        <input type="number" id="ingresos_netos_periodo" value="0" min="0" step="100" oninput="calcular()">
+        <p class="tip">Si los conoces, sustituyen a la estimación salario mensual ÷ 30 × días</p>
       </div>
     </div>
   </div>
@@ -233,7 +247,7 @@
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Indemnización total estimada</div>
+        <div class="main-label">Indemnización parcial calculable</div>
         <div class="main-value" id="res_total">—</div>
       </div>
       <div class="sub-block">
@@ -249,11 +263,11 @@
         <div class="rv" id="d_lesiones">—</div>
       </div>
       <div class="res-item pos">
-        <div class="rl">Perjuicio personal básico (secuelas)</div>
+        <div class="rl">Secuelas psicofísicas</div>
         <div class="rv" id="d_secuelas_base">—</div>
       </div>
       <div class="res-item pos">
-        <div class="rl">Daño estético</div>
+        <div class="rl">Perjuicio estético</div>
         <div class="rv" id="d_estetico">—</div>
       </div>
       <div class="res-item pos">
@@ -271,16 +285,17 @@
     </div>
     <div class="desglose-liq">
       <div class="liq-title">Desglose completo</div>
-      <div class="liq-row"><span class="liq-label">Días hospitalización (×97 €)</span><span class="liq-val" id="l_hospital">—</span></div>
-      <div class="liq-row"><span class="liq-label">Días baja moderada (×58 €)</span><span class="liq-val" id="l_moderada">—</span></div>
-      <div class="liq-row"><span class="liq-label">Días baja básica (×31 €)</span><span class="liq-val" id="l_basica">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días muy graves (×130,69 €)</span><span class="liq-val" id="l_muy_grave">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días graves (×98,02 €)</span><span class="liq-val" id="l_hospital">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días moderados (×67,96 €)</span><span class="liq-val" id="l_moderada">—</span></div>
+      <div class="liq-row"><span class="liq-label">Días básicos (×39,20 €)</span><span class="liq-val" id="l_basica">—</span></div>
       <div class="liq-row"><span class="liq-label">Gastos médicos acreditados</span><span class="liq-val" id="l_medicos">—</span></div>
       <div class="liq-row"><span class="liq-label">Cirugía</span><span class="liq-val" id="l_cirugia">—</span></div>
-      <div class="liq-row"><span class="liq-label">Secuelas (puntos × valor)</span><span class="liq-val" id="l_secuelas">—</span></div>
+      <div class="liq-row"><span class="liq-label">Secuelas (tabla por puntos y edad)</span><span class="liq-val" id="l_secuelas">—</span></div>
       <div class="liq-row"><span class="liq-label">Perjuicio estético</span><span class="liq-val" id="l_estetico">—</span></div>
       <div class="liq-row"><span class="liq-label">Lucro cesante</span><span class="liq-val" id="l_lucro">—</span></div>
       <div class="liq-row"><span class="liq-label">Incremento por incapacidad laboral</span><span class="liq-val" id="l_incapacidad">—</span></div>
-      <div class="liq-row"><span class="liq-label" style="color:var(--text)">Total estimado</span><span class="liq-val" id="l_total">—</span></div>
+      <div class="liq-row"><span class="liq-label" style="color:var(--text)">Total parcial calculable</span><span class="liq-val" id="l_total">—</span></div>
     </div>
   </div>
 
@@ -289,10 +304,10 @@
     <p>El baremo de accidentes de tráfico en España está regulado por la Ley 35/2015 y establece un sistema de valoración de daños corporales con tablas objetivas. El objetivo es homogeneizar las indemnizaciones y dar seguridad jurídica tanto a las víctimas como a las aseguradoras.</p>
 
     <h3>Componentes de la indemnización</h3>
-    <p>El baremo distingue entre el perjuicio personal básico (que se divide en lesiones temporales y secuelas permanentes), el daño estético, el perjuicio moral, la pérdida de calidad de vida y el lucro cesante (ingresos dejados de percibir). Cada componente tiene su propia tabla de valoración.</p>
+    <p>El baremo distingue lesiones temporales, secuelas permanentes, perjuicio estético, perjuicios particulares, pérdida de calidad de vida y perjuicio patrimonial. Esta versión suma únicamente los conceptos que pueden determinarse con los campos actuales y marca los restantes como no calculados.</p>
 
     <h3>¿Qué son los puntos de secuela?</h3>
-    <p>El médico forense o el médico designado por la aseguradora valora las secuelas permanentes asignando puntos según el baremo médico. Cada punto tiene un valor económico que depende de la edad de la víctima: a menor edad, mayor valor del punto porque se presume más tiempo de sufrimiento.</p>
+    <p>Las secuelas deben estar estabilizadas y puntuadas previamente con el baremo médico. Esta calculadora no diagnostica, no combina secuelas ni aplica Balthazard: únicamente busca en la tabla 2.A.2 de 2026 la celda correspondiente a la edad y a la puntuación total indicada. El perjuicio estético se consulta por separado y ambos importes se suman conforme al artículo 104.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -311,6 +326,7 @@
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿La indemnización tributa en el IRPF? <span class="faq-arrow">▼</span></div>
       <div class="faq-a">No. Las indemnizaciones por daños personales derivadas de accidentes de tráfico están exentas de IRPF, siempre que se obtengan por vía judicial o mediante acuerdo con la aseguradora dentro de los límites del baremo. El lucro cesante sí puede tributar en algunos casos.</div>
     </div>
+    <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-3803" rel="noopener noreferrer">actualización del 2,9% para 2026 (BOE)</a>, <a href="https://dgsfp.mineco.gob.es/es/Regulacion/DocumentosRegulacion/Tablas%20Resoluci%C3%B3n%20Actualizaci%C3%B3n%20Baremo%202026.pdf" rel="noopener noreferrer">tablas indemnizatorias 2026 (DGSFP)</a> y <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2004-18911" rel="noopener noreferrer">Ley sobre responsabilidad civil y seguro en la circulación (BOE)</a>.</p>
   </div>
 
   <section id="calculadoras-relacionadas" aria-labelledby="relacionadas-titulo" style="margin-top:2rem;padding:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);">
@@ -329,6 +345,7 @@
     <button onclick="aceptarCookies()" style="font-family:inherit;font-size:13px;padding:8px 16px;border:none;border-radius:8px;background:#2d6a4f;color:white;cursor:pointer;font-weight:500;">Aceptar</button>
   </div>
 </div>
+<script src="baremo-secuelas-2026.js"></script>
 <script>
 function loadAnalytics() {
   var s = document.createElement('script');
@@ -350,82 +367,139 @@ function aceptarCookies(){localStorage.setItem("cookies","aceptado");document.ge
 function rechazarCookies(){localStorage.setItem("cookies","rechazado");document.getElementById("cookie-banner").style.display="none";}
 window.addEventListener("load",function(){var c=localStorage.getItem("cookies");if(!c)document.getElementById("cookie-banner").style.display="flex";else if(c==="aceptado")loadAnalytics();});
 function fmt(n){return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
-// Valor del punto de secuela según edad (baremo 2026 aproximado)
-function valorPunto(edad, puntos){
-  if(puntos===0) return 0;
-  // Valor base por punto según edad
-  let vp;
-  if(edad<=30) vp=1400;
-  else if(edad<=40) vp=1200;
-  else if(edad<=50) vp=1000;
-  else if(edad<=60) vp=800;
-  else if(edad<=70) vp=600;
-  else vp=450;
-  // Factor corrector según número de puntos
-  let total=0;
-  for(let i=1;i<=puntos;i++){
-    // Los primeros puntos valen más
-    const factor=i<=10?1.0:i<=20?0.9:i<=40?0.8:0.7;
-    total+=vp*factor;
-  }
-  return total;
+function fmtRango(min,max){return Math.abs(max-min)<.005?fmt(min):`${fmt(min)} – ${fmt(max)}`;}
+
+function toggleAvanzadas(id,boton){
+  const contenido=document.getElementById(id);
+  const abrir=!contenido.classList.contains('open');
+  contenido.classList.toggle('open',abrir);
+  boton.setAttribute('aria-expanded',String(abrir));
 }
+
+const BAREMO_TEMPORAL_2026={basico:39.20,moderado:67.96,grave:98.02,muyGrave:130.69,cirugiaMin:522.76,cirugiaMax:2091.05};
+
+function valorarPuntuacionSecuela2026(edad,puntos,maximoPuntos,tipo){
+  const tabla=window.BAREMO_SECUELAS_2026;
+  if(!tabla||tabla.version!=='2026'||tabla.tabla!=='2.A.2'){
+    return {valido:false,importeCentimos:0,importe:0,error:'No se ha podido cargar la tabla oficial 2.A.2 de 2026.'};
+  }
+  if(!Number.isInteger(edad)||edad<tabla.edadMinima||edad>tabla.edadMaxima){
+    return {valido:false,importeCentimos:0,importe:0,error:'La edad debe ser un número entero entre 0 y 100 años.'};
+  }
+  if(!Number.isInteger(puntos)||puntos<0||puntos>maximoPuntos){
+    return {valido:false,importeCentimos:0,importe:0,error:`Los puntos ${tipo} deben ser un número entero entre 0 y ${maximoPuntos}.`};
+  }
+  if(puntos===0) return {valido:true,importeCentimos:0,importe:0,error:null};
+  const columnaEdad=edad<=1?0:edad-1;
+  const importeCentimos=tabla.importesCentimos[puntos-1]?.[columnaEdad];
+  if(!Number.isInteger(importeCentimos)){
+    return {valido:false,importeCentimos:0,importe:0,error:'La combinación de edad y puntuación no figura en la tabla oficial 2.A.2 de 2026.'};
+  }
+  return {valido:true,importeCentimos,importe:importeCentimos/100,error:null};
+}
+
+function calcularValoracionSecuelas2026(edad,puntosPsicofisicos,puntosEsteticos){
+  const tabla=window.BAREMO_SECUELAS_2026;
+  const maxPsicofisicos=tabla?.puntosPsicofisicosMaximos??100;
+  const maxEsteticos=tabla?.puntosEsteticosMaximos??50;
+  const psicofisicas=valorarPuntuacionSecuela2026(edad,puntosPsicofisicos,maxPsicofisicos,'psicofísicos');
+  const esteticas=valorarPuntuacionSecuela2026(edad,puntosEsteticos,maxEsteticos,'estéticos');
+  const valido=psicofisicas.valido&&esteticas.valido;
+  const totalCentimos=valido?psicofisicas.importeCentimos+esteticas.importeCentimos:0;
+  const errores=[...new Set([psicofisicas.error,esteticas.error].filter(Boolean))];
+  return {valido,psicofisicas,esteticas,totalCentimos,total:totalCentimos/100,errores};
+}
+
+function leerNumeroObligatorio(id){
+  const valor=document.getElementById(id).value.trim();
+  return valor===''?Number.NaN:Number(valor);
+}
+
+function calcularLesionesTemporales({basicos=0,moderados=0,graves=0,muyGraves=0}){
+  const indBasica=Math.max(0,basicos)*BAREMO_TEMPORAL_2026.basico;
+  const indModerada=Math.max(0,moderados)*BAREMO_TEMPORAL_2026.moderado;
+  const indGrave=Math.max(0,graves)*BAREMO_TEMPORAL_2026.grave;
+  const indMuyGrave=Math.max(0,muyGraves)*BAREMO_TEMPORAL_2026.muyGrave;
+  return {indBasica,indModerada,indGrave,indMuyGrave,total:indBasica+indModerada+indGrave+indMuyGrave};
+}
+
+function calcularCirugias(numero=0,importeConocido=0){
+  const totalConocido=Math.max(0,importeConocido);
+  if(totalConocido>0) return {min:totalConocido,max:totalConocido,conocido:true};
+  const cantidad=Math.max(0,Math.floor(numero));
+  return {min:cantidad*BAREMO_TEMPORAL_2026.cirugiaMin,max:cantidad*BAREMO_TEMPORAL_2026.cirugiaMax,conocido:false};
+}
+
+function calcularLucroTemporal({puedeCalcular,salarioMensual,dias,ingresosPeriodo,prestacionTotal}){
+  if(!puedeCalcular) return {lucro:0,usaIngresosAcreditados:false};
+  const usaIngresosAcreditados=Math.max(0,ingresosPeriodo)>0;
+  const ingresosEsperados=usaIngresosAcreditados?Math.max(0,ingresosPeriodo):Math.max(0,salarioMensual)/30*Math.max(0,dias);
+  return {lucro:Math.max(0,ingresosEsperados-Math.max(0,prestacionTotal)),usaIngresosAcreditados};
+}
+
 function calcular(){
-  const edad=parseInt(document.getElementById('edad').value)||35;
+  const edad=leerNumeroObligatorio('edad');
+  const situacion=document.getElementById('situacion').value;
   const salarioNeto=parseFloat(document.getElementById('salario_neto').value)||0;
-  const diasHospital=parseInt(document.getElementById('dias_hospital').value)||0;
+  const diasMuyGraves=parseInt(document.getElementById('dias_muy_grave').value)||0;
+  const diasGraves=parseInt(document.getElementById('dias_hospital').value)||0;
   const diasModerada=parseInt(document.getElementById('dias_baja_moderada').value)||0;
   const diasBasica=parseInt(document.getElementById('dias_baja_basica').value)||0;
-  const cirugia=parseInt(document.getElementById('cirugia').value)||0;
+  const numeroCirugias=parseInt(document.getElementById('numero_cirugias').value)||0;
+  const importeCirugias=parseFloat(document.getElementById('importe_cirugias').value)||0;
   const gastosMedicos=parseFloat(document.getElementById('gastos_medicos').value)||0;
-  const puntosSecuela=parseInt(document.getElementById('puntos_secuela').value)||0;
-  const puntosEsteticos=parseInt(document.getElementById('puntos_esteticos').value)||0;
+  const puntosSecuela=leerNumeroObligatorio('puntos_secuela');
+  const puntosEsteticos=leerNumeroObligatorio('puntos_esteticos');
   const incapacidad=document.getElementById('incapacidad').value;
   const diasSinTrabajo=parseInt(document.getElementById('dias_sin_trabajo').value)||0;
   const prestacionIT=parseFloat(document.getElementById('prestacion_it').value)||0;
+  const ingresosNetosPeriodo=parseFloat(document.getElementById('ingresos_netos_periodo').value)||0;
 
-  // Lesiones temporales (baremo 2026 aprox)
-  const indHospital=diasHospital*97;
-  const indModerada=diasModerada*58;
-  const indBasica=diasBasica*31;
-  const totalLesiones=indHospital+indModerada+indBasica+gastosMedicos+cirugia;
+  const lesiones=calcularLesionesTemporales({basicos:diasBasica,moderados:diasModerada,graves:diasGraves,muyGraves:diasMuyGraves});
+  const cirugias=calcularCirugias(numeroCirugias,importeCirugias);
+  const cirugiaMin=cirugias.min;
+  const cirugiaMax=cirugias.max;
+  const puedeCalcularLucro=situacion==='trabajando'||situacion==='autonomo';
+  const calculoLucro=calcularLucroTemporal({puedeCalcular:puedeCalcularLucro,salarioMensual:salarioNeto,dias:diasSinTrabajo,ingresosPeriodo:ingresosNetosPeriodo,prestacionTotal:prestacionIT});
+  const lucro=calculoLucro.lucro;
+  const secuelas=calcularValoracionSecuelas2026(edad,puntosSecuela,puntosEsteticos);
+  const importeSecuelas=secuelas.valido?secuelas.total:0;
+  const totalMin=lesiones.total+gastosMedicos+cirugiaMin+lucro+importeSecuelas;
+  const totalMax=lesiones.total+gastosMedicos+cirugiaMax+lucro+importeSecuelas;
 
-  // Secuelas
-  const indSecuelas=valorPunto(edad,puntosSecuela);
-  const indEstetico=valorPunto(edad,puntosEsteticos)*0.7;
-
-  // Incapacidad laboral
-  let incapacidadExtra=0;
-  if(incapacidad==='parcial') incapacidadExtra=indSecuelas*0.25;
-  else if(incapacidad==='total') incapacidadExtra=indSecuelas*0.75;
-  else if(incapacidad==='absoluta') incapacidadExtra=indSecuelas*1.5;
-
-  // Lucro cesante
-  const salarioDia=salarioNeto/30;
-  const prestacionDia=prestacionIT/30;
-  const lucro=Math.max(0,(salarioDia-prestacionDia)*diasSinTrabajo);
-
-  const total=totalLesiones+indSecuelas+indEstetico+incapacidadExtra+lucro;
-
-  document.getElementById('res_total').textContent=fmt(total);
-  document.getElementById('res_lesiones').textContent=fmt(totalLesiones);
-  document.getElementById('res_secuelas').textContent=fmt(indSecuelas+indEstetico);
-  document.getElementById('d_lesiones').textContent=fmt(indHospital+indModerada+indBasica);
-  document.getElementById('d_secuelas_base').textContent=fmt(indSecuelas);
-  document.getElementById('d_estetico').textContent=fmt(indEstetico);
+  document.getElementById('res_total').textContent=fmtRango(totalMin,totalMax);
+  document.getElementById('res_lesiones').textContent=fmtRango(lesiones.total+cirugiaMin,lesiones.total+cirugiaMax);
+  document.getElementById('res_secuelas').textContent=secuelas.valido?fmt(secuelas.total):'Revisar datos';
+  document.getElementById('d_lesiones').textContent=fmt(lesiones.total);
+  document.getElementById('d_secuelas_base').textContent=secuelas.psicofisicas.valido?fmt(secuelas.psicofisicas.importe):secuelas.psicofisicas.error;
+  document.getElementById('d_estetico').textContent=secuelas.esteticas.valido?fmt(secuelas.esteticas.importe):secuelas.esteticas.error;
   document.getElementById('d_lucro').textContent=fmt(lucro);
   document.getElementById('d_medicos').textContent=fmt(gastosMedicos);
-  document.getElementById('d_cirugia').textContent=fmt(cirugia);
-  document.getElementById('l_hospital').textContent=diasHospital>0?fmt(indHospital):'—';
-  document.getElementById('l_moderada').textContent=diasModerada>0?fmt(indModerada):'—';
-  document.getElementById('l_basica').textContent=diasBasica>0?fmt(indBasica):'—';
+  document.getElementById('d_cirugia').textContent=fmtRango(cirugiaMin,cirugiaMax);
+  document.getElementById('l_muy_grave').textContent=diasMuyGraves>0?fmt(lesiones.indMuyGrave):'—';
+  document.getElementById('l_hospital').textContent=diasGraves>0?fmt(lesiones.indGrave):'—';
+  document.getElementById('l_moderada').textContent=diasModerada>0?fmt(lesiones.indModerada):'—';
+  document.getElementById('l_basica').textContent=diasBasica>0?fmt(lesiones.indBasica):'—';
   document.getElementById('l_medicos').textContent=gastosMedicos>0?fmt(gastosMedicos):'—';
-  document.getElementById('l_cirugia').textContent=cirugia>0?fmt(cirugia):'—';
-  document.getElementById('l_secuelas').textContent=puntosSecuela>0?fmt(indSecuelas)+` (${puntosSecuela} pts)`:'—';
-  document.getElementById('l_estetico').textContent=puntosEsteticos>0?fmt(indEstetico):'—';
+  document.getElementById('l_cirugia').textContent=cirugiaMax>0?fmtRango(cirugiaMin,cirugiaMax):'—';
+  document.getElementById('l_secuelas').textContent=secuelas.psicofisicas.valido&&puntosSecuela>0?fmt(secuelas.psicofisicas.importe):secuelas.psicofisicas.valido?'—':'No calculado';
+  document.getElementById('l_estetico').textContent=secuelas.esteticas.valido&&puntosEsteticos>0?fmt(secuelas.esteticas.importe):secuelas.esteticas.valido?'—':'No calculado';
   document.getElementById('l_lucro').textContent=lucro>0?fmt(lucro):'—';
-  document.getElementById('l_incapacidad').textContent=incapacidadExtra>0?fmt(incapacidadExtra):'—';
-  document.getElementById('l_total').textContent=fmt(total);
+  document.getElementById('l_incapacidad').textContent=incapacidad!=='ninguna'?'No calculado: requiere tablas de lucro cesante futuro':'—';
+  document.getElementById('l_total').textContent=fmtRango(totalMin,totalMax);
+
+  const avisoSecuelas=document.getElementById('aviso_secuelas');
+  avisoSecuelas.style.display=secuelas.valido?'none':'block';
+  document.getElementById('aviso_secuelas_texto').textContent=secuelas.valido?'':`⚠️ No se ha añadido ninguna secuela al total. ${secuelas.errores.join(' ')}`;
+
+  const avisos=['El total es parcial: incluye las lesiones temporales y la valoración básica válida de secuelas, pero no los perjuicios particulares que requieren otros datos.'];
+  if(!puedeCalcularLucro&&diasSinTrabajo>0) avisos.push('No se calcula pérdida temporal de ingresos para la situación laboral seleccionada.');
+  if(puedeCalcularLucro&&diasSinTrabajo>0&&!calculoLucro.usaIngresosAcreditados) avisos.push('El lucro cesante temporal usa la aproximación salario mensual ÷ 30 × días; puedes sustituirla por ingresos acreditados en Opciones avanzadas.');
+  if(cirugiaMax>0&&!cirugias.conocido) avisos.push(`Las ${numeroCirugias} intervenciones se muestran como rango; su importe depende de las características de cada operación.`);
+  if(!secuelas.valido) avisos.push('Los datos de secuelas no son una combinación válida de la tabla 2.A.2 y se han excluido del total.');
+  if(secuelas.valido&&(puntosSecuela>0||puntosEsteticos>0)) avisos.push('Las secuelas se han consultado directamente por edad y puntuación en la tabla 2.A.2 de 2026; no se ha aplicado Balthazard ni se han combinado lesiones.');
+  if(incapacidad!=='ninguna') avisos.push('La incapacidad permanente requiere ingresos, tablas actuariales y grado concreto; no se aplica un porcentaje arbitrario.');
+  document.getElementById('aviso_calculo').textContent='⚠️ '+avisos.join(' ');
 }
 document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calcular));
 calcular();
