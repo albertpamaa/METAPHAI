@@ -183,11 +183,13 @@
         <div class="field">
           <label for="tipo_trabajador">Situación laboral</label>
           <select id="tipo_trabajador">
-            <option value="ajena_completa">Cuenta ajena · jornada completa (ET)</option>
-            <option value="ajena_parcial">Cuenta ajena · jornada parcial (ET)</option>
-            <option value="reta">Autónomo/a (RETA)</option>
+            <option value="ajena_completa">Empleado/a · jornada completa</option>
+            <option value="ajena_parcial">Empleado/a · jornada parcial</option>
+            <option value="reta">Autónomo/a</option>
             <option value="publico">Empleado/a público/a</option>
+            <option value="especial">Otra situación / régimen especial</option>
           </select>
+          <p class="tip" id="tip_situacion_laboral">“Empleado/a” se refiere a trabajo por cuenta ajena sujeto al Estatuto de los Trabajadores.</p>
         </div>
         <div class="field">
           <label for="edad_beneficiaria">Edad de la persona beneficiaria</label>
@@ -418,7 +420,8 @@
 
     <h2>Autónomos y empleados públicos</h2>
     <p>Las personas autónomas pueden recibir la prestación por nacimiento y cuidado si reúnen los requisitos; su base se calcula con las bases RETA de los seis meses de referencia y el disfrute parcial solo se contempla al 50%. La lactancia del artículo 37.4 y la prestación de corresponsabilidad aquí calculadas se refieren a relaciones laborales sometidas al Estatuto de los Trabajadores.</p>
-    <p>El personal empleado público se rige además por el Estatuto Básico del Empleado Público y por su régimen de previsión. La calculadora muestra la duración general introducida en 2025, pero no estima su lactancia ni particularidades de mutualidades administrativas.</p>
+    <p>El personal funcionario y el personal laboral al servicio de las Administraciones Públicas se rigen por el Estatuto Básico del Empleado Público para estos permisos y por su régimen de previsión. La calculadora muestra la duración general introducida en 2025, pero no estima su lactancia ni particularidades de mutualidades administrativas.</p>
+    <p>Los sistemas especiales y otras situaciones asimiladas pueden tener particularidades de acceso, cotización o base reguladora. Por ello, al elegir «Otra situación / régimen especial» se muestra la duración orientativa, pero solo se estima la cuantía si introduces una base reguladora diaria conocida.</p>
 
     <h2>Fuentes oficiales</h2>
     <p><a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/6b96a085-4dc0-47af-b2cb-97e00716791e/subsidionycm?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — nacimiento y cuidado del menor</a>; <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/61f8b540-c867-43cf-926d-77476b975f36?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — corresponsabilidad en el cuidado del lactante</a>; <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/9932/730?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — IPREM 2026</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11430" rel="noopener noreferrer">Estatuto de los Trabajadores, arts. 37.4, 48 y 48 bis</a>; <a href="https://www.boe.es/eli/es/rdl/2025/07/29/9/dof/spa/html" rel="noopener noreferrer">Real Decreto-ley 9/2025</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724" rel="noopener noreferrer">Ley General de la Seguridad Social, arts. 177 a 185</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764#a7" rel="noopener noreferrer">Ley del IRPF, artículo 7</a>; y <a href="https://www.boe.es/biblioteca_juridica/anuarios_derecho/articulo.php?id=ANU-L-2024-00000002598" rel="noopener noreferrer">BOE — doctrina del Tribunal Supremo sobre lactancia acumulada y tiempo parcial</a>.</p>
@@ -539,6 +542,7 @@ function cumpleCotizacion(edad, dias7, diasVida) {
 
 function calcularBaseDiaria(datos) {
   if (datos.baseDiariaConocida > 0) return { diaria: datos.baseDiariaConocida, origen: 'Base diaria conocida' };
+  if (datos.tipoTrabajador === 'especial') return { diaria: null, origen: 'Régimen especial: falta base diaria conocida' };
   if (!(datos.baseMensual > 0)) return { diaria: null, origen: 'Sin base suficiente' };
   if (datos.tipoTrabajador === 'ajena_parcial') return { diaria: datos.baseMensual * 12 / 365, origen: 'Media mensual de 12 meses (estimada)' };
   if (datos.tipoTrabajador === 'reta') return { diaria: datos.baseMensual * 6 / 180, origen: 'Media RETA de 6 meses (estimada)' };
@@ -550,7 +554,7 @@ function calcularPrestacion(datos, duracion) {
   const base = calcularBaseDiaria(datos);
   if (duracion.regimen === 'fuera') return { tipo: 'no_calculada', cotizacion, base };
   if (!datos.altaSS || (datos.tipoTrabajador === 'reta' && !datos.pagosReta)) return { tipo: 'sin_requisito', cotizacion, base };
-  if (!base.diaria) return { tipo: 'sin_base', cotizacion, base };
+  if (!base.diaria) return { tipo: datos.tipoTrabajador === 'especial' ? 'sin_base_especial' : 'sin_base', cotizacion, base };
   if (cotizacion.cumple) {
     const porcentaje = datos.porcentajeDisfrute / 100;
     const semanasVoluntarias = duracion.flexibles + duracion.hastaOcho;
@@ -692,7 +696,8 @@ function obtenerAvisos(datos, duracion) {
   if (duracion.regimen === 'fuera') avisos.push('La fecha es anterior al 02/08/2024: esta calculadora no reconstruye el permiso histórico ni su prestación. Solo comprueba los límites actuales de lactancia y permiso parental con la fecha del menor.');
   if (datos.hospitalizacionDias > 0 && datos.situacion !== 'nacimiento') avisos.push('La ampliación por hospitalización neonatal no se ha aplicado porque la situación seleccionada no es nacimiento.');
   if (datos.hospitalizacionDias > 0 && datos.hospitalizacionDias <= 7 && datos.situacion === 'nacimiento') avisos.push('La hospitalización no supera 7 días y, por tanto, no genera la ampliación indicada en el artículo 48.4 ET.');
-  if (datos.tipoTrabajador === 'publico') avisos.push('El personal empleado público puede tener reglas propias del EBEP o de su mutualidad; no se calcula aquí la lactancia ni la corresponsabilidad del ET.');
+  if (datos.tipoTrabajador === 'publico') avisos.push('El personal funcionario y el personal laboral al servicio de las Administraciones Públicas se rigen por el EBEP para estos permisos. La cuantía puede variar según el Régimen General o la mutualidad; no se calcula aquí la lactancia ni la corresponsabilidad del ET.');
+  if (datos.tipoTrabajador === 'especial') avisos.push('Esta opción evita excluir regímenes o situaciones especiales, pero no reproduce sus particularidades de acceso, cotización o base reguladora. Sin una base reguladora diaria conocida no se estima la cuantía.');
   if (datos.situacion !== 'nacimiento' && datos.fechaHecho >= sumarMeses(datos.fechaNacimientoMenor, 72)) avisos.push('Para adopción, guarda o acogimiento de un menor mayor de 6 años, la situación protegida exige discapacidad o especiales dificultades de inserción debidamente acreditadas; la calculadora no verifica esa acreditación.');
   if (datos.fechaHecho >= sumarMeses(datos.fechaNacimientoMenor, 96)) avisos.push('El menor ya había cumplido 8 años en la fecha del hecho causante: no se añaden las semanas cuyo límite legal es esa edad.');
   else if (hoy >= sumarMeses(datos.fechaNacimientoMenor, 96)) avisos.push('El menor ya ha cumplido 8 años: las semanas tardías aparecen como parte del derecho original, pero ya no pueden solicitarse si no se disfrutaron dentro de plazo.');
@@ -738,7 +743,7 @@ function renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad) 
     document.getElementById('res_multiple_economico').textContent = 'Consultar INSS';
     notaPrestacion += ` Se estima el supuesto especial por falta de cotización: ${prestacion.diasNoContributivos} días al menor importe entre IPREM diario 2026 y base reguladora. El INSS debe confirmar que se cumplen todos los demás requisitos.`;
   } else {
-    document.getElementById('res_tipo_prestacion').textContent = prestacion.tipo === 'sin_requisito' ? 'Requisitos no acreditados' : prestacion.tipo === 'sin_base' ? 'Falta base' : 'No calculada';
+    document.getElementById('res_tipo_prestacion').textContent = prestacion.tipo === 'sin_requisito' ? 'Requisitos no acreditados' : (prestacion.tipo === 'sin_base' || prestacion.tipo === 'sin_base_especial') ? 'Falta base' : 'No calculada';
     document.getElementById('res_base_diaria').textContent = prestacion.base && prestacion.base.diaria ? euros(prestacion.base.diaria) : '—';
     document.getElementById('res_importe_mensual').textContent = '—';
     document.getElementById('res_importe_total').textContent = '—';
@@ -746,6 +751,7 @@ function renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad) 
     document.getElementById('res_multiple_economico').textContent = '—';
     if (prestacion.tipo === 'sin_requisito') notaPrestacion += ' No se estima prestación porque no se ha acreditado alta o, en RETA, estar al corriente de pago.';
     if (prestacion.tipo === 'sin_base') notaPrestacion += ' Introduce una base mensual o una base reguladora diaria conocida.';
+    if (prestacion.tipo === 'sin_base_especial') notaPrestacion += ' En esta situación no se estima una cuantía automática: introduce una base reguladora diaria conocida en Opciones avanzadas o consulta al organismo gestor de tu régimen.';
   }
   document.getElementById('nota_prestacion').textContent = notaPrestacion;
 
@@ -763,7 +769,7 @@ function renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad) 
     document.getElementById('res_dias_lactancia').textContent = lactancia.estado === 'sin_dias' ? '0 días' : '—';
     document.getElementById('res_origen_lactancia').textContent = '—';
     const mensajes = {
-      no_aplicable: 'No se estima: la regla del artículo 37.4 ET no se aplica de la misma forma a RETA ni se ha modelado el régimen del empleo público.',
+      no_aplicable: 'No se estima: la regla del artículo 37.4 ET no se aplica de la misma forma a RETA ni se han modelado el empleo público o los regímenes especiales.',
       no_solicitada: 'No has solicitado calcular esta modalidad.',
       sin_fecha: 'Introduce la fecha prevista de reincorporación para contar los días laborables.',
       sin_dias: 'No quedan días laborables entre la reincorporación y el límite ordinario de nueve meses.'
@@ -776,7 +782,7 @@ function renderizar(datos, duracion, prestacion, lactancia, corresponsabilidad) 
     corrEl.innerHTML = `<strong>Corresponsabilidad del lactante:</strong> posible estimación máxima de ${euros(corresponsabilidad.total)} entre ${formatearFecha(corresponsabilidad.inicio)} y ${formatearFecha(corresponsabilidad.fin)} (${euros(corresponsabilidad.mensual)}/mes aprox.). Se aplica el 100% de ${euros(corresponsabilidad.baseIT)}/día, en proporción a 30 minutos sobre tu jornada (${numero(corresponsabilidad.proporcion * 100, 2)}%). Origen: ${corresponsabilidad.origenBase}. Solo puede cobrarla una persona.`;
   } else {
     const textoCorr = {
-      no_aplicable: 'No se calcula para RETA ni empleo público en esta herramienta.',
+      no_aplicable: 'No se calcula para RETA, empleo público u otra situación o régimen especial en esta herramienta.',
       no_activada: 'Para estudiarla, abre Opciones avanzadas e indica que ambas personas trabajan y reducen diariamente media hora con igual duración y régimen.',
       sin_cotizacion: 'No se cumplen los requisitos de cotización exigidos para esta prestación.',
       sin_base_it: 'Se cumplen las condiciones declaradas, pero falta la base reguladora diaria de IT vigente al comenzar la reducción para estimar la cuantía sin reutilizar una base antigua.'
@@ -822,15 +828,27 @@ function actualizarEtiquetaBase() {
   const tipo = document.getElementById('tipo_trabajador').value;
   const etiqueta = document.getElementById('label_base_mensual');
   const ayuda = document.getElementById('tip_base_mensual');
+  const notaSituacion = document.getElementById('tip_situacion_laboral');
   if (tipo === 'ajena_parcial') {
     etiqueta.textContent = 'Base mensual media de los 12 meses de referencia (€)';
     ayuda.textContent = 'La fórmula oficial usa la suma exacta de bases y días; esta media produce una estimación.';
+    notaSituacion.textContent = '“Empleado/a” se refiere a trabajo por cuenta ajena sujeto al Estatuto de los Trabajadores. Si eres fijo-discontinuo, usa esta opción: se aplica el mismo método de base de los 12 meses de referencia.';
   } else if (tipo === 'reta') {
     etiqueta.textContent = 'Base RETA mensual media de los 6 meses de referencia (€)';
     ayuda.textContent = 'No introduzcas la cuota pagada: se necesita la base por la que cotizaste.';
+    notaSituacion.textContent = 'Para una persona autónoma se utilizan las bases RETA de los seis meses de referencia.';
+  } else if (tipo === 'publico') {
+    etiqueta.textContent = 'Base mensual por contingencias comunes (€)';
+    ayuda.textContent = 'Si cotizas en el Régimen General, consulta la base en tu nómina; las mutualidades pueden tener particularidades.';
+    notaSituacion.textContent = 'Incluye personal funcionario y personal laboral de las Administraciones Públicas: estos permisos se rigen por el EBEP.';
+  } else if (tipo === 'especial') {
+    etiqueta.textContent = 'Base mensual orientativa (€)';
+    ayuda.textContent = 'No se usa para calcular la cuantía en esta opción. Si conoces tu base reguladora diaria, introdúcela en Opciones avanzadas.';
+    notaSituacion.textContent = 'Incluye regímenes o situaciones con posibles particularidades de acceso, cotización o base reguladora. La cuantía solo se estima con una base diaria conocida.';
   } else {
     etiqueta.textContent = 'Base mensual por contingencias comunes (€)';
     ayuda.textContent = 'Consulta la base, no el salario neto, en tu nómina o documento de cotización.';
+    notaSituacion.textContent = '“Empleado/a” se refiere a trabajo por cuenta ajena sujeto al Estatuto de los Trabajadores.';
   }
 }
 
@@ -845,6 +863,7 @@ function toggleAvanzadas() {
 document.getElementById('form_calculadora').addEventListener('submit', calcularYMostrar);
 document.getElementById('toggle_avanzadas').addEventListener('click', toggleAvanzadas);
 document.getElementById('tipo_trabajador').addEventListener('change', actualizarEtiquetaBase);
+actualizarEtiquetaBase();
 document.querySelectorAll('.faq-q').forEach(pregunta => {
   const activar = () => pregunta.parentElement.classList.toggle('open');
   pregunta.addEventListener('click', activar);
