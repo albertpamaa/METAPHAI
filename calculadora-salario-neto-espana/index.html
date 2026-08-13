@@ -431,11 +431,11 @@
         </select>
       </div>
       <div class="field">
-        <label>Estado civil</label>
+        <label>Situación familiar (Modelo 145)</label>
         <select id="estado">
-          <option value="soltero">Soltero/a</option>
-          <option value="casado">Casado/a (cónyuge sin ingresos)</option>
-          <option value="casado2">Casado/a (cónyuge con ingresos)</option>
+          <option value="situacion3">Otras situaciones (incluye soltero/a sin hijos)</option>
+          <option value="situacion2">Casado/a; cónyuge con ≤ 1.500 €/año</option>
+          <option value="situacion1">Soltero/a, viudo/a o separado/a con hijos que conviven exclusivamente</option>
         </select>
       </div>
       <div class="field">
@@ -493,7 +493,7 @@
     <!-- AVANZADO -->
     <div style="margin-top:14px">
       <button onclick="toggleAvanzado()" id="btn-avanzado" style="font-family:'DM Sans',sans-serif;font-size:12px;padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;">
-        <span id="avanzado-icon">⚙️</span> Opciones avanzadas — Seguridad Social
+        <span id="avanzado-icon">⚙️</span> Opciones avanzadas
         <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span>
       </button>
       <div id="avanzado-panel" style="display:none;margin-top:12px;padding:14px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border)">
@@ -512,6 +512,62 @@
             <input type="number" id="ss_fp" value="0.10" step="0.01" min="0" max="2">
           </div>
         </div>
+        <div class="section-label" style="margin-top:18px">Circunstancias fiscales del Modelo 145</div>
+        <div class="grid3">
+          <div class="field">
+            <label>Hijos menores de 3 años</label>
+            <input type="number" id="hijos_menor3" value="0" min="0" max="4" step="1">
+          </div>
+          <div class="field">
+            <label>Cómputo de los hijos</label>
+            <select id="computo_hijos">
+              <option value="1">Por entero</option>
+              <option value="0.5">Por mitad (custodia compartida)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Contrato temporal inferior a un año</label>
+            <select id="contrato_inferior_ano">
+              <option value="no">No / no indicado</option>
+              <option value="si">Sí</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:12px">
+          <div class="field">
+            <label>Hijos con discapacidad 33%–64%</label>
+            <input type="number" id="hijos_discap33" value="0" min="0" max="4" step="1">
+          </div>
+          <div class="field">
+            <label>Hijos con discapacidad ≥65%</label>
+            <input type="number" id="hijos_discap65" value="0" min="0" max="4" step="1">
+          </div>
+          <div class="field">
+            <label>Movilidad reducida / ayuda de terceros</label>
+            <select id="movilidad_discapacidad">
+              <option value="no">No</option>
+              <option value="si">Sí, reconocida</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:12px">
+          <div class="field">
+            <label>Pensión compensatoria judicial (€/año)</label>
+            <input type="number" id="pension_compensatoria" value="0" min="0" step="100">
+          </div>
+          <div class="field">
+            <label>Anualidades por alimentos judiciales (€/año)</label>
+            <input type="number" id="anualidades_alimentos" value="0" min="0" step="100">
+          </div>
+          <div class="field">
+            <label>Préstamo de vivienda con derecho transitorio</label>
+            <select id="prestamo_vivienda">
+              <option value="no">No</option>
+              <option value="si">Sí, comunicado en Modelo 145</option>
+            </select>
+          </div>
+        </div>
+        <p class="tip">Los hijos con discapacidad deben estar incluidos también en “Hijos a cargo”. La movilidad reducida se refiere al contribuyente y debe estar reconocida. La minoración por vivienda solo procede si se cumplen los requisitos transitorios y el salario total es inferior a 33.007,20 €.</p>
       </div>
     </div>
   </div>
@@ -622,7 +678,7 @@
     <p>La comunidad autónoma influye en la liquidación anual del IRPF, pero la retención ordinaria de nómina se calcula con el algoritmo general de retenciones de la AEAT y no aplicando directamente una escala autonómica. Por eso el selector se conserva como dato informativo y no altera esta estimación. Navarra y País Vasco tienen normativa foral propia y deben comprobarse con su hacienda competente.</p>
 
     <h3>¿Qué deducciones puedo aplicar?</h3>
-    <p>Se aplican el mínimo personal, los mínimos básicos por descendientes, el mínimo por discapacidad del trabajador, los gastos deducibles generales y la reducción por obtención de rendimientos del trabajo. Sin la edad de los hijos, custodia compartida, ascendientes, pensiones judiciales u otros datos del modelo 145, el resultado solo puede ser orientativo.</p>
+    <p>Se aplican el mínimo personal, los mínimos por descendientes, la discapacidad indicada, los gastos deducibles generales y la reducción por obtención de rendimientos del trabajo. Opciones avanzadas permite informar menores de tres años, cómputo por mitad y pensiones judiciales; siguen fuera los ascendientes, la regularización durante el año y otros casos menos habituales del Modelo 145.</p>
 
     <p><strong>Fuentes oficiales:</strong> <a href="https://sede.agenciatributaria.gob.es/Sede/Retenciones.shtml" rel="noopener noreferrer">algoritmo de retenciones IRPF 2026 (AEAT)</a> y <a href="https://www.boe.es/eli/es/o/2026/03/30/pjc297/dof/spa" rel="noopener noreferrer">cotizaciones sociales 2026 (BOE)</a>.</p>
 
@@ -636,12 +692,12 @@
 
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Por qué el resultado puede diferir de mi nómina? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Esta calculadora ofrece una estimación orientativa. Tu empresa calcula y regulariza la retención con datos que aquí no se solicitan: edad y discapacidad de descendientes o ascendientes, custodia compartida, pensiones judiciales, retribuciones ya satisfechas y retenciones anteriores, entre otros. Con dos pagadores, cada empresa puede practicar una retención distinta.</div>
+      <div class="faq-a">Esta calculadora ofrece una estimación orientativa. Tu empresa puede regularizar la retención con retribuciones ya satisfechas, retenciones anteriores, ascendientes y circunstancias individuales que aquí no se solicitan. Con dos pagadores, cada empresa puede practicar una retención distinta.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Cómo afectan los hijos al salario neto? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">Los hijos generan un mínimo por descendientes de 2.400 € por el primero, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes. La calculadora presupone derecho íntegro al mínimo básico; no puede aplicar el incremento por menores de tres años ni repartirlo por custodia compartida porque no solicita esos datos.</div>
+      <div class="faq-a">Los hijos generan un mínimo por descendientes de 2.400 € por el primero, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes. En Opciones avanzadas puedes indicar menores de tres años, cómputo por mitad y discapacidad reconocida.</div>
     </div>
 
     <div class="faq-item">
@@ -651,7 +707,7 @@
 
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="toggleFaq(this)">¿Puedo usarla si soy autónomo? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">No para calcular la actividad autónoma. El botón únicamente muestra la advertencia correspondiente: sin rendimientos netos, base RETA y régimen fiscal no es posible incorporar esa actividad sin inventar datos.</div>
+      <div class="faq-a">No para calcular la actividad autónoma. Esta página estima exclusivamente la nómina por cuenta ajena y enlaza a la calculadora específica de autónomos.</div>
     </div>
   </div>
 
@@ -716,25 +772,32 @@ function reduccionRendimientosTrabajo(rnt) {
   return 0;
 }
 
-function minimoPersonalFamiliar(hijos, edad, discap) {
+function minimoPersonalFamiliar(hijos, edad, discap, opciones = {}) {
+  const computo = opciones.computoHijos === 0.5 ? 0.5 : 1;
   let minimo = 5550;
   if (edad === '65_75') minimo += 1150;
   if (edad === 'mayor75') minimo += 2550;
-  const minimosHijos = [0, 2400, 5100, 9100, 13600];
-  minimo += minimosHijos[Math.min(hijos, 4)] || 0;
+  const cuantiasHijos = [2400, 2700, 4000, 4500];
+  for (let i = 0; i < hijos; i++) minimo += cuantiasHijos[Math.min(i, 3)] * computo;
+  minimo += 2800 * Math.min(hijos, Math.max(0, opciones.hijosMenor3 || 0)) * computo;
+  const hijosDisc65 = Math.min(hijos, Math.max(0, opciones.hijosDisc65 || 0));
+  const hijosDisc33 = Math.min(Math.max(0, hijos - hijosDisc65), Math.max(0, opciones.hijosDisc33 || 0));
+  minimo += (hijosDisc33 * 3000 + hijosDisc65 * 12000) * computo;
   if (discap === '33') minimo += 3000;
-  if (discap === '65') minimo += 9000;
+  if (discap === '65') minimo += 12000;
+  if (discap === '33' && opciones.movilidadDiscapacidad) minimo += 3000;
   return minimo;
 }
 
 function situacionFamiliarRetencion(estado) {
-  // Situación 2: casado/a con cónyuge que obtiene como máximo 1.500 € anuales.
-  // Los demás casos se tratan prudentemente como situación 3 al faltar datos de custodia.
-  return estado === 'casado' ? 2 : 3;
+  if (estado === 'situacion1') return 1;
+  if (estado === 'situacion2') return 2;
+  return 3;
 }
 
 function limiteExentoRetencion(situacion, hijos) {
   const n = Math.min(hijos, 2);
+  if (situacion === 1 && hijos > 0) return hijos === 1 ? 17644 : 18694;
   if (situacion === 2) return [17197, 18130, 19262][n];
   return [15876, 16342, 16867][n];
 }
@@ -747,25 +810,35 @@ function cotizacionSolidaridadAnual(brutoAnual) {
   return (tramo1 + tramo2 + tramo3) * 12;
 }
 
-function estimarRetencion2026(retribuciones, cotizaciones, hijos, estado, edad, discap, movilidad) {
+function estimarRetencion2026(retribuciones, cotizaciones, hijos, estado, edad, discap, movilidad, opciones = {}) {
   const rnt = Math.max(0, retribuciones - cotizaciones);
   const gastoDiscapacidad = discap === '65' ? 7750 : discap === '33' ? 3500 : 0;
   const otrosGastos = Math.min(Math.max(0, retribuciones - cotizaciones), 2000 + (movilidad ? 2000 : 0) + gastoDiscapacidad);
   const reduccionTrabajo = reduccionRendimientosTrabajo(rnt);
   const reduccionMasDosHijos = hijos > 2 ? 600 : 0;
-  const base = Math.max(0, rnt - otrosGastos - reduccionTrabajo - reduccionMasDosHijos);
-  const minimo = minimoPersonalFamiliar(hijos, edad, discap);
+  const pensionCompensatoria = Math.max(0, opciones.pensionCompensatoria || 0);
+  const base = Math.max(0, rnt - otrosGastos - reduccionTrabajo - reduccionMasDosHijos - pensionCompensatoria);
+  const minimo = minimoPersonalFamiliar(hijos, edad, discap, opciones);
   const situacion = situacionFamiliarRetencion(estado);
-  const exento = limiteExentoRetencion(situacion, hijos);
+  const situacionValida = situacion === 1 && (hijos === 0 || opciones.computoHijos === 0.5) ? 3 : situacion;
+  const exento = limiteExentoRetencion(situacionValida, hijos);
   const cuotaBase = escalaRetencion(base);
-  let cuota = Math.max(0, cuotaBase.cuota - escalaRetencion(minimo).cuota);
+  const anualidades = Math.max(0, opciones.anualidades || 0);
+  const separaAnualidades = anualidades > 0 && base - anualidades > 0;
+  const cuota1 = separaAnualidades
+    ? escalaRetencion(base - anualidades).cuota + escalaRetencion(anualidades).cuota
+    : cuotaBase.cuota;
+  const cuota2 = escalaRetencion(minimo + (separaAnualidades ? 1980 : 0)).cuota;
+  let cuota = Math.max(0, cuota1 - cuota2);
 
   if (retribuciones <= exento) cuota = 0;
   if (retribuciones <= 35200) {
     cuota = Math.min(cuota, Math.max(0, (retribuciones - exento) * 0.43));
   }
+  if (opciones.prestamoVivienda && retribuciones < 33007.20) cuota = Math.max(0, cuota - retribuciones * 0.02);
 
-  const tipo = retribuciones > 0 ? truncar2(cuota / retribuciones * 100) : 0;
+  let tipo = retribuciones > 0 ? truncar2(cuota / retribuciones * 100) : 0;
+  if (opciones.contratoInferiorAno && tipo < 2) tipo = 2;
   return { importe: retribuciones * tipo / 100, tipo, marginal: cuotaBase.marginal, base };
 }
 
@@ -783,6 +856,17 @@ function calcular() {
   const discap = document.getElementById('discapacidad').value;
   const contrato = document.getElementById('contrato').value;
   const erte = parseInt(document.getElementById('erte').value);
+  const opcionesRetencion = {
+    hijosMenor3: parseInt(document.getElementById('hijos_menor3').value) || 0,
+    computoHijos: parseFloat(document.getElementById('computo_hijos').value) || 1,
+    hijosDisc33: parseInt(document.getElementById('hijos_discap33').value) || 0,
+    hijosDisc65: parseInt(document.getElementById('hijos_discap65').value) || 0,
+    movilidadDiscapacidad: document.getElementById('movilidad_discapacidad').value === 'si',
+    pensionCompensatoria: parseFloat(document.getElementById('pension_compensatoria').value) || 0,
+    anualidades: parseFloat(document.getElementById('anualidades_alimentos').value) || 0,
+    prestamoVivienda: document.getElementById('prestamo_vivienda').value === 'si',
+    contratoInferiorAno: contrato === 'temporal' && document.getElementById('contrato_inferior_ano').value === 'si'
+  };
 
   const ss_cc = parseFloat(document.getElementById('ss_cc').value) || 4.7;
   const desempleoInput = document.getElementById('ss_desempleo');
@@ -803,7 +887,7 @@ function calcular() {
   const cuotaOrdinariaSS = baseCotizacion * (ss_cc + ss_des + ss_fp + MEI_TRABAJADOR_2026) / 100;
   const cuotaSolidaridad = cotizacionSolidaridadAnual(brutoTotal);
   const cuotaSS = cuotaOrdinariaSS + cuotaSolidaridad;
-  const retencion = estimarRetencion2026(brutoTotal, cuotaSS, hijos, estado, edad, discap, extras.movilidad);
+  const retencion = estimarRetencion2026(brutoTotal, cuotaSS, hijos, estado, edad, discap, extras.movilidad, opcionesRetencion);
   const irpf = retencion.importe;
   const tipoEf = retencion.tipo;
   const marginal = retencion.marginal;
@@ -835,8 +919,12 @@ function calcular() {
   document.getElementById('leg_ss').textContent = Math.round(pS) + '%';
 
   const avisos = ['Estimación de retención AEAT 2026; la comunidad autónoma no altera esta retención de nómina, aunque sí puede afectar a la Renta anual.'];
-  if (hijos > 0) avisos.push('Se presupone derecho íntegro al mínimo básico por descendientes; faltan edades y posible custodia compartida.');
-  if (contrato === 'temporal') avisos.push('No se aplica el tipo mínimo de retención de contratos inferiores a un año porque la duración no se solicita.');
+  if (estado === 'situacion1' && hijos === 0) avisos.push('La situación 1 del Modelo 145 exige descendientes que convivan exclusivamente; sin hijos se aplica la situación 3.');
+  if (estado === 'situacion1' && opcionesRetencion.computoHijos === 0.5) avisos.push('La situación 1 exige convivencia exclusiva; con cómputo por mitad se aplica prudentemente la situación 3.');
+  if (opcionesRetencion.hijosMenor3 > hijos || opcionesRetencion.hijosDisc33 + opcionesRetencion.hijosDisc65 > hijos) avisos.push('Los recuentos especiales de hijos se limitan al número total de hijos a cargo.');
+  if (contrato === 'temporal' && !opcionesRetencion.contratoInferiorAno) avisos.push('El mínimo de retención del 2% solo se aplica si confirmas que el contrato dura menos de un año.');
+  if (opcionesRetencion.pensionCompensatoria > 0 || opcionesRetencion.anualidades > 0) avisos.push('Solo se computan importes fijados judicialmente y comunicados al pagador.');
+  if (opcionesRetencion.prestamoVivienda) avisos.push(brutoTotal < 33007.20 ? 'Se aplica la minoración comunicada por préstamo de vivienda con derecho transitorio.' : 'No se aplica la minoración por vivienda porque las retribuciones no son inferiores a 33.007,20 €.');
   if (extras.segunda) avisos.push('El segundo empleo se agrega como provisión fiscal anual; las retenciones y pagas reales de cada empresa pueden diferir.');
   if (erte > 0) avisos.push('La reducción ajusta únicamente el salario de empresa; no incorpora la prestación del SEPE.');
   if (extras.pension) avisos.push('La aportación al plan no se descuenta de la retención de nómina estimada; puede afectar a la Renta anual.');

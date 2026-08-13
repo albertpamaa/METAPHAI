@@ -43,6 +43,8 @@
     .field input, .field select { font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); transition: border-color 0.15s; width: 100%; }
     .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--surface); }
     .tip { font-size: 12px; color: var(--hint); margin-top: 4px; }
+    .advanced-btn { font-family:'DM Sans',sans-serif; font-size:12px; padding:6px 14px; border:1px solid var(--border); border-radius:20px; background:transparent; color:var(--muted); cursor:pointer; display:flex; align-items:center; gap:6px; }
+    .advanced-panel { display:none; margin-top:12px; padding:14px; background:var(--bg); border-radius:var(--radius); border:1px solid var(--border); }
     .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
     .results-header { background: var(--accent); padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
     .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
@@ -166,12 +168,43 @@
       </select>
     </div>
     <p class="tip" id="motivo_tip" style="margin-top:8px"></p>
+    <div style="margin-top:14px">
+      <button type="button" class="advanced-btn" id="btn-avanzado" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado-arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+      <div class="advanced-panel" id="avanzado-panel">
+        <p class="tip" style="margin:0 0 12px">Deja los importes exactos vacíos para conservar el cálculo automático actual.</p>
+        <div class="grid2">
+          <div class="field">
+            <label>Salario pendiente exacto (€)</label>
+            <input type="number" id="salario_pendiente_exacto" value="" min="0" step="10" placeholder="Vacío = desde el día 1">
+            <p class="tip">Úsalo si sabes qué nómina o días siguen realmente sin pagar.</p>
+          </div>
+          <div class="field">
+            <label>Pagas extra devengadas pendientes (€)</label>
+            <input type="number" id="pagas_pendientes_exactas" value="" min="0" step="10" placeholder="Vacío = devengo semestral">
+            <p class="tip">Permite respetar el devengo del convenio o contrato sin inventarlo.</p>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:12px">
+          <div class="field">
+            <label>Comisiones, variable u otras cantidades pendientes (€)</label>
+            <input type="number" id="otras_cantidades_pendientes" value="0" min="0" step="10">
+          </div>
+          <div class="field">
+            <label>Contrato temporal indemnizable</label>
+            <select id="temporal_indemnizable">
+              <option value="si">Sí / contrato temporal ordinario</option>
+              <option value="no">No: formativo o de sustitución</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Liquidación bruta estimada (finiquito + indemnización)</div>
+        <div class="main-label">Finiquito bruto estimado (sin indemnización)</div>
         <div class="main-value" id="res_total">—</div>
       </div>
     </div>
@@ -189,8 +222,16 @@
         <div class="rv" id="d_pagas">—</div>
       </div>
       <div class="res-item pos">
+        <div class="rl">Comisiones y otras cantidades pendientes</div>
+        <div class="rv" id="d_otras">—</div>
+      </div>
+      <div class="res-item pos">
         <div class="rl">Indemnización, si procede</div>
         <div class="rv" id="d_indem">—</div>
+      </div>
+      <div class="res-item pos">
+        <div class="rl">Total a liquidar (finiquito + indemnización)</div>
+        <div class="rv" id="d_total_liquidacion">—</div>
       </div>
     </div>
     <div class="indemnizacion-box" id="indem_detalle" style="display:none">
@@ -220,7 +261,7 @@
     <p>El finiquito es la liquidación de cantidades ya devengadas al finalizar la relación laboral. Es distinto de la indemnización por extinción, aunque esta calculadora muestra ambos conceptos y su suma para facilitar la estimación.</p>
 
     <h3>Partes del finiquito</h3>
-    <p>El finiquito puede incluir salario pendiente, pagas extraordinarias devengadas y no cobradas y vacaciones generadas pero no disfrutadas. Como la interfaz no pregunta la última fecha pagada ni los periodos de devengo fijados por convenio, se presume que está pendiente el salario desde el día 1 del mes y que las dos extras se devengan semestralmente.</p>
+    <p>El finiquito puede incluir salario pendiente, pagas extraordinarias devengadas y no cobradas, comisiones u otras cantidades ya devengadas y vacaciones generadas pero no disfrutadas. Si conoces el salario y las extras realmente pendientes puedes introducirlos en Opciones avanzadas; si no, se presume salario pendiente desde el día 1 del mes y devengo semestral de las extras.</p>
 
     <h3>¿Cuándo hay indemnización?</h3>
     <p>Solo en ciertos tipos de finalización. En una baja voluntaria o despido disciplinario procedente no hay indemnización legal. El despido improcedente se calcula a 33 días por año con tope general de 24 mensualidades, aplicando el régimen 45/33 a contratos anteriores al 12 de febrero de 2012. La extinción objetiva se calcula a 20 días por año con tope de 12 mensualidades. La finalización temporal genera normalmente 12 días por año, salvo contratos formativos, de sustitución y otros regímenes específicos.</p>
@@ -308,14 +349,14 @@ function diasIndemnizacionTemporal(fechaInicio, mesesTotales) {
   return diasAño * mesesTotales / 12;
 }
 
-function calcularIndemnizacion(motivo, fechaInicio, fechaFin, salarioDia) {
+function calcularIndemnizacion(motivo, fechaInicio, fechaFin, salarioDia, temporalIndemnizable = true) {
   const mesesTotales = mesesServicio(fechaInicio, fechaFin);
   let dias = 0;
   let importe = 0;
   let detalle = 'No aplica';
   const salarioAnual = salarioDia * 365;
 
-  if (motivo === 'fin_contrato') {
+  if (motivo === 'fin_contrato' && temporalIndemnizable) {
     dias = diasIndemnizacionTemporal(fechaInicio, mesesTotales);
     importe = dias * salarioDia;
     detalle = dias > 0 ? (dias / (mesesTotales / 12 || 1)).toFixed(0) + ' días/año' : 'Exento por fecha/régimen';
@@ -356,6 +397,19 @@ document.getElementById('motivo').addEventListener('change', () => {
 });
 document.getElementById('motivo_tip').textContent = motivoTips['voluntaria'];
 
+function valorOpcional(id) {
+  const valor = document.getElementById(id).value.trim();
+  return valor === '' ? null : Math.max(0, Number(valor) || 0);
+}
+
+function toggleAvanzado() {
+  const panel = document.getElementById('avanzado-panel');
+  const arrow = document.getElementById('avanzado-arrow');
+  const abrir = panel.style.display !== 'block';
+  panel.style.display = abrir ? 'block' : 'none';
+  arrow.style.transform = abrir ? 'rotate(180deg)' : '';
+}
+
 function calcular() {
   const salario = parseFloat(document.getElementById('salario').value) || 0;
   const pagas = parseInt(document.getElementById('pagas').value);
@@ -364,6 +418,10 @@ function calcular() {
   const vacAño = parseInt(document.getElementById('vacaciones_año').value) || 22;
   const vacDisfrutadas = parseInt(document.getElementById('vacaciones_disfrutadas').value) || 0;
   const motivo = document.getElementById('motivo').value;
+  const salarioPendienteExacto = valorOpcional('salario_pendiente_exacto');
+  const pagasPendientesExactas = valorOpcional('pagas_pendientes_exactas');
+  const otrasCantidades = Math.max(0, parseFloat(document.getElementById('otras_cantidades_pendientes').value) || 0);
+  const temporalIndemnizable = document.getElementById('temporal_indemnizable').value === 'si';
 
   if (!fechaInicio || !fechaFin || fechaFin < fechaInicio) return;
 
@@ -374,7 +432,8 @@ function calcular() {
   // Sin una fecha de última nómina pagada, se presume pendiente desde el día 1.
   const ultimoDiaMes = new Date(Date.UTC(fechaFin.getUTCFullYear(), fechaFin.getUTCMonth() + 1, 0)).getUTCDate();
   const diasPendientes = fechaFin.getUTCDate() === ultimoDiaMes ? 30 : Math.min(fechaFin.getUTCDate(), 30);
-  const salarioPendiente = salarioMensualOrdinario / 30 * diasPendientes;
+  const salarioPendienteAutomatico = salarioMensualOrdinario / 30 * diasPendientes;
+  const salarioPendiente = salarioPendienteExacto === null ? salarioPendienteAutomatico : salarioPendienteExacto;
 
   // Vacaciones generadas solo durante la relación laboral en el año de cese.
   const inicioAño = new Date(Date.UTC(fechaFin.getUTCFullYear(), 0, 1));
@@ -388,7 +447,7 @@ function calcular() {
   const importeVacaciones = (salarioAnualOrdinario / 365) * vacacionesPendientes * (30 / 22);
 
   // Supuesto visible: dos extras iguales con devengo semestral; la ya vencida se presume pagada.
-  let importePagas = 0;
+  let importePagasAutomatico = 0;
   if (pagas === 14) {
     const segundoSemestre = fechaFin.getUTCMonth() >= 6;
     const inicioPeriodo = new Date(Date.UTC(fechaFin.getUTCFullYear(), segundoSemestre ? 6 : 0, 1));
@@ -396,20 +455,24 @@ function calcular() {
     const inicioDevengoPaga = maxFecha(fechaInicio, inicioPeriodo);
     const diasDevengados = diasInclusivos(inicioDevengoPaga, minFecha(fechaFin, finPeriodo));
     const diasPeriodo = diasInclusivos(inicioPeriodo, finPeriodo);
-    importePagas = (salario / 14) * Math.min(1, diasDevengados / diasPeriodo);
+    importePagasAutomatico = (salario / 14) * Math.min(1, diasDevengados / diasPeriodo);
   }
+  const importePagas = pagasPendientesExactas === null ? importePagasAutomatico : pagasPendientesExactas;
 
-  const indem = calcularIndemnizacion(motivo, fechaInicio, fechaFin, salarioDia);
+  const indem = calcularIndemnizacion(motivo, fechaInicio, fechaFin, salarioDia, temporalIndemnizable);
   const indemnizacion = indem.importe;
   const añosTrabajados = indem.mesesTotales / 12;
 
-  const total = salarioPendiente + importeVacaciones + importePagas + indemnizacion;
+  const finiquito = salarioPendiente + importeVacaciones + importePagas + otrasCantidades;
+  const total = finiquito + indemnizacion;
 
-  document.getElementById('res_total').textContent = fmt(total);
+  document.getElementById('res_total').textContent = fmt(finiquito);
   document.getElementById('d_salario_pend').textContent = fmt(salarioPendiente);
   document.getElementById('d_vacaciones').textContent = fmt(importeVacaciones) + ` (${vacacionesPendientes.toFixed(2)} días)`;
   document.getElementById('d_pagas').textContent = fmt(importePagas);
+  document.getElementById('d_otras').textContent = fmt(otrasCantidades);
   document.getElementById('d_indem').textContent = motivo === 'mutuo' ? 'Según acuerdo' : indemnizacion > 0 ? fmt(indemnizacion) : 'No aplica';
+  document.getElementById('d_total_liquidacion').textContent = motivo === 'mutuo' ? fmt(finiquito) + ' + acuerdo' : fmt(total);
 
   if (indemnizacion > 0) {
     document.getElementById('indem_detalle').style.display = 'block';
@@ -420,12 +483,14 @@ function calcular() {
     document.getElementById('indem_detalle').style.display = 'none';
   }
 
-  const avisos = [
-    'Supuestos: salario pendiente desde el día 1 del mes; trabajador mensual; vacaciones expresadas en días laborables; extras iguales con devengo semestral.'
-  ];
-  if (pagas === 12) avisos.push('Las extras se consideran ya prorrateadas y no se suman de nuevo.');
+  const avisos = ['Finiquito e indemnización se muestran por separado. Vacaciones expresadas en días laborables y trabajador mensual.'];
+  if (salarioPendienteExacto === null) avisos.push('El salario pendiente se estima desde el día 1 del mes de cese.');
+  else avisos.push('Se usa el salario pendiente exacto indicado.');
+  if (pagasPendientesExactas === null && pagas === 14) avisos.push('Las extras se estiman iguales y con devengo semestral.');
+  if (pagasPendientesExactas !== null) avisos.push('Se usa el importe exacto indicado para pagas extra pendientes.');
+  if (pagas === 12 && pagasPendientesExactas === null) avisos.push('Las extras se consideran ya prorrateadas y no se suman de nuevo.');
   if (motivo === 'mutuo') avisos.push('La suma no incorpora una posible indemnización pactada porque su importe no se solicita.');
-  if (motivo === 'fin_contrato') avisos.push('El contrato temporal se trata como indemnizable; los formativos y de sustitución están excluidos y la interfaz no distingue el subtipo.');
+  if (motivo === 'fin_contrato') avisos.push(temporalIndemnizable ? 'Se trata como contrato temporal ordinario indemnizable.' : 'No se calcula indemnización por haberse indicado contrato formativo o de sustitución.');
   avisos.push('El convenio o contrato puede fijar otro devengo, salario regulador, complementos o vacaciones.');
   document.getElementById('supuestos_calculo').textContent = avisos.join(' ');
 }

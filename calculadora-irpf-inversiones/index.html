@@ -64,8 +64,8 @@
     .info-box.warn p { font-size: 13px; color: var(--warn); margin: 0; }
     .info-box.crypto { background: var(--crypto-light); border: 1px solid #d0b8f0; }
     .info-box.crypto p { font-size: 13px; color: var(--crypto); margin: 0; }
-    .op-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
-    @media (max-width: 600px) { .op-row { grid-template-columns: 1fr 1fr; } }
+    .op-row { display: grid; grid-template-columns: 1.5fr repeat(5,1fr) auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+    @media (max-width: 600px) { .op-grid-header { display:none !important; } .op-row { grid-template-columns: 1fr 1fr !important; } .op-row button { grid-column:1/-1; width:100%; } }
     .btn-add { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 16px; border: 1px dashed var(--border); border-radius: var(--radius); background: transparent; color: var(--muted); cursor: pointer; width: 100%; margin-top: 8px; transition: all 0.15s; }
     .btn-add:hover { border-color: var(--inv); color: var(--inv); }
     .btn-del { font-family: 'DM Sans', sans-serif; width: 32px; height: 36px; border: 1px solid var(--border); border-radius: var(--radius); background: transparent; color: var(--hint); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -163,13 +163,13 @@
   <div class="tab-content active" id="tab-acciones">
     <div class="card">
       <div class="section-label">Operaciones con acciones y ETFs</div>
-      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
-        <span>Valor</span><span>Precio compra (€)</span><span>Precio venta (€)</span><span>Nº acciones</span><span></span>
+      <div class="op-grid-header" style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:1.5fr repeat(5,1fr) auto;gap:8px;">
+        <span>Valor</span><span>Precio compra</span><span>Comisión compra</span><span>Precio venta</span><span>Comisión venta</span><span>Nº acciones</span><span></span>
       </div>
       <div id="acciones-lista"></div>
       <button class="btn-add" onclick="añadirOp('acciones')">+ Añadir operación</button>
       <div class="info-box warn" style="margin-top:12px">
-        <p>⚠️ Usa el coste de las unidades vendidas según FIFO e incorpora las comisiones: súmalas al valor de compra y réstalas del valor de venta. Si recompras valores cotizados homogéneos en los 2 meses anteriores o posteriores, la pérdida queda diferida.</p>
+        <p>⚠️ Usa el coste de las unidades vendidas según FIFO e introduce por separado las comisiones totales de compra y venta de esas unidades. Si recompras valores cotizados homogéneos en los 2 meses anteriores o posteriores, la pérdida queda diferida.</p>
       </div>
     </div>
     <div id="res-acciones"></div>
@@ -179,8 +179,8 @@
   <div class="tab-content" id="tab-fondos">
     <div class="card">
       <div class="section-label">Reembolsos de fondos de inversión</div>
-      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
-        <span>Fondo</span><span>Valor liquidativo compra (€)</span><span>Valor liquidativo venta (€)</span><span>Nº participaciones</span><span></span>
+      <div class="op-grid-header" style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:1.5fr repeat(5,1fr) auto;gap:8px;">
+        <span>Fondo</span><span>VL compra</span><span>Comisión compra</span><span>VL venta</span><span>Comisión venta</span><span>Nº participaciones</span><span></span>
       </div>
       <div id="fondos-lista"></div>
       <button class="btn-add" onclick="añadirOp('fondos')">+ Añadir reembolso</button>
@@ -195,8 +195,8 @@
   <div class="tab-content" id="tab-crypto">
     <div class="card">
       <div class="section-label">Operaciones con criptomonedas</div>
-      <div style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;">
-        <span>Criptomoneda</span><span>Precio compra (€)</span><span>Precio venta (€)</span><span>Cantidad</span><span></span>
+      <div class="op-grid-header" style="font-size:12px;color:var(--hint);margin-bottom:10px;display:grid;grid-template-columns:1.5fr repeat(5,1fr) auto;gap:8px;">
+        <span>Criptomoneda</span><span>Precio compra</span><span>Comisión compra</span><span>Precio venta</span><span>Comisión venta</span><span>Cantidad</span><span></span>
       </div>
       <div id="crypto-lista"></div>
       <button class="btn-add" onclick="añadirOp('crypto')">+ Añadir operación</button>
@@ -263,6 +263,21 @@
         <div class="field">
           <label>Retenciones ya practicadas (€)</label>
           <input type="number" id="res_retenciones" value="0" min="0" step="100" oninput="calcularResumen()">
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <button type="button" class="btn-add" id="btn_avanzado_resumen" onclick="toggleAvanzadoResumen()">Opciones avanzadas <span id="avanzado_resumen_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <div id="avanzado_resumen_panel" style="display:none;margin-top:12px;padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)">
+          <div class="grid2">
+            <div class="field"><label>Usar saldo patrimonial fiscal neto conocido</label><select id="usar_saldo_fiscal" oninput="calcularResumen()"><option value="no">No</option><option value="si">Sí, sustituir ganancias y pérdidas</option></select></div>
+            <div class="field"><label>Saldo fiscal neto conocido (€; admite negativo)</label><input type="number" id="saldo_fiscal_neto" value="0" step="100" oninput="calcularResumen()"></div>
+          </div>
+          <div class="grid3" style="margin-top:12px">
+            <div class="field"><label>RCM negativos del ejercicio (€)</label><input type="number" id="res_rcm_negativo" value="0" min="0" step="100" oninput="calcularResumen()"></div>
+            <div class="field"><label>Pérdidas patrimoniales pendientes 2021–2024 (€)</label><input type="number" id="res_perdidas_previas" value="0" min="0" step="100" oninput="calcularResumen()"></div>
+            <div class="field"><label>RCM negativos pendientes 2021–2024 (€)</label><input type="number" id="res_rcm_previos" value="0" min="0" step="100" oninput="calcularResumen()"></div>
+          </div>
+          <p class="tip">Los saldos pendientes deben seguir dentro de su plazo de cuatro años. El simulador aplica primero la compensación del ejercicio, después los saldos previos de la misma categoría y finalmente la compensación cruzada restante con el límite conjunto del 25%.</p>
         </div>
       </div>
       <div class="info-box blue" style="margin-top:12px"><p>La compensación se realiza primero dentro de cada componente. Si el saldo patrimonial es negativo, puede compensar hasta el 25% de los rendimientos del capital mobiliario positivos; el resto queda pendiente hasta cuatro años.</p></div>
@@ -382,13 +397,36 @@ function calcIRPF(base){
   return total;
 }
 
-function integrarBaseAhorro(ganancias,perdidas,rcm){
-  const saldoPatrimonial=ganancias-perdidas;
-  const compensacionCruzada=saldoPatrimonial<0?Math.min(Math.abs(saldoPatrimonial),Math.max(0,rcm)*.25):0;
-  const rcmTrasCompensar=Math.max(0,rcm-compensacionCruzada);
-  const baseAhorro=Math.max(0,saldoPatrimonial)+rcmTrasCompensar;
-  const perdidaPendiente=Math.max(0,-saldoPatrimonial-compensacionCruzada);
-  return {saldoPatrimonial,compensacionCruzada,rcmTrasCompensar,baseAhorro,perdidaPendiente};
+function integrarBaseAhorro(ganancias,perdidas,rcmPositivo,rcmNegativo=0,pendientePat=0,pendienteRcm=0){
+  const saldoPatrimonial=Math.max(0,ganancias)-Math.max(0,perdidas);
+  const saldoRcm=Math.max(0,rcmPositivo)-Math.max(0,rcmNegativo);
+  let pat=saldoPatrimonial,rcm=saldoRcm;
+  let crucePatRcm=0,cruceRcmPat=0;
+  if(pat<0&&rcm>0){crucePatRcm=Math.min(-pat,rcm*.25);pat+=crucePatRcm;rcm-=crucePatRcm;}
+  else if(rcm<0&&pat>0){cruceRcmPat=Math.min(-rcm,pat*.25);rcm+=cruceRcmPat;pat-=cruceRcmPat;}
+
+  let pendientePatRestante=Math.max(0,pendientePat)+Math.max(0,-pat);
+  let pendienteRcmRestante=Math.max(0,pendienteRcm)+Math.max(0,-rcm);
+  pat=Math.max(0,pat);rcm=Math.max(0,rcm);
+  const previaPatMisma=Math.min(pat,pendientePatRestante);pat-=previaPatMisma;pendientePatRestante-=previaPatMisma;
+  const previaRcmMisma=Math.min(rcm,pendienteRcmRestante);rcm-=previaRcmMisma;pendienteRcmRestante-=previaRcmMisma;
+  const limitePatRcm=Math.max(0,Math.max(0,saldoRcm)*.25-crucePatRcm);
+  const previaPatCruzada=Math.min(pendientePatRestante,rcm,limitePatRcm);rcm-=previaPatCruzada;pendientePatRestante-=previaPatCruzada;
+  const limiteRcmPat=Math.max(0,Math.max(0,saldoPatrimonial)*.25-cruceRcmPat);
+  const previaRcmCruzada=Math.min(pendienteRcmRestante,pat,limiteRcmPat);pat-=previaRcmCruzada;pendienteRcmRestante-=previaRcmCruzada;
+  return {saldoPatrimonial,saldoRcm,compensacionCruzada:crucePatRcm+cruceRcmPat+previaPatCruzada+previaRcmCruzada,baseAhorro:pat+rcm,pendientePatRestante,pendienteRcmRestante};
+}
+
+function toggleAvanzadoResumen(){
+  const panel=document.getElementById('avanzado_resumen_panel');
+  const arrow=document.getElementById('avanzado_resumen_arrow');
+  const abrir=panel.style.display!=='block';
+  panel.style.display=abrir?'block':'none';
+  arrow.style.transform=abrir?'rotate(180deg)':'';
+}
+
+function gananciaOperacion(compra,venta,cantidad,comisionCompra=0,comisionVenta=0){
+  return Math.max(0,venta)*Math.max(0,cantidad)-Math.max(0,comisionVenta)-(Math.max(0,compra)*Math.max(0,cantidad)+Math.max(0,comisionCompra));
 }
 
 // --- Tab switching ---
@@ -413,11 +451,14 @@ function añadirOp(tipo){
   const lb = labels[tipo];
   const div = document.createElement('div');
   div.id = id;
-  div.style.cssText='display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px;';
+  div.className='op-row';
+  div.style.cssText='display:grid;grid-template-columns:1.5fr repeat(5,1fr) auto;gap:8px;align-items:end;margin-bottom:8px;';
   div.innerHTML=`
     <div class="field"><label>${lb[0]}</label><input type="text" class="op-nombre" placeholder="Ej: Iberdrola" oninput="calcularOps('${tipo}')"></div>
     <div class="field"><label>${lb[1]}</label><input type="number" class="op-compra" value="10" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
+    <div class="field"><label>Comisión compra (€)</label><input type="number" class="op-comision-compra" value="0" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
     <div class="field"><label>${lb[2]}</label><input type="number" class="op-venta" value="15" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
+    <div class="field"><label>Comisión venta (€)</label><input type="number" class="op-comision-venta" value="0" min="0" step="0.01" oninput="calcularOps('${tipo}')"></div>
     <div class="field"><label>${lb[3]}</label><input type="number" class="op-num" value="100" min="0" step="1" oninput="calcularOps('${tipo}')"></div>
     <button onclick="document.getElementById('${id}').remove();calcularOps('${tipo}')" style="padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:16px;margin-bottom:1px;">✕</button>
   `;
@@ -434,9 +475,11 @@ function calcularOps(tipo){
     const compra=parseFloat(row.querySelector('.op-compra').value)||0;
     const venta=parseFloat(row.querySelector('.op-venta').value)||0;
     const num=parseFloat(row.querySelector('.op-num').value)||0;
+    const comisionCompra=parseFloat(row.querySelector('.op-comision-compra').value)||0;
+    const comisionVenta=parseFloat(row.querySelector('.op-comision-venta').value)||0;
     const nombre=row.querySelector('.op-nombre').value||'—';
-    const ganancia=(venta-compra)*num;
-    totalInvertido+=compra*num;
+    const ganancia=gananciaOperacion(compra,venta,num,comisionCompra,comisionVenta);
+    totalInvertido+=compra*num+comisionCompra;
     if(ganancia>=0) totalGanancia+=ganancia;
     else totalPerdida+=Math.abs(ganancia);
   });
@@ -528,7 +571,9 @@ function actualizarResumen(){
       const compra=parseFloat(row.querySelector('.op-compra').value)||0;
       const venta=parseFloat(row.querySelector('.op-venta').value)||0;
       const num=parseFloat(row.querySelector('.op-num').value)||0;
-      const g=(venta-compra)*num;
+      const comisionCompra=parseFloat(row.querySelector('.op-comision-compra').value)||0;
+      const comisionVenta=parseFloat(row.querySelector('.op-comision-venta').value)||0;
+      const g=gananciaOperacion(compra,venta,num,comisionCompra,comisionVenta);
       if(g>=0) ganPat+=g; else perdPat+=Math.abs(g);
     });
   });
@@ -545,12 +590,18 @@ function actualizarResumen(){
 }
 
 function calcularResumen(){
-  const ganPat=parseFloat(document.getElementById('res_ganancias_pat').value)||0;
-  const perdPat=parseFloat(document.getElementById('res_perdidas_pat').value)||0;
+  let ganPat=parseFloat(document.getElementById('res_ganancias_pat').value)||0;
+  let perdPat=parseFloat(document.getElementById('res_perdidas_pat').value)||0;
   const rcm=parseFloat(document.getElementById('res_rcm').value)||0;
   const retenciones=parseFloat(document.getElementById('res_retenciones').value)||0;
+  const usarSaldo=document.getElementById('usar_saldo_fiscal').value==='si';
+  const saldoConocido=parseFloat(document.getElementById('saldo_fiscal_neto').value)||0;
+  const rcmNegativo=parseFloat(document.getElementById('res_rcm_negativo').value)||0;
+  const perdidasPrevias=parseFloat(document.getElementById('res_perdidas_previas').value)||0;
+  const rcmPrevios=parseFloat(document.getElementById('res_rcm_previos').value)||0;
+  if(usarSaldo){ganPat=Math.max(0,saldoConocido);perdPat=Math.max(0,-saldoConocido);}
 
-  const integracion=integrarBaseAhorro(ganPat,perdPat,rcm);
+  const integracion=integrarBaseAhorro(ganPat,perdPat,rcm,rcmNegativo,perdidasPrevias,rcmPrevios);
   const netaPat=integracion.saldoPatrimonial;
   const totalIRPF=calcIRPF(integracion.baseAhorro);
   const aPagar=Math.max(0,totalIRPF-retenciones);
@@ -574,12 +625,13 @@ function calcularResumen(){
         <div class="res-item ${perdPat>0?'neg':''}"><div class="rl">Pérdidas patrimoniales</div><div class="rv">${fmtN(perdPat)}</div></div>
         <div class="res-item" style="color:${color}"><div class="rl">Neta patrimonial</div><div class="rv">${fmtN(netaPat)}</div></div>
         <div class="res-item inv"><div class="rl">Rendimientos capital mob.</div><div class="rv">${fmtN(rcm)}</div></div>
+        <div class="res-item ${rcmNegativo>0?'neg':''}"><div class="rl">RCM negativos</div><div class="rv">${fmtN(rcmNegativo)}</div></div>
         <div class="res-item"><div class="rl">Compensación cruzada (máx. 25%)</div><div class="rv">${fmtN(integracion.compensacionCruzada)}</div></div>
         <div class="res-item"><div class="rl">Base del ahorro integrada</div><div class="rv">${fmtN(integracion.baseAhorro)}</div></div>
         <div class="res-item"><div class="rl">Retenciones ya pagadas</div><div class="rv">${fmtN(retenciones)}</div></div>
         <div class="res-item ${aPagar>0?'neg':'pos'}"><div class="rl">${aPagar>0?'Diferencia positiva':'Exceso de retenciones'}</div><div class="rv">${fmtN(aPagar>0?aPagar:aDevolver)}</div></div>
       </div>
-      <div class="info-box" style="margin-top:1rem"><p>${integracion.perdidaPendiente>0?'Quedan '+fmtN(integracion.perdidaPendiente)+' de pérdidas patrimoniales pendientes, potencialmente compensables en los cuatro ejercicios siguientes. ':''}No se incluyen saldos negativos de años anteriores, rendimientos del capital mobiliario negativos, doble imposición internacional ni el posible remanente del mínimo personal y familiar.</p></div>
+      <div class="info-box" style="margin-top:1rem"><p>${integracion.pendientePatRestante>0?'Quedan '+fmtN(integracion.pendientePatRestante)+' de pérdidas patrimoniales pendientes. ':''}${integracion.pendienteRcmRestante>0?'Quedan '+fmtN(integracion.pendienteRcmRestante)+' de RCM negativos pendientes. ':''}No se incluyen doble imposición internacional, operaciones diferidas por recompra ni el posible remanente del mínimo personal y familiar.</p></div>
     </div>`;
 }
 </script>

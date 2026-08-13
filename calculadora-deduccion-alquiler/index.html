@@ -58,6 +58,8 @@
     .info-box p { font-size: 13px; color: var(--alq); margin: 0; }
     .aviso { background: #fef6ec; border: 1px solid #f0d0a0; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: #7a4f1a; margin-top: 12px; display: none; }
     .aviso.show { display: block; }
+    .advanced-btn { font-family:'DM Sans',sans-serif; font-size:12px; padding:6px 14px; border:1px solid var(--border); border-radius:20px; background:transparent; color:var(--muted); cursor:pointer; display:flex; align-items:center; gap:6px; }
+    .advanced-panel { display:none; margin-top:12px; padding:14px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); }
     .results { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1.5rem; }
     .results-header { background: var(--alq); padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
     .results-header .main-label { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
@@ -192,15 +194,22 @@
           </select>
         </div>
         <div class="field">
-          <label>¿Cumples íntegramente el régimen transitorio estatal?</label>
-          <select id="contrato_antiguo">
-            <option value="no">No / solo tengo un contrato antiguo</option>
-            <option value="si">Sí: contrato y pagos pre-2015, y derecho previo</option>
-          </select>
+          <label>Fecha del contrato de alquiler</label>
+          <input type="date" id="fecha_contrato_inq" value="2015-01-01">
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <button type="button" class="advanced-btn" id="btn_avanzado_inq" onclick="toggleAvanzadoAlquiler('inq')">Opciones avanzadas <span id="avanzado_inq_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <div class="advanced-panel" id="avanzado_inq_panel">
+          <div class="grid3">
+            <div class="field"><label>¿Pagaste alquiler antes de 2015?</label><select id="pagos_pre2015"><option value="no">No</option><option value="si">Sí</option></select></div>
+            <div class="field"><label>¿Tuviste derecho a deducir antes de 2015?</label><select id="derecho_pre2015"><option value="no">No</option><option value="si">Sí</option></select></div>
+            <div class="field"><label>Alquiler total realmente pagado (€)</label><input type="number" id="alquiler_anual_real" value="" min="0" step="100" placeholder="Vacío = mensual × meses"></div>
+          </div>
         </div>
       </div>
       <div id="aviso_contrato_antiguo" class="aviso">
-        ℹ️ La estimación solo es válida si, además de haberse celebrado el contrato antes de 2015 y pagado rentas antes de esa fecha, ya existía derecho a la deducción en un ejercicio anterior a 2015.
+        ℹ️ El régimen transitorio se aplica únicamente si el contrato es anterior a 2015, hubo pagos antes de esa fecha y ya existía derecho a la deducción.
       </div>
     </div>
 
@@ -260,6 +269,9 @@
           <input type="number" id="meses_prop" value="12" min="1" max="12">
         </div>
       </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label>Fecha del contrato</label><input type="date" id="fecha_contrato_prop" value="2023-05-25"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -300,21 +312,29 @@
           <input type="number" id="valor_inmueble" value="150000" min="0" step="5000">
           <p class="tip">Mayor entre coste de adquisición y valor catastral de la construcción, siempre sin suelo</p>
         </div>
-        <div class="field">
-          <label>Supuesto aplicable al contrato de vivienda</label>
-          <select id="tipo_inquilino">
-            <option value="anterior_2023">Contrato anterior al 26/05/2023 — 60%</option>
-            <option value="general_50">Contrato desde 26/05/2023, caso general — 50%</option>
-            <option value="rehabilitacion_60">Rehabilitación finalizada en los 2 años anteriores — 60%</option>
-            <option value="completo_70">70% — Cumplo íntegramente el supuesto de joven o vivienda asequible</option>
-            <option value="completo_90">Zona tensionada y nueva renta reducida más del 5% — 90%</option>
-            <option value="joven_sin_requisitos">Inquilino joven, sin acreditar todos los requisitos — 50%</option>
-            <option value="zona_sin_requisitos">Zona tensionada, sin acreditar todos los requisitos — 50%</option>
-          </select>
+        <div class="field"><label>Ingresos de alquiler realmente cobrados (€)</label><input type="number" id="ingresos_reales_prop" value="" min="0" step="100" placeholder="Vacío = renta × tiempo"></div>
+      </div>
+      <div style="margin-top:14px">
+        <button type="button" class="advanced-btn" id="btn_avanzado_prop" onclick="toggleAvanzadoAlquiler('prop')">Opciones avanzadas <span id="avanzado_prop_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+        <div class="advanced-panel" id="avanzado_prop_panel">
+          <div class="grid3">
+            <div class="field"><label>Días efectivamente alquilado</label><input type="number" id="dias_prop" value="" min="1" max="365" step="1" placeholder="Vacío = meses"></div>
+            <div class="field"><label>Zona residencial tensionada oficial</label><select id="zona_tensionada"><option value="no">No / no acreditada</option><option value="si">Sí</option></select></div>
+            <div class="field"><label>Renta mensual del contrato anterior (€)</label><input type="number" id="renta_anterior" value="" min="0" step="10"></div>
+          </div>
+          <div class="grid3" style="margin-top:12px">
+            <div class="field"><label>Vivienda incorporada al mercado y arrendada a joven de 18–35</label><select id="mercado_joven"><option value="no">No / no acreditado</option><option value="si">Sí</option></select></div>
+            <div class="field"><label>Vivienda asequible/protegida o programa público que limita renta</label><select id="programa_publico"><option value="no">No</option><option value="si">Sí, cumplo íntegramente</option></select></div>
+            <div class="field"><label>Fecha de finalización de rehabilitación</label><input type="date" id="fecha_rehabilitacion" value=""></div>
+          </div>
+          <div class="grid2" style="margin-top:12px">
+            <div class="field"><label>Cumplimiento de los límites de renta de la LAU aplicables</label><select id="cumple_lau"><option value="si">Sí</option><option value="no">No / no acreditado</option></select></div>
+          </div>
+          <p class="tip">La calculadora solo asigna 70% o 90% cuando se confirman todos los requisitos introducidos. La zona tensionada debe figurar en una resolución oficial vigente.</p>
         </div>
       </div>
       <div class="info-box" style="margin-top:12px">
-        <p>💡 Los contratos anteriores al 26/05/2023 mantienen en general el 60%. Para contratos posteriores, el porcentaje general es 50%; los porcentajes del 60%, 70% o 90% solo proceden cuando se cumplen íntegramente sus requisitos.</p>
+        <p id="prop_reduccion_aviso">💡 El porcentaje se determina automáticamente según la fecha y los requisitos acreditados.</p>
       </div>
     </div>
 
@@ -383,7 +403,7 @@
     <p>La comunidad seleccionada se muestra como recordatorio, pero su deducción no se suma automáticamente. Según el territorio pueden ser necesarios, entre otros datos, tributación individual o conjunta, discapacidad, familia numerosa, desempleo, depósito de fianza, municipio, fecha exacta del contrato y porcentaje que representa el alquiler sobre la renta.</p>
 
     <h3>Para propietarios: gastos deducibles y reducción del rendimiento</h3>
-    <p>Los propietarios tributan por el rendimiento neto del capital inmobiliario. Los contratos anteriores al 26 de mayo de 2023 mantienen, en general, la reducción del 60%. Para contratos posteriores la reducción general es del 50%, y solo asciende al 60%, 70% o 90% cuando se cumplen todos los requisitos legales del supuesto elegido.</p>
+    <p>Los propietarios tributan por el rendimiento neto del capital inmobiliario. Los contratos anteriores al 26 de mayo de 2023 mantienen, en general, la reducción del 60%. Para contratos posteriores la reducción general es del 50%; la calculadora determina automáticamente el 60%, 70% o 90% únicamente cuando los datos introducidos acreditan todos los requisitos del supuesto.</p>
 
     <h2 style="margin-top:2rem">Preguntas frecuentes</h2>
     <div class="faq-item">
@@ -467,6 +487,26 @@ function cambiarTab(tab) {
 function fmt(n) { return n.toLocaleString('es-ES', {minimumFractionDigits:0, maximumFractionDigits:0}) + ' €'; }
 function pct(n) { return n.toFixed(1) + '%'; }
 
+function valorOpcional(id){
+  const valor=document.getElementById(id).value.trim();
+  return valor===''?null:Math.max(0,Number(valor)||0);
+}
+
+function fechaUTC(valor){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(valor||'')) return null;
+  const [a,m,d]=valor.split('-').map(Number);
+  const fecha=new Date(Date.UTC(a,m-1,d));
+  return fecha.getUTCFullYear()===a&&fecha.getUTCMonth()===m-1&&fecha.getUTCDate()===d?fecha:null;
+}
+
+function toggleAvanzadoAlquiler(tipo){
+  const panel=document.getElementById('avanzado_'+tipo+'_panel');
+  const arrow=document.getElementById('avanzado_'+tipo+'_arrow');
+  const abrir=panel.style.display!=='block';
+  panel.style.display=abrir?'block':'none';
+  arrow.style.transform=abrir?'rotate(180deg)':'';
+}
+
 function deduccionEstatalAlquiler(alquilerAnual,baseImponibleTotal,tieneRegimenTransitorio){
   if(!tieneRegimenTransitorio||baseImponibleTotal>=24107.20) return 0;
   const baseMaxima=baseImponibleTotal<=17707.20
@@ -475,8 +515,20 @@ function deduccionEstatalAlquiler(alquilerAnual,baseImponibleTotal,tieneRegimenT
   return Math.min(Math.max(0,alquilerAnual),baseMaxima)*.1005;
 }
 
-function porcentajeReduccionAlquiler(supuesto){
-  return ({anterior_2023:60,general_50:50,rehabilitacion_60:60,completo_70:70,completo_90:90,joven_sin_requisitos:50,zona_sin_requisitos:50})[supuesto]||50;
+function porcentajeReduccionAlquiler(datos){
+  const corte=new Date(Date.UTC(2023,4,26));
+  if(!datos.fechaContrato) return {porcentaje:50,motivo:'Fecha de contrato no válida: se aplica prudentemente el 50%.'};
+  if(datos.fechaContrato<corte) return {porcentaje:60,motivo:'Contrato anterior al 26/05/2023.'};
+  if(!datos.cumpleLau) return {porcentaje:50,motivo:'No se acreditan los límites de renta aplicables de la LAU.'};
+  const rebajaAcreditada=datos.zonaTensionada&&datos.rentaAnterior>0&&datos.rentaNueva<=datos.rentaAnterior*.95;
+  if(rebajaAcreditada) return {porcentaje:90,motivo:'Zona tensionada y nueva renta reducida al menos un 5% frente al contrato anterior.'};
+  if((datos.zonaTensionada&&datos.mercadoJoven)||datos.programaPublico) return {porcentaje:70,motivo:datos.programaPublico?'Vivienda asequible/protegida o acogida a programa público con renta limitada.':'Incorporación al mercado en zona tensionada y alquiler a joven de 18–35 años.'};
+  if(datos.fechaRehabilitacion){
+    const limite=new Date(datos.fechaContrato.getTime());
+    limite.setUTCFullYear(limite.getUTCFullYear()-2);
+    if(datos.fechaRehabilitacion>=limite&&datos.fechaRehabilitacion<=datos.fechaContrato) return {porcentaje:60,motivo:'Rehabilitación finalizada dentro de los dos años anteriores al contrato.'};
+  }
+  return {porcentaje:50,motivo:'Contrato nuevo sin requisitos acreditados para una reducción incrementada.'};
 }
 
 function calcularInquilino() {
@@ -484,13 +536,18 @@ function calcularInquilino() {
   const meses = parseFloat(document.getElementById('meses_alquiler').value) || 12;
   const ccaa = document.getElementById('ccaa_inquilino').value;
   const baseImponible = parseFloat(document.getElementById('base_imponible_inq').value) || 0;
-  const contratoAntiguo = document.getElementById('contrato_antiguo').value;
+  const fechaContrato=fechaUTC(document.getElementById('fecha_contrato_inq').value);
+  const pagosPre2015=document.getElementById('pagos_pre2015').value==='si';
+  const derechoPre2015=document.getElementById('derecho_pre2015').value==='si';
+  const alquilerAnualReal=valorOpcional('alquiler_anual_real');
+  const corte2015=new Date(Date.UTC(2015,0,1));
+  const tieneRegimenTransitorio=!!fechaContrato&&fechaContrato<corte2015&&pagosPre2015&&derechoPre2015;
 
-  document.getElementById('aviso_contrato_antiguo').style.display = contratoAntiguo === 'si' ? 'block' : 'none';
+  document.getElementById('aviso_contrato_antiguo').style.display = fechaContrato&&fechaContrato<corte2015 ? 'block' : 'none';
 
-  const alquilerAnual = alquilerMensual * meses;
+  const alquilerAnual = alquilerAnualReal===null?alquilerMensual*meses:alquilerAnualReal;
 
-  const deduccionEstatal=deduccionEstatalAlquiler(alquilerAnual,baseImponible,contratoAntiguo==='si');
+  const deduccionEstatal=deduccionEstatalAlquiler(alquilerAnual,baseImponible,tieneRegimenTransitorio);
   // Las deducciones autonómicas exigen datos adicionales no presentes en el formulario.
   const deduccionTotal=deduccionEstatal;
   const totalPagado = alquilerAnual;
@@ -519,10 +576,23 @@ function calcularPropietario() {
   const hipotecaIntereses = parseFloat(document.getElementById('hipoteca_intereses').value) || 0;
   const honorarios = parseFloat(document.getElementById('honorarios').value) || 0;
   const valorInmueble = parseFloat(document.getElementById('valor_inmueble').value) || 0;
-  const tipoInquilino = document.getElementById('tipo_inquilino').value;
+  const fechaContrato=fechaUTC(document.getElementById('fecha_contrato_prop').value);
+  const ingresosReales=valorOpcional('ingresos_reales_prop');
+  const diasProp=valorOpcional('dias_prop');
+  const fechaRehabilitacion=fechaUTC(document.getElementById('fecha_rehabilitacion').value);
+  const datosReduccion={
+    fechaContrato,
+    zonaTensionada:document.getElementById('zona_tensionada').value==='si',
+    rentaAnterior:valorOpcional('renta_anterior')||0,
+    rentaNueva:rentaMensual,
+    mercadoJoven:document.getElementById('mercado_joven').value==='si',
+    programaPublico:document.getElementById('programa_publico').value==='si',
+    fechaRehabilitacion,
+    cumpleLau:document.getElementById('cumple_lau').value==='si'
+  };
 
-  const ingresos = rentaMensual * mesesProp;
-  const factorTiempo=Math.min(12,Math.max(0,mesesProp))/12;
+  const factorTiempo=diasProp===null?Math.min(12,Math.max(0,mesesProp))/12:Math.min(365,Math.max(0,diasProp))/365;
+  const ingresos = ingresosReales===null?rentaMensual*12*factorTiempo:ingresosReales;
   const amortizacion=valorInmueble*.03*factorTiempo;
   const ibiPeriodo=ibi*factorTiempo;
   const comunidadPeriodo=comunidad*factorTiempo;
@@ -537,13 +607,14 @@ function calcularPropietario() {
   const totalGastos=ibiPeriodo+comunidadPeriodo+segurosPeriodo+gastosLimitados+honorarios+amortizacion;
   const rendimientoPrevio = ingresos - totalGastos;
 
-  const reduccionPct=porcentajeReduccionAlquiler(tipoInquilino);
+  const reduccionInfo=porcentajeReduccionAlquiler(datosReduccion);
+  const reduccionPct=reduccionInfo.porcentaje;
   const reduccion = Math.max(0, rendimientoPrevio * (reduccionPct / 100));
   const rendimientoReducido=rendimientoPrevio-reduccion;
-  const supuestoNoAcreditado=tipoInquilino==='joven_sin_requisitos'||tipoInquilino==='zona_sin_requisitos';
 
   document.getElementById('prop_rendimiento_neto').textContent = fmt(rendimientoReducido);
-  document.getElementById('prop_reduccion_pct').textContent = `Reducción ${reduccionPct}% ${supuestoNoAcreditado?'(sin mejora automática)':'aplicada'}`;
+  document.getElementById('prop_reduccion_pct').textContent = `Reducción ${reduccionPct}% aplicada`;
+  document.getElementById('prop_reduccion_aviso').textContent='💡 '+reduccionInfo.motivo;
   document.getElementById('prop_ahorro_fiscal').textContent = excesoGastosLimitados>0?fmt(excesoGastosLimitados)+' potencialmente trasladable':'0 €';
   document.getElementById('prop_ingresos').textContent = fmt(ingresos);
   document.getElementById('prop_gastos').textContent = fmt(totalGastos);

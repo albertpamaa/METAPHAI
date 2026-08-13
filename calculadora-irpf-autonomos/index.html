@@ -152,7 +152,7 @@
   <div class="hero">
     <div class="badge">🧾 Autónomos 2026</div>
     <h1>Calculadora de IRPF y cuotas<br>para <em>autónomos</em></h1>
-    <p>Estima el rendimiento de tu actividad, la horquilla de cotización RETA y un IRPF anual aislado. Los pagos del Modelo 130 se explican por separado.</p>
+    <p>Estima el rendimiento de tu actividad, la cotización RETA y un IRPF anual aislado. En Opciones avanzadas puedes usar tu cuota real y acumulados del Modelo 130.</p>
   </div>
 
   <!-- INGRESOS -->
@@ -171,7 +171,7 @@
           <option value="empresarial">Empresarial / Comercial (sin retención)</option>
           <option value="agricola">Agrícola / Ganadera</option>
         </select>
-        <p class="tip">Dato informativo: sin facturas y retenciones acumuladas no se calcula el Modelo 130</p>
+        <p class="tip">El Modelo 130 solo se calcula si introduces sus acumulados reales en Opciones avanzadas</p>
       </div>
     </div>
     <div class="grid2" style="margin-top:12px">
@@ -291,11 +291,67 @@
     </div>
   </div>
 
+  <div class="card">
+    <button type="button" class="toggle-btn" id="btn_avanzado" onclick="toggleAvanzado()">Opciones avanzadas <span id="avanzado_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+    <div id="avanzado_panel" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+      <div class="section-label">RETA con datos reales</div>
+      <div class="grid3">
+        <div class="field">
+          <label>Meses de alta en el año</label>
+          <input type="number" id="meses_alta" value="12" min="1" max="12" step="1">
+        </div>
+        <div class="field">
+          <label>Base RETA elegida (€/mes)</label>
+          <input type="number" id="base_reta_elegida" value="" min="0" step="10" placeholder="Vacío = mínima del tramo">
+        </div>
+        <div class="field">
+          <label>Cuota RETA total realmente pagada (€)</label>
+          <input type="number" id="cuota_reta_real" value="" min="0" step="10" placeholder="Prioritaria si la conoces">
+        </div>
+      </div>
+      <p class="tip">La cuota real pagada tiene prioridad y ya refleja tarifa reducida, bonificaciones y cambios de base. Si no la indicas, se usa la base elegida válida; en último término, la base mínima del tramo.</p>
+
+      <div class="section-label" style="margin-top:18px">IRPF y Modelo 130</div>
+      <div class="grid3">
+        <div class="field">
+          <label>Retenciones soportadas en el año (€)</label>
+          <input type="number" id="retenciones_anuales" value="0" min="0" step="100">
+        </div>
+        <div class="field">
+          <label>Calcular pago acumulado Modelo 130</label>
+          <select id="calcular_130">
+            <option value="no">No</option>
+            <option value="si">Sí, con mis acumulados reales</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Rendimiento neto acumulado — casilla 03 (€)</label>
+          <input type="number" id="rendimiento_130" value="0" step="100">
+        </div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div class="field">
+          <label>Retenciones acumuladas — casilla 06 (€)</label>
+          <input type="number" id="retenciones_130" value="0" min="0" step="100">
+        </div>
+        <div class="field">
+          <label>Pagos positivos anteriores — casilla 05 (€)</label>
+          <input type="number" id="pagos_130" value="0" min="0" step="100">
+        </div>
+        <div class="field">
+          <label>Minoración aplicable — casilla 13 (€)</label>
+          <input type="number" id="minoracion_130" value="0" min="0" max="100" step="25">
+        </div>
+      </div>
+      <p class="tip">Este resultado cubre el cálculo ordinario acumulado de actividades no agrícolas en estimación directa hasta la minoración de la casilla 13. No sustituye el formulario si existen resultados negativos previos, deducción transitoria por vivienda o una complementaria.</p>
+    </div>
+  </div>
+
   <!-- RESULTADOS -->
   <div class="results">
     <div class="results-header">
       <div>
-        <div class="main-label">Neto anual con cuota RETA mínima estimada</div>
+        <div class="main-label" id="res_neto_label">Neto anual con cuota RETA mínima estimada</div>
         <div class="main-value" id="res_neto">—</div>
       </div>
       <div class="sub-block">
@@ -320,12 +376,16 @@
         <div class="rv" id="d_rend_neto">—</div>
       </div>
       <div class="res-item neg">
-        <div class="rl">Cuota RETA mensual estimada</div>
+        <div class="rl" id="d_reta_label">Cuota RETA mensual estimada</div>
         <div class="rv" id="d_reta">—</div>
       </div>
       <div class="res-item neg">
         <div class="rl">IRPF anual estimado</div>
         <div class="rv" id="d_irpf">—</div>
+      </div>
+      <div class="res-item neg">
+        <div class="rl">IRPF pendiente tras retenciones</div>
+        <div class="rv" id="d_irpf_pendiente">—</div>
       </div>
       <div class="res-item pos">
         <div class="rl">Neto real anual</div>
@@ -339,11 +399,13 @@
       <div class="liq-row"><span class="liq-label">− Gastos deducibles</span><span class="liq-val neg" id="l_gastos">—</span></div>
       <div class="liq-row"><span class="liq-label">− Gastos difícil justificación (5%, máx. 2.000 €)</span><span class="liq-val neg" id="l_dificil">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Rendimiento neto previo</span><span class="liq-val" id="l_rend_previo">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Cuota RETA mínima estimada</span><span class="liq-val neg" id="l_reta">—</span></div>
+      <div class="liq-row"><span class="liq-label" id="l_reta_label">− Cuota RETA mínima estimada</span><span class="liq-val neg" id="l_reta">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Base imponible IRPF</span><span class="liq-val" id="l_base_irpf">—</span></div>
       <div class="liq-row"><span class="liq-label">− Mínimo personal y familiar</span><span class="liq-val neg" id="l_minimo">—</span></div>
       <div class="liq-row"><span class="liq-label">− IRPF anual aislado estimado</span><span class="liq-val neg" id="l_irpf">—</span></div>
-      <div class="liq-row"><span class="liq-label">− Cuota RETA mínima anual</span><span class="liq-val neg" id="l_reta2">—</span></div>
+      <div class="liq-row"><span class="liq-label">Retenciones ya soportadas (pago a cuenta)</span><span class="liq-val" id="l_retenciones">—</span></div>
+      <div class="liq-row"><span class="liq-label">IRPF pendiente orientativo</span><span class="liq-val neg" id="l_irpf_pendiente">—</span></div>
+      <div class="liq-row"><span class="liq-label" id="l_reta2_label">− Cuota RETA mínima anual</span><span class="liq-val neg" id="l_reta2">—</span></div>
       <div class="liq-row"><span class="liq-label" style="color:var(--text)">= Neto real anual</span><span class="liq-val pos" id="l_neto">—</span></div>
     </div>
 
@@ -362,7 +424,7 @@
     <p style="font-size:13px;color:var(--muted);margin-bottom:1rem">El Modelo 130 se calcula con importes acumulados desde el 1 de enero hasta el final de cada trimestre, restando pagos anteriores, retenciones acumuladas y otras minoraciones aplicables.</p>
     <div class="trimestres" id="trimestres-grid"></div>
     <div class="info-box green" style="margin-top:1rem">
-      <p>ℹ️ No se calcula una cifra con los datos actuales: faltan ingresos y gastos acumulados por trimestre, retenciones soportadas, pagos anteriores y la minoración por bajos rendimientos. Los profesionales tampoco están obligados a presentarlo cuando se cumple la regla del 70% de ingresos sometidos a retención.</p>
+      <p>ℹ️ Puedes introducir los acumulados reales en Opciones avanzadas. Los profesionales no están obligados a presentar el Modelo 130 cuando se cumple la regla oficial del 70% de ingresos sometidos a retención.</p>
     </div>
   </div>
 
@@ -419,7 +481,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}" onclick="this.parentElement.classList.toggle('open')">¿Cómo afecta el nuevo sistema de cuotas si mis ingresos varían? <span class="faq-arrow">▼</span></div>
-      <div class="faq-a">La base puede ajustarse durante el año según la previsión de rendimientos y la Seguridad Social regulariza posteriormente con los rendimientos comunicados por la AEAT. La cifra mostrada es una horquilla ordinaria; no incorpora bases voluntarias superiores, altas parciales, bonificaciones ni colectivos especiales.</div>
+      <div class="faq-a">La base puede ajustarse durante el año según la previsión de rendimientos y la Seguridad Social regulariza posteriormente con los rendimientos comunicados por la AEAT. Puedes indicar la base elegida, los meses de alta o, preferentemente, la cuota total realmente pagada; la calculadora no reproduce la regularización posterior ni los regímenes de colectivos especiales.</div>
     </div>
     <p><strong>Fuentes oficiales:</strong> <a href="https://www.boe.es/eli/es/o/2026/03/30/pjc297/dof/spa" rel="noopener noreferrer">bases y tipos RETA 2026 (BOE)</a>, <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10724/1320/1322/cuota4425?changeLanguage=es" rel="noopener noreferrer">cotización de autónomos (Seguridad Social)</a>, <a href="https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-130-irpf______esionales-estimacion-directa-fraccionado_/instrucciones.html" rel="noopener noreferrer">instrucciones del Modelo 130 (AEAT)</a> y <a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-ayuda-presentacion/irpf-2025/7-cumplimentacion-irpf/7_4-rendimientos-actividades-economicas/7_4_2-regimen-estimacion-directa/7_4_2_3-gastos-fiscalmente-deducibles/suministros.html" rel="noopener noreferrer">suministros de vivienda afecta (AEAT)</a>.</p>
   </div>
@@ -537,6 +599,21 @@ function calcularModelo130Acumulado(rendimientoAcumulado,retencionesAcumuladas,p
   return Math.max(0,Math.max(0,rendimientoAcumulado)*.20-Math.max(0,retencionesAcumuladas)-Math.max(0,pagosAnteriores)-Math.max(0,minoracion));
 }
 
+function valorOpcional(id){
+  const valor=document.getElementById(id).value.trim();
+  return valor===''?null:Math.max(0,Number(valor)||0);
+}
+
+function toggleAvanzado(){
+  const panel=document.getElementById('avanzado_panel');
+  const btn=document.getElementById('btn_avanzado');
+  const arrow=document.getElementById('avanzado_arrow');
+  const abrir=panel.style.display!=='block';
+  panel.style.display=abrir?'block':'none';
+  btn.classList.toggle('active',abrir);
+  arrow.style.transform=abrir?'rotate(180deg)':'';
+}
+
 function toggleExtra(id){
   const el=document.getElementById('extra_'+id);
   const btn=document.getElementById('btn_'+id);
@@ -556,11 +633,15 @@ function calcular(){
   const estado=document.getElementById('estado').value;
   const hijos=parseInt(document.getElementById('hijos').value)||0;
   const ccaa=parseInt(document.getElementById('ccaa').value);
+  const mesesAlta=Math.min(12,Math.max(1,parseInt(document.getElementById('meses_alta').value)||12));
+  const baseRetaElegida=valorOpcional('base_reta_elegida');
+  const cuotaRetaReal=valorOpcional('cuota_reta_real');
+  const retencionesAnuales=Math.max(0,parseFloat(document.getElementById('retenciones_anuales').value)||0);
 
   document.getElementById('aviso_modulos').style.display=regimen==='modulos'?'block':'none';
   if(regimen==='modulos'){
     document.getElementById('aviso_modulos').innerHTML='<p>⚠️ En módulos el rendimiento y el Modelo 131 dependen de parámetros objetivos específicos que este formulario no solicita.</p>';
-    ['res_neto','res_neto_mensual','res_tipo_ef','d_ingresos','d_gastos','d_rend_neto','d_reta','d_irpf','d_neto_real','l_ingresos','l_gastos','l_dificil','l_rend_previo','l_reta','l_base_irpf','l_minimo','l_irpf','l_reta2','l_neto','reta_tramo_label','reta_tramo_cuota'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='No calculable en módulos';});
+    ['res_neto','res_neto_mensual','res_tipo_ef','d_ingresos','d_gastos','d_rend_neto','d_reta','d_irpf','d_irpf_pendiente','d_neto_real','l_ingresos','l_gastos','l_dificil','l_rend_previo','l_reta','l_base_irpf','l_minimo','l_irpf','l_retenciones','l_irpf_pendiente','l_reta2','l_neto','reta_tramo_label','reta_tramo_cuota'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='No calculable en módulos';});
     document.getElementById('trimestres-grid').innerHTML='<div class="info-box warn" style="grid-column:1/-1"><p>El Modelo 131 y el rendimiento por módulos requieren los parámetros objetivos específicos de la actividad.</p></div>';
     return;
   }
@@ -587,11 +668,24 @@ function calcular(){
   const rendNeto=Math.max(0,rendPrevio-provDificil);
 
   // Rendimiento computable aproximado para encuadrar el tramo: deducción genérica del 7%.
-  const ingNetoMensualSS=rendNeto*.93/12;
+  const ingNetoMensualSS=rendNeto*.93/mesesAlta;
   const tramo=getRETATramo(ingNetoMensualSS);
   const cuotaRetaMin=tramo.baseMin*TIPO_RETA_ORDINARIO_2026;
   const cuotaRetaMax=tramo.baseMax*TIPO_RETA_ORDINARIO_2026;
-  const retaAnual=cuotaRetaMin*12;
+  const baseElegidaValida=baseRetaElegida!==null&&baseRetaElegida>=tramo.baseMin&&baseRetaElegida<=tramo.baseMax;
+  let origenReta='mínima';
+  let cuotaRetaMensual=cuotaRetaMin;
+  let retaAnual=cuotaRetaMin*mesesAlta;
+  if(baseElegidaValida){
+    origenReta='base elegida';
+    cuotaRetaMensual=baseRetaElegida*TIPO_RETA_ORDINARIO_2026;
+    retaAnual=cuotaRetaMensual*mesesAlta;
+  }
+  if(cuotaRetaReal!==null){
+    origenReta='cuota real';
+    retaAnual=cuotaRetaReal;
+    cuotaRetaMensual=cuotaRetaReal/mesesAlta;
+  }
 
   // Base IRPF (rendimiento neto - cuota RETA, ya que RETA es deducible)
   const baseIRPF=Math.max(0,rendNeto-retaAnual);
@@ -606,19 +700,23 @@ function calcular(){
   const cuotaEstatal=Math.max(0,cuotaEscala(baseLiq,ESCALA_ESTATAL)-cuotaEscala(Math.min(baseLiq,minimoEstatal),ESCALA_ESTATAL));
   const cuotaAutonomica=foral?0:Math.max(0,cuotaEscala(baseLiq,ESCALAS_AUTONOMICAS[ccaa])-cuotaEscala(Math.min(baseLiq,minimoAutonomico),ESCALAS_AUTONOMICAS[ccaa]));
   const irpfBruto=foral?0:cuotaEstatal+cuotaAutonomica;
+  const irpfPendiente=foral?0:irpfBruto-retencionesAnuales;
   // El gasto de difícil justificación reduce el IRPF, pero no es una salida de caja.
   const netoReal=ingresos-totalGastos-retaAnual-irpfBruto;
 
   // Mostrar resultados principales
   const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val;};
+  set('res_neto_label',origenReta==='cuota real'?'Neto anual con cuota RETA real indicada':origenReta==='base elegida'?'Neto anual con base RETA elegida':'Neto anual con cuota RETA mínima estimada');
   set('res_neto',foral?'Antes de IRPF foral: '+fmt(netoReal):fmt(netoReal));
   set('res_neto_mensual',fmtM(netoReal/12));
   set('res_tipo_ef',foral?'—':(baseIRPF>0?(irpfBruto/baseIRPF*100).toFixed(1)+'%':'0,0%'));
   set('d_ingresos',fmt(ingresos));
   set('d_gastos',fmt(totalGastos+provDificil));
   set('d_rend_neto',fmt(rendNeto));
-  set('d_reta',fmtM(cuotaRetaMin)+' – '+fmtM(cuotaRetaMax));
+  set('d_reta_label',origenReta==='cuota real'?'Cuota RETA mensual real media':origenReta==='base elegida'?'Cuota RETA mensual según base elegida':'Cuota RETA mensual estimada');
+  set('d_reta',origenReta==='mínima'?fmtM(cuotaRetaMin)+' – '+fmtM(cuotaRetaMax):fmtM(cuotaRetaMensual)+' ('+origenReta+')');
   set('d_irpf',foral?'No calculado (régimen foral)':fmt(irpfBruto));
+  set('d_irpf_pendiente',foral?'No calculado':(irpfPendiente>=0?fmt(irpfPendiente):'Posible devolución '+fmt(Math.abs(irpfPendiente))));
   set('d_neto_real',fmt(netoReal));
 
   // Liquidación detallada
@@ -627,10 +725,14 @@ function calcular(){
   set('l_dificil',fmt(provDificil));
   set('l_rend_previo',fmt(rendPrevio));
   set('l_reta',fmt(retaAnual));
+  set('l_reta_label','− Cuota RETA ('+origenReta+', '+mesesAlta+' meses)');
   set('l_base_irpf',fmt(baseIRPF));
   set('l_minimo',fmt(minimoEstatal));
   set('l_irpf',foral?'No calculado':fmt(irpfBruto));
+  set('l_retenciones',fmt(retencionesAnuales));
+  set('l_irpf_pendiente',foral?'No calculado':(irpfPendiente>=0?fmt(irpfPendiente):'− '+fmt(Math.abs(irpfPendiente))));
   set('l_reta2',fmt(retaAnual));
+  set('l_reta2_label','− Cuota RETA aplicada ('+mesesAlta+' meses)');
   set('l_neto',fmt(netoReal));
 
   // Tramo RETA
@@ -639,10 +741,28 @@ function calcular(){
 
   // Trimestres
   const grid=document.getElementById('trimestres-grid');
-  if(grid) grid.innerHTML='<div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:14px;font-weight:600;color:var(--text)">No calculable con totales anuales</div><div style="font-size:12px;color:var(--muted);margin-top:6px">Se necesitan acumulados reales, retenciones y pagos anteriores de cada trimestre.</div></div>';
+  if(grid){
+    const calcular130=document.getElementById('calcular_130').value==='si';
+    if(!calcular130){
+      grid.innerHTML='<div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:14px;font-weight:600;color:var(--text)">No solicitado</div><div style="font-size:12px;color:var(--muted);margin-top:6px">Activa el cálculo e introduce tus acumulados reales en Opciones avanzadas.</div></div>';
+    }else if(document.getElementById('tipo_actividad').value==='agricola'){
+      grid.innerHTML='<div class="info-box warn" style="grid-column:1/-1"><p>Las actividades agrícolas, ganaderas, forestales y pesqueras usan el apartado II y una regla distinta; no se estima aquí.</p></div>';
+    }else{
+      const rendimiento130=parseFloat(document.getElementById('rendimiento_130').value)||0;
+      const retenciones130=parseFloat(document.getElementById('retenciones_130').value)||0;
+      const pagos130=parseFloat(document.getElementById('pagos_130').value)||0;
+      const minoracion130=parseFloat(document.getElementById('minoracion_130').value)||0;
+      const pago130=calcularModelo130Acumulado(rendimiento130,retenciones130,pagos130,minoracion130);
+      grid.innerHTML='<div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:12px;color:var(--muted)">Pago acumulado orientativo hasta casilla 13</div><div style="font-size:24px;font-weight:600;color:var(--aut);font-family:\'DM Mono\',monospace;margin-top:4px">'+fmt(pago130)+'</div><div style="font-size:12px;color:var(--muted);margin-top:6px">20% del rendimiento positivo − casillas 05 y 06 − minoración indicada.</div></div>';
+    }
+  }
 
-  const avisos=['IRPF anual estimado como si esta actividad fuese la única renta y con la cuota RETA mínima ordinaria del tramo.'];
-  if(primerAño==='si') avisos.push('No se aplica una cuota reducida de inicio: su importe y duración efectiva deben verificarse; el 7% es solo una retención profesional a cuenta cuando se cumplen sus requisitos.');
+  const avisos=['IRPF anual estimado como si esta actividad fuese la única renta. Las retenciones son pagos a cuenta: modifican el saldo pendiente, no el coste fiscal anual ni el neto después del impuesto definitivo.'];
+  if(baseRetaElegida!==null&&!baseElegidaValida&&cuotaRetaReal===null) avisos.push('La base RETA indicada queda fuera de la horquilla del tramo y no se usa; se aplica la mínima.');
+  if(cuotaRetaReal!==null) avisos.push('Se prioriza la cuota RETA total realmente pagada, que puede incorporar tarifa reducida o bonificaciones.');
+  else if(origenReta==='base elegida') avisos.push('La cuota se estima con la base RETA elegida durante '+mesesAlta+' meses.');
+  else avisos.push('La cuota se estima con la base mínima ordinaria del tramo durante '+mesesAlta+' meses.');
+  if(primerAño==='si'&&cuotaRetaReal===null) avisos.push('No se inventa una cuota reducida de inicio: introduce la cuota realmente pagada si la conoces; el 7% es solo una retención profesional a cuenta cuando se cumplen sus requisitos.');
   if(estado==='casado') avisos.push('Se presupone tributación conjunta con cónyuge sin rentas; no se solicitan sus demás circunstancias.');
   if(foral) avisos.push('Navarra y País Vasco tienen normativa propia y no se calcula su IRPF.');
   document.getElementById('aviso_modulos').style.display='block';

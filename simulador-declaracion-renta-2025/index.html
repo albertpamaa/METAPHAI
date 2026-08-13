@@ -199,6 +199,38 @@
     </div>
   </div>
 
+  <div class="card">
+    <button type="button" class="toggle-btn" id="btn_avanzado_renta" onclick="toggleAvanzadoRenta()">Opciones avanzadas <span id="avanzado_renta_arrow" style="font-size:10px;transition:transform .2s">▼</span></button>
+    <div id="avanzado_renta_panel" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+      <div class="section-label">Familia y mínimos</div>
+      <div class="grid3">
+        <div class="field"><label>Hijos menores de 3 años</label><input type="number" id="hijos_menor3" value="0" min="0" max="4" step="1"></div>
+        <div class="field"><label>Cómputo de descendientes</label><select id="computo_hijos"><option value="1">Por entero</option><option value="0.5">Por mitad</option></select></div>
+        <div class="field"><label>Hijos con discapacidad 33%–64%</label><input type="number" id="hijos_discap33" value="0" min="0" max="4" step="1"></div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div class="field"><label>Hijos con discapacidad ≥65%</label><input type="number" id="hijos_discap65" value="0" min="0" max="4" step="1"></div>
+        <div class="field"><label>Ascendientes de 65 a 74 años</label><input type="number" id="ascendientes_65" value="0" min="0" max="4" step="1"></div>
+        <div class="field"><label>Ascendientes de 75 años o más</label><input type="number" id="ascendientes_75" value="0" min="0" max="4" step="1"></div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label>Ascendientes con discapacidad 33%–64%</label><input type="number" id="ascendientes_discap33" value="0" min="0" max="4" step="1"></div>
+        <div class="field"><label>Ascendientes con discapacidad ≥65%</label><input type="number" id="ascendientes_discap65" value="0" min="0" max="4" step="1"></div>
+      </div>
+      <p class="tip">Introduce solo familiares con derecho al mínimo. El cómputo por mitad se aplica globalmente a los descendientes; no cubre familias con repartos mixtos.</p>
+
+      <div class="section-label" style="margin-top:18px">Trabajo y varios pagadores</div>
+      <div class="grid2">
+        <div class="field"><label>Rendimientos del trabajo adicionales (€)</label><input type="number" id="trabajo_adicional" value="0" min="0" step="500"></div>
+        <div class="field"><label>Cotizaciones SS adicionales (€)</label><input type="number" id="ss_adicional" value="0" min="0" step="50"></div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="field"><label>Retenciones adicionales (€)</label><input type="number" id="retenciones_adicionales" value="0" min="0" step="100"></div>
+        <div class="field"><label>Importe del segundo y restantes pagadores (€)</label><input type="number" id="segundos_pagadores" value="0" min="0" step="500"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- RENDIMIENTOS DEL TRABAJO -->
   <div class="card">
     <div class="section-label">Rendimientos del trabajo</div>
@@ -228,7 +260,7 @@
       </div>
     </div>
     <div id="aviso_pagadores" class="info-box red" style="display:none;margin-top:12px">
-      <p>⚠️ En 2025, con varios pagadores el límite general puede ser 15.876 € si el segundo y restantes superan conjuntamente 1.500 €; si no los superan, puede mantenerse en 22.000 €. Este formulario no solicita el importe por pagador y no puede decidirlo por sí solo.</p>
+      <p>⚠️ En 2025, con varios pagadores el límite general puede ser 15.876 € si el segundo y restantes superan conjuntamente 1.500 €. Indica su importe en Opciones avanzadas para precisar este aviso.</p>
     </div>
   </div>
 
@@ -264,6 +296,14 @@
       </div>
       <div class="grid2" style="margin-top:10px">
         <div class="field"><label>Retenciones sobre inversiones (€)</label><input type="number" id="ret_inversiones" value="285" min="0" step="50" oninput="calcular()"></div>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field"><label>Pérdidas patrimoniales del año (€)</label><input type="number" id="perdidas_pat" value="0" min="0" step="100" oninput="calcular()"></div>
+        <div class="field"><label>Rendimientos de capital mobiliario negativos (€)</label><input type="number" id="rcm_negativo" value="0" min="0" step="100" oninput="calcular()"></div>
+      </div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="field"><label>Pérdidas patrimoniales pendientes 2021–2024 (€)</label><input type="number" id="perdidas_previas_pat" value="0" min="0" step="100" oninput="calcular()"></div>
+        <div class="field"><label>RCM negativos pendientes 2021–2024 (€)</label><input type="number" id="rcm_previos_neg" value="0" min="0" step="100" oninput="calcular()"></div>
       </div>
     </div>
 
@@ -336,6 +376,10 @@
           <p class="tip">Deducción adicional de hasta 1.000 € por hijo</p>
         </div>
       </div>
+      <div class="field" style="max-width:280px;margin-top:10px">
+        <label>Deducción por maternidad cobrada anticipadamente (€)</label>
+        <input type="number" id="maternidad_anticipada" value="0" min="0" step="100" oninput="calcular()">
+      </div>
     </div>
 
     <div class="extra-field" id="extra_movilidad">
@@ -389,6 +433,7 @@
       <div class="liq-row"><span class="liq-label">Mínimo estatal personal y familiar</span><span class="liq-val neg" id="liq_minimo">—</span></div>
       <div class="liq-row subtotal"><span class="liq-label">Base liquidable general</span><span class="liq-val neutral" id="liq_base_liq">—</span></div>
       <div class="liq-row"><span class="liq-label">Cuota íntegra general (estatal + autonómica)</span><span class="liq-val neg" id="liq_cuota_integra">—</span></div>
+      <div class="liq-row subtotal"><span class="liq-label">Base imponible del ahorro integrada</span><span class="liq-val neutral" id="liq_base_ahorro">—</span></div>
       <div class="liq-row"><span class="liq-label">Cuota base ahorro (inversiones)</span><span class="liq-val neg" id="liq_cuota_ahorro">—</span></div>
       <div class="liq-row"><span class="liq-label">Deducción maternidad</span><span class="liq-val pos" id="liq_maternidad">—</span></div>
       <div class="liq-row"><span class="liq-label">Deducción donativos</span><span class="liq-val pos" id="liq_donativos">—</span></div>
@@ -503,6 +548,16 @@ function toggleExtra(id){
   calcular();
 }
 
+function toggleAvanzadoRenta(){
+  const panel=document.getElementById('avanzado_renta_panel');
+  const btn=document.getElementById('btn_avanzado_renta');
+  const arrow=document.getElementById('avanzado_renta_arrow');
+  const abrir=panel.style.display!=='block';
+  panel.style.display=abrir?'block':'none';
+  btn.classList.toggle('active',abrir);
+  arrow.style.transform=abrir?'rotate(180deg)':'';
+}
+
 const ESCALA_ESTATAL=[
   [12450,.095],[20200,.12],[35200,.15],[60000,.185],[Infinity,.225]
 ];
@@ -556,15 +611,50 @@ function reduccionTrabajo(rendimientoNetoPrevio,rentasNoTrabajo){
   return Math.max(0,2364.34-1.14*(rendimientoNetoPrevio-17673.52));
 }
 
-function minimoPersonalFamiliar(tabla,edad,discapacidad,hijos,hijosMenores3){
+function minimoPersonalFamiliar(tabla,edad,discapacidad,hijos,hijosMenores3,opciones={}){
+  const computo=opciones.computoHijos===.5?.5:1;
   let total=(tabla.base65&&edad!=='menor65')?tabla.base65:tabla.base;
   if(edad==='65_75') total+=tabla.edad65;
   if(edad==='mayor75') total+=tabla.edad65+tabla.edad75;
-  for(let i=0;i<hijos;i++) total+=tabla.hijos[Math.min(i,tabla.hijos.length-1)];
-  total+=Math.min(hijos,hijosMenores3)*tabla.menor3;
+  for(let i=0;i<hijos;i++) total+=tabla.hijos[Math.min(i,tabla.hijos.length-1)]*computo;
+  total+=Math.min(hijos,Math.max(0,hijosMenores3))*tabla.menor3*computo;
+  const hijosDisc65=Math.min(hijos,Math.max(0,opciones.hijosDisc65||0));
+  const hijosDisc33=Math.min(Math.max(0,hijos-hijosDisc65),Math.max(0,opciones.hijosDisc33||0));
+  total+=(hijosDisc33*tabla.disc33+hijosDisc65*(tabla.disc65+tabla.asistencia65))*computo;
   if(discapacidad==='33') total+=tabla.disc33;
   if(discapacidad==='65') total+=tabla.disc65+tabla.asistencia65;
+  const asc65=Math.max(0,opciones.asc65||0);
+  const asc75=Math.max(0,opciones.asc75||0);
+  const totalAsc=asc65+asc75;
+  total+=asc65*tabla.edad65+asc75*(tabla.edad65+tabla.edad75);
+  const ascDisc65=Math.min(totalAsc,Math.max(0,opciones.ascDisc65||0));
+  const ascDisc33=Math.min(Math.max(0,totalAsc-ascDisc65),Math.max(0,opciones.ascDisc33||0));
+  total+=ascDisc33*tabla.disc33+ascDisc65*(tabla.disc65+tabla.asistencia65);
   return total;
+}
+
+function integrarAhorro2025(ganancias,perdidas,rcmPositivo,rcmNegativo,pendientePat=0,pendienteRcm=0){
+  const saldoPatInicial=Math.max(0,ganancias)-Math.max(0,perdidas);
+  const saldoRcmInicial=Math.max(0,rcmPositivo)-Math.max(0,rcmNegativo);
+  let saldoPat=saldoPatInicial, saldoRcm=saldoRcmInicial;
+  let cruzadaPatRcm=0, cruzadaRcmPat=0;
+  if(saldoPat<0&&saldoRcm>0){
+    cruzadaPatRcm=Math.min(-saldoPat,saldoRcm*.25);
+    saldoPat+=cruzadaPatRcm; saldoRcm-=cruzadaPatRcm;
+  }else if(saldoRcm<0&&saldoPat>0){
+    cruzadaRcmPat=Math.min(-saldoRcm,saldoPat*.25);
+    saldoRcm+=cruzadaRcmPat; saldoPat-=cruzadaRcmPat;
+  }
+  let pendientePatRestante=Math.max(0,pendientePat)+Math.max(0,-saldoPat);
+  let pendienteRcmRestante=Math.max(0,pendienteRcm)+Math.max(0,-saldoRcm);
+  saldoPat=Math.max(0,saldoPat); saldoRcm=Math.max(0,saldoRcm);
+  const compPatMisma=Math.min(saldoPat,pendientePatRestante); saldoPat-=compPatMisma; pendientePatRestante-=compPatMisma;
+  const compRcmMisma=Math.min(saldoRcm,pendienteRcmRestante); saldoRcm-=compRcmMisma; pendienteRcmRestante-=compRcmMisma;
+  const limitePatContraRcm=Math.max(0,Math.max(0,saldoRcmInicial)*.25-cruzadaPatRcm);
+  const compPatCruzada=Math.min(pendientePatRestante,saldoRcm,limitePatContraRcm); saldoRcm-=compPatCruzada; pendientePatRestante-=compPatCruzada;
+  const limiteRcmContraPat=Math.max(0,Math.max(0,saldoPatInicial)*.25-cruzadaRcmPat);
+  const compRcmCruzada=Math.min(pendienteRcmRestante,saldoPat,limiteRcmContraPat); saldoPat-=compRcmCruzada; pendienteRcmRestante-=compRcmCruzada;
+  return {baseAhorro:saldoPat+saldoRcm,saldoPatInicial,saldoRcmInicial,compensacionCruzada:cruzadaPatRcm+cruzadaRcmPat+compPatCruzada+compRcmCruzada,pendientePatRestante,pendienteRcmRestante};
 }
 
 function leerExtra(idCampo,seccion){
@@ -582,6 +672,19 @@ function calcular(){
   const retNomina=parseFloat(document.getElementById('retenciones_nomina').value)||0;
   const cuotaSS=parseFloat(document.getElementById('cuota_ss').value)||0;
   const numPagadores=document.getElementById('num_pagadores').value;
+  const trabajoAdicional=parseFloat(document.getElementById('trabajo_adicional').value)||0;
+  const ssAdicional=parseFloat(document.getElementById('ss_adicional').value)||0;
+  const retencionesAdicionales=parseFloat(document.getElementById('retenciones_adicionales').value)||0;
+  const segundosPagadores=parseFloat(document.getElementById('segundos_pagadores').value)||0;
+  const opcionesFamilia={
+    computoHijos:parseFloat(document.getElementById('computo_hijos').value)||1,
+    hijosDisc33:parseInt(document.getElementById('hijos_discap33').value)||0,
+    hijosDisc65:parseInt(document.getElementById('hijos_discap65').value)||0,
+    asc65:parseInt(document.getElementById('ascendientes_65').value)||0,
+    asc75:parseInt(document.getElementById('ascendientes_75').value)||0,
+    ascDisc33:parseInt(document.getElementById('ascendientes_discap33').value)||0,
+    ascDisc65:parseInt(document.getElementById('ascendientes_discap65').value)||0
+  };
 
   document.getElementById('aviso_pagadores').style.display=numPagadores==='2'?'block':'none';
   document.getElementById('campo_guarderia').style.display=extrasActivos.has('maternidad')&&document.getElementById('guarderia').value==='1'?'block':'none';
@@ -603,6 +706,10 @@ function calcular(){
   const gananciasPat=leerExtra('ganancias_pat','inversiones');
   const dividendos=leerExtra('dividendos','inversiones');
   const retInversiones=leerExtra('ret_inversiones','inversiones');
+  const perdidasPat=leerExtra('perdidas_pat','inversiones');
+  const rcmNegativo=leerExtra('rcm_negativo','inversiones');
+  const perdidasPreviasPat=leerExtra('perdidas_previas_pat','inversiones');
+  const rcmPreviosNeg=leerExtra('rcm_previos_neg','inversiones');
   const importePension=leerExtra('importe_pension','pension');
   const importeParo=leerExtra('importe_paro','paro');
   const retParo=leerExtra('ret_paro','paro');
@@ -614,19 +721,22 @@ function calcular(){
   const dedAlquiler=leerExtra('ded_alquiler_inq','deduccion_alquiler');
   const dedEfic=leerExtra('ded_eficiencia','eficiencia');
   const movilidad=extrasActivos.has('movilidad');
+  const maternidadAnticipada=extrasActivos.has('maternidad')?(parseFloat(document.getElementById('maternidad_anticipada').value)||0):0;
 
-  const ingresosTrabajo=salarioBruto+importePension+importeParo;
+  const salarioTotal=salarioBruto+trabajoAdicional;
+  const ingresosTrabajo=salarioTotal+importePension+importeParo;
   const gastoGeneralTrabajo=ingresosTrabajo>0?2000:0;
-  const gastoMovilidad=movilidad&&salarioBruto>0?2000:0;
-  const gastoDiscapacidad=salarioBruto>0?(discapacidad==='65'?7750:discapacidad==='33'?3500:0):0;
-  const gastosTrabajo=Math.min(ingresosTrabajo,cuotaSS+gastoGeneralTrabajo+gastoMovilidad+gastoDiscapacidad);
+  const gastoMovilidad=movilidad&&salarioTotal>0?2000:0;
+  const gastoDiscapacidad=salarioTotal>0?(discapacidad==='65'?7750:discapacidad==='33'?3500:0):0;
+  const gastosTrabajo=Math.min(ingresosTrabajo,cuotaSS+ssAdicional+gastoGeneralTrabajo+gastoMovilidad+gastoDiscapacidad);
   const rendimientoNetoPrevioTrabajo=Math.max(0,ingresosTrabajo-gastosTrabajo);
-  const rentasNoTrabajo=rendAutonomo+rendAlquiler+gananciasPat+dividendos;
+  const integracionAhorro=integrarAhorro2025(gananciasPat,perdidasPat,dividendos,rcmNegativo,perdidasPreviasPat,rcmPreviosNeg);
+  const baseAhorro=integracionAhorro.baseAhorro;
+  const rentasNoTrabajo=rendAutonomo+rendAlquiler+baseAhorro;
   const redTrabajo=reduccionTrabajo(rendimientoNetoPrevioTrabajo,rentasNoTrabajo);
   const rendimientoNetoTrabajo=Math.max(0,rendimientoNetoPrevioTrabajo-redTrabajo);
   const rendOtros=rendAutonomo+rendAlquiler;
   const baseImponibleGral=Math.max(0,rendimientoNetoTrabajo+rendOtros);
-  const baseAhorro=Math.max(0,gananciasPat+dividendos);
 
   const limitePlan=Math.max(0,Math.min(1500,.30*(rendimientoNetoPrevioTrabajo+Math.max(0,rendAutonomo))));
   const redPension=Math.min(aportePension,limitePlan);
@@ -637,10 +747,11 @@ function calcular(){
   }
   const baseLiquidableGral=Math.max(0,baseImponibleGral-redPension-redConjunta);
 
-  const hijosMenores3=Math.min(hijos,hijosMat);
-  const minimoEstatal=minimoPersonalFamiliar(MINIMO_ESTATAL,edad,discapacidad,hijos,hijosMenores3);
+  const hijosMenor3Avanzado=parseInt(document.getElementById('hijos_menor3').value)||0;
+  const hijosMenores3=Math.min(hijos,Math.max(hijosMenor3Avanzado,hijosMat));
+  const minimoEstatal=minimoPersonalFamiliar(MINIMO_ESTATAL,edad,discapacidad,hijos,hijosMenores3,opcionesFamilia);
   const tablaMinAut=MINIMOS_AUTONOMICOS[ccaa]||MINIMO_ESTATAL;
-  const minimoAutonomico=minimoPersonalFamiliar(tablaMinAut,edad,discapacidad,hijos,hijosMenores3);
+  const minimoAutonomico=minimoPersonalFamiliar(tablaMinAut,edad,discapacidad,hijos,hijosMenores3,opcionesFamilia);
   const escalaAut=ESCALAS_AUTONOMICAS[ccaa];
   const cuotaEstatal=Math.max(0,cuotaPorEscala(baseLiquidableGral,ESCALA_ESTATAL)-cuotaPorEscala(Math.min(baseLiquidableGral,minimoEstatal),ESCALA_ESTATAL));
   const cuotaAutonomica=Math.max(0,cuotaPorEscala(baseLiquidableGral,escalaAut)-cuotaPorEscala(Math.min(baseLiquidableGral,minimoAutonomico),escalaAut));
@@ -657,8 +768,9 @@ function calcular(){
   const dedDonativos=baseDonativo<=250?baseDonativo*.80:200+(baseDonativo-250)*.40;
   const deduccionesLimitadas=dedDonativos+dedAlquiler+dedEfic;
   const cuotaLiquida=Math.max(0,cuotaIntegraTotal-deduccionesLimitadas);
-  const dedMaternidad=hijosMat*1200+(guarderia?Math.min(gastoGuarderia,1000*hijosMat):0);
-  const totalRetenciones=retNomina+retInversiones+retParo+pagosFrac;
+  const dedMaternidadGenerada=hijosMat*1200+(guarderia?Math.min(gastoGuarderia,1000*hijosMat):0);
+  const dedMaternidad=Math.max(0,dedMaternidadGenerada-maternidadAnticipada);
+  const totalRetenciones=retNomina+retencionesAdicionales+retInversiones+retParo+pagosFrac;
   const resultado=cuotaLiquida-totalRetenciones-dedMaternidad;
   const devolucion=resultado<0;
 
@@ -679,13 +791,14 @@ function calcular(){
   set('liq_minimo',minimoEstatal);
   set('liq_base_liq',baseLiquidableGral);
   set('liq_cuota_integra',cuotaGeneral);
+  set('liq_base_ahorro',baseAhorro);
   set('liq_cuota_ahorro',cuotaAhorroBase);
   set('liq_maternidad',dedMaternidad);
   set('liq_donativos',dedDonativos);
   set('liq_alquiler_ded',dedAlquiler);
   set('liq_eficiencia_ded',dedEfic);
   set('liq_cuota_liquida',cuotaLiquida);
-  set('liq_ret_nomina',retNomina);
+  set('liq_ret_nomina',retNomina+retencionesAdicionales);
   set('liq_ret_otras',retInversiones+retParo);
   set('liq_pagos_frac',pagosFrac);
   set('tr1v',cuotaEstatal);set('tr2v',cuotaAutonomica);set('tr3v',cuotaAhorroBase);
@@ -696,11 +809,12 @@ function calcular(){
   resEl.style.color=devolucion?'var(--accent)':'#b91c1c';
 
   const avisos=['Estimación del IRPF 2025 de régimen común; no sustituye Renta WEB ni comprueba todos los requisitos legales.'];
-  if(hijos>0) avisos.push('Se presupone derecho íntegro al mínimo por descendientes y que no existe prorrateo por custodia compartida. El incremento por menores de 3 años solo se aplica a los hijos indicados en el apartado Maternidad.');
+  if(hijos>0&&opcionesFamilia.computoHijos===1) avisos.push('Se aplica cómputo íntegro a todos los descendientes; usa Opciones avanzadas si corresponde el cómputo por mitad.');
   if(modalidad==='conjunta') avisos.push('La modalidad conjunta se aproxima con los datos de una sola persona; faltan las rentas y circunstancias del resto de la unidad familiar.');
-  if(extrasActivos.has('inversiones')) avisos.push('La inversión se introduce ya neta y positiva; no se modelan pérdidas pendientes ni compensaciones entre componentes.');
+  if(extrasActivos.has('inversiones')&&(integracionAhorro.pendientePatRestante>0||integracionAhorro.pendienteRcmRestante>0)) avisos.push('Quedan saldos negativos no compensados: '+fmt(integracionAhorro.pendientePatRestante)+' patrimoniales y '+fmt(integracionAhorro.pendienteRcmRestante)+' de capital mobiliario.');
   if(extrasActivos.has('autonomo')) avisos.push('Quien haya estado de alta en RETA o en el régimen del mar durante 2025 está obligado a declarar; el rendimiento se presupone ya calculado conforme a su método fiscal.');
-  if(hijosMat>0) avisos.push('No se descuentan anticipos de la deducción por maternidad ya cobrados durante 2025.');
+  if(hijosMat>0&&maternidadAnticipada>0) avisos.push('La deducción por maternidad mostrada ya descuenta los anticipos indicados.');
+  if(numPagadores==='2') avisos.push(segundosPagadores>1500?'El segundo y restantes pagadores superan conjuntamente 1.500 €; puede operar el límite reducido de obligación de declarar.':'El segundo y restantes pagadores no superan 1.500 € según el importe indicado; pueden existir otros supuestos de obligación.');
   if(discapacidad!=='0'&&salarioBruto>0) avisos.push('Se presupone que la persona con discapacidad es trabajador activo.');
   document.getElementById('metodologia_aviso').textContent=avisos.join(' ');
   document.getElementById('resultado-box').style.display='block';
