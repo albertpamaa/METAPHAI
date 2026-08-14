@@ -1,0 +1,12 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo img {
+  display: block;
+  width: clamp(112px, 30vw, 132px);
+  max-width: 100%;
+  height: auto;
+}
