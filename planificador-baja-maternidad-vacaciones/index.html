@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baja maternidad/paternidad + vacaciones 2026 | Metaphai</title>
+  <meta name="description" content="Planifica cómo combinar permiso por nacimiento, vacaciones, lactancia acumulada y festivos con el calendario laboral oficial de 2026 en España.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://metaphai.com/planificador-baja-maternidad-vacaciones/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="google-adsense-account" content="ca-pub-7545567251029894">
+  <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <meta property="og:title" content="Planificador de baja de maternidad/paternidad y vacaciones 2026 | Metaphai">
+  <meta property="og:description" content="Ordena semanas flexibles y vacaciones con festivos oficiales para obtener una propuesta de reincorporación.">
+  <meta property="og:url" content="https://metaphai.com/planificador-baja-maternidad-vacaciones/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Metaphai">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Planificador de baja de maternidad/paternidad y vacaciones 2026 | Metaphai">
+  <meta name="twitter:description" content="Planificación orientativa de permiso por nacimiento, vacaciones y festivos en España.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f6f2; --surface: #fff; --border: #e2e0d8; --text: #1a1916;
+      --muted: #6b6960; --hint: #9e9c94; --accent: #2d6a4f; --accent-light: #e8f4ee;
+      --blue: #315f80; --blue-light: #eaf2f7; --sand: #8a641f; --sand-light: #f9f1df;
+      --danger: #8b2a2a; --warn: #7a4f1a; --radius: 10px; --radius-lg: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; }
+    .nav-back:hover, a { color: var(--accent); }
+    main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .breadcrumb { font-size: 12px; color: var(--hint); margin-top: .25rem; }
+    .breadcrumb a { color: var(--muted); }
+    .hero { text-align: center; padding: 1.6rem 0 2rem; }
+    .hero h1 { font-size: clamp(23px, 3.8vw, 36px); font-weight: 600; letter-spacing: -.03em; line-height: 1.2; margin-bottom: .75rem; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero p { color: var(--muted); font-size: 15px; max-width: 650px; margin: 0 auto; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--hint); margin-bottom: 1rem; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label, .workdays legend { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .field input, .field select, .field textarea { font: 14px 'DM Sans', sans-serif; padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); width: 100%; }
+    .field textarea { min-height: 72px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(45,106,79,.1); }
+    .tip { font-size: 12px; color: var(--hint); line-height: 1.5; }
+    [hidden] { display: none !important; }
+    .legal-dates { grid-column: 1 / -1; background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 12px; font-size: 13px; color: var(--muted); }
+    .legal-dates strong { color: var(--text); }
+    .advanced-toggle { width: 100%; margin-top: 14px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--muted); font: 500 13px 'DM Sans', sans-serif; cursor: pointer; text-align: left; }
+    .advanced-panel { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .advanced-panel.open { display: block; }
+    .advanced-panel .grid2 + .grid2 { margin-top: 13px; }
+    .workdays { border: 0; margin-bottom: 13px; }
+    .workdays legend { margin-bottom: 7px; }
+    .checks { display: flex; flex-wrap: wrap; gap: 7px; }
+    .checks label { display: flex; align-items: center; gap: 5px; padding: 6px 9px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; color: var(--muted); background: var(--bg); }
+    .calculate-btn { width: 100%; border: 0; border-radius: var(--radius); background: var(--accent); color: #fff; padding: 12px 16px; font: 600 15px 'DM Sans', sans-serif; cursor: pointer; }
+    .calculate-btn:hover { filter: brightness(.95); }
+    .alert { display: none; border-radius: var(--radius); padding: 12px 14px; font-size: 13px; margin: 1rem 0; }
+    .alert.show { display: block; }
+    .alert.error { background: #fdf0f0; border: 1px solid #f0c0c0; color: var(--danger); }
+    .alert.warning { background: #fef6ec; border: 1px solid #f0d0a0; color: var(--warn); }
+    .results { display: none; margin-top: 1.5rem; }
+    .results.show { display: block; }
+    .results-main { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1rem; }
+    .results-header { background: var(--accent); color: #fff; padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .main-label { font-size: 13px; color: rgba(255,255,255,.72); }
+    .main-value { font: 600 clamp(25px, 5vw, 37px) 'DM Mono', monospace; letter-spacing: -.03em; }
+    .header-note { max-width: 280px; font-size: 12px; color: rgba(255,255,255,.78); text-align: right; }
+    .result-section { padding: 1.25rem; border-top: 1px solid var(--border); }
+    .result-section h2 { font-size: 16px; margin-bottom: .75rem; }
+    .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .summary-group { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--hint); margin: .9rem 0 .45rem; }
+    .summary-group:first-child { margin-top: 0; }
+    .res-item { padding: .85rem; background: var(--surface); min-width: 0; }
+    .rl { font-size: 11px; color: var(--hint); margin-bottom: 3px; }
+    .rv { font: 500 14px 'DM Mono', monospace; overflow-wrap: anywhere; }
+    .period-list { display: grid; gap: 8px; }
+    .period { display: grid; grid-template-columns: 126px 1fr auto; gap: 12px; align-items: center; border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 10px 12px; background: var(--surface); }
+    .period.vacaciones { border-left-color: var(--blue); background: var(--blue-light); }
+    .period.lactancia { border-left-color: #76558f; background: #f4eef8; }
+    .period.puente { border-left-color: var(--sand); background: var(--sand-light); }
+    .period.obligatorio { border-left-color: #45443f; }
+    .period-name { font-size: 13px; font-weight: 600; }
+    .period-dates { font: 12px 'DM Mono', monospace; color: var(--muted); }
+    .period-days { font-size: 12px; color: var(--hint); white-space: nowrap; }
+    .holiday-list { list-style: none; display: grid; gap: 6px; }
+    .holiday-list li { font-size: 13px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    .holiday-list li:last-child { border: 0; }
+    .result-note, .status-box { font-size: 12px; color: var(--muted); line-height: 1.65; }
+    .status-box { margin-top: .8rem; border-left: 3px solid var(--accent); background: var(--accent-light); padding: 11px 13px; border-radius: 0 var(--radius) var(--radius) 0; }
+    .seo-content { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .seo-content h2 { font-size: 20px; letter-spacing: -.02em; margin: 1.8rem 0 .75rem; }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content p, .seo-content li { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .seo-content p { margin-bottom: .75rem; }
+    .seo-content ul { padding-left: 1.25rem; margin-bottom: .8rem; }
+    .method { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.15rem; margin: 1rem 0; }
+    .related { margin-top: 2rem; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .related h2 { font-size: 18px; margin-bottom: .65rem; }
+    .related p { font-size: 14px; line-height: 1.8; }
+    footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); border-top: 1px solid var(--border); margin-top: 3rem; }
+    footer a { color: var(--hint); }
+    @media (max-width: 650px) {
+      header { padding: 0 1rem; } main { padding-inline: 1rem; } .grid2 { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr 1fr; } .header-note { text-align: left; }
+      .period { grid-template-columns: 1fr auto; } .period-dates { grid-column: 1 / -1; grid-row: 2; }
+    }
+    @media (max-width: 390px) { .result-grid { grid-template-columns: 1fr; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Planificador de baja por nacimiento y vacaciones",
+    "url": "https://metaphai.com/planificador-baja-maternidad-vacaciones/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "es",
+    "isAccessibleForFree": true,
+    "description": "Planificación orientativa de semanas flexibles del permiso por nacimiento y vacaciones con festivos oficiales de 2026."
+  }
+  </script>
+</head>
+<body>
+<header>
+  <a href="/" class="logo">meta<span>phai</span></a>
+  <a href="/" class="nav-back">← Todas las calculadoras</a>
+</header>
+<main>
+  <nav class="breadcrumb" aria-label="Migas de pan"><a href="/">Inicio</a> › Planificador de baja y vacaciones</nav>
+  <div class="hero">
+    <h1>Planificador de <em>baja de maternidad/paternidad y vacaciones</em></h1>
+    <p>Distribuye el permiso que ya tienes, vacaciones, lactancia acumulada reconocida y festivos para preparar tu reincorporación. No modifica la duración legal de ningún derecho.</p>
+  </div>
+
+  <form id="form_planificador" novalidate>
+    <div class="card">
+      <div class="section-label">Datos del permiso y calendario</div>
+      <div class="grid2">
+        <div class="field">
+          <label for="fecha_hecho">Fecha de nacimiento o hecho causante</label>
+          <input type="date" id="fecha_hecho" required>
+          <p class="tip">Las seis primeras semanas son obligatorias para ambos progenitores y no se optimizan.</p>
+        </div>
+        <div class="field">
+          <label for="modo_inicio">¿Cuándo quieres empezar a usar tus semanas flexibles?</label>
+          <select id="modo_inicio">
+            <option value="automatico" selected>Lo antes posible</option>
+            <option value="manual">Elegir una fecha</option>
+          </select>
+        </div>
+        <div class="field" id="campo_fecha_inicio" hidden>
+          <label for="fecha_inicio">Fecha de inicio</label>
+          <input type="date" id="fecha_inicio">
+        </div>
+        <div class="legal-dates" id="fechas_legales" aria-live="polite">Introduce la fecha del hecho causante para ver el periodo obligatorio y el primer día flexible.</div>
+        <div class="field">
+          <label for="comunidad">Comunidad o ciudad autónoma</label>
+          <select id="comunidad" required>
+            <option value="">Selecciona una</option>
+            <option value="andalucia">Andalucía</option><option value="aragon">Aragón</option>
+            <option value="asturias">Asturias</option><option value="baleares">Illes Balears</option>
+            <option value="canarias">Canarias</option><option value="cantabria">Cantabria</option>
+            <option value="castilla_mancha">Castilla-La Mancha</option><option value="castilla_leon">Castilla y León</option>
+            <option value="cataluna">Cataluña</option><option value="extremadura">Extremadura</option>
+            <option value="galicia">Galicia</option><option value="madrid">Comunidad de Madrid</option>
+            <option value="murcia">Región de Murcia</option><option value="navarra">Navarra</option>
+            <option value="pais_vasco">País Vasco</option><option value="rioja">La Rioja</option>
+            <option value="valenciana">Comunitat Valenciana</option><option value="ceuta">Ceuta</option>
+            <option value="melilla">Melilla</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ambito">Ámbito laboral</label>
+          <select id="ambito">
+            <option value="privado">Empresa privada</option>
+            <option value="publico">Administración pública</option>
+          </select>
+          <p class="tip">Ajusta el aviso sobre preaviso y autorización; no cambia tus semanas.</p>
+        </div>
+        <div class="field">
+          <label for="semanas_12">Semanas flexibles disponibles hasta los 12 meses</label>
+          <input type="number" id="semanas_12" value="11" min="0" max="22" step="1" required>
+          <p class="tip">Indica las que aún tienes, no las ya disfrutadas.</p>
+        </div>
+        <div class="field">
+          <label for="dias_vacaciones">Vacaciones disponibles</label>
+          <input type="number" id="dias_vacaciones" value="22" min="0" max="90" step="1" required>
+        </div>
+        <div class="field">
+          <label for="tipo_vacaciones">Cómo cuenta tu empresa las vacaciones</label>
+          <select id="tipo_vacaciones">
+            <option value="laborables">Días laborables</option>
+            <option value="naturales">Días naturales</option>
+          </select>
+          <p class="tip">Confírmalo en tu convenio o contrato.</p>
+        </div>
+        <div class="field">
+          <label for="lactancia_modo">¿Quieres incluir lactancia acumulada?</label>
+          <select id="lactancia_modo">
+            <option value="no">No</option>
+            <option value="manual">Sí, conozco los días reconocidos</option>
+          </select>
+          <p class="tip">No existe un número universal de días; depende de la jornada, el ámbito y, en su caso, del convenio o la Administración.</p>
+        </div>
+        <div class="field" id="campo_lactancia_dias" hidden>
+          <label for="dias_lactancia">Jornadas completas de lactancia reconocidas</label>
+          <input type="number" id="dias_lactancia" value="0" min="1" max="90" step="1">
+          <p class="tip">Introduce únicamente jornadas completas ya confirmadas. Se consumirán como días laborables.</p>
+        </div>
+      </div>
+
+      <button type="button" class="advanced-toggle" id="toggle_avanzadas" aria-expanded="false" aria-controls="opciones_avanzadas">Opciones avanzadas ▼</button>
+      <div class="advanced-panel" id="opciones_avanzadas">
+        <div class="grid2">
+          <div class="field">
+            <label for="semanas_8">Semanas disponibles hasta los 8 años</label>
+            <input type="number" id="semanas_8" value="2" min="0" max="4" step="1">
+            <p class="tip">Son las 2 semanas retribuidas por progenitor, o 4 en familia monoparental, si aún no se han usado.</p>
+          </div>
+          <div class="field">
+            <label for="festivos_extra">Festivos locales o adicionales</label>
+            <textarea id="festivos_extra" placeholder="2026-05-15, 2026-11-09"></textarea>
+            <p class="tip">Fechas AAAA-MM-DD separadas por coma o salto de línea. Incluye aquí los dos festivos locales y, en Canarias, el insular.</p>
+          </div>
+        </div>
+        <fieldset class="workdays">
+          <legend>Días habituales de trabajo</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="laborable" value="1" checked> Lunes</label>
+            <label><input type="checkbox" name="laborable" value="2" checked> Martes</label>
+            <label><input type="checkbox" name="laborable" value="3" checked> Miércoles</label>
+            <label><input type="checkbox" name="laborable" value="4" checked> Jueves</label>
+            <label><input type="checkbox" name="laborable" value="5" checked> Viernes</label>
+            <label><input type="checkbox" name="laborable" value="6"> Sábado</label>
+            <label><input type="checkbox" name="laborable" value="0"> Domingo</label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="festivos_excluir">Ajustes territoriales: festivos oficiales que no te aplican</label>
+          <textarea id="festivos_excluir" placeholder="2026-12-26"></textarea>
+          <p class="tip">Solo si tu calendario territorial sustituye una fecha. Por ejemplo, Arán sustituye el 26 de diciembre por el 17 de junio, que debe añadirse arriba.</p>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="calculate-btn">Crear propuesta de planificación</button>
+  </form>
+
+  <div class="alert error" id="errores" role="alert"></div>
+  <div class="alert warning" id="avisos" role="status"></div>
+
+  <section class="results" id="resultados" aria-live="polite">
+    <div class="results-main">
+      <div class="results-header">
+        <div><div class="main-label">Fecha orientativa de reincorporación</div><div class="main-value" id="res_retorno">—</div></div>
+        <p class="header-note" id="res_estado">Propuesta condicionada a la aprobación de las fechas y a tu calendario real.</p>
+      </div>
+      <div class="result-section">
+        <h3 class="summary-group">Permiso</h3>
+        <div class="result-grid">
+          <div class="res-item"><div class="rl">Permiso total incluido</div><div class="rv" id="res_permiso_total">—</div></div>
+          <div class="res-item"><div class="rl">Periodo obligatorio</div><div class="rv" id="res_obligatorio">6 semanas</div></div>
+          <div class="res-item"><div class="rl">Semanas flexibles utilizadas</div><div class="rv" id="res_flexibles">—</div></div>
+          <div class="res-item"><div class="rl">De ellas, hasta los 8 años</div><div class="rv" id="res_hasta8">—</div></div>
+        </div>
+        <h3 class="summary-group">Vacaciones, lactancia y calendario</h3>
+        <div class="result-grid">
+          <div class="res-item"><div class="rl">Vacaciones usadas</div><div class="rv" id="res_vacaciones">—</div></div>
+          <div class="res-item"><div class="rl">Vacaciones restantes</div><div class="rv" id="res_vacaciones_restantes">—</div></div>
+          <div class="res-item"><div class="rl">Lactancia acumulada incluida</div><div class="rv" id="res_lactancia">—</div></div>
+          <div class="res-item"><div class="rl">Ausencia continua del bloque final</div><div class="rv" id="res_continuos">—</div></div>
+          <div class="res-item"><div class="rl">Días de trabajo cubiertos</div><div class="rv" id="res_laborables">—</div></div>
+          <div class="res-item"><div class="rl">Diferencia frente al orden base</div><div class="rv" id="res_mejora">—</div></div>
+        </div>
+        <p class="result-note" id="res_resumen"></p>
+      </div>
+      <div class="result-section">
+        <h2>Periodos propuestos</h2>
+        <div class="period-list" id="lista_periodos"></div>
+        <div class="status-box" id="nota_aprobacion"></div>
+      </div>
+      <div class="result-section">
+        <h2>Festivos y descansos relevantes</h2>
+        <ul class="holiday-list" id="lista_festivos"></ul>
+        <p class="result-note" id="res_descansos"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="seo-content">
+    <h2>Qué hace este planificador</h2>
+    <p>Compara distintas posiciones para un único bloque de vacaciones y, si lo indicas, un bloque de lactancia acumulada ya reconocido. Todas las alternativas usan exactamente los mismos derechos. La propuesta elige la que produce una reincorporación más tardía según tu semana laboral y los festivos cargados.</p>
+    <div class="method">
+      <p><strong>No amplía derechos.</strong> Un sábado, domingo o festivo incluido dentro de una semana de permiso no genera otra semana ni un día adicional. En vacaciones por días naturales tampoco deja de consumirse por coincidir con un festivo.</p>
+      <p><strong>Vacaciones laborables.</strong> Solo consumen saldo los días de tu jornada habitual que no sean festivos. Los descansos intermedios se muestran como parte del periodo continuo, pero no como vacaciones consumidas.</p>
+    </div>
+
+    <h2>Reglas legales que condicionan la propuesta</h2>
+    <ul>
+      <li>Las seis semanas inmediatamente posteriores al nacimiento, adopción, guarda o acogimiento son obligatorias, ininterrumpidas y a jornada completa.</li>
+      <li>En la situación general, las 11 semanas siguientes pueden disfrutarse en periodos semanales hasta los 12 meses y otras 2 semanas hasta que el menor cumpla 8 años. En familia monoparental son 22 y 4, respectivamente.</li>
+      <li>La persona trabajadora debe comunicar cada periodo con al menos 15 días de antelación, salvo el plazo que establezca el convenio. En el empleo público también se exige preaviso y pueden operar necesidades del servicio en los supuestos legales.</li>
+      <li>Las vacaciones se fijan de común acuerdo conforme al convenio y al calendario de la empresa. La herramienta no convierte una combinación propuesta en una fecha aprobada.</li>
+      <li>Si las vacaciones coinciden con la suspensión por nacimiento, pueden disfrutarse en fecha distinta al finalizar la suspensión, aunque haya terminado el año natural correspondiente.</li>
+    </ul>
+    <p>Para una planificación posterior al nacimiento, las seis semanas obligatorias y los periodos flexibles funcionan igual para la madre biológica y el otro progenitor. La madre biológica puede anticipar hasta cuatro semanas voluntarias antes de la fecha prevista del parto, pero este planificador parte del hecho causante y no modela ese anticipo.</p>
+    <p>La lactancia acumulada se incorpora solo cuando introduces las jornadas completas ya reconocidas. En el sector privado el derecho ordinario alcanza hasta los nueve meses y la concreción se preavisa; en el empleo público alcanza hasta los doce meses y la modalidad acumulada se disfruta después del permiso por nacimiento correspondiente. Para empleo público, el planificador la sitúa después del bloque de semanas utilizable hasta los doce meses y antes de las semanas parentales reservables hasta los ocho años. La herramienta no estima automáticamente los días porque no existe una cifra universal.</p>
+    <p>La planificación puede variar por convenio colectivo, turnos, jornada irregular, acuerdos con la empresa o administración y festivos locales. Si tu calendario no es de lunes a viernes, ajusta los días habituales en Opciones avanzadas.</p>
+    <p>La opción de vacaciones laborales está dirigida a personas empleadas en empresa privada o en una Administración pública. En trabajo autónomo, los días sin actividad no son el derecho a vacaciones retribuidas del Estatuto de los Trabajadores y esta herramienta no los modela como tal.</p>
+
+    <h2>Calendario de festivos utilizado</h2>
+    <p>Los datos nacionales y autonómicos están versionados para 2026 a partir de la Resolución de 17 de octubre de 2025 publicada en el BOE. Incluye las 17 comunidades autónomas, Ceuta y Melilla. Los festivos locales se introducen manualmente porque los aprueban y publican las autoridades autonómicas o provinciales para cada municipio y no existe un único calendario estatal consolidado.</p>
+    <p>Canarias tiene además un festivo por isla. Arán sustituye una fecha del calendario general catalán. Esos ajustes deben indicarse en Opciones avanzadas. Si la propuesta cruza fuera de 2026, el planificador avisa y deja de cuantificar una ventaja frente al orden base hasta que exista el calendario oficial aplicable.</p>
+
+    <h2>Fuentes oficiales</h2>
+    <p><a href="https://www.boe.es/eli/es/rdl/2025/07/29/9/dof/spa/html" rel="noopener noreferrer">BOE — Real Decreto-ley 9/2025</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11430" rel="noopener noreferrer">BOE — Estatuto de los Trabajadores, arts. 37.4, 37.7, 38 y 48</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11719" rel="noopener noreferrer">BOE — Estatuto Básico del Empleado Público, arts. 48 y 49</a>; <a href="https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/6b96a085-4dc0-47af-b2cb-97e00716791e/subsidionycm?changeLanguage=es" rel="noopener noreferrer">Seguridad Social — nacimiento y cuidado del menor</a>; y <a href="https://www.boe.es/buscar/doc.php?id=BOE-A-2025-21667" rel="noopener noreferrer">BOE — calendario laboral oficial de 2026</a>.</p>
+    <p><strong>Datos de calendario:</strong> versión 2026. <strong>Última revisión normativa:</strong> 14 de agosto de 2026.</p>
+  </div>
+
+  <section class="related" aria-labelledby="relacionadas_titulo">
+    <h2 id="relacionadas_titulo">Antes de planificar, comprueba tu permiso</h2>
+    <p>Si todavía no conoces las semanas que te corresponden o quieres estimar la prestación, usa primero la <a href="/calculadora-baja-maternidad-paternidad/">calculadora de baja por maternidad y paternidad</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Metaphai · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
+  <p style="margin-top:6px">Planificación orientativa. Confirma las fechas con tu empresa o administración y revisa tu convenio y calendario laboral.</p>
+</footer>
+
+<script>
+'use strict';
+
+const MS_DIA = 86400000;
+const ANO_CALENDARIO = 2026;
+const FUENTE_CALENDARIO_2026 = 'BOE-A-2025-21667';
+
+const FESTIVOS_COMUNES_2026 = [
+  ['2026-01-01', 'Año Nuevo'], ['2026-01-06', 'Epifanía del Señor'],
+  ['2026-04-03', 'Viernes Santo'], ['2026-05-01', 'Fiesta del Trabajo'],
+  ['2026-08-15', 'Asunción de la Virgen'], ['2026-10-12', 'Fiesta Nacional de España'],
+  ['2026-12-08', 'Inmaculada Concepción'], ['2026-12-25', 'Natividad del Señor']
+];
+
+const FESTIVOS_CCAA_2026 = {
+  andalucia: [['2026-02-28','Día de Andalucía'],['2026-04-02','Jueves Santo'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  aragon: [['2026-04-02','Jueves Santo'],['2026-04-23','San Jorge, Día de Aragón'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  asturias: [['2026-04-02','Jueves Santo'],['2026-09-08','Día de Asturias'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  baleares: [['2026-03-02','Día de las Illes Balears (traslado)'],['2026-04-02','Jueves Santo'],['2026-04-06','Lunes de Pascua'],['2026-12-26','San Esteban']],
+  canarias: [['2026-04-02','Jueves Santo'],['2026-05-30','Día de Canarias'],['2026-11-02','Todos los Santos (traslado)']],
+  cantabria: [['2026-04-02','Jueves Santo'],['2026-07-28','Día de las Instituciones de Cantabria'],['2026-09-15','La Bien Aparecida'],['2026-12-07','Día de la Constitución (traslado)']],
+  castilla_mancha: [['2026-04-02','Jueves Santo'],['2026-04-06','Lunes de Pascua'],['2026-06-04','Corpus Christi'],['2026-11-02','Todos los Santos (traslado)']],
+  castilla_leon: [['2026-04-02','Jueves Santo'],['2026-04-23','Fiesta de Castilla y León'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  cataluna: [['2026-04-06','Lunes de Pascua'],['2026-06-24','San Juan'],['2026-09-11','Fiesta Nacional de Cataluña'],['2026-12-26','San Esteban']],
+  extremadura: [['2026-04-02','Jueves Santo'],['2026-09-08','Día de Extremadura'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  galicia: [['2026-03-19','San José'],['2026-04-02','Jueves Santo'],['2026-06-24','San Juan'],['2026-07-25','Santiago Apóstol, Día Nacional de Galicia']],
+  madrid: [['2026-04-02','Jueves Santo'],['2026-05-02','Fiesta de la Comunidad de Madrid'],['2026-11-02','Todos los Santos (traslado)'],['2026-12-07','Día de la Constitución (traslado)']],
+  murcia: [['2026-03-19','San José'],['2026-04-02','Jueves Santo'],['2026-06-09','Día de la Región de Murcia'],['2026-12-07','Día de la Constitución (traslado)']],
+  navarra: [['2026-03-19','San José'],['2026-04-02','Jueves Santo'],['2026-04-06','Lunes de Pascua'],['2026-11-02','Todos los Santos (traslado)']],
+  pais_vasco: [['2026-03-19','San José'],['2026-04-02','Jueves Santo'],['2026-04-06','Lunes de Pascua'],['2026-07-25','Santiago Apóstol']],
+  rioja: [['2026-04-02','Jueves Santo'],['2026-04-06','Lunes de Pascua'],['2026-06-09','Día de La Rioja'],['2026-12-07','Día de la Constitución (traslado)']],
+  valenciana: [['2026-03-19','San José'],['2026-04-06','Lunes de Pascua'],['2026-06-24','San Juan'],['2026-10-09','Día de la Comunitat Valenciana']],
+  ceuta: [['2026-04-02','Jueves Santo'],['2026-05-27','Fiesta del Sacrificio (Eidul Adha)'],['2026-08-05','Nuestra Señora de África'],['2026-09-02','Día de Ceuta']],
+  melilla: [['2026-03-20','Fiesta del Eid Fitr'],['2026-04-02','Jueves Santo'],['2026-05-27','Fiesta del Sacrificio (Aid Al Adha)'],['2026-12-07','Día de la Constitución (traslado)']]
+};
+
+function fechaUTC(valor) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(valor || '')) return null;
+  const [ano, mes, dia] = valor.split('-').map(Number);
+  const fecha = new Date(Date.UTC(ano, mes - 1, dia));
+  return fecha.getUTCFullYear() === ano && fecha.getUTCMonth() === mes - 1 && fecha.getUTCDate() === dia ? fecha : null;
+}
+function aISO(fecha) { return fecha.toISOString().slice(0, 10); }
+function sumarDias(fecha, dias) { return new Date(fecha.getTime() + dias * MS_DIA); }
+function sumarAnos(fecha, anos) {
+  const copia = new Date(fecha.getTime());
+  copia.setUTCFullYear(copia.getUTCFullYear() + anos);
+  if (copia.getUTCMonth() !== fecha.getUTCMonth()) copia.setUTCDate(0);
+  return copia;
+}
+function sumarMeses(fecha, meses) {
+  const destino = new Date(Date.UTC(fecha.getUTCFullYear(), fecha.getUTCMonth() + meses, 1));
+  const ultimo = new Date(Date.UTC(destino.getUTCFullYear(), destino.getUTCMonth() + 1, 0)).getUTCDate();
+  destino.setUTCDate(Math.min(fecha.getUTCDate(), ultimo));
+  return destino;
+}
+function diasEntre(inicio, fin) { return Math.round((fin - inicio) / MS_DIA); }
+function formatearFecha(fecha) {
+  return new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(fecha);
+}
+function plural(numero, singular, pluralTexto) { return `${numero} ${numero === 1 ? singular : pluralTexto}`; }
+function escapar(texto) {
+  const div = document.createElement('div'); div.textContent = String(texto); return div.innerHTML;
+}
+
+function leerListaFechas(texto) {
+  const valores = (texto || '').split(/[\s,;]+/).filter(Boolean);
+  const validas = [], invalidas = [];
+  valores.forEach(valor => (fechaUTC(valor) ? validas : invalidas).push(valor));
+  return { validas: [...new Set(validas)], invalidas };
+}
+
+function crearCalendario(comunidad, extras, exclusiones) {
+  const mapa = new Map();
+  FESTIVOS_COMUNES_2026.forEach(([fecha, nombre]) => mapa.set(fecha, { nombre, tipo: 'nacional' }));
+  (FESTIVOS_CCAA_2026[comunidad] || []).forEach(([fecha, nombre]) => mapa.set(fecha, { nombre, tipo: 'autonómico' }));
+  exclusiones.forEach(fecha => mapa.delete(fecha));
+  extras.forEach(fecha => mapa.set(fecha, { nombre: 'Festivo local o adicional', tipo: 'manual' }));
+  return mapa;
+}
+
+function esLaborable(fecha, diasTrabajo, calendario) {
+  return diasTrabajo.has(fecha.getUTCDay()) && !calendario.has(aISO(fecha));
+}
+
+function crearSegmento(tipo, nombre, inicio, fin, unidades) {
+  return { tipo, nombre, inicio, fin, diasCalendario: diasEntre(inicio, fin) + 1, unidades };
+}
+
+function simularPlan(datos, corte, corteLactancia, ordenMismo = 'vacaciones_primero') {
+  const semanas = [
+    ...Array(datos.semanas12).fill('hasta12'),
+    ...Array(datos.semanas8).fill('hasta8')
+  ];
+  const total = semanas.length;
+  const corteLact = Number.isInteger(corteLactancia) ? corteLactancia : total;
+  const diasLactancia = Number(datos.lactancia) || 0;
+  const periodos = [];
+  let cursor = new Date(datos.inicio.getTime());
+  let valido = true;
+
+  function guardarPeriodo(periodo) {
+    const anterior = periodos[periodos.length - 1];
+    if (periodo.tipo === 'permiso' && anterior && anterior.tipo === 'permiso' && anterior.nombre === periodo.nombre && sumarDias(anterior.fin, 1).getTime() === periodo.inicio.getTime()) {
+      anterior.fin = periodo.fin;
+      anterior.unidades += periodo.unidades;
+      anterior.diasCalendario += periodo.diasCalendario;
+    } else {
+      periodos.push(periodo);
+    }
+  }
+
+  function anadirPuente() {
+    const inicio = new Date(cursor.getTime());
+    let pasos = 0;
+    while (!esLaborable(cursor, datos.diasTrabajo, datos.calendario) && pasos < 14) { cursor = sumarDias(cursor, 1); pasos += 1; }
+    if (pasos) periodos.push(crearSegmento('puente', 'Descanso / festivo sin consumir saldo', inicio, sumarDias(cursor, -1), 0));
+  }
+
+  function anadirSemana(indice) {
+    const categoria = semanas[indice];
+    const inicio = new Date(cursor.getTime());
+    const fin = sumarDias(inicio, 6);
+    if (categoria === 'hasta12' && fin >= datos.limite12) valido = false;
+    if (categoria === 'hasta8' && fin >= datos.limite8) valido = false;
+    guardarPeriodo(crearSegmento('permiso', categoria === 'hasta12' ? 'Permiso flexible · hasta 12 meses' : 'Permiso flexible · hasta 8 años', inicio, fin, 1));
+    cursor = sumarDias(fin, 1);
+  }
+
+  function anadirBloqueLaborable(tipo, nombre, unidades) {
+    if (!unidades) return null;
+    anadirPuente();
+    const inicio = new Date(cursor.getTime());
+    let consumidos = 0, seguridad = 0;
+    while (consumidos < unidades && seguridad < 730) {
+      if (esLaborable(cursor, datos.diasTrabajo, datos.calendario)) consumidos += 1;
+      if (consumidos < unidades) cursor = sumarDias(cursor, 1);
+      seguridad += 1;
+    }
+    if (consumidos !== unidades) { valido = false; return null; }
+    const fin = new Date(cursor.getTime());
+    guardarPeriodo(crearSegmento(tipo, nombre, inicio, fin, unidades));
+    cursor = sumarDias(fin, 1);
+    return fin;
+  }
+
+  function anadirVacaciones() {
+    if (!datos.vacaciones) return;
+    anadirPuente();
+    const inicio = new Date(cursor.getTime());
+    if (datos.tipoVacaciones === 'naturales') {
+      const fin = sumarDias(inicio, datos.vacaciones - 1);
+      periodos.push(crearSegmento('vacaciones', 'Vacaciones · días naturales', inicio, fin, datos.vacaciones));
+      cursor = sumarDias(fin, 1);
+      return;
+    }
+    cursor = inicio;
+    anadirBloqueLaborable('vacaciones', 'Vacaciones · días laborables', datos.vacaciones);
+  }
+
+  function anadirLactancia() {
+    const fin = anadirBloqueLaborable('lactancia', 'Lactancia acumulada · jornadas reconocidas', diasLactancia);
+    if (fin && datos.limiteLactancia && fin >= datos.limiteLactancia) valido = false;
+  }
+
+  for (let posicion = 0; posicion <= total; posicion += 1) {
+    const acciones = [];
+    if (datos.vacaciones && corte === posicion) acciones.push('vacaciones');
+    if (diasLactancia && corteLact === posicion) acciones.push('lactancia');
+    if (acciones.length === 2 && ordenMismo === 'lactancia_primero') acciones.reverse();
+    acciones.forEach(accion => accion === 'vacaciones' ? anadirVacaciones() : anadirLactancia());
+    if (posicion < total) {
+      anadirPuente();
+      anadirSemana(posicion);
+    }
+  }
+  anadirPuente();
+
+  return { valido, periodos, retorno: cursor, corte, corteLactancia: corteLact, ordenMismo };
+}
+
+function optimizar(datos) {
+  const total = datos.semanas12 + datos.semanas8;
+  const candidatos = [];
+  for (let corte = 0; corte <= total; corte += 1) {
+    const cortesLactancia = datos.lactancia
+      ? (datos.ambito === 'publico' ? [datos.semanas12] : Array.from({ length: total + 1 }, (_, indice) => indice))
+      : [total];
+    cortesLactancia.forEach(corteLactancia => {
+      const ordenes = datos.lactancia && datos.vacaciones && corte === corteLactancia ? ['vacaciones_primero', 'lactancia_primero'] : ['vacaciones_primero'];
+      ordenes.forEach(orden => {
+        const plan = simularPlan(datos, corte, corteLactancia, orden);
+        if (plan.valido) candidatos.push(plan);
+      });
+    });
+  }
+  if (!candidatos.length) return null;
+  const corteLactanciaBase = datos.lactancia && datos.ambito === 'publico' ? datos.semanas12 : total;
+  const baseExacta = candidatos.find(plan => plan.corte === total && plan.corteLactancia === corteLactanciaBase && plan.ordenMismo === 'vacaciones_primero');
+  const baseAlternativa = candidatos.find(plan => plan.corte === total && plan.corteLactancia === corteLactanciaBase);
+  const base = baseExacta || baseAlternativa || candidatos[0];
+  const baseComparable = Boolean(baseExacta || baseAlternativa);
+  candidatos.sort((a, b) => b.retorno - a.retorno || Math.abs(total - a.corte) - Math.abs(total - b.corte) || Math.abs(total - a.corteLactancia) - Math.abs(total - b.corteLactancia));
+  return { mejor: candidatos[0], base, baseComparable };
+}
+
+function contextoFecha(fecha, periodos) {
+  const periodo = periodos.find(p => fecha >= p.inicio && fecha <= p.fin);
+  return periodo ? periodo.nombre.toLowerCase() : 'entre bloques, sin derecho aplicado';
+}
+
+function resumir(datos, plan, inicioPeriodo = datos.inicio, periodosContexto = plan.periodos) {
+  const finAusencia = sumarDias(plan.retorno, -1);
+  let laborables = 0, descansos = 0;
+  const festivos = [];
+  for (let fecha = new Date(inicioPeriodo.getTime()); fecha <= finAusencia; fecha = sumarDias(fecha, 1)) {
+    const info = datos.calendario.get(aISO(fecha));
+    if (info) festivos.push({ fecha: new Date(fecha.getTime()), ...info, contexto: contextoFecha(fecha, periodosContexto) });
+    else if (!datos.diasTrabajo.has(fecha.getUTCDay())) descansos += 1;
+    else laborables += 1;
+  }
+  return { laborables, descansos, festivos, finAusencia };
+}
+
+function analizarContinuidad(datos, obligatorio, plan) {
+  const derechos = [obligatorio, ...plan.periodos.filter(periodo => periodo.tipo !== 'puente')];
+  const rachas = [];
+  let inicioRacha = null, laborablesCubiertos = 0, laborablesDescubiertos = 0;
+  const fin = sumarDias(plan.retorno, -1);
+  for (let fecha = new Date(datos.fechaHecho.getTime()); fecha <= fin; fecha = sumarDias(fecha, 1)) {
+    const conDerecho = derechos.some(periodo => fecha >= periodo.inicio && fecha <= periodo.fin);
+    const cubierto = conDerecho || !esLaborable(fecha, datos.diasTrabajo, datos.calendario);
+    if (conDerecho && esLaborable(fecha, datos.diasTrabajo, datos.calendario)) laborablesCubiertos += 1;
+    if (!cubierto && esLaborable(fecha, datos.diasTrabajo, datos.calendario)) laborablesDescubiertos += 1;
+    if (cubierto && !inicioRacha) inicioRacha = new Date(fecha.getTime());
+    if (!cubierto && inicioRacha) {
+      const finRacha = sumarDias(fecha, -1);
+      rachas.push({ inicio: inicioRacha, fin: finRacha, dias: diasEntre(inicioRacha, fecha) });
+      inicioRacha = null;
+    }
+  }
+  if (inicioRacha) rachas.push({ inicio: inicioRacha, fin, dias: diasEntre(inicioRacha, plan.retorno) });
+  return { rachas, final: rachas[rachas.length - 1], laborablesCubiertos, laborablesDescubiertos };
+}
+
+function leerDatos() {
+  const fechaHecho = fechaUTC(document.getElementById('fecha_hecho').value);
+  const extras = leerListaFechas(document.getElementById('festivos_extra').value);
+  const exclusiones = leerListaFechas(document.getElementById('festivos_excluir').value);
+  const diasTrabajo = new Set([...document.querySelectorAll('input[name="laborable"]:checked')].map(el => Number(el.value)));
+  const obligatorioFin = fechaHecho ? sumarDias(fechaHecho, 41) : null;
+  const inicioMinimo = fechaHecho ? sumarDias(fechaHecho, 42) : null;
+  const modoInicio = document.getElementById('modo_inicio').value;
+  const inicioElegido = modoInicio === 'manual' ? fechaUTC(document.getElementById('fecha_inicio').value) : null;
+  const inicio = modoInicio === 'manual' && inicioElegido && inicioMinimo && inicioElegido >= inicioMinimo ? inicioElegido : inicioMinimo;
+  const comunidad = document.getElementById('comunidad').value;
+  const lactanciaModo = document.getElementById('lactancia_modo').value;
+  const lactancia = lactanciaModo === 'manual' ? Number(document.getElementById('dias_lactancia').value) : 0;
+  const ambito = document.getElementById('ambito').value;
+  return {
+    fechaHecho, obligatorioFin, inicioMinimo, modoInicio, inicioElegido, inicio, comunidad, ambito,
+    inicioAjustado: Boolean(modoInicio === 'manual' && inicioElegido && inicioMinimo && inicioElegido < inicioMinimo),
+    semanas12: Number(document.getElementById('semanas_12').value),
+    semanas8: Number(document.getElementById('semanas_8').value),
+    vacaciones: Number(document.getElementById('dias_vacaciones').value),
+    tipoVacaciones: document.getElementById('tipo_vacaciones').value,
+    lactanciaModo, lactancia,
+    diasTrabajo, extras, exclusiones,
+    calendario: crearCalendario(comunidad, extras.validas, exclusiones.validas),
+    limite12: fechaHecho ? sumarMeses(fechaHecho, 12) : null,
+    limite8: fechaHecho ? sumarAnos(fechaHecho, 8) : null,
+    limiteLactancia: fechaHecho ? sumarMeses(fechaHecho, ambito === 'publico' ? 12 : 9) : null
+  };
+}
+
+function validar(datos) {
+  const errores = [];
+  if (!datos.fechaHecho) errores.push('Introduce una fecha válida del hecho causante.');
+  if (datos.modoInicio === 'manual' && !datos.inicioElegido) errores.push('Elige una fecha de inicio.');
+  if (!datos.comunidad || !FESTIVOS_CCAA_2026[datos.comunidad]) errores.push('Selecciona la comunidad o ciudad autónoma.');
+  if (!Number.isInteger(datos.semanas12) || datos.semanas12 < 0 || datos.semanas12 > 22) errores.push('Las semanas hasta 12 meses deben estar entre 0 y 22.');
+  if (!Number.isInteger(datos.semanas8) || datos.semanas8 < 0 || datos.semanas8 > 4) errores.push('Las semanas hasta 8 años deben estar entre 0 y 4.');
+  if (!Number.isInteger(datos.vacaciones) || datos.vacaciones < 0 || datos.vacaciones > 90) errores.push('Las vacaciones deben estar entre 0 y 90 días.');
+  if (datos.lactanciaModo === 'manual' && (!Number.isInteger(datos.lactancia) || datos.lactancia < 1 || datos.lactancia > 90)) errores.push('Las jornadas reconocidas de lactancia deben estar entre 1 y 90.');
+  if (!datos.diasTrabajo.size) errores.push('Selecciona al menos un día habitual de trabajo.');
+  if (datos.extras.invalidas.length || datos.exclusiones.invalidas.length) errores.push('Revisa las fechas manuales: usa el formato AAAA-MM-DD.');
+  if (datos.semanas12 + datos.semanas8 + datos.vacaciones + datos.lactancia === 0) errores.push('Introduce al menos una semana flexible, un día de vacaciones o una jornada reconocida de lactancia.');
+  return errores;
+}
+
+function calendarioCompleto(inicio, retorno) {
+  return inicio.getUTCFullYear() === ANO_CALENDARIO && sumarDias(retorno, -1).getUTCFullYear() === ANO_CALENDARIO;
+}
+
+function anosSinCalendario(inicio, retorno) {
+  const anos = [];
+  const ultimoDia = sumarDias(retorno, -1);
+  for (let ano = inicio.getUTCFullYear(); ano <= ultimoDia.getUTCFullYear(); ano += 1) {
+    if (ano !== ANO_CALENDARIO) anos.push(ano);
+  }
+  return anos;
+}
+
+function renderizar(datos, optimizacion) {
+  const plan = optimizacion.mejor;
+  const obligatorio = crearSegmento('obligatorio', 'Permiso obligatorio · 6 semanas', datos.fechaHecho, datos.obligatorioFin, 6);
+  const todos = [obligatorio, ...plan.periodos];
+  const resumen = resumir(datos, plan, datos.fechaHecho, todos);
+  const continuidad = analizarContinuidad(datos, obligatorio, plan);
+  const completo = calendarioCompleto(datos.inicio, plan.retorno);
+  const comparacionValida = completo && optimizacion.baseComparable;
+  const diferencia = diasEntre(optimizacion.base.retorno, plan.retorno);
+  document.getElementById('res_retorno').textContent = formatearFecha(plan.retorno);
+  document.getElementById('res_permiso_total').textContent = plural(6 + datos.semanas12 + datos.semanas8, 'semana', 'semanas');
+  document.getElementById('res_obligatorio').textContent = '6 semanas';
+  document.getElementById('res_flexibles').textContent = plural(datos.semanas12 + datos.semanas8, 'semana', 'semanas');
+  document.getElementById('res_hasta8').textContent = plural(datos.semanas8, 'semana', 'semanas');
+  document.getElementById('res_vacaciones').textContent = `${datos.vacaciones} ${datos.tipoVacaciones}`;
+  document.getElementById('res_vacaciones_restantes').textContent = '0';
+  document.getElementById('res_lactancia').textContent = datos.lactancia ? `${plural(datos.lactancia, 'jornada', 'jornadas')} reconocidas` : 'No incluida';
+  document.getElementById('res_continuos').textContent = continuidad.final ? plural(continuidad.final.dias, 'día natural', 'días naturales') : '—';
+  document.getElementById('res_laborables').textContent = plural(continuidad.laborablesCubiertos, 'día', 'días');
+  document.getElementById('res_mejora').textContent = comparacionValida ? (diferencia > 0 ? `+${plural(diferencia, 'día', 'días')}` : 'Sin diferencia') : 'No comparable';
+  document.getElementById('res_estado').textContent = completo
+    ? 'Propuesta condicionada a la aprobación de las fechas y a tu calendario real.'
+    : 'Calendario incompleto: la propuesta cruza un año sin festivos oficiales cargados.';
+  const notaContinuidad = continuidad.rachas.length > 1
+    ? `Hay ${continuidad.rachas.length} bloques de ausencia: entre el obligatorio y el bloque final quedan ${plural(continuidad.laborablesDescubiertos, 'día laborable sin cubrir', 'días laborables sin cubrir')}. La cifra de ausencia continua corresponde solo al bloque final, del ${formatearFecha(continuidad.final.inicio)} al ${formatearFecha(continuidad.final.fin)}.`
+    : `La ausencia es continua desde el ${formatearFecha(continuidad.final.inicio)} hasta el ${formatearFecha(continuidad.final.fin)}.`;
+  const notaComparacion = comparacionValida
+    ? `Comparación neutral frente a un orden de referencia sin intercalar vacaciones dentro de las semanas, usando el mismo permiso, las mismas vacaciones y la misma lactancia reconocida. ${diferencia > 0 ? `La colocación propuesta retrasa la reincorporación ${plural(diferencia, 'día', 'días')}.` : 'No se ha encontrado una colocación que retrase más la reincorporación.'}`
+    : completo
+      ? 'Se muestra el orden de los periodos, pero no se cuantifica una ventaja porque el orden de referencia no cumpliría el límite temporal de la lactancia.'
+      : 'Se muestra el orden de los periodos, pero no se cuantifica una ventaja: faltan festivos oficiales para todo el intervalo.';
+  document.getElementById('res_resumen').textContent = `${notaContinuidad} ${notaComparacion}`;
+  document.getElementById('lista_periodos').innerHTML = todos.map(periodo => `
+    <div class="period ${periodo.tipo}">
+      <div class="period-name">${escapar(periodo.nombre)}</div>
+      <div class="period-dates">${formatearFecha(periodo.inicio)} → ${formatearFecha(periodo.fin)}</div>
+      <div class="period-days">${periodo.tipo === 'permiso' || periodo.tipo === 'obligatorio' ? plural(periodo.unidades, 'semana', 'semanas') : periodo.tipo === 'lactancia' ? plural(periodo.unidades, 'jornada', 'jornadas') : plural(periodo.diasCalendario, 'día natural', 'días naturales')}</div>
+    </div>`).join('');
+
+  document.getElementById('nota_aprobacion').textContent = datos.ambito === 'publico'
+    ? 'Administración pública: comunica los periodos con al menos 15 días de antelación. La Administración debe confirmar la secuencia de lactancia acumulada y permiso interrumpido; también puede aplicar las reglas del EBEP sobre necesidades del servicio. Las vacaciones requieren aprobación conforme a su calendario.'
+    : 'Empresa privada: comunica cada periodo con al menos 15 días de antelación, salvo el plazo del convenio. La concreción de la lactancia acumulada debe preavisarse y las vacaciones deben acordarse con la empresa y conocerse al menos con dos meses de antelación.';
+
+  const lista = document.getElementById('lista_festivos');
+  lista.innerHTML = resumen.festivos.length ? resumen.festivos.map(festivo => `<li><strong>${formatearFecha(festivo.fecha)}</strong> · ${escapar(festivo.nombre)} <span class="tip">(${escapar(festivo.contexto)})</span></li>`).join('') : '<li>No hay festivos cargados dentro del periodo planificado.</li>';
+  document.getElementById('res_descansos').textContent = `Además aparecen ${plural(resumen.descansos, 'día de descanso semanal', 'días de descanso semanal')} que no coinciden con festivos. Los festivos dentro de una semana de permiso o de vacaciones naturales no amplían ese derecho.`;
+  document.getElementById('resultados').classList.add('show');
+}
+
+function calcular(evento) {
+  evento.preventDefault();
+  const datos = leerDatos();
+  const errores = validar(datos);
+  const cajaErrores = document.getElementById('errores');
+  if (errores.length) {
+    cajaErrores.textContent = errores.join(' '); cajaErrores.classList.add('show');
+    document.getElementById('avisos').classList.remove('show'); document.getElementById('resultados').classList.remove('show'); return;
+  }
+  const optimizacion = optimizar(datos);
+  if (!optimizacion) {
+    cajaErrores.textContent = 'No existe una combinación válida con esas fechas: revisa las semanas disponibles, la lactancia reconocida y los límites temporales aplicables.';
+    cajaErrores.classList.add('show'); document.getElementById('resultados').classList.remove('show'); return;
+  }
+  cajaErrores.classList.remove('show');
+  const avisos = [];
+  if (datos.inicioAjustado) {
+    document.getElementById('fecha_inicio').value = aISO(datos.inicioMinimo);
+    avisos.push(`Esta fecha está dentro del periodo obligatorio. La planificación comenzará el ${new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' }).format(datos.inicioMinimo)}.`);
+  }
+  const anosPendientes = anosSinCalendario(datos.inicio, optimizacion.mejor.retorno);
+  if (anosPendientes.length) {
+    const referencia = anosPendientes.join(' y ');
+    const titulo = anosPendientes.length === 1 ? `Calendario ${referencia} pendiente.` : `Calendarios ${referencia} pendientes.`;
+    avisos.push(`${titulo} Los festivos oficiales de ${referencia} aún no están incorporados. La fecha es orientativa y no se calcula una ventaja frente al plan base.`);
+  }
+  if (!datos.extras.validas.length) avisos.push('No has añadido festivos locales. Pueden cambiar la mejor colocación de vacaciones laborables.');
+  if (datos.comunidad === 'canarias') avisos.push('Canarias: añade en Opciones avanzadas el festivo oficial de tu isla.');
+  if (datos.comunidad === 'cataluna') avisos.push('Si trabajas en Arán, excluye el 26 de diciembre y añade el 17 de junio.');
+  const cajaAvisos = document.getElementById('avisos');
+  cajaAvisos.textContent = avisos.join(' '); cajaAvisos.classList.toggle('show', avisos.length > 0);
+  renderizar(datos, optimizacion);
+}
+
+function toggleAvanzadas() {
+  const panel = document.getElementById('opciones_avanzadas');
+  const boton = document.getElementById('toggle_avanzadas');
+  const abierto = panel.classList.toggle('open');
+  boton.setAttribute('aria-expanded', String(abierto));
+  boton.textContent = `Opciones avanzadas ${abierto ? '▲' : '▼'}`;
+}
+
+function actualizarFechasLegales() {
+  const fecha = fechaUTC(document.getElementById('fecha_hecho').value);
+  const caja = document.getElementById('fechas_legales');
+  if (!fecha) {
+    caja.textContent = 'Introduce la fecha del hecho causante para ver el periodo obligatorio y el primer día flexible.';
+    return;
+  }
+  const fin = sumarDias(fecha, 41);
+  const primeroFlexible = sumarDias(fecha, 42);
+  caja.innerHTML = `<strong>Periodo obligatorio:</strong> ${formatearFecha(fecha)} – ${formatearFecha(fin)}<br><strong>Primer día disponible para planificación flexible:</strong> ${formatearFecha(primeroFlexible)}`;
+}
+
+function actualizarModoInicio() {
+  const manual = document.getElementById('modo_inicio').value === 'manual';
+  document.getElementById('campo_fecha_inicio').hidden = !manual;
+}
+
+function actualizarLactancia() {
+  const manual = document.getElementById('lactancia_modo').value === 'manual';
+  document.getElementById('campo_lactancia_dias').hidden = !manual;
+}
+
+document.getElementById('form_planificador').addEventListener('submit', calcular);
+document.getElementById('toggle_avanzadas').addEventListener('click', toggleAvanzadas);
+document.getElementById('fecha_hecho').addEventListener('input', actualizarFechasLegales);
+document.getElementById('modo_inicio').addEventListener('change', actualizarModoInicio);
+document.getElementById('lactancia_modo').addEventListener('change', actualizarLactancia);
+actualizarFechasLegales();
+actualizarModoInicio();
+actualizarLactancia();
+
+window.MetaphaiPlanificadorCore = {
+  ANO_CALENDARIO, FUENTE_CALENDARIO_2026, FESTIVOS_COMUNES_2026, FESTIVOS_CCAA_2026,
+  fechaUTC, aISO, sumarDias, sumarMeses, sumarAnos, leerListaFechas, crearCalendario,
+  esLaborable, simularPlan, optimizar, resumir, analizarContinuidad, leerDatos, validar,
+  calendarioCompleto, anosSinCalendario, renderizar, actualizarFechasLegales, actualizarModoInicio, actualizarLactancia
+};
+</script>
+</body>
+</html>
