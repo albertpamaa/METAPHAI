@@ -30,31 +30,64 @@ header {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: #535149;
+  padding: 0 12px;
+  border: 1px solid #cfe3d7;
+  border-radius: 8px;
+  background: #f2f8f5;
+  color: #2d6a4f;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
 }
 
 .site-nav-link:hover,
 .site-nav-link[aria-current="page"] {
   color: #2d6a4f;
+  background: #e8f4ee;
+  border-color: #accfbb;
+}
+
+.site-nav-link:focus-visible {
+  outline: 3px solid rgba(45, 106, 79, .24);
+  outline-offset: 2px;
 }
 
 .site-nav .nav-back {
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-  .site-nav { gap: 10px; }
+@media (max-width: 640px) {
+  header {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "logo tools"
+      "calendar calendar";
+    align-items: center;
+    height: auto !important;
+    min-height: 100px;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    row-gap: 4px;
+  }
+  header > .logo { grid-area: logo; justify-self: start; }
+  .site-nav { display: contents; }
+  .site-nav-link {
+    position: static;
+    grid-area: calendar;
+    justify-self: center;
+    transform: none;
+    font-size: 12px;
+  }
+  .site-nav .header-tag,
+  .site-nav .nav-back { grid-area: tools; justify-self: end; }
   .site-nav .nav-back { font-size: 0; }
   .site-nav .nav-back::after { content: "Calculadoras"; font-size: 12px; }
-  .site-nav-link { font-size: 11px; }
 }
 
 @media (max-width: 390px) {
-  .site-nav { gap: 8px; }
-  .site-nav .header-tag { display: none; }
-  .site-nav-link { font-size: 10px; }
+  .site-nav-link { font-size: 11px; }
 }
