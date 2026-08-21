@@ -10,3 +10,40 @@
   max-width: 100%;
   height: auto;
 }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 18px;
+  min-width: 0;
+}
+
+.site-nav-link {
+  color: #535149;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav-link:hover,
+.site-nav-link[aria-current="page"] {
+  color: #2d6a4f;
+}
+
+.site-nav .nav-back {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .site-nav { gap: 10px; }
+  .site-nav .nav-back { font-size: 0; }
+  .site-nav .nav-back::after { content: "Calculadoras"; font-size: 12px; }
+  .site-nav-link { font-size: 12px; }
+}
+
+@media (max-width: 390px) {
+  .site-nav { gap: 8px; }
+  .site-nav .header-tag { display: none; }
+}

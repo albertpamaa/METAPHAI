@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendarios laborales 2026 y 2027 por comunidad | MetaphAI</title>
+  <meta name="description" content="Consulta los festivos nacionales y autonómicos de 2026 y 2027 en España por comunidad autónoma, Ceuta y Melilla.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://metaphai.com/calendarios-laborales/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/metaphai-logo.css">
+  <meta name="google-adsense-account" content="ca-pub-7545567251029894">
+  <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1P9N4QY0JR');
+  </script>
+  <meta property="og:title" content="Calendarios laborales 2026 y 2027 | MetaphAI">
+  <meta property="og:description" content="Consulta los festivos comunes y autonómicos por territorio y año en un calendario anual completo.">
+  <meta property="og:url" content="https://metaphai.com/calendarios-laborales/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MetaphAI">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Calendarios laborales 2026 y 2027 | MetaphAI">
+  <meta name="twitter:description" content="Festivos laborales de España por comunidad y año.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#f7f6f2; --surface:#fff; --border:#e2e0d8; --text:#1a1916; --muted:#6b6960; --hint:#96948c;
+      --accent:#2d6a4f; --accent-light:#e8f4ee; --blue:#315f80; --blue-light:#eaf2f7; --warn:#785719; --warn-light:#fcf7e9;
+      --radius:10px; --radius-lg:16px;
+    }
+    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+    .nav-back { font-size:13px; color:var(--muted); text-decoration:none; }
+    .nav-back:hover { text-decoration:underline; }
+    header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:56px; position:sticky; top:0; z-index:30; }
+    main { max-width:1180px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+    .breadcrumb { font-size:12px; color:var(--hint); margin-top:.2rem; }
+    .breadcrumb a { color:var(--muted); }
+    .hero { text-align:center; padding:1.5rem 0 1.7rem; }
+    .hero h1 { font-size:clamp(25px,4vw,38px); letter-spacing:-.035em; line-height:1.15; margin-bottom:.65rem; }
+    .hero p { max-width:650px; margin:auto; color:var(--muted); font-size:15px; }
+    .calendar-tool { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.25rem; }
+    .controls { display:grid; grid-template-columns:minmax(150px, .55fr) minmax(250px, 1fr); gap:13px; align-items:end; }
+    .field { display:flex; flex-direction:column; gap:5px; }
+    .field label { color:var(--muted); font-size:12px; font-weight:600; }
+    .field select { width:100%; padding:10px 36px 10px 12px; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg); color:var(--text); font:14px 'DM Sans',sans-serif; }
+    .field select:focus { outline:0; border-color:var(--accent); box-shadow:0 0 0 3px rgba(45,106,79,.1); background:#fff; }
+    .calendar-meta { margin-top:13px; padding:11px 12px; border:1px solid var(--border); border-radius:var(--radius); background:#fafaf8; display:flex; gap:10px 18px; align-items:center; flex-wrap:wrap; }
+    .status { font-size:14px; font-weight:600; }
+    .source-link { font-size:12px; color:var(--accent); font-weight:600; }
+    .source-detail { width:100%; color:var(--hint); font-size:11px; }
+    .provisional-warning { margin-top:10px; border-left:3px solid #c4a158; background:var(--warn-light); color:var(--warn); padding:9px 11px; font-size:12px; border-radius:0 8px 8px 0; }
+    .calendar-note { margin-top:10px; color:var(--muted); font-size:12px; }
+    .legend { display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin:16px 0 10px; font-size:11px; color:var(--muted); }
+    .legend-item { display:inline-flex; align-items:center; gap:6px; }
+    .legend-dot { width:14px; height:14px; border-radius:50%; display:inline-block; border:1px solid transparent; }
+    .legend-dot.national { background:var(--accent); }
+    .legend-dot.regional { background:var(--blue-light); border-color:#7fa0b7; }
+    .months { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .month { min-width:0; background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:11px; overflow:visible; }
+    .month h2 { text-align:center; font-size:13px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+    .weekdays, .days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px; }
+    .weekdays { margin-bottom:4px; }
+    .weekday { text-align:center; color:var(--hint); font:500 10px 'DM Mono',monospace; }
+    .weekday.weekend { color:#b1afa8; }
+    .day-slot { position:relative; min-width:0; aspect-ratio:1; }
+    .day-number, .holiday-button { width:100%; height:100%; min-height:27px; display:flex; align-items:center; justify-content:center; border-radius:50%; font:11px 'DM Mono',monospace; }
+    .day-number { color:#45443f; }
+    .day-slot.weekend .day-number { color:#aaa8a0; background:#faf9f6; }
+    .holiday-button { border:1px solid transparent; cursor:pointer; position:relative; z-index:1; }
+    .holiday-button.national { background:var(--accent); color:#fff; font-weight:600; }
+    .holiday-button.regional { background:var(--blue-light); border-color:#7fa0b7; color:#244e69; font-weight:600; }
+    .holiday-button:focus-visible { outline:3px solid rgba(45,106,79,.28); outline-offset:2px; }
+    .holiday-button::after { content:''; position:absolute; right:0; bottom:0; width:4px; height:4px; background:currentColor; border-radius:50%; }
+    .holiday-popover { display:none; position:absolute; z-index:20; left:50%; bottom:calc(100% + 7px); transform:translateX(-50%); width:190px; padding:9px 10px; border-radius:8px; background:#20221f; color:#fff; box-shadow:0 8px 22px rgba(0,0,0,.18); font-size:11px; line-height:1.4; text-align:left; }
+    .holiday-popover strong { display:block; font-size:12px; margin-bottom:2px; }
+    .holiday-popover span { color:#d6d8d3; }
+    .day-slot:hover .holiday-popover, .day-slot:focus-within .holiday-popover, .day-slot.open .holiday-popover { display:block; }
+    .holiday-popover::after { content:''; position:absolute; left:50%; top:100%; transform:translateX(-50%); border:5px solid transparent; border-top-color:#20221f; }
+    .holiday-list-section { margin-top:1.4rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.25rem; }
+    .holiday-list-section h2 { font-size:18px; margin-bottom:.8rem; }
+    .holiday-list { list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 24px; }
+    .holiday-list li { display:grid; grid-template-columns:96px 1fr auto; gap:9px; align-items:center; min-width:0; padding:8px 0; border-bottom:1px solid #eeece6; font-size:13px; }
+    .holiday-date { font:12px 'DM Mono',monospace; color:var(--muted); }
+    .holiday-name { min-width:0; }
+    .type-label { font-size:10px; padding:2px 7px; border-radius:20px; white-space:nowrap; font-weight:600; }
+    .type-label.national { color:#236044; background:var(--accent-light); }
+    .type-label.regional { color:#285672; background:var(--blue-light); }
+    .seo-content { margin-top:2rem; padding-top:1.7rem; border-top:1px solid var(--border); }
+    .seo-content h2 { font-size:20px; margin-bottom:.65rem; }
+    .seo-content p { max-width:850px; color:var(--muted); font-size:14px; line-height:1.75; margin-bottom:.65rem; }
+    .related { margin-top:1.5rem; padding:1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); }
+    .related h2 { font-size:17px; margin-bottom:.6rem; }
+    .related-links { display:flex; gap:8px 18px; flex-wrap:wrap; }
+    .related a { font-size:13px; color:var(--accent); }
+    footer { text-align:center; padding:2rem; font-size:12px; color:var(--hint); border-top:1px solid var(--border); margin-top:3rem; }
+    footer a { color:var(--hint); }
+    [hidden] { display:none !important; }
+    @media (max-width:950px) { .months { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:700px) {
+      header { padding:0 1rem; } main { padding-inline:1rem; }
+      .months { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .holiday-list { grid-template-columns:1fr; }
+      .controls { grid-template-columns:1fr 1.35fr; }
+    }
+    @media (max-width:440px) {
+      .hero { padding-top:1rem; }
+      .calendar-tool { padding:1rem; }
+      .controls { grid-template-columns:1fr; }
+      .months { grid-template-columns:1fr; }
+      .month { padding:12px 15px; }
+      .day-number, .holiday-button { min-height:38px; font-size:12px; }
+      .holiday-list li { grid-template-columns:82px 1fr; }
+      .type-label { grid-column:2; justify-self:start; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calendarios laborales 2026 y 2027",
+    "url": "https://metaphai.com/calendarios-laborales/",
+    "description": "Consulta visual de festivos laborales comunes y autonómicos por territorio y año.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "es"
+  }
+  </script>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a>
+  <nav class="site-nav" aria-label="Navegación principal">
+    <a href="/calendarios-laborales/" class="site-nav-link" aria-current="page">Calendarios</a>
+    <a href="/" class="nav-back">← Todas las calculadoras</a>
+  </nav>
+</header>
+<main>
+  <nav class="breadcrumb" aria-label="Migas de pan"><a href="/">Inicio</a> / Calendarios laborales</nav>
+  <section class="hero">
+    <h1>Calendarios laborales 2026 y 2027</h1>
+    <p>Consulta los festivos nacionales y autonómicos de España por comunidad y año.</p>
+  </section>
+
+  <section class="calendar-tool" aria-label="Consulta del calendario laboral">
+    <div class="controls">
+      <div class="field">
+        <label for="calendar_year">Año</label>
+        <select id="calendar_year">
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="calendar_region">Comunidad / territorio</label>
+        <select id="calendar_region"></select>
+      </div>
+    </div>
+    <div class="calendar-meta" aria-live="polite">
+      <span class="status" id="calendar_status"></span>
+      <a class="source-link" id="calendar_source" href="#" rel="noopener noreferrer" target="_blank"></a>
+      <span class="source-detail" id="calendar_source_detail"></span>
+    </div>
+    <p class="provisional-warning" id="provisional_warning" hidden>Algunas fechas pueden cambiar cuando se publique el calendario laboral definitivo.</p>
+    <p class="calendar-note" id="territory_note"></p>
+    <div class="legend" aria-label="Leyenda">
+      <span class="legend-item"><span class="legend-dot national" aria-hidden="true"></span>Festivo nacional / común</span>
+      <span class="legend-item" id="regional_legend"><span class="legend-dot regional" aria-hidden="true"></span>Festivo autonómico</span>
+    </div>
+    <div class="months" id="calendar_months"></div>
+  </section>
+
+  <section class="holiday-list-section" aria-labelledby="holiday_list_title">
+    <h2 id="holiday_list_title"></h2>
+    <ul class="holiday-list" id="holiday_list"></ul>
+  </section>
+
+  <section class="seo-content">
+    <h2>Cómo leer el calendario laboral</h2>
+    <p>El calendario laboral reúne los festivos comunes aplicables en España y las fechas elegidas por cada comunidad o ciudad autónoma. Los festivos nacionales/comunes y autonómicos aparecen diferenciados para facilitar su consulta.</p>
+    <p><strong>Los festivos locales o municipales no están incluidos.</strong> Dependen de cada ayuntamiento. En Canarias tampoco se añade automáticamente el festivo insular, que varía según la isla.</p>
+    <p>Los calendarios de 2026 son oficiales. En 2027, Aragón, Asturias, Comunidad de Madrid, Ceuta y Melilla permanecen como previsionales hasta que se publique su calendario laboral definitivo.</p>
+  </section>
+
+  <section class="related" aria-labelledby="related_title">
+    <h2 id="related_title">Herramientas relacionadas</h2>
+    <div class="related-links">
+      <a href="/planificador-baja-maternidad-vacaciones/">Planificador de baja y vacaciones</a>
+      <a href="/calculadora-horas-extra/">Calculadora de horas extra</a>
+      <a href="/calculadora-salario-neto-espana/">Calculadora de salario neto</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>© 2026 MetaphAI · <a href="/sobre-nosotros.html">Sobre nosotros</a> · <a href="/contacto.html">Contacto</a> · <a href="/privacidad.html">Política de privacidad</a> · <a href="/cookies.html">Política de cookies</a></p>
+  <p style="margin-top:6px">Calendarios informativos. Confirma los festivos locales y el calendario aplicable a tu centro de trabajo.</p>
+</footer>
+
+<script src="/assets/calendarios-laborales.js"></script>
+<script>
+'use strict';
+
+const CALENDARIOS = window.MetaphaiCalendarios;
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS_SEMANA = ['L','M','X','J','V','S','D'];
+const REGIONES_VALIDAS = ['espana', ...CALENDARIOS.TODAS_REGIONES];
+const selectYear = document.getElementById('calendar_year');
+const selectRegion = document.getElementById('calendar_region');
+
+function escapar(texto) {
+  const div = document.createElement('div');
+  div.textContent = String(texto);
+  return div.innerHTML;
+}
+
+function fechaISO(year, month, day) {
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+function formatearFecha(iso) {
+  const [year, month, day] = iso.split('-').map(Number);
+  return new Intl.DateTimeFormat('es-ES', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function tipoVisible(tipo) {
+  return tipo === 'national' ? 'Nacional' : 'Autonómico';
+}
+
+function valoresIniciales() {
+  const params = new URLSearchParams(window.location.search);
+  const currentYear = new Date().getFullYear();
+  const defaultYear = CALENDARIOS.YEARS.includes(currentYear) ? currentYear : Math.max(...CALENDARIOS.YEARS);
+  const requestedYear = Number(params.get('year'));
+  const requestedRegion = params.get('region');
+  return {
+    year:CALENDARIOS.YEARS.includes(requestedYear) ? requestedYear : defaultYear,
+    region:REGIONES_VALIDAS.includes(requestedRegion) ? requestedRegion : 'espana'
+  };
+}
+
+function actualizarURL(year, region) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('year', year);
+  url.searchParams.set('region', region);
+  window.history.replaceState({}, '', url);
+}
+
+function cerrarPopovers(excepto = null) {
+  document.querySelectorAll('.day-slot.open').forEach(slot => {
+    if (slot === excepto) return;
+    slot.classList.remove('open');
+    slot.querySelector('.holiday-button')?.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function htmlMes(year, month, holidaysByDate) {
+  const firstWeekday = (new Date(Date.UTC(year, month, 1)).getUTCDay() + 6) % 7;
+  const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+  const weekdays = DIAS_SEMANA.map((day, index) => `<span class="weekday${index > 4 ? ' weekend' : ''}" aria-hidden="true">${day}</span>`).join('');
+  const blanks = Array.from({ length:firstWeekday }, () => '<span class="day-slot" aria-hidden="true"></span>').join('');
+  const days = Array.from({ length:daysInMonth }, (_, index) => {
+    const day = index + 1;
+    const date = fechaISO(year, month, day);
+    const weekday = new Date(Date.UTC(year, month, day)).getUTCDay();
+    const weekend = weekday === 0 || weekday === 6;
+    const holiday = holidaysByDate.get(date);
+    if (!holiday) return `<span class="day-slot${weekend ? ' weekend' : ''}"><span class="day-number">${day}</span></span>`;
+    const tooltipId = `holiday_${date}`;
+    const typeLabel = tipoVisible(holiday.type);
+    const aria = `${formatearFecha(date)}. ${holiday.name}. Festivo ${typeLabel.toLowerCase()}.`;
+    return `<span class="day-slot${weekend ? ' weekend' : ''}">
+      <button type="button" class="holiday-button ${holiday.type}" aria-label="${escapar(aria)}" aria-expanded="false" aria-describedby="${tooltipId}">${day}</button>
+      <span class="holiday-popover" id="${tooltipId}" role="tooltip"><strong>${escapar(holiday.name)}</strong><span>${escapar(formatearFecha(date))} · Festivo ${typeLabel.toLowerCase()}</span></span>
+    </span>`;
+  }).join('');
+  return `<section class="month" aria-labelledby="month_${month}"><h2 id="month_${month}">${MESES[month]}</h2><div class="weekdays">${weekdays}</div><div class="days">${blanks}${days}</div></section>`;
+}
+
+function renderizar() {
+  const year = Number(selectYear.value);
+  const region = selectRegion.value;
+  const holidays = CALENDARIOS.obtenerFestivos(year, region);
+  const metadata = CALENDARIOS.metadatosCalendario(year, region);
+  const holidaysByDate = new Map(holidays.map(holiday => [holiday.date, holiday]));
+  const regionName = CALENDARIOS.NOMBRES_REGIONES[region];
+
+  document.getElementById('calendar_status').textContent = `Calendario ${metadata.official ? 'oficial' : 'provisional'} ${year}`;
+  const sourceLink = document.getElementById('calendar_source');
+  sourceLink.href = metadata.sourceUrl;
+  sourceLink.textContent = metadata.official ? 'Fuente oficial' : 'Referencia utilizada';
+  document.getElementById('calendar_source_detail').textContent = metadata.source;
+  document.getElementById('provisional_warning').hidden = !metadata.provisional;
+  document.getElementById('regional_legend').hidden = region === 'espana';
+  const specificNote = CALENDARIOS.NOTAS_TERRITORIALES[region];
+  document.getElementById('territory_note').textContent = `${specificNote ? `${specificNote} ` : ''}Los festivos locales o municipales no están incluidos.`;
+
+  document.getElementById('calendar_months').innerHTML = MESES.map((_, month) => htmlMes(year, month, holidaysByDate)).join('');
+  document.getElementById('holiday_list_title').textContent = region === 'espana' ? `Festivos comunes de España en ${year}` : `Festivos de ${regionName} en ${year}`;
+  document.getElementById('holiday_list').innerHTML = holidays.map(holiday => `<li>
+    <span class="holiday-date">${escapar(formatearFecha(holiday.date))}</span>
+    <span class="holiday-name">${escapar(holiday.name)}</span>
+    <span class="type-label ${holiday.type}">${tipoVisible(holiday.type)}</span>
+  </li>`).join('');
+
+  cerrarPopovers();
+  actualizarURL(year, region);
+}
+
+selectRegion.innerHTML = REGIONES_VALIDAS.map(region => `<option value="${region}">${escapar(CALENDARIOS.NOMBRES_REGIONES[region])}</option>`).join('');
+const initial = valoresIniciales();
+selectYear.value = String(initial.year);
+selectRegion.value = initial.region;
+selectYear.addEventListener('change', renderizar);
+selectRegion.addEventListener('change', renderizar);
+document.getElementById('calendar_months').addEventListener('click', event => {
+  const button = event.target.closest('.holiday-button');
+  if (!button) return;
+  const slot = button.closest('.day-slot');
+  const opening = !slot.classList.contains('open');
+  cerrarPopovers(slot);
+  slot.classList.toggle('open', opening);
+  button.setAttribute('aria-expanded', String(opening));
+});
+document.addEventListener('click', event => {
+  if (!event.target.closest('.day-slot')) cerrarPopovers();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    const focused = document.activeElement;
+    cerrarPopovers();
+    if (focused?.classList.contains('holiday-button')) focused.focus();
+  }
+});
+renderizar();
+
+window.MetaphaiCalendariosPage = { fechaISO, valoresIniciales, htmlMes, renderizar };
+</script>
+</body>
+</html>
