@@ -11,6 +11,10 @@
   height: auto;
 }
 
+header {
+  position: relative;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -20,6 +24,12 @@
 }
 
 .site-nav-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: #535149;
   font-size: 13px;
   font-weight: 500;
@@ -40,10 +50,11 @@
   .site-nav { gap: 10px; }
   .site-nav .nav-back { font-size: 0; }
   .site-nav .nav-back::after { content: "Calculadoras"; font-size: 12px; }
-  .site-nav-link { font-size: 12px; }
+  .site-nav-link { font-size: 11px; }
 }
 
 @media (max-width: 390px) {
   .site-nav { gap: 8px; }
   .site-nav .header-tag { display: none; }
+  .site-nav-link { font-size: 10px; }
 }
