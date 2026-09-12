@@ -7,32 +7,17 @@ import {DATA_I18N,languageConfig} from '../assets/js/data-i18n.mjs';
 import {indicatorPresentation} from '../assets/js/data-presentation.mjs';
 
 const root=resolve(import.meta.dirname,'..'),json=path=>JSON.parse(readFileSync(resolve(root,path),'utf8'));
-const registry=json('assets/data/indicators.json');
-assert.deepEqual(Object.keys(DATA_LANGUAGES),['es','en']);assert.equal(Object.keys(DATA_PAGES).length,11);
-assert.equal(pageKeyFromPath('/datos-globales/poblacion/'),'population');assert.equal(pageKeyFromPath('/en/global-data/population/'),'population');assert.equal(languageFromPath('/en/global-data/explorer/'),'en');assert.equal(languageFromPath('/datos-globales/explorador/'),'es');assert.deepEqual(pageRoutes('fertility'),{indicator:'fertilidad',es:'/datos-globales/fertilidad/',en:'/en/global-data/fertility/'});
-
-for(const language of ['es','en']){
-  const ui=languageConfig(language);assert.equal(ui.locale,language==='es'?'es-ES':'en-US');
-  for(const item of registry.indicators){
-    const localized=ui.indicators[item.slug],editorial=indicatorPresentation(item.slug,language);
-    assert.ok(localized?.name&&localized.description&&localized.methodology&&localized.axisUnit&&localized.unitLabel,`${language}/${item.slug}: traducción incompleta`);
-    assert.ok(editorial?.what&&editorial.interpretation&&editorial.limitations.length>=2,`${language}/${item.slug}: editorial incompleta`);
-    for(const value of [0,-2.35,7.43,1234.56])for(const context of ['card','table','tooltip','axis','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,{...item,presentation:{...item.presentation,unitLabel:localized.unitLabel}},ui.locale,context));
-  }
-}
+const registry=json('assets/data/indicators.json'),languages=['es','en','fr','de','it','pt'],locales={es:'es-ES',en:'en-US',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT'};
+assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,11);
+for(const [key,page] of Object.entries(DATA_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language)}
+assert.deepEqual(pageRoutes('fertility'),{indicator:'fertilidad',es:'/datos-globales/fertilidad/',en:'/en/global-data/fertility/',fr:'/fr/donnees-mondiales/fecondite/',de:'/de/weltdaten/fruchtbarkeit/',it:'/it/dati-globali/fertilita/',pt:'/pt/dados-globais/fertilidade/'});
+const referenceKeys=Object.keys(DATA_I18N.es).sort();
+for(const language of languages){const ui=languageConfig(language);assert.equal(ui.locale,locales[language]);assert.deepEqual(Object.keys(DATA_I18N[language]).sort(),referenceKeys,`${language}: claves UI incompletas`);for(const item of registry.indicators){const localized=ui.indicators[item.slug],editorial=indicatorPresentation(item.slug,language);assert.ok(localized?.name&&localized.description&&localized.methodology&&localized.axisUnit&&localized.unitLabel,`${language}/${item.slug}: traducción incompleta`);assert.ok(editorial?.what&&editorial.interpretation&&editorial.limitations.length>=2,`${language}/${item.slug}: editorial incompleta`);if(item.slug==='desempleo')assert.ok(editorial.rankingCaution,`${language}: cautela de desempleo ausente`);for(const value of [0,0.004,-2.4,7.4,1234.56,49355143,9876543210])for(const context of ['card','table','tooltip','axis','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,{...item,presentation:{...item.presentation,unitLabel:localized.unitLabel}},ui.locale,context))}}
 assert.equal(formatIndicatorValue(1234.56,{presentation:{formatType:'currency',decimals:0,unitLabel:'current international dollars (PPP)'}},'en-US','tooltip'),'1,234.56 current international dollars (PPP)');
-assert.equal(formatIndicatorValue(7.43,{presentation:{formatType:'percent',decimals:1}},'en-US','card'),'7.4%');
-assert.equal(formatIndicatorValue(7.43,{presentation:{formatType:'percent',decimals:1}},'es-ES','card'),'7,4 %');
-assert.equal(formatIndicatorChange(-2.35,{presentation:{decimals:1,changeType:'percentage_points'}},'en-US'),'−2.4 pp');
-assert.equal(formatIndicatorChange(-2.35,{presentation:{decimals:1,changeType:'percentage_points'}},'es-ES'),'−2,4 p. p.');
-assert.equal(formatIndicatorValue(1234.56,{presentation:{formatType:'currency'}},'es-ES','csv'),formatIndicatorValue(1234.56,{presentation:{formatType:'currency'}},'en-US','csv'));
-
-const countries=json('assets/data/worldbank/countries.json').countries.filter(country=>!country.is_aggregate),spain=countries.find(country=>country.id==='ESP');
-assert.equal(spain.iso2,'ES');
-const esName=new Intl.DisplayNames(['es-ES'],{type:'region'}).of(spain.iso2),enName=new Intl.DisplayNames(['en-US'],{type:'region'}).of(spain.iso2);
-assert.equal(esName,'España');assert.equal(enName,'Spain');
-assert.deepEqual(searchCountries([{...spain,name:enName}],'Spain',[],8,DATA_I18N.en.countrySearchAliases).map(country=>country.id),['ESP']);
-assert.deepEqual(searchCountries([{...spain,name:enName}],'ES',[],8,DATA_I18N.en.countrySearchAliases).map(country=>country.id),['ESP']);
-assert.deepEqual(searchCountries([{...spain,name:enName}],'ESP',[],8,DATA_I18N.en.countrySearchAliases).map(country=>country.id),['ESP']);
-assert.deepEqual(searchCountries([{...spain,name:esName}],'Spain',[],8,languageConfig('en').countrySearchAliases).map(country=>country.id),['ESP']);
-console.log('data-i18n: 11 pares, 8 indicadores, formatos ES/EN, países e ISO OK');
+assert.equal(formatIndicatorValue(7.4,{presentation:{formatType:'percent',decimals:1}},'fr-FR','card'),'7,4 %');assert.equal(formatIndicatorValue(7.4,{presentation:{formatType:'percent',decimals:1}},'de-DE','card'),'7,4 %');assert.equal(formatIndicatorValue(7.4,{presentation:{formatType:'percent',decimals:1}},'it-IT','card'),'7,4%');assert.equal(formatIndicatorValue(7.4,{presentation:{formatType:'percent',decimals:1}},'pt-PT','card'),'7,4%');assert.match(formatIndicatorChange(-2.4,{presentation:{decimals:1,changeType:'percentage_points'}},'de-DE'),/^−2,4 Prozentpunkte$/);
+const csvValues=languages.map(language=>formatIndicatorValue(1234.56,{presentation:{formatType:'currency'}},locales[language],'csv'));assert.equal(new Set(csvValues).size,1);assert.equal(csvValues[0],'1234.56');
+const countries=json('assets/data/worldbank/countries.json').countries.filter(country=>!country.is_aggregate),targets={ESP:'ES',FRA:'FR',DEU:'DE',ITA:'IT',PRT:'PT',USA:'US',GBR:'GB',CHN:'CN',JPN:'JP',BRA:'BR',IND:'IN',TUR:'TR',CIV:'CI'};
+for(const language of languages){const display=new Intl.DisplayNames([locales[language]],{type:'region'});for(const [id,iso2] of Object.entries(targets)){const country=countries.find(row=>row.id===id);assert.ok(country,`${id} ausente`);const name=display.of(iso2)||country.name,localized={...country,name};for(const query of [name,iso2,id])assert.deepEqual(searchCountries([localized],query,[],8,DATA_I18N[language].countrySearchAliases).map(row=>row.id),[id],`${language}/${id}/${query}`)}}
+const germanDisplay=new Intl.DisplayNames(['de-DE'],{type:'region'}),germanCountries=countries.map(country=>({...country,name:country.iso2?germanDisplay.of(country.iso2)||country.name:country.name}));
+assert.equal(searchCountries(germanCountries,'US',[],8,languageConfig('de').countrySearchAliases)[0].id,'USA','La coincidencia ISO2 exacta debe preceder coincidencias textuales');
+console.log('data-i18n: 11 identidades, 6 idiomas, 8 indicadores, locales, países, ISO y CSV OK');

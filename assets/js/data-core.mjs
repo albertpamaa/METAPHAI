@@ -15,14 +15,15 @@ export function formatIndicatorValue(value,indicator,locale='es-ES',context='car
     if(config.formatType==='signedPercent')return `${value<0?'−':''}${number(Math.abs(value))}`;
     return number(value);
   }
+  const language=locale.split('-')[0],percentSpace={es:' ',fr:' ',de:' ',en:'',it:'',pt:''}[language]??'';
   switch(config.formatType){
     case 'population':
-      if(!exact&&Math.abs(value)>=1e6)return `${number(value/1e6,{useGrouping:'always'})} ${locale.startsWith('es')?'millones':'million'}`;
+      if(!exact&&Math.abs(value)>=1e6)return `${number(value/1e6,{useGrouping:'always'})} ${{es:'millones',en:'million',fr:'millions',de:'Mio.',it:'milioni',pt:'milhões'}[locale.split('-')[0]]||'million'}`;
       return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:0})} ${config.unitLabel||'personas'}`;
     case 'years':return `${number(value)} ${config.unitLabel||'años'}`;
     case 'fertility':return `${number(value)} ${config.unitLabel||'hijos por mujer'}`;
-    case 'percent':return `${number(value)}${locale.startsWith('es')?' ':''}%`;
-    case 'signedPercent':return `${value>0?'+':value<0?'−':''}${number(Math.abs(value))}${locale.startsWith('es')?' ':''}%`;
+    case 'percent':return `${number(value)}${percentSpace}%`;
+    case 'signedPercent':return `${value>0?'+':value<0?'−':''}${number(Math.abs(value))}${percentSpace}%`;
     case 'currency':return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:exact?2:0})} ${config.unitLabel||''}`.trim();
     default:return `${number(value)}${config.unitLabel?` ${config.unitLabel}`:''}`;
   }
@@ -33,13 +34,13 @@ export function formatIndicatorChange(value,indicator,locale='es-ES',context='ca
   const exact=context==='table'||context==='tooltip',decimals=exact?Math.max(indicator.presentation?.decimals??1,2):indicator.presentation?.decimals??1;
   const formatted=new Intl.NumberFormat(locale,{minimumFractionDigits:exact?0:Math.min(decimals,1),maximumFractionDigits:decimals}).format(Math.abs(value));
   const sign=value>0?'+':value<0?'−':'';
-  const percentagePoints=indicator.presentation?.changeType==='percentage_points';
-  return percentagePoints?`${sign}${formatted} ${locale.startsWith('es')?'p. p.':'pp'}`:`${sign}${formatted}${locale.startsWith('es')?' ':''}%`;
+  const language=locale.split('-')[0],percentagePoints=indicator.presentation?.changeType==='percentage_points',pp={es:'p. p.',en:'pp',fr:'pp',de:'Prozentpunkte',it:'p.p.',pt:'p.p.'}[language]||'pp',percentSpace={es:' ',fr:' ',de:' ',en:'',it:'',pt:''}[language]??'';
+  return percentagePoints?`${sign}${formatted} ${pp}`:`${sign}${formatted}${percentSpace}%`;
 }
 
 export function normalizeSearch(value=''){return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[‘’ʼ]/g,"'").toLocaleLowerCase().trim()}
 export function countryMatchesSearch(country,query,aliases={}){const q=normalizeSearch(query);return Boolean(q&&[country.name,country.id,country.iso2,...(aliases[country.id]||[])].some(value=>normalizeSearch(value).includes(q)))}
-export function searchCountries(countries,query,selected=[],limit=8,aliases={}){const q=normalizeSearch(query);if(!q)return [];const used=new Set(selected);return countries.filter(country=>!country.is_aggregate&&!used.has(country.id)&&countryMatchesSearch(country,q,aliases)).sort((a,b)=>{const an=normalizeSearch(a.name),bn=normalizeSearch(b.name);return Number(!an.startsWith(q))-Number(!bn.startsWith(q))||a.name.localeCompare(b.name)}).slice(0,limit)}
+export function searchCountries(countries,query,selected=[],limit=8,aliases={}){const q=normalizeSearch(query);if(!q)return [];const used=new Set(selected),score=country=>{const id=normalizeSearch(country.id),iso2=normalizeSearch(country.iso2),name=normalizeSearch(country.name),names=(aliases[country.id]||[]).map(normalizeSearch);if(id===q||iso2===q)return 0;if(name===q)return 1;if(name.startsWith(q)||names.some(value=>value.startsWith(q)))return 2;return 3};return countries.filter(country=>!country.is_aggregate&&!used.has(country.id)&&countryMatchesSearch(country,q,aliases)).sort((a,b)=>score(a)-score(b)||a.name.localeCompare(b.name)).slice(0,limit)}
 export function addCountry(selected,code,max=5){if(selected.includes(code)||selected.length>=max)return [...selected];return [...selected,code]}
 export function removeCountry(selected,code){return selected.filter(item=>item!==code)}
 export function sortRanking(rows,mode='value-desc'){const copy=[...rows];if(mode==='country-asc')return copy.sort((a,b)=>a.name.localeCompare(b.name));if(mode==='country-desc')return copy.sort((a,b)=>b.name.localeCompare(a.name));if(mode==='value-asc')return copy.sort((a,b)=>a.value-b.value||a.name.localeCompare(b.name));return copy.sort((a,b)=>b.value-a.value||a.name.localeCompare(b.name))}
