@@ -8,17 +8,22 @@ export function formatIndicatorValue(value,indicator,locale='es-ES',context='car
   if(context==='csv')return String(value);
   const config=indicator.presentation||{},exact=context==='table'||context==='tooltip',axis=context==='axis',decimals=exact?Math.max(config.decimals??1,2):config.decimals??1;
   const number=(n,options={})=>new Intl.NumberFormat(locale,{maximumFractionDigits:decimals,minimumFractionDigits:exact?0:Math.min(decimals,1),...options}).format(n);
+  if(axis){
+    if(config.formatType==='population'&&Math.abs(value)>=1e6)return `${number(value/1e6,{minimumFractionDigits:0,maximumFractionDigits:1,useGrouping:'always'})} M`;
+    if(config.formatType==='population'&&Math.abs(value)>=1e3)return `${number(value/1e3,{minimumFractionDigits:0,maximumFractionDigits:1})} mil`;
+    if(config.formatType==='population'||config.formatType==='currency')return number(value,{minimumFractionDigits:0,maximumFractionDigits:0});
+    if(config.formatType==='signedPercent')return `${value<0?'−':''}${number(Math.abs(value))}`;
+    return number(value);
+  }
   switch(config.formatType){
     case 'population':
-      if(axis&&Math.abs(value)>=1e6)return `${number(value/1e6,{minimumFractionDigits:0,maximumFractionDigits:1,useGrouping:'always'})} M`;
-      if(axis&&Math.abs(value)>=1e3)return `${number(value/1e3,{minimumFractionDigits:0,maximumFractionDigits:1})} mil`;
       if(!exact&&Math.abs(value)>=1e6)return `${number(value/1e6,{useGrouping:'always'})} ${locale.startsWith('es')?'millones':'million'}`;
       return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:0})} ${config.unitLabel||'personas'}`;
     case 'years':return `${number(value)} ${config.unitLabel||'años'}`;
-    case 'fertility':return axis?`${number(value)} nac./mujer`:`${number(value)} ${config.unitLabel||'hijos por mujer'}`;
+    case 'fertility':return `${number(value)} ${config.unitLabel||'hijos por mujer'}`;
     case 'percent':return `${number(value)} %`;
     case 'signedPercent':return `${value>0?'+':value<0?'−':''}${number(Math.abs(value))} %`;
-    case 'currency':return axis?`${number(value,{minimumFractionDigits:0,maximumFractionDigits:0})} $`:`${number(value,{minimumFractionDigits:0,maximumFractionDigits:exact?2:0})} ${config.unitLabel||''}`.trim();
+    case 'currency':return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:exact?2:0})} ${config.unitLabel||''}`.trim();
     default:return `${number(value)}${config.unitLabel?` ${config.unitLabel}`:''}`;
   }
 }
