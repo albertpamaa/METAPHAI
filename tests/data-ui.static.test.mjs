@@ -13,7 +13,7 @@ for(const file of htmlFiles){
   const html=readFileSync(file,'utf8');
   const ids=[...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match=>match[1]);
   assert.equal(new Set(ids).size,ids.length,`ID estático duplicado en ${relative(root,file)}`);
-  assert.match(html,/data\.css\?v=20260912-2/);
+  assert.match(html,/data\.css\?v=20260912-3/);
   for(const block of html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(block[1]),`JSON-LD inválido en ${relative(root,file)}`);
   for(const link of html.matchAll(/(?:href|src)=["']([^"'#?]+)(?:\?[^"']*)?["']/g)){
     const target=link[1];
@@ -25,7 +25,7 @@ for(const file of htmlFiles){
 
 for(const file of interactive){
   const html=readFileSync(file,'utf8');
-  assert.match(html,/data-explorer\.js\?v=20260912-2/);
+  assert.match(html,/data-explorer\.js\?v=20260912-3/);
   for(const id of ['data_app','year_select','country_search','ranking_body','insights','compare_list','chart','chart_legend','chart_table_body','download_csv','source_box'])assert.match(html,new RegExp(`id=["']${id}["']`),`${id} falta en ${relative(root,file)}`);
 }
 
@@ -39,10 +39,12 @@ assert.match(css,/@media\(max-width:600px\)/);
 assert.match(css,/@media\(max-width:420px\)/);
 assert.match(css,/touch-action:pan-y/);
 assert.match(css,/\.chart svg\{[^}]*height:clamp\(420px,42vw,500px\)/);
-assert.match(css,/@media\(max-width:720px\)\{\.chart-axis\{font-size:15px\}\}/);
-assert.match(css,/@media\(max-width:600px\)\{\.chart-axis\{font-size:18px\}\}/);
-assert.match(explorer,/mobile\?430:1060/);
-assert.match(explorer,/mobile\?\{l:118,r:22,t:30,b:58\}/);
+assert.match(explorer,/axisFont=mobile\?14:10/);
+assert.match(explorer,/style="font-size:\$\{axisFont\}px"/);
+assert.match(explorer,/w=mobile\?Math\.max\(280,measuredWidth\):1060/);
+assert.match(explorer,/h=mobile\?\(viewportWidth<=420\?320:viewportWidth<=600\?350:410\):480/);
+assert.match(explorer,/mobile\?\{l:112,r:18,t:28,b:46\}/);
+assert.doesNotMatch(css,/@media\(max-width:\d+px\)\{\.chart-axis\{font-size:/);
 
 const registry=JSON.parse(readFileSync(join(root,'assets/data/indicators.json'),'utf8'));
 assert.equal(registry.indicators.length,8);
