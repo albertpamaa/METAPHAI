@@ -21,8 +21,8 @@ export function formatIndicatorValue(value,indicator,locale='es-ES',context='car
       return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:0})} ${config.unitLabel||'personas'}`;
     case 'years':return `${number(value)} ${config.unitLabel||'años'}`;
     case 'fertility':return `${number(value)} ${config.unitLabel||'hijos por mujer'}`;
-    case 'percent':return `${number(value)} %`;
-    case 'signedPercent':return `${value>0?'+':value<0?'−':''}${number(Math.abs(value))} %`;
+    case 'percent':return `${number(value)}${locale.startsWith('es')?' ':''}%`;
+    case 'signedPercent':return `${value>0?'+':value<0?'−':''}${number(Math.abs(value))}${locale.startsWith('es')?' ':''}%`;
     case 'currency':return `${number(value,{minimumFractionDigits:0,maximumFractionDigits:exact?2:0})} ${config.unitLabel||''}`.trim();
     default:return `${number(value)}${config.unitLabel?` ${config.unitLabel}`:''}`;
   }
@@ -33,7 +33,8 @@ export function formatIndicatorChange(value,indicator,locale='es-ES',context='ca
   const exact=context==='table'||context==='tooltip',decimals=exact?Math.max(indicator.presentation?.decimals??1,2):indicator.presentation?.decimals??1;
   const formatted=new Intl.NumberFormat(locale,{minimumFractionDigits:exact?0:Math.min(decimals,1),maximumFractionDigits:decimals}).format(Math.abs(value));
   const sign=value>0?'+':value<0?'−':'';
-  return `${sign}${formatted} ${indicator.presentation?.changeType==='percentage_points'?'p. p.':'%'}`;
+  const percentagePoints=indicator.presentation?.changeType==='percentage_points';
+  return percentagePoints?`${sign}${formatted} ${locale.startsWith('es')?'p. p.':'pp'}`:`${sign}${formatted}${locale.startsWith('es')?' ':''}%`;
 }
 
 export function normalizeSearch(value=''){return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[‘’ʼ]/g,"'").toLocaleLowerCase().trim()}
