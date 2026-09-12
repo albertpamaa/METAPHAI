@@ -9,7 +9,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260821-2">
+  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260912-1">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
@@ -44,6 +44,13 @@
     .logo { font-size: 17px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; text-decoration: none; }
     .logo span { color: var(--accent); }
     .header-tag { font-size: 11px; background: var(--accent-light); color: var(--accent); padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+    .data-home { margin: 3rem 0 1rem; padding: 1.5rem; border: 1px solid #cfded6; border-radius: var(--radius-lg); background: linear-gradient(135deg,#f3f8f5,#fff); }
+    .data-home h2 { margin-bottom: .35rem; }
+    .data-home > p { color: var(--muted); margin-bottom: 1rem; }
+    .data-home-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; }
+    .data-home-links a { padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none; }
+    .data-home .data-cta { display: inline-block; margin-top: 1rem; color: var(--accent); font-weight: 600; }
+    @media(max-width:600px){.data-home-links{grid-template-columns:repeat(2,1fr)}}
     main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
     .hero { text-align: center; margin-bottom: 2.5rem; }
     .hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
@@ -86,7 +93,10 @@
 <header>
   <a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a>
   <nav class="site-nav" aria-label="Navegación principal">
-    <a href="/calendarios-laborales/" class="site-nav-link">Ver calendarios 2026-2027</a>
+    <div class="site-nav-primary">
+      <a href="/calendarios-laborales/" class="site-nav-link">Ver calendarios 2026-2027</a>
+      <a href="/datos/" class="site-nav-link">Datos</a>
+    </div>
     <span class="header-tag">Herramientas gratis</span>
   </nav>
 </header>
@@ -229,6 +239,15 @@
     </a>
 
   </div>
+
+  <section class="data-home" aria-labelledby="data-home-title">
+    <h2 id="data-home-title">Explora datos globales</h2>
+    <p>Compara países y descubre tendencias económicas, demográficas y sociales con datos oficiales.</p>
+    <div class="data-home-links">
+      <a href="/datos/poblacion/">Población</a><a href="/datos/esperanza-de-vida/">Esperanza de vida</a><a href="/datos/pib-per-capita/">PIB per cápita</a><a href="/datos/desempleo/">Desempleo</a>
+    </div>
+    <a class="data-cta" href="/datos/">Explorar todos los datos →</a>
+  </section>
 
 <div class="seo">
   <h2>Calculadoras financieras gratuitas para España</h2>

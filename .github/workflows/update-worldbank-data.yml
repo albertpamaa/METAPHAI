@@ -1,0 +1,43 @@
+name: Update World Bank data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: worldbank-data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test data pipeline and ranking engine
+        run: |
+          python tests/test_worldbank_pipeline.py
+          node tests/data-core.test.mjs
+      - name: Refresh validated WDI files
+        run: python scripts/update_worldbank_data.py
+      - name: Commit changed datasets only
+        shell: bash
+        run: |
+          git add assets/data/worldbank/*.json
+          if git diff --cached --quiet; then
+            echo "No statistical changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): refresh World Bank indicators"
+          git push

@@ -1,0 +1,71 @@
+{
+  "downloaded_at": "2026-09-12",
+  "dataset": "World Development Indicators",
+  "license": "CC BY 4.0",
+  "indicators": [
+    {
+      "code": "SP.POP.TOTL",
+      "slug": "poblacion",
+      "file": "poblacion.json",
+      "latest_year": 2025,
+      "country_count": 217,
+      "observations": 17130
+    },
+    {
+      "code": "SP.DYN.LE00.IN",
+      "slug": "esperanza-de-vida",
+      "file": "esperanza-de-vida.json",
+      "latest_year": 2024,
+      "country_count": 217,
+      "observations": 16866
+    },
+    {
+      "code": "SP.DYN.TFRT.IN",
+      "slug": "fertilidad",
+      "file": "fertilidad.json",
+      "latest_year": 2024,
+      "country_count": 217,
+      "observations": 16868
+    },
+    {
+      "code": "NY.GDP.PCAP.PP.CD",
+      "slug": "pib-per-capita",
+      "file": "pib-per-capita.json",
+      "latest_year": 2025,
+      "country_count": 203,
+      "observations": 8568
+    },
+    {
+      "code": "NY.GDP.MKTP.KD.ZG",
+      "slug": "crecimiento-pib",
+      "file": "crecimiento-pib.json",
+      "latest_year": 2025,
+      "country_count": 214,
+      "observations": 14070
+    },
+    {
+      "code": "SL.UEM.TOTL.ZS",
+      "slug": "desempleo",
+      "file": "desempleo.json",
+      "latest_year": 2025,
+      "country_count": 187,
+      "observations": 8036
+    },
+    {
+      "code": "IT.NET.USER.ZS",
+      "slug": "uso-de-internet",
+      "file": "uso-de-internet.json",
+      "latest_year": 2025,
+      "country_count": 213,
+      "observations": 6812
+    },
+    {
+      "code": "EG.FEC.RNEW.ZS",
+      "slug": "energia-renovable",
+      "file": "energia-renovable.json",
+      "latest_year": 2022,
+      "country_count": 212,
+      "observations": 8079
+    }
+  ]
+}

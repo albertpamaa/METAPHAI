@@ -12,21 +12,28 @@
 }
 
 header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: stretch !important;
+  min-height: 56px;
+  padding: 0 2rem;
+  border-bottom: 1px solid #e2e0d8;
+  background: #fff;
 }
+
+header > .logo { grid-column: 1; justify-self: start; }
 
 .site-nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px 18px;
-  min-width: 0;
+  display: contents;
 }
 
+.site-nav-primary { grid-column: 2; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 0; }
+
 .site-nav-link {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -41,6 +48,19 @@ header {
   white-space: nowrap;
   cursor: pointer;
   transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.site-nav .header-tag,
+.site-nav .nav-back { grid-column: 3; justify-self: end; }
+
+.site-nav .header-tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #e8f4ee;
+  color: #2d6a4f;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .site-nav-link:hover,
@@ -59,14 +79,12 @@ header {
   white-space: nowrap;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
   header {
-    display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       "logo tools"
-      "calendar calendar";
-    align-items: center;
+      "primary primary";
     height: auto !important;
     min-height: 100px;
     padding-top: 6px !important;
@@ -74,14 +92,8 @@ header {
     row-gap: 4px;
   }
   header > .logo { grid-area: logo; justify-self: start; }
-  .site-nav { display: contents; }
-  .site-nav-link {
-    position: static;
-    grid-area: calendar;
-    justify-self: center;
-    transform: none;
-    font-size: 12px;
-  }
+  .site-nav-primary { grid-area: primary; justify-self: center; }
+  .site-nav-link { font-size: 12px; }
   .site-nav .header-tag,
   .site-nav .nav-back { grid-area: tools; justify-self: end; }
   .site-nav .nav-back { font-size: 0; }
@@ -89,5 +101,6 @@ header {
 }
 
 @media (max-width: 390px) {
-  .site-nav-link { font-size: 11px; }
+  .site-nav-primary { gap: 4px; }
+  .site-nav-link { min-height: 40px; padding: 0 8px; font-size: 11px; }
 }
