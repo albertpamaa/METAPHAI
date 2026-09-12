@@ -24,11 +24,14 @@ assert.equal(population.includes('mil M'),false);
 assert.doesNotThrow(()=>formatIndicatorValue(764,presentations.population,'es-ES','card'));
 assert.equal(formatIndicatorValue(764,presentations.population,'es-ES','card'),'764 personas');
 assert.equal(formatIndicatorValue(49355143,presentations.population,'es-ES','tooltip'),'49.355.143 personas');
+assert.equal(formatIndicatorValue(1463865525,presentations.population,'es-ES','axis'),'1.463,9 M');
 assert.equal(formatIndicatorValue(84.53,presentations.years,'es-ES','card'),'84,5 años');
 assert.equal(formatIndicatorValue(1.87,presentations.fertility,'es-ES','card'),'1,9 hijos por mujer');
+assert.equal(formatIndicatorValue(1.87,presentations.fertility,'es-ES','axis'),'1,9 nac./mujer');
 assert.equal(formatIndicatorValue(7.43,presentations.percent,'es-ES','card'),'7,4 %');
 assert.equal(formatIndicatorValue(-2.35,presentations.signed,'es-ES','card'),'−2,4 %');
 assert.doesNotThrow(()=>formatIndicatorValue(1234.56,presentations.currency,'es-ES','card'));
+assert.equal(formatIndicatorValue(163353.99,presentations.currency,'es-ES','axis'),'163.354 $');
 for(const locale of ['en-US','fr-FR','de-DE'])assert.doesNotThrow(()=>formatIndicatorValue(84.53,presentations.years,locale,'tooltip'));
 assert.equal(formatIndicatorValue(84.53,presentations.years,'es-ES','csv'),'84.53');
 
@@ -70,4 +73,4 @@ assert.equal(median([4,1,3,2]),2.5);
 assert.equal(median([4,1,3]),3);
 assert.equal(median([]),null);
 
-console.log('data-core: 52 assertions OK');
+console.log('data-core: 55 assertions OK');

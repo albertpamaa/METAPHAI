@@ -39,6 +39,10 @@ assert.match(css,/@media\(max-width:600px\)/);
 assert.match(css,/@media\(max-width:420px\)/);
 assert.match(css,/touch-action:pan-y/);
 assert.match(css,/\.chart svg\{[^}]*height:clamp\(420px,42vw,500px\)/);
+assert.match(css,/@media\(max-width:720px\)\{\.chart-axis\{font-size:15px\}\}/);
+assert.match(css,/@media\(max-width:600px\)\{\.chart-axis\{font-size:18px\}\}/);
+assert.match(explorer,/mobile\?430:1060/);
+assert.match(explorer,/mobile\?\{l:118,r:22,t:30,b:58\}/);
 
 const registry=JSON.parse(readFileSync(join(root,'assets/data/indicators.json'),'utf8'));
 assert.equal(registry.indicators.length,8);

@@ -52,7 +52,7 @@ for(const item of registry.indicators){
   const values=ranked.map(row=>row.value),middle=median(values);
   assert.ok(Number.isFinite(middle));
   for(const value of [Math.min(...values),Math.max(...values),middle,...values]){
-    for(const context of ['card','table','tooltip','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,item,ui.locale,context),`${item.slug}: formatter ${context}`);
+    for(const context of ['card','table','tooltip','axis','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,item,ui.locale,context),`${item.slug}: formatter ${context}`);
   }
 
   const esp=ranked.find(row=>row.country==='ESP');
