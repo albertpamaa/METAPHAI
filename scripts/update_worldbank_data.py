@@ -11,7 +11,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "assets/data/indicators.json"
 OUTPUT = ROOT / "assets/data/worldbank"
-USER_AGENT = "MetaphAI-WDI-Updater/1.0 (+https://metaphai.com/datos/fuentes/)"
+USER_AGENT = "MetaphAI-WDI-Updater/1.0 (+https://metaphai.com/datos-globales/fuentes/)"
 
 class UpdateError(RuntimeError): pass
 

@@ -4,7 +4,7 @@ import {dirname,join,relative,resolve} from 'node:path';
 
 const root=resolve(import.meta.dirname,'..');
 const walk=directory=>readdirSync(directory,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(join(directory,entry.name)):join(directory,entry.name));
-const htmlFiles=walk(join(root,'datos')).filter(file=>file.endsWith('.html'));
+const htmlFiles=walk(join(root,'datos-globales')).filter(file=>file.endsWith('.html'));
 const interactive=htmlFiles.filter(file=>/data-explorer\.js/.test(readFileSync(file,'utf8')));
 assert.equal(htmlFiles.length,11);
 assert.equal(interactive.length,9);
@@ -13,6 +13,9 @@ for(const file of htmlFiles){
   const html=readFileSync(file,'utf8');
   const ids=[...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match=>match[1]);
   assert.equal(new Set(ids).size,ids.length,`ID estático duplicado en ${relative(root,file)}`);
+  assert.doesNotMatch(html,/metaphai\.com\/datos\//);
+  assert.doesNotMatch(html,/href=["']\/datos\//);
+  assert.match(html,/rel="canonical" href="https:\/\/metaphai\.com\/datos-globales\//);
   assert.match(html,/data\.css\?v=20260912-5/);
   for(const block of html.matchAll(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(block[1]),`JSON-LD inválido en ${relative(root,file)}`);
   for(const link of html.matchAll(/(?:href|src)=["']([^"'#?]+)(?:\?[^"']*)?["']/g)){
@@ -63,5 +66,18 @@ for(const indicator of registry.indicators){
   assert.doesNotThrow(()=>JSON.parse(readFileSync(join(root,'assets/data/worldbank',`${indicator.slug}.json`),'utf8')));
 }
 assert.doesNotThrow(()=>JSON.parse(readFileSync(join(root,'assets/data/worldbank/countries.json'),'utf8')));
+
+const legacyRoutes=['','explorador','fuentes',...registry.indicators.map(indicator=>indicator.slug)];
+assert.equal(legacyRoutes.length,11);
+for(const route of legacyRoutes){
+  const legacy=readFileSync(join(root,'datos',route,'index.html'),'utf8'),target=`/datos-globales/${route?`${route}/`:''}`;
+  assert.match(legacy,/<meta name="robots" content="noindex,follow">/);
+  assert.ok(legacy.includes(`<link rel="canonical" href="https://metaphai.com${target}">`));
+  assert.ok(legacy.includes(`<meta http-equiv="refresh" content="0; url=${target}">`));
+  assert.ok(legacy.includes(`href="${target}"`));
+}
+const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+assert.doesNotMatch(sitemap,/metaphai\.com\/datos\//);
+assert.equal([...sitemap.matchAll(/https:\/\/metaphai\.com\/datos-globales\//g)].length,11);
 
 console.log(`data-ui-static: ${htmlFiles.length} páginas, ${interactive.length} interactivas y 8 indicadores OK`);

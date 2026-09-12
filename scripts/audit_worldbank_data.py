@@ -21,7 +21,7 @@ def common_year(rows:list[dict],threshold:float):
 def request_api(base:str,codes:tuple[str,...],indicator:str,start:int,end:int):
     endpoint=f"/country/{';'.join(codes)}/indicator/{indicator}"
     query=urlencode({"source":2,"date":f"{start}:{end}","format":"json","per_page":20000})
-    request=Request(f"{base}{endpoint}?{query}",headers={"User-Agent":"MetaphAI-WDI-Audit/1.0 (+https://metaphai.com/datos/fuentes/)"})
+    request=Request(f"{base}{endpoint}?{query}",headers={"User-Agent":"MetaphAI-WDI-Audit/1.0 (+https://metaphai.com/datos-globales/fuentes/)"})
     with urlopen(request,timeout=60) as response:payload=json.loads(response.read().decode("utf-8"))
     if not isinstance(payload,list) or len(payload)<2:raise RuntimeError(f"Respuesta API inválida para {indicator}")
     return {(row.get("countryiso3code"),int(row["date"])):row["value"] for row in (payload[1] or []) if row.get("value") is not None}
