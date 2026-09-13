@@ -10,7 +10,12 @@ const phrases={
   fr:['Rechercher un pays','Chiffres clés','Sources et méthodologie'],
   de:['Land suchen','Kennzahlen','Quellen und Methodik'],
   it:['Cerca paese','Dati principali','Fonti e metodologia'],
-  pt:['Pesquisar país','Dados em destaque','Fontes e metodologia']
+  pt:['Pesquisar país','Dados em destaque','Fontes e metodologia'],
+  ru:['Поиск страны','Ключевые показатели','Источники и методология'],
+  'zh-CN':['搜索国家或地区','关键数据','来源与方法'],
+  hi:['देश खोजें','मुख्य आँकड़े','स्रोत और कार्यप्रणाली'],
+  ja:['国・地域を検索','主な数値','情報源と方法'],
+  ko:['국가 검색','주요 수치','출처 및 방법론']
 };
 for(const [key,page] of Object.entries(DATA_PAGES)){
   if(key==='home'||key==='sources')continue;
@@ -22,4 +27,4 @@ for(const [key,page] of Object.entries(DATA_PAGES)){
     for(const other of Object.keys(phrases).filter(code=>code!==language))for(const phrase of phrases[other])assert.equal(html.includes(phrase),false,`${page[language]}: contaminación ${other} "${phrase}"`);
   }
 }
-console.log('data-translations-static: interfaz principal localizada sin contaminación entre 6 idiomas');
+console.log('data-translations-static: interfaz principal localizada sin contaminación entre 11 idiomas');

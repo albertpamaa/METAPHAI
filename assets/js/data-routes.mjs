@@ -4,31 +4,36 @@ export const DATA_LANGUAGES={
   fr:{locale:'fr-FR',label:'Français',shortLabel:'FR',activeLabel:'langue active',switchLabel:'Passer en'},
   de:{locale:'de-DE',label:'Deutsch',shortLabel:'DE',activeLabel:'aktive Sprache',switchLabel:'Wechseln zu'},
   it:{locale:'it-IT',label:'Italiano',shortLabel:'IT',activeLabel:'lingua attiva',switchLabel:'Passa a'},
-  pt:{locale:'pt-PT',label:'Português',shortLabel:'PT',activeLabel:'idioma ativo',switchLabel:'Mudar para'}
+  pt:{locale:'pt-PT',label:'Português',shortLabel:'PT',activeLabel:'idioma ativo',switchLabel:'Mudar para'},
+  ru:{locale:'ru-RU',label:'Русский',shortLabel:'RU',activeLabel:'активный язык',switchLabel:'Переключить на'},
+  'zh-CN':{locale:'zh-CN',label:'简体中文',shortLabel:'中文',pathPrefix:'zh-cn',activeLabel:'当前语言',switchLabel:'切换至'},
+  hi:{locale:'hi-IN',label:'हिन्दी',shortLabel:'HI',activeLabel:'सक्रिय भाषा',switchLabel:'इस भाषा में बदलें'},
+  ja:{locale:'ja-JP',label:'日本語',shortLabel:'JA',activeLabel:'選択中の言語',switchLabel:'切り替え先'},
+  ko:{locale:'ko-KR',label:'한국어',shortLabel:'KO',activeLabel:'현재 언어',switchLabel:'다음 언어로 전환'}
 };
 
 export const DATA_PAGES={
-  home:{indicator:null,es:'/datos-globales/',en:'/en/global-data/',fr:'/fr/donnees-mondiales/',de:'/de/weltdaten/',it:'/it/dati-globali/',pt:'/pt/dados-globais/'},
-  explorer:{indicator:null,es:'/datos-globales/explorador/',en:'/en/global-data/explorer/',fr:'/fr/donnees-mondiales/explorateur/',de:'/de/weltdaten/explorer/',it:'/it/dati-globali/esplora/',pt:'/pt/dados-globais/explorador/'},
-  sources:{indicator:null,es:'/datos-globales/fuentes/',en:'/en/global-data/sources/',fr:'/fr/donnees-mondiales/sources/',de:'/de/weltdaten/quellen/',it:'/it/dati-globali/fonti/',pt:'/pt/dados-globais/fontes/'},
-  population:{indicator:'poblacion',es:'/datos-globales/poblacion/',en:'/en/global-data/population/',fr:'/fr/donnees-mondiales/population/',de:'/de/weltdaten/bevoelkerung/',it:'/it/dati-globali/popolazione/',pt:'/pt/dados-globais/populacao/'},
-  lifeExpectancy:{indicator:'esperanza-de-vida',es:'/datos-globales/esperanza-de-vida/',en:'/en/global-data/life-expectancy/',fr:'/fr/donnees-mondiales/esperance-de-vie/',de:'/de/weltdaten/lebenserwartung/',it:'/it/dati-globali/speranza-di-vita/',pt:'/pt/dados-globais/esperanca-de-vida/'},
-  fertility:{indicator:'fertilidad',es:'/datos-globales/fertilidad/',en:'/en/global-data/fertility/',fr:'/fr/donnees-mondiales/fecondite/',de:'/de/weltdaten/fruchtbarkeit/',it:'/it/dati-globali/fertilita/',pt:'/pt/dados-globais/fertilidade/'},
-  gdpPerCapita:{indicator:'pib-per-capita',es:'/datos-globales/pib-per-capita/',en:'/en/global-data/gdp-per-capita/',fr:'/fr/donnees-mondiales/pib-par-habitant/',de:'/de/weltdaten/bip-pro-kopf/',it:'/it/dati-globali/pil-pro-capite/',pt:'/pt/dados-globais/pib-per-capita/'},
-  gdpGrowth:{indicator:'crecimiento-pib',es:'/datos-globales/crecimiento-pib/',en:'/en/global-data/gdp-growth/',fr:'/fr/donnees-mondiales/croissance-du-pib/',de:'/de/weltdaten/bip-wachstum/',it:'/it/dati-globali/crescita-pil/',pt:'/pt/dados-globais/crescimento-pib/'},
-  unemployment:{indicator:'desempleo',es:'/datos-globales/desempleo/',en:'/en/global-data/unemployment/',fr:'/fr/donnees-mondiales/chomage/',de:'/de/weltdaten/arbeitslosigkeit/',it:'/it/dati-globali/disoccupazione/',pt:'/pt/dados-globais/desemprego/'},
-  internetUse:{indicator:'uso-de-internet',es:'/datos-globales/uso-de-internet/',en:'/en/global-data/internet-use/',fr:'/fr/donnees-mondiales/utilisation-internet/',de:'/de/weltdaten/internetnutzung/',it:'/it/dati-globali/uso-internet/',pt:'/pt/dados-globais/uso-da-internet/'},
-  renewableEnergy:{indicator:'energia-renovable',es:'/datos-globales/energia-renovable/',en:'/en/global-data/renewable-energy/',fr:'/fr/donnees-mondiales/energie-renouvelable/',de:'/de/weltdaten/erneuerbare-energie/',it:'/it/dati-globali/energia-rinnovabile/',pt:'/pt/dados-globais/energia-renovavel/'}
+  home:{indicator:null,es:'/datos-globales/',en:'/en/global-data/',fr:'/fr/donnees-mondiales/',de:'/de/weltdaten/',it:'/it/dati-globali/',pt:'/pt/dados-globais/',ru:'/ru/global-data/','zh-CN':'/zh-cn/global-data/',hi:'/hi/global-data/',ja:'/ja/global-data/',ko:'/ko/global-data/'},
+  explorer:{indicator:null,es:'/datos-globales/explorador/',en:'/en/global-data/explorer/',fr:'/fr/donnees-mondiales/explorateur/',de:'/de/weltdaten/explorer/',it:'/it/dati-globali/esplora/',pt:'/pt/dados-globais/explorador/',ru:'/ru/global-data/explorer/','zh-CN':'/zh-cn/global-data/explorer/',hi:'/hi/global-data/explorer/',ja:'/ja/global-data/explorer/',ko:'/ko/global-data/explorer/'},
+  sources:{indicator:null,es:'/datos-globales/fuentes/',en:'/en/global-data/sources/',fr:'/fr/donnees-mondiales/sources/',de:'/de/weltdaten/quellen/',it:'/it/dati-globali/fonti/',pt:'/pt/dados-globais/fontes/',ru:'/ru/global-data/sources/','zh-CN':'/zh-cn/global-data/sources/',hi:'/hi/global-data/sources/',ja:'/ja/global-data/sources/',ko:'/ko/global-data/sources/'},
+  population:{indicator:'poblacion',es:'/datos-globales/poblacion/',en:'/en/global-data/population/',fr:'/fr/donnees-mondiales/population/',de:'/de/weltdaten/bevoelkerung/',it:'/it/dati-globali/popolazione/',pt:'/pt/dados-globais/populacao/',ru:'/ru/global-data/population/','zh-CN':'/zh-cn/global-data/population/',hi:'/hi/global-data/population/',ja:'/ja/global-data/population/',ko:'/ko/global-data/population/'},
+  lifeExpectancy:{indicator:'esperanza-de-vida',es:'/datos-globales/esperanza-de-vida/',en:'/en/global-data/life-expectancy/',fr:'/fr/donnees-mondiales/esperance-de-vie/',de:'/de/weltdaten/lebenserwartung/',it:'/it/dati-globali/speranza-di-vita/',pt:'/pt/dados-globais/esperanca-de-vida/',ru:'/ru/global-data/life-expectancy/','zh-CN':'/zh-cn/global-data/life-expectancy/',hi:'/hi/global-data/life-expectancy/',ja:'/ja/global-data/life-expectancy/',ko:'/ko/global-data/life-expectancy/'},
+  fertility:{indicator:'fertilidad',es:'/datos-globales/fertilidad/',en:'/en/global-data/fertility/',fr:'/fr/donnees-mondiales/fecondite/',de:'/de/weltdaten/fruchtbarkeit/',it:'/it/dati-globali/fertilita/',pt:'/pt/dados-globais/fertilidade/',ru:'/ru/global-data/fertility/','zh-CN':'/zh-cn/global-data/fertility/',hi:'/hi/global-data/fertility/',ja:'/ja/global-data/fertility/',ko:'/ko/global-data/fertility/'},
+  gdpPerCapita:{indicator:'pib-per-capita',es:'/datos-globales/pib-per-capita/',en:'/en/global-data/gdp-per-capita/',fr:'/fr/donnees-mondiales/pib-par-habitant/',de:'/de/weltdaten/bip-pro-kopf/',it:'/it/dati-globali/pil-pro-capite/',pt:'/pt/dados-globais/pib-per-capita/',ru:'/ru/global-data/gdp-per-capita/','zh-CN':'/zh-cn/global-data/gdp-per-capita/',hi:'/hi/global-data/gdp-per-capita/',ja:'/ja/global-data/gdp-per-capita/',ko:'/ko/global-data/gdp-per-capita/'},
+  gdpGrowth:{indicator:'crecimiento-pib',es:'/datos-globales/crecimiento-pib/',en:'/en/global-data/gdp-growth/',fr:'/fr/donnees-mondiales/croissance-du-pib/',de:'/de/weltdaten/bip-wachstum/',it:'/it/dati-globali/crescita-pil/',pt:'/pt/dados-globais/crescimento-pib/',ru:'/ru/global-data/gdp-growth/','zh-CN':'/zh-cn/global-data/gdp-growth/',hi:'/hi/global-data/gdp-growth/',ja:'/ja/global-data/gdp-growth/',ko:'/ko/global-data/gdp-growth/'},
+  unemployment:{indicator:'desempleo',es:'/datos-globales/desempleo/',en:'/en/global-data/unemployment/',fr:'/fr/donnees-mondiales/chomage/',de:'/de/weltdaten/arbeitslosigkeit/',it:'/it/dati-globali/disoccupazione/',pt:'/pt/dados-globais/desemprego/',ru:'/ru/global-data/unemployment/','zh-CN':'/zh-cn/global-data/unemployment/',hi:'/hi/global-data/unemployment/',ja:'/ja/global-data/unemployment/',ko:'/ko/global-data/unemployment/'},
+  internetUse:{indicator:'uso-de-internet',es:'/datos-globales/uso-de-internet/',en:'/en/global-data/internet-use/',fr:'/fr/donnees-mondiales/utilisation-internet/',de:'/de/weltdaten/internetnutzung/',it:'/it/dati-globali/uso-internet/',pt:'/pt/dados-globais/uso-da-internet/',ru:'/ru/global-data/internet-use/','zh-CN':'/zh-cn/global-data/internet-use/',hi:'/hi/global-data/internet-use/',ja:'/ja/global-data/internet-use/',ko:'/ko/global-data/internet-use/'},
+  renewableEnergy:{indicator:'energia-renovable',es:'/datos-globales/energia-renovable/',en:'/en/global-data/renewable-energy/',fr:'/fr/donnees-mondiales/energie-renouvelable/',de:'/de/weltdaten/erneuerbare-energie/',it:'/it/dati-globali/energia-rinnovabile/',pt:'/pt/dados-globais/energia-renovavel/',ru:'/ru/global-data/renewable-energy/','zh-CN':'/zh-cn/global-data/renewable-energy/',hi:'/hi/global-data/renewable-energy/',ja:'/ja/global-data/renewable-energy/',ko:'/ko/global-data/renewable-energy/'}
 };
 
 export const INSTITUTIONAL_PAGES={
-  privacy:{es:'/privacidad.html',en:'/en/privacy/',fr:'/fr/confidentialite/',de:'/de/datenschutz/',it:'/it/privacy/',pt:'/pt/privacidade/'},
-  contact:{es:'/contacto.html',en:'/en/contact/',fr:'/fr/contact/',de:'/de/kontakt/',it:'/it/contatti/',pt:'/pt/contacto/'},
-  about:{es:'/sobre-nosotros.html',en:'/en/about/',fr:'/fr/a-propos/',de:'/de/ueber-uns/',it:'/it/chi-siamo/',pt:'/pt/sobre-nos/'}
+  privacy:{es:'/privacidad.html',en:'/en/privacy/',fr:'/fr/confidentialite/',de:'/de/datenschutz/',it:'/it/privacy/',pt:'/pt/privacidade/',ru:'/ru/privacy/','zh-CN':'/zh-cn/privacy/',hi:'/hi/privacy/',ja:'/ja/privacy/',ko:'/ko/privacy/'},
+  contact:{es:'/contacto.html',en:'/en/contact/',fr:'/fr/contact/',de:'/de/kontakt/',it:'/it/contatti/',pt:'/pt/contacto/',ru:'/ru/contact/','zh-CN':'/zh-cn/contact/',hi:'/hi/contact/',ja:'/ja/contact/',ko:'/ko/contact/'},
+  about:{es:'/sobre-nosotros.html',en:'/en/about/',fr:'/fr/a-propos/',de:'/de/ueber-uns/',it:'/it/chi-siamo/',pt:'/pt/sobre-nos/',ru:'/ru/about/','zh-CN':'/zh-cn/about/',hi:'/hi/about/',ja:'/ja/about/',ko:'/ko/about/'}
 };
 
 export const LOCALIZED_PAGES={...DATA_PAGES,...INSTITUTIONAL_PAGES};
 
 export function pageRoutes(pageKey){return LOCALIZED_PAGES[pageKey]||null}
 export function pageKeyFromPath(pathname){return Object.entries(LOCALIZED_PAGES).find(([,page])=>Object.keys(DATA_LANGUAGES).some(language=>page[language]===pathname))?.[0]||null}
-export function languageFromPath(pathname){return Object.keys(DATA_LANGUAGES).find(language=>language!=='es'&&pathname.startsWith(`/${language}/`))||'es'}
+export function languageFromPath(pathname){return Object.keys(DATA_LANGUAGES).find(language=>language!=='es'&&pathname.startsWith(`/${DATA_LANGUAGES[language].pathPrefix||language}/`))||'es'}

@@ -1,8 +1,8 @@
-import {DATA_LANGUAGES,pageRoutes,pageKeyFromPath,languageFromPath} from '/assets/js/data-routes.mjs?v=20260912-8';
+import {DATA_LANGUAGES,pageRoutes,pageKeyFromPath,languageFromPath} from '/assets/js/data-routes.mjs?v=20260913-1';
 
 const switcher=document.querySelector('[data-language-switcher]');
 if(switcher){
-  const pageKey=switcher.dataset.pageKey||pageKeyFromPath(location.pathname),routes=pageRoutes(pageKey),active=(document.documentElement.lang||languageFromPath(location.pathname)).split('-')[0],activeConfig=DATA_LANGUAGES[active]||DATA_LANGUAGES.es;
+  const pageKey=switcher.dataset.pageKey||pageKeyFromPath(location.pathname),routes=pageRoutes(pageKey),htmlLanguage=document.documentElement.lang||languageFromPath(location.pathname),active=htmlLanguage.toLowerCase()==='zh-cn'?'zh-CN':htmlLanguage.split('-')[0],activeConfig=DATA_LANGUAGES[active]||DATA_LANGUAGES.es;
   const currentName=switcher.querySelector('[data-current-language]'),currentCode=switcher.querySelector('[data-current-code]');
   if(currentName)currentName.textContent=activeConfig.label;
   if(currentCode)currentCode.textContent=activeConfig.shortLabel;
