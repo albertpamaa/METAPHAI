@@ -21,6 +21,14 @@ export const DATA_PAGES={
   renewableEnergy:{indicator:'energia-renovable',es:'/datos-globales/energia-renovable/',en:'/en/global-data/renewable-energy/',fr:'/fr/donnees-mondiales/energie-renouvelable/',de:'/de/weltdaten/erneuerbare-energie/',it:'/it/dati-globali/energia-rinnovabile/',pt:'/pt/dados-globais/energia-renovavel/'}
 };
 
-export function pageRoutes(pageKey){return DATA_PAGES[pageKey]||null}
-export function pageKeyFromPath(pathname){return Object.entries(DATA_PAGES).find(([,page])=>Object.keys(DATA_LANGUAGES).some(language=>page[language]===pathname))?.[0]||null}
+export const INSTITUTIONAL_PAGES={
+  privacy:{es:'/privacidad.html',en:'/en/privacy/',fr:'/fr/confidentialite/',de:'/de/datenschutz/',it:'/it/privacy/',pt:'/pt/privacidade/'},
+  contact:{es:'/contacto.html',en:'/en/contact/',fr:'/fr/contact/',de:'/de/kontakt/',it:'/it/contatti/',pt:'/pt/contacto/'},
+  about:{es:'/sobre-nosotros.html',en:'/en/about/',fr:'/fr/a-propos/',de:'/de/ueber-uns/',it:'/it/chi-siamo/',pt:'/pt/sobre-nos/'}
+};
+
+export const LOCALIZED_PAGES={...DATA_PAGES,...INSTITUTIONAL_PAGES};
+
+export function pageRoutes(pageKey){return LOCALIZED_PAGES[pageKey]||null}
+export function pageKeyFromPath(pathname){return Object.entries(LOCALIZED_PAGES).find(([,page])=>Object.keys(DATA_LANGUAGES).some(language=>page[language]===pathname))?.[0]||null}
 export function languageFromPath(pathname){return Object.keys(DATA_LANGUAGES).find(language=>language!=='es'&&pathname.startsWith(`/${language}/`))||'es'}

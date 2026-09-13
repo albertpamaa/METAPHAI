@@ -1,4 +1,4 @@
-import {DATA_LANGUAGES,pageRoutes,pageKeyFromPath,languageFromPath} from '/assets/js/data-routes.mjs?v=20260912-7';
+import {DATA_LANGUAGES,pageRoutes,pageKeyFromPath,languageFromPath} from '/assets/js/data-routes.mjs?v=20260912-8';
 
 const switcher=document.querySelector('[data-language-switcher]');
 if(switcher){

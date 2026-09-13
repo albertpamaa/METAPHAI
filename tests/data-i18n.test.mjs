@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {formatIndicatorChange,formatIndicatorValue,searchCountries} from '../assets/js/data-core.mjs';
-import {DATA_LANGUAGES,DATA_PAGES,languageFromPath,pageKeyFromPath,pageRoutes} from '../assets/js/data-routes.mjs';
+import {DATA_LANGUAGES,DATA_PAGES,INSTITUTIONAL_PAGES,languageFromPath,pageKeyFromPath,pageRoutes} from '../assets/js/data-routes.mjs';
 import {DATA_I18N,languageConfig} from '../assets/js/data-i18n.mjs';
 import {indicatorPresentation} from '../assets/js/data-presentation.mjs';
 
@@ -10,6 +10,7 @@ const root=resolve(import.meta.dirname,'..'),json=path=>JSON.parse(readFileSync(
 const registry=json('assets/data/indicators.json'),languages=['es','en','fr','de','it','pt'],locales={es:'es-ES',en:'en-US',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT'};
 assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,11);
 for(const [key,page] of Object.entries(DATA_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language)}
+for(const [key,page] of Object.entries(INSTITUTIONAL_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language);assert.deepEqual(pageRoutes(key),page)}
 assert.deepEqual(pageRoutes('fertility'),{indicator:'fertilidad',es:'/datos-globales/fertilidad/',en:'/en/global-data/fertility/',fr:'/fr/donnees-mondiales/fecondite/',de:'/de/weltdaten/fruchtbarkeit/',it:'/it/dati-globali/fertilita/',pt:'/pt/dados-globais/fertilidade/'});
 const referenceKeys=Object.keys(DATA_I18N.es).sort();
 for(const language of languages){const ui=languageConfig(language);assert.equal(ui.locale,locales[language]);assert.deepEqual(Object.keys(DATA_I18N[language]).sort(),referenceKeys,`${language}: claves UI incompletas`);for(const item of registry.indicators){const localized=ui.indicators[item.slug],editorial=indicatorPresentation(item.slug,language);assert.ok(localized?.name&&localized.description&&localized.methodology&&localized.axisUnit&&localized.unitLabel,`${language}/${item.slug}: traducción incompleta`);assert.ok(editorial?.what&&editorial.interpretation&&editorial.limitations.length>=2,`${language}/${item.slug}: editorial incompleta`);if(item.slug==='desempleo')assert.ok(editorial.rankingCaution,`${language}: cautela de desempleo ausente`);for(const value of [0,0.004,-2.4,7.4,1234.56,49355143,9876543210])for(const context of ['card','table','tooltip','axis','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,{...item,presentation:{...item.presentation,unitLabel:localized.unitLabel}},ui.locale,context))}}
