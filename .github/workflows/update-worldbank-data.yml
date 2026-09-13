@@ -29,10 +29,12 @@ jobs:
           node tests/data-core.test.mjs
       - name: Refresh validated WDI files
         run: python scripts/update_worldbank_data.py
-      - name: Commit changed datasets only
+      - name: Refresh HTML snapshots from validated local data
+        run: node scripts/prerender-data-pages.mjs
+      - name: Commit synchronized datasets and snapshots
         shell: bash
         run: |
-          git add assets/data/worldbank/*.json
+          git add assets/data/worldbank/*.json datos-globales en fr de it pt ru zh-cn hi ja ko ca ar id bn
           if git diff --cached --quiet; then
             echo "No statistical changes"
             exit 0
