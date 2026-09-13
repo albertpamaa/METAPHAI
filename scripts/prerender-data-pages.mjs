@@ -1,15 +1,25 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import * as CORE from '../assets/js/data-core.mjs';
 import { languageConfig } from '../assets/js/data-i18n.mjs';
 import { indicatorPresentation } from '../assets/js/data-presentation.mjs';
-import { DATA_LANGUAGES, DATA_PAGES } from '../assets/js/data-routes.mjs';
+import { DATA_LANGUAGES, DATA_PAGES, INSTITUTIONAL_PAGES, countryRoute, countryRoutes } from '../assets/js/data-routes.mjs';
+import { dataViews, comparisonSentence } from '../assets/js/data-views-i18n.mjs';
+import * as VIEWS from '../assets/js/data-view-core.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const START = '<!-- DATA_PRERENDER:START -->';
 const END = '<!-- DATA_PRERENDER:END -->';
-const ASSET_VERSION = '20260913-3';
+const ASSET_VERSION = '20260914-2';
+const NAV_START = '<!-- DATA_SECTION_NAV:START -->';
+const NAV_END = '<!-- DATA_SECTION_NAV:END -->';
+const LANDING_START = '<!-- DATA_DISCOVERY:START -->';
+const LANDING_END = '<!-- DATA_DISCOVERY:END -->';
+const SITEMAP_START = '<!-- DATA_COUNTRY_SITEMAP:START -->';
+const SITEMAP_END = '<!-- DATA_COUNTRY_SITEMAP:END -->';
+const FOOTER_LABELS={es:['Fuentes y metodología','Privacidad','Contacto','Sobre nosotros'],en:['Sources and methodology','Privacy','Contact','About us'],fr:['Sources et méthodologie','Confidentialité','Contact','À propos'],de:['Quellen und Methodik','Datenschutz','Kontakt','Über uns'],it:['Fonti e metodologia','Privacy','Contatti','Chi siamo'],pt:['Fontes e metodologia','Privacidade','Contacto','Sobre nós'],ru:['Источники и методология','Конфиденциальность','Контакты','О проекте'],'zh-CN':['来源与方法','隐私','联系','关于我们'],hi:['स्रोत और कार्यप्रणाली','गोपनीयता','संपर्क','हमारे बारे में'],ja:['情報源と方法','プライバシー','お問い合わせ','私たちについて'],ko:['출처 및 방법론','개인정보 보호','문의','소개'],ca:['Fonts i metodologia','Privacitat','Contacte','Sobre nosaltres'],ar:['المصادر والمنهجية','الخصوصية','التواصل','من نحن'],id:['Sumber dan metodologi','Privasi','Kontak','Tentang kami'],bn:['উৎস ও পদ্ধতি','গোপনীয়তা','যোগাযোগ','আমাদের সম্পর্কে']};
+const DATA_LABELS={es:'Datos globales',en:'Global data',fr:'Données mondiales',de:'Weltdaten',it:'Dati globali',pt:'Dados globais',ru:'Мировые данные','zh-CN':'全球数据',hi:'वैश्विक डेटा',ja:'世界データ',ko:'세계 데이터',ca:'Dades globals',ar:'البيانات العالمية',id:'Data global',bn:'বৈশ্বিক তথ্য'};
 
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -120,9 +130,109 @@ function replaceExplorerSnapshot(html, snapshot) {
   return html.replace(/(?=<section id="data_app">)/, snapshot);
 }
 
+function localizedCountryList(countries, language) {
+  return VIEWS.localizedCountries(countries, languageConfig(language).locale);
+}
+
+function sectionNav(language, active = '') {
+  const text = dataViews(language);
+  return `${NAV_START}<nav class="data-section-nav" aria-label="${escapeHtml(text.explore)}"><a href="${DATA_PAGES.explorer[language]}"${active === 'explorer' ? ' aria-current="page"' : ''}>${escapeHtml(text.explore)}</a><a href="${DATA_PAGES.countries[language]}"${active === 'countries' ? ' aria-current="page"' : ''}>${escapeHtml(text.countries)}</a><a href="${DATA_PAGES.compare[language]}"${active === 'compare' ? ' aria-current="page"' : ''}>${escapeHtml(text.compare)}</a><a href="${DATA_PAGES.rankings[language]}"${active === 'rankings' ? ' aria-current="page"' : ''}>${escapeHtml(text.rankings)}</a></nav>${NAV_END}`;
+}
+
+function injectSectionNav(html, language, active = '') {
+  const marked = new RegExp(`${NAV_START}[\\s\\S]*?${NAV_END}`);
+  const nav = sectionNav(language, active);
+  if (marked.test(html)) return html.replace(marked, nav);
+  const breadcrumb = /(<main[^>]*>[\s\S]*?<nav class="breadcrumb"[^>]*>[\s\S]*?<\/nav>)/;
+  return breadcrumb.test(html) ? html.replace(breadcrumb, `$1${nav}`) : html.replace(/<main([^>]*)>/, `<main$1>${nav}`);
+}
+
+function discoveryBlock(language, countries) {
+  const text = dataViews(language), featuredCodes = language === 'es' ? ['ESP', 'PRT', 'FRA', 'DEU'] : ['USA', 'CHN', 'IND', 'BRA'];
+  const names = new Map(localizedCountryList(countries, language).map(country => [country.id, country.name]));
+  const cards = [
+    [DATA_PAGES.explorer[language], text.explore, text.availableIndicators],
+    [DATA_PAGES.countries[language], text.countries, text.countriesDesc],
+    [DATA_PAGES.compare[language], text.compare, text.compareDesc],
+    [DATA_PAGES.rankings[language], text.rankings, text.rankingsDesc]
+  ].map(([href, title, description]) => `<a class="metric-card" href="${href}"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p></a>`).join('');
+  const countryLinks = featuredCodes.map(code => `<a class="btn" href="${countryRoute(language, code)}">${escapeHtml(names.get(code) || code)}</a>`).join(' ');
+  return `${LANDING_START}<h2 class="section-title">${escapeHtml(text.explore)}</h2><section class="data-grid data-discovery-grid">${cards}</section><h2 class="section-title">${escapeHtml(text.countries)}</h2><p class="featured-countries">${countryLinks}</p>${LANDING_END}`;
+}
+
+function updateLanding(html, language, countries) {
+  const block = discoveryBlock(language, countries), marked = new RegExp(`${LANDING_START}[\\s\\S]*?${LANDING_END}`);
+  return marked.test(html) ? html.replace(marked, block) : html.replace(/(?=<section class="source-box">)/, block);
+}
+
+function alternateLinks(routes) {
+  return Object.keys(DATA_LANGUAGES).map(language => `<link rel="alternate" hreflang="${language}" href="https://metaphai.com${routes[language]}">`).join('') + `<link rel="alternate" hreflang="x-default" href="https://metaphai.com${routes.es}">`;
+}
+
+function sitemapEntries(routeGroups) {
+  const origin='https://metaphai.com';
+  return routeGroups.flatMap(routes=>Object.keys(DATA_LANGUAGES).map(language=>`  <url><loc>${origin}${routes[language]}</loc>${Object.keys(DATA_LANGUAGES).map(code=>`<xhtml:link rel="alternate" hreflang="${code}" href="${origin}${routes[code]}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}${routes.es}"/></url>`)).join('\n');
+}
+
+async function updateSitemap(countries) {
+  const path=join(ROOT,'sitemap.xml'),previous=await readFile(path,'utf8'),marked=new RegExp(`${SITEMAP_START}[\\s\\S]*?${SITEMAP_END}\\s*`),clean=previous.replace(marked,''),groups=[DATA_PAGES.countries,DATA_PAGES.compare,DATA_PAGES.rankings,...VIEWS.validCountries(countries).map(country=>countryRoutes(country.id))],block=`${SITEMAP_START}\n${sitemapEntries(groups)}\n${SITEMAP_END}\n`;
+  return writeIfChanged(path,clean.replace(/<\/urlset>\s*$/,`${block}</urlset>\n`));
+}
+
+function languageSwitcher(language, pageKey, routes) {
+  const active = DATA_LANGUAGES[language];
+  return `<details class="language-switcher" data-language-switcher data-page-key="${pageKey}"><summary aria-label="${escapeHtml(active.label)}"><span class="language-icon" aria-hidden="true">🌐</span><span class="language-name" data-current-language>${escapeHtml(active.label)}</span><span class="language-code" data-current-code>${escapeHtml(active.shortLabel)}</span></summary><div class="language-menu">${Object.entries(DATA_LANGUAGES).map(([code, config]) => `<a data-language="${code}" href="${routes[code]}" hreflang="${code}" lang="${code}" dir="auto"${code === language ? ' aria-current="true"' : ''}><span class="language-name">${escapeHtml(config.label)}</span><span class="language-code">${escapeHtml(config.shortLabel)}</span></a>`).join('')}</div></details>`;
+}
+
+function pageChrome({ language, pageKey, routes, title, description, body, schemaType = 'WebPage' }) {
+  const route = routes[language], text = dataViews(language), dir = language === 'ar' ? ' dir="rtl"' : '';
+  const primary=language==='es'?`<a href="/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="${DATA_PAGES.home.es}" class="site-nav-link" aria-current="page">Datos globales</a>`:`<a href="${DATA_PAGES.home[language]}" class="site-nav-link" aria-current="page">${escapeHtml(DATA_LABELS[language])}</a>`;
+  const globalHeader = `<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="${language==='es'?'Navegación principal':escapeHtml(text.explore)}"><div class="site-nav-primary">${primary}</div><div class="data-header-tools"><span class="header-tag">${escapeHtml(text.countries)}</span>${languageSwitcher(language, pageKey, routes)}</div></nav></header>`;
+  const labels=FOOTER_LABELS[language];
+  const footer = `<footer>© 2026 MetaphAI · <a href="${DATA_PAGES.sources[language]}">${escapeHtml(labels[0])}</a> · <a href="${INSTITUTIONAL_PAGES.privacy[language]}">${escapeHtml(labels[1])}</a> · <a href="${INSTITUTIONAL_PAGES.contact[language]}">${escapeHtml(labels[2])}</a> · <a href="${INSTITUTIONAL_PAGES.about[language]}">${escapeHtml(labels[3])}</a></footer>`;
+  const breadcrumbItems=[{'@type':'ListItem',position:1,name:DATA_LABELS[language],item:`https://metaphai.com${DATA_PAGES.home[language]}`}];
+  if(pageKey.startsWith('country:')) breadcrumbItems.push({'@type':'ListItem',position:2,name:text.countries,item:`https://metaphai.com${DATA_PAGES.countries[language]}`});
+  breadcrumbItems.push({'@type':'ListItem',position:breadcrumbItems.length+1,name:title,item:`https://metaphai.com${route}`});
+  const jsonLd = JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':schemaType,name:title,url:`https://metaphai.com${route}`,isBasedOn:'https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators'},{'@type':'BreadcrumbList',itemListElement:breadcrumbItems}]}).replace(/</g, '\\u003c');
+  return `<!doctype html><html lang="${language}"${dir}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} | MetaphAI</title><meta name="description" content="${escapeHtml(description)}"><meta name="robots" content="index, follow"><link rel="canonical" href="https://metaphai.com${route}">${alternateLinks(routes)}<meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="https://metaphai.com${route}"><meta property="og:type" content="website"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260912-1"><link rel="stylesheet" href="/assets/css/data.css?v=${ASSET_VERSION}"><meta name="google-adsense-account" content="ca-pub-7545567251029894"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script><script type="application/ld+json">${jsonLd}</script></head><body>${globalHeader}<main>${sectionNav(language, pageKey.startsWith('country:') ? 'countries' : pageKey)}${body}</main>${footer}<script type="module" src="/assets/js/data-views.js?v=${ASSET_VERSION}"></script><script type="module" src="/assets/js/data-language.js?v=${ASSET_VERSION}"></script></body></html>`;
+}
+
+function localizedIndicator(item, language) {
+  const localized = languageConfig(language).indicators[item.slug] || item;
+  return { ...item, ...localized, presentation: { ...item.presentation, unitLabel: localized.unitLabel || item.presentation.unitLabel } };
+}
+
+function countriesIndexPage(language, countries) {
+  const text = dataViews(language), list = localizedCountryList(countries, language);
+  const links = list.map(country => `<li data-country-name="${escapeHtml(country.name)}" data-country-code="${country.id} ${country.iso2}"><a href="${countryRoute(language, country.id)}"><strong>${escapeHtml(country.name)}</strong><span dir="ltr">${country.iso2} · ${country.id}</span></a></li>`).join('');
+  const body = `<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(text.explore)}</a> › ${escapeHtml(text.countries)}</nav><section class="data-hero"><h1>${escapeHtml(text.countriesTitle)}</h1><p>${escapeHtml(text.countriesDesc)}</p></section><section class="panel"><label class="field" for="country_directory_search">${escapeHtml(text.search)}<input id="country_directory_search" type="search" autocomplete="off" data-country-filter></label><p class="rank-note"><span data-country-count>${list.length}</span> ${escapeHtml(text.territories)}</p><ul class="country-directory" data-country-directory>${links}</ul></section><section class="source-box"><p>${escapeHtml(text.sourceText)}</p><a href="${DATA_PAGES.sources[language]}">${escapeHtml(languageConfig(language).source)}</a></section>`;
+  return pageChrome({language,pageKey:'countries',routes:Object.fromEntries(Object.keys(DATA_LANGUAGES).map(code=>[code,DATA_PAGES.countries[code]])),title:text.countriesTitle,description:text.countriesDesc,body,schemaType:'CollectionPage'});
+}
+
+function countryPage(language, country, countries, registry, dataBySlug) {
+  const text=dataViews(language),i18n=languageConfig(language),locale=i18n.locale,routes=countryRoutes(country.id),summaries=[];
+  for(const item of registry.indicators){const localized=localizedIndicator(item,language),summary=VIEWS.countryIndicatorSummary(dataBySlug.get(item.slug),countries,item,country.id);if(!summary.latest)continue;const value=CORE.formatIndicatorValue(summary.latest.value,localized,locale,'table'),change=summary.change?CORE.formatIndicatorChange(summary.change.value,localized,locale,'table'):text.noData,rank=summary.rank?`${summary.rank.position} ${text.of} ${summary.total} · ${summary.commonYear}`:text.noData;summaries.push(`<tr><th scope="row"><a href="${Object.values(DATA_PAGES).find(page=>page.indicator===item.slug)[language]}">${escapeHtml(localized.name)}</a></th><td>${escapeHtml(value)}</td><td>${summary.latest.year}</td><td>${escapeHtml(rank)}</td><td>${escapeHtml(change)}</td></tr>`)}
+  const localizedCountries=localizedCountryList(countries,language),localizedCountry=localizedCountries.find(item=>item.id===country.id)||country,suggestions=VIEWS.suggestedCountries(country,countries).map(item=>localizedCountries.find(candidate=>candidate.id===item.id)||item),suggested=suggestions.map(item=>`<a class="btn" href="${DATA_PAGES.compare[language]}?countries=${country.id},${item.id}">${escapeHtml(item.name)}</a>`).join(' '),first=registry.indicators.find(item=>dataBySlug.get(item.slug).observations.some(row=>row.country===country.id)),body=`<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(text.explore)}</a> › <a href="${DATA_PAGES.countries[language]}">${escapeHtml(text.countries)}</a> › ${escapeHtml(localizedCountry.name)}</nav><section class="data-hero country-hero"><span class="data-kicker" dir="ltr">${country.iso2} · ${country.id}</span><h1>${escapeHtml(localizedCountry.name)}</h1><p>${escapeHtml(text.countrySubtitle)}</p><a class="btn" href="${DATA_PAGES.compare[language]}?countries=${country.id}">${escapeHtml(text.compareCountry)}</a></section><section class="panel"><h2>${escapeHtml(text.summary)}</h2><div class="table-wrap"><table class="country-summary"><thead><tr><th>${escapeHtml(text.indicator)}</th><th>${escapeHtml(text.value)}</th><th>${escapeHtml(text.year)}</th><th>${escapeHtml(text.position)}</th><th>${escapeHtml(text.change)}</th></tr></thead><tbody>${summaries.join('')}</tbody></table></div></section><section class="panel country-history" data-country-view="${country.id}" data-indicator="${first?.slug||''}"><h2>${escapeHtml(text.history)}</h2><label class="field" for="country_indicator">${escapeHtml(text.chooseIndicator)}<select id="country_indicator">${registry.indicators.filter(item=>dataBySlug.get(item.slug).observations.some(row=>row.country===country.id)).map(item=>`<option value="${item.slug}">${escapeHtml(localizedIndicator(item,language).name)}</option>`).join('')}</select></label><div id="country_chart" class="chart"></div><div class="table-wrap"><table><thead><tr><th>${escapeHtml(text.year)}</th><th>${escapeHtml(text.value)}</th></tr></thead><tbody id="country_history_body"></tbody></table></div></section><section class="panel"><h2>${escapeHtml(text.compareSuggested)}</h2><p>${suggested}</p></section><section class="source-box"><h2>${escapeHtml(text.method)}</h2><p>${escapeHtml(text.sourceText)}</p><a href="${DATA_PAGES.sources[language]}">${escapeHtml(i18n.source)}</a></section>`;
+  return pageChrome({language,pageKey:`country:${country.id}`,routes,title:`${localizedCountry.name} — ${text.countrySubtitle}`,description:`${localizedCountry.name}: ${text.summary}. ${text.sourceText}`,body,schemaType:'Dataset'});
+}
+
+function comparisonSummaryHtml(language,countries,registry,dataBySlug,selected){const text=dataViews(language),locale=languageConfig(language).locale,names=new Map(localizedCountryList(countries,language).map(country=>[country.id,country.name])),payloads=registry.indicators.map(item=>dataBySlug.get(item.slug));return VIEWS.comparisonSummary(payloads,registry.indicators,selected).map(entry=>{const localized=localizedIndicator(entry.item,language),difference=VIEWS.formatComparisonDifference(entry.item,localized,locale,entry.difference,text.points);return`<li><strong>${escapeHtml(localized.name)}:</strong> ${escapeHtml(comparisonSentence(language,{first:names.get(entry.first)||entry.first,second:names.get(entry.second)||entry.second,value:difference,year:entry.year,relation:entry.relation}))}</li>`}).join('')}
+
+function comparePage(language,countries,registry,dataBySlug){
+  const text=dataViews(language),list=localizedCountryList(countries,language),defaults=['USA','CHN'],names=new Map(list.map(item=>[item.id,item.name]));
+  const rows=registry.indicators.map(item=>{const localized=localizedIndicator(item,language);return `<tr><th scope="row"><a href="${Object.values(DATA_PAGES).find(page=>page.indicator===item.slug)[language]}">${escapeHtml(localized.name)}</a></th>${defaults.map(code=>{const latest=VIEWS.latestObservation(dataBySlug.get(item.slug),code);return `<td>${latest?`${escapeHtml(CORE.formatIndicatorValue(latest.value,localized,languageConfig(language).locale,'table'))}<small>${latest.year}</small>`:escapeHtml(text.noData)}</td>`}).join('')}</tr>`}).join('');
+  const indicatorNames=registry.indicators.map(item=>localizedIndicator(item,language).name).join(' · ');
+  const body=`<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(text.explore)}</a> › ${escapeHtml(text.compare)}</nav><section class="data-hero"><h1>${escapeHtml(text.compareTitle)}</h1><p>${escapeHtml(text.intro)}</p><p class="rank-note"><strong>${escapeHtml(text.availableIndicators)}:</strong> ${escapeHtml(indicatorNames)}</p><p class="rank-note">${escapeHtml(text.share)}</p></section><section class="panel compare-controls" data-compare-view><h2>${escapeHtml(text.selected)}</h2><label class="field" for="compare_search">${escapeHtml(text.addCountry)}<input id="compare_search" type="search" role="combobox" aria-controls="compare_options" aria-describedby="compare_search_help" aria-expanded="false" autocomplete="off" placeholder="${escapeHtml(text.search)}"></label><p id="compare_search_help" class="rank-note">${escapeHtml(text.help)}</p><ul id="compare_options" class="country-options" role="listbox" hidden></ul><div id="compare_chips" class="country-chips"></div></section><section class="panel"><h2>${escapeHtml(text.comparison)}</h2><div class="table-wrap"><table id="comparison_table"><thead><tr><th>${escapeHtml(text.indicator)}</th>${defaults.map(code=>`<th><a href="${countryRoute(language,code)}">${escapeHtml(names.get(code)||code)}</a></th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div></section><section class="panel"><h2>${escapeHtml(text.history)}</h2><label class="field" for="compare_indicator">${escapeHtml(text.chooseIndicator)}<select id="compare_indicator">${registry.indicators.map(item=>`<option value="${item.slug}">${escapeHtml(localizedIndicator(item,language).name)}</option>`).join('')}</select></label><div id="compare_chart" class="chart"></div><div id="compare_legend" class="legend"></div></section><section class="panel"><h2>${escapeHtml(text.automaticSummary)}</h2><ul id="compare_summary">${comparisonSummaryHtml(language,countries,registry,dataBySlug,defaults)}</ul></section><section class="panel compare-interpretation"><h2>${escapeHtml(text.interpretTitle)}</h2><p>${escapeHtml(text.interpret)}</p></section><section class="source-box"><h2>${escapeHtml(text.method)}</h2><p>${escapeHtml(text.sourceText)}</p><p><a href="${DATA_PAGES.sources[language]}">${escapeHtml(text.sourcesLink)}</a></p><p id="compare_js_note">${escapeHtml(text.jsNote)}</p></section>`;
+  const routes=Object.fromEntries(Object.keys(DATA_LANGUAGES).map(code=>[code,DATA_PAGES.compare[code]]));return pageChrome({language,pageKey:'compare',routes,title:text.compareTitle,description:text.compareDesc,body});
+}
+
+function rankingsPage(language,countries,registry,dataBySlug){const text=dataViews(language),item=registry.indicators[0],localized=localizedIndicator(item,language),data=dataBySlug.get(item.slug),year=CORE.commonYear(VIEWS.indicatorRows(data,countries)),ranking=VIEWS.rankingFor(data,countries,item,year),names=new Map(localizedCountryList(countries,language).map(country=>[country.id,country.name])),rows=ranking.map(row=>`<tr><td>${row.position}</td><th scope="row"><a href="${countryRoute(language,row.country)}">${escapeHtml(names.get(row.country)||row.country)}</a></th><td>${year}</td><td class="num">${escapeHtml(CORE.formatIndicatorValue(row.value,localized,languageConfig(language).locale,'table'))}</td></tr>`).join(''),body=`<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(text.explore)}</a> › ${escapeHtml(text.rankings)}</nav><section class="data-hero"><h1>${escapeHtml(text.rankingsTitle)}</h1><p>${escapeHtml(text.rankingsDesc)}</p></section><section class="panel ranking-controls" data-rankings-view><div class="data-controls"><label class="field" for="ranking_indicator">${escapeHtml(text.indicator)}<select id="ranking_indicator">${registry.indicators.map(entry=>`<option value="${entry.slug}">${escapeHtml(localizedIndicator(entry,language).name)}</option>`).join('')}</select></label><label class="field" for="ranking_year">${escapeHtml(text.year)}<select id="ranking_year">${VIEWS.offeredRankingYears(data,countries,registry.common_year_coverage).map(entry=>`<option>${entry.year}</option>`).join('')}</select></label><label class="field" for="ranking_order">${escapeHtml(text.order)}<select id="ranking_order"><option value="direction">${escapeHtml(text.descending)}</option><option value="reverse">${escapeHtml(text.ascending)}</option></select></label><label class="field" for="ranking_search">${escapeHtml(text.search)}<input id="ranking_search" type="search" autocomplete="off"></label></div><p>${escapeHtml(text.coverageRule)}</p><div class="table-wrap"><table><thead><tr><th>${escapeHtml(text.position)}</th><th>${escapeHtml(text.countries)}</th><th>${escapeHtml(text.year)}</th><th>${escapeHtml(text.value)}</th></tr></thead><tbody id="rankings_body">${rows}</tbody></table></div></section><section class="source-box"><p>${escapeHtml(text.sourceText)}</p><a href="${Object.values(DATA_PAGES).find(page=>page.indicator===item.slug)[language]}">${escapeHtml(localized.name)}</a></section>`;const routes=Object.fromEntries(Object.keys(DATA_LANGUAGES).map(code=>[code,DATA_PAGES.rankings[code]]));return pageChrome({language,pageKey:'rankings',routes,title:text.rankingsTitle,description:text.rankingsDesc,body,schemaType:'CollectionPage'});}
+
 async function writeIfChanged(path, content) {
-  const previous = await readFile(path, 'utf8');
+  let previous = null;
+  try { previous = await readFile(path, 'utf8'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   if (previous === content) return false;
+  await mkdir(dirname(path), { recursive: true });
   await writeFile(path, content, 'utf8');
   return true;
 }
@@ -152,6 +262,24 @@ export async function prerender() {
     html = html.replace(/data-explorer\.js\?v=[0-9-]+/g, `data-explorer.js?v=${ASSET_VERSION}`);
     if (await writeIfChanged(path, html)) changed++;
   }
+  const existingPages = Object.entries(DATA_PAGES).filter(([key]) => !['countries', 'compare', 'rankings'].includes(key));
+  for (const [key, page] of existingPages) for (const language of Object.keys(DATA_LANGUAGES)) {
+    const path = routeFile(page[language]);
+    let html = await readFile(path, 'utf8');
+    html = injectSectionNav(html, language, key === 'explorer' ? 'explorer' : '');
+    if (key === 'home') html = updateLanding(html, language, countryPayload.countries);
+    html = html.replace(/data\.css\?v=[0-9-]+/g, `data.css?v=${ASSET_VERSION}`).replace(/data-language\.js\?v=[0-9-]+/g, `data-language.js?v=${ASSET_VERSION}`);
+    if (await writeIfChanged(path, html)) changed++;
+  }
+  for (const language of Object.keys(DATA_LANGUAGES)) {
+    if (await writeIfChanged(routeFile(DATA_PAGES.countries[language]), countriesIndexPage(language, countryPayload.countries))) changed++;
+    if (await writeIfChanged(routeFile(DATA_PAGES.compare[language]), comparePage(language, countryPayload.countries, registry, dataBySlug))) changed++;
+    if (await writeIfChanged(routeFile(DATA_PAGES.rankings[language]), rankingsPage(language, countryPayload.countries, registry, dataBySlug))) changed++;
+  }
+  for (const country of VIEWS.validCountries(countryPayload.countries)) for (const language of Object.keys(DATA_LANGUAGES)) {
+    if (await writeIfChanged(routeFile(countryRoute(language, country.id)), countryPage(language, country, countryPayload.countries, registry, dataBySlug))) changed++;
+  }
+  if (await updateSitemap(countryPayload.countries)) changed++;
   return changed;
 }
 

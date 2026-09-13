@@ -2,16 +2,17 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {formatIndicatorChange,formatIndicatorValue,searchCountries} from '../assets/js/data-core.mjs';
-import {DATA_LANGUAGES,DATA_PAGES,INSTITUTIONAL_PAGES,languageFromPath,pageKeyFromPath,pageRoutes} from '../assets/js/data-routes.mjs';
+import {DATA_LANGUAGES,DATA_PAGES,INSTITUTIONAL_PAGES,countryRoute,countryRoutes,languageFromPath,pageKeyFromPath,pageRoutes} from '../assets/js/data-routes.mjs';
 import {DATA_I18N,languageConfig} from '../assets/js/data-i18n.mjs';
 import {indicatorPresentation} from '../assets/js/data-presentation.mjs';
 
 const root=resolve(import.meta.dirname,'..'),json=path=>JSON.parse(readFileSync(resolve(root,path),'utf8'));
 const registry=json('assets/data/indicators.json'),languages=['es','en','fr','de','it','pt','ru','zh-CN','hi','ja','ko','ca','ar','id','bn'],locales={es:'es-ES',en:'en-US',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT',ru:'ru-RU','zh-CN':'zh-CN',hi:'hi-IN',ja:'ja-JP',ko:'ko-KR',ca:'ca-ES',ar:'ar',id:'id-ID',bn:'bn-BD'};
-assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,11);
+assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,14);
 for(const [key,page] of Object.entries(DATA_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language)}
 for(const [key,page] of Object.entries(INSTITUTIONAL_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language);assert.deepEqual(pageRoutes(key),page)}
 assert.equal(pageRoutes('fertility')['zh-CN'],'/zh-cn/global-data/fertility/');assert.equal(Object.keys(pageRoutes('fertility')).length,16);
+assert.equal(countryRoute('es','ESP'),'/datos-globales/paises/esp/');assert.equal(countryRoute('de','ESP'),'/de/weltdaten/laender/esp/');assert.equal(countryRoutes('ESP')['zh-CN'],'/zh-cn/global-data/countries/esp/');assert.equal(new Set(Object.values(countryRoutes('ESP'))).size,15);
 const referenceKeys=Object.keys(DATA_I18N.es).sort();
 for(const language of languages){const ui=languageConfig(language);assert.equal(ui.locale,locales[language]);assert.deepEqual(Object.keys(DATA_I18N[language]).sort(),referenceKeys,`${language}: claves UI incompletas`);for(const item of registry.indicators){const localized=ui.indicators[item.slug],editorial=indicatorPresentation(item.slug,language);assert.ok(localized?.name&&localized.description&&localized.methodology&&localized.axisUnit&&localized.unitLabel,`${language}/${item.slug}: traducción incompleta`);assert.ok(editorial?.what&&editorial.interpretation&&editorial.limitations.length>=2,`${language}/${item.slug}: editorial incompleta`);if(item.slug==='desempleo')assert.ok(editorial.rankingCaution,`${language}: cautela de desempleo ausente`);for(const value of [0,0.004,0.01,-2.4,7.4,764,1234.56,49355143,1000000,1000000000,9876543210])for(const context of ['card','table','tooltip','axis','csv'])assert.doesNotThrow(()=>formatIndicatorValue(value,{...item,presentation:{...item.presentation,unitLabel:localized.unitLabel}},ui.locale,context))}}
 assert.equal(formatIndicatorValue(1234.56,{presentation:{formatType:'currency',decimals:0,unitLabel:'current international dollars (PPP)'}},'en-US','tooltip'),'1,234.56 current international dollars (PPP)');
@@ -21,4 +22,4 @@ const countries=json('assets/data/worldbank/countries.json').countries.filter(co
 for(const language of languages){const display=new Intl.DisplayNames([locales[language]],{type:'region'});for(const [id,iso2] of Object.entries(targets)){const country=countries.find(row=>row.id===id);assert.ok(country,`${id} ausente`);const name=display.of(iso2)||country.name,localized={...country,name};for(const query of [name,iso2,id])assert.deepEqual(searchCountries([localized],query,[],8,DATA_I18N[language].countrySearchAliases).map(row=>row.id),[id],`${language}/${id}/${query}`)}}
 const germanDisplay=new Intl.DisplayNames(['de-DE'],{type:'region'}),germanCountries=countries.map(country=>({...country,name:country.iso2?germanDisplay.of(country.iso2)||country.name:country.name}));
 assert.equal(searchCountries(germanCountries,'US',[],8,languageConfig('de').countrySearchAliases)[0].id,'USA','La coincidencia ISO2 exacta debe preceder coincidencias textuales');
-console.log('data-i18n: 14 identidades, 15 idiomas, 8 indicadores, locales, países, ISO y CSV OK');
+console.log('data-i18n: 17 identidades, 15 idiomas, 8 indicadores, locales, países, ISO y CSV OK');

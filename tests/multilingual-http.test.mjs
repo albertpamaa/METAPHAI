@@ -6,7 +6,7 @@ import {DATA_LANGUAGES,DATA_PAGES,INSTITUTIONAL_PAGES} from '../assets/js/data-r
 
 const root=resolve(import.meta.dirname,'..'),languages=Object.keys(DATA_LANGUAGES);
 const routes=[...Object.values(DATA_PAGES).flatMap(page=>languages.map(language=>page[language])),...Object.values(INSTITUTIONAL_PAGES).flatMap(page=>languages.map(language=>page[language]))];
-assert.equal(routes.length,210);assert.equal(new Set(routes).size,210);
+assert.equal(routes.length,255);assert.equal(new Set(routes).size,255);
 const localFile=pathname=>pathname.endsWith('.html')?join(root,pathname.slice(1)):join(root,pathname.slice(1),'index.html');
 const server=createServer((request,response)=>{const url=new URL(request.url,'http://127.0.0.1'),file=localFile(url.pathname);if(!existsSync(file)||!statSync(file).isFile()){response.writeHead(404);response.end('Not found');return}response.writeHead(200,{'content-type':'text/html; charset=utf-8'});createReadStream(file).pipe(response)});
 await new Promise(resolveListen=>server.listen(0,'127.0.0.1',resolveListen));
@@ -17,4 +17,4 @@ try{
 
 const scripts={ru:/[А-Яа-яЁё]/u,'zh-CN':/[\u3400-\u9fff]/u,hi:/[\u0900-\u097f]/u,ja:/[\u3040-\u30ff\u3400-\u9fff]/u,ko:/[\uac00-\ud7af]/u};
 for(const [language,pattern] of Object.entries(scripts))for(const page of Object.values(DATA_PAGES)){const html=readFileSync(localFile(page[language]),'utf8').replace(/<head>[\s\S]*?<\/head>/,'');assert.match(html,pattern,`${page[language]}: escritura principal ausente`)}
-console.log('multilingual-http: 210/210 URLs HTTP 200 y scripts 15 idiomas válidos');
+console.log('multilingual-http: 255/255 URLs base HTTP 200 y scripts 15 idiomas válidos');

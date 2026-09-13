@@ -22,7 +22,7 @@ const phrases={
   bn:['দেশ খুঁজুন','মূল পরিসংখ্যান','উৎস ও পদ্ধতি']
 };
 for(const [key,page] of Object.entries(DATA_PAGES)){
-  if(key==='home'||key==='sources')continue;
+  if((key==='home'||key==='sources')||(!page.indicator&&key!=='explorer'))continue;
   for(const language of Object.keys(DATA_LANGUAGES)){
     const file=join(root,...page[language].split('/').filter(Boolean),'index.html');
     const html=readFileSync(file,'utf8').replace(/<head>[\s\S]*?<\/head>/,'').replace(/<details class="language-switcher"[\s\S]*?<\/details>/,'').replace(/<script[\s\S]*?<\/script>/g,'');

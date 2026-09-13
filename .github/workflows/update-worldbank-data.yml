@@ -34,7 +34,7 @@ jobs:
       - name: Commit synchronized datasets and snapshots
         shell: bash
         run: |
-          git add assets/data/worldbank/*.json datos-globales en fr de it pt ru zh-cn hi ja ko ca ar id bn
+          git add assets/data/worldbank/*.json sitemap.xml datos-globales en fr de it pt ru zh-cn hi ja ko ca ar id bn
           if git diff --cached --quiet; then
             echo "No statistical changes"
             exit 0
