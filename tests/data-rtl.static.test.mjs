@@ -17,7 +17,7 @@ for(const [key,page] of Object.entries(LOCALIZED_PAGES)){
     assert.doesNotMatch(html,/<html[^>]+dir="rtl"/,`${key}/${language}: RTL accidental`);
   }
 }
-for(const key of ['explorer','population','lifeExpectancy','fertility','gdpPerCapita','gdpGrowth','unemployment','internetUse','renewableEnergy']){
+for(const key of ['explorer',...Object.entries(LOCALIZED_PAGES).filter(([,page])=>page.indicator).map(([key])=>key)]){
   const html=readFileSync(fileFor(LOCALIZED_PAGES[key].ar),'utf8');
   for(const id of ['data_app','year_select','country_search','ranking_body','compare_list','chart','download_csv'])assert.ok(html.includes(`id="${id}"`),`${key}: control RTL ausente (${id})`);
 }
@@ -25,4 +25,4 @@ const css=readFileSync(join(root,'assets/css/data.css'),'utf8'),explorer=readFil
 for(const token of ['[dir="rtl"] body','[dir="rtl"] .language-menu','[dir="rtl"] .chart','[dir="rtl"] input','[dir="rtl"] .email-copy'])assert.ok(css.includes(token),`CSS RTL ausente: ${token}`);
 assert.match(explorer,/sort\(\(a,b\)=>a\.year-b\.year\)/,'La cronología del gráfico debe conservar orden ascendente');
 assert.equal(explorer.includes("state.language==='ar'"),false,'RTL no debe alterar los datos en JavaScript');
-console.log('data-rtl-static: 14 páginas AR, selector, CSS RTL y cronología LTR matemática OK');
+console.log(`data-rtl-static: ${Object.keys(LOCALIZED_PAGES).length} páginas AR, selector, CSS RTL y cronología LTR matemática OK`);

@@ -149,6 +149,14 @@ a{color:var(--data-accent)}
 .breadcrumb a{color:inherit}
 .data-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .metric-card,.panel,.source-box,.category-card{background:#fff;border:1px solid var(--data-line);border-radius:14px;padding:1.2rem}
+.indicator-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 28px}
+.indicator-category{min-width:0;padding:1rem;border:1px solid var(--data-line);border-radius:12px;background:#fff}
+.indicator-category h3,.category-card h3{margin:0 0 .7rem;color:var(--data-ink)}
+.indicator-category ul,.category-card ul{margin:0;padding-left:1.15rem}
+.indicator-category li,.category-card li{margin:.45rem 0}
+.category-card small{display:block;margin-top:2px;color:var(--data-muted);line-height:1.35}
+.indicator-category-row th{padding:.7rem .75rem;background:var(--data-soft);color:var(--data-ink);font-size:.82rem;letter-spacing:.03em;text-transform:uppercase;text-align:left}
+[dir="rtl"] .indicator-category-row th{text-align:right}
 .metric-card{text-decoration:none;color:inherit;transition:transform .18s,border-color .18s}
 .metric-card:hover{transform:translateY(-2px);border-color:#9fc5b1}
 .metric-card small{color:var(--data-accent);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
@@ -197,6 +205,7 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--data-line);font
 @media(max-width:800px){.data-grid{grid-template-columns:repeat(2,1fr)}
 .data-layout{grid-template-columns:1fr}
 .source-grid{grid-template-columns:1fr 1fr}
+.indicator-categories{grid-template-columns:1fr}
 }
 @media(max-width:560px){main{padding:1.4rem 1rem 3rem}
 .data-hero{padding:2rem 0}

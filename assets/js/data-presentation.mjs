@@ -1,4 +1,5 @@
 import {EXTENDED_INDICATOR_PRESENTATION} from './data-presentation-extended.mjs';
+import {EXPANDED_PRESENTATION} from './data-indicators-expanded.mjs';
 
 export const INDICATOR_PRESENTATION={es:{
   poblacion:{what:`La población total estima cuántas personas residen en un país o territorio a mitad de año. Aplica una definición de facto: cuenta a los residentes con independencia de su ciudadanía o situación jurídica. El valor permite comparar el tamaño demográfico y observar crecimientos o descensos, pero no describe cómo se distribuye la población dentro del territorio, su estructura por edades ni los movimientos estacionales. Las cifras se expresan en personas y en la interfaz se abrevian en millones; el detalle y el CSV conservan el valor completo.`,interpretation:`Una cifra mayor significa que el territorio tiene más residentes estimados, no que tenga mayor densidad, bienestar o crecimiento. Para estudiar la tendencia deben compararse años del mismo país.`,limitations:[`Combina censos, registros, encuestas y estimaciones; las revisiones demográficas pueden modificar años anteriores.`,`La cobertura de territorios pequeños y poblaciones móviles puede tener mayor incertidumbre.`,`El dato de mitad de año no representa necesariamente la población de una fecha concreta.`]},
@@ -56,4 +57,5 @@ export const INDICATOR_PRESENTATION={es:{
   'energia-renovable':{what:`O consumo de energia renovável é a percentagem de fontes renováveis no consumo final total de energia. Inclui uso direto e a componente renovável da eletricidade e calor finais; não é apenas produção elétrica nem capacidade instalada.`,interpretation:`18,4% significa que as renováveis forneceram essa percentagem do consumo final total estimado. As variações são pontos percentuais.`,limitations:[`O denominador abrange o consumo final de todos os produtos energéticos.`,`Não mede isoladamente produção elétrica, capacidade, emissões ou sustentabilidade.`,`O último ano pode ser anterior ao de outros indicadores.`]}
 }};
 Object.assign(INDICATOR_PRESENTATION,EXTENDED_INDICATOR_PRESENTATION);
+for(const language of Object.keys(INDICATOR_PRESENTATION))Object.assign(INDICATOR_PRESENTATION[language],EXPANDED_PRESENTATION[language]);
 export function indicatorPresentation(slug,language='es'){return (INDICATOR_PRESENTATION[language]||INDICATOR_PRESENTATION.es)[slug]}

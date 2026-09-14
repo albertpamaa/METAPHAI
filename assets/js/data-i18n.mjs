@@ -1,4 +1,5 @@
 import {EXTENDED_DATA_I18N,EXTENDED_COUNTRY_SEARCH_ALIASES} from './data-i18n-extended.mjs';
+import {EXPANDED_CATEGORIES,EXPANDED_INDICATORS} from './data-indicators-expanded.mjs';
 
 const ordinal=n=>{const mod100=n%100;if(mod100>=11&&mod100<=13)return`${n}th`;return`${n}${n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th'}`};
 
@@ -76,5 +77,9 @@ export const DATA_I18N={
 
 export const COUNTRY_SEARCH_ALIASES={es:{ESP:['España'],DEU:['Alemania'],FRA:['Francia'],USA:['Estados Unidos'],GBR:['Reino Unido'],ARE:['Emiratos Árabes Unidos'],CIV:["Côte d’Ivoire",'Costa de Marfil'],JPN:['Japón'],BRA:['Brasil'],CHN:['China'],IND:['India'],NGA:['Nigeria']},en:{ESP:['Spain','España'],DEU:['Germany','Alemania'],FRA:['France','Francia'],USA:['United States','United States of America','Estados Unidos'],GBR:['United Kingdom','Britain'],ARE:['United Arab Emirates'],CIV:["Côte d’Ivoire",'Ivory Coast'],JPN:['Japan'],BRA:['Brazil'],CHN:['China'],IND:['India'],NGA:['Nigeria']},fr:{ESP:['Espagne'],DEU:['Allemagne'],FRA:['France'],USA:['États-Unis'],GBR:['Royaume-Uni'],CIV:["Côte d’Ivoire"],TUR:['Türkiye','Turquie'],CZE:['Tchéquie'],SWZ:['Eswatini'],TLS:['Timor-Leste'],HKG:['Hong Kong'],MAC:['Macao'],PSE:['Palestine'],XKX:['Kosovo']},de:{ESP:['Spanien'],DEU:['Deutschland'],FRA:['Frankreich'],USA:['Vereinigte Staaten','USA'],GBR:['Vereinigtes Königreich'],CIV:["Côte d’Ivoire",'Elfenbeinküste'],TUR:['Türkiye','Türkei'],CZE:['Tschechien'],SWZ:['Eswatini'],TLS:['Timor-Leste'],HKG:['Hongkong'],MAC:['Macau'],PSE:['Palästina'],XKX:['Kosovo']},it:{ESP:['Spagna'],DEU:['Germania'],FRA:['Francia'],USA:['Stati Uniti'],GBR:['Regno Unito'],CIV:["Côte d’Ivoire",'Costa d’Avorio'],TUR:['Türkiye','Turchia'],CZE:['Cechia'],SWZ:['Eswatini'],TLS:['Timor Est'],HKG:['Hong Kong'],MAC:['Macao'],PSE:['Palestina'],XKX:['Kosovo']},pt:{ESP:['Espanha'],DEU:['Alemanha'],FRA:['França'],USA:['Estados Unidos'],GBR:['Reino Unido'],CIV:["Côte d’Ivoire",'Costa do Marfim'],TUR:['Türkiye','Turquia'],CZE:['Chéquia'],SWZ:['Essuatíni','Eswatini'],TLS:['Timor-Leste'],HKG:['Hong Kong'],MAC:['Macau'],PSE:['Palestina'],XKX:['Kosovo']}};
 Object.assign(DATA_I18N,EXTENDED_DATA_I18N);
+for(const language of Object.keys(DATA_I18N)){
+  DATA_I18N[language].categories=EXPANDED_CATEGORIES[language];
+  Object.assign(DATA_I18N[language].indicators,EXPANDED_INDICATORS[language]);
+}
 Object.assign(COUNTRY_SEARCH_ALIASES,EXTENDED_COUNTRY_SEARCH_ALIASES);
 export function languageConfig(language='es'){const selected=DATA_I18N[language]||DATA_I18N.es;return {...selected,countrySearchAliases:COUNTRY_SEARCH_ALIASES[language]||{}}}

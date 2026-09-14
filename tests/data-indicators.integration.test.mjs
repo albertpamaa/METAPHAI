@@ -12,7 +12,7 @@ const countries=json('assets/data/worldbank/countries.json').countries;
 const countryByCode=new Map(countries.map(country=>[country.id,country]));
 const validCodes=new Set(countries.filter(country=>!country.is_aggregate).map(country=>country.id));
 const ui=languageConfig('es');
-const expectedSlugs=['poblacion','esperanza-de-vida','fertilidad','pib-per-capita','crecimiento-pib','desempleo','uso-de-internet','energia-renovable'];
+const expectedSlugs=['poblacion','esperanza-de-vida','fertilidad','pib-per-capita','crecimiento-pib','desempleo','uso-de-internet','energia-renovable','crecimiento-poblacion','mortalidad-infantil','poblacion-urbana','poblacion-mayor-65','densidad-poblacion','inflacion','desempleo-juvenil','participacion-laboral','banda-ancha-fija','emisiones-co2-per-capita','acceso-electricidad','superficie-forestal','gasto-sanitario','mortalidad-materna'];
 assert.deepEqual(registry.indicators.map(item=>item.slug),expectedSlugs);
 
 const audit=[];
@@ -73,4 +73,4 @@ for(const item of registry.indicators){
 }
 
 console.log(JSON.stringify(audit));
-console.log('data-indicators-integration: 8 indicadores completan presentación sin excepciones');
+console.log('data-indicators-integration: 22 indicadores completan presentación sin excepciones');

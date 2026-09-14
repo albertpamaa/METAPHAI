@@ -4,15 +4,517 @@
   "license": "CC BY 4.0",
   "license_url": "https://creativecommons.org/licenses/by/4.0/",
   "api_base": "https://api.worldbank.org/v2",
-  "common_year_coverage": 0.70,
+  "common_year_coverage": 0.7,
   "indicators": [
-    {"id":"population","code":"SP.POP.TOTL","slug":"poblacion","name":"Población total","short_name":"Población","description":"Número de residentes a mitad de año según la definición de facto.","unit":"personas","format":"population","presentation":{"formatType":"population","decimals":1,"unitLabel":"personas","compactFormat":true,"changeType":"percent"},"ranking":"descending","category":"Población y sociedad","min_year":1960,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Las cifras son estimaciones de población a mitad de año. Los cambios se calculan solo cuando existen valores en ambos extremos."},
-    {"id":"life_expectancy","code":"SP.DYN.LE00.IN","slug":"esperanza-de-vida","name":"Esperanza de vida al nacer","short_name":"Esperanza de vida","description":"Años que viviría un recién nacido si se mantuvieran los patrones de mortalidad del año observado.","unit":"años","format":"decimal","presentation":{"formatType":"years","decimals":1,"unitLabel":"años","compactFormat":false,"changeType":"percent"},"ranking":"descending","category":"Población y sociedad","min_year":1960,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Es una medida sintética basada en las tasas de mortalidad vigentes, no una predicción individual."},
-    {"id":"fertility","code":"SP.DYN.TFRT.IN","slug":"fertilidad","name":"Tasa de fertilidad total","short_name":"Fertilidad","description":"Número hipotético de nacimientos por mujer bajo las tasas de fecundidad por edad del año observado.","unit":"nacimientos por mujer","format":"decimal","presentation":{"formatType":"fertility","decimals":1,"unitLabel":"nacimientos por mujer","compactFormat":false,"changeType":"percent"},"ranking":"descending","category":"Población y sociedad","min_year":1960,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Suma las tasas de fecundidad específicas por edad del periodo; no mide el número final de hijos de una mujer o cohorte concreta."},
-    {"id":"gdp_per_capita_ppp","code":"NY.GDP.PCAP.PP.CD","slug":"pib-per-capita","name":"PIB per cápita, PPA","short_name":"PIB per cápita","description":"Producto interior bruto por habitante convertido mediante paridades de poder adquisitivo.","unit":"dólares internacionales corrientes","format":"currency","presentation":{"formatType":"currency","decimals":0,"unitLabel":"$ internacionales corrientes (PPA)","compactFormat":true,"changeType":"percent"},"ranking":"descending","category":"Economía","min_year":1990,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Al estar en dólares internacionales corrientes, sus variaciones temporales no equivalen a crecimiento real; tampoco representa renta personal disponible."},
-    {"id":"gdp_growth","code":"NY.GDP.MKTP.KD.ZG","slug":"crecimiento-pib","name":"Crecimiento anual del PIB","short_name":"Crecimiento del PIB","description":"Variación anual del PIB a precios constantes.","unit":"% anual","format":"percent","presentation":{"formatType":"signedPercent","decimals":1,"unitLabel":"%","compactFormat":false,"changeType":"percentage_points"},"ranking":"descending","category":"Economía","min_year":1961,"null_policy":"No se interpola ni se convierte en cero.","methodology":"La variación se expresa frente al año anterior sobre una serie a precios constantes; los cambios históricos se muestran en puntos porcentuales."},
-    {"id":"unemployment","code":"SL.UEM.TOTL.ZS","slug":"desempleo","name":"Desempleo total","short_name":"Desempleo","description":"Porcentaje de la población activa sin empleo, disponible y buscando trabajo.","unit":"% de la población activa","format":"percent","presentation":{"formatType":"percent","decimals":1,"unitLabel":"%","compactFormat":false,"changeType":"percentage_points"},"ranking":"ascending","category":"Trabajo","min_year":1991,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Serie de estimaciones modelizadas de la OIT. Las diferencias históricas se expresan en puntos porcentuales."},
-    {"id":"internet_use","code":"IT.NET.USER.ZS","slug":"uso-de-internet","name":"Personas que utilizan Internet","short_name":"Uso de Internet","description":"Porcentaje de personas que utilizaron Internet en los últimos tres meses.","unit":"% de la población","format":"percent","presentation":{"formatType":"percent","decimals":1,"unitLabel":"%","compactFormat":false,"changeType":"percentage_points"},"ranking":"descending","category":"Tecnología","min_year":1990,"null_policy":"No se interpola ni se convierte en cero.","methodology":"La disponibilidad y los métodos de estimación varían entre países y años; los cambios se expresan en puntos porcentuales."},
-    {"id":"renewable_energy","code":"EG.FEC.RNEW.ZS","slug":"energia-renovable","name":"Consumo de energía renovable","short_name":"Energía renovable","description":"Participación de las energías renovables en el consumo final total de energía.","unit":"% del consumo final","format":"percent","presentation":{"formatType":"percent","decimals":1,"unitLabel":"%","compactFormat":false,"changeType":"percentage_points"},"ranking":"descending","category":"Energía","min_year":1990,"null_policy":"No se interpola ni se convierte en cero.","methodology":"Mide consumo final, no solamente generación eléctrica. Los cambios históricos se expresan en puntos porcentuales."}
+    {
+      "id": "population",
+      "code": "SP.POP.TOTL",
+      "slug": "poblacion",
+      "name": "Población total",
+      "short_name": "Población",
+      "description": "Número de residentes a mitad de año según la definición de facto.",
+      "unit": "personas",
+      "format": "population",
+      "presentation": {
+        "formatType": "population",
+        "decimals": 1,
+        "unitLabel": "personas",
+        "compactFormat": true,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Las cifras son estimaciones de población a mitad de año. Los cambios se calculan solo cuando existen valores en ambos extremos."
+    },
+    {
+      "id": "life_expectancy",
+      "code": "SP.DYN.LE00.IN",
+      "slug": "esperanza-de-vida",
+      "name": "Esperanza de vida al nacer",
+      "short_name": "Esperanza de vida",
+      "description": "Años que viviría un recién nacido si se mantuvieran los patrones de mortalidad del año observado.",
+      "unit": "años",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "years",
+        "decimals": 1,
+        "unitLabel": "años",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Es una medida sintética basada en las tasas de mortalidad vigentes, no una predicción individual."
+    },
+    {
+      "id": "fertility",
+      "code": "SP.DYN.TFRT.IN",
+      "slug": "fertilidad",
+      "name": "Tasa de fertilidad total",
+      "short_name": "Fertilidad",
+      "description": "Número hipotético de nacimientos por mujer bajo las tasas de fecundidad por edad del año observado.",
+      "unit": "nacimientos por mujer",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "fertility",
+        "decimals": 1,
+        "unitLabel": "nacimientos por mujer",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Suma las tasas de fecundidad específicas por edad del periodo; no mide el número final de hijos de una mujer o cohorte concreta."
+    },
+    {
+      "id": "gdp_per_capita_ppp",
+      "code": "NY.GDP.PCAP.PP.CD",
+      "slug": "pib-per-capita",
+      "name": "PIB per cápita, PPA",
+      "short_name": "PIB per cápita",
+      "description": "Producto interior bruto por habitante convertido mediante paridades de poder adquisitivo.",
+      "unit": "dólares internacionales corrientes",
+      "format": "currency",
+      "presentation": {
+        "formatType": "currency",
+        "decimals": 0,
+        "unitLabel": "$ internacionales corrientes (PPA)",
+        "compactFormat": true,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "economy",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Al estar en dólares internacionales corrientes, sus variaciones temporales no equivalen a crecimiento real; tampoco representa renta personal disponible."
+    },
+    {
+      "id": "gdp_growth",
+      "code": "NY.GDP.MKTP.KD.ZG",
+      "slug": "crecimiento-pib",
+      "name": "Crecimiento anual del PIB",
+      "short_name": "Crecimiento del PIB",
+      "description": "Variación anual del PIB a precios constantes.",
+      "unit": "% anual",
+      "format": "percent",
+      "presentation": {
+        "formatType": "signedPercent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "economy",
+      "min_year": 1961,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "La variación se expresa frente al año anterior sobre una serie a precios constantes; los cambios históricos se muestran en puntos porcentuales."
+    },
+    {
+      "id": "unemployment",
+      "code": "SL.UEM.TOTL.ZS",
+      "slug": "desempleo",
+      "name": "Desempleo total",
+      "short_name": "Desempleo",
+      "description": "Porcentaje de la población activa sin empleo, disponible y buscando trabajo.",
+      "unit": "% de la población activa",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "ascending",
+      "category": "employment",
+      "min_year": 1991,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Serie de estimaciones modelizadas de la OIT. Las diferencias históricas se expresan en puntos porcentuales."
+    },
+    {
+      "id": "internet_use",
+      "code": "IT.NET.USER.ZS",
+      "slug": "uso-de-internet",
+      "name": "Personas que utilizan Internet",
+      "short_name": "Uso de Internet",
+      "description": "Porcentaje de personas que utilizaron Internet en los últimos tres meses.",
+      "unit": "% de la población",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "technology",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "La disponibilidad y los métodos de estimación varían entre países y años; los cambios se expresan en puntos porcentuales."
+    },
+    {
+      "id": "renewable_energy",
+      "code": "EG.FEC.RNEW.ZS",
+      "slug": "energia-renovable",
+      "name": "Consumo de energía renovable",
+      "short_name": "Energía renovable",
+      "description": "Participación de las energías renovables en el consumo final total de energía.",
+      "unit": "% del consumo final",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "environment",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Mide consumo final, no solamente generación eléctrica. Los cambios históricos se expresan en puntos porcentuales."
+    },
+    {
+      "id": "population_growth",
+      "code": "SP.POP.GROW",
+      "slug": "crecimiento-poblacion",
+      "name": "Crecimiento de la población",
+      "short_name": "Crecimiento demográfico",
+      "description": "Variación porcentual anual de la población residente.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "signedPercent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1961,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Tasa anual calculada a partir de estimaciones de población; las diferencias históricas se expresan en puntos porcentuales."
+    },
+    {
+      "id": "infant_mortality",
+      "code": "SP.DYN.IMRT.IN",
+      "slug": "mortalidad-infantil",
+      "name": "Mortalidad infantil",
+      "short_name": "Mortalidad infantil",
+      "description": "Defunciones antes de cumplir un año por cada 1.000 nacidos vivos.",
+      "unit": "por 1.000 nacidos vivos",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "decimal",
+        "decimals": 1,
+        "unitLabel": "por 1.000 nacidos vivos",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "ascending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Estimación de la probabilidad de morir antes del primer cumpleaños, expresada por 1.000 nacidos vivos."
+    },
+    {
+      "id": "urban_population",
+      "code": "SP.URB.TOTL.IN.ZS",
+      "slug": "poblacion-urbana",
+      "name": "Población urbana",
+      "short_name": "Población urbana",
+      "description": "Porcentaje de la población que vive en áreas clasificadas como urbanas.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Las definiciones nacionales de área urbana difieren; las variaciones se expresan en puntos porcentuales."
+    },
+    {
+      "id": "population_65",
+      "code": "SP.POP.65UP.TO.ZS",
+      "slug": "poblacion-mayor-65",
+      "name": "Población de 65 años o más",
+      "short_name": "Población 65+",
+      "description": "Porcentaje de residentes de 65 años o más sobre la población total.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Estimación de estructura por edades; las revisiones demográficas pueden modificar la serie histórica."
+    },
+    {
+      "id": "population_density",
+      "code": "EN.POP.DNST",
+      "slug": "densidad-poblacion",
+      "name": "Densidad de población",
+      "short_name": "Densidad",
+      "description": "Habitantes por kilómetro cuadrado de superficie terrestre.",
+      "unit": "personas por km²",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "decimal",
+        "decimals": 1,
+        "unitLabel": "personas por km²",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "demography",
+      "min_year": 1961,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Divide la población de mitad de año entre la superficie terrestre; no refleja la distribución interna de los habitantes."
+    },
+    {
+      "id": "inflation",
+      "code": "FP.CPI.TOTL.ZG",
+      "slug": "inflacion",
+      "name": "Inflación de precios al consumidor",
+      "short_name": "Inflación",
+      "description": "Variación anual del índice de precios al consumidor.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "signedPercent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "ascending",
+      "category": "economy",
+      "min_year": 1960,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Los índices y cestas nacionales pueden diferir; las diferencias entre tasas se expresan en puntos porcentuales."
+    },
+    {
+      "id": "youth_unemployment",
+      "code": "SL.UEM.1524.ZS",
+      "slug": "desempleo-juvenil",
+      "name": "Desempleo juvenil",
+      "short_name": "Desempleo juvenil",
+      "description": "Porcentaje de la fuerza laboral de 15 a 24 años sin empleo y que busca trabajo.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "ascending",
+      "category": "employment",
+      "min_year": 1991,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Estimación modelizada de la OIT para personas de 15 a 24 años; no es el porcentaje de toda la población juvenil."
+    },
+    {
+      "id": "labor_participation",
+      "code": "SL.TLF.CACT.ZS",
+      "slug": "participacion-laboral",
+      "name": "Participación en la fuerza laboral",
+      "short_name": "Participación laboral",
+      "description": "Porcentaje de la población de 15 años o más que integra la fuerza laboral.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "employment",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Estimación modelizada de la OIT; incluye personas ocupadas y desempleadas que buscan trabajo."
+    },
+    {
+      "id": "fixed_broadband",
+      "code": "IT.NET.BBND.P2",
+      "slug": "banda-ancha-fija",
+      "name": "Suscripciones de banda ancha fija",
+      "short_name": "Banda ancha fija",
+      "description": "Suscripciones de banda ancha fija por cada 100 habitantes.",
+      "unit": "por 100 habitantes",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "decimal",
+        "decimals": 1,
+        "unitLabel": "por 100 habitantes",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "descending",
+      "category": "technology",
+      "min_year": 1998,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Cuenta suscripciones, no personas ni hogares únicos; una persona puede estar asociada a más de una conexión."
+    },
+    {
+      "id": "co2_per_capita",
+      "code": "EN.GHG.CO2.PC.CE.AR5",
+      "slug": "emisiones-co2-per-capita",
+      "name": "Emisiones de CO₂ per cápita",
+      "short_name": "CO₂ per cápita",
+      "description": "Emisiones anuales de CO₂ equivalente por habitante, excluido el uso de la tierra y los bosques.",
+      "unit": "t CO₂e por habitante",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "decimal",
+        "decimals": 1,
+        "unitLabel": "t CO₂e por habitante",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "ascending",
+      "category": "environment",
+      "min_year": 1970,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Emisiones territoriales de agricultura, energía, residuos e industria; excluye LULUCF y no mide la huella de consumo."
+    },
+    {
+      "id": "electricity_access",
+      "code": "EG.ELC.ACCS.ZS",
+      "slug": "acceso-electricidad",
+      "name": "Acceso a la electricidad",
+      "short_name": "Acceso eléctrico",
+      "description": "Porcentaje de la población con acceso a electricidad.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "environment",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Combina encuestas y estimaciones; el acceso no informa sobre fiabilidad, asequibilidad ni calidad del suministro."
+    },
+    {
+      "id": "forest_area",
+      "code": "AG.LND.FRST.ZS",
+      "slug": "superficie-forestal",
+      "name": "Superficie forestal",
+      "short_name": "Bosques",
+      "description": "Porcentaje de la superficie terrestre cubierta por bosques.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "environment",
+      "min_year": 1990,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Utiliza la definición forestal de FAO; no describe por sí solo la calidad, degradación o biodiversidad del bosque."
+    },
+    {
+      "id": "health_expenditure",
+      "code": "SH.XPD.CHEX.GD.ZS",
+      "slug": "gasto-sanitario",
+      "name": "Gasto sanitario corriente",
+      "short_name": "Gasto sanitario",
+      "description": "Gasto sanitario corriente como porcentaje del PIB.",
+      "unit": "%",
+      "format": "percent",
+      "presentation": {
+        "formatType": "percent",
+        "decimals": 1,
+        "unitLabel": "%",
+        "compactFormat": false,
+        "changeType": "percentage_points"
+      },
+      "ranking": "descending",
+      "category": "society",
+      "min_year": 2000,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Mide recursos corrientes destinados a salud, no resultados sanitarios, calidad ni eficiencia."
+    },
+    {
+      "id": "maternal_mortality",
+      "code": "SH.STA.MMRT",
+      "slug": "mortalidad-materna",
+      "name": "Mortalidad materna",
+      "short_name": "Mortalidad materna",
+      "description": "Muertes maternas estimadas por cada 100.000 nacidos vivos.",
+      "unit": "por 100.000 nacidos vivos",
+      "format": "decimal",
+      "presentation": {
+        "formatType": "decimal",
+        "decimals": 1,
+        "unitLabel": "por 100.000 nacidos vivos",
+        "compactFormat": false,
+        "changeType": "percent"
+      },
+      "ranking": "ascending",
+      "category": "society",
+      "min_year": 1985,
+      "null_policy": "No se interpola ni se convierte en cero.",
+      "methodology": "Estimación modelizada interinstitucional; la interfaz no representa sus intervalos de incertidumbre."
+    }
+  ],
+  "categories": [
+    {
+      "id": "demography",
+      "order": 1
+    },
+    {
+      "id": "economy",
+      "order": 2
+    },
+    {
+      "id": "employment",
+      "order": 3
+    },
+    {
+      "id": "technology",
+      "order": 4
+    },
+    {
+      "id": "environment",
+      "order": 5
+    },
+    {
+      "id": "society",
+      "order": 6
+    }
   ]
 }

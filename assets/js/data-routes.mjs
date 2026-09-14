@@ -33,6 +33,29 @@ export const DATA_PAGES={
   renewableEnergy:{indicator:'energia-renovable',es:'/datos-globales/energia-renovable/',en:'/en/global-data/renewable-energy/',fr:'/fr/donnees-mondiales/energie-renouvelable/',de:'/de/weltdaten/erneuerbare-energie/',it:'/it/dati-globali/energia-rinnovabile/',pt:'/pt/dados-globais/energia-renovavel/',ru:'/ru/global-data/renewable-energy/','zh-CN':'/zh-cn/global-data/renewable-energy/',hi:'/hi/global-data/renewable-energy/',ja:'/ja/global-data/renewable-energy/',ko:'/ko/global-data/renewable-energy/',ca:'/ca/global-data/renewable-energy/',ar:'/ar/global-data/renewable-energy/',id:'/id/global-data/renewable-energy/',bn:'/bn/global-data/renewable-energy/'}
 };
 
+const NEW_INDICATOR_ROUTES={
+  populationGrowth:{indicator:'crecimiento-poblacion',slugs:{es:'crecimiento-poblacion',en:'population-growth',fr:'croissance-population',de:'bevoelkerungswachstum',it:'crescita-popolazione',pt:'crescimento-populacao',ca:'creixement-poblacio'}},
+  infantMortality:{indicator:'mortalidad-infantil',slugs:{es:'mortalidad-infantil',en:'infant-mortality',fr:'mortalite-infantile',de:'saeuglingssterblichkeit',it:'mortalita-infantile',pt:'mortalidade-infantil',ca:'mortalitat-infantil'}},
+  urbanPopulation:{indicator:'poblacion-urbana',slugs:{es:'poblacion-urbana',en:'urban-population',fr:'population-urbaine',de:'stadtbevoelkerung',it:'popolazione-urbana',pt:'populacao-urbana',ca:'poblacio-urbana'}},
+  population65:{indicator:'poblacion-mayor-65',slugs:{es:'poblacion-mayor-65',en:'population-age-65',fr:'population-65-ans',de:'bevoelkerung-ab-65',it:'popolazione-65-anni',pt:'populacao-65-anos',ca:'poblacio-65-anys'}},
+  populationDensity:{indicator:'densidad-poblacion',slugs:{es:'densidad-poblacion',en:'population-density',fr:'densite-population',de:'bevoelkerungsdichte',it:'densita-popolazione',pt:'densidade-populacional',ca:'densitat-poblacio'}},
+  inflation:{indicator:'inflacion',slugs:{es:'inflacion',en:'inflation',fr:'inflation',de:'inflation',it:'inflazione',pt:'inflacao',ca:'inflacio'}},
+  youthUnemployment:{indicator:'desempleo-juvenil',slugs:{es:'desempleo-juvenil',en:'youth-unemployment',fr:'chomage-jeunes',de:'jugendarbeitslosigkeit',it:'disoccupazione-giovanile',pt:'desemprego-jovem',ca:'atur-juvenil'}},
+  laborParticipation:{indicator:'participacion-laboral',slugs:{es:'participacion-laboral',en:'labor-force-participation',fr:'participation-population-active',de:'erwerbsbeteiligung',it:'partecipazione-forza-lavoro',pt:'participacao-forca-trabalho',ca:'participacio-laboral'}},
+  fixedBroadband:{indicator:'banda-ancha-fija',slugs:{es:'banda-ancha-fija',en:'fixed-broadband',fr:'haut-debit-fixe',de:'festes-breitband',it:'banda-larga-fissa',pt:'banda-larga-fixa',ca:'banda-ampla-fixa'}},
+  co2PerCapita:{indicator:'emisiones-co2-per-capita',slugs:{es:'emisiones-co2-per-capita',en:'co2-emissions-per-capita',fr:'emissions-co2-par-habitant',de:'co2-emissionen-pro-kopf',it:'emissioni-co2-pro-capite',pt:'emissoes-co2-per-capita',ca:'emissions-co2-per-capita'}},
+  electricityAccess:{indicator:'acceso-electricidad',slugs:{es:'acceso-electricidad',en:'access-to-electricity',fr:'acces-electricite',de:'zugang-elektrizitaet',it:'accesso-elettricita',pt:'acesso-eletricidade',ca:'acces-electricitat'}},
+  forestArea:{indicator:'superficie-forestal',slugs:{es:'superficie-forestal',en:'forest-area',fr:'surface-forestiere',de:'waldflaeche',it:'superficie-forestale',pt:'area-florestal',ca:'superficie-forestal'}},
+  healthExpenditure:{indicator:'gasto-sanitario',slugs:{es:'gasto-sanitario',en:'health-expenditure',fr:'depenses-sante',de:'gesundheitsausgaben',it:'spesa-sanitaria',pt:'despesa-saude',ca:'despesa-sanitaria'}},
+  maternalMortality:{indicator:'mortalidad-materna',slugs:{es:'mortalidad-materna',en:'maternal-mortality',fr:'mortalite-maternelle',de:'muettersterblichkeit',it:'mortalita-materna',pt:'mortalidade-materna',ca:'mortalitat-materna'}}
+};
+const sectionPrefix=language=>DATA_PAGES.home[language];
+for(const [key,entry] of Object.entries(NEW_INDICATOR_ROUTES)){
+  const routes={indicator:entry.indicator};
+  for(const language of Object.keys(DATA_LANGUAGES))routes[language]=`${sectionPrefix(language)}${entry.slugs[language]||entry.slugs.en}/`;
+  DATA_PAGES[key]=routes;
+}
+
 export const INSTITUTIONAL_PAGES={
   privacy:{es:'/privacidad.html',en:'/en/privacy/',fr:'/fr/confidentialite/',de:'/de/datenschutz/',it:'/it/privacy/',pt:'/pt/privacidade/',ru:'/ru/privacy/','zh-CN':'/zh-cn/privacy/',hi:'/hi/privacy/',ja:'/ja/privacy/',ko:'/ko/privacy/',ca:'/ca/privacy/',ar:'/ar/privacy/',id:'/id/privacy/',bn:'/bn/privacy/'},
   contact:{es:'/contacto.html',en:'/en/contact/',fr:'/fr/contact/',de:'/de/kontakt/',it:'/it/contatti/',pt:'/pt/contacto/',ru:'/ru/contact/','zh-CN':'/zh-cn/contact/',hi:'/hi/contact/',ja:'/ja/contact/',ko:'/ko/contact/',ca:'/ca/contact/',ar:'/ar/contact/',id:'/id/contact/',bn:'/bn/contact/'},

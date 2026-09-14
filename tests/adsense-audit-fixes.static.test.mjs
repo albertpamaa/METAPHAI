@@ -32,7 +32,7 @@ for (const page of Object.values(DATA_PAGES).filter(candidate => candidate.indic
     indicatorSnapshots++;
   }
 }
-assert.equal(indicatorSnapshots, 120);
+assert.equal(indicatorSnapshots, 330);
 
 let explorerSnapshots = 0;
 for (const language of languages) {
@@ -79,4 +79,4 @@ const overtime = readFileSync(join(root, 'calculadora-horas-extra/index.html'), 
 assert.ok(overtime.includes('Compensación por descanso: la estimación equivale a <span id="horas_descanso">'));
 assert.equal(overtime.includes('Compensación por descanso: te corresponden <span id="horas_descanso">'), false);
 
-console.log('adsense-audit-fixes: prerender 120+15, Contact 15/15, Privacy 15/15 y Horas extra OK');
+console.log('adsense-audit-fixes: prerender 330+15, Contact 15/15, Privacy 15/15 y Horas extra OK');

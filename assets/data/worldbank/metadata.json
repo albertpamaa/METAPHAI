@@ -1,5 +1,5 @@
 {
-  "downloaded_at": "2026-09-12",
+  "downloaded_at": "2026-09-13",
   "dataset": "World Development Indicators",
   "license": "CC BY 4.0",
   "indicators": [
@@ -66,6 +66,118 @@
       "latest_year": 2022,
       "country_count": 212,
       "observations": 8079
+    },
+    {
+      "code": "SP.POP.GROW",
+      "slug": "crecimiento-poblacion",
+      "file": "crecimiento-poblacion.json",
+      "latest_year": 2025,
+      "country_count": 217,
+      "observations": 16868
+    },
+    {
+      "code": "SP.DYN.IMRT.IN",
+      "slug": "mortalidad-infantil",
+      "file": "mortalidad-infantil.json",
+      "latest_year": 2024,
+      "country_count": 196,
+      "observations": 13335
+    },
+    {
+      "code": "SP.URB.TOTL.IN.ZS",
+      "slug": "poblacion-urbana",
+      "file": "poblacion-urbana.json",
+      "latest_year": 2025,
+      "country_count": 217,
+      "observations": 17160
+    },
+    {
+      "code": "SP.POP.65UP.TO.ZS",
+      "slug": "poblacion-mayor-65",
+      "file": "poblacion-mayor-65.json",
+      "latest_year": 2025,
+      "country_count": 217,
+      "observations": 17160
+    },
+    {
+      "code": "EN.POP.DNST",
+      "slug": "densidad-poblacion",
+      "file": "densidad-poblacion.json",
+      "latest_year": 2023,
+      "country_count": 216,
+      "observations": 15029
+    },
+    {
+      "code": "FP.CPI.TOTL.ZG",
+      "slug": "inflacion",
+      "file": "inflacion.json",
+      "latest_year": 2025,
+      "country_count": 193,
+      "observations": 11289
+    },
+    {
+      "code": "SL.UEM.1524.ZS",
+      "slug": "desempleo-juvenil",
+      "file": "desempleo-juvenil.json",
+      "latest_year": 2025,
+      "country_count": 187,
+      "observations": 8036
+    },
+    {
+      "code": "SL.TLF.CACT.ZS",
+      "slug": "participacion-laboral",
+      "file": "participacion-laboral.json",
+      "latest_year": 2025,
+      "country_count": 187,
+      "observations": 8266
+    },
+    {
+      "code": "IT.NET.BBND.P2",
+      "slug": "banda-ancha-fija",
+      "file": "banda-ancha-fija.json",
+      "latest_year": 2025,
+      "country_count": 208,
+      "observations": 5275
+    },
+    {
+      "code": "EN.GHG.CO2.PC.CE.AR5",
+      "slug": "emisiones-co2-per-capita",
+      "file": "emisiones-co2-per-capita.json",
+      "latest_year": 2024,
+      "country_count": 203,
+      "observations": 13530
+    },
+    {
+      "code": "EG.ELC.ACCS.ZS",
+      "slug": "acceso-electricidad",
+      "file": "acceso-electricidad.json",
+      "latest_year": 2024,
+      "country_count": 216,
+      "observations": 7980
+    },
+    {
+      "code": "AG.LND.FRST.ZS",
+      "slug": "superficie-forestal",
+      "file": "superficie-forestal.json",
+      "latest_year": 2023,
+      "country_count": 214,
+      "observations": 8505
+    },
+    {
+      "code": "SH.XPD.CHEX.GD.ZS",
+      "slug": "gasto-sanitario",
+      "file": "gasto-sanitario.json",
+      "latest_year": 2024,
+      "country_count": 193,
+      "observations": 5596
+    },
+    {
+      "code": "SH.STA.MMRT",
+      "slug": "mortalidad-materna",
+      "file": "mortalidad-materna.json",
+      "latest_year": 2023,
+      "country_count": 194,
+      "observations": 9243
     }
   ]
 }

@@ -19,7 +19,7 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaises(updater.UpdateError):updater.request_json("https://example.test",retries=2)
             self.assertEqual(call.call_count,2)
     def test_registry_and_generated_data(self):
-        config=updater.load_registry();self.assertEqual(len(config["indicators"]),8)
+        config=updater.load_registry();self.assertEqual(len(config["indicators"]),22);self.assertEqual(len(config["categories"]),6)
         countries=json.loads((ROOT/"assets/data/worldbank/countries.json").read_text(encoding="utf-8"))["countries"]
         self.assertGreaterEqual(len([c for c in countries if not c["is_aggregate"]]),200)
         ids={c["id"] for c in countries};self.assertIn("ESP",ids);self.assertTrue(next(c for c in countries if c["id"]=="WLD")["is_aggregate"])
