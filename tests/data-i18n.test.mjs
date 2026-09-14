@@ -8,7 +8,7 @@ import {indicatorPresentation} from '../assets/js/data-presentation.mjs';
 
 const root=resolve(import.meta.dirname,'..'),json=path=>JSON.parse(readFileSync(resolve(root,path),'utf8'));
 const registry=json('assets/data/indicators.json'),languages=['es','en','fr','de','it','pt','ru','zh-CN','hi','ja','ko','ca','ar','id','bn'],locales={es:'es-ES',en:'en-US',fr:'fr-FR',de:'de-DE',it:'it-IT',pt:'pt-PT',ru:'ru-RU','zh-CN':'zh-CN',hi:'hi-IN',ja:'ja-JP',ko:'ko-KR',ca:'ca-ES',ar:'ar',id:'id-ID',bn:'bn-BD'};
-assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,29);
+assert.deepEqual(Object.keys(DATA_LANGUAGES),languages);assert.equal(Object.keys(DATA_PAGES).length,30);
 for(const [key,page] of Object.entries(DATA_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language)}
 for(const [key,page] of Object.entries(INSTITUTIONAL_PAGES))for(const language of languages){assert.equal(pageKeyFromPath(page[language]),key);assert.equal(languageFromPath(page[language]),language);assert.deepEqual(pageRoutes(key),page)}
 assert.equal(pageRoutes('fertility')['zh-CN'],'/zh-cn/global-data/fertility/');assert.equal(Object.keys(pageRoutes('fertility')).length,16);
