@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadoras financieras y fiscales para España | Metaphai</title>
-  <meta name="description" content="Calculadoras gratuitas para estimar salario neto, finiquito, paro, impuestos y otros importes en España. Resultados orientativos y sin registro.">
+  <title>MetaphAI | Calculadoras para España y datos globales</title>
+  <meta name="description" content="Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar países y entender indicadores globales.">
   <meta name="keywords" content="calculadoras financieras españa, calculadora salario neto, calculadora finiquito, calculadora paro desempleo">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/">
@@ -20,14 +20,14 @@
     gtag('js', new Date());
     gtag('config', 'G-1P9N4QY0JR');
   </script>
-  <meta property="og:title" content="Calculadoras financieras y fiscales para España | Metaphai">
-  <meta property="og:description" content="Herramientas gratuitas para estimar tu salario neto, finiquito, prestación por desempleo e impuestos.">
-  <meta property="og:url" content="https://metaphai.com">
+  <meta property="og:title" content="MetaphAI: calculadoras y datos globales">
+  <meta property="og:description" content="Herramientas prácticas para España y datos públicos de 217 países y territorios para explorar indicadores, mapas, rankings y comparaciones.">
+  <meta property="og:url" content="https://metaphai.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Metaphai">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Calculadoras financieras y fiscales para España | Metaphai">
-  <meta name="twitter:description" content="Herramientas gratuitas para estimar tu salario neto, finiquito, prestación por desempleo e impuestos.">
+  <meta name="twitter:title" content="MetaphAI: calculadoras y datos globales">
+  <meta name="twitter:description" content="Herramientas prácticas para España y datos públicos internacionales para explorar indicadores y comparar países.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -49,13 +49,23 @@
     .data-home > p { color: var(--muted); margin-bottom: 1rem; }
     .data-home-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; }
     .data-home-links a { padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none; }
-    .data-home .data-cta { display: inline-block; margin-top: 1rem; color: var(--accent); font-weight: 600; }
     @media(max-width:600px){.data-home-links{grid-template-columns:repeat(2,1fr)}}
     main { max-width: 780px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
     .hero { text-align: center; margin-bottom: 2.5rem; }
     .hero h1 { font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.75rem; }
     .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero p { font-size: 15px; color: var(--muted); max-width: 460px; margin: 0 auto; }
+    .hero p { font-size: 15px; color: var(--muted); max-width: 650px; margin: 0 auto; line-height: 1.65; }
+    .home-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 3rem; }
+    .home-path { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--surface); }
+    .home-path.data-path { border-color: #c4d9ce; background: linear-gradient(135deg, #f1f8f4, #fff); }
+    .home-path h2 { margin-bottom: .6rem; font-size: 21px; letter-spacing: -.02em; }
+    .home-path p { flex: 1; margin-bottom: 1.2rem; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .home-path-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 9px 14px; border: 1px solid #b8d4c5; border-radius: 9px; background: var(--accent-light); color: var(--accent); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .home-path-cta:hover { border-color: var(--accent); }
+    .home-path-cta:focus-visible { outline: 3px solid rgba(45,106,79,.2); outline-offset: 2px; }
+    .calculator-section > h2 { margin-bottom: .35rem; font-size: 22px; }
+    .calculator-section > p { margin-bottom: 1.4rem; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    @media (max-width: 680px) { .home-paths { grid-template-columns: 1fr; gap: 12px; margin-bottom: 2.5rem; } }
     .search-wrap { margin: 0 auto 2rem; max-width: 480px; position: relative; }
     .search-input { width: 100%; padding: 12px 16px 12px 44px; font-size: 15px; font-family: 'DM Sans', sans-serif; border: 1.5px solid var(--border); border-radius: 30px; background: var(--surface); color: var(--text); transition: border-color 0.15s, box-shadow 0.15s; }
     .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,106,79,0.12); }
@@ -84,7 +94,7 @@
   "@type": "WebSite",
   "name": "Metaphai",
   "url": "https://metaphai.com/",
-  "description": "Calculadoras financieras y fiscales gratuitas para España.",
+  "description": "Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar países y entender indicadores globales.",
   "inLanguage": "es"
 }
   </script>
@@ -93,9 +103,24 @@
 <header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/" class="site-nav-link" aria-current="page">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a></div></nav></header>
 <main>
   <div class="hero">
-    <h1>Calculadoras financieras<br><em>para España</em></h1>
-    <p>Herramientas gratuitas para entender tu dinero. Estimaciones orientativas, sin registro.</p>
+    <h1>Herramientas y datos para<br><em>entender mejor los números</em></h1>
+    <p>Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar y poner cifras en contexto.</p>
   </div>
+  <section class="home-paths" aria-label="Áreas principales de MetaphAI">
+    <article class="home-path">
+      <h2>Calculadoras</h2>
+      <p>Herramientas prácticas orientadas principalmente a España para estimar salario, IRPF, paro, jubilación, vivienda, autónomos y más.</p>
+      <a class="home-path-cta" href="#calculadoras">Explorar calculadoras →</a>
+    </article>
+    <article class="home-path data-path">
+      <h2>Datos globales</h2>
+      <p>Explora y compara datos públicos de 217 países y territorios mediante 22 indicadores, mapas, rankings y evolución histórica, disponibles en 15 idiomas.</p>
+      <a class="home-path-cta" href="/datos-globales/">Explorar datos globales →</a>
+    </article>
+  </section>
+  <section class="calculator-section" id="calculadoras" aria-labelledby="calculadoras-title">
+  <h2 id="calculadoras-title">Calculadoras para España</h2>
+  <p>Busca la herramienta que necesitas y obtén una estimación orientativa sin registrarte.</p>
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input class="search-input" type="search" id="buscador" placeholder="Busca una calculadora... (ej: IVA, hipoteca, autónomo)" oninput="filtrar()" autocomplete="off" aria-label="Buscar calculadoras">
@@ -230,14 +255,14 @@
     </a>
 
   </div>
+  </section>
 
   <section class="data-home" aria-labelledby="data-home-title">
-    <h2 id="data-home-title">Explora datos globales</h2>
-    <p>Compara países y descubre tendencias económicas, demográficas y sociales con datos oficiales.</p>
+    <h2 id="data-home-title">Indicadores globales destacados</h2>
+    <p>Accede directamente a algunos de los indicadores públicos más consultados.</p>
     <div class="data-home-links">
       <a href="/datos-globales/poblacion/">Población</a><a href="/datos-globales/esperanza-de-vida/">Esperanza de vida</a><a href="/datos-globales/pib-per-capita/">PIB per cápita</a><a href="/datos-globales/desempleo/">Desempleo</a>
     </div>
-    <a class="data-cta" href="/datos-globales/">Explorar todos los datos →</a>
   </section>
 
 <div class="seo">
