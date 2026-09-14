@@ -141,11 +141,10 @@ body{margin:0;background:var(--data-bg);color:var(--data-ink);font-family:'DM Sa
 [dir="rtl"] .highlight{border-left:0;border-right:3px solid var(--data-accent);border-radius:var(--data-radius) 0 0 var(--data-radius)}
 main{max-width:1180px;margin:auto;padding:2rem 1.5rem 4rem}
 a{color:var(--data-accent)}
-.data-hero{padding:3.5rem 0 2.5rem;max-width:800px}
-.compare-hero{max-width:960px}.data-hero.compare-hero p{max-width:880px}
+.data-hero{padding:3.5rem 0 2.5rem;max-width:960px}
 .data-kicker{text-transform:uppercase;letter-spacing:.13em;color:var(--data-accent);font-size:12px;font-weight:700}
 .data-hero h1{font-size:clamp(34px,6vw,64px);line-height:1.04;letter-spacing:-.045em;margin:.5rem 0 1rem}
-.data-hero p{font-size:clamp(16px,2vw,20px);color:var(--data-muted);max-width:720px}
+.data-hero p{font-size:clamp(16px,2vw,20px);color:var(--data-muted);max-width:880px}
 .breadcrumb{font-size:12px;color:var(--data-muted)}
 .breadcrumb a{color:inherit}
 .data-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}

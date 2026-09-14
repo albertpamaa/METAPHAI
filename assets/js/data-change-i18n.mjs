@@ -16,9 +16,31 @@ id:{nav:'Perubahan',title:'Bagaimana dunia berubah',seoTitle:'Bagaimana dunia be
 bn:{nav:'পরিবর্তন',title:'বিশ্ব কীভাবে বদলেছে',seoTitle:'বিশ্ব কীভাবে বদলেছে: দেশভিত্তিক সূচকের পরিবর্তন',description:'মানচিত্র, সারাংশ ও র‍্যাঙ্কিংয়ে দুই বছরের মধ্যে বৈশ্বিক সূচকের পরিবর্তন তুলনা করুন।',intro:'দুটি পর্যবেক্ষিত বছর তুলনা করে দেশ ও অঞ্চলে পরিবর্তনের দিক ও মাত্রা দেখুন।',category:'বিভাগ',indicator:'সূচক',from:'শুরু',to:'শেষ',selectCountry:'দেশ বা অঞ্চল বেছে নিন',decrease:'হ্রাস',increase:'বৃদ্ধি',unchanged:'অপরিবর্তিত',comparable:'তুলনাযোগ্য ডেটাসহ দেশ',median:'পরিবর্তনের মধ্যক',largestIncreases:'সর্বাধিক বৃদ্ধি',largestDecreases:'সর্বাধিক হ্রাস',country:'দেশ',initial:'প্রাথমিক মান',final:'চূড়ান্ত মান',change:'পরিবর্তন',rank:'পরিবর্তন র‍্যাঙ্ক',viewCountry:'দেশ দেখুন →',allResults:'সব তুলনাযোগ্য ফলাফল',context:'পরিবর্তন কীভাবে বুঝবেন',coverage:'{total}টি দেশ ও অঞ্চলের মধ্যে {n}টির দুই বছরের ডেটা আছে।',counts:'{up}টি বেড়েছে · {down}টি কমেছে · {zero}টি অপরিবর্তিত।',rankOf:'{total}টির মধ্যে {position}তম',noData:'তুলনাযোগ্য ডেটা নেই',js:'ইন্টারঅ্যাক্টিভ মানচিত্রের জন্য JavaScript প্রয়োজন। সারাংশ ও টেবিল উপলভ্য থাকবে।',method:'পদ্ধতি ও সীমাবদ্ধতা',methodology:'শুধু ঠিক দুই বছরেই থাকা পর্যবেক্ষণ তুলনা করা হয়। ইন্টারপোলেশন বা কাছের বছর ব্যবহার করা হয় না।',source:'উৎস: বিশ্ব ব্যাংক — World Development Indicators।',card:'দুই বছরের মধ্যে প্রধান সূচকগুলো কীভাবে বদলেছে দেখুন।',modeNatural:'{unit} এককে পরিবর্তন',modePercent:'প্রাথমিক মান থেকে শতাংশ পরিবর্তন',modePoints:'শতাংশ-পয়েন্ট পরিবর্তন'}
 };
 
+const INTRO={
+  es:'Compara dos años y descubre en qué países ha aumentado o disminuido más cada indicador.',
+  en:'Compare two years and discover where each indicator increased or decreased the most.',
+  fr:'Comparez deux années et découvrez dans quels pays chaque indicateur a le plus augmenté ou diminué.',
+  de:'Vergleichen Sie zwei Jahre und entdecken Sie, in welchen Ländern die einzelnen Indikatoren am stärksten gestiegen oder gesunken sind.',
+  it:'Confronta due anni e scopri in quali paesi ogni indicatore è aumentato o diminuito di più.',
+  pt:'Compare dois anos e descubra em que países cada indicador mais aumentou ou diminuiu.',
+  ru:'Сравните два года и узнайте, в каких странах каждый показатель вырос или снизился сильнее всего.',
+  'zh-CN':'比较两个年份，了解各项指标在哪些国家上升或下降最多。',
+  hi:'दो वर्षों की तुलना करें और जानें कि प्रत्येक संकेतक किन देशों में सबसे अधिक बढ़ा या घटा।',
+  ja:'2つの年を比較し、各指標が最も増加または減少した国を確認します。',
+  ko:'두 연도를 비교하고 각 지표가 가장 크게 증가하거나 감소한 국가를 확인하세요.',
+  ca:'Compara dos anys i descobreix en quins països ha augmentat o disminuït més cada indicador.',
+  ar:'قارن بين عامين واكتشف البلدان التي شهد فيها كل مؤشر أكبر ارتفاع أو انخفاض.',
+  id:'Bandingkan dua tahun dan temukan negara tempat setiap indikator paling meningkat atau menurun.',
+  bn:'দুই বছর তুলনা করে দেখুন কোন দেশগুলোতে প্রতিটি সূচক সবচেয়ে বেশি বেড়েছে বা কমেছে।'
+};
+
+const NAV={
+  es:'Evolución',en:'Trends',fr:'Évolution',de:'Entwicklung',it:'Evoluzione',pt:'Evolução',ru:'Динамика','zh-CN':'趋势',hi:'रुझान',ja:'推移',ko:'추이',ca:'Evolució',ar:'التطور',id:'Tren',bn:'প্রবণতা'
+};
+
 const fill=(value,values)=>Object.entries(values).reduce((result,[key,replacement])=>result.replaceAll(`{${key}}`,replacement),value);
+export const CHANGE_TEXT=Object.fromEntries(Object.entries(TEXT).map(([language,text])=>[language,{...text,nav:NAV[language]||NAV.es,intro:INTRO[language]||INTRO.es}]));
 export function changeText(language='es'){
-  const text=TEXT[language]||TEXT.es;
+  const text=CHANGE_TEXT[language]||CHANGE_TEXT.es;
   return{...text,coverageText:(n,total)=>fill(text.coverage,{n,total}),countsText:(up,down,zero)=>fill(text.counts,{up,down,zero}),rankText:(position,total)=>fill(text.rankOf,{position,total}),mode:(type,unit)=>fill(type==='natural'?text.modeNatural:type==='percentage_points'?text.modePoints:text.modePercent,{unit})};
 }
-export const CHANGE_TEXT=TEXT;
