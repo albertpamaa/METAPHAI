@@ -7,11 +7,12 @@ import { indicatorPresentation } from '../assets/js/data-presentation.mjs';
 import { DATA_LANGUAGES, DATA_PAGES, INSTITUTIONAL_PAGES, countryRoute, countryRoutes } from '../assets/js/data-routes.mjs';
 import { dataViews, comparisonSentence } from '../assets/js/data-views-i18n.mjs';
 import * as VIEWS from '../assets/js/data-view-core.mjs';
+import { mapText } from '../assets/js/data-map-i18n.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const START = '<!-- DATA_PRERENDER:START -->';
 const END = '<!-- DATA_PRERENDER:END -->';
-const ASSET_VERSION = '20260914-3';
+const ASSET_VERSION = '20260914-4';
 const NAV_START = '<!-- DATA_SECTION_NAV:START -->';
 const NAV_END = '<!-- DATA_SECTION_NAV:END -->';
 const LANDING_START = '<!-- DATA_DISCOVERY:START -->';
@@ -158,7 +159,7 @@ function localizedCountryList(countries, language) {
 
 function sectionNav(language, active = '') {
   const text = dataViews(language);
-  return `${NAV_START}<nav class="data-section-nav" aria-label="${escapeHtml(text.explore)}"><a href="${DATA_PAGES.explorer[language]}"${active === 'explorer' ? ' aria-current="page"' : ''}>${escapeHtml(text.explore)}</a><a href="${DATA_PAGES.countries[language]}"${active === 'countries' ? ' aria-current="page"' : ''}>${escapeHtml(text.countries)}</a><a href="${DATA_PAGES.compare[language]}"${active === 'compare' ? ' aria-current="page"' : ''}>${escapeHtml(text.compare)}</a><a href="${DATA_PAGES.rankings[language]}"${active === 'rankings' ? ' aria-current="page"' : ''}>${escapeHtml(text.rankings)}</a></nav>${NAV_END}`;
+  return `${NAV_START}<nav class="data-section-nav" aria-label="${escapeHtml(text.explore)}"><a href="${DATA_PAGES.explorer[language]}"${active === 'explorer' ? ' aria-current="page"' : ''}>${escapeHtml(text.explore)}</a><a href="${DATA_PAGES.map[language]}"${active === 'map' ? ' aria-current="page"' : ''}>${escapeHtml(mapText(language).mapLabel)}</a><a href="${DATA_PAGES.countries[language]}"${active === 'countries' ? ' aria-current="page"' : ''}>${escapeHtml(text.countries)}</a><a href="${DATA_PAGES.compare[language]}"${active === 'compare' ? ' aria-current="page"' : ''}>${escapeHtml(text.compare)}</a><a href="${DATA_PAGES.rankings[language]}"${active === 'rankings' ? ' aria-current="page"' : ''}>${escapeHtml(text.rankings)}</a></nav>${NAV_END}`;
 }
 
 function injectSectionNav(html, language, active = '') {
@@ -174,6 +175,7 @@ function discoveryBlock(language, countries, registry) {
   const names = new Map(localizedCountryList(countries, language).map(country => [country.id, country.name]));
   const cards = [
     [DATA_PAGES.explorer[language], text.explore, text.availableIndicators],
+    [DATA_PAGES.map[language], mapText(language).mapLabel, mapText(language).intro],
     [DATA_PAGES.countries[language], text.countries, text.countriesDesc],
     [DATA_PAGES.compare[language], text.compare, text.compareDesc],
     [DATA_PAGES.rankings[language], text.rankings, text.rankingsDesc]
@@ -216,7 +218,7 @@ function sitemapEntries(routeGroups) {
 
 async function updateSitemap(countries) {
   const newIndicators=Object.values(DATA_PAGES).filter(page=>page.indicator&&!ORIGINAL_INDICATORS.has(page.indicator));
-  const path=join(ROOT,'sitemap.xml'),previous=await readFile(path,'utf8'),marked=new RegExp(`${SITEMAP_START}[\\s\\S]*?${SITEMAP_END}\\s*`),clean=previous.replace(marked,''),groups=[...newIndicators,DATA_PAGES.countries,DATA_PAGES.compare,DATA_PAGES.rankings,...VIEWS.validCountries(countries).map(country=>countryRoutes(country.id))],block=`${SITEMAP_START}\n${sitemapEntries(groups)}\n${SITEMAP_END}\n`;
+  const path=join(ROOT,'sitemap.xml'),previous=await readFile(path,'utf8'),marked=new RegExp(`${SITEMAP_START}[\\s\\S]*?${SITEMAP_END}\\s*`),clean=previous.replace(marked,''),groups=[...newIndicators,DATA_PAGES.map,DATA_PAGES.countries,DATA_PAGES.compare,DATA_PAGES.rankings,...VIEWS.validCountries(countries).map(country=>countryRoutes(country.id))],block=`${SITEMAP_START}\n${sitemapEntries(groups)}\n${SITEMAP_END}\n`;
   return writeIfChanged(path,clean.replace(/<\/urlset>\s*$/,`${block}</urlset>\n`));
 }
 
@@ -235,7 +237,7 @@ function pageChrome({ language, pageKey, routes, title, description, body, schem
   if(pageKey.startsWith('country:')) breadcrumbItems.push({'@type':'ListItem',position:2,name:text.countries,item:`https://metaphai.com${DATA_PAGES.countries[language]}`});
   breadcrumbItems.push({'@type':'ListItem',position:breadcrumbItems.length+1,name:title,item:`https://metaphai.com${route}`});
   const jsonLd = JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':schemaType,name:title,url:`https://metaphai.com${route}`,isBasedOn:'https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators'},{'@type':'BreadcrumbList',itemListElement:breadcrumbItems}]}).replace(/</g, '\\u003c');
-  const appScript=interactiveScript==='explorer'?`<script defer src="/assets/js/data-explorer.js?v=${ASSET_VERSION}"></script>`:`<script type="module" src="/assets/js/data-views.js?v=${ASSET_VERSION}"></script>`;
+  const appScript=interactiveScript==='explorer'?`<script defer src="/assets/js/data-explorer.js?v=${ASSET_VERSION}"></script>`:interactiveScript==='map'?`<script defer src="/assets/vendor/d3.v7.9.0.min.js"></script><script defer src="/assets/vendor/topojson-client.v3.1.0.min.js"></script><script type="module" src="/assets/js/data-map.js?v=${ASSET_VERSION}"></script>`:`<script type="module" src="/assets/js/data-views.js?v=${ASSET_VERSION}"></script>`;
   return `<!doctype html><html lang="${language}"${dir}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} | MetaphAI</title><meta name="description" content="${escapeHtml(description)}"><meta name="robots" content="index, follow"><link rel="canonical" href="https://metaphai.com${route}">${alternateLinks(routes)}<meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="https://metaphai.com${route}"><meta property="og:type" content="website"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260912-1"><link rel="stylesheet" href="/assets/css/data.css?v=${ASSET_VERSION}"><meta name="google-adsense-account" content="ca-pub-7545567251029894"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script><script type="application/ld+json">${jsonLd}</script></head><body${bodyAttributes?` ${bodyAttributes}`:''}>${globalHeader}<main>${sectionNav(language, pageKey.startsWith('country:') ? 'countries' : pageKey)}${body}</main>${footer}${appScript}<script type="module" src="/assets/js/data-language.js?v=${ASSET_VERSION}"></script></body></html>`;
 }
 
@@ -258,6 +260,12 @@ function countriesIndexPage(language, countries) {
   const links = list.map(country => `<li data-country-name="${escapeHtml(country.name)}" data-country-code="${country.id} ${country.iso2}"><a href="${countryRoute(language, country.id)}"><strong>${escapeHtml(country.name)}</strong><span dir="ltr">${country.iso2} · ${country.id}</span></a></li>`).join('');
   const body = `<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(text.explore)}</a> › ${escapeHtml(text.countries)}</nav><section class="data-hero"><h1>${escapeHtml(text.countriesTitle)}</h1><p>${escapeHtml(text.countriesDesc)}</p></section><section class="panel"><label class="field" for="country_directory_search">${escapeHtml(text.search)}<input id="country_directory_search" type="search" autocomplete="off" data-country-filter></label><p class="rank-note"><span data-country-count>${list.length}</span> ${escapeHtml(text.territories)}</p><ul class="country-directory" data-country-directory>${links}</ul></section><section class="source-box"><p>${escapeHtml(text.sourceText)}</p><a href="${DATA_PAGES.sources[language]}">${escapeHtml(languageConfig(language).source)}</a></section>`;
   return pageChrome({language,pageKey:'countries',routes:Object.fromEntries(Object.keys(DATA_LANGUAGES).map(code=>[code,DATA_PAGES.countries[code]])),title:text.countriesTitle,description:text.countriesDesc,body,schemaType:'CollectionPage'});
+}
+
+function mapPage(language,registry,countries,dataBySlug){
+  const text=mapText(language),views=dataViews(language),i18n=languageConfig(language),item=registry.indicators[0],localized=localizedIndicator(item,language),data=dataBySlug.get(item.slug),year=CORE.commonYear(VIEWS.indicatorRows(data,countries),registry.common_year_coverage),routes=Object.fromEntries(Object.keys(DATA_LANGUAGES).map(code=>[code,DATA_PAGES.map[code]]));
+  const body=`<nav class="breadcrumb"><a href="${DATA_PAGES.home[language]}">${escapeHtml(views.explore)}</a> › ${escapeHtml(text.mapLabel)}</nav><section class="data-hero"><span class="data-kicker">World Development Indicators</span><h1>${escapeHtml(text.title)}</h1><p>${escapeHtml(text.intro)}</p></section><section id="map_app" class="map-app"><div class="panel map-controls"><label class="field" for="map_indicator">${escapeHtml(i18n.indicator)}<select id="map_indicator">${groupedOptions(registry,language)}</select></label><label class="field" for="map_year">${escapeHtml(text.year)}<select id="map_year"><option>${year}</option></select></label><label class="field" for="map_country">${escapeHtml(text.selectCountry)}<select id="map_country"><option>${escapeHtml(text.selectCountry)}</option></select></label></div><p class="rank-note">${escapeHtml(text.help)}</p><div id="map_legend" class="map-legend"><strong>${escapeHtml(text.legend)}</strong></div><div class="map-layout"><div class="map-frame"><svg id="world_map" class="world-map" viewBox="0 0 960 500" role="img" aria-label="${escapeHtml(text.svgTitle)}"></svg></div><aside id="map_panel" class="panel map-panel" aria-live="polite"><p><strong>${escapeHtml(localized.name)}</strong></p><p>${year}</p></aside></div><p id="map_js_note" class="rank-note">${escapeHtml(text.jsRequired)}</p><p id="map_error" class="error" hidden>${escapeHtml(text.jsRequired)}</p></section><section class="source-box"><h2>${escapeHtml(views.method)}</h2><p>${escapeHtml(text.methodology)}</p><p>${escapeHtml(views.sourceText)}</p><a href="${DATA_PAGES.sources[language]}">${escapeHtml(i18n.source)}</a></section>`;
+  return pageChrome({language,pageKey:'map',routes,title:text.title,description:text.intro,body,schemaType:'WebPage',interactiveScript:'map'});
 }
 
 function countryPage(language, country, countries, registry, dataBySlug) {
@@ -315,7 +323,8 @@ export async function prerender() {
     html = html.replace(/data-explorer\.js\?v=[0-9-]+/g, `data-explorer.js?v=${ASSET_VERSION}`);
     if (await writeIfChanged(path, html)) changed++;
   }
-  const existingPages = Object.entries(DATA_PAGES).filter(([key]) => !['countries', 'compare', 'rankings'].includes(key));
+  for(const language of Object.keys(DATA_LANGUAGES))if(await writeIfChanged(routeFile(DATA_PAGES.map[language]),mapPage(language,registry,countryPayload.countries,dataBySlug)))changed++;
+  const existingPages = Object.entries(DATA_PAGES).filter(([key]) => !['map','countries', 'compare', 'rankings'].includes(key));
   for (const [key, page] of existingPages) for (const language of Object.keys(DATA_LANGUAGES)) {
     const path = routeFile(page[language]);
     let html = await readFile(path, 'utf8');

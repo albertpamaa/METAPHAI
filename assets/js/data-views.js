@@ -1,8 +1,8 @@
-import * as CORE from '/assets/js/data-core.mjs?v=20260914-3';
-import { languageConfig } from '/assets/js/data-i18n.mjs?v=20260914-3';
-import { DATA_PAGES, countryRoute } from '/assets/js/data-routes.mjs?v=20260914-3';
-import { dataViews, comparisonSentence } from '/assets/js/data-views-i18n.mjs?v=20260914-3';
-import * as VIEWS from '/assets/js/data-view-core.mjs?v=20260914-3';
+import * as CORE from '/assets/js/data-core.mjs?v=20260914-4';
+import { languageConfig } from '/assets/js/data-i18n.mjs?v=20260914-4';
+import { DATA_PAGES, countryRoute } from '/assets/js/data-routes.mjs?v=20260914-4';
+import { dataViews, comparisonSentence } from '/assets/js/data-views-i18n.mjs?v=20260914-4';
+import * as VIEWS from '/assets/js/data-view-core.mjs?v=20260914-4';
 
 const language=(document.documentElement.lang||'es').toLowerCase()==='zh-cn'?'zh-CN':(document.documentElement.lang||'es').split('-')[0],I18N=languageConfig(language),TEXT=dataViews(language),ROOT='/assets/data/',COLORS=['#277252','#2768a8','#a65d28','#7b4aa8','#a13c57'];
 const $=id=>document.getElementById(id),escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
