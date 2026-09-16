@@ -29,12 +29,14 @@ jobs:
           node tests/data-core.test.mjs
           node tests/games-core.test.mjs
           node tests/games-generator.test.mjs
+          node tests/world-data-quiz-semantic.test.mjs
           node tests/higher-or-lower.test.mjs
       - name: Refresh validated WDI files
         run: python scripts/update_worldbank_data.py
       - name: Build validated game datasets
         run: |
           node scripts/build-world-data-quiz.mjs
+          node scripts/audit-world-data-quiz.mjs
           node scripts/build-higher-or-lower.mjs
           node tests/higher-or-lower.test.mjs
       - name: Refresh HTML snapshots from validated local data

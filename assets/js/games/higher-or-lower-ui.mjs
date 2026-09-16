@@ -1,9 +1,9 @@
 import { formatIndicatorValue } from '../data-core.mjs';
 import { languageConfig } from '../data-i18n.mjs';
 import { DATA_PAGES } from '../data-routes.mjs';
-import { GAME_PAGES } from './game-routes.mjs?v=20260916-4';
-import { gameById } from './game-registry.mjs?v=20260916-4';
-import { rawGameState, readStore, replaceGameState, writeStore } from './game-storage.mjs?v=20260916-4';
+import { GAME_PAGES } from './game-routes.mjs?v=20260916-5';
+import { gameById } from './game-registry.mjs?v=20260916-5';
+import { rawGameState, readStore, replaceGameState, writeStore } from './game-storage.mjs?v=20260916-5';
 import { shareResult } from './game-share.mjs';
 import { appendBidiText } from './game-ui.mjs';
 import { answerHigherLower, createHigherLowerSession, derivedHigherLowerStats, finalizeHigherLower, newSeed, nextHigherLowerRound, normalizeHigherLowerState, validateHigherLowerDataset } from './higher-or-lower-core.mjs';

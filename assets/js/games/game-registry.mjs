@@ -7,7 +7,7 @@ export const GAME_REGISTRY={
     icon:'quiz',cardCopy:{title:'gameTitle',meta:'cardMeta',description:'tagline',cta:'play'},
     daily:true,statsNamespace:'worldDataQuiz',shareType:'spoiler-free',module:'world-data-quiz-ui.mjs',
     dataRequirements:{type:'wdi',indicators:'central-registry',countries:'central-registry'},
-    questionsPerGame:5,maxScore:10,winThreshold:3,generatorVersion:1
+    questionsPerGame:5,maxScore:10,winThreshold:3,generatorVersion:2
   },{
     id:'higherOrLower',status:'active',routeKey:'higherOrLower',routes:GAME_PAGES.higherOrLower,
     icon:'compare',cardCopy:{title:'title',meta:'cardMeta',description:'tagline',cta:'play'},copyNamespace:'higherOrLower',
