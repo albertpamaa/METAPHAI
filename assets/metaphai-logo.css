@@ -92,7 +92,7 @@ header > .logo { grid-column: 1; justify-self: start; }
     row-gap: 4px;
   }
   header > .logo { grid-area: logo; justify-self: start; }
-  .site-nav-primary { grid-area: primary; justify-self: center; }
+  .site-nav-primary { grid-area: primary; justify-self: center; flex-wrap: wrap; }
   .site-nav-link { font-size: 12px; }
   .site-nav .header-tag,
   .site-nav .nav-back { grid-area: tools; justify-self: end; }
@@ -102,5 +102,5 @@ header > .logo { grid-column: 1; justify-self: start; }
 
 @media (max-width: 390px) {
   .site-nav-primary { gap: 4px; }
-  .site-nav-link { min-height: 40px; padding: 0 8px; font-size: 11px; }
+  .site-nav-link { min-height: 40px; padding: 0 7px; font-size: 11px; }
 }

@@ -1,0 +1,12 @@
+export const STORAGE_KEY='metaphai_games_v1';
+export const SCHEMA_VERSION=1;
+const blankStats=()=>({gamesPlayed:0,wins:0,currentStreak:0,bestStreak:0,perfectGames:0,totalScore:0,totalQuestions:0,totalCorrect:0,lastCompletedDate:null,completedDates:{}});
+export const defaultStore=()=>({schemaVersion:SCHEMA_VERSION,games:{},extensions:{}});
+export function parseStore(raw){if(!raw)return defaultStore();try{const parsed=JSON.parse(raw);if(!parsed||typeof parsed!=='object')return defaultStore();return{...parsed,schemaVersion:SCHEMA_VERSION,games:parsed.games&&typeof parsed.games==='object'?parsed.games:{},extensions:parsed.extensions&&typeof parsed.extensions==='object'?parsed.extensions:{}}}catch{return defaultStore()}}
+export function gameState(store,gameId){const existing=store.games?.[gameId]||{};return{...existing,stats:{...blankStats(),...(existing.stats||{}),completedDates:{...(existing.stats?.completedDates||{})}},sessions:{...(existing.sessions||{})}}}
+export function setSession(store,gameId,date,session){const current=gameState(store,gameId);return{...store,games:{...store.games,[gameId]:{...current,sessions:{...current.sessions,[date]:session}}}}}
+const dayNumber=date=>Math.floor(Date.parse(`${date}T12:00:00Z`)/86400000);
+export function completeGame(store,gameId,date,result,winThreshold=3){const current=gameState(store,gameId),stats=current.stats;if(stats.completedDates[date])return store;const previous=stats.lastCompletedDate,consecutive=previous&&dayNumber(date)-dayNumber(previous)===1,currentStreak=consecutive?stats.currentStreak+1:1;const next={...stats,gamesPlayed:stats.gamesPlayed+1,wins:stats.wins+(result.correct>=winThreshold?1:0),currentStreak,bestStreak:Math.max(stats.bestStreak,currentStreak),perfectGames:stats.perfectGames+(result.correct===5?1:0),totalScore:stats.totalScore+result.score,totalQuestions:stats.totalQuestions+5,totalCorrect:stats.totalCorrect+result.correct,lastCompletedDate:date,completedDates:{...stats.completedDates,[date]:true}};return{...store,games:{...store.games,[gameId]:{...current,stats:next}}}}
+export const derivedStats=stats=>({...stats,winRate:stats.gamesPlayed?stats.wins/stats.gamesPlayed*100:0,averageScore:stats.gamesPlayed?stats.totalScore/stats.gamesPlayed:0});
+export function readStore(storage=globalThis.localStorage){try{return parseStore(storage?.getItem(STORAGE_KEY))}catch{return defaultStore()}}
+export function writeStore(store,storage=globalThis.localStorage){try{storage?.setItem(STORAGE_KEY,JSON.stringify(store));return true}catch{return false}}

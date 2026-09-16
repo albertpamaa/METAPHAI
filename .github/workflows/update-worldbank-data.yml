@@ -27,14 +27,20 @@ jobs:
         run: |
           python tests/test_worldbank_pipeline.py
           node tests/data-core.test.mjs
+          node tests/games-core.test.mjs
+          node tests/games-generator.test.mjs
       - name: Refresh validated WDI files
         run: python scripts/update_worldbank_data.py
+      - name: Build validated daily game challenges
+        run: node scripts/build-world-data-quiz.mjs
       - name: Refresh HTML snapshots from validated local data
-        run: node scripts/prerender-data-pages.mjs
+        run: |
+          node scripts/prerender-data-pages.mjs
+          node scripts/prerender-games.mjs
       - name: Commit synchronized datasets and snapshots
         shell: bash
         run: |
-          git add assets/data/worldbank/*.json sitemap.xml datos-globales en fr de it pt ru zh-cn hi ja ko ca ar id bn
+          git add assets/data/worldbank/*.json assets/data/games sitemap.xml datos-globales juegos en fr de it pt ru zh-cn hi ja ko ca ar id bn
           if git diff --cached --quiet; then
             echo "No statistical changes"
             exit 0

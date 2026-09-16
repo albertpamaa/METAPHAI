@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MetaphAI | Calculadoras para España y datos globales</title>
-  <meta name="description" content="Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar países y entender indicadores globales.">
+  <title>MetaphAI | Calculadoras, datos globales y juegos</title>
+  <meta name="description" content="Calculadoras prácticas para España, datos públicos internacionales y juegos educativos para explorar, comparar y aprender con cifras reales.">
   <meta name="keywords" content="calculadoras financieras españa, calculadora salario neto, calculadora finiquito, calculadora paro desempleo">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260912-1">
+  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260916-1">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
@@ -20,8 +20,8 @@
     gtag('js', new Date());
     gtag('config', 'G-1P9N4QY0JR');
   </script>
-  <meta property="og:title" content="MetaphAI: calculadoras y datos globales">
-  <meta property="og:description" content="Herramientas prácticas para España y datos públicos de 217 países y territorios para explorar indicadores, mapas, rankings y comparaciones.">
+  <meta property="og:title" content="MetaphAI: calculadoras, datos globales y juegos">
+  <meta property="og:description" content="Herramientas prácticas, datos públicos internacionales y juegos educativos para explorar, comparar y aprender con cifras reales.">
   <meta property="og:url" content="https://metaphai.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Metaphai">
@@ -31,8 +31,8 @@
   <meta property="og:image:height" content="907">
   <meta property="og:image:alt" content="MetaphAI: calculadoras para España y datos globales">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MetaphAI: calculadoras y datos globales">
-  <meta name="twitter:description" content="Herramientas prácticas para España y datos públicos internacionales para explorar indicadores y comparar países.">
+  <meta name="twitter:title" content="MetaphAI: calculadoras, datos globales y juegos">
+  <meta name="twitter:description" content="Calculadoras, datos públicos internacionales y juegos educativos para aprender con cifras reales.">
   <meta name="twitter:image" content="https://metaphai.com/assets/metaphai-social.png">
   <meta name="twitter:image:alt" content="MetaphAI: calculadoras para España y datos globales">
 
@@ -64,17 +64,20 @@
     .hero h1 em { font-style: normal; color: var(--blue); }
     .hero p { max-width: 720px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
     .hero-data-art { position: absolute; z-index: -1; right: 1rem; bottom: .25rem; width: 190px; color: var(--blue); opacity: .15; pointer-events: none; }
-    .home-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 1.5rem; }
-    .home-path { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 22px; min-width: 0; min-height: 286px; padding: 2.25rem; border: 1px solid #cce8df; border-radius: 28px; background: linear-gradient(135deg, #edf9f6 0%, #fbfefd 100%); box-shadow: 0 14px 35px rgba(16,56,70,.06); }
+    .home-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 1.5rem; }
+    .home-path { display: grid; grid-template-columns: 1fr; gap: 18px; min-width: 0; min-height: 340px; padding: 2rem; border: 1px solid #cce8df; border-radius: 28px; background: linear-gradient(135deg, #edf9f6 0%, #fbfefd 100%); box-shadow: 0 14px 35px rgba(16,56,70,.06); }
     .home-path.data-path { border-color: #cee5f6; background: linear-gradient(135deg, #eef8ff 0%, #fbfdff 100%); }
+    .home-path.game-path { border-color: #d8e2f1; background: linear-gradient(135deg, #f1f5fb 0%, #fff 100%); }
     .home-path-icon { display: grid; place-items: center; align-self: start; width: 82px; height: 82px; border-radius: 24px; background: rgba(7,151,119,.1); color: var(--accent); }
     .data-path .home-path-icon { background: rgba(19,127,193,.1); color: var(--blue); }
+    .game-path .home-path-icon { background: rgba(36,91,145,.1); color: #245b91; }
     .home-path-icon svg { width: 50px; height: 50px; }
     .home-path-copy { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
     .home-path h2 { margin-bottom: .65rem; font-size: clamp(24px, 2.8vw, 32px); letter-spacing: -.035em; }
     .home-path p { flex: 1; margin-bottom: 1.5rem; color: var(--muted); font-size: 15px; line-height: 1.65; }
     .home-path-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 11px 20px; border: 1px solid transparent; border-radius: 999px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 18px rgba(8,127,103,.16); transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease; }
     .data-path .home-path-cta { background: var(--blue); box-shadow: 0 8px 18px rgba(19,127,193,.16); }
+    .game-path .home-path-cta { background: #245b91; box-shadow: 0 8px 18px rgba(36,91,145,.16); }
     .home-path-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(8,127,103,.2); }
     .data-path .home-path-cta:hover { box-shadow: 0 10px 22px rgba(19,127,193,.2); }
     .home-path-cta:focus-visible { outline: 3px solid rgba(19,127,193,.28); outline-offset: 3px; }
@@ -118,17 +121,17 @@
   "@type": "WebSite",
   "name": "Metaphai",
   "url": "https://metaphai.com/",
-  "description": "Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar países y entender indicadores globales.",
+  "description": "Calculadoras prácticas para España, datos públicos internacionales y juegos educativos para explorar, comparar y aprender con cifras reales.",
   "inLanguage": "es"
 }
   </script>
 </head>
 <body>
-<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/" class="site-nav-link" aria-current="page">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a></div></nav></header>
+<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/" class="site-nav-link" aria-current="page">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a><a href="/juegos/" class="site-nav-link">Juegos</a></div></nav></header>
 <main>
   <div class="hero">
-    <h1>Herramientas y datos para<br>entender mejor <em>los números</em></h1>
-    <p>Calculadoras prácticas para España y datos públicos internacionales para explorar, comparar y poner cifras en contexto.</p>
+    <h1>Herramientas, datos y juegos para<br>entender mejor <em>los números</em></h1>
+    <p>Calculadoras prácticas para España, datos públicos internacionales y juegos educativos para explorar, comparar y aprender con cifras reales.</p>
     <svg class="hero-data-art" viewBox="0 0 190 92" aria-hidden="true" focusable="false"><path d="M5 78 38 62 71 70 104 43 137 51 183 10" fill="none" stroke="currentColor" stroke-width="3"/><g fill="currentColor"><circle cx="5" cy="78" r="5"/><circle cx="38" cy="62" r="5"/><circle cx="71" cy="70" r="5"/><circle cx="104" cy="43" r="5"/><circle cx="137" cy="51" r="5"/><circle cx="183" cy="10" r="5"/></g></svg>
   </div>
   <section class="home-paths" aria-label="Áreas principales de MetaphAI">
@@ -146,6 +149,14 @@
         <h2>Datos globales</h2>
         <p>Explora y compara datos públicos de 217 países y territorios mediante 22 indicadores, mapas, rankings y evolución histórica, disponibles en 15 idiomas.</p>
         <a class="home-path-cta" href="/datos-globales/">Explorar datos globales →</a>
+      </div>
+    </article>
+    <article class="home-path game-path">
+      <div class="home-path-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h30v36H9z"/><path d="M16 15h16M16 23h10M16 31h7"/><circle cx="34" cy="31" r="4"/></svg></div>
+      <div class="home-path-copy">
+        <h2>Juegos</h2>
+        <p>Aprende sobre el mundo con juegos educativos basados en datos reales y descubre el contexto detrás de cada respuesta.</p>
+        <a class="home-path-cta" href="/juegos/">Jugar →</a>
       </div>
     </article>
   </section>

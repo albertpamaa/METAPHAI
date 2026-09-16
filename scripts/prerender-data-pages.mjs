@@ -10,11 +10,14 @@ import * as VIEWS from '../assets/js/data-view-core.mjs';
 import { mapText } from '../assets/js/data-map-i18n.mjs';
 import * as CHANGE from '../assets/js/data-change-core.mjs';
 import { changeText } from '../assets/js/data-change-i18n.mjs';
+import { GAME_PAGES } from '../assets/js/games/game-routes.mjs';
+import { gameText } from '../assets/js/games/games-i18n.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const START = '<!-- DATA_PRERENDER:START -->';
 const END = '<!-- DATA_PRERENDER:END -->';
 const ASSET_VERSION = '20260914-10';
+const LOGO_VERSION = '20260916-1';
 const NAV_START = '<!-- DATA_SECTION_NAV:START -->';
 const NAV_END = '<!-- DATA_SECTION_NAV:END -->';
 const LANDING_START = '<!-- DATA_DISCOVERY:START -->';
@@ -232,7 +235,7 @@ function languageSwitcher(language, pageKey, routes) {
 
 function pageChrome({ language, pageKey, routes, title, description, body, schemaType = 'WebPage', bodyAttributes='', interactiveScript='views' }) {
   const route = routes[language], text = dataViews(language), dir = language === 'ar' ? ' dir="rtl"' : '';
-  const primary=language==='es'?`<a href="/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="${DATA_PAGES.home.es}" class="site-nav-link" aria-current="page">Datos globales</a>`:`<a href="${DATA_PAGES.home[language]}" class="site-nav-link" aria-current="page">${escapeHtml(DATA_LABELS[language])}</a>`;
+  const primary=language==='es'?`<a href="/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="${DATA_PAGES.home.es}" class="site-nav-link" aria-current="page">Datos globales</a><a href="${GAME_PAGES.home.es}" class="site-nav-link">Juegos</a>`:`<a href="${DATA_PAGES.home[language]}" class="site-nav-link" aria-current="page">${escapeHtml(DATA_LABELS[language])}</a><a href="${GAME_PAGES.home[language]}" class="site-nav-link">${escapeHtml(gameText(language).games)}</a>`;
   const globalHeader = `<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="${language==='es'?'Navegación principal':escapeHtml(text.explore)}"><div class="site-nav-primary">${primary}</div><div class="data-header-tools"><span class="header-tag">${escapeHtml(text.countries)}</span>${languageSwitcher(language, pageKey, routes)}</div></nav></header>`;
   const labels=FOOTER_LABELS[language];
   const footer = `<footer>© 2026 MetaphAI · <a href="${DATA_PAGES.sources[language]}">${escapeHtml(labels[0])}</a> · <a href="${INSTITUTIONAL_PAGES.privacy[language]}">${escapeHtml(labels[1])}</a> · <a href="${INSTITUTIONAL_PAGES.contact[language]}">${escapeHtml(labels[2])}</a> · <a href="${INSTITUTIONAL_PAGES.about[language]}">${escapeHtml(labels[3])}</a></footer>`;
@@ -241,7 +244,7 @@ function pageChrome({ language, pageKey, routes, title, description, body, schem
   breadcrumbItems.push({'@type':'ListItem',position:breadcrumbItems.length+1,name:title,item:`https://metaphai.com${route}`});
   const jsonLd = JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':schemaType,name:title,url:`https://metaphai.com${route}`,isBasedOn:'https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators'},{'@type':'BreadcrumbList',itemListElement:breadcrumbItems}]}).replace(/</g, '\\u003c');
   const appScript=interactiveScript==='explorer'?`<script defer src="/assets/js/data-explorer.js?v=${ASSET_VERSION}"></script>`:interactiveScript==='map'?`<script defer src="/assets/vendor/d3.v7.9.0.min.js"></script><script defer src="/assets/vendor/topojson-client.v3.1.0.min.js"></script><script type="module" src="/assets/js/data-map.js?v=${ASSET_VERSION}"></script>`:interactiveScript==='changes'?`<script defer src="/assets/vendor/d3.v7.9.0.min.js"></script><script defer src="/assets/vendor/topojson-client.v3.1.0.min.js"></script><script type="module" src="/assets/js/data-changes.js?v=${ASSET_VERSION}"></script>`:`<script type="module" src="/assets/js/data-views.js?v=${ASSET_VERSION}"></script>`;
-  return `<!doctype html><html lang="${language}"${dir}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} | MetaphAI</title><meta name="description" content="${escapeHtml(description)}"><meta name="robots" content="index, follow"><link rel="canonical" href="https://metaphai.com${route}">${alternateLinks(routes)}<meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="https://metaphai.com${route}"><meta property="og:type" content="website"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260912-1"><link rel="stylesheet" href="/assets/css/data.css?v=${ASSET_VERSION}"><meta name="google-adsense-account" content="ca-pub-7545567251029894"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script><script type="application/ld+json">${jsonLd}</script></head><body${bodyAttributes?` ${bodyAttributes}`:''}>${globalHeader}<main>${sectionNav(language, pageKey.startsWith('country:') ? 'countries' : pageKey)}${body}</main>${footer}${appScript}<script type="module" src="/assets/js/data-language.js?v=${ASSET_VERSION}"></script></body></html>`;
+  return `<!doctype html><html lang="${language}"${dir}><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} | MetaphAI</title><meta name="description" content="${escapeHtml(description)}"><meta name="robots" content="index, follow"><link rel="canonical" href="https://metaphai.com${route}">${alternateLinks(routes)}<meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}"><meta property="og:url" content="https://metaphai.com${route}"><meta property="og:type" content="website"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/assets/metaphai-logo.css?v=${LOGO_VERSION}"><link rel="stylesheet" href="/assets/css/data.css?v=${ASSET_VERSION}"><meta name="google-adsense-account" content="ca-pub-7545567251029894"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1P9N4QY0JR"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1P9N4QY0JR');</script><script type="application/ld+json">${jsonLd}</script></head><body${bodyAttributes?` ${bodyAttributes}`:''}>${globalHeader}<main>${sectionNav(language, pageKey.startsWith('country:') ? 'countries' : pageKey)}${body}</main>${footer}${appScript}<script type="module" src="/assets/js/data-language.js?v=${ASSET_VERSION}"></script></body></html>`;
 }
 
 function localizedIndicator(item, language) {
@@ -344,7 +347,7 @@ export async function prerender() {
     html = injectSectionNav(html, language, key === 'explorer' ? 'explorer' : '');
     if (key === 'home') html = updateLanding(html, language, countryPayload.countries, registry);
     if (key === 'sources') html = updateSources(html, language, registry, dataBySlug);
-    html = html.replace(/data\.css\?v=[0-9-]+/g, `data.css?v=${ASSET_VERSION}`).replace(/data-language\.js\?v=[0-9-]+/g, `data-language.js?v=${ASSET_VERSION}`);
+    html = html.replace(/data\.css\?v=[0-9-]+/g, `data.css?v=${ASSET_VERSION}`).replace(/data-language\.js\?v=[0-9-]+/g, `data-language.js?v=${ASSET_VERSION}`).replace(/metaphai-logo\.css\?v=[0-9-]+/g,`metaphai-logo.css?v=${LOGO_VERSION}`);
     if (await writeIfChanged(path, html)) changed++;
   }
   for (const language of Object.keys(DATA_LANGUAGES)) {
