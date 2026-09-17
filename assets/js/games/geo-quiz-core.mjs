@@ -7,6 +7,16 @@ const label=(item,language='en')=>item?.labels?.[language]||(language==='zh-CN'?
 const byRegion=(countries,code)=>countries.filter(item=>!item.is_aggregate&&item.region_id===countries.find(country=>country.id===code)?.region_id).map(item=>item.id);
 const option=(kind,id,labels=null)=>({kind,id,...(labels?{labels}:{})});
 const chooseOther=(values,excluded,count,seed)=>shuffled([...new Set(values)].filter(value=>!excluded.includes(value)),seededRandom(seed)).slice(0,count);
+const TRAINING_TYPES={mountainCountry:'mountain',riverSource:'river',riverPasses:'river',riverNotPasses:'river',riverMouth:'river',volcanoCountry:'volcano',countryVolcano:'volcano',seaCoast:'sea',seaNotCoast:'sea',countrySea:'sea',seaOcean:'sea',countryOcean:'ocean',oceanCoast:'ocean',oceanNotCoast:'ocean'};
+const pick=(values,random)=>values[Math.min(values.length-1,Math.floor(random()*values.length))];
+const withoutRecent=(values,recent,key=value=>value)=>{const filtered=values.filter(value=>!recent.includes(key(value)));return filtered.length?filtered:values};
+export const geoTrainingType=candidate=>TRAINING_TYPES[candidate.type]||candidate.type;
+export const blankGeoTrainingMemory=()=>({families:[],types:[],questions:[],centrals:[],countries:[]});
+export function selectGeoTrainingQuestion(candidates,difficulty='all',memory=blankGeoTrainingMemory(),random=Math.random){
+  const pool=candidates.filter(item=>difficulty==='all'||item.difficulty===difficulty);if(!pool.length)return{question:null,memory};
+  const families=[...new Set(pool.map(item=>item.family))],family=pick(withoutRecent(families,memory.families.slice(-1)),random),familyPool=pool.filter(item=>item.family===family),types=[...new Set(familyPool.map(geoTrainingType))],type=pick(withoutRecent(types,memory.types.slice(-3)),random);
+  let choices=familyPool.filter(item=>geoTrainingType(item)===type);choices=withoutRecent(choices,memory.questions.slice(-5),item=>item.id);choices=withoutRecent(choices,memory.centrals.slice(-5),item=>item.central);choices=withoutRecent(choices,memory.countries.slice(-5),item=>item.country||item.subjectCountry||'');const question=pick(choices,random),next={families:[...memory.families,family].slice(-2),types:[...memory.types,type].slice(-3),questions:[...memory.questions,question.id].slice(-5),centrals:[...memory.centrals,question.central].slice(-5),countries:[...memory.countries,question.country||question.subjectCountry].filter(Boolean).slice(-5)};return{question,memory:next};
+}
 
 export function topologyNeighbors(topology){
   const owners=new Map,neighbors=new Map,geometries=topology?.objects?.countries?.geometries||[];
