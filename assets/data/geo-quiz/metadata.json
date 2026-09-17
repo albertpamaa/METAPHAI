@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "generated_at": "2026-09-17T15:54:07Z",
   "sources": [
     {
@@ -36,8 +36,14 @@
     "mountains": 8,
     "rivers": 8,
     "islands": 8,
-    "seas": 0,
+    "volcanoes": 10,
+    "volcanoes_single_country_eligible": 8,
+    "volcanoes_border_excluded": 2,
+    "seas": 9,
+    "oceans": 5,
     "lakes": 0
   },
-  "notes": "Compact phase-1 catalog. Seas and lakes are postponed until unambiguous structured coastal/shared-country relationships are available."
+  "question_types": ["volcanoCountry","countryVolcano","seaCoast","seaNotCoast","countrySea","seaOcean","countryOcean","oceanCoast","oceanNotCoast"],
+  "validation_policy": "Curated Wikidata QIDs and claims reviewed on 2026-09-17. Coastal relations are explicit local allowlists; parent_ocean is stored only for direct, reviewed classifications. Multi-country volcanoes and multi-ocean country prompts are excluded from single-answer generation.",
+  "notes": "Curated phase-2 catalog. The five-ocean taxonomy is closed; the Southern Ocean has no sovereign coastal-country question. Lakes remain postponed."
 }

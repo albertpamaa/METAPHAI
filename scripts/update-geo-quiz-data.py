@@ -16,14 +16,17 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/'assets'/'data'/'geo-quiz'
 CATALOG=DATA/'catalog.json'; METADATA=DATA/'metadata.json'
+COUNTRIES=ROOT/'assets'/'data'/'worldbank'/'countries.json'
 LANGS=['en','es','fr','de','it','pt','ru','zh','hi','ja','ko','ca','ar','id','bn']
 
 def load(path): return json.loads(path.read_text(encoding='utf-8'))
-def entities(catalog): return [*catalog['cities'],*catalog['mountains'],*catalog['rivers'],*catalog['islands']]
+def entities(catalog): return [*catalog['cities'],*catalog['mountains'],*catalog['rivers'],*catalog['islands'],*catalog['volcanoes'],*catalog['seas'],*catalog['oceans']]
+def volcanoes(catalog): return [*catalog['volcanoes'],*(item for item in catalog['mountains'] if item.get('is_volcano'))]
 def validate(catalog,metadata):
-    assert catalog['schema_version']==metadata['schema_version']==1
+    assert catalog['schema_version']==metadata['schema_version']==2
     sources={item['id'] for item in metadata['sources']}
     assert sources==set(catalog['source_registry'])
+    valid_countries={item['id'] for item in load(COUNTRIES)['countries'] if not item['is_aggregate']}
     for source in metadata['sources']:
         for key in ('source_name','source_url','license_name','license_url','retrieved_at','transformation_notes'): assert source.get(key)
     seen=set()
@@ -32,11 +35,29 @@ def validate(catalog,metadata):
         assert item['source'] in sources and item.get('labels',{}).get('en')
         if 'coordinates' in item:
             lon,lat=item['coordinates'];assert -180<=lon<=180 and -90<=lat<=90
-        for code in ([item['country']] if 'country' in item else item.get('countries',[])): assert re.fullmatch(r'[A-Z]{3}',code)
+        for code in ([item['country']] if 'country' in item else item.get('countries',[])): assert code in valid_countries
     for river in catalog['rivers']:
         assert river['validated'] and river['countries']
         if river.get('source_country'): assert river['source_country'] in river['countries']
-    assert metadata['counts']=={'cities':len(catalog['cities']),'capitals':sum(x['capital'] for x in catalog['cities']),'mountains':len(catalog['mountains']),'rivers':len(catalog['rivers']),'islands':len(catalog['islands']),'seas':0,'lakes':0}
+    for volcano in volcanoes(catalog):
+        assert (volcano.get('validation') or volcano.get('volcano_validation')) and volcano['countries'] and len(volcano['countries'])==len(set(volcano['countries']))
+        assert all(code in valid_countries for code in volcano['countries'])
+        assert all(code in valid_countries and code not in volcano['countries'] for code in volcano['country_distractors'])
+        if len(volcano['countries'])>1: assert not volcano['country_distractors'] and 'excluded' in volcano['validation']
+    ocean_codes={item['code'] for item in catalog['oceans']}
+    assert ocean_codes=={'PAC','ATL','IND','ARC','SOU'}
+    for sea in catalog['seas']:
+        assert sea['validation'] and sea['coastal_countries'] and len(sea['coastal_countries'])==len(set(sea['coastal_countries']))
+        assert all(code in valid_countries for code in [*sea['coastal_countries'],*sea['country_prompts'],*sea['regional_distractors']])
+        assert not set(sea['coastal_countries'])&set(sea['regional_distractors'])
+        assert sea['parent_ocean'] is None or sea['parent_ocean'] in ocean_codes
+    for ocean in catalog['oceans']:
+        assert ocean['validation'] and len(ocean['coastal_countries'])==len(set(ocean['coastal_countries']))
+        assert all(code in valid_countries for code in [*ocean['coastal_countries'],*ocean['country_prompts'],*ocean['regional_distractors']])
+        assert not set(ocean['coastal_countries'])&set(ocean['regional_distractors'])
+    volcano_catalog=volcanoes(catalog)
+    expected={'cities':len(catalog['cities']),'capitals':sum(x['capital'] for x in catalog['cities']),'mountains':len(catalog['mountains']),'rivers':len(catalog['rivers']),'islands':len(catalog['islands']),'volcanoes':len(volcano_catalog),'volcanoes_single_country_eligible':sum(len(x['countries'])==1 for x in volcano_catalog),'volcanoes_border_excluded':sum(len(x['countries'])>1 for x in volcano_catalog),'seas':len(catalog['seas']),'oceans':len(catalog['oceans']),'lakes':0}
+    assert metadata['counts']==expected
 
 def refresh_labels(catalog):
     ids=sorted({item['id'] for item in entities(catalog)}|{river['mouth']['id'] for river in catalog['rivers'] if river.get('mouth')})

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "source_registry": [
     "natural-earth",
     "wikidata",
@@ -738,7 +738,10 @@
       ],
       "elevation": 3776,
       "difficulty": "easy",
-      "source": "wikidata"
+      "source": "wikidata",
+      "is_volcano": true,
+      "country_distractors": ["PHL", "IDN", "KOR"],
+      "volcano_validation": "wikidata-claims-reviewed-2026-09-17"
     },
     {
       "id": "Q130018",
@@ -1566,6 +1569,123 @@
       ],
       "difficulty": "medium",
       "source": "wikidata"
+    }
+  ],
+  "volcanoes": [
+    {
+      "id": "Q16990",
+      "labels": {"en":"Mount Etna","es":"Monte Etna","fr":"Etna","de":"Ätna","it":"Etna","pt":"Etna","ru":"Этна","zh":"埃特纳火山","hi":"माउण्ट एटना","ja":"エトナ火山","ko":"에트나산","ca":"Etna","ar":"جبل إتنا","id":"Etna","bn":"এটনা পর্বত"},
+      "countries": ["ITA"], "coordinates": [14.9932202888,37.7508345148], "elevation_m": 3357,
+      "country_distractors": ["GRC","TUR","ESP"], "difficulty": "easy", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q524",
+      "labels": {"en":"Mount Vesuvius","es":"Vesubio","fr":"Vésuve","de":"Vesuv","it":"Vesuvio","pt":"Vesúvio","ru":"Везувий","zh":"維蘇威火山","hi":"वेसुवियस पर्वत","ja":"ヴェスヴィオ","ko":"베수비오산","ca":"Vesuvi","ar":"جبل فيزوف","id":"Gunung Vesuvius","bn":"ভিসুভিয়াস পর্বত"},
+      "countries": ["ITA"], "coordinates": [14.42919,40.82261], "elevation_m": 1281,
+      "country_distractors": ["GRC","TUR","ESP"], "difficulty": "easy", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q82613",
+      "labels": {"en":"Krakatoa","es":"Volcán Krakatoa","fr":"Krakatoa","de":"Krakatau","it":"Krakatoa","pt":"Krakatoa","ru":"Кракатау","zh":"喀拉喀托火山","hi":"एनैक क्राकाटाओ","ja":"クラカタウ","ko":"크라카타우산","ca":"Krakatau","ar":"كراكاتوا","id":"Krakatau","bn":"ক্রাকাতোয়া"},
+      "countries": ["IDN"], "coordinates": [105.423,-6.102], "elevation_m": 813,
+      "country_distractors": ["PHL","JPN","PNG"], "difficulty": "easy", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q159762",
+      "labels": {"en":"Mauna Loa","es":"Mauna Loa","fr":"Mauna Loa","de":"Mauna Loa","it":"Mauna Loa","pt":"Mauna Loa","ru":"Мауна-Лоа","zh":"冒纳罗亚火山","hi":"मौनालोआ","ja":"マウナ・ロア山","ko":"마우나로아산","ca":"Mauna Loa","ar":"مونا لوا","id":"Mauna Loa","bn":"মাউনা লোয়া"},
+      "countries": ["USA"], "coordinates": [-155.6,19.4833333333], "elevation_m": 4169,
+      "country_distractors": ["MEX","JPN","IDN"], "difficulty": "easy", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q4675",
+      "labels": {"en":"Mount St. Helens","es":"Monte Santa Helena","fr":"mont Saint Helens","de":"Mount St. Helens","it":"Monte Saint Helens","pt":"Monte Santa Helena","ru":"Сент-Хеленс","zh":"圣海伦斯火山","hi":"माउण्ट सेण्ट हेलेन्स","ja":"セント・ヘレンズ山","ko":"세인트헬렌스산","ca":"Saint Helens","ar":"جبل سانت هيلين","id":"Gunung St. Helens","bn":"সেন্ট হেলেনস পর্বত"},
+      "countries": ["USA"], "coordinates": [-122.1894444444,46.2002777778], "elevation_m": 2549,
+      "country_distractors": ["CAN","MEX","JPN"], "difficulty": "medium", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q181157",
+      "labels": {"en":"Popocatépetl","es":"Popocatépetl","fr":"Popocatepetl","de":"Popocatépetl","it":"Popocatépetl","pt":"Popocatépetl","ru":"Попокатепетль","zh":"波波卡特佩特火山","hi":"पोपोकातेपेत्ल","ja":"ポポカテペトル山","ko":"포포카테페틀산","ca":"Popocatépetl","ar":"بوبوكاتبتبيل","id":"Popocatépetl"},
+      "countries": ["MEX"], "coordinates": [-98.623434,19.023386], "elevation_m": 5452,
+      "country_distractors": ["GTM","USA","ECU"], "difficulty": "medium", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q181476",
+      "labels": {"en":"Cotopaxi volcano","es":"Volcán Cotopaxi","fr":"Cotopaxi","de":"Cotopaxi","it":"Cotopaxi","pt":"Vulcão Cotopaxi","ru":"Котопахи","zh":"科托帕希峰","hi":"कोटोपैक्सी","ja":"コトパクシ山","ko":"코토팍시산","ca":"volcà Cotopaxi","ar":"كوتوباكسي","id":"Gunung Cotopaxi"},
+      "countries": ["ECU"], "coordinates": [-78.4377777778,-0.6805555556], "elevation_m": 5897,
+      "country_distractors": ["COL","PER","CHL"], "difficulty": "medium", "source": "wikidata", "validation": "wikidata-claims-reviewed-2026-09-17"
+    },
+    {
+      "id": "Q107635",
+      "labels": {"en":"Baekdu Mountain","es":"Monte Paektu","fr":"mont Paektu","de":"Paektusan","it":"Montagna Baitou","pt":"Montanha Baekdu","ru":"Пэктусан","zh":"长白山","hi":"बएकदू पर्वत","ja":"白頭山","ko":"백두산","ca":"Mont Paetku","ar":"جبل بايكتو","id":"Gunung Baekdu","bn":"পাইকতু পর্বত"},
+      "countries": ["PRK","CHN"], "coordinates": [128.0772222222,41.9927777778], "elevation_m": 2744,
+      "country_distractors": [], "difficulty": "hard", "source": "wikidata", "validation": "border-volcano-excluded-from-single-country-2026-09-17"
+    },
+    {
+      "id": "Q233836",
+      "labels": {"en":"Ojos del Salado","es":"Nevado Ojos del Salado","fr":"Nevado Ojos del Salado","de":"Nevado Ojos del Salado","it":"Ojos del Salado","pt":"Ojos del Salado","ru":"Охос-дель-Саладо","zh":"奥霍斯-德尔萨拉多山","hi":"ओजोसडेल सेलेडो","ja":"オホス・デル・サラード","ko":"오호스델살라도산","ca":"Ojos del Salado","ar":"أوخوس ديل سالادو","id":"Ojos del Salado","bn":"ওহোস দেল সালাদো পর্বত"},
+      "countries": ["CHL","ARG"], "coordinates": [-68.5413888889,-27.1097222222], "elevation_m": 6893,
+      "country_distractors": [], "difficulty": "hard", "source": "wikidata", "validation": "border-volcano-excluded-from-single-country-2026-09-17"
+    }
+  ],
+  "seas": [
+    {
+      "id":"Q4918","labels":{"en":"Mediterranean Sea","es":"Mediterráneo","fr":"mer Méditerranée","de":"Mittelmeer","it":"mar Mediterraneo","pt":"Mar Mediterrâneo","ru":"Средиземное море","zh":"地中海","hi":"भूमध्य सागर","ja":"地中海","ko":"지중해","ca":"mar Mediterrània","ar":"البحر الأبيض المتوسط","id":"Laut Tengah","bn":"ভূমধ্যসাগর"},
+      "coastal_countries":["ESP","FRA","MCO","ITA","SVN","HRV","BIH","MNE","ALB","GRC","MLT","CYP","TUR","SYR","LBN","ISR","EGY","LBY","TUN","DZA","MAR","GIB"],
+      "country_prompts":[],"regional_distractors":["PRT","DEU","CHE","AUT"],"parent_ocean":null,"difficulty":"easy","source":"wikidata","validation":"wikidata-p17-p205-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q13924","labels":{"en":"Adriatic Sea","es":"mar Adriático","fr":"mer Adriatique","de":"Adriatisches Meer","it":"mare Adriatico","pt":"Mar Adriático","ru":"Адриатическое море","zh":"亚得里亚海","hi":"एड्रियाटिक सागर","ja":"アドリア海","ko":"아드리아해","ca":"mar Adriàtica","ar":"البحر الأدرياتيكي","id":"Laut Adriatik","bn":"অ্যাড্রিয়াটিক সাগর"},
+      "coastal_countries":["ITA","SVN","HRV","BIH","MNE","ALB"],"country_prompts":[],"regional_distractors":["AUT","HUN","SRB","MKD"],"parent_ocean":null,"difficulty":"medium","source":"wikidata","validation":"wikidata-p17-p205-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q545","labels":{"en":"Baltic Sea","es":"Mar Báltico","fr":"mer Baltique","de":"Ostsee","it":"mar Baltico","pt":"Mar Báltico","ru":"Балтийское море","zh":"波罗的海","hi":"बाल्टिक सागर","ja":"バルト海","ko":"발트해","ca":"mar Bàltica","ar":"بحر البلطيق","id":"Laut Baltik","bn":"বাল্টিক সাগর"},
+      "coastal_countries":["SWE","FIN","RUS","EST","LVA","LTU","POL","DEU","DNK"],"country_prompts":["EST"],"regional_distractors":["NOR","BLR","CZE","SVK"],"parent_ocean":null,"difficulty":"easy","source":"wikidata","validation":"wikidata-p17-p205-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q166","labels":{"en":"Black Sea","es":"mar Negro","fr":"mer Noire","de":"Schwarzes Meer","it":"mar Nero","pt":"Mar Negro","ru":"Чёрное море","zh":"黑海","hi":"काला सागर","ja":"黒海","ko":"흑해","ca":"mar Negra","ar":"البحر الأسود","id":"Laut Hitam","bn":"কৃষ্ণ সাগর"},
+      "coastal_countries":["BGR","RUS","UKR","ROU","TUR","GEO"],"country_prompts":["BGR"],"regional_distractors":["MDA","ARM","AZE","GRC"],"parent_ocean":null,"difficulty":"easy","source":"wikidata","validation":"wikidata-p17-p205-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q23406","labels":{"en":"Red Sea","es":"mar Rojo","fr":"mer Rouge","de":"Rotes Meer","it":"Mar Rosso","pt":"Mar Vermelho","ru":"Красное море","zh":"红海","hi":"लाल सागर","ja":"紅海","ko":"홍해","ca":"mar Roja","ar":"البحر الأحمر","id":"Laut Merah","bn":"লোহিত সাগর"},
+      "coastal_countries":["EGY","SDN","ERI","DJI","YEM","SAU","ISR","JOR"],"country_prompts":["SAU"],"regional_distractors":["ETH","IRQ","SYR","LBN"],"parent_ocean":"IND","difficulty":"easy","source":"wikidata","validation":"wikidata-p17-p361-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q1247","labels":{"en":"Caribbean Sea","es":"Mar Caribe","fr":"mer des Caraïbes","de":"Karibisches Meer","it":"mare Caraibico","pt":"Mar das Caraíbas","ru":"Карибское море","zh":"加勒比海","hi":"कैरिबियाई सागर","ja":"カリブ海","ko":"카리브해","ca":"mar Carib","ar":"البحر الكاريبي","id":"Laut Karibia","bn":"ক্যারিবীয় সাগর"},
+      "coastal_countries":["MEX","BLZ","GTM","HND","NIC","CRI","PAN","COL","VEN","CUB","JAM","HTI","DOM","GRD","LCA","DMA","KNA"],"country_prompts":["BLZ"],"regional_distractors":["SLV","ECU","PER","BRA"],"parent_ocean":null,"difficulty":"easy","source":"wikidata","validation":"wikidata-p17-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q1693","labels":{"en":"North Sea","es":"mar del Norte","fr":"mer du Nord","de":"Nordsee","it":"mare del Nord","pt":"Mar do Norte","ru":"Северное море","zh":"北海","hi":"उत्तरी सागर","ja":"北海","ko":"북해","ca":"mar del Nord","ar":"بحر الشمال","id":"Laut Utara","bn":"উত্তর সাগর"},
+      "coastal_countries":["NOR","DNK","DEU","NLD","BEL","FRA","GBR"],"country_prompts":["NLD"],"regional_distractors":["IRL","SWE","POL","ESP"],"parent_ocean":"ATL","difficulty":"medium","source":"wikidata","validation":"wikidata-p17-p361-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q27092","labels":{"en":"Sea of Japan","es":"mar del Japón","fr":"mer du Japon","de":"Japanisches Meer","it":"Mar del Giappone","pt":"Mar do Japão","ru":"Японское море","zh":"日本海","hi":"जापान सागर","ja":"日本海","ko":"동해","ca":"mar del Japó","ar":"بحر اليابان","id":"Laut Jepang","bn":"জাপান সাগর"},
+      "coastal_countries":["RUS","JPN","PRK","KOR"],"country_prompts":["KOR"],"regional_distractors":["CHN","MNG","PHL","VNM"],"parent_ocean":"PAC","difficulty":"medium","source":"wikidata","validation":"wikidata-p17-p361-reviewed-2026-09-17"
+    },
+    {
+      "id":"Q58705","labels":{"en":"Arabian Sea","es":"mar Arábigo","fr":"mer d'Arabie","de":"Arabisches Meer","it":"Mar Arabico","pt":"Mar Arábico","ru":"Аравийское море","zh":"阿拉伯海","hi":"अरब सागर","ja":"アラビア海","ko":"아라비아해","ca":"mar d'Aràbia","ar":"بحر العرب","id":"Laut Arab","bn":"আরব সাগর"},
+      "coastal_countries":["IND","PAK","IRN","OMN","YEM","SOM","MDV"],"country_prompts":["PAK"],"regional_distractors":["BGD","SAU","IRQ","THA"],"parent_ocean":"IND","difficulty":"medium","source":"wikidata","validation":"wikidata-p205-p361-reviewed-2026-09-17"
+    }
+  ],
+  "oceans": [
+    {
+      "code":"PAC","id":"Q98","labels":{"en":"Pacific Ocean","es":"Océano Pacífico","fr":"océan Pacifique","de":"Pazifischer Ozean","it":"Oceano Pacifico","pt":"Oceano Pacífico","ru":"Тихий океан","zh":"太平洋","hi":"प्रशान्त महासागर","ja":"太平洋","ko":"태평양","ca":"oceà Pacífic","ar":"المحيط الهادئ","id":"Samudra Pasifik","bn":"প্রশান্ত মহাসাগর"},
+      "coastal_countries":["JPN","PHL","NZL","CHL","PER","ECU","COL","MEX","GTM","SLV","HND","NIC","CRI","PAN","CHN","KOR","PRK","RUS","CAN","USA","AUS","IDN"],"country_prompts":["PER","CHL","JPN","NZL"],"regional_distractors":["IND","BRA","ESP","EGY"],"difficulty":"easy","source":"wikidata","validation":"closed-ocean-taxonomy-and-coasts-reviewed-2026-09-17"
+    },
+    {
+      "code":"ATL","id":"Q97","labels":{"en":"Atlantic Ocean","es":"Océano Atlántico","fr":"océan Atlantique","de":"Atlantischer Ozean","it":"Oceano Atlantico","pt":"Oceano Atlântico","ru":"Атлантический океан","zh":"大西洋","hi":"अन्ध महासागर","ja":"大西洋","ko":"대서양","ca":"oceà Atlàntic","ar":"المحيط الأطلسي","id":"Samudra Atlantik","bn":"আটলান্টিক মহাসাগর"},
+      "coastal_countries":["PRT","ESP","FRA","GBR","IRL","NOR","ISL","MAR","SEN","GMB","GIN","SLE","LBR","CIV","GHA","TGO","BEN","NGA","CMR","GNQ","GAB","COG","COD","AGO","NAM","ZAF","BRA","URY","ARG","CAN","USA"],"country_prompts":["PRT","IRL","BRA","URY","SEN","GHA"],"regional_distractors":["JPN","IND","PER","AUS"],"difficulty":"easy","source":"wikidata","validation":"closed-ocean-taxonomy-and-coasts-reviewed-2026-09-17"
+    },
+    {
+      "code":"IND","id":"Q1239","labels":{"en":"Indian Ocean","es":"océano Índico","fr":"océan Indien","de":"Indischer Ozean","it":"Oceano Indiano","pt":"Oceano Índico","ru":"Индийский океан","zh":"印度洋","hi":"हिन्द महासागर","ja":"インド洋","ko":"인도양","ca":"oceà Índic","ar":"المحيط الهندي","id":"Samudra Hindia","bn":"ভারত মহাসাগর"},
+      "coastal_countries":["ZAF","MOZ","TZA","KEN","SOM","YEM","OMN","PAK","IND","BGD","MMR","THA","MYS","IDN","AUS","LKA","MDV"],"country_prompts":["IND","LKA","KEN","MOZ","TZA"],"regional_distractors":["BRA","JPN","CHL","ESP"],"difficulty":"easy","source":"wikidata","validation":"closed-ocean-taxonomy-and-coasts-reviewed-2026-09-17"
+    },
+    {
+      "code":"ARC","id":"Q788","labels":{"en":"Arctic Ocean","es":"océano Ártico","fr":"océan Arctique","de":"Arktischer Ozean","it":"Mar Glaciale Artico","pt":"Oceano Ártico","ru":"Северный Ледовитый океан","zh":"北冰洋","hi":"उत्तरध्रुवीय महासागर","ja":"北極海","ko":"북극해","ca":"oceà Àrtic","ar":"المحيط المتجمد الشمالي","id":"Samudra Arktik","bn":"উত্তর মহাসাগর"},
+      "coastal_countries":["USA","CAN","RUS","NOR"],"country_prompts":[],"regional_distractors":["SWE","FIN","ISL","GBR"],"difficulty":"medium","source":"wikidata","validation":"wikidata-p205-coasts-reviewed-2026-09-17"
+    },
+    {
+      "code":"SOU","id":"Q7354","labels":{"en":"Southern Ocean","es":"Océano Austral","fr":"océan Austral","de":"Südlicher Ozean","it":"Oceano Antartico","pt":"Oceano Antártico","ru":"Южный океан","zh":"南冰洋","hi":"दक्षिणध्रुवीय महासागर","ja":"南極海","ko":"남극해","ca":"oceà Antàrtic","ar":"المحيط الجنوبي","id":"Samudra Selatan","bn":"দক্ষিণ মহাসাগর"},
+      "coastal_countries":[],"country_prompts":[],"regional_distractors":[],"difficulty":"hard","source":"wikidata","validation":"closed-ocean-taxonomy-no-sovereign-country-coast-2026-09-17"
     }
   ]
 }
