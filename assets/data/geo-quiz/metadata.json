@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-17T15:54:07Z",
+  "sources": [
+    {
+      "id": "natural-earth",
+      "source_name": "Natural Earth",
+      "source_url": "https://www.naturalearthdata.com/",
+      "license_name": "Public domain",
+      "license_url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "retrieved_at": "2026-09-17",
+      "transformation_notes": "Existing MetaphAI 1:50m country topology; ISO3 joins and shared-border relationships only."
+    },
+    {
+      "id": "wikidata",
+      "source_name": "Wikidata",
+      "source_url": "https://www.wikidata.org/",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-09-17",
+      "transformation_notes": "Selective curated entities and structured claims only; no Wikipedia prose."
+    },
+    {
+      "id": "world-bank",
+      "source_name": "World Bank — World Development Indicators",
+      "source_url": "https://data.worldbank.org/",
+      "license_name": "CC BY 4.0",
+      "license_url": "https://datacatalog.worldbank.org/public-licenses",
+      "retrieved_at": "2026-09-17",
+      "transformation_notes": "Reuses the validated local MetaphAI WDI snapshots; no runtime API calls."
+    }
+  ],
+  "counts": {
+    "cities": 24,
+    "capitals": 24,
+    "mountains": 8,
+    "rivers": 8,
+    "islands": 8,
+    "seas": 0,
+    "lakes": 0
+  },
+  "notes": "Compact phase-1 catalog. Seas and lakes are postponed until unambiguous structured coastal/shared-country relationships are available."
+}

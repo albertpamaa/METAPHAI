@@ -41,6 +41,7 @@ export function acceptedAnswers(country,localizedName,language='en'){
 export const isCorrectAnswer=(value,answers)=>answers.has(normalizeAnswer(value));
 
 const isLetter=character=>/[\p{L}\p{N}]/u.test(character);
+const isWordSeparator=character=>/\s/u.test(character)||/[-‐‑‒–—―]/u.test(character);
 const letterKey=character=>normalizeAnswer(character);
 export const nameCharacters=name=>Array.from(String(name).normalize('NFC'));
 export function hintPlan(name,seed=''){
@@ -51,7 +52,7 @@ export function hintPlan(name,seed=''){
   const first=letterKey(chars.find(isLetter)),rest=shuffled(keys.filter(key=>key!==first),seededRandom(`${seed}:${name}`));
   return[first,...rest].slice(0,max);
 }
-export function maskedName(name,revealed=[]){const shown=new Set(revealed);return nameCharacters(name).map(char=>isLetter(char)?(shown.has(letterKey(char))?char:'_'):char).join(' ')}
+export function maskedName(name,revealed=[]){const shown=new Set(revealed),tokens=[];for(const char of nameCharacters(name)){if(isLetter(char))tokens.push(shown.has(letterKey(char))?char:'_');else if(isWordSeparator(char)){if(tokens.at(-1)!=='-')tokens.push('-')}else tokens.push(char)}return tokens.join(' ')}
 export const roundScore=(hints=0,errors=0,solved=true)=>solved?Math.max(10,MAX_ROUND_SCORE-hints*20-errors*10):0;
 
 const ringArea=ring=>Math.abs(ring.reduce((sum,point,index)=>{const next=ring[(index+1)%ring.length];return sum+point[0]*next[1]-next[0]*point[1]},0)/2);

@@ -19,6 +19,11 @@ export const GAME_REGISTRY={
     daily:true,statsNamespace:'countrySilhouette',shareType:'spoiler-free',module:'country-silhouette-ui.mjs',
     dataRequirements:{type:'local-topology',path:'/assets/maps/world-50m.topo.json',countries:'central-registry'},
     questionsPerGame:5,maxScore:500,winThreshold:1,generatorVersion:1
+  },{
+    id:'geoQuiz',status:'active',routeKey:'geoQuiz',routes:GAME_PAGES.geoQuiz,
+    icon:'globe',cardCopy:{title:'title',meta:'cardMeta',description:'tagline',cta:'play'},copyNamespace:'geoQuiz',
+    daily:true,statsNamespace:'geoQuiz',shareType:'spoiler-free',module:'geo-quiz-ui.mjs',
+    dataRequirements:{type:'local-geo-catalog',path:'/assets/data/geo-quiz/catalog.json',metadata:'/assets/data/geo-quiz/metadata.json'},questionsPerGame:5,maxScore:500,winThreshold:1,generatorVersion:1
   }]
 };
 

@@ -1,0 +1,1571 @@
+{
+  "schema_version": 1,
+  "source_registry": [
+    "natural-earth",
+    "wikidata",
+    "world-bank"
+  ],
+  "cities": [
+    {
+      "id": "Q437",
+      "labels": {
+        "en": "Ljubljana",
+        "es": "Liubliana",
+        "fr": "Ljubljana",
+        "de": "Ljubljana",
+        "ar": "لبلانة",
+        "bn": "লিউব্লিয়ানা",
+        "ca": "Ljubljana",
+        "id": "Ljubljana",
+        "it": "Lubiana",
+        "ja": "リュブリャナ",
+        "ko": "류블랴나",
+        "pt": "Liubliana",
+        "ru": "Любляна",
+        "zh": "卢布尔雅那",
+        "hi": "लुब्लियाना"
+      },
+      "country": "SVN",
+      "coordinates": [
+        14.506,
+        46.051
+      ],
+      "capital": true,
+      "difficulty": "hard",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1780",
+      "labels": {
+        "en": "Bratislava",
+        "es": "Bratislava",
+        "de": "Bratislava",
+        "fr": "Bratislava",
+        "ar": "براتيسلافا",
+        "bn": "ব্রাতিস্লাভা",
+        "ca": "Bratislava",
+        "id": "Bratislava",
+        "it": "Bratislava",
+        "ja": "ブラチスラヴァ",
+        "ko": "브라티슬라바",
+        "pt": "Bratislava",
+        "ru": "Братислава",
+        "zh": "布拉迪斯拉发",
+        "hi": "ब्रातिस्लावा"
+      },
+      "country": "SVK",
+      "coordinates": [
+        17.108,
+        48.144
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q90",
+      "labels": {
+        "en": "Paris",
+        "es": "París",
+        "bn": "প্যারিস",
+        "hi": "पेरिस",
+        "zh": "巴黎",
+        "pt": "Paris",
+        "ru": "Париж",
+        "de": "Paris",
+        "ar": "باريس",
+        "ca": "París",
+        "fr": "Paris",
+        "id": "Paris",
+        "it": "Parigi",
+        "ja": "パリ",
+        "ko": "파리"
+      },
+      "country": "FRA",
+      "coordinates": [
+        2.352,
+        48.857
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1490",
+      "labels": {
+        "en": "Tokyo",
+        "es": "Tokio",
+        "fr": "Tokyo",
+        "it": "Tokyo",
+        "ja": "東京都",
+        "de": "Tokio",
+        "ar": "طوكيو",
+        "bn": "টোকিও",
+        "ca": "Tòquio",
+        "hi": "टोक्यो",
+        "id": "Tokyo",
+        "ko": "도쿄도",
+        "pt": "Tóquio",
+        "ru": "Токио",
+        "zh": "東京都"
+      },
+      "country": "JPN",
+      "coordinates": [
+        139.692,
+        35.69
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3114",
+      "labels": {
+        "en": "Canberra",
+        "es": "Canberra",
+        "ru": "Канберра",
+        "fr": "Canberra",
+        "de": "Canberra",
+        "ar": "كانبرا",
+        "bn": "ক্যানবেরা",
+        "ca": "Canberra",
+        "hi": "कैनबरा",
+        "id": "Canberra",
+        "it": "Canberra",
+        "ja": "キャンベラ",
+        "ko": "캔버라",
+        "pt": "Camberra",
+        "zh": "堪培拉"
+      },
+      "country": "AUS",
+      "coordinates": [
+        149.13,
+        -35.281
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1930",
+      "labels": {
+        "en": "Ottawa",
+        "es": "Ottawa",
+        "fr": "Ottawa",
+        "ru": "Оттава",
+        "ar": "أوتاوا",
+        "bn": "অটোয়া",
+        "ca": "Ottawa",
+        "de": "Ottawa",
+        "id": "Ottawa",
+        "it": "Ottawa",
+        "ja": "オタワ",
+        "ko": "오타와",
+        "pt": "Ottawa",
+        "zh": "渥太華",
+        "hi": "ओटावा"
+      },
+      "country": "CAN",
+      "coordinates": [
+        -75.697,
+        45.421
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q2844",
+      "labels": {
+        "en": "Brasília",
+        "es": "Brasilia",
+        "fr": "Brasilia",
+        "ar": "برازيليا",
+        "ca": "Brasília",
+        "de": "Brasília",
+        "id": "Brasilia",
+        "it": "Brasilia",
+        "ja": "ブラジリア",
+        "ko": "브라질리아",
+        "pt": "Brasília",
+        "ru": "Бразилиа",
+        "zh": "巴西利亚",
+        "bn": "ব্রাসিলিয়া",
+        "hi": "ब्रासीलिया"
+      },
+      "country": "BRA",
+      "coordinates": [
+        -47.882,
+        -15.794
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3870",
+      "labels": {
+        "en": "Nairobi",
+        "es": "Nairobi",
+        "de": "Nairobi",
+        "fr": "Nairobi",
+        "it": "Nairobi",
+        "ar": "نيروبي",
+        "bn": "নাইরোবি",
+        "ca": "Nairobi",
+        "id": "Nairobi",
+        "ja": "ナイロビ",
+        "ko": "나이로비",
+        "pt": "Nairóbi",
+        "ru": "Найроби",
+        "zh": "奈洛比",
+        "hi": "नायरोबी"
+      },
+      "country": "KEN",
+      "coordinates": [
+        36.822,
+        -1.286
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q23430",
+      "labels": {
+        "en": "Ulaanbaatar",
+        "es": "Ulán Bator",
+        "zh": "乌兰巴托",
+        "ar": "أولان باتور",
+        "pt": "Ulã Bator",
+        "it": "Ulan Bator",
+        "ja": "ウランバートル",
+        "ca": "Ulaanbaatar",
+        "bn": "উলানবাটর",
+        "ru": "Улан-Батор",
+        "fr": "Oulan-Bator",
+        "ko": "울란바타르",
+        "de": "Ulaanbaatar",
+        "id": "Ulaanbaatar",
+        "hi": "उलानबातर"
+      },
+      "country": "MNG",
+      "coordinates": [
+        106.917,
+        47.918
+      ],
+      "capital": true,
+      "difficulty": "hard",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1764",
+      "labels": {
+        "en": "Reykjavík",
+        "es": "Reikiavik",
+        "de": "Reykjavík",
+        "fr": "Reykjavik",
+        "ar": "ريكيافيك",
+        "bn": "রেইকিয়াভিক",
+        "ca": "Reykjavík",
+        "hi": "रेक्जाविक",
+        "id": "Reykjavík",
+        "it": "Reykjavík",
+        "ja": "レイキャヴィーク",
+        "ko": "레이캬비크",
+        "pt": "Reykjavík",
+        "ru": "Рейкьявик",
+        "zh": "雷克雅未克"
+      },
+      "country": "ISL",
+      "coordinates": [
+        -21.942,
+        64.146
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q2868",
+      "labels": {
+        "en": "Lima",
+        "es": "Lima",
+        "fr": "Lima",
+        "de": "Lima",
+        "ar": "ليما",
+        "bn": "লিমা",
+        "ca": "Lima",
+        "hi": "लीमा",
+        "id": "Lima",
+        "it": "Lima",
+        "ja": "リマ",
+        "ko": "리마",
+        "pt": "Lima",
+        "ru": "Лима",
+        "zh": "利馬"
+      },
+      "country": "PER",
+      "coordinates": [
+        -77.043,
+        -12.046
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1858",
+      "labels": {
+        "en": "Hanoi",
+        "es": "Hanói",
+        "fr": "Hanoï",
+        "ar": "هانوي",
+        "bn": "হ্যানয়",
+        "ca": "Hanoi",
+        "de": "Hanoi",
+        "hi": "हनोई",
+        "id": "Hanoi",
+        "it": "Hanoi",
+        "ja": "ハノイ",
+        "ko": "하노이",
+        "pt": "Hanói",
+        "ru": "Ханой",
+        "zh": "河內"
+      },
+      "country": "VNM",
+      "coordinates": [
+        105.854,
+        21.029
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q597",
+      "labels": {
+        "en": "Lisbon",
+        "es": "Lisboa",
+        "de": "Lissabon",
+        "it": "Lisbona",
+        "pt": "Lisboa",
+        "fr": "Lisbonne",
+        "ru": "Лиссабон",
+        "ar": "لشبونة",
+        "bn": "লিসবন",
+        "ca": "Lisboa",
+        "hi": "लिस्बन",
+        "id": "Lisboa",
+        "ja": "リスボン",
+        "ko": "리스본",
+        "zh": "里斯本"
+      },
+      "country": "PRT",
+      "coordinates": [
+        -9.139,
+        38.722
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3551",
+      "labels": {
+        "en": "Rabat",
+        "es": "Rabat",
+        "de": "Rabat",
+        "fr": "Rabat",
+        "it": "Rabat",
+        "ar": "الرباط",
+        "ca": "Rabat",
+        "id": "Rabat",
+        "ja": "ラバト",
+        "ko": "라바트",
+        "pt": "Rabat",
+        "ru": "Рабат",
+        "zh": "拉巴特",
+        "bn": "রাবাত",
+        "hi": "रबात"
+      },
+      "country": "MAR",
+      "coordinates": [
+        -6.849,
+        34.02
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3761",
+      "labels": {
+        "en": "Accra",
+        "es": "Acra",
+        "de": "Accra",
+        "fr": "Accra",
+        "it": "Accra",
+        "ar": "أكرا",
+        "ca": "Accra",
+        "id": "Accra",
+        "ja": "アクラ",
+        "ko": "아크라",
+        "pt": "Acra",
+        "ru": "Аккра",
+        "zh": "阿克拉",
+        "hi": "अक्रा",
+        "bn": "আক্রা"
+      },
+      "country": "GHA",
+      "coordinates": [
+        -0.187,
+        5.603
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1770",
+      "labels": {
+        "en": "Tallinn",
+        "es": "Tallin",
+        "de": "Tallinn",
+        "fr": "Tallinn",
+        "it": "Tallinn",
+        "ar": "تالين",
+        "bn": "তালিন",
+        "ca": "Tallinn",
+        "hi": "ताल्लिन",
+        "id": "Tallinn",
+        "ja": "タリン",
+        "ko": "탈린",
+        "pt": "Tallinn",
+        "ru": "Таллин",
+        "zh": "塔林"
+      },
+      "country": "EST",
+      "coordinates": [
+        24.746,
+        59.437
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q994",
+      "labels": {
+        "en": "Tbilisi",
+        "es": "Tiflis",
+        "fr": "Tbilissi",
+        "ru": "Тбилиси",
+        "de": "Tiflis",
+        "ar": "تبليسي",
+        "bn": "তিবিলিসি",
+        "ca": "Tbilisi",
+        "hi": "त्बिलिसी",
+        "id": "Tbilisi",
+        "it": "Tbilisi",
+        "ja": "トビリシ",
+        "ko": "트빌리시",
+        "pt": "Tiblíssi",
+        "zh": "第比利斯"
+      },
+      "country": "GEO",
+      "coordinates": [
+        44.8,
+        41.694
+      ],
+      "capital": true,
+      "difficulty": "hard",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q472",
+      "labels": {
+        "en": "Sofia",
+        "es": "Sofía",
+        "it": "Sofia",
+        "fr": "Sofia",
+        "ar": "صوفيا",
+        "bn": "সফিয়া",
+        "ca": "Sofia",
+        "de": "Sofia",
+        "hi": "सोफिया",
+        "id": "Sofia",
+        "ja": "ソフィア",
+        "ko": "소피아",
+        "pt": "Sófia",
+        "ru": "София",
+        "zh": "索菲亞"
+      },
+      "country": "BGR",
+      "coordinates": [
+        23.322,
+        42.697
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1435",
+      "labels": {
+        "en": "Zagreb",
+        "es": "Zagreb",
+        "de": "Zagreb",
+        "it": "Zagabria",
+        "ar": "زغرب",
+        "bn": "জাগরেব",
+        "ca": "Zagreb",
+        "fr": "Zagreb",
+        "id": "Zagreb",
+        "ja": "ザグレブ",
+        "ko": "자그레브",
+        "pt": "Zagreb",
+        "ru": "Загреб",
+        "zh": "萨格勒布",
+        "hi": "ज़ाग्रेब"
+      },
+      "country": "HRV",
+      "coordinates": [
+        15.982,
+        45.815
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3711",
+      "labels": {
+        "en": "Belgrade",
+        "es": "Belgrado",
+        "ru": "Белград",
+        "fr": "Belgrade",
+        "de": "Belgrad",
+        "ar": "بلغراد",
+        "bn": "বেলগ্রেড",
+        "ca": "Belgrad",
+        "hi": "बेलग्रेड",
+        "id": "Beograd",
+        "it": "Belgrado",
+        "ja": "ベオグラード",
+        "ko": "베오그라드",
+        "pt": "Belgrado",
+        "zh": "贝尔格莱德"
+      },
+      "country": "SRB",
+      "coordinates": [
+        20.457,
+        44.817
+      ],
+      "capital": true,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q8680",
+      "labels": {
+        "en": "British Empire",
+        "es": "Imperio británico",
+        "fr": "Empire britannique",
+        "de": "Britisches Weltreich",
+        "it": "Impero britannico",
+        "ar": "الإمبراطورية البريطانية",
+        "bn": "ব্রিটিশ সাম্রাজ্য",
+        "ca": "Imperi Britànic",
+        "hi": "ब्रिटिश साम्राज्य",
+        "id": "Imperium Britania Raya",
+        "ja": "イギリス帝国",
+        "ko": "대영제국",
+        "pt": "Império Britânico",
+        "ru": "Британская империя",
+        "zh": "大英帝國"
+      },
+      "country": "KOR",
+      "coordinates": [
+        126.978,
+        37.566
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1861",
+      "labels": {
+        "en": "Bangkok",
+        "es": "Bangkok",
+        "fr": "Bangkok",
+        "it": "Bangkok",
+        "ar": "بانكوك",
+        "bn": "ব্যাংকক",
+        "ca": "Bangkok",
+        "de": "Bangkok",
+        "hi": "बैंकॉक",
+        "id": "Bangkok",
+        "ja": "バンコク",
+        "ko": "방콕",
+        "pt": "Banguecoque",
+        "ru": "Бангкок",
+        "zh": "曼谷"
+      },
+      "country": "THA",
+      "coordinates": [
+        100.502,
+        13.756
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1486",
+      "labels": {
+        "en": "Buenos Aires",
+        "es": "Buenos Aires",
+        "fr": "Buenos Aires",
+        "ru": "Буэнос-Айрес",
+        "it": "Buenos Aires",
+        "ar": "بوينس آيرس",
+        "bn": "বুয়েনোস আইরেস",
+        "ca": "Buenos Aires",
+        "de": "Buenos Aires",
+        "hi": "ब्यूनस आयर्स",
+        "id": "Buenos Aires",
+        "ja": "ブエノスアイレス",
+        "ko": "부에노스아이레스",
+        "pt": "Buenos Aires",
+        "zh": "布宜諾斯艾利斯"
+      },
+      "country": "ARG",
+      "coordinates": [
+        -58.382,
+        -34.604
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q85",
+      "labels": {
+        "en": "Cairo",
+        "es": "El Cairo",
+        "fr": "Le Caire",
+        "it": "Il Cairo",
+        "de": "Kairo",
+        "ar": "القاهرة",
+        "bn": "কায়রো",
+        "ca": "el Caire",
+        "hi": "क़ाहिरा",
+        "id": "Kairo",
+        "ja": "カイロ",
+        "ko": "카이로",
+        "pt": "Cairo",
+        "ru": "Каир",
+        "zh": "開羅"
+      },
+      "country": "EGY",
+      "coordinates": [
+        31.236,
+        30.044
+      ],
+      "capital": true,
+      "difficulty": "easy",
+      "source": "wikidata"
+    }
+  ],
+  "mountains": [
+    {
+      "id": "Q7296",
+      "labels": {
+        "en": "Mount Kilimanjaro",
+        "es": "Kilimanjaro",
+        "fr": "Kilimanjaro",
+        "it": "Kilimangiaro",
+        "ar": "جبل كليمنجارو",
+        "bn": "কিলিমাঞ্জারো",
+        "ca": "Kilimanjaro",
+        "de": "Kilimandscharo",
+        "hi": "किलिमंजार hiahwjamaja",
+        "id": "Kilimanjaro",
+        "ja": "キリマンジャロ",
+        "ko": "킬리만자로산",
+        "pt": "Kilimanjaro",
+        "ru": "Килиманджаро",
+        "zh": "乞力马扎罗山"
+      },
+      "countries": [
+        "TZA"
+      ],
+      "coordinates": [
+        37.355,
+        -3.067
+      ],
+      "elevation": 5895,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q39231",
+      "labels": {
+        "en": "Mount Fuji",
+        "es": "Monte Fuji",
+        "zh": "富士山",
+        "bn": "ফুজি পর্বত",
+        "ar": "جبل فوجي",
+        "pt": "Monte Fuji",
+        "ru": "Фудзияма",
+        "fr": "mont Fuji",
+        "ko": "후지산",
+        "it": "Fuji",
+        "de": "Fuji",
+        "id": "Gunung Fuji",
+        "ja": "富士山",
+        "hi": "फ़ूजियामा",
+        "ca": "mont Fuji"
+      },
+      "countries": [
+        "JPN"
+      ],
+      "coordinates": [
+        138.727,
+        35.361
+      ],
+      "elevation": 3776,
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q130018",
+      "labels": {
+        "en": "Denali",
+        "es": "Denali",
+        "bn": "দেনালি",
+        "ar": "دينالي",
+        "pt": "Monte Denali",
+        "ru": "Мак-Кинли",
+        "fr": "Denali",
+        "ko": "디날리산",
+        "it": "Monte McKinley",
+        "de": "Denali",
+        "ja": "デナリ",
+        "ca": "Denali",
+        "zh": "丹奈利峰",
+        "id": "Denali",
+        "hi": "देनाली"
+      },
+      "countries": [
+        "USA"
+      ],
+      "coordinates": [
+        -151.008,
+        63.069
+      ],
+      "elevation": 6190,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q39739",
+      "labels": {
+        "en": "Aconcagua",
+        "es": "Aconcagua",
+        "zh": "阿空加瓜山",
+        "bn": "আকোংকাগুয়া পর্বত",
+        "ar": "أكونكاغوا",
+        "pt": "Aconcágua",
+        "ru": "Аконкагуа",
+        "fr": "Aconcagua",
+        "ko": "아콩카과산",
+        "it": "Aconcagua",
+        "de": "Aconcagua",
+        "id": "Akonkagua",
+        "ja": "アコンカグア",
+        "ca": "Aconcagua",
+        "hi": "अकोंकागुआ"
+      },
+      "countries": [
+        "ARG"
+      ],
+      "coordinates": [
+        -70.011,
+        -32.653
+      ],
+      "elevation": 6961,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q43105",
+      "labels": {
+        "en": "Mount Elbrus",
+        "es": "Monte Elbrús",
+        "zh": "厄尔布鲁士山",
+        "bn": "এলব্রুস পর্বত",
+        "ar": "إلبروس",
+        "pt": "Monte Elbrus",
+        "ru": "Эльбрус",
+        "ko": "옐브루스산",
+        "fr": "Elbrouz",
+        "it": "monte Elbrus",
+        "id": "Gunung Elbrus",
+        "de": "Elbrus",
+        "ja": "エルブルス山",
+        "hi": "एल्ब्रुस पर्वत",
+        "ca": "Elbrús"
+      },
+      "countries": [
+        "RUS"
+      ],
+      "coordinates": [
+        42.439,
+        43.355
+      ],
+      "elevation": 5642,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q164660",
+      "labels": {
+        "en": "Blémerey",
+        "es": "Blémerey",
+        "ru": "Блемре",
+        "fr": "Blémerey",
+        "de": "Blémerey",
+        "it": "Blémerey",
+        "pt": "Blémerey"
+      },
+      "countries": [
+        "AUS"
+      ],
+      "coordinates": [
+        148.263,
+        -36.456
+      ],
+      "elevation": 2228,
+      "difficulty": "hard",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q164848",
+      "labels": {
+        "en": "6 Hours of Spa-Francorchamps",
+        "es": "1000 km de Spa-Francorchamps",
+        "ru": "1000 км Спа",
+        "fr": "6 Heures de Spa-Francorchamps",
+        "de": "6 Stunden von Spa-Francorchamps",
+        "it": "6 Ore di Spa-Francorchamps",
+        "pt": "6 Hours of Spa-Francorchamps",
+        "ja": "スパ1000km",
+        "id": "6 Hours of Spa-Francorchamps",
+        "ca": "6 Hores de Spa-Francorchamps",
+        "zh": "斯帕-弗朗科爾尚6小時耐力賽"
+      },
+      "countries": [
+        "ESP"
+      ],
+      "coordinates": [
+        -16.643,
+        28.272
+      ],
+      "elevation": 3715,
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q173540",
+      "labels": {
+        "en": "Margaret Mitchell",
+        "es": "Margaret Mitchell",
+        "ko": "마거릿 미첼",
+        "fr": "Margaret Mitchell",
+        "it": "Margaret Mitchell",
+        "id": "Margaret Mitchell",
+        "de": "Margaret Mitchell",
+        "ja": "マーガレット・ミッチェル",
+        "ar": "مارغريت ميتشل",
+        "pt": "Margaret Mitchell",
+        "ru": "Маргарет Митчелл",
+        "ca": "Margaret Mitchell",
+        "zh": "玛格丽特·米切尔",
+        "bn": "মার্গারেট মিচেল"
+      },
+      "countries": [
+        "ZAF"
+      ],
+      "coordinates": [
+        18.409,
+        -33.962
+      ],
+      "elevation": 1085,
+      "difficulty": "hard",
+      "source": "wikidata"
+    }
+  ],
+  "rivers": [
+    {
+      "id": "Q1653",
+      "labels": {
+        "en": "Danube",
+        "es": "Danubio",
+        "de": "Donau",
+        "fr": "Danube",
+        "it": "Danubio",
+        "ar": "دانوب",
+        "bn": "দানিউব নদী",
+        "ca": "Danubi",
+        "hi": "डैन्यूब नदी",
+        "id": "Danube",
+        "ja": "ドナウ川",
+        "ko": "다뉴브강",
+        "pt": "Rio Danúbio",
+        "ru": "Дунай",
+        "zh": "多瑙河"
+      },
+      "countries": [
+        "DEU",
+        "AUT",
+        "SVK",
+        "HUN",
+        "HRV",
+        "SRB",
+        "BGR",
+        "ROU",
+        "MDA",
+        "UKR"
+      ],
+      "source_country": "DEU",
+      "mouth": {
+        "id": "Q166",
+        "labels": {
+          "en": "Black Sea",
+          "es": "mar Negro",
+          "fr": "mer Noire",
+          "it": "mar Nero",
+          "ru": "Чёрное море",
+          "ar": "البحر الأسود",
+          "bn": "কৃষ্ণ সাগর",
+          "ca": "mar Negra",
+          "de": "Schwarzes Meer",
+          "hi": "काला सागर",
+          "id": "Laut Hitam",
+          "ja": "黒海",
+          "ko": "흑해",
+          "pt": "Mar Negro",
+          "zh": "黑海"
+        }
+      },
+      "regional_distractors": [
+        "POL",
+        "CZE",
+        "SVN"
+      ],
+      "difficulty": "medium",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q584",
+      "labels": {
+        "en": "Rhine",
+        "es": "Rin",
+        "it": "Reno",
+        "de": "Rhein",
+        "fr": "Rhin",
+        "ar": "الراين",
+        "bn": "রাইন নদী",
+        "ca": "Rin",
+        "id": "Rhine",
+        "ja": "ライン川",
+        "ko": "라인강",
+        "pt": "Rio Reno",
+        "ru": "Рейн",
+        "zh": "莱茵河",
+        "hi": "राइन नदी"
+      },
+      "countries": [
+        "CHE",
+        "LIE",
+        "AUT",
+        "DEU",
+        "FRA",
+        "NLD"
+      ],
+      "source_country": "CHE",
+      "mouth": {
+        "id": "Q1693",
+        "labels": {
+          "en": "North Sea",
+          "es": "mar del Norte",
+          "de": "Nordsee",
+          "fr": "mer du Nord",
+          "it": "mare del Nord",
+          "ar": "بحر الشمال",
+          "bn": "উত্তর সাগর",
+          "ca": "mar del Nord",
+          "hi": "उत्तरी सागर",
+          "id": "Laut Utara",
+          "ja": "北海",
+          "ko": "북해",
+          "pt": "Mar do Norte",
+          "ru": "Северное море",
+          "zh": "北海"
+        }
+      },
+      "regional_distractors": [
+        "BEL",
+        "DNK",
+        "CZE"
+      ],
+      "difficulty": "medium",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q41179",
+      "labels": {
+        "en": "Mekong River",
+        "es": "Mekong",
+        "zh": "湄公河",
+        "ar": "نهر ميكونغ",
+        "pt": "Rio Mekong",
+        "ru": "Меконг",
+        "fr": "Mékong",
+        "ko": "메콩강",
+        "it": "Mekong",
+        "id": "Mekong",
+        "de": "Mekong",
+        "ja": "メコン川",
+        "hi": "मीकांग नदी",
+        "ca": "Mekong",
+        "bn": "মেকং নদী"
+      },
+      "countries": [
+        "CHN",
+        "MMR",
+        "LAO",
+        "THA",
+        "KHM",
+        "VNM"
+      ],
+      "mouth": {
+        "id": "Q37660",
+        "labels": {
+          "en": "South China Sea",
+          "es": "mar de China Meridional",
+          "zh": "南海",
+          "ar": "بحر الصين الجنوبي",
+          "pt": "Mar da China Meridional",
+          "ru": "Южно-Китайское море",
+          "fr": "mer de Chine méridionale",
+          "ko": "남중국해",
+          "it": "Mar Cinese Meridionale",
+          "de": "Südchinesisches Meer",
+          "id": "Laut Tiongkok Selatan",
+          "ja": "南シナ海",
+          "hi": "दक्षिणी चीन सागर",
+          "ca": "mar de la Xina Meridional",
+          "bn": "দক্ষিণ চীন সাগর"
+        }
+      },
+      "regional_distractors": [
+        "MYS",
+        "BGD",
+        "IND"
+      ],
+      "difficulty": "hard",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q3783",
+      "labels": {
+        "en": "Amazon",
+        "es": "Amazonas",
+        "fr": "Amazone",
+        "de": "Amazonas",
+        "it": "Rio delle Amazzoni",
+        "ko": "아마존강",
+        "ar": "نهر الأمازون",
+        "bn": "আমাজন নদী",
+        "ca": "riu Amazones",
+        "hi": "अमेज़न नदी",
+        "id": "Sungai Amazon",
+        "ja": "アマゾン川",
+        "pt": "rio Amazonas",
+        "ru": "Амазонка",
+        "zh": "亚马孙河"
+      },
+      "countries": [
+        "PER",
+        "COL",
+        "BRA"
+      ],
+      "mouth": {
+        "id": "Q97",
+        "labels": {
+          "en": "Atlantic Ocean",
+          "es": "Océano Atlántico",
+          "de": "Atlantischer Ozean",
+          "ru": "Атлантический океан",
+          "fr": "océan Atlantique",
+          "it": "Oceano Atlantico",
+          "ar": "المحيط الأطلسي",
+          "bn": "আটলান্টিক মহাসাগর",
+          "ca": "oceà Atlàntic",
+          "hi": "अन्ध महासागर",
+          "id": "Samudra Atlantik",
+          "ja": "大西洋",
+          "ko": "대서양",
+          "pt": "Oceano Atlântico",
+          "zh": "大西洋"
+        }
+      },
+      "regional_distractors": [
+        "BOL",
+        "ECU",
+        "VEN"
+      ],
+      "difficulty": "easy",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q3542",
+      "labels": {
+        "en": "Niger River",
+        "es": "Níger",
+        "fr": "Niger",
+        "it": "Niger",
+        "ko": "나이저강",
+        "ar": "نهر النيجر",
+        "ca": "riu Níger",
+        "de": "Niger",
+        "hi": "नाइजर नदी",
+        "id": "Sungai Niger",
+        "ja": "ニジェール川",
+        "pt": "Rio Níger",
+        "ru": "Нигер",
+        "zh": "尼日尔河",
+        "bn": "নাইজার নদী"
+      },
+      "countries": [
+        "GIN",
+        "MLI",
+        "NER",
+        "BEN",
+        "NGA"
+      ],
+      "mouth": {
+        "id": "Q3868",
+        "labels": {
+          "en": "Copiapó",
+          "es": "Copiapó",
+          "fr": "Copiapó",
+          "de": "Copiapó",
+          "ca": "Copiapó",
+          "id": "Copiapó",
+          "it": "Copiapó",
+          "ja": "コピアポ",
+          "ko": "코피아포",
+          "pt": "Copiapó",
+          "ru": "Копьяпо",
+          "zh": "科皮亞波",
+          "ar": "كوبيابو",
+          "hi": "कोपियापो",
+          "bn": "কপিয়াপো"
+        }
+      },
+      "regional_distractors": [
+        "GHA",
+        "BFA",
+        "CIV"
+      ],
+      "difficulty": "hard",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q43106",
+      "labels": {
+        "en": "Zambezi River",
+        "es": "río Zambeze",
+        "zh": "赞比西河",
+        "ar": "نهر زمبيزي",
+        "pt": "Rio Zambeze",
+        "ru": "Замбези",
+        "fr": "Zambèze",
+        "ko": "잠베지강",
+        "it": "Zambesi",
+        "id": "Sungai Zambezi",
+        "de": "Sambesi",
+        "ja": "ザンベジ川",
+        "hi": "जेम्बेजी नदी",
+        "ca": "riu Zambezi",
+        "bn": "জাম্বেজি নদী"
+      },
+      "countries": [
+        "ZMB",
+        "AGO",
+        "NAM",
+        "BWA",
+        "ZWE",
+        "MOZ"
+      ],
+      "mouth": {
+        "id": "Q1239",
+        "labels": {
+          "en": "Indian Ocean",
+          "es": "océano Índico",
+          "de": "Indischer Ozean",
+          "it": "Oceano Indiano",
+          "ru": "Индийский океан",
+          "fr": "océan Indien",
+          "ar": "المحيط الهندي",
+          "bn": "ভারত মহাসাগর",
+          "ca": "oceà Índic",
+          "hi": "हिन्द महासागर",
+          "id": "Samudra Hindia",
+          "ja": "インド洋",
+          "ko": "인도양",
+          "pt": "Oceano Índico",
+          "zh": "印度洋"
+        }
+      },
+      "regional_distractors": [
+        "ZAF",
+        "MWI",
+        "TZA"
+      ],
+      "difficulty": "hard",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q626",
+      "labels": {
+        "en": "Volga",
+        "es": "Volga",
+        "ru": "Волга",
+        "fr": "Volga",
+        "de": "Wolga",
+        "it": "Volga",
+        "ar": "فولغا",
+        "bn": "ভোলগা নদী",
+        "ca": "Volga",
+        "hi": "वोल्गा नदी",
+        "id": "Sungai Volga",
+        "ja": "ヴォルガ川",
+        "ko": "볼가강",
+        "pt": "Rio Volga",
+        "zh": "伏尔加河"
+      },
+      "countries": [
+        "RUS"
+      ],
+      "mouth": {
+        "id": "Q5484",
+        "labels": {
+          "en": "Caspian Sea",
+          "es": "mar Caspio",
+          "de": "Kaspisches Meer",
+          "fr": "mer Caspienne",
+          "ca": "mar Càspia",
+          "it": "mar Caspio",
+          "ar": "بحر قزوين",
+          "bn": "কাস্পিয়ান সাগর",
+          "hi": "कैस्पियन सागर",
+          "id": "Laut Kaspia",
+          "ja": "カスピ海",
+          "ko": "카스피해",
+          "pt": "Mar Cáspio",
+          "ru": "Каспийское море",
+          "zh": "裏海"
+        }
+      },
+      "regional_distractors": [
+        "KAZ",
+        "UKR",
+        "BLR"
+      ],
+      "difficulty": "medium",
+      "source": "wikidata",
+      "validated": true
+    },
+    {
+      "id": "Q127892",
+      "labels": {
+        "en": "Paraná River",
+        "es": "Paraná",
+        "ar": "نهر بارانا",
+        "pt": "Rio Paraná",
+        "ru": "Парана",
+        "fr": "Paraná",
+        "ko": "파라나강",
+        "it": "Paraná",
+        "de": "Rio Paraná",
+        "id": "Sungai Paraná",
+        "ja": "パラナ川",
+        "ca": "riu Paraná",
+        "zh": "巴拉那河",
+        "hi": "पराना नदी"
+      },
+      "countries": [
+        "BRA",
+        "PRY",
+        "ARG"
+      ],
+      "mouth": {
+        "id": "Q179528",
+        "labels": {
+          "en": "Nile Delta",
+          "es": "Delta del Nilo",
+          "fr": "delta du Nil",
+          "ko": "나일강 삼각주",
+          "it": "Delta del Nilo",
+          "de": "Nildelta",
+          "id": "Delta Nil",
+          "ja": "ナイル川デルタ",
+          "ar": "دلتا النيل",
+          "pt": "Delta do Nilo",
+          "ru": "дельта Нила",
+          "ca": "delta del Nil",
+          "zh": "尼罗河三角洲",
+          "bn": "নীল বদ্বীপ"
+        }
+      },
+      "regional_distractors": [
+        "URY",
+        "BOL",
+        "CHL"
+      ],
+      "difficulty": "hard",
+      "source": "wikidata",
+      "validated": true
+    }
+  ],
+  "islands": [
+    {
+      "id": "Q1462",
+      "labels": {
+        "en": "Sardinia",
+        "es": "Cerdeña",
+        "it": "Sardegna",
+        "fr": "Sardaigne",
+        "de": "Sardinien",
+        "ar": "سردينيا",
+        "ca": "Sardenya",
+        "hi": "सारडीनिया",
+        "id": "Sardinia",
+        "ja": "サルデーニャ",
+        "ko": "사르데냐",
+        "pt": "Sardenha",
+        "ru": "Сардиния",
+        "zh": "撒丁",
+        "bn": "সার্দিনিয়া"
+      },
+      "country": "ITA",
+      "coordinates": [
+        9.0,
+        40.0
+      ],
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q1460",
+      "labels": {
+        "en": "Sicily",
+        "es": "Sicilia",
+        "it": "Sicilia",
+        "fr": "Sicile",
+        "de": "Sizilien",
+        "ar": "صقلية",
+        "bn": "সিসিলি",
+        "ca": "Sicília",
+        "id": "Sisilia",
+        "ja": "シチリア州",
+        "ko": "시칠리아",
+        "pt": "Sicília",
+        "ru": "Сицилия",
+        "zh": "西西里岛",
+        "hi": "सिसिली"
+      },
+      "country": "ITA",
+      "coordinates": [
+        14.0,
+        37.5
+      ],
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q35581",
+      "labels": {
+        "en": "Hokkaidō",
+        "es": "Hokkaidō",
+        "zh": "北海道",
+        "ar": "هوكايدو",
+        "pt": "Hokkaido",
+        "ru": "Хоккайдо",
+        "ko": "홋카이도",
+        "fr": "Hokkaidō",
+        "it": "Hokkaidō",
+        "de": "Hokkaidō",
+        "ja": "北海道",
+        "hi": "होक्काइदो",
+        "ca": "Hokkaidō",
+        "bn": "হোক্কাইদো",
+        "id": "Hokkaido"
+      },
+      "country": "JPN",
+      "coordinates": [
+        142.8,
+        43.5
+      ],
+      "difficulty": "medium",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q34366",
+      "labels": {
+        "en": "Tasmania",
+        "es": "Tasmania",
+        "zh": "塔斯馬尼亞州",
+        "ar": "تسمانية",
+        "pt": "Tasmânia",
+        "ru": "Тасмания",
+        "fr": "Tasmanie",
+        "ko": "태즈메이니아주",
+        "it": "Tasmania",
+        "id": "Tasmania",
+        "de": "Tasmanien",
+        "ja": "タスマニア州",
+        "hi": "टासमानिया",
+        "ca": "Tasmània",
+        "bn": "তাসমানিয়া"
+      },
+      "country": "AUS",
+      "coordinates": [
+        146.6,
+        -42.0
+      ],
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q34374",
+      "labels": {
+        "en": "Crete",
+        "es": "Creta",
+        "zh": "克里特岛",
+        "ar": "كريت",
+        "pt": "Creta",
+        "ru": "Крит",
+        "ko": "크레타",
+        "fr": "Crète",
+        "it": "Creta",
+        "id": "Kreta",
+        "de": "Kreta",
+        "ja": "クレタ島",
+        "hi": "क्रीत",
+        "ca": "Creta",
+        "bn": "ক্রিট"
+      },
+      "country": "GRC",
+      "coordinates": [
+        24.9,
+        35.2
+      ],
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q3757",
+      "labels": {
+        "en": "Java",
+        "es": "Java",
+        "ru": "Ява",
+        "fr": "Java",
+        "it": "Giava",
+        "ar": "جاوة",
+        "bn": "জাভা দ্বীপ",
+        "ca": "Java",
+        "de": "Java",
+        "hi": "जावा",
+        "id": "Jawa",
+        "ja": "ジャワ島",
+        "ko": "자와섬",
+        "pt": "Java",
+        "zh": "爪哇岛"
+      },
+      "country": "IDN",
+      "coordinates": [
+        110.0,
+        -7.5
+      ],
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q4648",
+      "labels": {
+        "en": "Bali Island",
+        "es": "Bali",
+        "de": "Bali",
+        "fr": "Bali",
+        "ar": "بالي",
+        "bn": "বালি",
+        "ca": "Bali",
+        "ko": "발리섬",
+        "hi": "बाली",
+        "id": "Pulau Bali",
+        "it": "Bali",
+        "ja": "バリ島",
+        "pt": "Bali",
+        "ru": "Бали",
+        "zh": "巴厘岛"
+      },
+      "country": "IDN",
+      "coordinates": [
+        115.1,
+        -8.3
+      ],
+      "difficulty": "easy",
+      "source": "wikidata"
+    },
+    {
+      "id": "Q13989",
+      "labels": {
+        "en": "Honshu",
+        "es": "Honshū",
+        "fr": "Honshū",
+        "ko": "혼슈",
+        "de": "Honshū",
+        "ar": "هونشو",
+        "bn": "হোনশু",
+        "ca": "Honshū",
+        "hi": "होन्शू",
+        "id": "Honshu",
+        "it": "Honshū",
+        "ja": "本州",
+        "pt": "Honshu",
+        "ru": "Хонсю",
+        "zh": "本州岛"
+      },
+      "country": "JPN",
+      "coordinates": [
+        138.0,
+        36.0
+      ],
+      "difficulty": "medium",
+      "source": "wikidata"
+    }
+  ]
+}
