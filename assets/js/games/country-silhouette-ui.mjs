@@ -1,12 +1,14 @@
 import { DATA_LANGUAGES, countryRoute } from '../data-routes.mjs';
 import { localizedCountries, latestObservation } from '../data-view-core.mjs';
 import { GAME_PAGES } from './game-routes.mjs';
-import { completeGame, gameState, readStore, setSession, writeStore } from './game-storage.mjs';
+import { completeGame, gameState, migrateDetailedStats, readStore, recordTraining, setSession, writeStore } from './game-storage.mjs';
 import { shareResult } from './game-share.mjs';
+import { gameStatsText } from './game-stats-i18n.mjs';
+import { renderDailyStats } from './game-ui.mjs';
 import { acceptedAnswers, dailyCountries, framedFeature, hintPlan, isCorrectAnswer, maskedName, normalizeDailySession, roundScore, sessionSummary, trainingCountry, utcDateKey } from './country-silhouette-core.mjs';
 import { countrySilhouetteText } from './country-silhouette-i18n.mjs';
 
-const language=document.documentElement.lang||'en',locale=DATA_LANGUAGES[language]?.locale||'en-US',text=countrySilhouetteText(language),root=document.querySelector('[data-country-silhouette]');
+const language=document.documentElement.lang||'en',locale=DATA_LANGUAGES[language]?.locale||'en-US',text=countrySilhouetteText(language),statsText=gameStatsText(language),root=document.querySelector('[data-country-silhouette]'),statsRoot=document.querySelector('[data-game-stats]');
 const element=(tag,className='',content='')=>{const node=document.createElement(tag);if(className)node.className=className;if(content!==undefined)node.textContent=content;return node};
 let countries=[],countryMap=new Map,geometryMap=new Map,statistics={},mode=null,session=null,trainingLevel='all',trainingId=null,trainingRound=null,date=utcDateKey();
 
@@ -39,6 +41,7 @@ function renderRound(id,round){currentArea().replaceChildren(roundMarkup(id,roun
 const formatValue=(slug,value)=>slug==='poblacion'?new Intl.NumberFormat(locale,{notation:'compact',maximumFractionDigits:1}).format(value):slug==='esperanza-de-vida'?new Intl.NumberFormat(locale,{maximumFractionDigits:1}).format(value):new Intl.NumberFormat(locale,{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value);
 function statsList(id){const list=element('dl','silhouette-facts');for(const [slug,label] of [['poblacion',text.population],['esperanza-de-vida',text.lifeExpectancy],['pib-per-capita',text.gdpPerCapita]]){const observation=latestObservation(statistics[slug],id);if(!observation)continue;const row=element('div'),term=element('dt','',label),value=element('dd','',`${formatValue(slug,observation.value)} · ${observation.year}`);row.append(term,value);list.append(row)}return list}
 function finishRound(id,round){
+  if(mode==='training'){writeStore(recordTraining(readStore(),'countrySilhouette',{correct:round.status==='correct'?1:0,attempts:1,hints:round.hints.length}));renderDailyStats(statsRoot,language,'countrySilhouette',{maximumScore:500,showHints:true})}
   save();const area=currentArea(),panel=element('section',`silhouette-result ${round.status==='correct'?'is-correct':'is-given-up'}`),svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('country-silhouette','is-resolved');drawSilhouette(svg,id,true);panel.append(svg);
   const country=countryMap.get(id),heading=element('h2','',round.status==='correct'?text.correct:text.answerWas),identity=element('p','silhouette-country',`${flag(country.iso2)} ${displayName(id)}`),points=element('p','silhouette-points',`+${round.score} ${text.points}`);panel.append(heading,identity,points,statsList(id));
   const dataLink=element('a','btn secondary',`${text.viewData} ${displayName(id)} →`);dataLink.href=countryRoute(language,id);panel.append(dataLink);
@@ -47,10 +50,10 @@ function finishRound(id,round){
 function advance(){
   if(mode==='training'){const previous=trainingId;trainingId=trainingCountry(trainingLevel,previous);trainingRound={country:trainingId,hints:[],errors:0,status:'pending',score:null};renderRound(trainingId,trainingRound);return}
   if(session.index<4){session.index++;save();renderRound(session.countries[session.index],session.rounds[session.index]);return}
-  session.completed=true;const summary=sessionSummary(session);let store=setSession(readStore(),'countrySilhouette',date,session);store=completeGame(store,'countrySilhouette',date,summary,1);writeStore(store);renderDailyResult();
+  session.completed=true;const summary=sessionSummary(session);let store=setSession(readStore(),'countrySilhouette',date,session);store=completeGame(store,'countrySilhouette',date,{...summary,attempts:5},1);writeStore(store);renderDailyStats(statsRoot,language,'countrySilhouette',{maximumScore:500,showHints:true});renderDailyResult();
 }
 function renderDailyResult(){
-  const summary=sessionSummary(session),stats=gameState(readStore(),'countrySilhouette').stats,box=element('section','silhouette-summary'),title=element('h2','',text.completed);box.append(title,element('p','silhouette-final',`${summary.correct} / 5 ${text.correctCountries}`),element('p','',`${summary.score} / 500 · ${text.hintsUsed}: ${summary.hints}`),element('p','',`${text.dailyStreak}: ${stats.currentStreak}`));
+  const summary=sessionSummary(session),stats=gameState(readStore(),'countrySilhouette').stats,box=element('section','silhouette-summary'),title=element('h2','',text.completed);box.append(title,element('p','silhouette-final',`${summary.correct} / 5 ${text.correctCountries}`),element('p','',`${summary.score} / 500 · ${text.hintsUsed}: ${summary.hints}`),element('p','',`${text.dailyStreak}: ${stats.currentStreak} · ${statsText.bestStreak}: ${stats.bestStreak}`));
   const share=element('button','btn',text.share),status=element('span','share-status'),training=element('button','btn secondary',text.training);share.type=training.type='button';share.addEventListener('click',async()=>{const rows=session.rounds.map(round=>round.status==='given-up'?'⬛':round.score===100?'🟩':'🟨').join(' '),payload=`MetaphAI · ${text.title}\n${date}\n${rows}\n${summary.score}/500\nhttps://metaphai.com${GAME_PAGES.countrySilhouette[language]}`,result=await shareResult(payload);status.textContent=result==='copied'?text.copied:''});training.addEventListener('click',renderTrainingStart);box.append(share,status,training);currentArea().replaceChildren(box)
 }
 function startDaily(){mode='daily';date=utcDateKey();const ids=dailyCountries(date),stored=gameState(readStore(),'countrySilhouette').sessions[date];session=normalizeDailySession(stored,date,ids);if(session.completed)return renderDailyResult();const round=session.rounds[session.index],id=session.countries[session.index];round.status==='pending'?renderRound(id,round):finishRound(id,round)}
@@ -59,6 +62,6 @@ function renderStart(){const stats=gameState(readStore(),'countrySilhouette').st
 
 async function init(){try{
   const [topology,countryData,population,life,gdp]=await Promise.all(['/assets/maps/world-50m.topo.json','/assets/data/worldbank/countries.json','/assets/data/worldbank/poblacion.json','/assets/data/worldbank/esperanza-de-vida.json','/assets/data/worldbank/pib-per-capita.json'].map(url=>fetch(url).then(response=>{if(!response.ok)throw new Error(url);return response.json()})));
-  countries=localizedCountries(countryData.countries,locale);countryMap=new Map(countries.map(country=>[country.id,country]));const collection=globalThis.topojson.feature(topology,topology.objects.countries);geometryMap=new Map(collection.features.map(feature=>[feature.properties.iso3,feature]));statistics={poblacion:population,'esperanza-de-vida':life,'pib-per-capita':gdp};renderStart();
+  countries=localizedCountries(countryData.countries,locale);countryMap=new Map(countries.map(country=>[country.id,country]));const collection=globalThis.topojson.feature(topology,topology.objects.countries);geometryMap=new Map(collection.features.map(feature=>[feature.properties.iso3,feature]));statistics={poblacion:population,'esperanza-de-vida':life,'pib-per-capita':gdp};writeStore(migrateDetailedStats(readStore(),'countrySilhouette'));renderDailyStats(statsRoot,language,'countrySilhouette',{maximumScore:500,showHints:true});renderStart();
 }catch(error){console.error('Country silhouette:',error);currentArea().replaceChildren(element('p','game-error',text.loadError))}}
 init();

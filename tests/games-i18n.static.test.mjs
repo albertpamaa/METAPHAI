@@ -8,6 +8,7 @@ import { GAMES_I18N } from '../assets/js/games/games-i18n.mjs';
 import { HIGHER_LOWER_I18N } from '../assets/js/games/higher-or-lower-i18n.mjs';
 import { COUNTRY_SILHOUETTE_I18N } from '../assets/js/games/country-silhouette-i18n.mjs';
 import { GEO_QUIZ_I18N } from '../assets/js/games/geo-quiz-i18n.mjs';
+import { GAME_STATS_I18N, GAME_STATS_REQUIRED_KEYS } from '../assets/js/games/game-stats-i18n.mjs';
 import { appendBidiText, bidiSegments } from '../assets/js/games/game-ui.mjs';
 import { ABOUT_DESCRIPTION } from '../scripts/prerender-games.mjs';
 
@@ -15,14 +16,16 @@ const root=resolve(import.meta.dirname,'..'),origin='https://metaphai.com';
 const fileFor=route=>join(root,...route.split('/').filter(Boolean),'index.html');
 const institutionalFileFor=route=>route.endsWith('/')?fileFor(route):join(root,...route.split('/').filter(Boolean));
 const languages=Object.keys(DATA_LANGUAGES);
+assert.deepEqual(Object.keys(GAME_STATS_I18N).sort(),[...languages].sort());
 const quizRequired=['games','gamesTitle','gamesIntro','gameTitle','tagline','cardMeta','play','question','score','correctAnswers','hint','next','finish','correct','incorrect','privacy','unavailable','share','gameStatsTitle','highest','lowest','increase','decrease'];
 const higherRequired=['title','tagline','cardMeta','play','higher','lower','question','currentRun','bestStreak','correct','incorrect','next','gameOver','playAgain','share','statsTitle','gamesPlayed','averageStreak','totalRounds','correctAnswers','accuracy','howTitle','how','method','privacy','unavailable','source'];
 
 for(const language of languages){
-  const text=GAMES_I18N[language],higher=HIGHER_LOWER_I18N[language],silhouette=COUNTRY_SILHOUETTE_I18N[language],geo=GEO_QUIZ_I18N[language];
+  const text=GAMES_I18N[language],higher=HIGHER_LOWER_I18N[language],silhouette=COUNTRY_SILHOUETTE_I18N[language],geo=GEO_QUIZ_I18N[language],stats=GAME_STATS_I18N[language];
   for(const key of quizRequired)assert.ok(typeof text[key]==='function'||String(text[key]||'').trim(),`${language}:${key}`);
   for(const key of higherRequired)assert.ok(typeof higher[key]==='function'||String(higher[key]||'').trim(),`${language}:higher:${key}`);
   for(const key of ['title','tagline','cardMeta','play','dailyPlay','training','hint','giveUp','check','silhouetteLabel','how','method','privacy','loadError'])assert.ok(String(silhouette[key]||'').trim(),`${language}:silhouette:${key}`);
+  for(const key of GAME_STATS_REQUIRED_KEYS)assert.ok(String(stats[key]||'').trim(),`${language}:stats:${key}`);
   for(const [pageKey,routes] of Object.entries(GAME_PAGES)){
     const route=routes[language],file=fileFor(route);assert.ok(existsSync(file),route);
     const html=readFileSync(file,'utf8'),head=html.match(/<head>([\s\S]*?)<\/head>/)?.[1]||'';
@@ -33,7 +36,7 @@ for(const language of languages){
     assert.ok(html.includes(`data-language="${language}" href="${route}"`));
     for(const alt of languages)assert.ok(head.includes(`hreflang="${alt}" href="${origin}${routes[alt]}"`));
     assert.ok(head.includes(`hreflang="x-default" href="${origin}${routes.es}"`));
-    assert.ok(html.includes('games.css?v=20260917-2'));
+    assert.ok(html.includes('games.css?v=20260917-3'));
     assert.equal(html.includes('�'),false);
     const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);assert.equal(new Set(ids).size,ids.length);
     for(const block of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(block[1]));
@@ -48,11 +51,11 @@ for(const language of languages){
     }else if(pageKey==='worldDataQuiz'){
       assert.ok(html.includes('data-world-data-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(text.gameStatsTitle));assert.ok(html.includes(text.howTitle));assert.ok(html.includes(text.how));assert.ok(html.includes(text.winRule));
     }else if(pageKey==='higherOrLower'){
-      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260917-2'));
+      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260917-3'));
     }else if(pageKey==='countrySilhouette'){
-      assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260917-2'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
+      assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260917-3'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
     }else{
-      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260917-2'));assert.ok(html.includes('Wikidata (CC0)'));
+      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260917-3'));assert.ok(html.includes('Wikidata (CC0)'));
     }
     if(pageKey!=='home')assert.ok(html.includes('World Bank — World Development Indicators'));
   }
