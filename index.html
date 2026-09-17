@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MetaphAI | Calculadoras, datos globales y juegos</title>
   <meta name="description" content="Calculadoras prácticas para España, datos públicos internacionales y juegos educativos para explorar, comparar y aprender con cifras reales.">
-  <meta name="keywords" content="calculadoras financieras españa, calculadora salario neto, calculadora finiquito, calculadora paro desempleo">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -85,7 +84,7 @@
     .home-fact { display: flex; align-items: center; justify-content: center; gap: 10px; min-width: 0; padding: .4rem 1rem; color: var(--muted); font-size: 14px; font-weight: 500; line-height: 1.35; }
     .home-fact + .home-fact { border-left: 1px solid var(--border); }
     .home-fact svg { flex: 0 0 auto; width: 28px; height: 28px; color: #47657f; }
-    .calculator-section { max-width: 780px; margin: 0 auto; }
+    .calculator-section { max-width: 980px; margin: 0 auto; }
     .calculator-section > h2 { margin-bottom: .35rem; font-size: 22px; }
     .calculator-section > p { margin-bottom: 1.4rem; color: var(--muted); font-size: 14px; line-height: 1.6; }
     @media (max-width: 900px) { .home-paths { grid-template-columns: 1fr; gap: 14px; } .home-path { min-height: 0; } }
@@ -108,6 +107,9 @@
     .card-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
     .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
     .card-link { font-size: 13px; color: var(--accent); font-weight: 500; margin-top: 4px; }
+    .all-calculators { display: flex; justify-content: center; margin-top: 1.5rem; }
+    .all-calculators a { display: inline-flex; align-items: center; min-height: 46px; padding: 10px 20px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .all-calculators a:focus-visible { outline: 3px solid rgba(8,127,103,.25); outline-offset: 3px; }
     .seo { max-width: 780px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); }
     .seo h2 { font-size: 18px; font-weight: 600; margin-bottom: 0.75rem; }
     .seo p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 0.75rem; }
@@ -127,7 +129,7 @@
   </script>
 </head>
 <body>
-<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/" class="site-nav-link" aria-current="page">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a><a href="/juegos/" class="site-nav-link">Juegos</a></div></nav></header>
+<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/calculadoras/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a><a href="/juegos/" class="site-nav-link">Juegos</a></div></nav></header>
 <main>
   <div class="hero">
     <h1>Herramientas, datos y juegos para<br>entender mejor <em>los números</em></h1>
@@ -140,7 +142,7 @@
       <div class="home-path-copy">
         <h2>Calculadoras</h2>
         <p>Herramientas prácticas orientadas principalmente a España para estimar salario, IRPF, paro, jubilación, vivienda, autónomos y más.</p>
-        <a class="home-path-cta" href="#calculadoras">Explorar calculadoras →</a>
+        <a class="home-path-cta" href="/calculadoras/">Explorar calculadoras →</a>
       </div>
     </article>
     <article class="home-path data-path">
@@ -167,17 +169,9 @@
     <div class="home-fact"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m4 25 7-8 6 4 10-14M4 27h24"/><circle cx="11" cy="17" r="2" fill="currentColor"/><circle cx="17" cy="21" r="2" fill="currentColor"/><circle cx="27" cy="7" r="2" fill="currentColor"/></svg><span>Datos en 15 idiomas</span></div>
   </section>
   <section class="calculator-section" id="calculadoras" aria-labelledby="calculadoras-title">
-  <h2 id="calculadoras-title">Calculadoras para España</h2>
-  <p>Busca la herramienta que necesitas y obtén una estimación orientativa sin registrarte.</p>
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input class="search-input" type="search" id="buscador" placeholder="Busca una calculadora... (ej: IVA, hipoteca, autónomo)" oninput="filtrar()" autocomplete="off" aria-label="Buscar calculadoras">
-  </div>
-  <div class="search-empty" id="search-empty" role="status" aria-live="polite">
-    <span>🔎</span>
-    No encontramos ninguna calculadora para "<span id="search-term"></span>"
-  </div>
-<div class="grid" id="grid-calculadoras">
+  <h2 id="calculadoras-title">Herramientas populares</h2>
+  <p>Accede rápidamente a algunas de las calculadoras más utilizadas o consulta el catálogo completo.</p>
+  <div class="grid" id="grid-calculadoras">
     <a href="/calculadora-salario-neto-espana/" class="card">
       <div class="card-icon">💼</div>
       <div class="card-title">Salario neto</div>
@@ -196,54 +190,6 @@
       <div class="card-desc">Estima el importe y la duración de la prestación contributiva según tus cotizaciones y base reguladora.</div>
       <div class="card-link">Calcular →</div>
     </a>
-    <a href="/calculadora-baja-maternidad-paternidad/" class="card">
-      <div class="card-icon">👶</div>
-      <div class="card-title">Calculadora baja maternal/paternal</div>
-      <div class="card-desc">Calcula tus semanas de baja, cuánto cobrarás y la lactancia acumulada.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/planificador-baja-maternidad-vacaciones/" class="card">
-      <div class="card-icon">🗓️</div>
-      <div class="card-title">Planificador baja maternal/paternal</div>
-      <div class="card-desc">Combina los permisos de uno o ambos progenitores con vacaciones, lactancia y festivos para planificar la reincorporación.</div>
-      <div class="card-link">Planificar →</div>
-    </a>
-    <a href="/calendarios-laborales/" class="card">
-      <div class="card-icon">📅</div>
-      <div class="card-title">Calendarios laborales</div>
-      <div class="card-desc">Consulta los festivos de 2026 y 2027 por comunidad autónoma.</div>
-      <div class="card-link">Ver calendarios →</div>
-    </a>
-    <a href="/calculadora-deduccion-placas-solares/" class="card">
-      <div class="card-icon">☀️</div>
-      <div class="card-title">Placas solares</div>
-      <div class="card-desc">Comprueba los requisitos y estima las deducciones energéticas del 20%, 40% o 60%.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-deduccion-coche-electrico/" class="card">
-      <div class="card-icon">⚡</div>
-      <div class="card-title">Coche eléctrico</div>
-      <div class="card-desc">Estima la deducción estatal por vehículo eléctrico y, por separado, la ayuda potencial Auto+.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-deduccion-alquiler/" class="card">
-      <div class="card-icon">🏠</div>
-      <div class="card-title">Alquiler de vivienda</div>
-      <div class="card-desc">Calcula una referencia estatal para inquilinos y el rendimiento del alquiler para propietarios.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-irpf-apuestas-online/" class="card">
-      <div class="card-icon">🎲</div>
-      <div class="card-title">Apuestas y juego online</div>
-      <div class="card-desc">Calcula la ganancia o pérdida fiscal anual del juego que se integra en el IRPF.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-irpf-inversiones/" class="card">
-      <div class="card-icon">📈</div>
-      <div class="card-title">Ganancias por inversión</div>
-      <div class="card-desc">IRPF de acciones, ETFs, fondos, criptomonedas y dividendos. Con compensación de pérdidas.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
     <a href="/simulador-declaracion-renta-2025/" class="card">
       <div class="card-icon">📑</div>
       <div class="card-title">Simulador de la Renta</div>
@@ -256,13 +202,6 @@
       <div class="card-desc">Calcula tu cuota, total de intereses y compara hipoteca fija vs variable con diferentes escenarios de Euríbor.</div>
       <div class="card-link">Calcular →</div>
     </a>
-    <a href="/calculadora-jubilacion-pension/" class="card">
-      <div class="card-icon">🧓</div>
-      <div class="card-title">Calculadora de jubilación</div>
-      <div class="card-desc">Estima tu edad de jubilación y pensión contributiva ordinaria, anticipada o demorada.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-
     <a href="/calculadora-irpf-autonomos/" class="card">
       <div class="card-icon">🧾</div>
       <div class="card-title">IRPF Autónomos</div>
@@ -270,39 +209,8 @@
       <div class="card-link">Calcular →</div>
     </a>
 
-    <a href="/calculadora-horas-extra/" class="card">
-      <div class="card-icon">⏰</div>
-      <div class="card-title">Horas extra</div>
-      <div class="card-desc">Estima la compensación económica o en descanso de tus horas extraordinarias o complementarias.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-iva/" class="card">
-      <div class="card-icon">🧾</div>
-      <div class="card-title">Calculadora de IVA</div>
-      <div class="card-desc">Añade o quita el IVA a cualquier precio al instante. IVA general 21%, reducido 10% y superreducido 4%.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-indemnizacion-accidente-trafico/" class="card">
-      <div class="card-icon">🚗</div>
-      <div class="card-title">Accidente de tráfico</div>
-      <div class="card-desc">Obtén una estimación parcial por lesiones temporales, cirugía y secuelas ya puntuadas.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-    <a href="/calculadora-impuesto-herencias/" class="card">
-      <div class="card-icon">📜</div>
-      <div class="card-title">Impuesto de herencias</div>
-      <div class="card-desc">Obtén una referencia estatal; la cuota real depende de la normativa autonómica o foral.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-
-    <a href="/calculadora-precio-hora-freelance/" class="card">
-      <div class="card-icon">💻</div>
-      <div class="card-title">Tarifa freelance</div>
-      <div class="card-desc">Estima una tarifa por hora freelance según gastos, impuestos, vacaciones y horas facturables.</div>
-      <div class="card-link">Calcular →</div>
-    </a>
-
   </div>
+  <p class="all-calculators"><a href="/calculadoras/">Ver todas las calculadoras →</a></p>
   </section>
 
   <section class="data-home" aria-labelledby="data-home-title">
@@ -314,12 +222,9 @@
   </section>
 
 <div class="seo">
-  <h2>Calculadoras financieras gratuitas para España</h2>
-  <p>En Metaphai encontrarás herramientas sencillas para obtener estimaciones sobre tu situación económica. Cada resultado es orientativo: antes de tomar una decisión fiscal, laboral o financiera, contrasta los datos con el organismo oficial o un profesional cualificado.</p>
-  <p>No necesitas crear una cuenta ni facilitar ningún dato personal. Todos los cálculos se realizan directamente en tu navegador, sin enviar ningún dato a ningún servidor.</p>
-  <h2>¿Qué es Metaphai?</h2>
-  <p>Metaphai es un proyecto independiente creado por un investigador español para ayudar a entender la fiscalidad y las finanzas personales en España. Las herramientas cubren los principales temas que afectan a trabajadores, autónomos y familias: salario neto, finiquito, paro, hipoteca, herencias, inversiones, IVA, horas extra y mucho más.</p>
-  <p>Cada calculadora incluye una explicación detallada del tema, preguntas frecuentes y ejemplos prácticos para que no solo obtengas el resultado sino que también entiendas cómo se calcula y qué factores influyen.</p>
+  <h2>Herramientas y datos para entender mejor las cifras</h2>
+  <p>MetaphAI reúne calculadoras prácticas para España, datos públicos internacionales y juegos educativos basados en cifras reales. Cada área explica sus fuentes, alcance y limitaciones para que puedas interpretar mejor los resultados.</p>
+  <p>Las calculadoras ofrecen estimaciones orientativas; los datos globales permiten explorar y comparar países y territorios; y los juegos ayudan a aprender con los mismos indicadores públicos. No necesitas crear una cuenta para utilizar estas herramientas.</p>
 </div>
 </main>
 <footer>
@@ -328,25 +233,6 @@
 
 </footer>
 
-<script>
-function filtrar() {
-  const q = document.getElementById('buscador').value.toLowerCase().trim();
-  const cards = document.querySelectorAll('#grid-calculadoras .card');
-  let visible = 0;
-  cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    if (!q || text.includes(q)) {
-      card.classList.remove('hidden');
-      visible++;
-    } else {
-      card.classList.add('hidden');
-    }
-  });
-  const empty = document.getElementById('search-empty');
-  document.getElementById('search-term').textContent = q;
-  empty.style.display = (q && visible === 0) ? 'block' : 'none';
-}
-</script>
 </body>
 <!-- v2 -->
  
