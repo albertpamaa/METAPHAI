@@ -6,6 +6,7 @@ import { GAME_PAGES } from '../assets/js/games/game-routes.mjs';
 import { activeGames } from '../assets/js/games/game-registry.mjs';
 import { GAMES_I18N } from '../assets/js/games/games-i18n.mjs';
 import { HIGHER_LOWER_I18N } from '../assets/js/games/higher-or-lower-i18n.mjs';
+import { COUNTRY_SILHOUETTE_I18N } from '../assets/js/games/country-silhouette-i18n.mjs';
 import { appendBidiText, bidiSegments } from '../assets/js/games/game-ui.mjs';
 import { ABOUT_DESCRIPTION } from '../scripts/prerender-games.mjs';
 
@@ -17,9 +18,10 @@ const quizRequired=['games','gamesTitle','gamesIntro','gameTitle','tagline','car
 const higherRequired=['title','tagline','cardMeta','play','higher','lower','question','currentRun','bestStreak','correct','incorrect','next','gameOver','playAgain','share','statsTitle','gamesPlayed','averageStreak','totalRounds','correctAnswers','accuracy','howTitle','how','method','privacy','unavailable','source'];
 
 for(const language of languages){
-  const text=GAMES_I18N[language],higher=HIGHER_LOWER_I18N[language];
+  const text=GAMES_I18N[language],higher=HIGHER_LOWER_I18N[language],silhouette=COUNTRY_SILHOUETTE_I18N[language];
   for(const key of quizRequired)assert.ok(typeof text[key]==='function'||String(text[key]||'').trim(),`${language}:${key}`);
   for(const key of higherRequired)assert.ok(typeof higher[key]==='function'||String(higher[key]||'').trim(),`${language}:higher:${key}`);
+  for(const key of ['title','tagline','cardMeta','play','dailyPlay','training','hint','giveUp','check','silhouetteLabel','how','method','privacy','loadError'])assert.ok(String(silhouette[key]||'').trim(),`${language}:silhouette:${key}`);
   for(const [pageKey,routes] of Object.entries(GAME_PAGES)){
     const route=routes[language],file=fileFor(route);assert.ok(existsSync(file),route);
     const html=readFileSync(file,'utf8'),head=html.match(/<head>([\s\S]*?)<\/head>/)?.[1]||'';
@@ -30,7 +32,7 @@ for(const language of languages){
     assert.ok(html.includes(`data-language="${language}" href="${route}"`));
     for(const alt of languages)assert.ok(head.includes(`hreflang="${alt}" href="${origin}${routes[alt]}"`));
     assert.ok(head.includes(`hreflang="x-default" href="${origin}${routes.es}"`));
-    assert.ok(html.includes('games.css?v=20260916-5'));
+    assert.ok(html.includes('games.css?v=20260917-1'));
     assert.equal(html.includes('�'),false);
     const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);assert.equal(new Set(ids).size,ids.length);
     for(const block of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(block[1]));
@@ -39,11 +41,14 @@ for(const language of languages){
       assert.equal((html.match(/data-game-id=/g)||[]).length,activeGames().length);
       assert.ok(html.includes('data-game-id="worldDataQuiz"'));
       assert.ok(html.includes('data-game-id="higherOrLower"'));
+      assert.ok(html.includes('data-game-id="countrySilhouette"'));
       assert.equal(html.includes('data-game-stats'),false);
     }else if(pageKey==='worldDataQuiz'){
       assert.ok(html.includes('data-world-data-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(text.gameStatsTitle));assert.ok(html.includes(text.howTitle));assert.ok(html.includes(text.how));assert.ok(html.includes(text.winRule));
+    }else if(pageKey==='higherOrLower'){
+      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260917-1'));
     }else{
-      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260916-5'));
+      assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260917-1'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
     }
     if(pageKey!=='home')assert.ok(html.includes('World Bank — World Development Indicators'));
   }
@@ -62,4 +67,4 @@ const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');for(const routes of 
 const higherUi=readFileSync(join(root,'assets/js/games/higher-or-lower-ui.mjs'),'utf8'),gamesCss=readFileSync(join(root,'assets/css/games.css'),'utf8');
 assert.equal((higherUi.match(/\bfetch\(/g)||[]).length,1);assert.ok(higherUi.includes('game.dataRequirements.path'));assert.doesNotMatch(higherUi,/worldbank\/.+\.json|d3|topojson/i);
 assert.match(gamesCss,/\.games-list\{[^}]*grid-template-columns:repeat\(auto-fit/);assert.match(gamesCss,/@media\(max-width:820px\)\{\.games-list\{grid-template-columns:1fr\}\}/);assert.match(gamesCss,/@media\(max-width:620px\)[\s\S]*\.quiz-options,\.hol-options\{grid-template-columns:1fr\}/);
-console.log('games-i18n-static: 45 pages, 15 languages, SEO, RTL, switcher and sitemap OK');
+console.log('games-i18n-static: 60 pages, 15 languages, SEO, RTL, switcher and sitemap OK');

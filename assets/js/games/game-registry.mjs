@@ -13,6 +13,12 @@ export const GAME_REGISTRY={
     icon:'compare',cardCopy:{title:'title',meta:'cardMeta',description:'tagline',cta:'play'},copyNamespace:'higherOrLower',
     daily:false,statsNamespace:'higherOrLower',shareType:'spoiler-free',module:'higher-or-lower-ui.mjs',
     dataRequirements:{type:'compact-wdi',path:'/assets/data/games/higher-or-lower.json',indicators:'central-registry',countries:'central-registry'},generatorVersion:1
+  },{
+    id:'countrySilhouette',status:'active',routeKey:'countrySilhouette',routes:GAME_PAGES.countrySilhouette,
+    icon:'silhouette',cardCopy:{title:'title',meta:'cardMeta',description:'tagline',cta:'play'},copyNamespace:'countrySilhouette',
+    daily:true,statsNamespace:'countrySilhouette',shareType:'spoiler-free',module:'country-silhouette-ui.mjs',
+    dataRequirements:{type:'local-topology',path:'/assets/maps/world-50m.topo.json',countries:'central-registry'},
+    questionsPerGame:5,maxScore:500,winThreshold:1,generatorVersion:1
   }]
 };
 
