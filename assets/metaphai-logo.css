@@ -79,7 +79,7 @@ header > .logo { grid-column: 1; justify-self: start; }
   white-space: nowrap;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 940px) {
   header {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:

@@ -1,0 +1,2043 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-18",
+  "licenses": {
+    "wikidata": "CC0 1.0",
+    "natural-earth": "Public domain"
+  },
+  "counts": {
+    "volcano": 60,
+    "mountain": 60,
+    "river": 247,
+    "desert": 35
+  },
+  "exclusions": {
+    "volcano": {
+      "candidates": 147,
+      "published": 60,
+      "excluded": 87,
+      "reason": "target cap or missing/invalid required identity, class, label, coordinate or country fields"
+    },
+    "mountain": {
+      "candidates": 136,
+      "published": 60,
+      "excluded": 76,
+      "reason": "target cap, volcanic class overlap or missing/invalid required identity, class, label, coordinate or country fields"
+    },
+    "river": {
+      "candidates": 470,
+      "published": 247,
+      "excluded": 223,
+      "reason": "missing/invalid required fields, ambiguous identity, spatial mismatch or no explicit Natural Earth name/geometry match"
+    },
+    "desert": {
+      "candidates": 123,
+      "published": 35,
+      "excluded": 88,
+      "reason": "target cap or missing/invalid required identity, class, label, coordinate or country fields"
+    }
+  },
+  "river_audit": {
+    "natural_earth_features": 462,
+    "natural_earth_named_features": 450,
+    "natural_earth_unique_normalized_names": 356,
+    "wikidata_candidates": 470,
+    "valid_mappings": 247,
+    "published": 247,
+    "unpublished_named_features": 106,
+    "named_features_by_region": {
+      "africa": 62,
+      "asia": 142,
+      "europe": 69,
+      "north_america": 109,
+      "oceania": 19,
+      "south_america": 48,
+      "unknown": 1
+    },
+    "published_by_region": {
+      "africa": 33,
+      "asia": 74,
+      "europe": 36,
+      "north_america": 62,
+      "oceania": 7,
+      "south_america": 35
+    },
+    "rejected_candidates": {
+      "spatial_mismatch": 38,
+      "feature_already_mapped": 153,
+      "no_name_match": 4,
+      "known_historical_false_positive": 28
+    },
+    "spatial_rejections": [
+      {
+        "qid": "Q6881369",
+        "label": "Mitchell River",
+        "wikidata_coordinates": [
+          -80.7695124,
+          36.2754127
+        ],
+        "natural_earth_names": [
+          "mitchell"
+        ],
+        "distance_degrees_approx": 186.499,
+        "bounds": [
+          141.581467,
+          -16.484317,
+          143.468794,
+          -15.195403
+        ],
+        "centroid": [
+          142.387483,
+          -15.817409
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7980299",
+        "label": "Weir River",
+        "wikidata_coordinates": [
+          -70.8611,
+          42.2556
+        ],
+        "natural_earth_names": [
+          "weir"
+        ],
+        "distance_degrees_approx": 178.501,
+        "bounds": [
+          150.469607,
+          -29.139461,
+          151.863113,
+          -28.638923
+        ],
+        "centroid": [
+          151.256076,
+          -28.859284
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q3572135",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -86.995277777,
+          30.5575
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 173.86,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q269945",
+        "label": "Mitchell River",
+        "wikidata_coordinates": [
+          -120.81937,
+          52.7832
+        ],
+        "natural_earth_names": [
+          "mitchell"
+        ],
+        "distance_degrees_approx": 172.654,
+        "bounds": [
+          141.581467,
+          -16.484317,
+          143.468794,
+          -15.195403
+        ],
+        "centroid": [
+          142.387483,
+          -15.817409
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q8051806",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -83.8762942,
+          33.3884528
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 165.926,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304819",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -105.693,
+          36.6478
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 165.558,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304820",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -124.066,
+          44.4281
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 161.264,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q8051805",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -86.8264,
+          41.2711
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 151.609,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304823",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -87.37138,
+          36.53886
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 151.099,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q8051804",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -91.180833333,
+          43.086666666
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 150.552,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q13032283",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -89.9831829,
+          43.9063593
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 147.693,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q3572136",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -91.300277777,
+          44.964444444
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 146.027,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q1221718",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -83.2512877,
+          37.6714798
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 145.707,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q13032276",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -91.7523929,
+          45.3641257
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 145.346,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304817",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -89.1798039,
+          40.6725362
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 144.427,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q13032278",
+        "label": "Yellow River",
+        "wikidata_coordinates": [
+          -91.8348974,
+          45.8368923
+        ],
+        "natural_earth_names": [
+          "yellow"
+        ],
+        "distance_degrees_approx": 144.212,
+        "bounds": [
+          114.837673,
+          35.019775,
+          119.03566,
+          37.823609
+        ],
+        "centroid": [
+          116.671217,
+          36.46044
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304825",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -89.0403883,
+          45.0708021
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 135.069,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304822",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -92.2360263,
+          46.6491082
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 133.78,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q34709893",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -74.796944444,
+          43.653055555
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 127.907,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q268364",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -128.56389,
+          59.29144
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 121.62,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304818",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          -68.6323,
+          46.971
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 117.188,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7304821",
+        "label": "Red River",
+        "wikidata_coordinates": [
+          176.344,
+          -40.37
+        ],
+        "natural_earth_names": [
+          "red"
+        ],
+        "distance_degrees_approx": 80.682,
+        "bounds": [
+          100.182857,
+          20.288891,
+          106.517974,
+          25.44315
+        ],
+        "centroid": [
+          103.90613,
+          22.392522
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q3574431",
+        "label": "Uadi Za",
+        "wikidata_coordinates": [
+          -3.038055555,
+          34.558333333
+        ],
+        "natural_earth_names": [
+          "za"
+        ],
+        "distance_degrees_approx": 79.996,
+        "bounds": [
+          94.084004,
+          31.965543,
+          96.941298,
+          33.205467
+        ],
+        "centroid": [
+          95.736637,
+          32.652293
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q4009895",
+        "label": "Verde",
+        "wikidata_coordinates": [
+          8.90244,
+          44.49779
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 79.872,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q23977859",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -4.945277777,
+          36.493333333
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 76.644,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7921055",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -45.654444444,
+          -21.453888888
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 65.471,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7921056",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -49.583333333,
+          -23.466666666
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 63.699,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q10362725",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -51.883333333,
+          -21.2
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 61.103,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7921060",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -50.733055555,
+          -19.181944444
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 60.921,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q7921057",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -55.733333333,
+          -11.726388888
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 53.626,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q4211776",
+        "label": "Kamchatka",
+        "wikidata_coordinates": [
+          52.2579,
+          60.4584
+        ],
+        "natural_earth_names": [
+          "kamchatka"
+        ],
+        "distance_degrees_approx": 52.114,
+        "bounds": [
+          157.63227,
+          54.080782,
+          162.461123,
+          56.39816
+        ],
+        "centroid": [
+          159.52652,
+          55.423491
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q32142026",
+        "label": "Abay",
+        "wikidata_coordinates": [
+          85.0185,
+          50.4453
+        ],
+        "natural_earth_names": [
+          "abay"
+        ],
+        "distance_degrees_approx": 49.044,
+        "bounds": [
+          36.980927,
+          11.035761,
+          37.387207,
+          11.905527
+        ],
+        "centroid": [
+          37.149006,
+          11.633395
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q3318",
+        "label": "Churchill River",
+        "wikidata_coordinates": [
+          -108.2461,
+          56.1061
+        ],
+        "natural_earth_names": [
+          "churchill"
+        ],
+        "distance_degrees_approx": 24.428,
+        "bounds": [
+          -64.713099,
+          52.886436,
+          -60.3375,
+          53.546344
+        ],
+        "centroid": [
+          -62.946241,
+          53.20466
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q6939429",
+        "label": "Murray River",
+        "wikidata_coordinates": [
+          167.9982,
+          -46.7811
+        ],
+        "natural_earth_names": [
+          "murray"
+        ],
+        "distance_degrees_approx": 16.739,
+        "bounds": [
+          139.2891,
+          -36.967046,
+          148.196929,
+          -33.998906
+        ],
+        "centroid": [
+          143.07564,
+          -35.118486
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q4107580",
+        "label": "Verde River",
+        "wikidata_coordinates": [
+          -112.460833333,
+          34.863888888
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 16.166,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q1343322",
+        "label": "yuca guasi",
+        "wikidata_coordinates": [
+          -69.036388888,
+          -16.563611111
+        ],
+        "natural_earth_names": [
+          "desaguadero"
+        ],
+        "distance_degrees_approx": 15.914,
+        "bounds": [
+          -67.3618,
+          -38.803678,
+          -64.970292,
+          -32.396937
+        ],
+        "centroid": [
+          -66.468794,
+          -36.230664
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q55500",
+        "label": "Han River",
+        "wikidata_coordinates": [
+          127.3106,
+          37.5267
+        ],
+        "natural_earth_names": [
+          "han"
+        ],
+        "distance_degrees_approx": 11.184,
+        "bounds": [
+          106.398498,
+          30.406826,
+          114.288456,
+          33.234302
+        ],
+        "centroid": [
+          110.867442,
+          31.97318
+        ],
+        "decision": "excluded_spatial_mismatch"
+      },
+      {
+        "qid": "Q836812",
+        "label": "Lualaba River",
+        "wikidata_coordinates": [
+          22.481944444,
+          2.147777777
+        ],
+        "natural_earth_names": [
+          "lualaba"
+        ],
+        "distance_degrees_approx": 10.824,
+        "bounds": [
+          25.413054,
+          -11.7429,
+          26.441311,
+          -8.272001
+        ],
+        "centroid": [
+          25.806018,
+          -10.09085
+        ],
+        "decision": "excluded_spatial_mismatch"
+      }
+    ],
+    "historical_false_positives": [
+      {
+        "qid": "Q11087615",
+        "label": "Chang Jiang",
+        "wikidata_coordinates": [
+          116.7,
+          28.983333333
+        ],
+        "natural_earth_names": [
+          "chang jiang"
+        ],
+        "distance_degrees_approx": 3.125,
+        "bounds": [
+          103.850747,
+          28.620656,
+          113.1277,
+          31.06136
+        ],
+        "centroid": [
+          108.960047,
+          29.737849
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q1108959",
+        "label": "Kem",
+        "wikidata_coordinates": [
+          92.085,
+          58.5175
+        ],
+        "natural_earth_names": [
+          "kem"
+        ],
+        "distance_degrees_approx": 30.371,
+        "bounds": [
+          31.570404,
+          63.765772,
+          34.803488,
+          65.111142
+        ],
+        "centroid": [
+          32.5409,
+          64.54006
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q11728226",
+        "label": "Jordan",
+        "wikidata_coordinates": [
+          18.706389,
+          52.997222
+        ],
+        "natural_earth_names": [
+          "jordan"
+        ],
+        "distance_degrees_approx": 21.848,
+        "bounds": [
+          35.400661,
+          31.230497,
+          35.863889,
+          33.596348
+        ],
+        "centroid": [
+          35.560227,
+          32.315248
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q21198444",
+        "label": "Rhin",
+        "wikidata_coordinates": [
+          12.2214,
+          52.745
+        ],
+        "natural_earth_names": [
+          "rhin"
+        ],
+        "distance_degrees_approx": 4.286,
+        "bounds": [
+          7.529391,
+          47.563841,
+          8.881143,
+          48.965435
+        ],
+        "centroid": [
+          7.991322,
+          47.948691
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q21409625",
+        "label": "Congo",
+        "wikidata_coordinates": [
+          14.666666666,
+          -8.483333333
+        ],
+        "natural_earth_names": [
+          "congo"
+        ],
+        "distance_degrees_approx": 0.211,
+        "bounds": [
+          13.068174,
+          -8.272001,
+          27.048716,
+          2.178498
+        ],
+        "centroid": [
+          20.948224,
+          -3.097847
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q21860134",
+        "label": "Volta",
+        "wikidata_coordinates": [
+          27.7225,
+          55.796111111
+        ],
+        "natural_earth_names": [
+          "volta"
+        ],
+        "distance_degrees_approx": 49.603,
+        "bounds": [
+          -0.97624,
+          5.7597,
+          0.671825,
+          8.661616
+        ],
+        "centroid": [
+          0.103065,
+          6.960164
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q22625143",
+        "label": "Gan",
+        "wikidata_coordinates": [
+          16.834166666,
+          7.511666666
+        ],
+        "natural_earth_names": [
+          "gan"
+        ],
+        "distance_degrees_approx": 98.257,
+        "bounds": [
+          114.412479,
+          24.707045,
+          116.19759,
+          29.751388
+        ],
+        "centroid": [
+          115.146294,
+          26.792149
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q23021556",
+        "label": "La Grande Rivière",
+        "wikidata_coordinates": [
+          -69.877722222,
+          47.116361111
+        ],
+        "natural_earth_names": [
+          "la grande riviere"
+        ],
+        "distance_degrees_approx": 6.299,
+        "bounds": [
+          -78.945693,
+          53.406456,
+          -70.361979,
+          53.915934
+        ],
+        "centroid": [
+          -73.668352,
+          53.660809
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q24004927",
+        "label": "Rhine",
+        "wikidata_coordinates": [
+          -8.91632222,
+          52.79856944
+        ],
+        "natural_earth_names": [
+          "rhein"
+        ],
+        "distance_degrees_approx": 10.657,
+        "bounds": [
+          7.529391,
+          46.676324,
+          9.625904,
+          48.965435
+        ],
+        "centroid": [
+          8.602488,
+          47.632902
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q2599627",
+        "label": "Yarlung",
+        "wikidata_coordinates": [
+          91.766896,
+          29.262665
+        ],
+        "natural_earth_names": [
+          "yarlung"
+        ],
+        "distance_degrees_approx": 0.0,
+        "bounds": [
+          87.66021,
+          29.012545,
+          94.356029,
+          29.380533
+        ],
+        "centroid": [
+          90.946105,
+          29.256083
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q2624925",
+        "label": "Naryn",
+        "wikidata_coordinates": [
+          84.4775,
+          49.193611111
+        ],
+        "natural_earth_names": [
+          "naryn"
+        ],
+        "distance_degrees_approx": 8.445,
+        "bounds": [
+          70.355013,
+          40.435362,
+          78.018628,
+          41.87964
+        ],
+        "centroid": [
+          74.076823,
+          41.409365
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q2995554",
+        "label": "Lom",
+        "wikidata_coordinates": [
+          23.2494,
+          43.8356
+        ],
+        "natural_earth_names": [
+          "lom"
+        ],
+        "distance_degrees_approx": 37.645,
+        "bounds": [
+          13.126052,
+          4.933472,
+          14.704767,
+          6.698403
+        ],
+        "centroid": [
+          13.931987,
+          5.659449
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q31970682",
+        "label": "Donau",
+        "wikidata_coordinates": [
+          14.416666666,
+          51.8
+        ],
+        "natural_earth_names": [
+          "donau"
+        ],
+        "distance_degrees_approx": 2.773,
+        "bounds": [
+          8.219788,
+          47.930718,
+          17.206423,
+          49.027499
+        ],
+        "centroid": [
+          12.959219,
+          48.435513
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q32225053",
+        "label": "Amur",
+        "wikidata_coordinates": [
+          106.1063,
+          57.2959
+        ],
+        "natural_earth_names": [
+          "amur"
+        ],
+        "distance_degrees_approx": 9.073,
+        "bounds": [
+          121.405437,
+          47.680501,
+          140.839703,
+          53.555594
+        ],
+        "centroid": [
+          131.432152,
+          50.773443
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q34765748",
+        "label": "Chari",
+        "wikidata_coordinates": [
+          31.579166666,
+          2.516388888
+        ],
+        "natural_earth_names": [
+          "chari"
+        ],
+        "distance_degrees_approx": 14.159,
+        "bounds": [
+          14.176117,
+          8.815586,
+          18.88601,
+          12.979751
+        ],
+        "centroid": [
+          16.045997,
+          11.103228
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q34924351",
+        "label": "Tanana",
+        "wikidata_coordinates": [
+          161.083333333,
+          -9.266666666
+        ],
+        "natural_earth_names": [
+          "tanana"
+        ],
+        "distance_degrees_approx": 306.926,
+        "bounds": [
+          -152.047845,
+          62.026576,
+          -141.395007,
+          65.165377
+        ],
+        "centroid": [
+          -145.954358,
+          63.937295
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q36190139",
+        "label": "Meta",
+        "wikidata_coordinates": [
+          136.956944444,
+          51.964444444
+        ],
+        "natural_earth_names": [
+          "meta"
+        ],
+        "distance_degrees_approx": 133.956,
+        "bounds": [
+          -73.916568,
+          3.957743,
+          -67.422546,
+          6.289901
+        ],
+        "centroid": [
+          -71.213245,
+          5.08276
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q36234629",
+        "label": "Ural",
+        "wikidata_coordinates": [
+          86.811666666,
+          53.3525
+        ],
+        "natural_earth_names": [
+          "ural"
+        ],
+        "distance_degrees_approx": 16.346,
+        "bounds": [
+          51.110193,
+          46.943853,
+          59.426275,
+          54.51998
+        ],
+        "centroid": [
+          54.470173,
+          50.780386
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q36318495",
+        "label": "Lena",
+        "wikidata_coordinates": [
+          37.409166666,
+          64.907777777
+        ],
+        "natural_earth_names": [
+          "lena"
+        ],
+        "distance_degrees_approx": 28.693,
+        "bounds": [
+          105.069897,
+          53.844827,
+          130.051318,
+          72.294399
+        ],
+        "centroid": [
+          116.87177,
+          61.046785
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q36396131",
+        "label": "Kamchatka",
+        "wikidata_coordinates": [
+          146.833611111,
+          67.458611111
+        ],
+        "natural_earth_names": [
+          "kamchatka"
+        ],
+        "distance_degrees_approx": 11.81,
+        "bounds": [
+          157.63227,
+          54.080782,
+          162.461123,
+          56.39816
+        ],
+        "centroid": [
+          159.52652,
+          55.423491
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q37755556",
+        "label": "Yenisey",
+        "wikidata_coordinates": [
+          104.1563,
+          53.3547
+        ],
+        "natural_earth_names": [
+          "yenisey"
+        ],
+        "distance_degrees_approx": 8.178,
+        "bounds": [
+          83.109584,
+          58.100097,
+          92.998076,
+          70.109545
+        ],
+        "centroid": [
+          88.421379,
+          63.956821
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q3995693",
+        "label": "Verde",
+        "wikidata_coordinates": [
+          9.88451,
+          44.37429
+        ],
+        "natural_earth_names": [
+          "verde"
+        ],
+        "distance_degrees_approx": 80.667,
+        "bounds": [
+          -100.343947,
+          21.663846,
+          -98.589946,
+          22.116919
+        ],
+        "centroid": [
+          -99.39576,
+          21.829958
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q4054234",
+        "label": "Abay",
+        "wikidata_coordinates": [
+          85.1879264,
+          50.7178865
+        ],
+        "natural_earth_names": [
+          "abay"
+        ],
+        "distance_degrees_approx": 48.998,
+        "bounds": [
+          35.353377,
+          9.88379,
+          38.513753,
+          11.905527
+        ],
+        "centroid": [
+          37.092339,
+          10.667086
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q4363930",
+        "label": "Pit",
+        "wikidata_coordinates": [
+          34.085833333,
+          59.924722222
+        ],
+        "natural_earth_names": [
+          "pit"
+        ],
+        "distance_degrees_approx": 79.547,
+        "bounds": [
+          -122.369218,
+          40.763352,
+          -120.429362,
+          41.708953
+        ],
+        "centroid": [
+          -121.461819,
+          41.079609
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q4458127",
+        "label": "Tisa",
+        "wikidata_coordinates": [
+          57.6234,
+          57.0044
+        ],
+        "natural_earth_names": [
+          "tisa"
+        ],
+        "distance_degrees_approx": 22.986,
+        "bounds": [
+          20.061132,
+          45.125773,
+          20.308352,
+          46.260846
+        ],
+        "centroid": [
+          20.139182,
+          45.75761
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q6115455",
+        "label": "Negro",
+        "wikidata_coordinates": [
+          -6.5358463,
+          43.5442993
+        ],
+        "natural_earth_names": [
+          "negro"
+        ],
+        "distance_degrees_approx": 56.155,
+        "bounds": [
+          -70.336141,
+          -41.047158,
+          -59.896829,
+          2.83329
+        ],
+        "centroid": [
+          -65.517009,
+          -9.623049
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q6115632",
+        "label": "Salado",
+        "wikidata_coordinates": [
+          -2.77585,
+          41.011811111
+        ],
+        "natural_earth_names": [
+          "salado"
+        ],
+        "distance_degrees_approx": 78.473,
+        "bounds": [
+          -65.865096,
+          -31.959134,
+          -60.607768,
+          -24.208393
+        ],
+        "centroid": [
+          -62.912008,
+          -27.965216
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      },
+      {
+        "qid": "Q95629532",
+        "label": "San Juan",
+        "wikidata_coordinates": [
+          -2.42544,
+          42.98556
+        ],
+        "natural_earth_names": [
+          "san juan"
+        ],
+        "distance_degrees_approx": 56.602,
+        "bounds": [
+          -86.104739,
+          -32.389496,
+          -67.3618,
+          12.207627
+        ],
+        "centroid": [
+          -74.950661,
+          -14.417403
+        ],
+        "decision": "excluded_known_historical_false_positive"
+      }
+    ],
+    "major_rivers": [
+      {
+        "name": "Amazonas",
+        "qid": "Q3783",
+        "natural_earth_names": [
+          "Amazonas"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Orinoco",
+        "qid": "Q131792",
+        "natural_earth_names": [
+          "Orinoco"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Paraná",
+        "qid": "Q127892",
+        "natural_earth_names": [
+          "Paraná"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Paraguay",
+        "qid": "Q179396",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      },
+      {
+        "name": "Uruguay",
+        "qid": "Q18278",
+        "natural_earth_names": [
+          "Uruguay"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "São Francisco",
+        "qid": "Q142148",
+        "natural_earth_names": [
+          "São  Francisco"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Magdalena",
+        "qid": "Q191829",
+        "natural_earth_names": [
+          "Magdalena"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Tocantins",
+        "qid": "Q156054",
+        "natural_earth_names": [
+          "Tocantins"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Araguaia",
+        "qid": "Q171847",
+        "natural_earth_names": [
+          "Araguaia"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Negro",
+        "qid": null,
+        "natural_earth_names": [
+          "Negro"
+        ],
+        "status": "excluded",
+        "reason": "ambiguous_natural_earth_name"
+      },
+      {
+        "name": "Madeira",
+        "qid": "Q118251",
+        "natural_earth_names": [
+          "Madeira"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Tapajós",
+        "qid": "Q752674",
+        "natural_earth_names": [
+          "Tapajós"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Xingu",
+        "qid": "Q49544",
+        "natural_earth_names": [
+          "Xingu"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Purús",
+        "qid": "Q26271",
+        "natural_earth_names": [
+          "Purús"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Juruá",
+        "qid": "Q117526",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      },
+      {
+        "name": "Mississippi",
+        "qid": "Q1497",
+        "natural_earth_names": [
+          "Mississippi"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Missouri",
+        "qid": "Q5419",
+        "natural_earth_names": [
+          "Missouri"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Ohio",
+        "qid": "Q4915",
+        "natural_earth_names": [
+          "Ohio"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Arkansas",
+        "qid": "Q8319",
+        "natural_earth_names": [
+          "Arkansas"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Red River",
+        "qid": "Q156032",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      },
+      {
+        "name": "Rio Grande / Río Bravo",
+        "qid": "Q160636",
+        "natural_earth_names": [
+          "Rio Grande"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Colorado",
+        "qid": "Q1265",
+        "natural_earth_names": [
+          "Colorado"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Columbia",
+        "qid": "Q2251",
+        "natural_earth_names": [
+          "Columbia"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Snake",
+        "qid": "Q272074",
+        "natural_earth_names": [
+          "Snake"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Yukon",
+        "qid": "Q104437",
+        "natural_earth_names": [
+          "Yukon"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Mackenzie",
+        "qid": "Q3411",
+        "natural_earth_names": [
+          "Mackenzie"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Saskatchewan",
+        "qid": "Q3047",
+        "natural_earth_names": [
+          "Saskatchewan"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Fraser",
+        "qid": "Q269710",
+        "natural_earth_names": [
+          "Fraser"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Nelson",
+        "qid": "Q3292",
+        "natural_earth_names": [
+          "Nelson"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Nilo",
+        "qid": "Q3392",
+        "natural_earth_names": [
+          "Nile"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Nilo Blanco",
+        "qid": "Q4814791",
+        "natural_earth_names": [
+          "White Nile"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Nilo Azul",
+        "qid": "Q882739",
+        "natural_earth_names": [
+          "Blue Nile"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Congo",
+        "qid": "Q3503",
+        "natural_earth_names": [
+          "Congo"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Níger",
+        "qid": "Q3542",
+        "natural_earth_names": [
+          "Niger"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Zambeze",
+        "qid": "Q43106",
+        "natural_earth_names": [
+          "Zambezi"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Orange",
+        "qid": "Q181475",
+        "natural_earth_names": [
+          "Orange"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Limpopo",
+        "qid": "Q173017",
+        "natural_earth_names": [
+          "Limpopo"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Senegal",
+        "qid": "Q3569",
+        "natural_earth_names": [
+          "Sénégal"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Gambia",
+        "qid": "Q160819",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      },
+      {
+        "name": "Volta",
+        "qid": "Q192415",
+        "natural_earth_names": [
+          "Volta"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Volta Blanco",
+        "qid": "Q1259188",
+        "natural_earth_names": [
+          "White Volta"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Volta Negro",
+        "qid": "Q1256528",
+        "natural_earth_names": [
+          "Black Volta"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Benue",
+        "qid": "Q204806",
+        "natural_earth_names": [
+          "Benue",
+          "Bénoué"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Ubangi",
+        "qid": "Q171649",
+        "natural_earth_names": [
+          "Ubangi"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Kasai",
+        "qid": "Q186541",
+        "natural_earth_names": [
+          "Kasai"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Okavango",
+        "qid": "Q188773",
+        "natural_earth_names": [
+          "Okavango",
+          "Cubango"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Rufiji",
+        "qid": "Q936023",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      },
+      {
+        "name": "Jubba",
+        "qid": "Q138491",
+        "natural_earth_names": [
+          "Jubba"
+        ],
+        "status": "published",
+        "reason": "validated_explicit_mapping"
+      },
+      {
+        "name": "Shabelle",
+        "qid": "Q141915",
+        "natural_earth_names": [],
+        "status": "excluded",
+        "reason": "no_named_natural_earth_feature"
+      }
+    ],
+    "name_fields": [
+      "name",
+      "name_en",
+      "name_alt"
+    ],
+    "non_name_fields_inspected": [
+      "note",
+      "featurecla",
+      "scalerank",
+      "min_zoom",
+      "min_label"
+    ]
+  },
+  "notes": {
+    "deserts": "Natural Earth assets bundled by MetaphAI contain no validated desert polygons; all published deserts use a Wikidata representative coordinate.",
+    "geo_quiz": "The Geo Quiz catalog remains independent and unchanged."
+  }
+}

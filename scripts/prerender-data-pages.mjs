@@ -12,6 +12,8 @@ import * as CHANGE from '../assets/js/data-change-core.mjs';
 import { changeText } from '../assets/js/data-change-i18n.mjs';
 import { GAME_PAGES } from '../assets/js/games/game-routes.mjs';
 import { gameText } from '../assets/js/games/games-i18n.mjs';
+import { GEOGRAPHY_ROUTES } from '../assets/js/geography-routes.mjs';
+import { geographyText } from '../assets/js/geography-i18n.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const START = '<!-- DATA_PRERENDER:START -->';
@@ -289,7 +291,7 @@ function upsertDatasetSchema(html,schema){
 
 function pageChrome({ language, pageKey, routes, title, description, body, schemaType = 'WebPage', primarySchema=null, bodyAttributes='', interactiveScript='views' }) {
   const route = routes[language], text = dataViews(language), dir = language === 'ar' ? ' dir="rtl"' : '';
-  const primary=language==='es'?`<a href="/calculadoras/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="${DATA_PAGES.home.es}" class="site-nav-link" aria-current="page">Datos globales</a><a href="${GAME_PAGES.home.es}" class="site-nav-link">Juegos</a>`:`<a href="${DATA_PAGES.home[language]}" class="site-nav-link" aria-current="page">${escapeHtml(DATA_LABELS[language])}</a><a href="${GAME_PAGES.home[language]}" class="site-nav-link">${escapeHtml(gameText(language).games)}</a>`;
+  const primary=language==='es'?`<a href="/calculadoras/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="${DATA_PAGES.home.es}" class="site-nav-link" aria-current="page">Datos globales</a><a href="${GEOGRAPHY_ROUTES.home.es}" class="site-nav-link">${escapeHtml(geographyText(language).geography)}</a><a href="${GAME_PAGES.home.es}" class="site-nav-link">Juegos</a>`:`<a href="${DATA_PAGES.home[language]}" class="site-nav-link" aria-current="page">${escapeHtml(DATA_LABELS[language])}</a><a href="${GEOGRAPHY_ROUTES.home[language]}" class="site-nav-link">${escapeHtml(geographyText(language).geography)}</a><a href="${GAME_PAGES.home[language]}" class="site-nav-link">${escapeHtml(gameText(language).games)}</a>`;
   const globalHeader = `<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="${language==='es'?'Navegación principal':escapeHtml(text.explore)}"><div class="site-nav-primary">${primary}</div><div class="data-header-tools"><span class="header-tag">${escapeHtml(text.countries)}</span>${languageSwitcher(language, pageKey, routes)}</div></nav></header>`;
   const labels=FOOTER_LABELS[language];
   const footer = `<footer>© 2026 MetaphAI · <a href="${DATA_PAGES.sources[language]}">${escapeHtml(labels[0])}</a> · <a href="${INSTITUTIONAL_PAGES.privacy[language]}">${escapeHtml(labels[1])}</a> · <a href="${INSTITUTIONAL_PAGES.contact[language]}">${escapeHtml(labels[2])}</a> · <a href="${INSTITUTIONAL_PAGES.about[language]}">${escapeHtml(labels[3])}</a></footer>`;

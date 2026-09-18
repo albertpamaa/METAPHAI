@@ -1,0 +1,2361 @@
+{
+  "schema_version": 1,
+  "kind": "volcano",
+  "generated_at": "2026-09-18",
+  "sources": [
+    "wikidata"
+  ],
+  "entities": [
+    {
+      "id": "Q72303",
+      "kind": "volcano",
+      "coordinates": [
+        44.298333333,
+        39.701944444
+      ],
+      "countries": [
+        "TUR"
+      ],
+      "continents": [
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 5137,
+      "labels": {
+        "zh-CN": "阿勒山",
+        "es": "Monte Ararat",
+        "bn": "আরারাত পর্বত",
+        "ar": "جبل أرارات",
+        "pt": "Monte Ararat",
+        "ru": "Арарат",
+        "ko": "아라라트산",
+        "fr": "mont Ararat",
+        "it": "Ararat",
+        "de": "Ararat",
+        "id": "Ararat",
+        "ja": "アララト山",
+        "en": "Mount Ararat",
+        "ca": "Ararat",
+        "hi": "अरारात पर्वत"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q38954",
+      "kind": "volcano",
+      "coordinates": [
+        -16.643611111,
+        28.272638888
+      ],
+      "countries": [
+        "ESP"
+      ],
+      "continents": [
+        "africa",
+        "europe"
+      ],
+      "elevation_m": 3715,
+      "labels": {
+        "zh-CN": "泰德峰",
+        "es": "Teide",
+        "ar": "تيد",
+        "pt": "Teide",
+        "ru": "Тейде",
+        "ko": "테이데봉",
+        "fr": "Teide",
+        "it": "Teide",
+        "id": "Teide",
+        "de": "Teide",
+        "ja": "テイデ山",
+        "en": "Teide",
+        "hi": "पिको देल तेइदे",
+        "ca": "Teide"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1330974",
+          "Q2319498",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q131230",
+      "kind": "volcano",
+      "coordinates": [
+        -155.468055555,
+        19.820555555
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 4207,
+      "labels": {
+        "es": "Mauna Kea",
+        "ar": "مونا كيا",
+        "pt": "Mauna Kea",
+        "ru": "Мауна-Кеа",
+        "fr": "Mauna Kea",
+        "ko": "마우나케아산",
+        "it": "Mauna Kea",
+        "de": "Mauna Kea",
+        "id": "Mauna Kea",
+        "ja": "マウナ・ケア山",
+        "en": "Mauna Kea",
+        "ca": "Mauna Kea",
+        "zh-CN": "冒纳凯阿火山",
+        "bn": "মাউনা কেয়া"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q184975",
+      "kind": "volcano",
+      "coordinates": [
+        -19.665833333,
+        63.992222222
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1491,
+      "labels": {
+        "ko": "헤클라산",
+        "fr": "Hekla",
+        "es": "Hekla",
+        "it": "Hekla",
+        "de": "Hekla",
+        "ja": "ヘクラ山",
+        "ar": "هيكلا",
+        "pt": "Hekla",
+        "ru": "Гекла",
+        "en": "Hekla",
+        "ca": "Hekla",
+        "zh-CN": "海克拉火山",
+        "id": "Hekla"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q210252",
+      "kind": "volcano",
+      "coordinates": [
+        160.633333333,
+        56.066666666
+      ],
+      "countries": [
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 4800,
+      "labels": {
+        "ko": "클류쳅스카야산",
+        "fr": "Klioutchevskoï",
+        "es": "Kliuchevskoi",
+        "it": "Ključevskaja Sopka",
+        "de": "Kljutschewskaja Sopka",
+        "ja": "クリュチェフスカヤ山",
+        "hi": "क्ल्यूचेव्सकाया",
+        "pt": "Klyuchevskaya Sopka",
+        "ru": "Ключевская Сопка",
+        "en": "Klyuchevskaya Sopka",
+        "zh-CN": "克柳切夫火山",
+        "ar": "كلويشيفسكايا سوبكا",
+        "ca": "Kliutxevskoi",
+        "id": "Klyuchevskaya Sopka"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q190562",
+      "kind": "volcano",
+      "coordinates": [
+        9.1725,
+        4.216666666
+      ],
+      "countries": [
+        "CMR"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 4095,
+      "labels": {
+        "ko": "카메룬산",
+        "fr": "mont Cameroun",
+        "es": "Monte Camerún",
+        "it": "Monte Camerun",
+        "de": "Kamerunberg",
+        "ja": "カメルーン山",
+        "ar": "جبل كمرون",
+        "hi": "माउण्ट कैमरून",
+        "pt": "Monte Camarões",
+        "ru": "Камерун",
+        "en": "Mount Cameroon",
+        "ca": "Mont Camerun",
+        "zh-CN": "喀麥隆火山",
+        "id": "Gunung Kamerun"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q214696",
+      "kind": "volcano",
+      "coordinates": [
+        29.25,
+        -1.516666666
+      ],
+      "countries": [
+        "COD"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 3470,
+      "labels": {
+        "ko": "니라공고산",
+        "fr": "Nyiragongo",
+        "es": "Monte Nyiragongo",
+        "it": "Nyiragongo",
+        "de": "Nyiragongo",
+        "ja": "ニーラゴンゴ山",
+        "ar": "بركان نيراجونجو",
+        "hi": "नीरागोंगा",
+        "pt": "Monte Nyiragongo",
+        "ru": "Ньирагонго",
+        "en": "Mount Nyiragongo",
+        "ca": "Nyiragongo",
+        "zh-CN": "尼拉貢戈火山",
+        "id": "Gunung Nyiragongo"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q231620",
+      "kind": "volcano",
+      "coordinates": [
+        -102.251,
+        19.493
+      ],
+      "countries": [
+        "MEX"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 2800,
+      "labels": {
+        "ko": "파리쿠틴산",
+        "fr": "Paricutín",
+        "es": "Paricutín",
+        "it": "Parícutin",
+        "de": "Paricutín",
+        "id": "Paricutín",
+        "ja": "パリクティン山",
+        "ar": "بركان باريكوتين",
+        "hi": "पारिकुटीन",
+        "pt": "Paricutín",
+        "ru": "Парикутин",
+        "en": "Parícutin",
+        "ca": "Paricutín",
+        "zh-CN": "帕里库廷火山",
+        "bn": "পেরিকোটিন"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1806785",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q214916",
+      "kind": "volcano",
+      "coordinates": [
+        -68.536666666,
+        -24.719722222
+      ],
+      "countries": [
+        "ARG",
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 6723,
+      "labels": {
+        "fr": "Llullaillaco",
+        "ko": "유야이야코산",
+        "es": "Volcán Llullaillaco",
+        "it": "Llullaillaco",
+        "id": "Llullaillaco",
+        "de": "Llullaillaco",
+        "pt": "Llullaillaco",
+        "ru": "Льюльяйльяко",
+        "en": "Llullaillaco",
+        "zh-CN": "尤耶亞科山",
+        "ja": "ユーヤイヤコ",
+        "ar": "جبل لولايلاكو",
+        "ca": "Llullaillaco",
+        "bn": "লুল্লাইয়াকো"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q207284",
+      "kind": "volcano",
+      "coordinates": [
+        175.568611111,
+        -39.281666666
+      ],
+      "countries": [
+        "NZL"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 2797,
+      "labels": {
+        "ko": "루아페후산",
+        "fr": "mont Ruapehu",
+        "es": "Ruapehu",
+        "it": "Ruapehu",
+        "de": "Ruapehu",
+        "ja": "ルアペフ山",
+        "en": "Mount Ruapehu",
+        "pt": "Monte Ruapehu",
+        "ru": "Руапеху",
+        "ca": "Ruapehu",
+        "zh-CN": "鲁阿佩胡山",
+        "hi": "रुआपेहू पर्वत",
+        "id": "Gunung Ruapehu",
+        "ar": "جبل روابيهو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q818475",
+      "kind": "volcano",
+      "coordinates": [
+        120.9975,
+        14.01
+      ],
+      "countries": [
+        "PHL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 311,
+      "labels": {
+        "hi": "माउण्टताल",
+        "pt": "Taal",
+        "fr": "Taal",
+        "ru": "Тааль",
+        "ko": "따알 화산",
+        "en": "Taal Volcano",
+        "es": "Taal",
+        "ca": "Taal",
+        "it": "Taal",
+        "de": "Taal",
+        "zh-CN": "塔阿爾火山",
+        "id": "Gunung Taal",
+        "ja": "タール火山",
+        "ar": "بركان تال"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q159954",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q182913",
+      "kind": "volcano",
+      "coordinates": [
+        -17.33,
+        64.42
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1725,
+      "labels": {
+        "fr": "Grímsvötn",
+        "ko": "그림스뵈튼 화산",
+        "es": "Grímsvötn",
+        "it": "Grímsvötn",
+        "id": "Grímsvötn",
+        "de": "Grímsvötn",
+        "ja": "グリムスヴォトン",
+        "ar": "جريمسفونت",
+        "pt": "Grímsvötn",
+        "ru": "Гримсвотн",
+        "en": "Grímsvötn",
+        "ca": "Grímsvötn",
+        "zh-CN": "格里姆火山口"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1330974",
+          "Q159954",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q126804",
+      "kind": "volcano",
+      "coordinates": [
+        35.45,
+        38.531666666
+      ],
+      "countries": [
+        "TUR"
+      ],
+      "continents": [
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 3916,
+      "labels": {
+        "de": "Berg Erciyes",
+        "ca": "Erciyes Dağı",
+        "en": "Mount Erciyes",
+        "es": "Monte Erciyes",
+        "fr": "mont Erciyes",
+        "it": "Erciyes Dağı",
+        "ja": "エルジェス山",
+        "pt": "Monte Argeu",
+        "ru": "Эрджиес",
+        "zh-CN": "埃爾吉耶斯山",
+        "ar": "أرجياس",
+        "id": "Gunung Erciyes",
+        "ko": "에르지에스산",
+        "hi": "एर्जियेस पर्वत"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q201914",
+      "kind": "volcano",
+      "coordinates": [
+        -19.05,
+        63.633333333
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1450,
+      "labels": {
+        "ko": "카틀라 화산",
+        "fr": "Katla",
+        "es": "Katla",
+        "it": "Katla",
+        "de": "Katla",
+        "ja": "カトラ火山",
+        "ar": "كاتلا",
+        "pt": "Katla",
+        "ru": "Катла",
+        "en": "Katla",
+        "ca": "Katla",
+        "zh-CN": "卡特拉火山",
+        "id": "Katla"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q771409",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1315012",
+      "kind": "volcano",
+      "coordinates": [
+        -23.77622792,
+        64.807120486
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1446,
+      "labels": {
+        "fr": "Snæfellsjökull",
+        "es": "Snæfellsjökull",
+        "it": "Snæfellsjökull",
+        "de": "Snæfellsjökull",
+        "ja": "スナイフェルスヨークトル",
+        "ru": "Снайфедльсйёкюдль",
+        "en": "Snæfellsjökull",
+        "zh-CN": "斯奈山冰盖",
+        "pt": "Sneffels",
+        "ko": "스나이펠스외쿨",
+        "id": "Snæfellsjökull",
+        "ca": "Snæfellsjökull"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502",
+          "Q878077"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q814113",
+      "kind": "volcano",
+      "coordinates": [
+        -8.155880555,
+        71.079666666
+      ],
+      "countries": [
+        "NOR"
+      ],
+      "continents": [
+        "antarctica",
+        "europe"
+      ],
+      "elevation_m": 2277,
+      "labels": {
+        "fr": "Beerenberg",
+        "en": "Beerenberg",
+        "zh-CN": "貝倫火山",
+        "de": "Beerenberg",
+        "it": "Beerenberg",
+        "es": "Beerenberg",
+        "ru": "Бееренберг",
+        "ja": "ベーレンベルク山",
+        "pt": "Beerenberg",
+        "ca": "Beerenberg",
+        "ko": "베에렌베르크 화산",
+        "ar": "بيرينبرغ",
+        "id": "Beerenberg"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q3393392",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q695846",
+      "kind": "volcano",
+      "coordinates": [
+        29.2,
+        -1.408333333
+      ],
+      "countries": [
+        "COD"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 3058,
+      "labels": {
+        "pt": "Monte Nyamuragira",
+        "ko": "니아물라기라산",
+        "fr": "Nyamuragira",
+        "ru": "Ньямлагира",
+        "es": "Monte Nyamuragira",
+        "en": "Nyamuragira",
+        "de": "Nyamuragira",
+        "ja": "ニアムラギラ山",
+        "zh-CN": "尼亞穆拉吉拉火山",
+        "it": "Nyamuragira",
+        "ca": "Nyamuragira",
+        "id": "Nyamuragira",
+        "ar": "نياموراجيرا"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q212057",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1754806",
+      "kind": "volcano",
+      "coordinates": [
+        137.480277777,
+        35.892777777
+      ],
+      "countries": [
+        "JPN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 3067,
+      "labels": {
+        "pt": "Monte Ontake",
+        "de": "Ontake-san",
+        "ja": "御嶽山",
+        "fr": "mont Ontake",
+        "en": "Mount Ontake",
+        "zh-CN": "御嶽山",
+        "it": "Monte Ontake",
+        "ru": "Онтаке",
+        "ko": "온타케산",
+        "id": "Gunung Ontake",
+        "ca": "Ontake",
+        "es": "Monte Ontake",
+        "ar": "جبل أونتاكي"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1595289",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q392766",
+      "kind": "volcano",
+      "coordinates": [
+        169.441666666,
+        -19.533333333
+      ],
+      "countries": [
+        "VUT"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 361,
+      "labels": {
+        "pt": "Monte Yasur",
+        "ru": "Ясур",
+        "ko": "야수르산",
+        "fr": "Yasur",
+        "es": "Monte Yasur",
+        "en": "Mount Yasur",
+        "de": "Yasur",
+        "ja": "ヤスール山",
+        "zh-CN": "伊蘇爾火山",
+        "id": "Gunung Yasur",
+        "ca": "Mont Yasur",
+        "ar": "جبل ياسور"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q760819",
+      "kind": "volcano",
+      "coordinates": [
+        160.060713,
+        -9.70374
+      ],
+      "countries": [
+        "SLB"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 2335,
+      "labels": {
+        "de": "Mount Popomanaseu",
+        "fr": "mont Popomanaseu",
+        "en": "Mount Popomanaseu",
+        "es": "Monte Popomanaseu",
+        "pt": "Monte Popomanaseu",
+        "it": "Monte Popomanaseu",
+        "ja": "ポポマナセウ山",
+        "ru": "Попоманасеу",
+        "ca": "Popomanaseu",
+        "zh-CN": "波波馬納休山",
+        "ar": "جبل بوبوماناسيو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q233351",
+      "kind": "volcano",
+      "coordinates": [
+        -75.3225,
+        4.895277777
+      ],
+      "countries": [
+        "COL"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 5389,
+      "labels": {
+        "ko": "네바도델루이스산",
+        "fr": "Nevado del Ruiz",
+        "es": "Nevado del Ruiz",
+        "it": "Nevado del Ruiz",
+        "id": "Nevado del Ruiz",
+        "de": "Nevado del Ruiz",
+        "ja": "ネバドデルルイス火山",
+        "en": "Nevado del Ruiz",
+        "pt": "Nevado del Ruiz",
+        "ru": "Невадо-дель-Руис",
+        "ca": "Nevado del Ruiz",
+        "zh-CN": "內瓦多·德·魯伊斯火山",
+        "ar": "نيفادو ديل رويز"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q35666",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q859376",
+      "kind": "volcano",
+      "coordinates": [
+        -90.880833333,
+        14.474722222
+      ],
+      "countries": [
+        "GTM"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 3765,
+      "labels": {
+        "ko": "푸에고 화산",
+        "ru": "Фуэго",
+        "fr": "Volcán de Fuego",
+        "es": "Volcán de Fuego",
+        "en": "Volcán de Fuego",
+        "de": "Volcán de Fuego",
+        "ja": "フエゴ山",
+        "zh-CN": "富埃戈火山",
+        "pt": "Vulcão de Fogo",
+        "it": "Volcán de Fuego",
+        "id": "Gunung Fuego",
+        "ar": "بركان فويغو",
+        "ca": "Volcà de Fuego"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q235062",
+      "kind": "volcano",
+      "coordinates": [
+        -77.366666666,
+        1.216666666
+      ],
+      "countries": [
+        "COL"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 4276,
+      "labels": {
+        "ko": "갈레라스 화산",
+        "fr": "Galeras",
+        "es": "Volcán Galeras",
+        "it": "Galeras",
+        "de": "Galeras",
+        "id": "Galeras",
+        "ja": "ガレラス山",
+        "ar": "غاليرا",
+        "pt": "Galeras",
+        "ru": "Галерас",
+        "en": "Galeras",
+        "ca": "Galeras",
+        "zh-CN": "加勒拉斯火山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q791652",
+      "kind": "volcano",
+      "coordinates": [
+        158.832777777,
+        53.255
+      ],
+      "countries": [
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 2741,
+      "labels": {
+        "fr": "Avatchinski",
+        "en": "Avachinsky",
+        "zh-CN": "阿瓦恰火山",
+        "ca": "Avatxinski",
+        "de": "Awatschinskaja Sopka",
+        "it": "Avačinskij",
+        "es": "Aváchinski",
+        "ru": "Авачинская Сопка",
+        "ko": "아바친스키산",
+        "pt": "Avachinsky",
+        "ja": "アバチャ山",
+        "ar": "أفاتشينسكي",
+        "hi": "अवंचिन्स्कि"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q928681",
+      "kind": "volcano",
+      "coordinates": [
+        -28.399166666,
+        38.468611111
+      ],
+      "countries": [
+        "PRT"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2351,
+      "labels": {
+        "pt": "Montanha do Pico",
+        "ru": "Пику",
+        "fr": "Ponta do Pico",
+        "en": "Mount Pico",
+        "es": "Montaña del Pico",
+        "ca": "Muntanya del Pico",
+        "it": "Monte Pico",
+        "de": "Ponta do Pico",
+        "ja": "ピコ山",
+        "ko": "피쿠산",
+        "zh-CN": "皮库山",
+        "id": "Gunung Pico"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q179049",
+          "Q473972",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1018862",
+      "kind": "volcano",
+      "coordinates": [
+        -17.527777777,
+        64.640833333
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2010,
+      "labels": {
+        "ru": "Бардарбунга",
+        "fr": "Bárðarbunga",
+        "en": "Bárðarbunga",
+        "zh-CN": "巴達本加火山",
+        "ko": "바우르다르붕카산",
+        "de": "Bárðarbunga",
+        "es": "Bárðarbunga",
+        "pt": "Bárðarbunga",
+        "it": "Bárðarbunga",
+        "ja": "バルダルブンガ山",
+        "ca": "Bárdarbunga",
+        "id": "Bárðarbunga"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1330974",
+          "Q169358",
+          "Q771409",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q211665",
+      "kind": "volcano",
+      "coordinates": [
+        -16.75,
+        65.03
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1516,
+      "labels": {
+        "fr": "Askja",
+        "ko": "아스크야산",
+        "es": "Askja",
+        "it": "Askja",
+        "de": "Askja",
+        "ja": "アスキャ",
+        "pt": "Askja",
+        "ru": "Аскья",
+        "en": "Askja",
+        "zh-CN": "阿斯恰火山口",
+        "ca": "Askja",
+        "id": "Askja"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1330974",
+          "Q159954",
+          "Q473972",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1302768",
+      "kind": "volcano",
+      "coordinates": [
+        34.16511,
+        38.12652
+      ],
+      "countries": [
+        "TUR"
+      ],
+      "continents": [
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 3268,
+      "labels": {
+        "de": "Hasan Dağı",
+        "en": "Mount Hasan",
+        "es": "Monte Hasan",
+        "fr": "mont Hasan",
+        "pt": "Monte Hasan",
+        "ru": "Хасандаг",
+        "zh-CN": "哈桑山",
+        "it": "Monte Hasan",
+        "ca": "Mont Hasan",
+        "ja": "ハッサン山",
+        "bn": "মাউণ্ট হাসান",
+        "ar": "جبل حسن"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q298119",
+      "kind": "volcano",
+      "coordinates": [
+        -16.642063888,
+        64.025436111
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2110,
+      "labels": {
+        "fr": "Öræfajökull",
+        "en": "Öræfajökull",
+        "zh-CN": "厄賴法耶屈德爾火山",
+        "ca": "Öræfajökull",
+        "de": "Öræfajökull",
+        "it": "Öræfajökull",
+        "es": "Öræfajökull",
+        "ru": "Эрайвайёкюдль",
+        "pt": "Öræfajökull",
+        "ko": "외라이바이외퀴들",
+        "ja": "エーライヴァヨークトル",
+        "id": "Öræfajökull"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q35666",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1340711",
+      "kind": "volcano",
+      "coordinates": [
+        -148.066666666,
+        -17.866666666
+      ],
+      "countries": [
+        "FRA"
+      ],
+      "continents": [
+        "africa",
+        "antarctica",
+        "europe",
+        "oceania"
+      ],
+      "elevation_m": 435,
+      "labels": {
+        "ru": "Мехетиа",
+        "fr": "Mehetia",
+        "en": "Mehetia",
+        "es": "Mehetia",
+        "ca": "Mehetia",
+        "it": "Mehetia",
+        "de": "Mehetia",
+        "ar": "ميهيشا",
+        "pt": "Mehetia",
+        "zh-CN": "梅海蒂亚岛",
+        "ja": "メヘティア島"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1065592",
+          "Q1161185",
+          "Q23442",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1738211",
+      "kind": "volcano",
+      "coordinates": [
+        121.82,
+        -8.77
+      ],
+      "countries": [
+        "IDN"
+      ],
+      "continents": [
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 1639,
+      "labels": {
+        "ru": "Келимуту",
+        "fr": "Kelimutu",
+        "en": "Keli Mutubuurai",
+        "de": "Kelimutu",
+        "ko": "클리무투산",
+        "ja": "クリムトゥ山",
+        "zh-CN": "克里穆图火山",
+        "id": "Gunung Kelimutu",
+        "es": "Kelimutu",
+        "it": "Kelimutu",
+        "pt": "Kelimutu",
+        "ar": "كيلي موتو",
+        "bn": "কেলি মুতুবুরই"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1417843",
+      "kind": "volcano",
+      "coordinates": [
+        42.75,
+        13.75
+      ],
+      "countries": [
+        "YEM"
+      ],
+      "continents": [
+        "africa",
+        "asia"
+      ],
+      "elevation_m": 78,
+      "labels": {
+        "pt": "Ilhas Hanish",
+        "fr": "îles Hanish",
+        "ru": "Ханиш",
+        "es": "Islas de Hanish",
+        "en": "Hanish Islands",
+        "it": "isole Hanish",
+        "de": "Hanisch-Inseln",
+        "ar": "جزر حنيش",
+        "hi": "हनीश द्वीपसमूह",
+        "zh-CN": "哈尼什群岛",
+        "ca": "illes Hanish",
+        "ja": "ハニシュ諸島",
+        "id": "Kepulauan Hanish"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1402592",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q2639098",
+      "kind": "volcano",
+      "coordinates": [
+        136.5,
+        36.1
+      ],
+      "countries": [
+        "JPN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 2702,
+      "labels": {
+        "ja": "白山",
+        "ru": "Хакусан",
+        "en": "Mount Haku",
+        "ko": "하쿠산",
+        "zh-CN": "白山",
+        "fr": "mont Haku",
+        "id": "Gunung Haku",
+        "es": "Monte Haku",
+        "it": "Monte Haku",
+        "de": "Haku-san",
+        "ca": "mont Haku"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1595289",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q43876",
+      "kind": "volcano",
+      "coordinates": [
+        115.375,
+        -8.241944444
+      ],
+      "countries": [
+        "IDN"
+      ],
+      "continents": [
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 1717,
+      "labels": {
+        "hi": "बतुर पर्वत",
+        "fr": "Batur",
+        "ru": "Гунунг-Батур",
+        "en": "Mount Batur",
+        "id": "Gunung Batur",
+        "de": "Batur",
+        "ja": "バトゥール山",
+        "es": "Monte Batur",
+        "zh-CN": "巴图尔火山",
+        "ko": "바투르산",
+        "ar": "جبل باتور",
+        "ca": "Mont Batur"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1672337",
+      "kind": "volcano",
+      "coordinates": [
+        36.066666666,
+        -0.2
+      ],
+      "countries": [
+        "KEN"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 2278,
+      "labels": {
+        "de": "Menengai-Krater",
+        "en": "Menengai",
+        "ru": "Мененгаи",
+        "zh-CN": "門南蓋伊火山",
+        "ca": "Menengai",
+        "ja": "メネンガイ",
+        "fr": "Menengai",
+        "es": "Menengai",
+        "ar": "مينينغاي"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q804039",
+      "kind": "volcano",
+      "coordinates": [
+        29.448333333,
+        -1.511111111
+      ],
+      "countries": [
+        "COD"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 3711,
+      "labels": {
+        "ru": "Бисоке",
+        "fr": "Visoke",
+        "en": "Mount Bisoke",
+        "zh-CN": "比蘇奇火山",
+        "de": "Visoke",
+        "it": "Visoke",
+        "ca": "Visoke",
+        "ja": "ビソケ山",
+        "ar": "فيسوك"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q312930",
+      "kind": "volcano",
+      "coordinates": [
+        -71.1675,
+        -37.852222222
+      ],
+      "countries": [
+        "ARG",
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 2997,
+      "labels": {
+        "fr": "Copahue",
+        "ko": "코파우에산",
+        "en": "Copahue",
+        "es": "volcán Copahue",
+        "de": "Copahue",
+        "ru": "Копауэ",
+        "zh-CN": "德科帕韋火山",
+        "ja": "コパウエ山",
+        "pt": "Vulcão Copahue",
+        "ca": "Volcà Copahue",
+        "ar": "بركان كوباهو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q255010",
+      "kind": "volcano",
+      "coordinates": [
+        -69.141611111,
+        -18.165752777
+      ],
+      "countries": [
+        "BOL",
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 6348,
+      "labels": {
+        "de": "Parinacota",
+        "en": "Parinacota",
+        "es": "Volcán Parinacota",
+        "fr": "Parinacota",
+        "it": "Monte Parinacota",
+        "ko": "파리나코타산",
+        "pt": "Vulcão Parinacota",
+        "ru": "Паринакота",
+        "zh-CN": "帕里纳科塔火山",
+        "ja": "パリナコータ山",
+        "ca": "Parinacota",
+        "bn": "পারিনাকোটা (আগ্নেয়গিরি)"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q839630",
+      "kind": "volcano",
+      "coordinates": [
+        158.683333333,
+        53.316666666
+      ],
+      "countries": [
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 3456,
+      "labels": {
+        "pt": "Korialsky",
+        "ko": "코략스카야 화산",
+        "fr": "Koriakski",
+        "ru": "Корякская сопка",
+        "es": "Koryaksky",
+        "en": "Koryaksky",
+        "ca": "Koriakski",
+        "it": "Korjakskij",
+        "de": "Korjakskaja Sopka",
+        "zh-CN": "科里亞克火山",
+        "ar": "كورياكسكي",
+        "ja": "コリャーク山",
+        "hi": "कोरयाक्सकाया"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q48877",
+      "kind": "volcano",
+      "coordinates": [
+        161.362966666,
+        56.653633333
+      ],
+      "countries": [
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 3283,
+      "labels": {
+        "zh-CN": "希韦卢奇火山",
+        "ru": "Шивелуч",
+        "ko": "시벨루치산",
+        "fr": "Chiveloutch",
+        "es": "Shiveluch",
+        "en": "Shiveluch",
+        "it": "Šiveluč",
+        "de": "Schiwelutsch",
+        "ja": "シベルチ山",
+        "ca": "Chivelotch",
+        "pt": "Shiveluch",
+        "id": "Gunung Shiveluch"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q752994",
+      "kind": "volcano",
+      "coordinates": [
+        -16.783333333,
+        65.733333333
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 818,
+      "labels": {
+        "pt": "Krafla",
+        "ko": "크라플라산",
+        "ru": "Крабла",
+        "fr": "Krafla",
+        "en": "Krafla",
+        "es": "Krafla",
+        "it": "Krafla",
+        "de": "Krafla",
+        "ja": "クラプラ",
+        "zh-CN": "克拉布拉火山",
+        "ar": "كرافلا"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q159954",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1301834",
+      "kind": "volcano",
+      "coordinates": [
+        -63.239166666,
+        17.635
+      ],
+      "countries": [
+        "NLD"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 887,
+      "labels": {
+        "de": "Mount Scenery",
+        "en": "Mount Scenery",
+        "fr": "mont Scenery",
+        "ar": "جبل سينيري",
+        "it": "Monte Scenery",
+        "es": "Monte Scenery",
+        "ru": "Маунт-Синери",
+        "ja": "シーナリー山",
+        "pt": "Mount Scenery",
+        "ca": "Mount Scenery",
+        "zh-CN": "锡纳里山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q1325302",
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1433508",
+      "kind": "volcano",
+      "coordinates": [
+        42.82959,
+        38.92983
+      ],
+      "countries": [
+        "TUR"
+      ],
+      "continents": [
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 4058,
+      "labels": {
+        "fr": "Süphan Daği",
+        "ru": "Сюпхан",
+        "en": "Mount Süphan",
+        "de": "Süphan Dağı",
+        "it": "Monte Süphan",
+        "pt": "Monte Süphan",
+        "ja": "シュプハン山",
+        "zh-CN": "敘普漢山",
+        "ar": "جبل سيبان",
+        "ca": "Süphan Dağı",
+        "es": "Monte Süphan"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q169358",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q524954",
+      "kind": "volcano",
+      "coordinates": [
+        61.133333333,
+        28.6
+      ],
+      "countries": [
+        "IRN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 3941,
+      "labels": {
+        "es": "Kuh-i-Taftán",
+        "de": "Taftan",
+        "en": "Mount Taftan",
+        "ru": "Тефтан",
+        "zh-CN": "塔夫坦火山",
+        "ja": "タフターン山",
+        "fr": "Taftan",
+        "ar": "جبل تفتان",
+        "ca": "kūh-e Taftān",
+        "id": "Gunung Taftan"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q5872288",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1373738",
+      "kind": "volcano",
+      "coordinates": [
+        141.287783333,
+        24.749030555
+      ],
+      "countries": [
+        "JPN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 169,
+      "labels": {
+        "pt": "Monte Suribachi",
+        "id": "Gunung Suribachi",
+        "de": "Suribachi",
+        "ja": "摺鉢山",
+        "ru": "Сурибати",
+        "fr": "mont Suribachi",
+        "ko": "스리바치산",
+        "en": "Mount Suribachi",
+        "it": "Suribachi",
+        "es": "Suribachi",
+        "zh-CN": "折缽山",
+        "ca": "mont Suribatxi",
+        "ar": "جبل سوريباتشي"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1413846",
+      "kind": "volcano",
+      "coordinates": [
+        -21.313611111,
+        64.085555555
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 803,
+      "labels": {
+        "fr": "Hengill",
+        "ru": "Хейнгидль",
+        "en": "Hengill",
+        "it": "Hengill",
+        "de": "Hengill",
+        "ja": "ヘインギットル",
+        "zh-CN": "亨吉德山",
+        "es": "Hengill",
+        "ko": "헤잉기들산",
+        "ca": "Hengill"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q713619",
+      "kind": "volcano",
+      "coordinates": [
+        140.806388888,
+        42.827222222
+      ],
+      "countries": [
+        "JPN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 1898,
+      "labels": {
+        "ja": "羊蹄山",
+        "ru": "Йотей",
+        "ko": "요테이산",
+        "fr": "mont Yōtei",
+        "en": "Mount Yōtei",
+        "es": "Monte Yotei",
+        "zh-CN": "羊蹄山",
+        "pt": "Monte Yōtei",
+        "de": "Yōtei-zan",
+        "it": "Monte Yōtei",
+        "ca": "Yōtei",
+        "ar": "جبل يوتيه"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q10561633",
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q27015522",
+      "kind": "volcano",
+      "coordinates": [
+        -22.2725,
+        63.905
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 385,
+      "labels": {
+        "en": "Fagradalsfjall",
+        "fr": "Fagradalsfjall",
+        "ru": "Фаградальсфьядль",
+        "es": "Fagradalsfjall",
+        "zh-CN": "法格拉达尔山",
+        "ja": "ファグラダルスフィヤル",
+        "ca": "Fagradalsfjall",
+        "pt": "Fagradalsfjall",
+        "it": "Fagradalsfjall",
+        "ko": "파그라달스퍄들",
+        "ar": "فاقرادالسفجال",
+        "de": "Fagradalsfjall (Reykjanesskagi)"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q367004",
+          "Q75520",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1374413",
+      "kind": "volcano",
+      "coordinates": [
+        -17.85166667,
+        28.47333333
+      ],
+      "countries": [
+        "ESP"
+      ],
+      "continents": [
+        "africa",
+        "europe"
+      ],
+      "elevation_m": 431,
+      "labels": {
+        "de": "Teneguía",
+        "ko": "테네기아",
+        "es": "Teneguía",
+        "en": "Teneguía",
+        "ca": "Teneguía",
+        "fr": "Teneguía",
+        "ja": "テネグイア山",
+        "it": "Teneguía",
+        "ru": "Тенегия",
+        "pt": "Teneguía"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1639195",
+      "kind": "volcano",
+      "coordinates": [
+        29.41681722,
+        -1.46276833
+      ],
+      "countries": [
+        "COD"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 4437,
+      "labels": {
+        "de": "Mikeno",
+        "en": "Mount Mikeno",
+        "it": "Mikeno",
+        "zh-CN": "米凱諾火山",
+        "fr": "mont Mikeno",
+        "ja": "ミケノ山",
+        "es": "Volcán Mikeno",
+        "ca": "Mikeno",
+        "ar": "جبل ميكينو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1945447",
+      "kind": "volcano",
+      "coordinates": [
+        69.5,
+        -49.6
+      ],
+      "countries": [
+        "FRA"
+      ],
+      "continents": [
+        "africa",
+        "antarctica",
+        "europe",
+        "oceania"
+      ],
+      "elevation_m": 1850,
+      "labels": {
+        "ru": "Монт-Росс",
+        "fr": "mont Ross",
+        "en": "Mont Ross",
+        "de": "Mont Ross",
+        "it": "Monte Ross",
+        "zh-CN": "羅斯山",
+        "es": "Monte Ross",
+        "ja": "ロス山",
+        "pt": "Monte Ross",
+        "ca": "Mont Ross",
+        "ko": "로스산"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q788723",
+      "kind": "volcano",
+      "coordinates": [
+        16.473611111,
+        21.040833333
+      ],
+      "countries": [
+        "TCD"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 3315,
+      "labels": {
+        "de": "Tarso Toussidé",
+        "ca": "Toussidé",
+        "en": "Tarso Toussidé",
+        "fr": "Tarso Toussidé",
+        "ko": "투시데 화산",
+        "zh-CN": "圖西德火山",
+        "pt": "Toussidé",
+        "es": "Tarso Toussidé",
+        "ar": "تارسو توسيدي",
+        "ja": "トゥシデ山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q692922",
+      "kind": "volcano",
+      "coordinates": [
+        -155.156666666,
+        58.266666666
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 841,
+      "labels": {
+        "de": "Novarupta",
+        "en": "Novarupta",
+        "fr": "Novarupta",
+        "it": "Novarupta",
+        "ja": "ノバルプタ",
+        "ko": "노바룹타산",
+        "pt": "Novarupta",
+        "ru": "Новарупта",
+        "zh-CN": "諾瓦魯普塔火山",
+        "es": "Novarupta",
+        "ca": "Novarupta",
+        "ar": "نوفاروبتا",
+        "id": "Novarupta"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q858808",
+      "kind": "volcano",
+      "coordinates": [
+        -72.493055555,
+        -41.1
+      ],
+      "countries": [
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 2652,
+      "labels": {
+        "pt": "Osorno",
+        "ko": "오소르노산",
+        "fr": "Osorno",
+        "es": "Volcán Osorno",
+        "en": "Osorno",
+        "ca": "volcà Osorno",
+        "it": "Vulcano Osorno",
+        "de": "Osorno",
+        "ja": "オソルノ山",
+        "zh-CN": "奧索爾諾火山",
+        "ru": "Осорно",
+        "ar": "بركان أوزورنو",
+        "id": "Osorno"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1672472",
+      "kind": "volcano",
+      "coordinates": [
+        -83.8525,
+        9.979166666
+      ],
+      "countries": [
+        "CRI"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 3432,
+      "labels": {
+        "en": "Irazú Volcano",
+        "zh-CN": "伊拉苏火山",
+        "ko": "이라수 화산",
+        "ca": "Irazú",
+        "de": "Irazú",
+        "fr": "Irazú",
+        "hi": "इराजू",
+        "ja": "イラス火山",
+        "es": "Irazú",
+        "ru": "Ирасу",
+        "pt": "Vulcão Irazú",
+        "it": "Irazú",
+        "id": "Gunung berapi Irazú"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q152380",
+      "kind": "volcano",
+      "coordinates": [
+        -72.645833333,
+        -42.832777777
+      ],
+      "countries": [
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 1122,
+      "labels": {
+        "ko": "차이텐 화산",
+        "fr": "Chaitén",
+        "es": "Volcán Chaitén",
+        "it": "Chaitén",
+        "de": "Chaitén",
+        "ja": "チャイテン山",
+        "pt": "Chaitén",
+        "ru": "Чайтен",
+        "en": "Chaitén",
+        "zh-CN": "柴滕火山",
+        "ca": "Chaitén",
+        "id": "Chaitén"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q577700",
+      "kind": "volcano",
+      "coordinates": [
+        -72.117222222,
+        -40.590277777
+      ],
+      "countries": [
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 2236,
+      "labels": {
+        "it": "Puyehue",
+        "ca": "Puyehue",
+        "de": "Puyehue",
+        "en": "Puyehue-Cordón Caulle",
+        "es": "Volcán Puyehue",
+        "fr": "Puyehue",
+        "ja": "プジェウエ＝コルドン・カウジェ火山群",
+        "ko": "푸예우에산",
+        "pt": "Vulcão Puyehue",
+        "ru": "Пуйеуэ",
+        "zh-CN": "普耶韦火山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q753924",
+      "kind": "volcano",
+      "coordinates": [
+        -90.601111111,
+        14.380833333
+      ],
+      "countries": [
+        "GTM"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 2552,
+      "labels": {
+        "pt": "Pacaya",
+        "fr": "Pacaya",
+        "ru": "Пакая",
+        "ko": "파카야산",
+        "es": "Volcán de Pacaya",
+        "en": "Pacaya",
+        "de": "Pacaya",
+        "ja": "パカヤ",
+        "zh-CN": "帕卡亚火山",
+        "id": "Gunung Pacaya",
+        "ca": "Pacaya"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q3131754",
+          "Q8072",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q575891",
+      "kind": "volcano",
+      "coordinates": [
+        -86.5384954,
+        12.4247007
+      ],
+      "countries": [
+        "NIC"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 1297,
+      "labels": {
+        "de": "Volcán Momotombo",
+        "en": "Volcán Momotombo",
+        "es": "Volcán Momotombo",
+        "fr": "Volcán Momotombo",
+        "ja": "モモトンボ",
+        "ko": "모모톰보산",
+        "pt": "Vulcão Momotombo",
+        "ru": "Момотомбо",
+        "zh-CN": "莫莫通博火山",
+        "it": "Volcán Momotombo",
+        "ca": "Momotombo"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q841189",
+      "kind": "volcano",
+      "coordinates": [
+        -93.227777777,
+        17.36
+      ],
+      "countries": [
+        "MEX"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 1060,
+      "labels": {
+        "pt": "El Chichón",
+        "ko": "엘치촌산",
+        "fr": "El Chichón",
+        "ru": "Эль-Чичон",
+        "en": "El Chichón",
+        "es": "Chichonal",
+        "id": "El Chichón",
+        "de": "El Chichón",
+        "ja": "エルチチョン",
+        "zh-CN": "埃尔奇琼火山",
+        "it": "El Chichón"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8072",
+        "instance_of": [
+          "Q8072"
+        ],
+        "status": "validated"
+      }
+    }
+  ]
+}

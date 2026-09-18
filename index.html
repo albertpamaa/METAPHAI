@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://metaphai.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260916-1">
+  <link rel="stylesheet" href="/assets/metaphai-logo.css?v=20260917-1">
   <meta name="google-adsense-account" content="ca-pub-7545567251029894">
   <!-- Google services: consent is managed by Google's published CMP and Consent Mode. -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7545567251029894" crossorigin="anonymous"></script>
@@ -63,13 +63,15 @@
     .hero h1 em { font-style: normal; color: var(--blue); }
     .hero p { max-width: 720px; margin: 0 auto; color: var(--muted); font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
     .hero-data-art { position: absolute; z-index: -1; right: 1rem; bottom: .25rem; width: 190px; color: var(--blue); opacity: .15; pointer-events: none; }
-    .home-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 1.5rem; }
+    .home-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 1.5rem; }
     .home-path { display: grid; grid-template-columns: 1fr; gap: 18px; min-width: 0; min-height: 340px; padding: 2rem; border: 1px solid #cce8df; border-radius: 28px; background: linear-gradient(135deg, #edf9f6 0%, #fbfefd 100%); box-shadow: 0 14px 35px rgba(16,56,70,.06); }
     .home-path.data-path { border-color: #cee5f6; background: linear-gradient(135deg, #eef8ff 0%, #fbfdff 100%); }
     .home-path.game-path { border-color: #d8e2f1; background: linear-gradient(135deg, #f1f5fb 0%, #fff 100%); }
+    .home-path.geography-path { border-color: #d8e7d3; background: linear-gradient(135deg, #f1f8ef 0%, #fff 100%); }
     .home-path-icon { display: grid; place-items: center; align-self: start; width: 82px; height: 82px; border-radius: 24px; background: rgba(7,151,119,.1); color: var(--accent); }
     .data-path .home-path-icon { background: rgba(19,127,193,.1); color: var(--blue); }
     .game-path .home-path-icon { background: rgba(36,91,145,.1); color: #245b91; }
+    .geography-path .home-path-icon { background: rgba(67,126,82,.1); color: #437e52; }
     .home-path-icon svg { width: 50px; height: 50px; }
     .home-path-copy { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
     .home-path h2 { margin-bottom: .65rem; font-size: clamp(24px, 2.8vw, 32px); letter-spacing: -.035em; }
@@ -77,6 +79,7 @@
     .home-path-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 11px 20px; border: 1px solid transparent; border-radius: 999px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; box-shadow: 0 8px 18px rgba(8,127,103,.16); transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease; }
     .data-path .home-path-cta { background: var(--blue); box-shadow: 0 8px 18px rgba(19,127,193,.16); }
     .game-path .home-path-cta { background: #245b91; box-shadow: 0 8px 18px rgba(36,91,145,.16); }
+    .geography-path .home-path-cta { background: #437e52; box-shadow: 0 8px 18px rgba(67,126,82,.16); }
     .home-path-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(8,127,103,.2); }
     .data-path .home-path-cta:hover { box-shadow: 0 10px 22px rgba(19,127,193,.2); }
     .home-path-cta:focus-visible { outline: 3px solid rgba(19,127,193,.28); outline-offset: 3px; }
@@ -129,7 +132,7 @@
   </script>
 </head>
 <body>
-<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/calculadoras/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a><a href="/juegos/" class="site-nav-link">Juegos</a></div></nav></header>
+<header><a href="/" class="logo"><img src="/assets/metaphai-logo.png" alt="MetaphAI" width="1000" height="200"></a><nav class="site-nav" aria-label="Navegación principal"><div class="site-nav-primary"><a href="/calculadoras/" class="site-nav-link">Calculadoras</a><a href="/calendarios-laborales/" class="site-nav-link">Calendarios</a><a href="/datos-globales/" class="site-nav-link">Datos globales</a><a href="/geografia/" class="site-nav-link">Geografía</a><a href="/juegos/" class="site-nav-link">Juegos</a></div></nav></header>
 <main>
   <div class="hero">
     <h1>Herramientas, datos y juegos para<br>entender mejor <em>los números</em></h1>
@@ -159,6 +162,14 @@
         <h2>Juegos</h2>
         <p>Aprende sobre el mundo con juegos educativos basados en datos reales y descubre el contexto detrás de cada respuesta.</p>
         <a class="home-path-cta" href="/juegos/">Jugar →</a>
+      </div>
+    </article>
+    <article class="home-path geography-path">
+      <div class="home-path-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 39 17 18l7 10 7-18 12 29H5z"/><path d="M8 39c8-7 15-6 20-1M32 31c4-2 7-1 11 2"/></svg></div>
+      <div class="home-path-copy">
+        <h2>Geografía</h2>
+        <p>Explora volcanes, montañas y recorridos reales de ríos del mundo en un mapa interactivo.</p>
+        <a class="home-path-cta" href="/geografia/">Explorar geografía →</a>
       </div>
     </article>
   </section>

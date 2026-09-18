@@ -1,0 +1,2447 @@
+{
+  "schema_version": 1,
+  "kind": "mountain",
+  "generated_at": "2026-09-18",
+  "sources": [
+    "wikidata"
+  ],
+  "entities": [
+    {
+      "id": "Q513",
+      "kind": "mountain",
+      "coordinates": [
+        86.925,
+        27.988055555
+      ],
+      "countries": [
+        "CHN",
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8849,
+      "labels": {
+        "ru": "Джомолунгма",
+        "fr": "Everest",
+        "it": "Everest",
+        "de": "Mount Everest",
+        "ar": "جبل إفرست",
+        "bn": "এভারেস্ট পর্বত",
+        "ca": "Everest",
+        "es": "Everest",
+        "hi": "एवरेस्ट पर्वत",
+        "id": "Everest",
+        "ja": "エベレスト",
+        "ko": "에베레스트산",
+        "pt": "Evereste",
+        "zh-CN": "珠穆朗瑪峰",
+        "en": "Mount Everest"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q583",
+      "kind": "mountain",
+      "coordinates": [
+        6.865,
+        45.832777777
+      ],
+      "countries": [
+        "FRA",
+        "ITA"
+      ],
+      "continents": [
+        "africa",
+        "antarctica",
+        "europe",
+        "oceania"
+      ],
+      "elevation_m": 4807,
+      "labels": {
+        "en": "Mont Blanc",
+        "fr": "mont Blanc",
+        "it": "Monte Bianco",
+        "es": "Mont Blanc",
+        "de": "Mont Blanc",
+        "ar": "مون بلون",
+        "bn": "মোঁ ব্লঁ",
+        "ca": "Mont Blanc",
+        "id": "Gunung Blanc",
+        "ja": "モンブラン",
+        "ko": "몽블랑산",
+        "pt": "Monte Branco",
+        "ru": "Монблан",
+        "zh-CN": "勃朗峰",
+        "hi": "मोंट ब्लांक"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q111177881",
+          "Q1570358",
+          "Q1740763",
+          "Q22009162",
+          "Q3116906",
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q39739",
+      "kind": "mountain",
+      "coordinates": [
+        -70.011666666,
+        -32.653055555
+      ],
+      "countries": [
+        "ARG"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 6962,
+      "labels": {
+        "zh-CN": "阿空加瓜山",
+        "bn": "আকোংকাগুয়া পর্বত",
+        "ar": "أكونكاغوا",
+        "pt": "Aconcágua",
+        "ru": "Аконкагуа",
+        "fr": "Aconcagua",
+        "ko": "아콩카과산",
+        "it": "Aconcagua",
+        "de": "Aconcagua",
+        "id": "Akonkagua",
+        "ja": "アコンカグア",
+        "en": "Aconcagua",
+        "ca": "Aconcagua",
+        "hi": "अकोंकागुआ",
+        "es": "Aconcagua"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q43105",
+      "kind": "mountain",
+      "coordinates": [
+        42.437875,
+        43.35254
+      ],
+      "countries": [
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 5642,
+      "labels": {
+        "zh-CN": "厄尔布鲁士山",
+        "es": "Monte Elbrús",
+        "bn": "এলব্রুস পর্বত",
+        "ar": "إلبروس",
+        "pt": "Monte Elbrus",
+        "ru": "Эльбрус",
+        "ko": "옐브루스산",
+        "fr": "Elbrouz",
+        "it": "monte Elbrus",
+        "id": "Gunung Elbrus",
+        "de": "Elbrus",
+        "ja": "エルブルス山",
+        "en": "Mount Elbrus",
+        "hi": "एल्ब्रुस पर्वत",
+        "ca": "Elbrús"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q43512",
+      "kind": "mountain",
+      "coordinates": [
+        76.513333333,
+        35.881111111
+      ],
+      "countries": [
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8611,
+      "labels": {
+        "zh-CN": "喬戈里峰",
+        "es": "K2",
+        "bn": "কে২",
+        "ar": "جبل كي 2",
+        "pt": "K2",
+        "ru": "Чогори",
+        "ko": "K2",
+        "fr": "K2",
+        "it": "K2",
+        "id": "K2",
+        "de": "K2",
+        "ja": "K2",
+        "en": "K2",
+        "hi": "के२",
+        "ca": "K2"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q80344",
+      "kind": "mountain",
+      "coordinates": [
+        22.35,
+        40.083333333
+      ],
+      "countries": [
+        "GRC"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2918,
+      "labels": {
+        "zh-CN": "奥林匹斯山",
+        "es": "Olimpo",
+        "ar": "جبل أوليمبوس",
+        "pt": "Monte Olimpo",
+        "ru": "Олимп",
+        "ko": "올림포스산",
+        "fr": "mont Olympe",
+        "it": "Olimpo",
+        "id": "Gunung Olimpus",
+        "de": "Berg Olymp",
+        "ja": "オリンポス山",
+        "en": "Mount Olympus",
+        "ca": "Olimp",
+        "bn": "অলিম্পাস পর্বত",
+        "hi": "माउंट ओलिंपस"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q15069452",
+          "Q158454",
+          "Q46169",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q725591",
+      "kind": "mountain",
+      "coordinates": [
+        47.83674,
+        41.23429
+      ],
+      "countries": [
+        "AZE",
+        "RUS"
+      ],
+      "continents": [
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 4466,
+      "labels": {
+        "pt": "Bazarduzu Dagi",
+        "ru": "Базардюзю",
+        "fr": "Bazardüzü",
+        "es": "Monte Bazardüzü",
+        "en": "Mount Bazardüzü",
+        "de": "Bazardüzü",
+        "ja": "バザルデュジ山",
+        "it": "Bazardüzü Dağı",
+        "ca": "Bazardüzü",
+        "id": "Gunung Bazardüzü",
+        "zh-CN": "巴扎尔迪聚山",
+        "ar": "جبل بازاردوزو",
+        "ko": "바자르뒤쥐산",
+        "hi": "माउंट बाज़ारद्यीज़ी",
+        "bn": "বাজার্দুজু পর্বত"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q82019",
+      "kind": "mountain",
+      "coordinates": [
+        88.147353055,
+        27.703003055
+      ],
+      "countries": [
+        "IND",
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8586,
+      "labels": {
+        "zh-CN": "干城章嘉峰",
+        "es": "Kanchenjunga",
+        "bn": "কাঞ্চনজঙ্ঘা",
+        "ar": "كانغشينجونغا",
+        "pt": "Kanchenjunga",
+        "ru": "Канченджанга",
+        "fr": "Kangchenjunga",
+        "ko": "칸첸중가",
+        "it": "Kangchenjunga",
+        "de": "Kangchendzönga",
+        "id": "Kangchenjunga",
+        "ja": "カンチェンジュンガ",
+        "en": "Kanchenjunga",
+        "hi": "कंचनजंघा",
+        "ca": "Kanchenjunga"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1595289",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q83497",
+      "kind": "mountain",
+      "coordinates": [
+        -103.459166666,
+        43.878888888
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 1745,
+      "labels": {
+        "zh-CN": "拉什莫尔山",
+        "es": "Monte Rushmore",
+        "bn": "মাউন্ট রাশমোর",
+        "ar": "جبل راشمور",
+        "pt": "Monte Rushmore",
+        "ru": "Гора Рашмор",
+        "fr": "mont Rushmore",
+        "ko": "러시모어산",
+        "it": "Monte Rushmore",
+        "id": "Gunung Rushmore",
+        "de": "Mount Rushmore",
+        "ja": "ラシュモア山",
+        "en": "Mount Rushmore",
+        "hi": "माउंट रशमोर",
+        "ca": "Mont Rushmore"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1374",
+      "kind": "mountain",
+      "coordinates": [
+        7.658611111,
+        45.976388888
+      ],
+      "countries": [
+        "CHE",
+        "ITA"
+      ],
+      "continents": [
+        "africa",
+        "europe"
+      ],
+      "elevation_m": 4478,
+      "labels": {
+        "it": "Cervino",
+        "ru": "Маттерхорн",
+        "en": "Matterhorn",
+        "de": "Matterhorn",
+        "fr": "Cervin",
+        "ar": "ماترهورن",
+        "ca": "Cerví",
+        "es": "Cervino",
+        "id": "Matterhorn",
+        "ja": "マッターホルン",
+        "ko": "마터호른산",
+        "pt": "Matterhorn",
+        "zh-CN": "马特峰",
+        "bn": "ম্যাটারহর্ন"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q172070",
+      "kind": "mountain",
+      "coordinates": [
+        37.2,
+        -0.1
+      ],
+      "countries": [
+        "KEN"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 5199,
+      "labels": {
+        "ko": "케냐산",
+        "fr": "mont Kenya",
+        "es": "Monte Kenia",
+        "it": "Monte Kenya",
+        "id": "Gunung Kenya",
+        "de": "Mount-Kenya-Massiv",
+        "ja": "ケニア山",
+        "pt": "Monte Quénia",
+        "ru": "Кения",
+        "en": "Mount Kenya",
+        "ca": "Mont Kenya",
+        "zh-CN": "肯尼亚山",
+        "ar": "جبل كينيا",
+        "bn": "কেনিয়া পর্বত",
+        "hi": "माउंट केन्या"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q14545628",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q130321",
+      "kind": "mountain",
+      "coordinates": [
+        24.327222222,
+        40.158333333
+      ],
+      "countries": [
+        "GRC"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2033,
+      "labels": {
+        "es": "Monte Athos",
+        "ar": "جبل آثوس",
+        "pt": "Monte Atos",
+        "ru": "Афон",
+        "ko": "아토스산",
+        "fr": "mont Athos",
+        "it": "monte Athos",
+        "de": "Athos",
+        "ja": "アトス山",
+        "en": "Mount Athos",
+        "ca": "Atos",
+        "zh-CN": "阿索斯山",
+        "id": "Gunung Athos",
+        "hi": "अथोस पर्वत"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q138030791",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q377485",
+      "kind": "mountain",
+      "coordinates": [
+        33.9752,
+        28.5384
+      ],
+      "countries": [
+        "EGY"
+      ],
+      "continents": [
+        "africa",
+        "asia"
+      ],
+      "elevation_m": 2287,
+      "labels": {
+        "ar": "طور سيناء",
+        "bn": "সিনাই পর্বত",
+        "ca": "mont Sinaí",
+        "de": "Sinai",
+        "en": "Mount Sinai",
+        "es": "monte Sinaí",
+        "fr": "mont Sinaï",
+        "hi": "माउण्ट सिनाई",
+        "id": "Gunung Sinai",
+        "it": "Monte Sinai",
+        "ja": "シナイ山",
+        "pt": "Monte Sinai",
+        "ru": "Синай",
+        "zh-CN": "西奈山",
+        "ko": "시나이산"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q104674",
+      "kind": "mountain",
+      "coordinates": [
+        -5.003675,
+        56.796891
+      ],
+      "countries": [
+        "GBR"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1345,
+      "labels": {
+        "fr": "Ben Nevis",
+        "es": "Ben Nevis",
+        "it": "Ben Nevis",
+        "de": "Ben Nevis",
+        "ja": "ベン・ネヴィス山",
+        "en": "Ben Nevis",
+        "ar": "جبل بن نيفيس",
+        "pt": "Ben Nevis",
+        "ru": "Бен-Невис",
+        "ca": "Ben Nevis",
+        "zh-CN": "本尼维斯山",
+        "ko": "벤네비스산",
+        "id": "Ben Nevis"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q120306",
+      "kind": "mountain",
+      "coordinates": [
+        -140.405277777,
+        60.567222222
+      ],
+      "countries": [
+        "CAN"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 5959,
+      "labels": {
+        "de": "Mount Logan",
+        "bn": "লোগান পর্বত",
+        "ca": "Mont Logan",
+        "en": "Mount Logan",
+        "fr": "mont Logan",
+        "ru": "Логан",
+        "es": "Monte Logan",
+        "id": "Gunung Logan",
+        "it": "Monte Logan",
+        "ja": "ローガン山",
+        "ko": "로건산",
+        "pt": "Maciço Logan",
+        "zh-CN": "洛根山",
+        "ar": "جبل لوغان"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q3375",
+      "kind": "mountain",
+      "coordinates": [
+        10.986314,
+        47.421217
+      ],
+      "countries": [
+        "AUT",
+        "DEU"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2962,
+      "labels": {
+        "de": "Zugspitze",
+        "fr": "Zugspitze",
+        "en": "Zugspitze",
+        "it": "Zugspitze",
+        "ca": "Zugspitze",
+        "es": "Zugspitze",
+        "id": "Zugspitze",
+        "ja": "ツークシュピッツェ",
+        "ko": "추크슈피체산",
+        "pt": "Zugspitze",
+        "ru": "Цугшпитце",
+        "zh-CN": "楚格峰",
+        "ar": "قمة تسوغشبيتسه"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q5059",
+      "kind": "mountain",
+      "coordinates": [
+        170.141944444,
+        -43.595
+      ],
+      "countries": [
+        "NZL"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 3724,
+      "labels": {
+        "en": "Aoraki / Mount Cook",
+        "de": "Mount Cook",
+        "ca": "mont Cook",
+        "es": "monte Cook",
+        "fr": "Aoraki/Mont Cook",
+        "it": "Aoraki/Monte Cook",
+        "ja": "クック山",
+        "ko": "쿡산",
+        "pt": "Monte Cook",
+        "ru": "гора Кука",
+        "zh-CN": "庫克山",
+        "hi": "आओराकी / कुक पर्वत",
+        "bn": "আওরাকি / কুক পর্বত",
+        "ar": "اوراكي - جبل كوك",
+        "id": "Aoraki/Gunung Cook"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q13222531",
+          "Q54050",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q203942",
+      "kind": "mountain",
+      "coordinates": [
+        8.3,
+        61.633333333
+      ],
+      "countries": [
+        "NOR"
+      ],
+      "continents": [
+        "antarctica",
+        "europe"
+      ],
+      "elevation_m": 2469,
+      "labels": {
+        "ko": "갈회피겐산",
+        "fr": "Galdhøpiggen",
+        "es": "Galdhøpiggen",
+        "it": "Galdhøpiggen",
+        "de": "Galdhøpiggen",
+        "ja": "ガルフピッゲン",
+        "pt": "Galdhøpiggen",
+        "ru": "Галлхёпигген",
+        "ca": "Galdhøpiggenn",
+        "zh-CN": "格利特峰",
+        "id": "Galdhøpiggen",
+        "en": "Galdhøpiggen",
+        "ar": "غالدهوبيغن",
+        "bn": "গলধোপিগেন",
+        "hi": "गालहोपिग्गन"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q277441",
+      "kind": "mountain",
+      "coordinates": [
+        145.0295844,
+        -5.7799986
+      ],
+      "countries": [
+        "PNG"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 4509,
+      "labels": {
+        "ca": "Mont Wilhelm",
+        "de": "Mount Wilhelm",
+        "en": "Mount Wilhelm",
+        "es": "Monte Wilhelm",
+        "fr": "mont Wilhelm",
+        "it": "Monte Wilhelm",
+        "ja": "ウィルヘルム山",
+        "ko": "윌헬름산",
+        "pt": "Monte Wilhelm",
+        "ru": "Вильгельм",
+        "zh-CN": "威廉峰",
+        "id": "Gunung Wilhelm",
+        "ar": "جبل ويلهيلم"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q229107",
+      "kind": "mountain",
+      "coordinates": [
+        81.312777777,
+        31.066944444
+      ],
+      "countries": [
+        "CHN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 6638,
+      "labels": {
+        "ko": "카일라스산",
+        "fr": "mont Kailash",
+        "es": "Kailash",
+        "it": "Kailash",
+        "de": "Kailash",
+        "ja": "カイラス山",
+        "bn": "কৈলাস পর্বত",
+        "hi": "कैलास पर्वत",
+        "pt": "Monte Kailash",
+        "ru": "Кайлас",
+        "en": "Mount Kailash",
+        "ca": "Kailash",
+        "zh-CN": "冈仁波齐峰",
+        "ar": "جبل كايلاش",
+        "id": "Gunung Kailash"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1595289",
+          "Q27963400",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q130736",
+      "kind": "mountain",
+      "coordinates": [
+        74.59,
+        35.239166666
+      ],
+      "countries": [
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8126,
+      "labels": {
+        "es": "Nanga Parbat",
+        "bn": "নাঙ্গা পর্বত",
+        "ar": "نانكا بربت",
+        "pt": "Nanga Parbat",
+        "ru": "Нангапарбат",
+        "ko": "낭가파르바트",
+        "fr": "Nanga Parbat",
+        "it": "Nanga Parbat",
+        "id": "Nanga Parbat",
+        "de": "Nanga Parbat",
+        "ja": "ナンガ・パルバット",
+        "en": "Nanga Parbat",
+        "hi": "नंगा परबत",
+        "ca": "Nanga Parbat",
+        "zh-CN": "南迦帕尔巴特峰"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q207326",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q165440",
+      "kind": "mountain",
+      "coordinates": [
+        83.49,
+        28.696666666
+      ],
+      "countries": [
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8167,
+      "labels": {
+        "es": "Dhaulagiri",
+        "bn": "ধবলগিরি",
+        "pt": "Dhaulagiri",
+        "ru": "Дхаулагири",
+        "ko": "다울라기리",
+        "fr": "Dhaulagiri",
+        "it": "Dhaulagiri",
+        "de": "Dhaulagiri",
+        "ja": "ダウラギリ",
+        "hi": "धौलागिरी",
+        "en": "Dhaulagiri",
+        "ca": "Dhaulagiri",
+        "zh-CN": "道拉吉里峰",
+        "ar": "دهاولاغيري",
+        "id": "Dhaulagiri"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q169986",
+      "kind": "mountain",
+      "coordinates": [
+        87.088611111,
+        27.889166666
+      ],
+      "countries": [
+        "CHN",
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8485,
+      "labels": {
+        "es": "Makalu",
+        "bn": "মাকালু",
+        "pt": "Makalu",
+        "ru": "Макалу",
+        "ko": "마칼루",
+        "fr": "Makalu",
+        "it": "Makalu",
+        "de": "Makalu",
+        "ja": "マカルー",
+        "en": "Makalu",
+        "ca": "Makalu",
+        "zh-CN": "马卡鲁峰",
+        "hi": "मकालू",
+        "ar": "جبل ماكالو",
+        "id": "Makalu"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q213360",
+      "kind": "mountain",
+      "coordinates": [
+        18.41352,
+        -33.96216
+      ],
+      "countries": [
+        "ZAF"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 1085,
+      "labels": {
+        "fr": "montagne de la Table",
+        "ko": "테이블산",
+        "es": "Montaña de la Mesa",
+        "it": "Montagna della Tavola",
+        "id": "Gunung Meja",
+        "de": "Tafelberg",
+        "ja": "テーブル・マウンテン",
+        "en": "Table Mountain",
+        "ar": "جبل تيبل",
+        "pt": "Tábua do Cabo",
+        "ru": "Столовая гора",
+        "ca": "Muntanya de la Taula",
+        "zh-CN": "桌山",
+        "hi": "टेबल माउंटन",
+        "bn": "টেবিল পর্বত"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q570116",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q233836",
+      "kind": "mountain",
+      "coordinates": [
+        -68.541388888,
+        -27.109722222
+      ],
+      "countries": [
+        "ARG",
+        "CHL"
+      ],
+      "continents": [
+        "america",
+        "oceania"
+      ],
+      "elevation_m": 6893,
+      "labels": {
+        "fr": "Nevado Ojos del Salado",
+        "ko": "오호스델살라도산",
+        "es": "Nevado Ojos del Salado",
+        "it": "Ojos del Salado",
+        "de": "Nevado Ojos del Salado",
+        "bn": "ওহোস দেল সালাদো পর্বত",
+        "pt": "Ojos del Salado",
+        "ru": "Охос-дель-Саладо",
+        "en": "Ojos del Salado",
+        "ca": "Ojos del Salado",
+        "zh-CN": "奥霍斯-德尔萨拉多山",
+        "id": "Ojos del Salado",
+        "ja": "オホス・デル・サラード",
+        "ar": "أوخوس ديل سالادو",
+        "hi": "ओजोसडेल सेलेडो"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q105261",
+      "kind": "mountain",
+      "coordinates": [
+        22.6167,
+        38.533
+      ],
+      "countries": [
+        "GRC"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2455,
+      "labels": {
+        "ko": "파르나소스산",
+        "fr": "mont Parnasse",
+        "es": "Parnaso",
+        "it": "Parnaso",
+        "de": "Parnass",
+        "ja": "パルナッソス山",
+        "en": "Mount Parnassus",
+        "ar": "جبل بارناسوس",
+        "pt": "Monte Parnaso",
+        "ru": "Парнас",
+        "ca": "Parnàs",
+        "zh-CN": "帕纳索斯山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1024",
+      "kind": "mountain",
+      "coordinates": [
+        13.836667,
+        46.378333
+      ],
+      "countries": [
+        "SVN"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2864,
+      "labels": {
+        "fr": "Triglav",
+        "en": "Triglav",
+        "it": "Monte Tricorno",
+        "de": "Triglav",
+        "es": "Triglav",
+        "ja": "トリグラウ山",
+        "ko": "트리글라우",
+        "pt": "Monte Triglav",
+        "ru": "Триглав",
+        "zh-CN": "特里格拉夫峰",
+        "ca": "Triglav",
+        "ar": "تريغلاف"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q238147",
+      "kind": "mountain",
+      "coordinates": [
+        -97.27,
+        19.03
+      ],
+      "countries": [
+        "MEX"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 5636,
+      "labels": {
+        "fr": "pic d'Orizaba",
+        "ko": "시틀랄테페틀산",
+        "es": "Citlaltépetl",
+        "it": "Pico de Orizaba",
+        "de": "Citlaltépetl",
+        "bn": "ওরিসাবা পর্বত",
+        "ja": "オリサバ山",
+        "pt": "Pico de Orizaba",
+        "ru": "Пик Орисаба",
+        "en": "Citlaltepetl",
+        "ca": "Pic d'Orizaba",
+        "zh-CN": "奧里薩巴山",
+        "ar": "بيكو دي أوريزابا",
+        "id": "Pico de Orizaba"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q211529",
+      "kind": "mountain",
+      "coordinates": [
+        80.175,
+        42.210833333
+      ],
+      "countries": [
+        "CHN",
+        "KAZ",
+        "KGZ"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 7010,
+      "labels": {
+        "ko": "한텡그리봉",
+        "fr": "Khan Tengri",
+        "es": "Khan Tengri",
+        "it": "Khan Tengri",
+        "de": "Khan Tengri",
+        "ja": "ハン・テングリ",
+        "hi": "ख़ान तेन्ग्री",
+        "pt": "Khan Tengri",
+        "ru": "Хан-Тенгри",
+        "en": "Khan Tengri",
+        "zh-CN": "汗腾格里峰",
+        "ca": "Khan Tengri",
+        "ar": "خان تغري",
+        "id": "Khan Tengri"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q3388",
+      "kind": "mountain",
+      "coordinates": [
+        12.69385,
+        47.074528
+      ],
+      "countries": [
+        "AUT"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 3798,
+      "labels": {
+        "de": "Großglockner",
+        "fr": "Grossglockner",
+        "en": "Grossglockner",
+        "it": "Großglockner",
+        "ca": "Großglockner",
+        "es": "Grossglockner",
+        "ja": "グロースグロックナー山",
+        "pt": "Grossglockner",
+        "ru": "Гросглокнер",
+        "zh-CN": "大格洛克納山",
+        "ar": "غروسغلوكنر",
+        "ko": "그로스글로크너산",
+        "id": "Grossglockner"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q235539",
+      "kind": "mountain",
+      "coordinates": [
+        -118.291944444,
+        36.578611111
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 4421,
+      "labels": {
+        "fr": "mont Whitney",
+        "ko": "휘트니산",
+        "es": "Monte Whitney",
+        "it": "Monte Whitney",
+        "de": "Mount Whitney",
+        "ja": "ホイットニー山",
+        "en": "Mount Whitney",
+        "ar": "جبل ويتني",
+        "pt": "Monte Whitney",
+        "ru": "Уитни",
+        "ca": "mont Whitney",
+        "zh-CN": "惠特尼峰"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q4425",
+      "kind": "mountain",
+      "coordinates": [
+        8.005286822,
+        46.577607529
+      ],
+      "countries": [
+        "CHE"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 3967,
+      "labels": {
+        "en": "Eiger",
+        "de": "Eiger",
+        "ko": "아이거산",
+        "zh-CN": "艾格峰",
+        "ca": "Eiger",
+        "es": "Eiger",
+        "fr": "Eiger",
+        "it": "Eiger",
+        "ja": "アイガー",
+        "pt": "Eiger",
+        "ru": "Эйгер",
+        "ar": "إيغير",
+        "id": "Eiger"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q503433",
+      "kind": "mountain",
+      "coordinates": [
+        -7.916111111,
+        31.061944444
+      ],
+      "countries": [
+        "MAR"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 4167,
+      "labels": {
+        "fr": "djebel Toubkal",
+        "es": "Monte Tubqal",
+        "it": "Jbel Toubkal",
+        "de": "Tubqal",
+        "ja": "ツブカル山",
+        "ar": "توبقال",
+        "pt": "Jbel Toubkal",
+        "ru": "Джебель-Тубкаль",
+        "en": "Jbel Toubkal",
+        "ca": "Toubkal",
+        "zh-CN": "图卜卡勒峰",
+        "id": "Jbel Toubkal",
+        "ko": "투브칼산",
+        "hi": "तूबक़ाल पर्वत"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q208081",
+      "kind": "mountain",
+      "coordinates": [
+        0.656686111,
+        42.630991666
+      ],
+      "countries": [
+        "ESP"
+      ],
+      "continents": [
+        "africa",
+        "europe"
+      ],
+      "elevation_m": 3404,
+      "labels": {
+        "fr": "Aneto",
+        "es": "Pico Aneto",
+        "it": "Picco d'Aneto",
+        "de": "Aneto",
+        "ja": "アネト山",
+        "pt": "Monte Aneto",
+        "ru": "Ането",
+        "en": "Aneto",
+        "ca": "pic d'Aneto",
+        "zh-CN": "阿内托峰",
+        "ar": "أنيتو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q111177881",
+          "Q1258187",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q209528",
+      "kind": "mountain",
+      "coordinates": [
+        -3.311388888,
+        37.053333333
+      ],
+      "countries": [
+        "ESP"
+      ],
+      "continents": [
+        "africa",
+        "europe"
+      ],
+      "elevation_m": 3479,
+      "labels": {
+        "fr": "Mulhacén",
+        "es": "Mulhacén",
+        "it": "Mulhacén",
+        "de": "Mulhacén",
+        "ja": "ムラセン山",
+        "en": "Mulhacén",
+        "pt": "Mulhacén",
+        "ru": "Муласен",
+        "ca": "Mulhacén",
+        "zh-CN": "穆拉森山",
+        "ar": "جبل مولاي الحسن",
+        "ko": "물라센산"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q111177881",
+          "Q1258187",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q168702",
+      "kind": "mountain",
+      "coordinates": [
+        86.933333333,
+        27.961666666
+      ],
+      "countries": [
+        "CHN",
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8516,
+      "labels": {
+        "es": "Lhotse",
+        "bn": "লোৎসে",
+        "pt": "Lhotse",
+        "ru": "Лхоцзе",
+        "ko": "로체산",
+        "fr": "Lhotse",
+        "it": "Lhotse",
+        "de": "Lhotse",
+        "id": "Lhotse",
+        "ja": "ローツェ",
+        "en": "Lhotse",
+        "ca": "Lhotse",
+        "zh-CN": "洛子峰",
+        "hi": "ल्होत्से",
+        "ar": "جبل وستو"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q170089",
+      "kind": "mountain",
+      "coordinates": [
+        86.660833333,
+        28.094166666
+      ],
+      "countries": [
+        "CHN",
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8188,
+      "labels": {
+        "fr": "Cho Oyu",
+        "ko": "초오유",
+        "es": "Cho Oyu",
+        "it": "Cho Oyu",
+        "de": "Cho Oyu",
+        "bn": "চো ওইয়ু",
+        "ja": "チョ・オユー",
+        "pt": "Cho Oyu",
+        "ru": "Чо-Ойю",
+        "en": "Cho Oyu",
+        "ca": "Cho Oyu",
+        "zh-CN": "卓奥友峰",
+        "ar": "تشو أويو",
+        "hi": "चो गर्म पानी",
+        "id": "Cho Oyu"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q170070",
+      "kind": "mountain",
+      "coordinates": [
+        84.559722222,
+        28.55
+      ],
+      "countries": [
+        "NPL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8163,
+      "labels": {
+        "ko": "마나슬루",
+        "fr": "Manaslu",
+        "es": "Manaslu",
+        "it": "Manaslu",
+        "de": "Manaslu",
+        "id": "Manaslu",
+        "ja": "マナスル",
+        "bn": "মানাসলু",
+        "ar": "ماناسلو",
+        "pt": "Manaslu",
+        "ru": "Манаслу",
+        "en": "Manaslu",
+        "ca": "Manāslu",
+        "zh-CN": "马纳斯卢峰",
+        "hi": "manaslu"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q105124",
+      "kind": "mountain",
+      "coordinates": [
+        85.779722222,
+        28.352222222
+      ],
+      "countries": [
+        "CHN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8027,
+      "labels": {
+        "fr": "Shishapangma",
+        "ko": "시샤팡마",
+        "es": "Shisha Pangma",
+        "it": "Shisha Pangma",
+        "de": "Shishapangma",
+        "ja": "シシャパンマ",
+        "bn": "শিশাপাংমা",
+        "pt": "Shishapangma",
+        "ru": "Шиша Пангма",
+        "en": "Shishapangma",
+        "ca": "Shisha Pangma",
+        "zh-CN": "希夏邦马峰",
+        "hi": "शीशापनगम",
+        "ar": "شيشابانغما",
+        "id": "Shishapangma"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q4777",
+      "kind": "mountain",
+      "coordinates": [
+        -60.764166666,
+        5.141944444
+      ],
+      "countries": [
+        "BRA",
+        "GUY",
+        "VEN"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 2810,
+      "labels": {
+        "zh-CN": "罗赖马山",
+        "fr": "mont Roraima",
+        "es": "Monte Roraima",
+        "it": "Roraima",
+        "de": "Roraima-Tepui",
+        "id": "Gunung Roraima",
+        "ja": "ロライマ山",
+        "hi": "रोराइमा पर्वत",
+        "pt": "Monte Roraima",
+        "ru": "Рорайма",
+        "en": "Mount Roraima",
+        "ca": "Mont Roraima",
+        "ko": "호라이마산",
+        "ar": "جبل رورايما"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q828329",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q617511",
+      "kind": "mountain",
+      "coordinates": [
+        15.740277777,
+        50.736111111
+      ],
+      "countries": [
+        "CZE",
+        "POL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 1603,
+      "labels": {
+        "es": "Sněžka",
+        "ca": "Sněžka",
+        "de": "Schneekoppe",
+        "en": "Sněžka",
+        "fr": "Sniejka",
+        "it": "Sněžka",
+        "pt": "Sněžka",
+        "ru": "Снежка",
+        "ar": "سنيجكا",
+        "zh-CN": "斯涅日卡山",
+        "ja": "スニェシュカ山",
+        "ko": "스네슈카산",
+        "id": "Sněžka"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q111177881",
+          "Q12059057",
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q210722",
+      "kind": "mountain",
+      "coordinates": [
+        -43.156666666,
+        -22.949444444
+      ],
+      "countries": [
+        "BRA"
+      ],
+      "continents": [
+        "america"
+      ],
+      "elevation_m": 395,
+      "labels": {
+        "fr": "mont du Pain de Sucre",
+        "es": "Pan de Azúcar",
+        "it": "Pan di Zucchero",
+        "id": "Sugarloaf Mountain",
+        "de": "Zuckerhut",
+        "ja": "ポン・ヂ・アスーカル",
+        "pt": "Pão de Açúcar",
+        "ru": "Пан-ди-Асукар",
+        "en": "Sugarloaf Mountain",
+        "ca": "Pão de Açúcar",
+        "ko": "팡지아수카르산",
+        "zh-CN": "塔糖山",
+        "ar": "باو دي أسوكار"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q107679",
+          "Q1139493",
+          "Q386426",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q672936",
+      "kind": "mountain",
+      "coordinates": [
+        20.088055555,
+        49.179444444
+      ],
+      "countries": [
+        "POL",
+        "SVK"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2501,
+      "labels": {
+        "fr": "Rysy",
+        "es": "Rysy",
+        "it": "Rysy",
+        "de": "Rysy",
+        "pt": "Rysy",
+        "ru": "Рысы",
+        "en": "Rysy",
+        "ja": "リスィ山",
+        "ca": "Rysy",
+        "ko": "리시산",
+        "zh-CN": "萊希山",
+        "ar": "ريسي"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1200957",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q15312",
+      "kind": "mountain",
+      "coordinates": [
+        7.9625,
+        46.536944444
+      ],
+      "countries": [
+        "CHE"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 4158,
+      "labels": {
+        "de": "Jungfrau",
+        "fr": "Jungfrau",
+        "ru": "Юнгфрау",
+        "en": "Jungfrau",
+        "ar": "يونغفراو",
+        "ca": "Jungfrau",
+        "es": "Jungfrau",
+        "it": "Jungfrau",
+        "ja": "ユングフラウ",
+        "ko": "융프라우산",
+        "pt": "Jungfrau",
+        "zh-CN": "少女峰",
+        "id": "Jungfrau"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q214011",
+      "kind": "mountain",
+      "coordinates": [
+        18.55,
+        67.883333333
+      ],
+      "countries": [
+        "SWE"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 2097,
+      "labels": {
+        "fr": "Kebnekaise",
+        "es": "Kebnekaise",
+        "it": "Kebnekaise",
+        "de": "Kebnekaise",
+        "ja": "ケブネカイセ",
+        "pt": "Kebnekaise",
+        "ru": "Кебнекайсе",
+        "en": "Kebnekaise",
+        "zh-CN": "凱布訥山",
+        "ko": "케브네카이세산",
+        "ca": "Kebnekaise",
+        "ar": "كيبنيكايس"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1061151",
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q217457",
+      "kind": "mountain",
+      "coordinates": [
+        43.111666666,
+        42.999444444
+      ],
+      "countries": [
+        "GEO",
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 5193,
+      "labels": {
+        "fr": "Chkhara",
+        "ko": "시하라산",
+        "es": "Shjara",
+        "it": "Shkhara",
+        "de": "Schchara",
+        "pt": "Chkhara",
+        "ru": "Шхара",
+        "en": "Shkhara",
+        "ca": "Xkhara",
+        "zh-CN": "什哈拉山",
+        "ja": "シュハラ山",
+        "ar": "جبل شخارا",
+        "id": "Shkhara"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q724367",
+      "kind": "mountain",
+      "coordinates": [
+        86.589722222,
+        49.806944444
+      ],
+      "countries": [
+        "KAZ",
+        "RUS"
+      ],
+      "continents": [
+        "america",
+        "asia",
+        "europe"
+      ],
+      "elevation_m": 4506,
+      "labels": {
+        "pt": "Monte Belukha",
+        "ko": "벨루하산",
+        "ru": "Белуха",
+        "fr": "mont Béloukha",
+        "es": "Beluja",
+        "en": "Belukha Mountain",
+        "ca": "Belukha",
+        "it": "Belucha",
+        "de": "Belucha",
+        "ja": "ベルーハ山",
+        "ar": "جبل بيلوكا",
+        "zh-CN": "別盧哈山",
+        "hi": "बेलुखा पर्वत",
+        "id": "Gunung Belukha"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1959314",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q209064",
+      "kind": "mountain",
+      "coordinates": [
+        5.283333333,
+        44.166666666
+      ],
+      "countries": [
+        "FRA"
+      ],
+      "continents": [
+        "africa",
+        "antarctica",
+        "europe",
+        "oceania"
+      ],
+      "elevation_m": 1910,
+      "labels": {
+        "fr": "Mont Ventoux",
+        "ko": "방투산",
+        "es": "Mont Ventoux",
+        "it": "Mont Ventoux",
+        "de": "Mont Ventoux",
+        "id": "Pegunungan Ventoux",
+        "ja": "モン・ヴァントゥ",
+        "en": "Mont Ventoux",
+        "pt": "Monte Ventor",
+        "ru": "Мон-Ванту",
+        "ca": "Ventor",
+        "zh-CN": "Ventoux山"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q110544132",
+          "Q111177881",
+          "Q12059057",
+          "Q3270079",
+          "Q3393392",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q275435",
+      "kind": "mountain",
+      "coordinates": [
+        38.3725,
+        13.236666666
+      ],
+      "countries": [
+        "ETH"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 4533,
+      "labels": {
+        "fr": "Ras Dashan",
+        "es": "Monte Ras Dejen",
+        "it": "Ras Dascian",
+        "id": "Ras Dashen",
+        "de": "Ras Daschän",
+        "pt": "Ras Dashan",
+        "ru": "Рас-Дашэн",
+        "en": "Ras Dashen",
+        "ca": "Ras Dashan",
+        "zh-CN": "达尚峰",
+        "ja": "ラス・ダシャン山",
+        "ko": "라스다샨산",
+        "ar": "رأس داشن"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q499019",
+      "kind": "mountain",
+      "coordinates": [
+        31.8276,
+        18.5368
+      ],
+      "countries": [
+        "SDN"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 287,
+      "labels": {
+        "fr": "Gebel Barkal",
+        "es": "Gebel Barkal",
+        "it": "Gebel Barkal",
+        "de": "Barkal",
+        "ja": "ゲベル・バルカル",
+        "en": "Jebel Barkal",
+        "ar": "جبل البركل",
+        "pt": "Gebel Barkal",
+        "ru": "Джебель-Баркал",
+        "ca": "Gebel Barkal",
+        "zh-CN": "博爾戈爾山",
+        "id": "Jebel Barkal",
+        "ko": "게벨 바르칼",
+        "bn": "জেবেল বরকল"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q511686",
+          "Q839954",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q746787",
+      "kind": "mountain",
+      "coordinates": [
+        35.913333333,
+        -2.761666666
+      ],
+      "countries": [
+        "TZA"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "elevation_m": 2960,
+      "labels": {
+        "pt": "Ol Doinyo Lengai",
+        "ru": "Олдоиньо-Ленгаи",
+        "fr": "Ol Doinyo Lengaï",
+        "en": "Ol Doinyo Lengai",
+        "es": "Ol Doinyo Lengai",
+        "it": "Ol Doinyo Lengai",
+        "de": "Ol Doinyo Lengai",
+        "ja": "オルドイニョ・レンガイ",
+        "ar": "جبل أولدوينيو لنغاي",
+        "zh-CN": "倫蓋火山",
+        "ko": "올도이뇨 렝가이 화산",
+        "id": "Ol Doinyo Lengai"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1045888",
+      "kind": "mountain",
+      "coordinates": [
+        137.183333333,
+        -4.083333333
+      ],
+      "countries": [
+        "IDN"
+      ],
+      "continents": [
+        "asia",
+        "oceania"
+      ],
+      "elevation_m": 4884,
+      "labels": {
+        "en": "Puncak Jaya",
+        "zh-CN": "查亞峰",
+        "ca": "Puncak Jaya",
+        "it": "Puncak Jaya",
+        "ar": "بونتشاك جايا",
+        "id": "Puncak Jaya",
+        "es": "Jaya",
+        "ru": "Пунчак-Джая",
+        "pt": "Pirâmide Carstensz",
+        "bn": "পুঞ্চাক জায়া",
+        "fr": "Puncak Jaya",
+        "de": "Carstensz-Pyramide",
+        "hi": "पुंकाक जय",
+        "ja": "プンチャック・ジャヤ",
+        "ko": "푼착자야산"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q180996",
+      "kind": "mountain",
+      "coordinates": [
+        76.568055555,
+        35.810555555
+      ],
+      "countries": [
+        "CHN",
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8051,
+      "labels": {
+        "fr": "Broad Peak",
+        "ko": "브로드피크",
+        "es": "Broad Peak",
+        "it": "Broad Peak",
+        "de": "Broad Peak",
+        "ja": "ブロード・ピーク",
+        "bn": "ব্রড পিক",
+        "pt": "Broad Peak",
+        "ru": "Броуд-Пик",
+        "en": "Broad Peak",
+        "ca": "Broad Peak",
+        "zh-CN": "布洛阿特峰",
+        "hi": "चौडी चोटी",
+        "ar": "برود بيك",
+        "id": "Puncak Broad"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q187138",
+      "kind": "mountain",
+      "coordinates": [
+        76.696388888,
+        35.724444444
+      ],
+      "countries": [
+        "CHN",
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8080,
+      "labels": {
+        "fr": "Gasherbrum I",
+        "ko": "가셔브룸 1봉",
+        "es": "Gasherbrum I",
+        "it": "Gasherbrum I",
+        "de": "Hidden Peak",
+        "ja": "ガッシャーブルムI峰",
+        "bn": "গাশারব্রুম ১",
+        "pt": "Gasherbrum I",
+        "ru": "Гашербрум I",
+        "en": "Gasherbrum",
+        "ca": "Gasherbrum I",
+        "zh-CN": "加舒尔布鲁木I峰",
+        "hi": "गशरबम मै",
+        "ar": "جبل جاشربرم-1",
+        "id": "Gasherbrum I"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q186853",
+      "kind": "mountain",
+      "coordinates": [
+        76.652777777,
+        35.7575
+      ],
+      "countries": [
+        "CHN",
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 8034,
+      "labels": {
+        "ko": "가셔브룸 2봉",
+        "fr": "Gasherbrum II",
+        "es": "Gasherbrum II",
+        "it": "Gasherbrum II",
+        "de": "Gasherbrum II",
+        "ja": "ガッシャーブルムII峰",
+        "bn": "গাশারব্রুম ২",
+        "pt": "Gasherbrum II",
+        "ru": "Гашербрум II",
+        "en": "Gasherbrum II",
+        "ca": "Gasherbrum II",
+        "zh-CN": "加舒尔布鲁木II峰",
+        "hi": "गशरब्रुम २",
+        "ar": "جبل جاشربرم-2",
+        "id": "Gasherbrum II"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q216059",
+      "kind": "mountain",
+      "coordinates": [
+        117.1,
+        36.266666666
+      ],
+      "countries": [
+        "CHN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 1545,
+      "labels": {
+        "ko": "태산",
+        "fr": "mont Tai",
+        "es": "Monte Tai",
+        "it": "Monte Tai",
+        "de": "Tai Shan",
+        "ja": "泰山",
+        "bn": "তাই পর্বত",
+        "hi": "ताई पर्वत",
+        "pt": "Monte Tai",
+        "ru": "Тайшань",
+        "en": "Mount Tai",
+        "zh-CN": "泰山",
+        "ca": "Mont Tai",
+        "id": "Gunung Tai",
+        "ar": "جبل تاي"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q6838244",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q60967",
+      "kind": "mountain",
+      "coordinates": [
+        116.558611111,
+        6.075
+      ],
+      "countries": [
+        "MYS"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 4095,
+      "labels": {
+        "zh-CN": "京那巴鲁山",
+        "fr": "mont Kinabalu",
+        "ko": "키나발루산",
+        "es": "Monte Kinabalu",
+        "it": "Monte Kinabalu",
+        "id": "Gunung Kinabalu",
+        "de": "Kinabalu",
+        "ja": "キナバル山",
+        "pt": "Monte Kinabalu",
+        "ru": "Кинабалу",
+        "en": "Mount Kinabalu",
+        "ca": "mont Kinabalu",
+        "ar": "جبل كينابالو",
+        "bn": "কিনাবালু পর্বত"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q6617741",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q1451",
+      "kind": "mountain",
+      "coordinates": [
+        120.35,
+        15.13
+      ],
+      "countries": [
+        "PHL"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 1486,
+      "labels": {
+        "en": "Pinatubo",
+        "fr": "Pinatubo",
+        "de": "Pinatubo",
+        "ar": "جبل بيناتوبو",
+        "ca": "Pinatubo",
+        "es": "Pinatubo",
+        "hi": "माउण्टपिनाटुबो",
+        "id": "Gunung Pinatubo",
+        "it": "Pinatubo",
+        "ja": "ピナトゥボ山",
+        "ko": "피나투보산",
+        "pt": "Pinatubo",
+        "ru": "Пинатубо",
+        "zh-CN": "皮纳图博火山",
+        "bn": "পিনাটুবো পর্বত"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q1491559",
+          "Q159954",
+          "Q207326",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q203568",
+      "kind": "mountain",
+      "coordinates": [
+        44.195277777,
+        40.523055555
+      ],
+      "countries": [
+        "ARM"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 4090,
+      "labels": {
+        "fr": "Aragats",
+        "es": "Aragats",
+        "it": "Aragats",
+        "de": "Aragaz",
+        "en": "Mount Aragats",
+        "ar": "آراكاتس",
+        "pt": "Aragats",
+        "ru": "Арагац",
+        "zh-CN": "阿拉加茨山",
+        "ja": "アラガツ山",
+        "ca": "Aragats",
+        "id": "Gunung Aragats",
+        "ko": "아라가츠산"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    },
+    {
+      "id": "Q205976",
+      "kind": "mountain",
+      "coordinates": [
+        35.245686,
+        31.777946
+      ],
+      "countries": [
+        "ISR"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 826,
+      "labels": {
+        "ko": "올리브산",
+        "fr": "mont des Oliviers",
+        "es": "Monte de los Olivos",
+        "it": "Monte degli Ulivi",
+        "id": "Bukit Zaitun",
+        "de": "Ölberg",
+        "ja": "オリーブ山",
+        "ar": "جبل الزيتون",
+        "pt": "Monte das Oliveiras",
+        "ru": "Елеонская гора",
+        "en": "Mount of Olives",
+        "ca": "Mont de les Oliveres",
+        "zh-CN": "橄榄山",
+        "bn": "জয়তুন পর্বত",
+        "hi": "ज़ैतून का पहाड़"
+      },
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8502",
+        "instance_of": [
+          "Q12404340",
+          "Q6984463",
+          "Q8502"
+        ],
+        "status": "validated"
+      }
+    }
+  ]
+}
