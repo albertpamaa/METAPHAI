@@ -55,7 +55,7 @@ for(const language of languages){
     }else if(pageKey==='countrySilhouette'){
       assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260917-3'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
     }else{
-      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260917-5'));assert.ok(html.includes('Wikidata (CC0)'));
+      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260919-1'));assert.ok(html.includes('Wikidata (CC0)'));
     }
     if(pageKey!=='home')assert.ok(html.includes('World Bank — World Development Indicators'));
   }

@@ -1,4 +1,5 @@
 import { COUNTRY_SILHOUETTE_I18N } from './country-silhouette-i18n.mjs';
+import { GEOGRAPHY_QUIZ_TYPES, GEO_QUIZ_GEOGRAPHY_I18N } from './geo-quiz-geography-i18n.mjs';
 const BASE_TYPES=['cityCountry','capitalCountry','countryCapital','mountainCountry','riverSource','riverPasses','riverNotPasses','riverMouth','islandCountry','border','noBorder','silhouette','wdiHigher'];
 const EXTRA_TYPES=['volcanoCountry','countryVolcano','seaCoast','seaNotCoast','countrySea','seaOcean','countryOcean','oceanCoast','oceanNotCoast'];
 const TYPES=[...BASE_TYPES,...EXTRA_TYPES];
@@ -48,6 +49,7 @@ id:{family:'Laut dan samudra',q:['{0} berada di negara mana?','Gunung berapi man
 bn:{family:'সাগর ও মহাসাগর',q:['{0} কোন দেশে অবস্থিত?','এই আগ্নেয়গিরিগুলোর কোনটি {0}-এ অবস্থিত?','এই দেশগুলোর কোনটির উপকূল {0}-এ?','এই দেশগুলোর কোনটির উপকূল {0}-এ নয়?','কোন সাগর {0}-এর উপকূল ছুঁয়েছে?','{0} কোন মহাসাগরের অংশ?','কোন মহাসাগর {0}-এর উপকূল ছুঁয়েছে?','এই দেশগুলোর কোনটির উপকূল {0}-এ?','এই দেশগুলোর কোনটির উপকূল {0}-এ নয়?'],f:['{0}, {1}-এ অবস্থিত।','{1}, {0}-এ অবস্থিত একটি আগ্নেয়গিরি।','{1}-এর উপকূল {0}-এ।','{1}-এর উপকূল {0}-এ নয়।','{0}-এর উপকূল {1} ছুঁয়েছে।','{0}, {1}-এর অংশ।','{0}-এর উপকূল {1} ছুঁয়েছে।','{1}-এর উপকূল {0}-এ।','{1}-এর উপকূল {0}-এ নয়।']}
 };
 for(const [language,extension] of Object.entries(extensions)){const copy=GEO_QUIZ_I18N[language];copy.families.maritime=extension.family;Object.assign(copy.prompts,Object.fromEntries(EXTRA_TYPES.map((type,index)=>[type,fn(extension.q[index])])));Object.assign(copy.facts,Object.fromEntries(EXTRA_TYPES.map((type,index)=>[type,fn(extension.f[index])])))}
-export const GEO_QUIZ_REQUIRED_KEYS=['title','tagline','cardMeta','play','dailyPlay','dailyMeta','training','streak','score','difficulty','all','easy','medium','hard','correct','incorrect','answer','next','completed','share','copied','another','viewData','source','howTitle','how','privacy','backGames','loadError','questionProgress','correctAnswer','scoreLine','streakLine','correctLine','viewDataLine','shareText','families','prompts','facts'];
-export const GEO_QUIZ_QUESTION_TYPES=TYPES;
+for(const [language,extension] of Object.entries(GEO_QUIZ_GEOGRAPHY_I18N)){const copy=GEO_QUIZ_I18N[language];Object.assign(copy.prompts,extension.prompts);Object.assign(copy.facts,extension.facts);copy.geographyMetrics=extension.metrics;copy.geographyLink=extension.cta}
+export const GEO_QUIZ_REQUIRED_KEYS=['title','tagline','cardMeta','play','dailyPlay','dailyMeta','training','streak','score','difficulty','all','easy','medium','hard','correct','incorrect','answer','next','completed','share','copied','another','viewData','source','howTitle','how','privacy','backGames','loadError','questionProgress','correctAnswer','scoreLine','streakLine','correctLine','viewDataLine','shareText','families','prompts','facts','geographyMetrics','geographyLink'];
+export const GEO_QUIZ_QUESTION_TYPES=[...TYPES,...GEOGRAPHY_QUIZ_TYPES];
 export const geoQuizText=language=>GEO_QUIZ_I18N[language]||GEO_QUIZ_I18N.en;

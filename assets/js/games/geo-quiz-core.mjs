@@ -1,5 +1,6 @@
 import { seededRandom, shuffled } from './game-daily.mjs';
 import { ELIGIBLE_COUNTRIES, ELIGIBLE_IDS, framedFeature } from './country-silhouette-core.mjs';
+import { buildGeographyCandidates } from './geo-quiz-geography.mjs';
 
 export const GEO_QUIZ_ID='geoQuiz',GEO_QUIZ_VERSION=2,FAMILIES=['visual','human','physical','maritime','political','data'];
 const sourceOf=item=>item.source||'natural-earth';
@@ -10,12 +11,12 @@ const chooseOther=(values,excluded,count,seed)=>shuffled([...new Set(values)].fi
 const TRAINING_TYPES={mountainCountry:'mountain',riverSource:'river',riverPasses:'river',riverNotPasses:'river',riverMouth:'river',volcanoCountry:'volcano',countryVolcano:'volcano',seaCoast:'sea',seaNotCoast:'sea',countrySea:'sea',seaOcean:'sea',countryOcean:'ocean',oceanCoast:'ocean',oceanNotCoast:'ocean'};
 const pick=(values,random)=>values[Math.min(values.length-1,Math.floor(random()*values.length))];
 const withoutRecent=(values,recent,key=value=>value)=>{const filtered=values.filter(value=>!recent.includes(key(value)));return filtered.length?filtered:values};
-export const geoTrainingType=candidate=>TRAINING_TYPES[candidate.type]||candidate.type;
-export const blankGeoTrainingMemory=()=>({families:[],types:[],questions:[],centrals:[],countries:[]});
+export const geoTrainingType=candidate=>candidate.geoKind||TRAINING_TYPES[candidate.type]||candidate.type;
+export const blankGeoTrainingMemory=()=>({families:[],types:[],questions:[],centrals:[],countries:[],answerDomains:[],semanticTypes:[]});
 export function selectGeoTrainingQuestion(candidates,difficulty='all',memory=blankGeoTrainingMemory(),random=Math.random){
   const pool=candidates.filter(item=>difficulty==='all'||item.difficulty===difficulty);if(!pool.length)return{question:null,memory};
   const families=[...new Set(pool.map(item=>item.family))],family=pick(withoutRecent(families,memory.families.slice(-1)),random),familyPool=pool.filter(item=>item.family===family),types=[...new Set(familyPool.map(geoTrainingType))],type=pick(withoutRecent(types,memory.types.slice(-3)),random);
-  let choices=familyPool.filter(item=>geoTrainingType(item)===type);choices=withoutRecent(choices,memory.questions.slice(-5),item=>item.id);choices=withoutRecent(choices,memory.centrals.slice(-5),item=>item.central);choices=withoutRecent(choices,memory.countries.slice(-5),item=>item.country||item.subjectCountry||'');const question=pick(choices,random),next={families:[...memory.families,family].slice(-2),types:[...memory.types,type].slice(-3),questions:[...memory.questions,question.id].slice(-5),centrals:[...memory.centrals,question.central].slice(-5),countries:[...memory.countries,question.country||question.subjectCountry].filter(Boolean).slice(-5)};return{question,memory:next};
+  let choices=familyPool.filter(item=>geoTrainingType(item)===type);choices=withoutRecent(choices,memory.questions.slice(-5),item=>item.id);choices=withoutRecent(choices,memory.centrals.slice(-5),item=>item.central);choices=withoutRecent(choices,memory.countries.slice(-5),item=>item.country||item.subjectCountry||'');choices=withoutRecent(choices,(memory.semanticTypes||[]).slice(-2),item=>item.type);if((memory.answerDomains||[]).slice(-5).filter(domain=>domain==='country').length>=2){const alternatives=choices.filter(item=>item.answerDomain!=='country');if(alternatives.length)choices=alternatives}const question=pick(choices,random),next={families:[...memory.families,family].slice(-2),types:[...memory.types,type].slice(-3),questions:[...memory.questions,question.id].slice(-5),centrals:[...memory.centrals,question.central].slice(-5),countries:[...memory.countries,question.country||question.subjectCountry].filter(Boolean).slice(-5),answerDomains:[...(memory.answerDomains||[]),question.answerDomain].slice(-5),semanticTypes:[...(memory.semanticTypes||[]),question.type].slice(-2)};return{question,memory:next};
 }
 
 export function topologyNeighbors(topology){
@@ -28,7 +29,7 @@ export function topologyNeighbors(topology){
 
 export function buildGeoCandidates({catalog,countries,topology,wdi={}}){
   const validCountries=countries.filter(country=>!country.is_aggregate&&/^[A-Z]{3}$/.test(country.id)),valid=new Set(validCountries.map(country=>country.id)),result=[];
-  const add=candidate=>{if(candidate.options.length===4&&new Set(candidate.options.map(item=>`${item.kind}:${item.id}`)).size===4)result.push(candidate)};
+  const add=candidate=>{if(candidate.options.length===4&&new Set(candidate.options.map(item=>`${item.kind}:${item.id}`)).size===4)result.push({...candidate,answerDomain:candidate.answerDomain||(candidate.type==='wdiHigher'?'numeric':candidate.type==='riverMouth'?'mouth':candidate.correct.startsWith('country:')?'country':'entity')})};
   for(const city of catalog.cities){
     const regional=byRegion(validCountries,city.country);let others=chooseOther(regional,[city.country],3,city.id);
     if(others.length===3){
@@ -59,12 +60,24 @@ export function buildGeoCandidates({catalog,countries,topology,wdi={}}){
   for(const id of ELIGIBLE_IDS){const others=chooseOther(byRegion(validCountries,id),[id],3,id+':silhouette');if(others.length===3)add({id:`silhouette:${id}`,type:'silhouette',family:'visual',difficulty:Object.entries(ELIGIBLE_COUNTRIES).find(([,ids])=>ids.includes(id))[0]==='normal'?'medium':Object.entries(ELIGIBLE_COUNTRIES).find(([,ids])=>ids.includes(id))[0],central:id,subjectCountry:id,correct:`country:${id}`,country:id,options:shuffled([option('country',id),...others.map(code=>option('country',code))],seededRandom(id+':silhouette-options')),source:'natural-earth'})}
   const quartets=[['ESP','FRA','PRT','ITA'],['USA','CAN','MEX','BRA'],['JPN','KOR','CHN','IND'],['DEU','POL','CZE','AUT'],['ARG','CHL','PER','COL'],['EGY','MAR','TUN','ZAF'],['THA','VNM','MYS','IDN'],['SWE','NOR','DNK','FIN']];
   for(const [slug,data] of Object.entries(wdi))for(const [index,codes] of quartets.entries()){const rows=codes.map(code=>data.observations.filter(row=>row.country===code&&Number.isFinite(row.value)).sort((a,b)=>b.year-a.year)[0]).filter(Boolean),year=Math.min(...rows.map(row=>row.year)),same=codes.map(code=>data.observations.find(row=>row.country===code&&row.year===year&&Number.isFinite(row.value))).filter(Boolean);if(same.length!==4)continue;const sorted=[...same].sort((a,b)=>b.value-a.value);if(sorted[0].value===sorted[1].value)continue;const answer=sorted[0];add({id:`wdi:${slug}:${index}:${year}`,type:'wdiHigher',family:'data',difficulty:index<2?'easy':index<6?'medium':'hard',central:`${slug}:${index}`,indicator:slug,year,values:Object.fromEntries(same.map(row=>[row.country,row.value])),correct:`country:${answer.country}`,country:answer.country,options:shuffled(codes.map(id=>option('country',id)),seededRandom(`${slug}:${index}:${year}`)),source:'world-bank'})}
+  for(const candidate of buildGeographyCandidates(catalog.geography,countries))add(candidate);
   return result;
 }
 
 const difficultyOrder=['easy','easy','medium','medium','hard'];
 export function dailyGeoQuestions(candidates,date){
-  const day=Math.floor(Date.parse(`${date}T12:00:00Z`)/86400000),families=shuffled(FAMILIES,seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${date}:families`)).slice(0,5),selected=families.map((family,index)=>{const target=difficultyOrder[(day+index)%difficultyOrder.length],matching=candidates.filter(item=>item.family===family&&item.difficulty===target),pool=matching.length?matching:candidates.filter(item=>item.family===family),groups=Object.groupBy(pool,item=>item.central),centers=shuffled(Object.keys(groups),seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${family}:${target}`)),center=centers[Math.abs(day)%centers.length],items=groups[center];return items[Math.abs(day)%items.length].id});return shuffled(selected,seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${date}:order`));
+  const available=date<'2026-09-20'?candidates.filter(item=>!item.geographyDerived):candidates;
+  const day=Math.floor(Date.parse(`${date}T12:00:00Z`)/86400000),families=shuffled(FAMILIES,seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${date}:families`)).slice(0,5);
+  const selected=families.map((family,index)=>{
+    const target=difficultyOrder[(day+index)%difficultyOrder.length],familyPool=available.filter(item=>item.family===family),matching=familyPool.filter(item=>item.difficulty===target);
+    let pool=matching.length?matching:familyPool;
+    if(family==='physical'&&date>='2026-09-20'){
+      const category=shuffled(['volcano','mountain','river','desert'],seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${date}:physical`))[0];
+      const categoryPool=pool.filter(item=>geoTrainingType(item)===category);
+      pool=categoryPool.length?categoryPool:familyPool.filter(item=>geoTrainingType(item)===category);
+    }
+    const groups=Object.groupBy(pool,item=>item.central),centers=shuffled(Object.keys(groups),seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${family}:${target}`)),center=centers[Math.abs(day)%centers.length],items=groups[center];return items[Math.abs(day)%items.length].id;
+  });return shuffled(selected,seededRandom(`${GEO_QUIZ_ID}:v${GEO_QUIZ_VERSION}:${date}:order`));
 }
 export const geoQuestionById=(candidates,id)=>candidates.find(item=>item.id===id)||null;
 export function compatibleGeoQuestions(value,date,candidates,generated){const saved=value?.schemaVersion===1&&value.date===date&&Array.isArray(value.questions)&&value.questions.length===5&&new Set(value.questions).size===5&&value.questions.every(id=>geoQuestionById(candidates,id));return saved?[...value.questions]:generated}

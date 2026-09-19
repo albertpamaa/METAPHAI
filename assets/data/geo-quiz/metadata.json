@@ -43,7 +43,24 @@
     "oceans": 5,
     "lakes": 0
   },
-  "question_types": ["volcanoCountry","countryVolcano","seaCoast","seaNotCoast","countrySea","seaOcean","countryOcean","oceanCoast","oceanNotCoast"],
-  "validation_policy": "Curated Wikidata QIDs and claims reviewed on 2026-09-17. Coastal relations are explicit local allowlists; parent_ocean is stored only for direct, reviewed classifications. Multi-country volcanoes and multi-ocean country prompts are excluded from single-answer generation.",
-  "notes": "Curated phase-2 catalog. The five-ocean taxonomy is closed; the Southern Ocean has no sovereign coastal-country question. Lakes remain postponed."
+  "question_types": [
+    "volcanoCountry",
+    "countryVolcano",
+    "seaCoast",
+    "seaNotCoast",
+    "countrySea",
+    "seaOcean",
+    "countryOcean",
+    "oceanCoast",
+    "oceanNotCoast"
+  ],
+  "validation_policy": "Curated legacy Wikidata QIDs and claims reviewed on 2026-09-17. Coastal relations are explicit local allowlists; parent_ocean is stored only for direct, reviewed classifications. Legacy single-country volcano prompts exclude multi-country entities; derived Geography association questions permit them only with one valid answer among the options. Multi-ocean country prompts remain excluded.",
+  "notes": "Curated phase-2 catalog. The five-ocean taxonomy is closed; the Southern Ocean has no sovereign coastal-country question. Lakes remain postponed.",
+  "geography_counts": {
+    "volcano": 209,
+    "mountain": 68,
+    "river": 247,
+    "desert": 49
+  },
+  "geography_source": "Local validated Geografía snapshot; generated, never fetched at runtime"
 }
