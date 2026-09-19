@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "desert",
-  "generated_at": "2026-09-18",
+  "generated_at": "2026-09-19",
   "sources": [
     "wikidata"
   ],
@@ -26,11 +26,7 @@
         "TUN"
       ],
       "continents": [
-        "africa",
-        "antarctica",
-        "asia",
-        "europe",
-        "oceania"
+        "africa"
       ],
       "area_km2": 9200000.0,
       "area_source": "wikidata:P2046",
@@ -51,6 +47,32 @@
         "ru": "Сахара",
         "zh-CN": "撒哈拉沙漠"
       },
+      "aliases": [
+        "aṣ-Ṣaḥrāʾ al-Kubrā",
+        "The Sahara",
+        "Sahara Desert",
+        "as-Sahra",
+        "al-Sahara",
+        "al-Sahra",
+        "as-Sahra al-Kubra",
+        "Zara",
+        "Zaara",
+        "Zahara",
+        "Desert",
+        "Desart",
+        "the Desert",
+        "the Desart",
+        "Great Desert",
+        "the Great Desert",
+        "Saara",
+        "Saharra",
+        "Tassili",
+        "Africa sahariana",
+        "aṣ-Ṣaḥrāʾ",
+        "désert du Sahara",
+        "Grand-Désert",
+        "desierto del Sahara"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -95,6 +117,53 @@
         "hi": "गोबी मरुस्थल",
         "ca": "Gobi"
       },
+      "aliases": [
+        "戈壁沙漠",
+        "戈壁滩",
+        "大漠",
+        "砾漠",
+        "翰海",
+        "Hànhǎi",
+        "瀚海",
+        "Desierto del Gobi",
+        "Desierto de Mongolia",
+        "Говь",
+        "沙漠",
+        "صحراء غوبي",
+        "Deserto de Góbi",
+        "Deserto do Gobi",
+        "Пустыня Гоби",
+        "Desert de Gobi",
+        "고비사막",
+        "Deserto di Gobi",
+        "Deserto dei Gobi",
+        "Schamo",
+        "Bejschan",
+        "Wüste Gobi",
+        "Badain Jaran",
+        "ゴビ沙漠",
+        "गोबी रेगिस्तान",
+        "गोबी",
+        "Desert del Gobi",
+        "Shamo",
+        "Cobi",
+        "Han-hai",
+        "Hanhai",
+        "Hang-hai",
+        "Lop",
+        "Beljan",
+        "Desert of Lop",
+        "Lop Desert",
+        "Samo",
+        "Kalmuk",
+        "Kara-kathay",
+        "Ko-pih",
+        "Ta Ko-pih",
+        "Gebi",
+        "Da Gebi",
+        "Kara Kathay",
+        "Kalmack Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -141,6 +210,33 @@
         "hi": "कालाहारी मरुस्थल",
         "ca": "Kalahari"
       },
+      "aliases": [
+        "卡拉哈里沙漠",
+        "Desierto Kalahari",
+        "Desierto de Kalahari",
+        "Desierto del Kalahari",
+        "Kalajari",
+        "كالهاري",
+        "صحراء كالاهاري",
+        "كلهاري",
+        "Deserto de Kalahari",
+        "Deserto do kalahari",
+        "Deserto de Calaári",
+        "Calaari",
+        "Deserto do Calaari",
+        "Deserto de Calaari",
+        "Calaári",
+        "Desert du Kalahari",
+        "Deserto del Kalahari",
+        "Kalahari-Becken",
+        "Kalahariwüste",
+        "Kalahari-Wüste",
+        "カラハリ沙漠",
+        "कालाहारी",
+        "कालाहारी रेगिस्तान",
+        "Desert del Kalahari",
+        "Desert de Kalahari"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -164,8 +260,7 @@
         "CHL"
       ],
       "continents": [
-        "america",
-        "oceania"
+        "america"
       ],
       "elevation_m": 2657,
       "area_km2": 181300.0,
@@ -187,6 +282,27 @@
         "hi": "अटाकामा मरुस्थल",
         "ca": "desert d'Atacama"
       },
+      "aliases": [
+        "阿塔卡马沙漠",
+        "阿塔卡马",
+        "阿塔卡玛沙漠",
+        "阿塔卡馬沙漠",
+        "صحراء أتاكاما",
+        "اتاكاما",
+        "أتاكاما",
+        "صحراء أتكاما",
+        "Deserto do atacama",
+        "Atacama",
+        "Valle de La Muerte",
+        "Пустыня Атакама",
+        "Désert d’Atacama",
+        "Désert de l'Atacama",
+        "아따까마 사막",
+        "Atacama-Wüste",
+        "आताकामा रेगिस्तान",
+        "Desert d’Atacama",
+        "The Atacama"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -230,6 +346,37 @@
         "hi": "नेगेव रेगिस्तान",
         "bn": "নেগেভ"
       },
+      "aliases": [
+        "内盖夫沙漠",
+        "Neguev",
+        "Desierto de Néguev",
+        "Desierto de Neguev",
+        "Desierto del Negev",
+        "Desierto del Néguev",
+        "Négev",
+        "Desierto del Neguev",
+        "Desierto de Negev",
+        "Negueb",
+        "صحراء النقب",
+        "Deserto do neguev",
+        "Deserto de Negev",
+        "Deserto do negev",
+        "Neguebe",
+        "Фаран",
+        "Пустыня Негев",
+        "Désert du Néguev",
+        "Negeb",
+        "Désert du Neguev",
+        "Negheb",
+        "Neghev",
+        "Negew",
+        "An-Naqb",
+        "ネゲブ",
+        "ネゲブ地方",
+        "ネゲブ砂漠",
+        "Desert del Nègueb",
+        "Nègev"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -272,6 +419,40 @@
         "ca": "Takla Makan",
         "zh-CN": "塔克拉玛干沙漠"
       },
+      "aliases": [
+        "塔克拉瑪干沙漠",
+        "塔克拉玛干大沙漠",
+        "Desierto de Taklamakan",
+        "Desierto Taklamakan",
+        "Takla-Makan",
+        "Desierto del Taklamakán",
+        "Desierto Taklamakán",
+        "Desierto de Taklamakán",
+        "Desierto del Taklamakan",
+        "Takla Makán",
+        "Taklimakan",
+        "Mar de la Muerte",
+        "তাকলা মাকিন",
+        "صحراء تكلامكان",
+        "Taklamakan Shamo",
+        "Deserto de Taklamakan",
+        "Такламакан",
+        "Такла Макан",
+        "타클라마칸 사막",
+        "타클라마칸",
+        "Desert du Taklamakan",
+        "Gurun Taklamakan",
+        "Gurun Takla Makan",
+        "タクラ＝マカン砂漠",
+        "सहराए टकला मकान",
+        "तकलामकन मरुस्थल",
+        "सहरा-ए-तकलामकान",
+        "टकलामकान रेगिस्तान",
+        "तकलामकान रेगिस्तान",
+        "Desert de Taklamakan",
+        "Taklamakan Desert",
+        "Takla Makan Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -293,9 +474,7 @@
         "TKM"
       ],
       "continents": [
-        "america",
-        "asia",
-        "europe"
+        "asia"
       ],
       "area_km2": 400000.0,
       "area_source": "wikidata:P2046",
@@ -316,6 +495,28 @@
         "id": "Karakum",
         "bn": "কারাকুম মরুভূমি"
       },
+      "aliases": [
+        "卡拉库姆沙漠",
+        "中央卡拉库姆沙漠",
+        "Desert du Karakoum",
+        "Kara-Koum",
+        "카라쿰사막",
+        "까라꿈사막",
+        "까라꿈 사막",
+        "Kara-Kum",
+        "Deserto Karakum",
+        "カラクーム砂漠",
+        "صحراء كراكورم",
+        "صحراء الرمال السوداء",
+        "काराकुम",
+        "Kara Kum",
+        "Deserto de Kara Kum",
+        "Кара-Кум",
+        "Пустыня Кара-Кум",
+        "Каракум",
+        "Desert de Kara-kum",
+        "Desert de Karakum"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -357,6 +558,30 @@
         "zh-CN": "纳米布沙漠",
         "hi": "नामीब मरुस्थल"
       },
+      "aliases": [
+        "那米比沙漠",
+        "納米比沙漠",
+        "Desierto de Namib",
+        "Desierto del Namib",
+        "Desierto de Namibia",
+        "صحراء نامبيا",
+        "Deserto do Namib",
+        "Deserto da Namíbia",
+        "Désert de Namib",
+        "Desert de Namib",
+        "Deserto Namib",
+        "Moon Valley",
+        "Namibwüste",
+        "Namib-Wüste",
+        "Wüste Namib",
+        "ナミーブ砂漠",
+        "ナミーブ沙漠",
+        "ナミブ沙漠",
+        "Desert del Namib",
+        "Desert de Namíbia",
+        "Namib Desert",
+        "Пустыня Намиб"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -401,6 +626,30 @@
         "zh-CN": "塔尔沙漠",
         "id": "Gurun Thar"
       },
+      "aliases": [
+        "Desert du Thar",
+        "Désert de Thar",
+        "Desierto Thar",
+        "deserto del Rajasthan",
+        "deserto del Thar",
+        "Wüste Tharr",
+        "Tharr",
+        "থর মরুভুমি",
+        "大インド砂漠",
+        "थार मरुभूमि",
+        "थार",
+        "थार रेगिस्तान",
+        "Deserto de Thar",
+        "Deserto thar",
+        "Пустыня Тар",
+        "Тхар",
+        "Desert de Thar",
+        "Great Indian Desert",
+        "Indian Desert",
+        "Rajputana Desert",
+        "صحراء تهار",
+        "拉其普塔纳沙漠"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -413,45 +662,48 @@
       "geometry_mode": "centroid"
     },
     {
-      "id": "Q118388",
+      "id": "Q145165",
       "kind": "desert",
       "coordinates": [
-        -116.865280555,
-        36.456938888
+        127.75,
+        -28.5
       ],
       "countries": [
-        "USA"
+        "AUS"
       ],
       "continents": [
-        "america",
-        "asia",
         "oceania"
       ],
-      "elevation_m": -85,
+      "elevation_m": 353,
+      "area_km2": 348750.0,
+      "area_source": "wikidata:P2046",
       "labels": {
-        "ko": "데스 밸리",
-        "fr": "vallée de la Mort",
-        "es": "Valle de la Muerte",
-        "it": "Valle della Morte",
-        "ja": "デスヴァレー",
-        "en": "Death Valley",
-        "ar": "وادي الموت",
-        "hi": "डेथ वैली",
-        "pt": "Vale da Morte",
-        "ru": "Долина Смерти",
-        "ca": "Death Valley",
-        "de": "Death Valley",
-        "zh-CN": "死亡谷",
-        "id": "Death Valley",
-        "bn": "ডেথ ভ্যালি"
+        "de": "Große Victoria-Wüste",
+        "ar": "صحراء فكتوريا الكبرى",
+        "ca": "Gran Desert de Victòria",
+        "en": "Great Victoria Desert",
+        "es": "Gran Desierto de Victoria",
+        "fr": "Grand désert de Victoria",
+        "it": "Gran Deserto Victoria",
+        "ja": "グレートビクトリア砂漠",
+        "ko": "그레이트빅토리아 사막",
+        "pt": "Grande Deserto de Vitória",
+        "ru": "Большая пустыня Виктория",
+        "zh-CN": "大维多利亚沙漠",
+        "hi": "ग्रेट विक्‍टोरिया",
+        "bn": "গ্রেট ভিক্টোরিয়া মরুভূমি",
+        "id": "Gurun Victoria Besar"
       },
+      "aliases": [
+        "Gran Deserto Vittoria"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
-          "Q192810",
-          "Q39816",
-          "Q813672",
+          "Q111907301",
+          "Q2904233",
+          "Q6617741",
           "Q8514"
         ],
         "status": "validated"
@@ -474,7 +726,6 @@
         "YEM"
       ],
       "continents": [
-        "africa",
         "asia"
       ],
       "area_km2": 2330000.0,
@@ -496,167 +747,28 @@
         "bn": "আরব মরুভূমি",
         "de": "Große Arabische Wüste"
       },
+      "aliases": [
+        "Desert d’Arabie",
+        "Desierto de Arabia",
+        "Desierto árabigo",
+        "Desierto arabe",
+        "Desierto arabigo",
+        "صحراء العرب",
+        "صحراء شبه الجزيرة العربية",
+        "صحراء عربيه",
+        "صحراء السعودية",
+        "البادية العراقية الغربية",
+        "अरब मरुस्थल",
+        "अरब के मरुस्थल",
+        "अरब रेगिस्तान",
+        "अरबी मरुस्थल",
+        "Deserto arábico",
+        "Пустыня Аравийского полуострова"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q184355",
-      "kind": "desert",
-      "coordinates": [
-        -115.475,
-        35.008333333
-      ],
-      "countries": [
-        "USA"
-      ],
-      "continents": [
-        "america",
-        "asia",
-        "oceania"
-      ],
-      "area_km2": 124000.0,
-      "area_source": "wikidata:P2046",
-      "labels": {
-        "ko": "모하비 사막",
-        "fr": "désert des Mojaves",
-        "es": "Desierto de Mojave",
-        "it": "deserto del Mojave",
-        "id": "Gurun Mojave",
-        "de": "Mojave-Wüste",
-        "bn": "মোহাভি মরুভূমি",
-        "ja": "モハーヴェ砂漠",
-        "ar": "صحراء موهافي",
-        "pt": "Deserto de Mojave",
-        "ru": "Мохаве",
-        "en": "Mojave Desert",
-        "ca": "desert de Mojave",
-        "zh-CN": "莫哈韦沙漠",
-        "hi": "मोज़ाबे मरुस्थल"
-      },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q6617741",
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q117750",
-      "kind": "desert",
-      "coordinates": [
-        19.5127533,
-        50.3397903
-      ],
-      "countries": [
-        "POL"
-      ],
-      "continents": [
-        "europe"
-      ],
-      "area_km2": 32.0,
-      "area_source": "wikidata:P2046",
-      "labels": {
-        "de": "Błędów-Wüste",
-        "ar": "صحراء بيدو",
-        "en": "Błędów Desert",
-        "es": "Desierto de Błędów",
-        "fr": "désert de Błędów",
-        "pt": "Deserto de Błędów",
-        "it": "deserto di Błędów",
-        "ca": "Desert de Bledow",
-        "ru": "Блендовская пустыня",
-        "ko": "브웬도프스카 사막",
-        "id": "Gurun Błędów",
-        "hi": "ब्वेंदुव मरुस्थल"
-      },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q473972",
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q398398",
-      "kind": "desert",
-      "coordinates": [
-        55.0,
-        81.0
-      ],
-      "countries": [
-        "NOR",
-        "RUS"
-      ],
-      "continents": [
-        "antarctica",
-        "asia",
-        "europe"
-      ],
-      "labels": {
-        "fr": "Désert arctique",
-        "de": "Kältewüste",
-        "ru": "Арктическая пустыня",
-        "zh-CN": "chinesisch",
-        "en": "Arctic desert",
-        "ja": "北極砂漠"
-      },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q6617741",
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q2303867",
-      "kind": "desert",
-      "coordinates": [
-        -18.11666667,
-        64.86666667
-      ],
-      "countries": [
-        "ISL"
-      ],
-      "continents": [
-        "europe"
-      ],
-      "elevation_m": 800,
-      "labels": {
-        "de": "Sprengisandur",
-        "ja": "スプレィンギサンドゥル",
-        "fr": "Sprengisandur",
-        "en": "Sprengisandur",
-        "es": "Sprengisandur",
-        "it": "Sprengisandur",
-        "ca": "Sprengisandur",
-        "ru": "Спрейнгисандюр",
-        "zh-CN": "斯本雷吉森達"
-      },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q3480697",
-          "Q75520",
           "Q8514"
         ],
         "status": "validated"
@@ -676,8 +788,7 @@
         "UZB"
       ],
       "continents": [
-        "asia",
-        "europe"
+        "asia"
       ],
       "area_km2": 298000.0,
       "area_source": "wikidata:P2046",
@@ -698,6 +809,30 @@
         "zh-CN": "克孜勒库姆沙漠",
         "id": "Gurun Kyzylkum"
       },
+      "aliases": [
+        "Kizyl Koum",
+        "Kyzyl-Koum",
+        "Kyzylkoum",
+        "Kizilkoum",
+        "Kizil-Koum",
+        "Kyzyl Koum",
+        "Kizilkum",
+        "Deserto di Kyzylkum",
+        "Kyzylkum",
+        "Kysilkum",
+        "Kisilkum",
+        "キジル・クム砂漠",
+        "किज़िल कुम",
+        "Кызыл-Кум",
+        "Кызылкумы",
+        "Пустыня Кызыл-Кум",
+        "Desert de Kyzyl Kum",
+        "Kizil-Kum",
+        "Desert Kyzyl Kum",
+        "Desert de Kyzylkum",
+        "Desert Kyzylkum",
+        "Red Sand Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -743,11 +878,90 @@
         "id": "Gurun Suriah",
         "bn": "সিরিয়া মরুভূমি"
       },
+      "aliases": [
+        "シリア・ステップ",
+        "Syrian steppe",
+        "Jordanian steppe",
+        "Badia",
+        "Badia-Wüste",
+        "Chamiyé",
+        "deserto siriano"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
           "Q123991",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q184355",
+      "kind": "desert",
+      "coordinates": [
+        -115.475,
+        35.008333333
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america"
+      ],
+      "area_km2": 124000.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "ko": "모하비 사막",
+        "fr": "désert des Mojaves",
+        "es": "Desierto de Mojave",
+        "it": "deserto del Mojave",
+        "id": "Gurun Mojave",
+        "de": "Mojave-Wüste",
+        "bn": "মোহাভি মরুভূমি",
+        "ja": "モハーヴェ砂漠",
+        "ar": "صحراء موهافي",
+        "pt": "Deserto de Mojave",
+        "ru": "Мохаве",
+        "en": "Mojave Desert",
+        "ca": "desert de Mojave",
+        "zh-CN": "莫哈韦沙漠",
+        "hi": "मोज़ाबे मरुस्थल"
+      },
+      "aliases": [
+        "莫哈維沙漠",
+        "모하비사막",
+        "Désert de Mojave",
+        "Désert Mojave",
+        "Désert du Mojave",
+        "Désert de Mohave",
+        "Desert des Mojaves",
+        "Deserto di Mojave",
+        "Gurun Nevada",
+        "Mohave-Wüste",
+        "Mojavewüste",
+        "Mohavská poušť",
+        "モハービ砂漠",
+        "モハーベ砂漠",
+        "モハベ砂漠",
+        "صحراء موهافا",
+        "صحراء موجيف",
+        "صحراء موييف",
+        "الصحراء العالية",
+        "Deserto do Mojave",
+        "Мохава",
+        "Пустыня Мохаве",
+        "Desert del Mojave",
+        "Hayikwiir Mat'aar",
+        "Mojave"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q6617741",
           "Q8514"
         ],
         "status": "validated"
@@ -768,8 +982,7 @@
         "YEM"
       ],
       "continents": [
-        "africa",
-        "asia"
+        "africa"
       ],
       "area_km2": 680000.0,
       "area_source": "wikidata:P2046",
@@ -790,6 +1003,34 @@
         "zh-CN": "鲁卜哈利沙漠",
         "id": "Rub' Al-Khali"
       },
+      "aliases": [
+        "룹 알 할리",
+        "Rub al Khali",
+        "Rub al-Khâli",
+        "Ruba-al-Khalil",
+        "Quart Vide",
+        "Empty Quarter",
+        "Desierto de Rub' al Khali",
+        "Desierto de Rub al-Khali",
+        "Rub al Jali",
+        "Rub al-Jali",
+        "Große Arabische Wüste",
+        "صحراء الربع الخالي",
+        "ربع خالي",
+        "रुब अल ख़ाली",
+        "रब अल खाली",
+        "रुब अल खाली",
+        "रुब अल-खाली",
+        "रब अल-खाली",
+        "रूब अल-ख़ाली",
+        "रूब अल-खाली",
+        "Руб-Аль-Хали",
+        "Руб аль-Хали",
+        "Rub al-Kali",
+        "Districte buit",
+        "Al-Rub al-Khali",
+        "Rub' al-Khālī"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -812,9 +1053,7 @@
         "USA"
       ],
       "continents": [
-        "america",
-        "asia",
-        "oceania"
+        "america"
       ],
       "area_km2": 260000.0,
       "area_source": "wikidata:P2046",
@@ -835,6 +1074,26 @@
         "id": "Gurun Sonora",
         "hi": "सोनोरन"
       },
+      "aliases": [
+        "Désert de Gila",
+        "소노란사막",
+        "소노란 사막",
+        "Desierto de Arizona",
+        "Desierto sonorense",
+        "Sonorawüste",
+        "Sonora",
+        "Gila Desert",
+        "صحراء جيلا",
+        "الصحراء الواطية",
+        "صحراء سونوران",
+        "صحرا سنوران",
+        "صحراء سنوران",
+        "Пустыня Сонора",
+        "Desert de Gila",
+        "Carson Plains",
+        "Desierto Grande",
+        "Sonora Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -859,8 +1118,7 @@
         "SDN"
       ],
       "continents": [
-        "africa",
-        "asia"
+        "africa"
       ],
       "elevation_m": 1024,
       "area_km2": 1100000.0,
@@ -881,10 +1139,77 @@
         "zh-CN": "利比亚沙漠",
         "hi": "लीबियाई मरुस्थल"
       },
+      "aliases": [
+        "Désert blanc",
+        "Désert de Libye",
+        "Désert Libyque",
+        "Desierto de Libia",
+        "Desierto Libico",
+        "Deserto libico",
+        "Deserto occidentale",
+        "リビア沙漠",
+        "الصحراء الليبيه",
+        "الصحراء الغربية",
+        "صحاري الحمادة",
+        "Deserto líbico",
+        "Desert Oriental de Líbia"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q326896",
+      "kind": "desert",
+      "coordinates": [
+        124.684722222,
+        -20.916111111
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 289,
+      "area_km2": 284993.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "fr": "Grand désert de sable",
+        "ko": "그레이트샌디 사막",
+        "es": "Gran Desierto Arenoso",
+        "it": "Gran Deserto Sabbioso",
+        "de": "Große Sandwüste",
+        "ja": "グレートサンディ砂漠",
+        "en": "Great Sandy Desert",
+        "ar": "صحراء الرمل الكبرى",
+        "pt": "Grande Deserto Arenoso",
+        "ru": "Большая Песчаная пустыня",
+        "ca": "Gran Desert Arenós",
+        "zh-CN": "大沙沙漠",
+        "hi": "ग्रेट सैंडी",
+        "id": "Gurun Pasir Besar"
+      },
+      "aliases": [
+        "大沙地沙漠",
+        "Grand desert de sable",
+        "Gran desierto de arena",
+        "Grande Deserto de Areia",
+        "Gran Desert de Sorra",
+        "Great Sandy Desert, Western Australia",
+        "Great Sandy Desert, Australia"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q2904233",
           "Q8514"
         ],
         "status": "validated"
@@ -923,10 +1248,65 @@
         "zh-CN": "努比亞沙漠",
         "bn": "নুবিয়ান মরুভূমি"
       },
+      "aliases": [
+        "Şaḩrā’ an Nūbyah",
+        "Desert de Nubie",
+        "Deserto de Núbia"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q272577",
+      "kind": "desert",
+      "coordinates": [
+        127.996666666,
+        -23.73
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 410,
+      "area_km2": 155000.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "ko": "기브슨 사막",
+        "fr": "désert de Gibson",
+        "es": "Desierto de Gibson",
+        "it": "deserto di Gibson",
+        "de": "Gibsonwüste",
+        "ja": "ギブソン砂漠",
+        "ar": "صحراء قبسون",
+        "pt": "Deserto de Gibson",
+        "ru": "Пустыня Гибсона",
+        "en": "Gibson Desert",
+        "ca": "Desert de Gibson",
+        "zh-CN": "吉布森沙漠",
+        "id": "Gurun Gibson",
+        "bn": "গিবসন মরুভূমি"
+      },
+      "aliases": [
+        "깁슨 사막",
+        "Gibson-Wüste",
+        "صحراء قيبسون",
+        "Гибсона пустыня"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q111907301",
+          "Q6617741",
           "Q8514"
         ],
         "status": "validated"
@@ -945,9 +1325,7 @@
         "USA"
       ],
       "continents": [
-        "america",
-        "asia",
-        "oceania"
+        "america"
       ],
       "elevation_m": 1545,
       "area_km2": 362600.0,
@@ -968,6 +1346,12 @@
         "ja": "チワワ砂漠",
         "hi": "चिहुआहुआ रेगिस्तान"
       },
+      "aliases": [
+        "Chi",
+        "Пустыня Чиуауа",
+        "Chihuahua",
+        "صحراء شهوهوان"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1008,10 +1392,69 @@
         "ja": "ユダヤ砂漠",
         "bn": "যিহূদীয় মরুভূমি"
       },
+      "aliases": [
+        "Wüste Juda",
+        "Judean Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q211839",
+      "kind": "desert",
+      "coordinates": [
+        137.42,
+        -24.57
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 288,
+      "area_km2": 176500.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "fr": "désert de Simpson",
+        "ko": "심프슨 사막",
+        "es": "Desierto de Simpson",
+        "it": "deserto Simpson",
+        "de": "Simpsonwüste",
+        "ja": "シンプソン砂漠",
+        "en": "Simpson Desert",
+        "ar": "صحراء سمبسون",
+        "pt": "Deserto de Simpson",
+        "ru": "Симпсон",
+        "ca": "Desert de Simpson",
+        "zh-CN": "辛普森沙漠",
+        "id": "Gurun Simpson",
+        "hi": "अरुनता"
+      },
+      "aliases": [
+        "심슨 사막",
+        "심슨사막",
+        "Desierto Simpson",
+        "Deserto di Simpson",
+        "Simpson-Wüste",
+        "صحراء سيمبسون",
+        "Симпсон-Дезерт",
+        "Пустыня Симпсона",
+        "Desert Simpson",
+        "Munga-Thirri"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q6617741",
           "Q8514"
         ],
         "status": "validated"
@@ -1030,8 +1473,7 @@
         "UZB"
       ],
       "continents": [
-        "asia",
-        "europe"
+        "asia"
       ],
       "area_km2": 38000.0,
       "area_source": "wikidata:P2046",
@@ -1050,6 +1492,12 @@
         "ko": "아랄쿰 사막",
         "id": "Gurun Aralkum"
       },
+      "aliases": [
+        "Аралкум (пустыня)",
+        "Аккум",
+        "Аральская пустыня",
+        "Aralkum Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1074,8 +1522,7 @@
         "SDN"
       ],
       "continents": [
-        "africa",
-        "asia"
+        "africa"
       ],
       "elevation_m": 583,
       "labels": {
@@ -1094,84 +1541,15 @@
         "hi": "पूर्वी रेगिस्तान",
         "id": "Gurun Timur"
       },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q273446",
-      "kind": "desert",
-      "coordinates": [
-        -114.2197,
-        39.0058
+      "aliases": [
+        "Désert arabique",
+        "Desert oriental d’Egipte",
+        "Östliche Wüste",
+        "Desierto Arábigo",
+        "Desierto arabigo",
+        "Desierto Arabigo",
+        "Arabian Desert"
       ],
-      "countries": [
-        "USA"
-      ],
-      "continents": [
-        "america",
-        "asia",
-        "oceania"
-      ],
-      "labels": {
-        "ar": "صحراء الحوض العظيم",
-        "pt": "Deserto da Grande Bacia",
-        "en": "Great Basin Desert",
-        "es": "Desierto de la Gran Cuenca",
-        "ru": "Пустыня Большого Бассейна",
-        "ko": "그레이트베이슨 사막",
-        "ja": "グレートベーズン砂漠",
-        "zh-CN": "大盆地沙漠",
-        "bn": "গ্রেট বেসিন মরুভূমি",
-        "id": "Gurun Lembah Besar",
-        "fr": "Désert du Grand Bassin",
-        "ca": "Desert de la Gran Conca",
-        "de": "Großes-Becken-Wüste"
-      },
-      "source": "wikidata",
-      "validation": {
-        "class_root": "Q8514",
-        "instance_of": [
-          "Q6617741",
-          "Q8514"
-        ],
-        "status": "validated"
-      },
-      "geometry_mode": "centroid"
-    },
-    {
-      "id": "Q936252",
-      "kind": "desert",
-      "coordinates": [
-        -110.084,
-        35.500305555
-      ],
-      "countries": [
-        "USA"
-      ],
-      "continents": [
-        "america",
-        "asia",
-        "oceania"
-      ],
-      "labels": {
-        "pt": "Deserto Pintado",
-        "fr": "Painted Desert",
-        "ru": "Цветная пустыня",
-        "en": "Painted Desert",
-        "es": "Desierto Pintado",
-        "it": "Deserto Dipinto",
-        "de": "Painted Desert",
-        "zh-CN": "佩恩蒂德沙漠",
-        "ar": "الصحراء المرسومة",
-        "ko": "오색 사막"
-      },
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1214,6 +1592,20 @@
         "ca": "Desert de Danakil",
         "zh-CN": "达纳基尔沙漠"
       },
+      "aliases": [
+        "Danakils",
+        "Deserto Danakil",
+        "Deserto dei Danachili",
+        "Deserto della Dancalia",
+        "Danakilwüste",
+        "Somaliwüste",
+        "Danakil-Wüste",
+        "Somali-Wüste",
+        "Danakil-Somalia-Wüste",
+        "ダナキル沙漠",
+        "アファール砂漠",
+        "アファル砂漠"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1256,10 +1648,63 @@
         "id": "Gurun Ténéré",
         "hi": "तेनेरे"
       },
+      "aliases": [
+        "Tenere",
+        "Desierto de Teneré",
+        "Desierto de Tenere",
+        "Tenerè",
+        "Ténéré-Wüste",
+        "特內雷沙漠",
+        "泰内雷沙漠",
+        "تينيري"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q117750",
+      "kind": "desert",
+      "coordinates": [
+        19.5127533,
+        50.3397903
+      ],
+      "countries": [
+        "POL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "area_km2": 32.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "de": "Błędów-Wüste",
+        "ar": "صحراء بيدو",
+        "en": "Błędów Desert",
+        "es": "Desierto de Błędów",
+        "fr": "désert de Błędów",
+        "pt": "Deserto de Błędów",
+        "it": "deserto di Błędów",
+        "ca": "Desert de Bledow",
+        "ru": "Блендовская пустыня",
+        "ko": "브웬도프스카 사막",
+        "id": "Gurun Błędów",
+        "hi": "ब्वेंदुव मरुस्थल"
+      },
+      "aliases": [
+        "Pustynia Błędowska"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q473972",
           "Q8514"
         ],
         "status": "validated"
@@ -1277,8 +1722,7 @@
         "KAZ"
       ],
       "continents": [
-        "asia",
-        "europe"
+        "asia"
       ],
       "labels": {
         "pt": "Betpak-Dala",
@@ -1292,11 +1736,106 @@
         "ca": "Betpak-Dala",
         "zh-CN": "饥饿草原"
       },
+      "aliases": [
+        "Bet-Pak-Dala",
+        "Betpak Dala",
+        "Betpakdala desert",
+        "Bet-Pak-Dal desert",
+        "Betpaqdala"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
           "Q160091",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q674262",
+      "kind": "desert",
+      "coordinates": [
+        129.9947,
+        -20.00045
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "elevation_m": 367,
+      "area_km2": 184500.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "de": "Tanamiwüste",
+        "ar": "صحراء تنامي",
+        "en": "Tanami Desert",
+        "es": "Desierto de Tanami",
+        "fr": "désert de Tanami",
+        "it": "Deserto di Tanami",
+        "ja": "タナミ砂漠",
+        "pt": "Deserto de Tanami",
+        "ru": "Танами",
+        "zh-CN": "塔纳米沙漠",
+        "ca": "Desert Tanami",
+        "ko": "타나미 사막"
+      },
+      "aliases": [],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q273446",
+      "kind": "desert",
+      "coordinates": [
+        -114.2197,
+        39.0058
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america"
+      ],
+      "labels": {
+        "ar": "صحراء الحوض العظيم",
+        "pt": "Deserto da Grande Bacia",
+        "en": "Great Basin Desert",
+        "es": "Desierto de la Gran Cuenca",
+        "ru": "Пустыня Большого Бассейна",
+        "ko": "그레이트베이슨 사막",
+        "ja": "グレートベーズン砂漠",
+        "zh-CN": "大盆地沙漠",
+        "bn": "গ্রেট বেসিন মরুভূমি",
+        "id": "Gurun Lembah Besar",
+        "fr": "Désert du Grand Bassin",
+        "ca": "Desert de la Gran Conca",
+        "de": "Großes-Becken-Wüste"
+      },
+      "aliases": [
+        "صحراء الحوض الكبير",
+        "صحراء الحوض الكبرى",
+        "غريت باسين",
+        "جريت باسين",
+        "グレートベースン砂漠",
+        "Great Basin shrub steppe"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q6617741",
           "Q8514"
         ],
         "status": "validated"
@@ -1332,6 +1871,25 @@
         "ja": "アラバの谷",
         "ko": "아라바"
       },
+      "aliases": [
+        "Пустыня Арава",
+        "Араба",
+        "Вади-эль-Араб",
+        "Вади Араба",
+        "Aravah",
+        "Wadi Arabah",
+        "阿拉伯谷地",
+        "Arabá",
+        "Arawa-Wüste",
+        "وادي عربه",
+        "وادي العربة",
+        "وادي العرب",
+        "هعرفا",
+        "هاعارفا",
+        "هَعَرڤا",
+        "Araba",
+        "Arabah Valley"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1368,6 +1926,7 @@
         "fr": "Désert de Chalbi",
         "zh-CN": "查爾比沙漠"
       },
+      "aliases": [],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1406,6 +1965,20 @@
         "it": "deserto di al-Dahna",
         "ko": "아드다나 사막"
       },
+      "aliases": [
+        "अद-दहना",
+        "अद दहना",
+        "अल-दहना रेगिस्तान",
+        "Дахна",
+        "Ад-Дахна",
+        "Дехна",
+        "Dahna",
+        "صحراء الدهنا",
+        "الدهناء",
+        "الدهنا",
+        "Ad Dahnā'",
+        "Dahna Desert"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
@@ -1443,10 +2016,239 @@
         "de": "Badyn-Dscharan-Wüste",
         "ko": "바단지린 사막"
       },
+      "aliases": [
+        "Бадан-Жаран",
+        "Бадан-Джарэнг",
+        "バダインジャラン沙漠",
+        "巴丹吉林砂漠",
+        "Badain Jaran Shamo",
+        "Bādānjílín Shāmò"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q4076",
+      "kind": "desert",
+      "coordinates": [
+        121.86,
+        -25.26
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "continents": [
+        "oceania"
+      ],
+      "area_km2": 111500.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "en": "Little Sandy Desert",
+        "fr": "Petit désert de sable",
+        "de": "Kleine Sandwüste",
+        "ar": "صحراء الرمل الصغرى",
+        "es": "Pequeño Desierto Arenoso",
+        "it": "Piccolo Deserto Sabbioso",
+        "ja": "リトルサンディ砂漠",
+        "pt": "Pequeno Deserto Arenoso",
+        "ru": "Малая Песчаная пустыня",
+        "zh-CN": "小沙沙漠",
+        "ca": "Petit Desert de Sorra",
+        "id": "Gurun Little Sandy"
+      },
+      "aliases": [
+        "Little Sandy Desert, Western Australia",
+        "Little Sandy Desert bioregion"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q936252",
+      "kind": "desert",
+      "coordinates": [
+        -110.084,
+        35.500305555
+      ],
+      "countries": [
+        "USA"
+      ],
+      "continents": [
+        "america"
+      ],
+      "labels": {
+        "pt": "Deserto Pintado",
+        "fr": "Painted Desert",
+        "ru": "Цветная пустыня",
+        "en": "Painted Desert",
+        "es": "Desierto Pintado",
+        "it": "Deserto Dipinto",
+        "de": "Painted Desert",
+        "zh-CN": "佩恩蒂德沙漠",
+        "ar": "الصحراء المرسومة",
+        "ko": "오색 사막"
+      },
+      "aliases": [
+        "彩畫沙漠",
+        "彩色沙漠",
+        "彩繪沙漠",
+        "多色沙漠",
+        "佩恩特沙漠",
+        "畫布沙漠",
+        "多彩沙漠",
+        "Пэйнтед-дезерт",
+        "Пейнтед-Дезерт",
+        "الصحراء المرسومة, أريزونا",
+        "El Desierto Pintado"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q1670841",
+      "kind": "desert",
+      "coordinates": [
+        108.0,
+        39.0
+      ],
+      "countries": [
+        "CHN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "labels": {
+        "de": "Ordos-Plateau",
+        "ar": "صحراء أوردوس",
+        "ca": "Ordos",
+        "en": "Ordos Desert",
+        "fr": "désert d'Ordos",
+        "it": "deserto Ordos",
+        "ja": "オルドス地方",
+        "ko": "오르도스 사막",
+        "ru": "Ордос",
+        "zh-CN": "鄂爾多斯沙漠",
+        "es": "Meandro de Ordos",
+        "id": "Gurun Ordos"
+      },
+      "aliases": [
+        "鄂尔多斯沙漠"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q6617741",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q1798743",
+      "kind": "desert",
+      "coordinates": [
+        63.019166666,
+        46.688333333
+      ],
+      "countries": [
+        "KAZ"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "elevation_m": 55,
+      "area_km2": 40000.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "pt": "Aral Karakum",
+        "ru": "Приаральские Каракумы",
+        "en": "Aral Karakum",
+        "ar": "آرال كاراكوم",
+        "it": "Aral Karakum",
+        "es": "Desierto de Aral Karakum",
+        "ca": "Aral Qaraqūmy"
+      },
+      "aliases": [
+        "Каракумы Приаральские",
+        "Aral Mangy Qaraqumy"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q797491",
+      "kind": "desert",
+      "coordinates": [
+        71.434777777,
+        28.405138888
+      ],
+      "countries": [
+        "PAK"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "area_km2": 26300.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "pt": "Deserto de Cholistão",
+        "ru": "Холистан",
+        "fr": "désert du Cholistan",
+        "en": "Cholistan Desert",
+        "es": "Desierto de Cholistán",
+        "it": "deserto di Cholistan",
+        "ar": "صحراء جولستان",
+        "ca": "Cholistan",
+        "hi": "चोलिस्तान",
+        "de": "Cholistan",
+        "zh-CN": "喬里斯坦沙漠",
+        "id": "Gurun Cholistan"
+      },
+      "aliases": [
+        "Deserto de Cholistán",
+        "Чолистан",
+        "Desert du Cholistan",
+        "Desierto de Cholistan",
+        "Rohi",
+        "Pat Desert",
+        "Rohi Desert",
+        "Thar Desert"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q82794",
           "Q8514"
         ],
         "status": "validated"
@@ -1464,7 +2266,6 @@
         "ESP"
       ],
       "continents": [
-        "africa",
         "europe"
       ],
       "elevation_m": 413,
@@ -1483,10 +2284,383 @@
         "zh-CN": "塔韦纳斯沙漠",
         "id": "Gurun Tabernas"
       },
+      "aliases": [
+        "Le désert de Tabernas",
+        "Desert d'Almeria",
+        "Desert de Tavernes",
+        "Tabernas-Wüste",
+        "タバナス砂漠",
+        "타베나스 사막",
+        "صحراء تابيرناس"
+      ],
       "source": "wikidata",
       "validation": {
         "class_root": "Q8514",
         "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q1358976",
+      "kind": "desert",
+      "coordinates": [
+        48.833333333,
+        47.333333333
+      ],
+      "countries": [
+        "KAZ",
+        "RUS"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "labels": {
+        "de": "Ryn-Wüste",
+        "ar": "صحراء رين",
+        "en": "Ryn Desert",
+        "es": "Desierto del Ryn",
+        "pt": "Deserto de Ryn",
+        "ru": "Рын-пески",
+        "ja": "ルィン砂漠",
+        "it": "deserto Ryn",
+        "ko": "린 사막",
+        "fr": "Désert Ryn",
+        "id": "Gurun Ryn"
+      },
+      "aliases": [
+        "Naryn Qum"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q34379419",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q2338833",
+      "kind": "desert",
+      "coordinates": [
+        3.96667,
+        27.31667
+      ],
+      "countries": [
+        "DZA",
+        "FRA"
+      ],
+      "continents": [
+        "africa"
+      ],
+      "labels": {
+        "pt": "Deserto da Argélia",
+        "id": "Gurun Aljazair",
+        "ru": "Алжирская пустыня",
+        "en": "Algerian Desert",
+        "ar": "الصحراء الجزائرية",
+        "ko": "알제리 사막",
+        "fr": "Sahara algérien",
+        "it": "deserto dell'Algeria",
+        "es": "Sáhara argelino",
+        "ja": "アルジェリア領サハラ砂漠",
+        "zh-CN": "阿尔及利亚沙漠",
+        "de": "Algerische Wüste"
+      },
+      "aliases": [
+        "Désert algérien",
+        "Saharan Algeria",
+        "Algerian Sahara",
+        "Algeria sahariana",
+        "Argélia Saariana",
+        "撒哈拉地区 (阿尔及利亚)",
+        "صحراء الجزائر"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q633504",
+      "kind": "desert",
+      "coordinates": [
+        50.516667,
+        26.033333
+      ],
+      "countries": [
+        "BHR"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "labels": {
+        "ar": "الصخير",
+        "ca": "Sakhir",
+        "en": "Sakhir",
+        "es": "Sakhir",
+        "ja": "サヒール",
+        "ru": "Сахир",
+        "zh-CN": "薩基爾沙漠",
+        "id": "Sakhir",
+        "de": "as-Sachir"
+      },
+      "aliases": [
+        "薩基爾 (巴林)",
+        "صخير",
+        "Al Sukhair"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q939994",
+      "kind": "desert",
+      "coordinates": [
+        -80.666666666,
+        -5.833333333
+      ],
+      "countries": [
+        "PER"
+      ],
+      "continents": [
+        "america"
+      ],
+      "labels": {
+        "it": "deserto di Sechura",
+        "en": "Sechura Desert",
+        "es": "Desierto de Sechura",
+        "fr": "Désert de Sechura",
+        "pt": "Deserto de Nazca",
+        "ru": "Сечура",
+        "de": "Sechura-Wüste",
+        "ar": "صحراء سيشورا",
+        "id": "Gurun Sechura",
+        "zh-CN": "塞丘拉沙漠",
+        "ja": "セチュラ砂漠"
+      },
+      "aliases": [
+        "désert de Nazca"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q2303867",
+      "kind": "desert",
+      "coordinates": [
+        -18.11666667,
+        64.86666667
+      ],
+      "countries": [
+        "ISL"
+      ],
+      "continents": [
+        "europe"
+      ],
+      "elevation_m": 800,
+      "labels": {
+        "de": "Sprengisandur",
+        "ja": "スプレィンギサンドゥル",
+        "fr": "Sprengisandur",
+        "en": "Sprengisandur",
+        "es": "Sprengisandur",
+        "it": "Sprengisandur",
+        "ca": "Sprengisandur",
+        "ru": "Спрейнгисандюр",
+        "zh-CN": "斯本雷吉森達"
+      },
+      "aliases": [
+        "Sprengisandur-Route",
+        "Sprengisandurpiste",
+        "Sprengisandurroute"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q3480697",
+          "Q75520",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q272514",
+      "kind": "desert",
+      "coordinates": [
+        54.8271,
+        34.737555555556
+      ],
+      "countries": [
+        "IRN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "area_km2": 55000.0,
+      "area_source": "wikidata:P2046",
+      "labels": {
+        "fr": "Dacht-e Kavir",
+        "ko": "카비르 사막",
+        "es": "Desierto de Kavir",
+        "it": "Dasht-e Kavir",
+        "id": "Dasht-e Kavir",
+        "de": "Kawir",
+        "ja": "カヴィール砂漠",
+        "ar": "صحراء كوير",
+        "pt": "Dasht-e Kavir",
+        "ru": "Деште-Кевир",
+        "en": "Dasht-e Kavir",
+        "ca": "Daixt-e-Kavir",
+        "zh-CN": "卡维尔盐漠",
+        "bn": "দাশ্তে কাভির",
+        "hi": "दास्त-ए कावीर"
+      },
+      "aliases": [
+        "Dasht-e-Kavir",
+        "Dasht e-Kavir",
+        "Dasht e Kavir",
+        "Kavir-e Namak",
+        "Deserto di Kavir",
+        "Große Salzwüste",
+        "Kavir",
+        "Dascht-e Kavir",
+        "Kewir",
+        "Dascht-e Kawir",
+        "Kawir-e Namak",
+        "Kawir-e bozorg",
+        "キャヴィール砂漠",
+        "カビール砂漠",
+        "صحراء كفير",
+        "صحراء كافير",
+        "صحراء كافر",
+        "Большая Соляная пустыня",
+        "Great Salt Desert"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q5702145",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q398398",
+      "kind": "desert",
+      "coordinates": [
+        55,
+        81
+      ],
+      "countries": [
+        "NOR",
+        "RUS"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "labels": {
+        "fr": "Désert arctique",
+        "de": "Kältewüste",
+        "ru": "Арктическая пустыня",
+        "zh-CN": "chinesisch",
+        "en": "Arctic desert",
+        "ja": "北極砂漠"
+      },
+      "aliases": [
+        "Eiswüste",
+        "Polarwüste",
+        "Зона арктических пустынь",
+        "北极荒漠"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q6617741",
+          "Q8514"
+        ],
+        "status": "validated"
+      },
+      "geometry_mode": "centroid"
+    },
+    {
+      "id": "Q767128",
+      "kind": "desert",
+      "coordinates": [
+        59.24111111111111,
+        30.26388888888889
+      ],
+      "countries": [
+        "IRN"
+      ],
+      "continents": [
+        "asia"
+      ],
+      "labels": {
+        "fr": "Dasht-e Lut",
+        "ko": "루트 사막",
+        "es": "Desierto de Lut",
+        "it": "Dasht-e Lut",
+        "ja": "ルート砂漠",
+        "ar": "صحراء لوط",
+        "pt": "Dasht-e Lut",
+        "ru": "Деште-Лут",
+        "en": "Dasht-e Lut",
+        "ca": "Dasht-e-Lut",
+        "zh-CN": "盧特沙漠",
+        "id": "Dasht-e Lut",
+        "de": "Dascht-e Lut",
+        "hi": "दाश्त ए लूट",
+        "bn": "দাশ্‌তে লুত"
+      },
+      "aliases": [
+        "Désert de Lout",
+        "루트 분지",
+        "Dasht e Lut",
+        "Dasht e-Lut",
+        "Deserto di Lut",
+        "صحراء داشتي لوت",
+        "Dasht-i-Lut",
+        "Wüste Lut",
+        "Lut",
+        "Lut Desert"
+      ],
+      "source": "wikidata",
+      "validation": {
+        "class_root": "Q8514",
+        "instance_of": [
+          "Q5702145",
           "Q8514"
         ],
         "status": "validated"

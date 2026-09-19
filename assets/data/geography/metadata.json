@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18",
+  "generated_at": "2026-09-19",
   "licenses": {
     "wikidata": "CC0 1.0",
     "natural-earth": "Public domain"
   },
   "counts": {
-    "volcano": 60,
-    "mountain": 60,
+    "volcano": 209,
+    "mountain": 68,
     "river": 247,
-    "desert": 35
+    "desert": 49
   },
   "exclusions": {
     "volcano": {
-      "candidates": 147,
-      "published": 60,
-      "excluded": 87,
-      "reason": "target cap or missing/invalid required identity, class, label, coordinate or country fields"
+      "candidates": 214,
+      "published": 209,
+      "excluded": 5,
+      "reason": "editorial sitelink threshold or missing/invalid identity, class, label, coordinate or country fields"
     },
     "mountain": {
-      "candidates": 136,
-      "published": 60,
-      "excluded": 76,
-      "reason": "target cap, volcanic class overlap or missing/invalid required identity, class, label, coordinate or country fields"
+      "candidates": 68,
+      "published": 68,
+      "excluded": 0,
+      "reason": "editorial sitelink threshold, volcanic class overlap or missing/invalid identity, class, label, coordinate or country fields"
     },
     "river": {
       "candidates": 470,
@@ -31,10 +31,10 @@
       "reason": "missing/invalid required fields, ambiguous identity, spatial mismatch or no explicit Natural Earth name/geometry match"
     },
     "desert": {
-      "candidates": 123,
-      "published": 35,
-      "excluded": 88,
-      "reason": "target cap or missing/invalid required identity, class, label, coordinate or country fields"
+      "candidates": 50,
+      "published": 49,
+      "excluded": 1,
+      "reason": "editorial sitelink threshold or missing/invalid identity, class, label, coordinate or country fields"
     }
   },
   "river_audit": {
@@ -2035,6 +2035,67 @@
       "min_zoom",
       "min_label"
     ]
+  },
+  "landform_audit": {
+    "volcano": {
+      "minimum_sitelinks": 25,
+      "eligible_classes": [
+        "Q1197120",
+        "Q1200524",
+        "Q1325302",
+        "Q1330974",
+        "Q1368970",
+        "Q1491559",
+        "Q169358",
+        "Q212057",
+        "Q8072"
+      ],
+      "explicit_exclusions": {
+        "Q1417843": "island group, not a comparable individual volcano",
+        "Q1340711": "volcanic island rather than an individual volcano",
+        "Q1245622": "Krakatau Island is an island, not a comparable individual volcano",
+        "Q1945447": "French subantarctic volcano without an unambiguous continent in the current country model",
+        "Q152872": "Ball’s Pyramid is an erosional remnant and island, not a comparable volcano",
+        "Q1520405": "Kao item describes the island rather than a distinct volcano",
+        "Q991004": "Broutona item describes the island rather than a distinct volcano",
+        "Q1547142": "Nea Kameni item describes the island rather than a distinct volcano"
+      },
+      "candidate_audit": {
+        "wikidata_candidates": 241,
+        "missing_country_or_continent": 6,
+        "ambiguous_continent": 5,
+        "invalid_coordinates": 4,
+        "hydrated": 226
+      }
+    },
+    "mountain": {
+      "minimum_sitelinks": 60,
+      "eligible_classes": [
+        "Q207326",
+        "Q8502"
+      ],
+      "explicit_exclusions": {},
+      "candidate_audit": {
+        "wikidata_candidates": 86,
+        "missing_country_or_continent": 1,
+        "hydrated": 85,
+        "volcanic_overlap": 17
+      }
+    },
+    "desert": {
+      "minimum_sitelinks": 30,
+      "eligible_classes": [
+        "Q5702145",
+        "Q8514"
+      ],
+      "explicit_exclusions": {
+        "Q118388": "Death Valley is primarily a valley, not a comparable desert"
+      },
+      "candidate_audit": {
+        "wikidata_candidates": 51,
+        "hydrated": 51
+      }
+    }
   },
   "notes": {
     "deserts": "Natural Earth assets bundled by MetaphAI contain no validated desert polygons; all published deserts use a Wikidata representative coordinate.",

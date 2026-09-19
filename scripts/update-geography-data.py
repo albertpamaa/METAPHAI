@@ -11,8 +11,10 @@ from __future__ import annotations
 
 import argparse
 import gzip
+import hashlib
 import json
 import math
+import os
 import re
 import shutil
 import tempfile
@@ -27,14 +29,38 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'assets'/'data'/'geography'
 RIVER_BASELINE=OUT/'river-baseline.json'
+LANDFORM_BASELINES={kind:OUT/f'{kind}-baseline.json' for kind in ('volcano','mountain','desert')}
 COUNTRIES=ROOT/'assets'/'data'/'worldbank'/'countries.json'
 NATURAL_EARTH=ROOT/'assets'/'maps'/'natural-earth-rivers-50m.geojson'
 LANGS=['en','es','fr','de','it','pt','ru','zh','hi','ja','ko','ca','ar','id','bn']
 ROOT_CLASSES={'volcano':'Q8072','mountain':'Q8502','river':'Q4022','desert':'Q8514'}
-TARGETS={'volcano':60,'mountain':60,'river':120,'desert':35}
+MIN_EDITORIAL_SITELINKS={'volcano':25,'mountain':60,'desert':30}
 FILES={'volcano':'volcanoes.json','mountain':'mountains.json','river':'rivers.json','desert':'deserts.json'}
-CONTINENTS={'Q15':'africa','Q46':'europe','Q48':'asia','Q49':'america','Q18':'america','Q538':'oceania','Q51':'antarctica'}
-VOLCANO_TYPES={'Q8072','Q169358','Q1330974','Q131681'}
+CONTINENTS={'Q15':'africa','Q46':'europe','Q48':'asia','Q49':'america','Q18':'america','Q538':'oceania','Q55643':'oceania','Q3960':'oceania','Q51':'antarctica'}
+VOLCANO_TYPES={'Q8072','Q169358','Q212057','Q1368970','Q1330974','Q1200524','Q1197120','Q1325302','Q1491559'}
+CANDIDATE_CLASSES={'volcano':VOLCANO_TYPES,'mountain':{'Q8502'},'desert':{'Q8514'}}
+EDITORIAL_SEEDS={
+    'volcano':{'Q31445600':{'Q8072'},'Q4675':{'Q169358'},'Q2723928':{'Q8072'}},
+    'mountain':{'Q16466024':{'Q8502'},'Q130018':{'Q8502'},'Q178167':{'Q8502'},'Q1895254':{'Q207326'}},
+    'desert':{'Q145165':{'Q8514'},'Q326896':{'Q8514'},'Q272577':{'Q8514'},'Q211839':{'Q8514'},'Q272514':{'Q5702145'},'Q767128':{'Q5702145'}},
+}
+KNOWN_EN_LABELS={'Q130018':'Denali','Q4675':'Mount St. Helens'}
+EXCLUDED_LANDFORMS={
+    'volcano':{
+        'Q1417843':'island group, not a comparable individual volcano',
+        'Q1340711':'volcanic island rather than an individual volcano',
+        'Q1245622':'Krakatau Island is an island, not a comparable individual volcano',
+        'Q1945447':'French subantarctic volcano without an unambiguous continent in the current country model',
+        'Q152872':'Ball’s Pyramid is an erosional remnant and island, not a comparable volcano',
+        'Q1520405':'Kao item describes the island rather than a distinct volcano',
+        'Q991004':'Broutona item describes the island rather than a distinct volcano',
+        'Q1547142':'Nea Kameni item describes the island rather than a distinct volcano',
+    },
+    'mountain':{},
+    'desert':{'Q118388':'Death Valley is primarily a valley, not a comparable desert'},
+}
+DISCOVERED_CLASSES={}
+AUDIT_COUNTS=defaultdict(lambda:defaultdict(int))
 RIVER_OVERRIDES={
     'chang jiang':'yangtze','yangtze river':'yangtze','yellow river':'huang','ganges':'ganga',
     'congo river':'congo','zaire river':'congo','irrawaddy':'ayeyarwady','euphrates':'al furat',
@@ -120,13 +146,23 @@ MAJOR_RIVER_AUDIT=[
 def load(path:Path): return json.loads(path.read_text(encoding='utf-8'))
 def dump(path:Path,data): path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 def request_json(url):
+    cache_root=os.environ.get('METAPHAI_GEO_CACHE_DIR')
+    key=None
+    if cache_root:
+        identity=(url.full_url+'\n'+(url.data or b'').decode('utf-8') if isinstance(url,urllib.request.Request) else url).encode('utf-8')
+        key=Path(cache_root)/f'{hashlib.sha256(identity).hexdigest()}.json'
+        if key.exists():return load(key)
     for attempt in range(4):
         try:
             request=url if isinstance(url,urllib.request.Request) else urllib.request.Request(url,headers={'User-Agent':'MetaphAI-Geography/2.0 (info@metaphai.com)','Accept-Encoding':'gzip'})
             with urllib.request.urlopen(request,timeout=180) as response:
                 body=response.read()
                 if response.headers.get('Content-Encoding')=='gzip': body=gzip.decompress(body)
-            return json.loads(body)
+            payload=json.loads(body)
+            if key:
+                key.parent.mkdir(parents=True,exist_ok=True)
+                dump(key,payload)
+            return payload
         except Exception:
             if attempt==3:raise
             time.sleep(4*(attempt+1))
@@ -152,7 +188,7 @@ def entity_payload(ids,props='labels|aliases|claims'):
         payload=request_json('https://www.wikidata.org/w/api.php?'+params)
         for qid,entity in payload['entities'].items():
             labels={('zh-CN' if code=='zh' else code):row['value'] for code,row in entity.get('labels',{}).items()}
-            aliases=[row['value'] for row in entity.get('aliases',{}).get('en',[])]
+            aliases=list(dict.fromkeys(row['value'] for code,rows in entity.get('aliases',{}).items() if code in LANGS for row in rows))
             output[qid]={'labels':labels,'aliases':aliases,'claims':entity.get('claims',{})}
     return output
 def entity_claims(claims,prop):
@@ -161,6 +197,13 @@ def entity_claims(claims,prop):
         value=claim.get('mainsnak',{}).get('datavalue',{}).get('value')
         if isinstance(value,dict) and value.get('entity-type')=='item':values.append('Q'+str(value['numeric-id']))
     return values
+def coordinate_claim(claims):
+    for claim in claims.get('P625',[]):
+        value=claim.get('mainsnak',{}).get('datavalue',{}).get('value')
+        if isinstance(value,dict) and 'longitude' in value and 'latitude' in value:
+            lon,lat=value['longitude'],value['latitude']
+            if isinstance(lon,(int,float)) and isinstance(lat,(int,float)) and math.isfinite(lon) and math.isfinite(lat) and -180<=lon<=180 and -90<=lat<=90:return [lon,lat]
+    return None
 def quantity_claim(claims,prop):
     for claim in claims.get(prop,[]):
         value=claim.get('mainsnak',{}).get('datavalue',{}).get('value')
@@ -179,22 +222,39 @@ def normalized_quantity(claims,prop,units):
     return None
 def query_candidates(kind):
     if kind=='river':return query_river_candidates()
-    exclude=''
-    query=f'''SELECT ?item ?itemLabel ?coord ?sitelinks WHERE {{
-      ?item wdt:P31 wd:{ROOT_CLASSES[kind]}; wdt:P625 ?coord; wikibase:sitelinks ?sitelinks.
-      {exclude} FILTER(?sitelinks >= 5)
-      SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
-    }} ORDER BY DESC(?sitelinks) LIMIT 180'''
+    # Reviewed Wikidata subclasses only. Broad subclass closure also includes
+    # mud/sand volcanoes and mountains that are merely hills or summits.
+    classes=CANDIDATE_CLASSES[kind]
+    DISCOVERED_CLASSES[kind]=classes|set().union(*EDITORIAL_SEEDS.get(kind,{}).values()) if EDITORIAL_SEEDS.get(kind) else classes
+    threshold=MIN_EDITORIAL_SITELINKS[kind]
     print(f'Wikidata candidates: {kind}',flush=True)
     grouped={}
-    for row in sparql(query):
-        qid=row['item']['value'].rsplit('/',1)[-1]
-        grouped.setdefault(qid,{'id':qid,'kind':kind,'name_en':row['itemLabel']['value'],'coordinates':point(row['coord']['value']),'sitelinks':int(row['sitelinks']['value'])})
+    for class_qid in sorted(classes):
+        limit=1000 if kind=='volcano' else 400
+        query=f'''SELECT ?item ?coord ?sitelinks WHERE {{ ?item wdt:P31 wd:{class_qid}; wdt:P625 ?coord; wikibase:sitelinks ?sitelinks. FILTER(?sitelinks >= {threshold}) }} LIMIT {limit}'''
+        rows=sparql(query)
+        if len(rows)>=limit:raise ValueError(f'{kind}/{class_qid}: class query reached limit; paginate instead of silently truncating')
+        for row in rows:
+            qid=row['item']['value'].rsplit('/',1)[-1]
+            grouped.setdefault(qid,{'id':qid,'kind':kind,'coordinates':point(row['coord']['value']),'sitelinks':int(row['sitelinks']['value']),'_class_root_validated':True,'_eligible_classes':classes})
+    seed_ids={item['id'] for item in load(OUT/FILES[kind])['entities']}
+    if LANDFORM_BASELINES[kind].exists():seed_ids.update(load(LANDFORM_BASELINES[kind])['ids'])
+    seed_ids.difference_update(grouped)
+    for qid in seed_ids:
+        grouped[qid]={'id':qid,'kind':kind,'coordinates':None,'sitelinks':0,'_class_root_validated':True,'_eligible_classes':EDITORIAL_SEEDS.get(kind,{}).get(qid,classes)}
+    for qid,editorial_classes in EDITORIAL_SEEDS.get(kind,{}).items():
+        if qid in grouped:continue
+        grouped[qid]={'id':qid,'kind':kind,'coordinates':None,'sitelinks':0,'_class_root_validated':True,'_eligible_classes':editorial_classes}
+    AUDIT_COUNTS[kind]['wikidata_candidates']=len(grouped)
     candidates=[]
     for item in grouped.values():
-        if not item['coordinates']:continue
+        if item['coordinates'] is None:
+            candidates.append(item);continue
+        if not item['coordinates']:
+            AUDIT_COUNTS[kind]['invalid_coordinates']+=1;continue
         lon,lat=item['coordinates']
-        if not(-180<=lon<=180 and -90<=lat<=90):continue
+        if not(-180<=lon<=180 and -90<=lat<=90):
+            AUDIT_COUNTS[kind]['invalid_coordinates']+=1;continue
         candidates.append(item)
     return sorted(candidates,key=lambda row:(-row['sitelinks'],row['id']))
 def query_river_candidates():
@@ -226,6 +286,10 @@ def hydrate(candidates,payload,country_payload):
     output=[]
     for item in candidates:
         claims=payload[item['id']]['claims'];countries=set();continents=set()
+        if item['coordinates'] is None:item['coordinates']=coordinate_claim(claims)
+        if item['coordinates'] is None:
+            AUDIT_COUNTS[item['kind']]['invalid_coordinates']+=1;continue
+        direct_continents={CONTINENTS[qid] for qid in entity_claims(claims,'P30') if qid in CONTINENTS}
         for country_qid in entity_claims(claims,'P17'):
             country_claims=country_payload.get(country_qid,{}).get('claims',{})
             for claim in country_claims.get('P298',[]):
@@ -233,9 +297,22 @@ def hydrate(candidates,payload,country_payload):
                 if isinstance(code,str) and code.upper() in valid_countries:countries.add(code.upper())
             for continent_qid in entity_claims(country_claims,'P30'):
                 if continent_qid in CONTINENTS:continents.add(CONTINENTS[continent_qid])
-        if not countries or not continents:continue
-        item['countries']=sorted(countries);item['continents']=sorted(continents);item['instance_of']=sorted(set(entity_claims(claims,'P31'))|({ROOT_CLASSES[item['kind']]} if item.pop('_class_root_validated',False) else set()))
-        elevation=quantity_claim(claims,'P2044')
+        if not countries or not continents:
+            AUDIT_COUNTS[item['kind']]['missing_country_or_continent']+=1;continue
+        if direct_continents:continents=direct_continents
+        else:
+            spatial=point_continent(*item['coordinates'])
+            if spatial in continents:continents={spatial}
+            elif len(continents)!=1:
+                AUDIT_COUNTS[item['kind']]['ambiguous_continent']+=1;continue
+        item['countries']=sorted(countries);item['continents']=sorted(continents)
+        actual_classes=set(entity_claims(claims,'P31'))
+        eligible=item.pop('_eligible_classes',None)
+        if eligible is not None and not actual_classes&eligible:
+            AUDIT_COUNTS[item['kind']]['class_mismatch']+=1;continue
+        item['instance_of']=sorted(actual_classes|({ROOT_CLASSES[item['kind']]} if item.pop('_class_root_validated',False) else set()))
+        item['name_en']=payload[item['id']]['labels'].get('en',item['id'])
+        elevation=normalized_quantity(claims,'P2044',{'Q11573':1,'Q3710':.3048})
         if elevation is not None and math.isfinite(elevation) and -500<=elevation<=9000:item['elevation_m']=round(elevation)
         if item['kind']=='river':
             length=normalized_quantity(claims,'P2043',{'Q11573':.001,'Q828224':1,'Q174728':1.609344})
@@ -246,21 +323,21 @@ def hydrate(candidates,payload,country_payload):
             if area is not None and math.isfinite(area) and 1<=area<=20_000_000:item['area_km2']=round(area,1);item['area_source']='wikidata:P2046'
         output.append(item)
     return output
-def balanced(candidates,target):
-    selected=[];seen=set();counts=defaultdict(int)
-    for minimum in (4,8,12,999):
-        for item in candidates:
-            if item['id'] in seen:continue
-            continent=item['continents'][0]
-            if minimum!=999 and counts[continent]>=minimum:continue
-            selected.append(item);seen.add(item['id']);counts[continent]+=1
-            if len(selected)>=target:return selected
-    return selected
+def point_continent(lon,lat):
+    if lat<=-60:return 'antarctica'
+    if -170<=lon<=-30 and -57<=lat<=84:return 'america'
+    if 110<=lon<=180 and -50<=lat<0:return 'oceania'
+    if -25<=lon<=55 and -38<=lat<37:return 'africa'
+    if -12<=lon<=45 and 35<=lat<=73:return 'europe'
+    if 25<=lon<=180 and -12<=lat<=82:return 'asia'
+    return None
 def enrich(items,label_payload):
     for item in items:
         labels=label_payload[item['id']]['labels']
         labels.setdefault('en',item.pop('name_en'))
-        item['labels']=labels;item.pop('sitelinks',None)
+        item['labels']=labels
+        item['aliases']=[alias for alias in label_payload[item['id']]['aliases'] if alias not in labels.values()]
+        item.pop('sitelinks',None)
         item['source']='wikidata';item['validation']={'class_root':ROOT_CLASSES[item['kind']],'instance_of':item.pop('instance_of'),'status':'validated'}
     return items
 def enrich_river_endpoints(items,label_payload):
@@ -391,32 +468,49 @@ def river_audit(source,index,candidates,selected,rejected,spatial_rejections,his
         'name_fields':['name','name_en','name_alt'],
         'non_name_fields_inspected':['note','featurecla','scalerank','min_zoom','min_label']
     }
-def refresh(rivers_only=False):
+def refresh(rivers_only=False,landforms_only=False):
     OUT.mkdir(parents=True,exist_ok=True)
-    requested=('river',) if rivers_only else tuple(ROOT_CLASSES)
+    requested=('river',) if rivers_only else tuple(kind for kind in ROOT_CLASSES if not(landforms_only and kind=='river'))
     candidates={kind:query_candidates(kind) for kind in requested}
-    river_source,river_index=natural_earth_index()
+    if not landforms_only:river_source,river_index=natural_earth_index()
     labels=entity_payload(sorted({row['id'] for rows in candidates.values() for row in rows}))
+    for qid,label in KNOWN_EN_LABELS.items():
+        if qid in labels:labels[qid]['labels'].setdefault('en',label)
     country_qids=sorted({qid for entity in labels.values() for qid in entity_claims(entity['claims'],'P17')})
     country_payload=entity_payload(country_qids,props='claims')
     candidates={kind:hydrate(rows,labels,country_payload) for kind,rows in candidates.items()}
+    for kind,rows in candidates.items():AUDIT_COUNTS[kind]['hydrated']=len(rows)
     if not rivers_only:
         volcano_ids={item['id'] for item in candidates['volcano']}
-        candidates['mountain']=[item for item in candidates['mountain'] if item['id'] not in volcano_ids and not set(item['instance_of'])&VOLCANO_TYPES]
+        AUDIT_COUNTS['mountain']['volcanic_overlap']=sum(item['id'] in volcano_ids or bool(set(item['instance_of'])&DISCOVERED_CLASSES['volcano']) for item in candidates['mountain'])
+        candidates['mountain']=[item for item in candidates['mountain'] if item['id'] not in volcano_ids and not set(item['instance_of'])&DISCOVERED_CLASSES['volcano']]
     for kind in candidates:
         candidates[kind]=[item for item in candidates[kind] if labels[item['id']]['labels'].get('en') and labels[item['id']]['labels']['en']!=item['id']]
     if not rivers_only:
         candidates['volcano']=[item for item in candidates['volcano'] if not re.search(r'\b(island|peninsula)\b|île',labels[item['id']]['labels']['en'],re.I)]
         candidates['desert']=[item for item in candidates['desert'] if not re.search(r'\b(peninsula|island)\b',labels[item['id']]['labels']['en'],re.I)]
-        selected={kind:balanced(candidates[kind],TARGETS[kind]) for kind in ('volcano','mountain','desert')}
+        selected={kind:[item for item in candidates[kind] if item['id'] not in EXCLUDED_LANDFORMS[kind]] for kind in ('volcano','mountain','desert')}
     else:selected={kind:load(OUT/FILES[kind])['entities'] for kind in ('volcano','mountain','desert')}
-    selected['river'],river_rejected,spatial_rejections,historical_false_positives=river_match(candidates['river'],labels,river_index)
-    audit=river_audit(river_source,river_index,candidates['river'],selected['river'],river_rejected,spatial_rejections,historical_false_positives)
-    missing_protected=PROTECTED_RIVERS-{item['id'] for item in selected['river']}
-    assert not missing_protected,f'protected rivers disappeared: {sorted(missing_protected)}'
-    if RIVER_BASELINE.exists():
-        missing_baseline=set(load(RIVER_BASELINE)['ids'])-{item['id'] for item in selected['river']}
-        assert not missing_baseline,f'published river baseline disappeared without an explicit migration: {sorted(missing_baseline)}'
+    if landforms_only:
+        audit=load(OUT/'metadata.json')['river_audit']
+    else:
+        selected['river'],river_rejected,spatial_rejections,historical_false_positives=river_match(candidates['river'],labels,river_index)
+        audit=river_audit(river_source,river_index,candidates['river'],selected['river'],river_rejected,spatial_rejections,historical_false_positives)
+        missing_protected=PROTECTED_RIVERS-{item['id'] for item in selected['river']}
+        assert not missing_protected,f'protected rivers disappeared: {sorted(missing_protected)}'
+        if RIVER_BASELINE.exists():
+            missing_baseline=set(load(RIVER_BASELINE)['ids'])-{item['id'] for item in selected['river']}
+            assert not missing_baseline,f'published river baseline disappeared without an explicit migration: {sorted(missing_baseline)}'
+    if not rivers_only:
+        for kind,baseline in LANDFORM_BASELINES.items():
+            previous_ids={item['id'] for item in load(OUT/FILES[kind])['entities']}
+            previous_lost=previous_ids-{item['id'] for item in selected[kind]}-set(EXCLUDED_LANDFORMS[kind])
+            if kind=='mountain':previous_lost-={item['id'] for item in selected['volcano']}
+            assert not previous_lost,f'previously published {kind} disappeared without a documented exclusion: {sorted(previous_lost)}'
+            if baseline.exists():
+                lost=set(load(baseline)['ids'])-{item['id'] for item in selected[kind]}-set(EXCLUDED_LANDFORMS[kind])
+                if kind=='mountain':lost-={item['id'] for item in selected['volcano']}
+                assert not lost,f'published {kind} baseline disappeared without a documented exclusion: {sorted(lost)}'
     with tempfile.TemporaryDirectory(prefix='.refresh-',dir=OUT) as temporary:
         staging=Path(temporary)
         for kind in ('volcano','mountain','desert'):
@@ -425,24 +519,32 @@ def refresh(rivers_only=False):
             if kind=='desert':
                 for item in selected[kind]:item['geometry_mode']='centroid'
             dump(staging/FILES[kind],{'schema_version':1,'kind':kind,'generated_at':str(date.today()),'sources':['wikidata'],'entities':selected[kind]})
-        river_features=[]
-        enrich_river_endpoints(selected['river'],labels)
-        for item in enrich(selected['river'],labels):
-            geometry=item.pop('_geometry');river_features.append({'type':'Feature','id':item['id'],'properties':{'qid':item['id'],'natural_earth_name':item['natural_earth_name'],'natural_earth_names':item['natural_earth_names'],'source':'Natural Earth 1:50m rivers_lake_centerlines v5.0.0'},'geometry':geometry})
-        dump(staging/'rivers.json',{'schema_version':1,'kind':'river','generated_at':str(date.today()),'sources':['wikidata','natural-earth'],'entities':selected['river']})
-        dump(staging/'rivers-50m.geojson',{'type':'FeatureCollection','metadata':{'source':'Natural Earth','dataset':'ne_50m_rivers_lake_centerlines','version':'5.0.0','license':'Public domain','matching':'Explicit snapshot mapping by natural_earth_name'},'features':river_features})
+        if landforms_only:
+            shutil.copyfile(OUT/'rivers.json',staging/'rivers.json')
+            shutil.copyfile(OUT/'rivers-50m.geojson',staging/'rivers-50m.geojson')
+            selected['river']=load(OUT/'rivers.json')['entities']
+        else:
+            river_features=[]
+            enrich_river_endpoints(selected['river'],labels)
+            for item in enrich(selected['river'],labels):
+                geometry=item.pop('_geometry');river_features.append({'type':'Feature','id':item['id'],'properties':{'qid':item['id'],'natural_earth_name':item['natural_earth_name'],'natural_earth_names':item['natural_earth_names'],'source':'Natural Earth 1:50m rivers_lake_centerlines v5.0.0'},'geometry':geometry})
+            dump(staging/'rivers.json',{'schema_version':1,'kind':'river','generated_at':str(date.today()),'sources':['wikidata','natural-earth'],'entities':selected['river']})
+            dump(staging/'rivers-50m.geojson',{'type':'FeatureCollection','metadata':{'source':'Natural Earth','dataset':'ne_50m_rivers_lake_centerlines','version':'5.0.0','license':'Public domain','matching':'Explicit snapshot mapping by natural_earth_name'},'features':river_features})
         reasons={
-            'volcano':'target cap or missing/invalid required identity, class, label, coordinate or country fields',
-            'mountain':'target cap, volcanic class overlap or missing/invalid required identity, class, label, coordinate or country fields',
+            'volcano':'editorial sitelink threshold or missing/invalid identity, class, label, coordinate or country fields',
+            'mountain':'editorial sitelink threshold, volcanic class overlap or missing/invalid identity, class, label, coordinate or country fields',
             'river':'missing/invalid required fields, ambiguous identity, spatial mismatch or no explicit Natural Earth name/geometry match',
-            'desert':'target cap or missing/invalid required identity, class, label, coordinate or country fields'
+            'desert':'editorial sitelink threshold or missing/invalid identity, class, label, coordinate or country fields'
         }
-        previous_exclusions=load(OUT/'metadata.json').get('exclusions',{}) if rivers_only else {}
-        exclusions={kind:(previous_exclusions[kind] if rivers_only and kind!='river' else {'candidates':len(candidates[kind]),'published':len(selected[kind]),'excluded':len(candidates[kind])-len(selected[kind]),'reason':reasons[kind]}) for kind in ROOT_CLASSES}
-        dump(staging/'metadata.json',{'schema_version':1,'generated_at':str(date.today()),'licenses':{'wikidata':'CC0 1.0','natural-earth':'Public domain'},'counts':{kind:len(selected[kind]) for kind in ROOT_CLASSES},'exclusions':exclusions,'river_audit':audit,'notes':{'deserts':'Natural Earth assets bundled by MetaphAI contain no validated desert polygons; all published deserts use a Wikidata representative coordinate.','geo_quiz':'The Geo Quiz catalog remains independent and unchanged.'}})
+        previous=load(OUT/'metadata.json')
+        exclusions={kind:(previous['exclusions'][kind] if (rivers_only and kind!='river') or (landforms_only and kind=='river') else {'candidates':len(candidates[kind]),'published':len(selected[kind]),'excluded':len(candidates[kind])-len(selected[kind]),'reason':reasons[kind]}) for kind in ROOT_CLASSES}
+        dump(staging/'metadata.json',{'schema_version':1,'generated_at':str(date.today()),'licenses':{'wikidata':'CC0 1.0','natural-earth':'Public domain'},'counts':{kind:len(selected[kind]) for kind in ROOT_CLASSES},'exclusions':exclusions,'river_audit':audit,'landform_audit':{kind:{'minimum_sitelinks':MIN_EDITORIAL_SITELINKS[kind],'eligible_classes':sorted(DISCOVERED_CLASSES[kind]),'explicit_exclusions':EXCLUDED_LANDFORMS[kind],'candidate_audit':dict(AUDIT_COUNTS[kind])} for kind in DISCOVERED_CLASSES} if not rivers_only else previous.get('landform_audit',{}),'notes':{'deserts':'Natural Earth assets bundled by MetaphAI contain no validated desert polygons; all published deserts use a Wikidata representative coordinate.','geo_quiz':'The Geo Quiz catalog remains independent and unchanged.'}})
         validate(staging)
         for filename in [*FILES.values(),'rivers-50m.geojson','metadata.json']:
             shutil.copyfile(staging/filename,OUT/filename)
+        if not rivers_only:
+            for kind,baseline in LANDFORM_BASELINES.items():
+                dump(baseline,{'schema_version':1,'kind':kind,'ids':sorted(item['id'] for item in selected[kind])})
 def validate(base=OUT):
     metadata=load(base/'metadata.json');valid_countries={row['id'] for row in load(COUNTRIES)['countries'] if not row['is_aggregate']};seen=set()
     for kind in ROOT_CLASSES:
@@ -474,7 +576,8 @@ def flatten(value):
         if isinstance(item,list):yield from flatten(item)
         else:yield item
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--refresh',action='store_true');parser.add_argument('--rivers-only',action='store_true');args=parser.parse_args()
-    if args.refresh:refresh(rivers_only=args.rivers_only)
+    parser=argparse.ArgumentParser();parser.add_argument('--refresh',action='store_true');parser.add_argument('--rivers-only',action='store_true');parser.add_argument('--landforms-only',action='store_true');args=parser.parse_args()
+    assert not(args.rivers_only and args.landforms_only)
+    if args.refresh:refresh(rivers_only=args.rivers_only,landforms_only=args.landforms_only)
     metadata=validate();print(json.dumps({'valid':True,'counts':metadata['counts']},ensure_ascii=False))
 if __name__=='__main__':main()

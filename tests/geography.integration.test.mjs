@@ -8,12 +8,13 @@ import {GEOGRAPHY_ROUTES,geographyItemRoute,geographyItemRoutes} from '../assets
 import {GEOGRAPHY_I18N,GEOGRAPHY_REQUIRED_KEYS} from '../assets/js/geography-i18n.mjs';
 import {collections,metadata,prerenderGeography,VERSION} from '../scripts/prerender-geography.mjs';
 
-const root=resolve(import.meta.dirname,'..'),languages=Object.keys(DATA_LANGUAGES),keys=['volcanoes','mountains','rivers','deserts'],expected={volcanoes:60,mountains:60,rivers:247,deserts:35},classRoot={volcanoes:'Q8072',mountains:'Q8502',rivers:'Q4022',deserts:'Q8514'};
+const root=resolve(import.meta.dirname,'..'),languages=Object.keys(DATA_LANGUAGES),keys=['volcanoes','mountains','rivers','deserts'],expected={volcanoes:metadata.counts.volcano,mountains:metadata.counts.mountain,rivers:247,deserts:metadata.counts.desert},classRoot={volcanoes:'Q8072',mountains:'Q8502',rivers:'Q4022',deserts:'Q8514'};
 const file=route=>join(root,...route.split('/').filter(Boolean),'index.html');
 assert.equal(languages.length,15);
 assert.deepEqual(Object.keys(GEOGRAPHY_I18N),languages);
 for(const language of languages)for(const key of GEOGRAPHY_REQUIRED_KEYS)assert.ok(GEOGRAPHY_I18N[language][key]?.trim(),`${language}:${key}`);
-assert.deepEqual(metadata.counts,{volcano:60,mountain:60,river:247,desert:35});
+assert.ok(expected.volcanoes>=60&&expected.mountains>=60&&expected.deserts>=35);
+assert.equal(metadata.counts.river,247);
 
 const allIds=[];
 for(const key of keys){
@@ -39,7 +40,26 @@ for(const key of keys){
     if(key==='deserts')assert.equal(item.geometry_mode,'centroid');
   }
 }
-assert.equal(new Set(allIds).size,402,'entities may not repeat within the same category/QID pair');
+assert.equal(new Set(allIds).size,allIds.length,'entities may not repeat within the same category/QID pair');
+for(const [key,kind] of [['volcanoes','volcano'],['mountains','mountain'],['deserts','desert']]){
+  const baseline=JSON.parse(readFileSync(join(root,`assets/data/geography/${kind}-baseline.json`),'utf8'));
+  const ids=new Set(collections[key].map(item=>item.id));
+  const excluded=new Set(Object.keys(metadata.landform_audit[kind].explicit_exclusions));
+  for(const id of baseline.ids)assert.ok(ids.has(id)||excluded.has(id),`${kind}: lost baseline ${id}`);
+  for(const item of collections[key])assert.ok(item.validation.instance_of.some(id=>metadata.landform_audit[kind].eligible_classes.includes(id)),`${kind}: invalid class ${item.id}`);
+}
+for(const item of [...collections.volcanoes,...collections.mountains,...collections.deserts]){
+  assert.ok(/^Q\d+$/.test(item.id),`invalid QID: ${item.id}`);
+  assert.ok(item.countries?.length,`missing country: ${item.id}`);
+  assert.ok(item.continents?.length,`missing continent: ${item.id}`);
+  assert.ok(item.coordinates?.length===2&&item.coordinates.every(Number.isFinite),`invalid point: ${item.id}`);
+  assert.ok(!item.validation.instance_of.some(id=>['Q5','Q486972','Q131681'].includes(id)),`invalid person/settlement/reservoir class: ${item.id}`);
+}
+assert.equal(new Set(collections.volcanoes.map(item=>item.id)).size,collections.volcanoes.length);
+for(const item of collections.mountains)assert.equal(collections.volcanoes.some(volcano=>volcano.id===item.id),false,`volcano/mountain overlap: ${item.id}`);
+assert.equal(collections.volcanoes.some(item=>item.id==='Q1417843'),false,'Hanish Islands are not an individual volcano');
+for(const id of ['Q1340711','Q1245622','Q152872','Q1520405','Q991004','Q1547142'])assert.equal(collections.volcanoes.some(item=>item.id===id),false,`excluded island or erosional remnant: ${id}`);
+assert.equal(collections.deserts.some(item=>item.id==='Q118388'),false,'Death Valley is a valley, not a comparable desert');
 
 const riverGeo=JSON.parse(readFileSync(join(root,'assets/data/geography/rivers-50m.geojson'),'utf8'));
 assert.equal(riverGeo.features.length,247);
@@ -103,11 +123,14 @@ for(const language of languages){
   }
   for(const key of keys){const html=readFileSync(file(GEOGRAPHY_ROUTES[key][language]),'utf8');assert.ok(html.includes('data-geo-list-search'));assert.ok(html.includes('data-geo-continent'));assert.equal((html.match(/data-geo-list-item/g)||[]).length,expected[key])}
 }
-assert.equal(routes.length,6120);
+assert.equal(routes.length,15*(6+Object.values(expected).reduce((total,count)=>total+count,0)));
 assert.equal(new Set(routes).size,routes.length);
 for(const route of routes)assert.ok(existsSync(file(route)),route);
 
 const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+const sitemapLocs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+assert.equal(new Set(sitemapLocs).size,sitemapLocs.length,'duplicate sitemap URL');
+assert.ok(sitemapLocs.length>=routes.length,'missing geography URLs in sitemap');
 for(const language of languages)for(const key of Object.keys(GEOGRAPHY_ROUTES))assert.ok(sitemap.includes(`<loc>https://metaphai.com${GEOGRAPHY_ROUTES[key][language]}</loc>`));
 for(const key of keys)for(const item of collections[key])for(const route of Object.values(geographyItemRoutes(key,item.id)))assert.ok(sitemap.includes(`<loc>https://metaphai.com${route}</loc>`));
 assert.equal((sitemap.match(/<!-- GEOGRAPHY_SITEMAP:START -->/g)||[]).length,1);
@@ -116,8 +139,8 @@ assert.equal(await prerenderGeography(),0,'prerender must be idempotent');
 const server=createServer((req,res)=>{const target=file(decodeURI(req.url.split('?')[0]));if(existsSync(target)){res.writeHead(200,{'content-type':'text/html; charset=utf-8'});createReadStream(target).pipe(res)}else{res.writeHead(404);res.end('Not found')}});
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base=`http://127.0.0.1:${server.address().port}`;
-try{for(const route of routes){const response=await fetch(`${base}${route}`);assert.equal(response.status,200,route);const html=await response.text();assert.ok(html.includes('<main class="geography-shell">'),route);if(!Object.values(GEOGRAPHY_ROUTES.sources).includes(route))assert.ok(html.includes('<svg class="geo-map"'),route)}}finally{await new Promise(resolve=>server.close(resolve))}
+try{for(const route of routes){const response=await fetch(`${base}${route}`);assert.equal(response.status,200,route);const html=await response.text();assert.ok(html.includes('<main class="geography-shell">'),route);assert.ok(html.includes(`<link rel="canonical" href="https://metaphai.com${route}">`),route);assert.ok(html.includes(`<meta property="og:url" content="https://metaphai.com${route}">`),route);assert.ok(html.includes('hreflang="x-default"'),route);assert.ok(html.includes('"@type":"WebPage"')&&html.includes('"@type":"BreadcrumbList"'),route);assert.ok(!html.includes('"@type":"Dataset"'),route);if(!Object.values(GEOGRAPHY_ROUTES.sources).includes(route))assert.ok(html.includes('<svg class="geo-map"'),route);if(/\/q\d+\/$/.test(route)){const related=html.match(/<div class="geo-related-grid">([\s\S]*?)<\/div>/)?.[1];assert.ok(related,`${route}: related section missing`);assert.equal((related.match(/<a href=/g)||[]).length,6,`${route}: expected 6 related entities`);assert.ok(!related.includes(`href="${route}"`),`${route}: self-related link`)}}}finally{await new Promise(resolve=>server.close(resolve))}
 
-for(const asset of ['volcanoes.json','mountains.json','rivers.json','deserts.json','metadata.json','river-baseline.json','rivers-50m.geojson'])assert.ok(statSync(join(root,'assets/data/geography',asset)).size>100);
+for(const asset of ['volcanoes.json','mountains.json','rivers.json','deserts.json','metadata.json','river-baseline.json','volcano-baseline.json','mountain-baseline.json','desert-baseline.json','rivers-50m.geojson'])assert.ok(statSync(join(root,'assets/data/geography',asset)).size>100);
 for(const [key,item] of [['volcanoes',collections.volcanoes.find(row=>Number.isFinite(row.elevation_m))],['mountains',collections.mountains.find(row=>Number.isFinite(row.elevation_m))],['rivers',collections.rivers.find(row=>Number.isFinite(row.length_km)&&row.sources?.length&&row.mouths?.length)],['deserts',collections.deserts.find(row=>Number.isFinite(row.area_km2))]])for(const language of ['es','en','ar']){const html=readFileSync(file(geographyItemRoute(language,key,item.id)),'utf8');for(const marker of ['geo-profile-section','geo-context-grid','geo-country-links','geo-related-grid','geo-profile-source'])assert.ok(html.includes(marker),`${language}/${key}: ${marker}`)}
-console.log(`geography: ${routes.length} pages, 241 country paths, 60 volcanoes, 60 mountains, 247 spatially validated river geometries, 35 desert centroids, enriched profiles, 15 languages, HTTP and idempotent prerender OK`);
+console.log(`geography: ${routes.length} pages, 241 country paths, ${expected.volcanoes} volcanoes, ${expected.mountains} mountains, 247 spatially validated river geometries, ${expected.deserts} desert centroids, enriched profiles, 15 languages, HTTP and idempotent prerender OK`);
