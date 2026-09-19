@@ -6,6 +6,7 @@ import { GAME_PAGES } from '../assets/js/games/game-routes.mjs';
 import { activeGames } from '../assets/js/games/game-registry.mjs';
 import { GAMES_I18N } from '../assets/js/games/games-i18n.mjs';
 import { HIGHER_LOWER_I18N } from '../assets/js/games/higher-or-lower-i18n.mjs';
+import {readSitemapEntries} from './sitemap-test-helper.mjs';
 import { COUNTRY_SILHOUETTE_I18N } from '../assets/js/games/country-silhouette-i18n.mjs';
 import { GEO_QUIZ_I18N } from '../assets/js/games/geo-quiz-i18n.mjs';
 import { GAME_STATS_I18N, GAME_STATS_REQUIRED_KEYS } from '../assets/js/games/game-stats-i18n.mjs';
@@ -70,7 +71,7 @@ assert.deepEqual(bidiSegments('2004–2024'),[{text:'2004–2024',isolate:true}]
 assert.deepEqual(bidiSegments('من 2004 إلى 2024'),[{text:'من ',isolate:false},{text:'2004',isolate:true},{text:' إلى ',isolate:false},{text:'2024',isolate:true}]);
 const bidiNodes=[];globalThis.document={createElement:tag=>({tag})};appendBidiText({append:(...nodes)=>bidiNodes.push(...nodes)},'من 2004 إلى 2024','ar');delete globalThis.document;
 assert.deepEqual(bidiNodes.map(node=>typeof node==='string'?node:{tag:node.tag,dir:node.dir,className:node.className,textContent:node.textContent}),['من ',{tag:'bdi',dir:'ltr',className:'bidi-number',textContent:'2004'},' إلى ',{tag:'bdi',dir:'ltr',className:'bidi-number',textContent:'2024'}]);
-const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');for(const routes of Object.values(GAME_PAGES))for(const route of Object.values(routes))assert.equal((sitemap.match(new RegExp(`<loc>${origin}${route}</loc>`,'g'))||[]).length,1);assert.doesNotMatch(sitemap,/assets\/data\/games|world-data-quiz\/20\d\d-/);
+const sitemap=readSitemapEntries(root);for(const routes of Object.values(GAME_PAGES))for(const route of Object.values(routes))assert.equal((sitemap.match(new RegExp(`<loc>${origin}${route}</loc>`,'g'))||[]).length,1);assert.doesNotMatch(sitemap,/assets\/data\/games|world-data-quiz\/20\d\d-/);
 const higherUi=readFileSync(join(root,'assets/js/games/higher-or-lower-ui.mjs'),'utf8'),gamesCss=readFileSync(join(root,'assets/css/games.css'),'utf8');
 assert.equal((higherUi.match(/\bfetch\(/g)||[]).length,1);assert.ok(higherUi.includes('game.dataRequirements.path'));assert.doesNotMatch(higherUi,/worldbank\/.+\.json|d3|topojson/i);
 assert.match(gamesCss,/\.games-list\{[^}]*grid-template-columns:repeat\(auto-fit/);assert.match(gamesCss,/@media\(max-width:820px\)\{\.games-list\{grid-template-columns:1fr\}\}/);assert.match(gamesCss,/@media\(max-width:620px\)[\s\S]*\.quiz-options,\.hol-options\{grid-template-columns:1fr\}/);

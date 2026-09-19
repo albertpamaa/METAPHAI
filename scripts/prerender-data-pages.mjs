@@ -14,6 +14,7 @@ import { GAME_PAGES } from '../assets/js/games/game-routes.mjs';
 import { gameText } from '../assets/js/games/games-i18n.mjs';
 import { GEOGRAPHY_ROUTES } from '../assets/js/geography-routes.mjs';
 import { geographyText } from '../assets/js/geography-i18n.mjs';
+import { sectionPath } from './sitemap-sections.mjs';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const START = '<!-- DATA_PRERENDER:START -->';
@@ -246,7 +247,7 @@ function sitemapEntries(routeGroups) {
 
 async function updateSitemap(countries) {
   const newIndicators=Object.values(DATA_PAGES).filter(page=>page.indicator&&!ORIGINAL_INDICATORS.has(page.indicator));
-  const path=join(ROOT,'sitemap.xml'),previous=await readFile(path,'utf8'),marked=new RegExp(`${SITEMAP_START}[\\s\\S]*?${SITEMAP_END}\\s*`),clean=previous.replace(marked,''),groups=[...newIndicators,DATA_PAGES.map,DATA_PAGES.countries,DATA_PAGES.compare,DATA_PAGES.rankings,DATA_PAGES.changes,...VIEWS.validCountries(countries).map(country=>countryRoutes(country.id))],block=`${SITEMAP_START}\n${sitemapEntries(groups)}\n${SITEMAP_END}\n`;
+  const path=sectionPath(ROOT,'datos'),previous=await readFile(path,'utf8'),marked=new RegExp(`${SITEMAP_START}[\\s\\S]*?${SITEMAP_END}\\s*`),clean=previous.replace(marked,''),groups=[...newIndicators,DATA_PAGES.map,DATA_PAGES.countries,DATA_PAGES.compare,DATA_PAGES.rankings,DATA_PAGES.changes,...VIEWS.validCountries(countries).map(country=>countryRoutes(country.id))],block=`${SITEMAP_START}\n${sitemapEntries(groups)}\n${SITEMAP_END}\n`;
   return writeIfChanged(path,clean.replace(/<\/urlset>\s*$/,`${block}</urlset>\n`));
 }
 

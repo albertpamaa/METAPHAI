@@ -2,6 +2,7 @@
 import {existsSync,readFileSync} from 'node:fs';
 import {join,relative,resolve} from 'node:path';
 import {DATA_LANGUAGES,DATA_PAGES,INSTITUTIONAL_PAGES,pageKeyFromPath,pageRoutes} from '../assets/js/data-routes.mjs';
+import {readSitemapEntries} from './sitemap-test-helper.mjs';
 
 const root=resolve(import.meta.dirname,'..'),origin='https://metaphai.com',version='20260913-2';
 const languages=Object.keys(DATA_LANGUAGES),identities=Object.entries(INSTITUTIONAL_PAGES);
@@ -33,7 +34,7 @@ for(const [key,page] of identities)for(const lang of languages){
   if(key==='contact'){assert.ok(html.includes('href="mailto:info@metaphai.com"'));assert.match(html,/navigator\.clipboard\.writeText\((?:'info@metaphai\.com'|this\.dataset\.copyEmail)\)/);assert.match(html,/data-copy-label="[^"]+" data-copied-label="[^"]+"/)}
   assert.equal(html.includes('1metaphai@gmail.com'),false);
 }
-const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8'),locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+const sitemap=readSitemapEntries(root),locs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
 for(const key of ['contact','about'])for(const lang of languages){const page=INSTITUTIONAL_PAGES[key],url=origin+page[lang],entry=sitemap.match(new RegExp(`<url><loc>${url.replaceAll('.','\\.')}<\\/loc>([\\s\\S]*?)<\\/url>`))?.[1]||'';assert.ok(entry,`sitemap: falta ${url}`);for(const alt of languages)assert.ok(entry.includes(`hreflang="${alt}" href="${origin}${page[alt]}"`),`sitemap ${key}/${lang}: hreflang ${alt}`);assert.ok(entry.includes(`hreflang="x-default" href="${origin}${page.es}"`))}
 for(const lang of languages)assert.equal(locs.includes(origin+INSTITUTIONAL_PAGES.privacy[lang]),false,`sitemap: privacidad noindex incluida (${lang})`);
 console.log('institutional-i18n-static: 45 páginas, 3 equivalencias, SEO, selector, footers, email y enlaces OK');

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createReadStream,existsSync,readFileSync,statSync} from 'node:fs';
 import {createServer} from 'node:http';
 import {join,resolve} from 'node:path';
+import {readSitemapEntries} from './sitemap-test-helper.mjs';
 
 const root=resolve(import.meta.dirname,'..');
 const calculatorRoutes=[
@@ -14,7 +15,7 @@ const calculatorRoutes=[
   '/calculadora-impuesto-herencias/','/calculadora-precio-hora-freelance/'
 ];
 const routeFile=route=>route==='/'?join(root,'index.html'):join(root,...route.split('/').filter(Boolean),'index.html');
-const home=readFileSync(routeFile('/'),'utf8'),landing=readFileSync(routeFile('/calculadoras/'),'utf8'),sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+const home=readFileSync(routeFile('/'),'utf8'),landing=readFileSync(routeFile('/calculadoras/'),'utf8'),sitemap=readSitemapEntries(root);
 
 assert.equal(calculatorRoutes.length,19);
 assert.ok(home.includes('<link rel="canonical" href="https://metaphai.com/">'));

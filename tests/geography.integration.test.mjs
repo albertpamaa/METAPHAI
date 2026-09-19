@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import {DATA_LANGUAGES} from '../assets/js/data-routes.mjs';
 import {GEOGRAPHY_ROUTES,geographyItemRoute,geographyItemRoutes} from '../assets/js/geography-routes.mjs';
 import {GEOGRAPHY_I18N,GEOGRAPHY_REQUIRED_KEYS} from '../assets/js/geography-i18n.mjs';
+import {readSitemapEntries} from './sitemap-test-helper.mjs';
 import {collections,metadata,prerenderGeography,VERSION} from '../scripts/prerender-geography.mjs';
 
 const root=resolve(import.meta.dirname,'..'),languages=Object.keys(DATA_LANGUAGES),keys=['volcanoes','mountains','rivers','deserts'],expected={volcanoes:metadata.counts.volcano,mountains:metadata.counts.mountain,rivers:247,deserts:metadata.counts.desert},classRoot={volcanoes:'Q8072',mountains:'Q8502',rivers:'Q4022',deserts:'Q8514'};
@@ -127,7 +128,7 @@ assert.equal(routes.length,15*(6+Object.values(expected).reduce((total,count)=>t
 assert.equal(new Set(routes).size,routes.length);
 for(const route of routes)assert.ok(existsSync(file(route)),route);
 
-const sitemap=readFileSync(join(root,'sitemap.xml'),'utf8');
+const sitemap=readSitemapEntries(root);
 const sitemapLocs=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
 assert.equal(new Set(sitemapLocs).size,sitemapLocs.length,'duplicate sitemap URL');
 assert.ok(sitemapLocs.length>=routes.length,'missing geography URLs in sitemap');
