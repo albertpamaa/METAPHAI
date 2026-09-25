@@ -37,7 +37,7 @@ for(const language of languages){
     assert.ok(html.includes(`data-language="${language}" href="${route}"`));
     for(const alt of languages)assert.ok(head.includes(`hreflang="${alt}" href="${origin}${routes[alt]}"`));
     assert.ok(head.includes(`hreflang="x-default" href="${origin}${routes.es}"`));
-    assert.ok(html.includes('games.css?v=20260917-3'));
+    assert.ok(html.includes('games.css?v=20260925-1'));
     assert.equal(html.includes('�'),false);
     const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);assert.equal(new Set(ids).size,ids.length);
     for(const block of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(block[1]));
@@ -52,11 +52,11 @@ for(const language of languages){
     }else if(pageKey==='worldDataQuiz'){
       assert.ok(html.includes('data-world-data-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(text.gameStatsTitle));assert.ok(html.includes(text.howTitle));assert.ok(html.includes(text.how));assert.ok(html.includes(text.winRule));
     }else if(pageKey==='higherOrLower'){
-      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260917-3'));
+      assert.ok(html.includes('data-higher-or-lower'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(higher.statsTitle));assert.ok(html.includes(higher.howTitle));assert.ok(html.includes(higher.how));assert.ok(html.includes(higher.method));assert.ok(html.includes('higher-or-lower-ui.mjs?v=20260925-1'));
     }else if(pageKey==='countrySilhouette'){
-      assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260917-3'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
+      assert.ok(html.includes('data-country-silhouette'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(silhouette.howTitle));assert.ok(html.includes(silhouette.how));assert.ok(html.includes('country-silhouette-ui.mjs?v=20260925-1'));assert.ok(html.includes('/assets/maps/world-50m.topo.json')===false);assert.ok(html.includes('d3.v7.9.0.min.js'));assert.ok(html.includes('topojson-client.v3.1.0.min.js'));
     }else{
-      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260919-1'));assert.ok(html.includes('Wikidata (CC0)'));
+      assert.ok(html.includes('data-geo-quiz'));assert.ok(html.includes('data-game-stats'));assert.ok(html.includes(stats.statistics));assert.ok(html.includes(geo.howTitle));assert.ok(html.includes('geo-quiz-ui.mjs?v=20260925-1'));assert.ok(html.includes('Wikidata (CC0)'));
     }
     if(pageKey!=='home')assert.ok(html.includes('World Bank — World Development Indicators'));
   }

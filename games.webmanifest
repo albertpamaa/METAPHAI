@@ -1,0 +1,11 @@
+{
+  "id":"/juegos/",
+  "name":"MetaphAI Juegos",
+  "short_name":"MetaphAI",
+  "start_url":"/juegos/geo-quiz/",
+  "scope":"/",
+  "display":"standalone",
+  "background_color":"#f7fbff",
+  "theme_color":"#087f5b",
+  "icons":[{"src":"/favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

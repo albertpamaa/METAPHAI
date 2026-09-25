@@ -1,0 +1,45 @@
+name: Send daily game notifications
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 8 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-game-notifications
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check push configuration
+        id: config
+        env:
+          PUSH_ENABLED: ${{ vars.METAPHAI_PUSH_ENABLED }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        shell: bash
+        run: |
+          if [[ "$PUSH_ENABLED" != "true" || -z "$ONESIGNAL_APP_ID" || -z "$ONESIGNAL_API_KEY" ]]; then
+            echo "Daily push not configured; skipping."
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send three independently segmented notifications
+        if: steps.config.outputs.enabled == 'true'
+        env:
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: node scripts/send-daily-game-notifications.mjs

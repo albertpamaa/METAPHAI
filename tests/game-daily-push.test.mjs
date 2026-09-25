@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {DATA_LANGUAGES} from '../assets/js/data-routes.mjs';
+import {GAME_PUSH_I18N,gamePushText} from '../assets/js/games/game-push-i18n.mjs';
+import {currentPushStatus,disableDailyPush,enableDailyPush,isIosBrowser,isStandalone,pushAvailability,pushPreferenceKey,readPushPreference} from '../assets/js/games/game-daily-push.mjs';
+
+const config={enabled:true,appId:'public-test-id',tagValue:'true',games:{worldDataQuiz:{tagKey:'daily_world_data_quiz'},countrySilhouette:{tagKey:'daily_guess_country'},geoQuiz:{tagKey:'daily_geo_quiz'}}};
+const memory=new Map,storage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,value),removeItem:key=>memory.delete(key)};
+const env={isSecureContext:true,Notification:{permission:'default'},PushManager:function(){},navigator:{serviceWorker:{},platform:'Win32',maxTouchPoints:0},matchMedia:()=>({matches:false}),localStorage:storage};
+assert.equal(pushAvailability(env,{...config,enabled:false},'worldDataQuiz'),'not-configured');assert.equal(pushAvailability(env,config,'higherOrLower'),'not-configured');assert.equal(pushAvailability({...env,isSecureContext:false},config,'worldDataQuiz'),'unsupported');assert.equal(pushAvailability({...env,Notification:{permission:'denied'}},config,'worldDataQuiz'),'denied');
+const ios={...env,navigator:{...env.navigator,platform:'MacIntel',maxTouchPoints:5,standalone:false}};assert.equal(isIosBrowser(ios),true);assert.equal(isStandalone(ios),false);assert.equal(pushAvailability(ios,config,'worldDataQuiz'),'ios-install');
+let permissionCalls=0,optIn=0,optOut=0,consent=[];const tags=new Map;const sdk={setConsentGiven:value=>consent.push(value),Notifications:{requestPermission:async()=>{permissionCalls++;env.Notification.permission='granted';return true}},User:{PushSubscription:{optIn:async()=>optIn++,optOut:async()=>optOut++},addTag:async(key,value)=>tags.set(key,value),removeTag:async key=>tags.delete(key)}};
+assert.equal(currentPushStatus({gameId:'worldDataQuiz',env,config}),'available');assert.equal(permissionCalls,0);
+assert.equal((await enableDailyPush({gameId:'worldDataQuiz',env,config,loader:async()=>sdk})).status,'enabled');assert.equal(permissionCalls,1);assert.deepEqual([...tags],[['daily_world_data_quiz','true']]);assert.equal(readPushPreference('worldDataQuiz',storage),true);
+assert.equal((await enableDailyPush({gameId:'geoQuiz',env,config,loader:async()=>sdk})).status,'enabled');assert.equal(permissionCalls,1,'permission is not requested again once granted');assert.deepEqual([...tags].sort(),[['daily_geo_quiz','true'],['daily_world_data_quiz','true']]);
+assert.equal((await disableDailyPush({gameId:'worldDataQuiz',env,config,loader:async()=>sdk})).status,'disabled');assert.deepEqual([...tags],[['daily_geo_quiz','true']]);assert.equal(optOut,0,'another game preference keeps the site push subscription active');assert.equal(readPushPreference('geoQuiz',storage),true);
+assert.equal((await disableDailyPush({gameId:'geoQuiz',env,config,loader:async()=>sdk})).status,'disabled');assert.equal(optOut,1);assert.deepEqual(consent,[true,true,false]);
+const deniedEnv={...env,Notification:{permission:'default'},localStorage:storage},deniedSdk={...sdk,Notifications:{requestPermission:async()=>false}};assert.equal((await enableDailyPush({gameId:'countrySilhouette',env:deniedEnv,config,loader:async()=>deniedSdk})).status,'denied');
+assert.deepEqual(Object.keys(GAME_PUSH_I18N).sort(),Object.keys(DATA_LANGUAGES).sort());for(const [language,copy] of Object.entries(GAME_PUSH_I18N)){for(const value of Object.values(copy))assert.ok(String(value).trim(),language);for(const gameId of Object.keys(config.games)){const specific=gamePushText(language,gameId);assert.ok(specific.enable&&specific.enabled&&specific.tomorrow)}}
+for(const gameId of Object.keys(config.games))assert.equal(memory.has(pushPreferenceKey(gameId)),false);
+assert.equal(optIn,2);console.log('game-daily-push: three independent tags/preferences, shared permission, selective opt-out, iOS, unsupported and 15 languages OK');
